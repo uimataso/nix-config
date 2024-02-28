@@ -1,0 +1,16 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	2) setsid -f "$TERMINAL" -t 'upgrade' -e sb-popupgrade ;;
+	3) notify-send 'Packages' "$(/usr/bin/pacman -Qu | grep -Fv '[ignored]')" ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+if [ -f /tmp/sb-repo-syncing ]; then
+	packages='󰇚'
+else
+	packages="$(pacman -Qu | grep -Fcv '[ignored]')"
+	[ "$packages" = '0' ] && exit
+fi
+
+printf ' %s' "$packages"

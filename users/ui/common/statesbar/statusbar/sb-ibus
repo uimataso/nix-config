@@ -1,0 +1,8 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	3) ibus-script next ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+printf ' %s' "$(ibus-script get)"

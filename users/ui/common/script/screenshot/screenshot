@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+set -o errexit
+
+[ -z "$1" ] && { echo "Usage: ${0##*/} sel|cur|full" >&2; exit 1; }
+
+dir="${XDG_PICTURES_DIR:-$HOME/downloads}/screenshots"
+[ ! -d "$dir" ] && mkdir -p "$dir"
+filename='screenshot_%Y-%m-%d_%H-%M-%S.png'
+xclip_cmd='xclip -selection clipboard -target image/png < $f'
+
+case "$1" in
+	sel)  scrot -s "$dir/$filename" -e "$xclip_cmd" ;;
+	cur)  scrot -u "$dir/$filename" -e "$xclip_cmd" ;;
+	full) scrot "$dir/$filename" -e "$xclip_cmd"    ;;
+esac
+
+notify-send "Screenshot taked"

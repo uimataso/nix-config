@@ -1,0 +1,43 @@
+# Common Config
+set -o ignoreeof            # Prevent <C-D> to close window
+stty -ixon                  # Disable <C-S> and <C-Q> to stop shell
+shopt -s globstar           # ** support
+shopt -s nocaseglob         # Case-insensitive globbing
+
+# Readline
+bind 'set completion-ignore-case on'  # Completion case-insensitive
+bind 'set completion-map-case on'     # Treat hypen and underscores as equivalent
+
+# Prompt
+user='\[\e[32m\e[1m\]\u@\h\[\e[0m\]'
+path='\[\e[36m\e[1m\]\w\[\e[0m\]'
+prom="\$([ \$? -ne 0 ] && printf '\\[\\e[31m\\]')\$\[\e[0m\]"
+PS1="$user:$path$prom "
+PS2='> '
+
+
+# Plugin
+plug_dir="$XDG_DATA_HOME/bash"
+[ ! -d "$plug_dir" ] && mkdir "$plug_dir"
+add_dl_file() {
+	url="$1" file="${url##*/}"
+	[ ! -f "$plug_dir/$file" ] && curl "$url" --output "$plug_dir/$file"
+	source "$plug_dir/$file"
+}
+
+# Fzf Shell Keybind
+add_dl_file 'https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.bash'
+
+# Fzf Tab Completion
+add_dl_file 'https://raw.githubusercontent.com/lincheney/fzf-tab-completion/master/bash/fzf-bash-completion.sh'
+
+bind -x '"\t": fzf_bash_completion'
+
+# Hacky way to deal with the bash cleaning the prompt when complete
+# Replace the loading msg and fzf prompt with ${PS1@P}
+_fzf_bash_completion_loading_msg() { echo "${PS1@P}${READLINE_LINE}" | tail -n1; }
+_fzf_bash_completion_selector() {
+	FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_COMPLETION_OPTS" \
+		$(__fzfcmd 2>/dev/null || echo fzf) -1 -0 --prompt "${PS1@P}$line" --nth 2 -d "$_FZF_COMPLETION_SEP" --ansi \
+		| tr -d "$_FZF_COMPLETION_SEP"
+}

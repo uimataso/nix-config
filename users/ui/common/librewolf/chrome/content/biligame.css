@@ -1,0 +1,5 @@
+@-moz-document domain(wiki.biligame.com){
+  .ft {
+    min-width: 0 !important;
+  }
+}

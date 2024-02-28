@@ -1,0 +1,17 @@
+#!/bin/sh
+
+bright || exit
+
+val="$(bright get)"
+max="$(bright max)"
+
+case $BLOCK_BUTTON in
+	3) notify-send 'Brightness' "$val / $max" ;;
+	4) bright up;;
+	5) bright down;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+icon_list='󰛩 󱩎 󱩏 󱩐 󱩑 󱩒 󱩓 󱩔 󱩕 󱩖 󰛨'
+icon=$(echo "$icon_list" | cut -d' ' -f$((val * 10 / max + 1)))
+printf '%s' "$icon"

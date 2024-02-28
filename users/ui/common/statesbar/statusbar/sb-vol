@@ -1,0 +1,29 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) vl mute ;;
+	3) vl switch ;;
+	4) vl up ;;
+	5) vl down ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+#   
+case "$(pactl get-default-sink)" in
+	'alsa_output.pci-0000_00_1f.3.analog-stereo')
+		icon='󰋋'
+		mute_icon='󰟎'
+		;;
+	*)
+		icon=''
+		mute_icon='' ;;
+esac
+
+vol="$(vl)"
+
+if [ "$vol" = 'muted' ]; then
+	printf '%s ' "$mute_icon"
+	exit
+fi
+
+printf '%s %s%%' "$icon" "$vol"

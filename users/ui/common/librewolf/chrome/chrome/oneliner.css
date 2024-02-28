@@ -1,0 +1,103 @@
+/* Inspired by */
+/* https://www.reddit.com/r/FirefoxCSS/comments/bg4oqd/responsive_one_liner/ */
+/* https://gist.github.com/mireq/464cdcd54989542071c9ed0e95554776 */
+
+
+:root {
+  --new-tab-height: 29px;
+  --tabbar-width: 65vw;
+}
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* Hide controls when urlbar focused */
+#navigator-toolbox #nav-bar #nav-bar-customization-target:focus-within toolbarbutton {
+  display: none !important;
+}
+
+/* Change tab height to new-tab-height */
+#tabbrowser-tabs,
+#tabbrowser-arrowscrollbox,
+.tabbrowser-tab,
+.tab-stack {
+  height: var(--new-tab-height) !important;
+  min-height: var(--new-tab-height) !important;
+}
+
+/* Make style right */
+#scrollbutton-up,
+#scrollbutton-down {
+  border: none !important;
+  border-radius: 4px !important;
+}
+
+/* Tab background */
+.tab-background {
+  margin-block: 0 !important;
+  border-radius: 4px !important;
+}
+
+/* Make top-left no padding */
+#nav-bar-customization-target > :is(toolbarbutton, toolbaritem):first-child {
+  padding-inline-start: 0 !important;
+}
+
+/* Tab bar button no margin */
+#TabsToolbar .toolbarbutton-1 {
+  margin: 0 !important;
+}
+
+/* Disable padding on urlbar */
+#navigator-toolbox #nav-bar #urlbar-container {
+  margin-inline: 0 !important;
+  padding-block: 0 !important;
+}
+
+
+#urlbar {
+  top: 0 !important;
+  min-height: var(--new-tab-height) !important;
+  height: var(--new-tab-height) !important;
+}
+
+#urlbar-container {
+  min-height: var(--new-tab-height) !important;
+  min-width: 3rem !important;
+}
+
+
+/* Make button size right */
+toolbar .toolbarbutton-1 > .toolbarbutton-icon,
+toolbar .toolbarbutton-1 > .toolbarbutton-badge-stack,
+toolbar .toolbarbutton-1 > .toolbarbutton-text {
+  width: var(--new-tab-height) !important;
+  height: var(--new-tab-height) !important;
+  padding: 7px 6px 6px 7px !important;
+}
+/* fix overflow button at bookmark bar */
+toolbar #PlacesChevron {
+  padding: 0 !important;
+}
+
+/* Make bookmark bar height to new height */
+#PlacesToolbar {
+  height: var(--new-tab-height) !important;
+}
+
+/* Move tabs 35% to rihgt */
+#TabsToolbar {
+  margin-left: calc(100vw - var(--tabbar-width)) !important;
+}
+
+/* Move navigation 65% to left and negative margin to move to top line */
+#nav-bar {
+  min-width: 200px !important;
+  margin-right: var(--tabbar-width) !important;
+  margin-top: calc(0px - var(--new-tab-height)) !important;
+  background: transparent !important;
+}
+
+/* limit urlbar size */
+#urlbar-background {
+  max-width: calc(100vw - var(--tabbar-width) - 1px) !important;
+}

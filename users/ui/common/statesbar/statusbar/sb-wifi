@@ -1,0 +1,50 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	3) "$TERMINAL" -t wifi -c float -e su -c popup-wifi ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+get_icon(){
+	word="$(echo "$2" | wc -w)"
+	if [ $1 -le 1 ]; then
+		echo "$2" | cut -d' ' -f1
+	elif [ $1 -ge $word ]; then
+		echo "$2" | cut -d' ' -f"$word"
+	else
+		echo "$2" | cut -d' ' -f"$1"
+	fi
+}
+
+# exit if not have iw installed
+type iw >/dev/null || exit
+[ -f /proc/net/wireless ] || exit
+
+dev=$(ip route | sed -n '/^default/s/.*dev \(\S*\).*/\1/p')
+[ -z "$dev" ] && dev="$(iw dev | sed -n 's/\s*Interface \(.*\)$/\1/p')"
+if [ -z "$dev" ] || [ "$(echo "$dev" | wc -l)" != '1' ]; then
+	printf '󰣽'
+	exit
+fi
+
+ssid=$(iw "$dev" link | sed -n 's/^\s*SSID: \(.*\)$/\1/p')
+
+quality=$(awk "/^\s*$dev:/ {print \$3 / 14 + 1}" /proc/net/wireless | sed 's/\..*$//')
+if [ -n "$quality" ]; then
+	quality_icon_list='󰣾 󰣴 󰣶 󰣸 󰣺'
+	quality_icon="$(get_icon $quality "$quality_icon_list")"
+fi
+
+signal_icon_list='󰤯 󰤟 󰤢 󰤥 󰤨'
+if [ -n "$ssid" ]; then
+	signal=$(iw "$dev" link | sed -n 's/^\s*signal: \(.*\) dBm$/\1/p')
+	signal=$(( (signal+115) / 16))
+	signal_icon="$(get_icon $signal "$signal_icon_list")"
+else
+	signal_icon='󰤮'
+fi
+
+output="$signal_icon"
+[ -n "$quality_icon" ] && output="$quality_icon $output"
+[ -n "$ssid" ] && output="$output $ssid"
+printf '%s' "$output"

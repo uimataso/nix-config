@@ -1,0 +1,8 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+time=$(uptime | awk '{print $3}' | cut -d, -f1)
+printf '%s %s' '󰍹' "$time"

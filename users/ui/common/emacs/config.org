@@ -1,0 +1,639 @@
+#+TITLE: Config File
+#+AUTHOR: uima
+#+DESCRIPTION: The emacs config file
+#+PROPERTY: header-args:emacs-lisp :tangle (expand-file-name "init.el" user-emacs-directory) :mkdirp yes
+#+STARTUP: content
+
+* TOC :TOC:
+- [[#auto-tangle-config][Auto Tangle Config]]
+- [[#package-manager][Package Manager]]
+- [[#completion][Completion]]
+  - [[#vertico][Vertico]]
+  - [[#consult][Consult]]
+  - [[#embark][Embark]]
+  - [[#marginalia][Marginalia]]
+  - [[#savehist][Savehist]]
+  - [[#orderless][Orderless]]
+- [[#keybinding][Keybinding]]
+  - [[#keymap-function][Keymap Function]]
+  - [[#define-leader-key][Define Leader key]]
+  - [[#normal][Normal]]
+  - [[#file][File]]
+  - [[#buffer][Buffer]]
+  - [[#toggle][Toggle]]
+- [[#theme][Theme]]
+- [[#mode-line][Mode Line]]
+- [[#org-mode][Org Mode]]
+  - [[#org][Org]]
+  - [[#roam][Roam]]
+  - [[#roam-ui][Roam UI]]
+  - [[#capture-templete][Capture Templete]]
+  - [[#structure-template][Structure Template]]
+  - [[#roam-template][Roam Template]]
+  - [[#babel][Babel]]
+  - [[#save-after-refile][Save After Refile]]
+  - [[#bullets][Bullets]]
+  - [[#toc][Toc]]
+  - [[#show-hidden-element][Show Hidden Element]]
+  - [[#insert-links-with-title][Insert Links with Title]]
+- [[#ui][UI]]
+  - [[#disable-gui-bars][Disable GUI Bars]]
+  - [[#no-blink-cursor][No Blink Cursor]]
+  - [[#line-warp][Line Warp]]
+  - [[#show-trailing-space][Show Trailing Space]]
+  - [[#default-window-size][Default Window Size]]
+  - [[#transparency][Transparency]]
+  - [[#centering-content][Centering Content]]
+  - [[#show-parens][Show Parens]]
+  - [[#rainbow-delimiters][Rainbow Delimiters]]
+- [[#misc][Misc]]
+  - [[#custom-file][Custom file]]
+  - [[#which-key][Which Key]]
+  - [[#helpful][Helpful]]
+  - [[#dont-create-backup-file][Dont create backup file]]
+  - [[#remove-trailing-space-when-save][Remove trailing space when save]]
+  - [[#spell-checker][Spell checker]]
+  - [[#scratch-message][Scratch message]]
+
+* Auto Tangle Config
+#+begin_src emacs-lisp
+(defun my/auto-tangle-config ()
+  (when (string-equal (buffer-file-name)
+                      (expand-file-name "config.org" user-emacs-directory))
+    (let ((org-confirm-babel-evaluate nil))
+      (org-babel-tangle))))
+
+(add-hook 'org-mode-hook
+	  (lambda () (add-hook 'after-save-hook #'my/auto-tangle-config)))
+#+end_src
+
+* Package Manager
+#+begin_src emacs-lisp
+(require 'package)
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
+(package-initialize)
+(unless package-archive-contents
+  (packae-refresh-contents))
+
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
+#+end_src
+
+* Completion
+** Vertico
+The completion mechanism
+#+begin_src emacs-lisp
+(use-package vertico
+  :custom
+  (read-file-name-completion-ignore-case t)
+  (read-buffer-completion-ignore-case t)
+  (completion-ignore-case t)
+  :config
+  (vertico-mode)
+  (vertico-reverse-mode))
+#+end_src
+
+** Consult
+#+begin_src emacs-lisp
+(use-package consult
+  :bind
+  (("C-x C-b" . consult-buffer)
+   ("C-c r" . consult-grep))
+  )
+#+end_src
+
+** Embark
+Minibuffer actions
+#+begin_src emacs-lisp
+(use-package embark
+  :bind
+  (("C-." . embark-act)         ;; pick some comfortable binding
+   ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+  )
+
+(use-package embark-consult
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+#+end_src
+
+** Marginalia
+Marginalia in the minibuffer
+#+begin_src emacs-lisp
+(use-package marginalia
+  :after vertico
+  :config
+  (marginalia-mode))
+#+end_src
+
+** Savehist
+History plug for Vertico
+#+begin_src emacs-lisp
+(use-package savehist
+  :config
+  (savehist-mode))
+#+end_src
+
+** Orderless
+#+begin_src emacs-lisp
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles partial-completion)))))
+#+end_src
+
+* Keybinding
+** Keymap Function
+#+begin_src emacs-lisp
+(defun my/set-prefix (key keymap)
+  (if (not (boundp keymap))
+      (define-prefix-command keymap))
+  (keymap-global-set key keymap))
+
+(defun my/set-leader-key (key)
+  (setq my/leader-key key)
+  (keymap-global-set key nil))
+
+(defun my/leader (key)
+  (concat my/leader-key " " key))
+
+(defun my/keymap-list-set (&rest args)
+  (let ((prefix (or (plist-get args :prefix) nil))
+	    (keymap (or (plist-get args :keymap) nil))
+        (bind   (or (plist-get args :bind)   nil)))
+    (if (not (boundp keymap))
+	    (define-prefix-command keymap))
+    (if prefix (keymap-global-set prefix keymap))
+    (if keymap
+	    (dolist (key bind)
+	       (keymap-set keymap (car key) (cdr key)))
+        (dolist (key bind)
+	       (keymap-global-set (car key) (cdr key))))))
+#+end_src
+
+** Define Leader key
+#+begin_src emacs-lisp
+(my/set-leader-key "M-SPC")
+#+end_src
+
+** Normal
+#+begin_src emacs-lisp
+(put 'suspend-frame 'disabled t) ;; disable C-z to suspend frame
+(keymap-global-set "<escape>"    'keyboard-escape-quit)  ;; esc to quit prompts
+(keymap-global-set "<next>"      'my/scroll-half-page-down)
+(keymap-global-set "<prior>"     'my/scroll-half-page-up)
+(keymap-global-set "<XF86Copy>"  'clipboard-kill-ring-save)
+(keymap-global-set "<XF86Paste>" 'clipboard-yank)
+(keymap-global-set "<XF86Cut>"   'clipboard-kill-region)
+;; (kbd "<leader>rg") 'rgrep  ;; searching context
+;; ;;(kbd "") 'next-error
+;; ;;(kbd "") 'previous-error
+
+;; (kbd "<leader>ec")
+;; '(lambda () (interactive)
+;;    (load-file "~/.config/emacs/init.el"))  ;; eval the config file
+#+end_src
+
+*** Scroll half page
+#+begin_src emacs-lisp
+(defun my/scroll-half-page-down ()
+  "scroll down half a page while keeping the cursor centered"
+  (interactive)
+  (let ((ln (line-number-at-pos (point)))
+    (lmax (line-number-at-pos (point-max))))
+    (cond ((= ln 1) (move-to-window-line nil))
+      ((= ln lmax) (recenter (window-end)))
+      (t (progn
+           (move-to-window-line -1)
+           (recenter))))))
+
+(defun my/scroll-half-page-up ()
+  "scroll up half a page while keeping the cursor centered"
+  (interactive)
+  (let ((ln (line-number-at-pos (point)))
+    (lmax (line-number-at-pos (point-max))))
+    (cond ((= ln 1) nil)
+      ((= ln lmax) (move-to-window-line nil))
+      (t (progn
+           (move-to-window-line 0)
+           (recenter))))))
+#+end_src
+
+** File
+#+begin_src emacs-lisp
+(my/keymap-list-set
+ :prefix (my/leader "f")
+ :keymap 'files
+ :bind
+ '(("f" . find-file)
+   ("e" . project-find-file)
+   ("p" . project-switch-project)
+   ("r" . recentf)
+   ("c" . (lambda () (interactive) (find-file "~/.config/emacs/config.org")))
+   ("o" . (lambda () (interactive) (find-file "~/org/inbox.org")))
+   ("x" . (lambda () (interactive) (load-file "~/.config/emacs/init.el")))
+   ("m" . make-directory)
+   ("d" . delete-file)
+   ))
+#+end_src
+
+** Buffer
+#+begin_src emacs-lisp
+(my/keymap-list-set
+ :prefix (my/leader "b")
+ :keymap 'buffer
+ :bind
+ '(("i" . ibuffer)
+   ("k" . kill-this-buffer)
+   ("K" . my/kill-other-buffers)
+   ("r" . revert-buffer)
+   ))
+#+end_src
+
+*** Function of Kill other buffers
+#+begin_src emacs-lisp
+(defun my/kill-other-buffers ()
+  "Kill all other buffers."
+  (interactive)
+  (mapc 'kill-buffer (cdr (buffer-list (current-buffer)))))
+#+end_src
+
+** Toggle
+#+begin_src emacs-lisp
+(my/keymap-list-set
+ :prefix (my/leader "t")
+ :keymap 'toggle
+ :bind
+ '(("n" . display-line-numbers-mode)
+   ("w" . visual-line-mode)  ;; warp line
+   ("o" . my/toggle-opacity)
+   ))
+#+end_src
+
+*** Toggle Transparency
+#+begin_src emacs-lisp
+(defun my/toggle-opacity ()
+  "Toggle transparency."
+  (interactive)
+  (pcase (frame-parameter nil 'alpha-background)
+    (100 (set-frame-parameter nil 'alpha-background 90))
+    (90  (set-frame-parameter nil 'alpha-background 50))
+    (50  (set-frame-parameter nil 'alpha-background 100))))
+#+end_src
+
+* Theme
+#+begin_src emacs-lisp
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+	doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-one t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+  (doom-themes-treemacs-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
+
+(defun my/set-frame-parameter (para value)
+  (set-frame-parameter nil para value)
+  (add-to-list 'default-frame-alist (cons para value)))
+
+;; Custom colors
+(my/set-frame-parameter 'foreground-color "#bcbcbc")
+(my/set-frame-parameter 'background-color "#161616")
+(custom-set-faces
+ '(org-block-begin-line
+   ((t (:background "#202020" :extend t))))
+ '(org-block
+   ((t (:background "#202020" :extend t))))
+ '(org-block-end-line
+   ((t (:background "#202020" :extend t))))
+ '(org-link
+   ((t (:foreground "#86a586" :extend t))))
+ )
+#+end_src
+
+* Mode Line
+#+begin_src emacs-lisp
+(use-package doom-modeline
+  :config
+  (doom-modeline-mode))
+#+end_src
+* Org Mode
+** Org
+#+begin_src emacs-lisp
+(use-package org
+  :bind
+  (("C-c a" . org-agenda)
+   ("C-c c" . org-capture)
+   :map org-mode-map
+   ("C-c l" . org-store-link)
+   ("C-c k" . org-cliplink)
+   ("C-c s" . org-edit-src-code)
+   )
+  :hook
+  (org-mode . org-indent-mode)
+  :custom
+  (org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
+  (org-refile-targets '(("archive.org" :maxlevel . 1)))
+
+  (org-ellipsis " ▾")                    ;; the character for folding indicator
+  (org-hide-emphasis-markers t)          ;; hide emphasis markers
+  (org-startup-with-inline-images t)     ;; show inline images
+  (org-src-preserve-indentation t)       ;; no leading indent in src block
+  (org-src-window-setup 'current-window) ;; edit src block in current window
+  (org-confirm-babel-evaluate nil)       ;; no confirm when evaluate
+
+  ;; TODO
+  (org-todo-keywords
+   '((sequence "TODO(t)" "IN-PROGRESS(i!)" "WAITING(w@)" "|" "DONE(d)")))
+  (org-log-done 'time)  ;; log time when done
+  (org-todo-keyword-faces
+   '(("TODO"        . (:foreground "GoldenRod"  :weight bold))
+     ("IN-PROGRESS" . (:foreground "Cyan"       :weight bold))
+     ("WAITING"     . (:foreground "DarkOrange" :weight bold))
+     ("DONE"        . (:foreground "LimeGreen"  :weight bold))
+
+     ("TO-GET"      . (:foreground "GoldenRod"  :weight bold))
+     ("UPDATE"      . (:foreground "GoldenRod"  :weight bold))
+     ("GET"         . (:foreground "Cyan"       :weight bold))
+     ("INGORE"      . (:foreground "LimeGreen"  :weight bold))
+     ))
+
+  ;; TAG
+  (org-tag-alist '((:startgroup . nil)
+                   (:endgroup . nil)))
+  (org-tag-faces
+   '(;;("meeting"   . (:foreground "yellow1"       :weight bold))
+     ))
+  )
+#+end_src
+
+** Roam
+#+begin_src emacs-lisp
+(use-package org-roam
+  :custom
+  (org-roam-directory (file-truename "~/org"))
+  (org-roam-completion-everywhere t)
+  (org-roam-node-display-template
+   (concat "${title:*} " (propertize "${tags:15}" 'face 'org-tag)))
+  :bind (("C-c l" . org-roam-buffer-toggle)
+         ("C-c f" . org-roam-node-find)
+         ("C-c i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         :map org-mode-map
+         ("C-M-i"   . completion-at-point))
+  :config
+  (org-roam-setup))
+#+end_src
+
+** Roam UI
+#+begin_src emacs-lisp
+;; Dependence
+(use-package websocket)
+(use-package simple-httpd)
+(use-package f)
+
+(use-package org-roam-ui
+  :bind (("C-c n g" . org-roam-ui-open))
+  )
+#+end_src
+
+** Capture Templete
+#+begin_src emacs-lisp
+(setq org-capture-templates
+      '(("n" "Add Note to Inbox"
+         entry (file "~/org/inbox.org")
+         "* %?"
+         :empty-lines-before 1)
+
+        ("t" "Add Todo to Inbox"
+         entry (file "~/org/inbox.org")
+         "* TODO %?\n:CREATED: %T\n"
+         :empty-lines-before 1)
+
+        ("l" "Cap with Link")
+
+        ("ln" "Add Note with File Link to Inbox"
+         entry (file "~/org/inbox.org")
+         "* %?\n%a\n"
+         :empty-lines-before 1)
+
+        ("lt" "Add Todo with File Link to Inbox"
+         entry (file "~/org/inbox.org")
+         "* TODO %?\n:CREATED: %T\n%a\n"
+         :empty-lines-before 1)
+
+	    ("m" "Music")
+	    ("ma" "Add artist to list"
+	     entry (file "~/org/music_artist.org")
+	     "* %^{Artist} %^g\n:PROPERTIES:\n:Title:        %\\1\n:MusicBrainz:  [[%^{MusicBrainz}][MusicBrainz]]\n:Link:         %^{Link}\n:END:\n\n** Album [/]\n%?\n** EP [/]\n\n** Single [/]\n"
+	     :empty-lines-before 1)
+        ))
+#+end_src
+*** TODO Music manager
+[[https://reddit.uima.duckdns.org/r/orgmode/comments/j4yl0y/orgcapturetemplates_how_can_i_dynamically_pick_a/][org-capture-templates: how can I dynamically pick a target heading for a chec...]]
+
+** Structure Template
+#+begin_src emacs-lisp
+(setq org-structure-template-alist
+  '(("c" . "center\n")
+    ("C" . "comment\n")
+    ("x" . "example\n")
+    ("q" . "quote\n")
+    ("v" . "verse\n")
+
+    ("e" . "export")
+    ("ea" . "export ascii\n")
+    ("eh" . "export html\n")
+    ("el" . "export latex\n")
+
+    ("s" . "src")
+    ("sl" . "src emacs-lisp\n")
+    ("sh" . "src shell\n")
+    ("sp" . "src python\n")
+    ))
+#+end_src
+
+** Roam Template
+#+begin_src emacs-lisp
+(setq org-roam-capture-templates
+      '(("d" "default" plain "\n%?"
+	 :target (file+head
+		  "%<%Y%m%d%H%M%S>-${slug}.org"
+		  "#+title: ${title}\n#+data: %U\n#+filetags:\n")
+	 :unnarrowed t)
+	))
+#+end_src
+
+** Babel
+#+begin_src emacs-lisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (shell . t)
+   (python . t)
+   (awk . t)
+   (C . t)
+   ))
+#+end_src
+
+** Save After Refile
+#+begin_src emacs-lisp
+(advice-add 'org-refile :after 'org-save-all-org-buffers)
+#+end_src
+
+** Bullets
+#+begin_src emacs-lisp
+(use-package org-bullets
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("●" "○")))
+#+end_src
+
+** Toc
+#+begin_src emacs-lisp
+(use-package toc-org
+  :hook (org-mode . toc-org-mode))
+#+end_src
+
+** Show Hidden Element
+#+begin_src emacs-lisp
+(use-package org-appear
+  :hook (org-mode . org-appear-mode)
+  :custom
+  (org-appear-autolinks 1))
+;; (setq org-appear-trigger 'manual)
+;; (add-hook 'org-mode-hook
+;; 	  (lambda ()
+;; 	    (add-hook 'evil-insert-state-entry-hook
+;; 		      #'org-appear-manual-start nil t)
+;; 	    (add-hook 'evil-insert-state-exit-hook
+;; 		      #'org-appear-manual-stop nil t))))
+#+end_src
+
+** Insert Links with Title
+#+begin_src emacs-lisp
+(use-package org-cliplink
+  :after org)
+#+end_src
+
+* UI
+** Disable GUI Bars
+#+begin_src emacs-lisp
+(menu-bar-mode 0)
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+#+end_src
+
+** No Blink Cursor
+#+begin_src emacs-lisp
+(blink-cursor-mode 0)
+#+end_src
+
+** Line Warp
+#+begin_src emacs-lisp
+(global-visual-line-mode)
+#+end_src
+
+** Show Trailing Space
+#+begin_src emacs-lisp
+(setq-default show-trailing-whitespace t)
+;; Disable in these modes
+(dolist (hook '(special-mode-hook
+                term-mode-hook
+                comint-mode-hook
+                compilation-mode-hook
+                minibuffer-setup-hook))
+  (add-hook hook (lambda () (setq show-trailing-whitespace nil))))
+#+end_src
+
+** Default Window Size
+#+begin_src emacs-lisp
+(my/set-frame-parameter 'width 110)
+(my/set-frame-parameter 'height 40)
+#+end_src
+
+** Transparency
+#+begin_src emacs-lisp
+(my/set-frame-parameter 'alpha '(100 100))
+(my/set-frame-parameter 'alpha-background 90)
+#+end_src
+
+** Centering Content
+#+begin_src emacs-lisp
+(use-package visual-fill-column
+  :custom
+  (visual-fill-column-width 90)
+  (visual-fill-column-center-text t)
+  :config
+  (global-visual-fill-column-mode 1))
+#+end_src
+
+** Show Parens
+#+begin_src emacs-lisp
+(define-advice show-paren-function (:around (fn) fix)
+  "Highlight enclosing parens."
+  (cond ((looking-at-p "\\s(") (funcall fn))
+	(t (save-excursion
+	     (ignore-errors (backward-up-list))
+	     (funcall fn)))))
+#+end_src
+
+** Rainbow Delimiters
+#+begin_src emacs-lisp
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+#+end_src
+
+* Misc
+** Custom file
+#+begin_src emacs-lisp
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+#+end_src
+
+** Which Key
+#+begin_src emacs-lisp
+(use-package which-key
+  :config
+  (which-key-mode))
+#+end_src
+
+** Helpful
+#+begin_src emacs-lisp
+(use-package helpful
+  :bind
+  ([remap describe-function] . helpful-callable)
+  ([remap describe-variable] . helpful-variable)
+  ([remap describe-key] . helpful-key)
+  ([remap describe-command] . helpful-command)
+  ("C-h h" . helpful-at-point))
+#+end_src
+
+** Dont create backup file
+#+begin_src emacs-lisp
+(setq make-backup-files nil)
+#+end_src
+
+** Remove trailing space when save
+#+begin_src emacs-lisp
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+end_src
+
+** Spell checker
+#+begin_src emacs-lisp
+(setq ispell-program-name "/usr/bin/aspell")
+#+end_src
+
+** Scratch message
+#+begin_src emacs-lisp
+(setq initial-scratch-message "")
+#+end_src

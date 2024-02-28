@@ -1,0 +1,50 @@
+
+@-moz-document domain(github.com) {
+    html {
+        background: var(--bg-color) !important;
+    }
+
+    .Header,
+    .team-left-column,
+    .flex-auto.col-md-8.col-lg-8.px-3.px-lg-5{
+        background-color: var(--bg-color) !important;
+    }
+
+    /***** Repositor *****/
+    body {
+        background-color: var(--bg-color) !important;
+    }
+    /* header */
+    #repository-container-header {
+        background-color: var(--bg-color) !important;
+    }
+
+    /***** fix some thing *****/
+    /* explore top banner */
+    .site-subnav.site-subnav-sticky.js-sticky,
+    /* person page top banner */
+    #js-pjax-container div.position-sticky,
+    /* wiki title */
+    .d-flex.flex-column.flex-md-row.gh-header,
+    /* discussion title */
+    .d-flex.width-full.flex-order-1.flex-md-order-none,
+    /* discussion write */
+    .discussion-timeline-actions {
+        background-color: var(--bg-color) !important;
+    }
+
+    /* let btn back */
+    .subnav-item {
+        background-color: var(--color-canvas-subtle) !important;
+    }
+    /* let some item back */
+    .content.text-center,
+    .pinned-issue-item {
+        background-color: var(--color-canvas-default) !important;
+    }
+
+    #partial-discussion-header,
+    .color-bg-default.js-profile-timeline-year-list {
+        background-color: var(--bg-color) !important;
+    }
+}

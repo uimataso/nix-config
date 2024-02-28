@@ -1,0 +1,23 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+dev='/sys/class/power_supply/BAT0'
+[ ! -d "$dev" ] && exit
+
+cap="$(cat "$dev/capacity")"
+
+# Discharging
+# Charging
+# Not charging
+if [ "$(cat "$dev/status")" = 'Discharging' ]; then
+	icon_list='󰁺 󰁻 󰁼 󰁽 󰁾 󰁿 󰂀 󰂁 󰂂 󰁹 󰁹'
+else
+	icon_list='󰢜 󰂆 󰂇 󰂈 󰢝 󰂉 󰢞 󰂊 󰂋 󰂅 󰂅'
+fi
+
+icon="$(echo "$icon_list" | cut -d' ' -f$((cap / 10 +1)))"
+
+printf '%s %s%%' "$icon" "$cap"

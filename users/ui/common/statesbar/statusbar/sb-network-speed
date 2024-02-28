@@ -1,0 +1,18 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+interval=1
+dev="$(ip route | sed -n '/^default/s/.*dev \(\S*\).*/\1/p')"
+
+down=$(awk "/^\s*$dev/ {print \$2}" /proc/net/dev)
+up=$(awk "/^\s*$dev/ {print \$10}" /proc/net/dev)
+
+sleep $interval
+
+d=$(( ( $(awk "/^\s*$dev/ {print \$2}" /proc/net/dev) - down) / interval))
+u=$(( ( $(awk "/^\s*$dev/ {print \$10}" /proc/net/dev) - up) / interval))
+
+printf '%4s %4s' "$(numfmt --to=iec $d)" "$(numfmt --to=iec $u)"

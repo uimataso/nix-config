@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if type paru >/dev/null; then
+	if paru; then
+		yes | paru -Sdcc
+	fi
+elif type yay >/dev/null; then
+	yay
+else
+	pacman -Syu
+fi
+
+printf "\\nDone.\\nPress <Enter> to exit window.\\n\\n"
+read -r _
+
+{ sleep 1s; sb-update sb-pacman; } &

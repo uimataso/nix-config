@@ -1,0 +1,12 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) notify-send " $(cal | head -n1) " \
+	  "$(cal | tail -n+2 |
+		awk '{ print " " $0 " " }' |
+		sed "s/ $(date '+%e') /[$(date '+%e')]/")"
+	  ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+date '+%a %b %d  %H:%M '

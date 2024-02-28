@@ -1,0 +1,304 @@
+@-moz-document domain(archlinux.org){
+  :root {
+    --main-background-color: rgb(34,34,34);
+    --background-color: var(--bg-color);
+
+    --color: var(--fg-color);
+    --color-light: rgb(220,220,220);
+    --color-gray: rgb(153,153,153);
+    --color-dark: rgb(56,56,56);
+
+    --box-background-color: rgb(42,42,42);
+    --box-border-color: rgb(50,50,50);
+
+    --note-background-color: rgb(62, 52, 43);
+    --tip-background-color: rgb(59, 60, 84);
+    --warning-background-color: rgb(132, 62, 67);
+    --template-background-color: rgb(217, 149, 39);
+
+    --linked-a-color: rgb(100, 156, 217);
+  }
+  html {
+    background: var(--background-color) !important;
+  }
+
+  /* background */
+  body {
+    background: var(--background-color) !important;
+    color: var(--color) !important;
+    border: var(--color-dark) !important;
+  }
+
+  /* navbar */
+  #archnavbar {
+    background: var(--color-dark) !important;
+    border-bottom: none !important;
+  }
+
+  /*  */
+  h1, h2, h3, h4, h5, pre, code {
+    color: var(--color-light) !important;
+  }
+  h1, h2 { border-bottom: 2px solid var(--color-dark) !important; }
+  /* table */
+  tr, th, td{
+    background: var(--box-background-color) !important;
+    color: var(--color) !important;
+    border: 2px solid var(--box-border-color) !important;
+  }
+  /* code box */
+  pre, code {
+    background: var(--box-background-color) !important;
+    border: 1px solid var(--box-border-color) !important;
+  }
+  code {
+    border: none !important;
+  }
+}
+
+/* HOME */
+@-moz-document url(https://archlinux.org/){
+  div.box {
+    background: var(--box-background-color) !important;
+    border: 1px solid var(--box-border-color) !important;
+  }
+  /* footer fix */
+  .mw-footer li,
+  /* older news fix, on home page buttom */
+  dl dt {
+    color: var(--color) !important;
+  }
+}
+
+/* WIKI */
+@-moz-document domain(wiki.archlinux.org){
+  /* background */
+  div.mw-page-container {
+    background: var(--background-color) !important;
+    border: none !important;
+  }
+  /* content */
+  #content.mw-body {
+    background: var(--main-background-color) !important;
+    border: none !important;
+  }
+  /* note box */
+  div.archwiki-template-box.archwiki-template-box-note{
+    background: var(--note-background-color) !important;
+    border: 1px solid var(--box-border-color) !important;
+  }
+  div.archwiki-template-box.archwiki-template-box-tip{
+    background: var(--tip-background-color) !important;
+    border: 1px solid var(--box-border-color) !important;
+  }
+  div.archwiki-template-box.archwiki-template-box-warning{
+    background: var(--warning-background-color) !important;
+    border: 1px solid var(--box-border-color) !important;
+  }
+  div.noprint.archwiki-template-message{
+    background: var(--template-background-color) !important;
+    border: 1px solid var(--box-border-color) !important;
+  }
+
+  /* link */
+  p a:visited, dt a:visited { color: var(--linked-a-color) !important; }
+
+  /* page selector */
+  .vector-menu-tabs, .vector-menu-tabs a {
+    background: transparent !important;
+    background-image: none !important;
+    padding-bottom: 4px !important;
+  }
+  li.selected {
+    background: transparent !important;
+    border: none !important;
+  }
+  .mw-list-item a {
+    font-size: 110% !important;
+    color: var(--color-gray) !important;
+  }
+  .mw-list-item.selected a{
+    font-weight: bold !important;
+    color: var(--color) !important;
+  }
+
+  /* wiki navigation */
+  #mw-panel-toc {
+    background-color: var(--box-background-color) !important;
+    color: var(--color) !important;
+  }
+  #mw-panel-toc .sidebar-toc-title,
+  #mw-panel-toc a {
+    color: var(--color) !important;
+  }
+  #mw-panel-toc::after {
+    display: none !important;
+  }
+
+  /* #vector-toc-collapsed-button { */
+  /* } */
+
+  /* view source box */
+    /* border dont work */
+  textarea {
+    background: var(--box-background-color) !important;
+    /*border: 1px solid var(--box-border-color);*/
+    color: var(--color) !important;
+  }
+
+  /* foot links */
+  #catlinks {
+    background: var(--box-background-color) !important;
+    border: 1px solid var(--box-border-color) !important;
+  }
+  /* footer fix */
+  .mw-footer li {
+    color: var(--color) !important;
+  }
+}
+
+
+
+@-moz-document url-prefix(https://archlinux.org/packages),
+               url-prefix(https://aur.archlinux.org/packages){
+  div.box {
+    background: var(--main-background-color) !important;
+    color: var(--color) !important;
+    border: none !important;
+  }
+  div#actionlist {
+    background: var(--box-background-color) !important;
+    border: 1px solid var(--box-border-color) !important;
+  }
+  /* input box, didnt work
+  select, input, select#id_maintainer {
+    background: var(--main-background-color) !important;
+    color: var(--color) !important;
+  }
+  */
+  #pkgdetails #detailslinks > div {
+    background: var(--box-background-color) !important;
+    border: 1px solid var(--box-border-color) !important;
+  }
+}
+
+
+@-moz-document domain(bbs.archlinux.org){
+  /* background */
+  #punindex,
+  #punviewforum,
+  #punviewtopic,
+  .punwrap {
+    background: var(--background-color) !important;
+    border: none !important;
+  }
+  /* menu */
+  #brdmenu {
+    background: transparent !important;
+  }
+  #brdmenu a{
+    background: transparent !important;
+    color: var(--color-gray) !important;
+    font-size: 120% !important;
+    border: none !important;
+  }
+  #brdmenu .isactive a {
+    color: var(--color) !important;
+    font-weight: bold !important;
+  }
+  .pun .punwrap {
+    color: var(--color-gray) !important;
+  }
+
+  /* index page, main pane */
+  div.box {
+    border: none !important;
+  }
+  .inbox tr, .inbox th, .inbox td {
+    background: var(--main-background-color) !important;
+    color: var(--color) !important;
+    border: 2px solid var(--box-border-color) !important;
+  }
+
+  /* post page, main pane */
+  /* background */
+  .blockpost,
+  .postbody,
+  .postleft,
+  .postright,
+  .postmsg,
+  .blockpost h2,
+  .postfoot,
+  .postfootright,
+  .postfootleft{
+    background: var(--main-background-color) !important;
+    color: var(--color) !important;
+    border: none !important;
+  }
+  /* sep each user */
+  .postfootright,
+  .postfootleft{
+    border-bottom: 3px solid var(--box-border-color) !important;
+  }
+  /* */
+  .postsignature.postmsg hr {
+    background: var(--color-dark) !important;
+  }
+  /* */
+  div.codebox {
+    border: 1px solid var(--box-border-color) !important;
+  }
+  /* quote */
+  .quotebox{
+    background: var(--box-background-color) !important;
+    border-color: var(--color-gray) !important;
+    color: var(--color-gray) !important;
+  }
+
+  /* user name */
+  .postleft strong a {
+    color: var(--color-light) !important;
+  }
+
+  .inform,
+  .blockform h2,
+  .infldset,
+  p.buttons{
+    background: var(--main-background-color) !important;
+    color: var(--color) !important;
+    border: none !important;
+  }
+  /*
+  textarea {
+    background: var(--box-background-color) !important;
+    color: var(--color) !important;
+  }
+  */
+}
+
+
+@-moz-document domain(security.archlinux.org){
+  .navbar a {
+    color: var(--color) !important;
+    font-size: 110% !important;
+  }
+  hr { border-top: 1px solid var(--box-border-color) !important; }
+}
+@-moz-document domain(bugs.archlinux.org){
+  div#tasklist, div#search, div#menu, div#pm-menu {
+    background: var(--background-color) !important;
+    border: none !important;
+  }
+}
+@-moz-document domain(aur.archlinux.org){
+  div.box {
+    background: var(--box-background-color) !important;
+    border: 1px solid var(--box-border-color) !important;
+  }
+}
+@-moz-document url-prefix(https://archlinux.org/download){
+  div.box {
+    background: var(--main-background-color) !important;
+    border: none !important;
+  }
+}

@@ -1,0 +1,9 @@
+
+:root{
+  --bg-color: #161616 !important;
+  --fg-color: #bcbcbc !important;
+  --pr-color: #d8afad !important;
+
+  --bg-90tran: color-mix(in srgb, var(--bg-color) 90%, transparent);
+  --pr-90tran: color-mix(in srgb, var(--pr-color) 90%, transparent);
+}

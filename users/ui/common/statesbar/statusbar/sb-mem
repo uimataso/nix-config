@@ -1,0 +1,8 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) notify-send 'Memory' "$(free -m | awk '/^Mem:/ {print $3 " / " $2 " M"}')" ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+printf " %2.0f%%" "$(free | awk '/^Mem:/ {print ($3/$2)*100}')"

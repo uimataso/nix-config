@@ -21,12 +21,23 @@
         modules = [ ./hosts/vm ];
         specialArgs = { inherit inputs outputs; };
       };
+
+      uicom = lib.nixosSystem {
+        modules = [ ./hosts/uicom ];
+        specialArgs = { inherit inputs outputs; };
+      };
     };
 
     homeConfigurations = {
       "ui@vm" = lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [ ./users/ui/vm.nix ];
+        extraSpecialArgs = { inherit inputs outputs; };
+      };
+
+      "ui@uicom" = lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [ ./users/ui/uicom.nix ];
         extraSpecialArgs = { inherit inputs outputs; };
       };
     };

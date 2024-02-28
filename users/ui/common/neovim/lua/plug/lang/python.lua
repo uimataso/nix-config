@@ -1,10 +1,10 @@
 return {
-  {
-    'williamboman/mason.nvim',
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, { 'python-lsp-server' })
-    end,
-  },
+  -- {
+  --   'williamboman/mason.nvim',
+  --   opts = function(_, opts)
+  --     vim.list_extend(opts.ensure_installed, { 'python-lsp-server' })
+  --   end,
+  -- },
 
   {
     'neovim/nvim-lspconfig',

@@ -8,8 +8,12 @@
     ./dunst.nix
   ];
 
+  home.packages = with pkgs; [
+    xcompmgr
+    xclip
+  ];
+
   # xcompmgr
-  home.packages = [ pkgs.xcompmgr ];
   xsession.initExtraList = [
     "xcompmgr -n &"
     "dwmblocks &"

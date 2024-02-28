@@ -42,6 +42,7 @@
 
     df = "df -h";
     du = "du -h";
+    free = "free -h";
     ip = "ip -c";
     grep = "grep --color=auto";
 

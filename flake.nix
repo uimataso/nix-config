@@ -3,10 +3,17 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
+
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-colors.url = "github:misterio77/nix-colors";
+
+    arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
+    arkenfox.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

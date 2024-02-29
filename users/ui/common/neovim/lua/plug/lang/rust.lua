@@ -11,12 +11,12 @@ local function cargo_build(cmd)
 end
 
 return {
-  -- {
-  --   'williamboman/mason.nvim',
-  --   opts = function(_, opts)
-  --     vim.list_extend(opts.ensure_installed, { 'rust-analyzer', 'codelldb' })
-  --   end,
-  -- },
+  {
+    'williamboman/mason.nvim',
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { 'rust-analyzer', 'codelldb' })
+    end,
+  },
 
   {
     'neovim/nvim-lspconfig',

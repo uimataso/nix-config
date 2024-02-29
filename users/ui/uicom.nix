@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   home.username = "ui";
@@ -24,6 +24,7 @@
   imports = [
     ./common/sh
     ./common/sh/bash.nix
+    ./common/firefox
     ./common/librewolf
     ./common/st.nix
     ./common/neovim

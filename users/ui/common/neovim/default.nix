@@ -18,6 +18,7 @@
     rust-analyzer
     clippy
     rustfmt
+    rustc
   ];
 
   home.file.".config/nvim".source = ./.;

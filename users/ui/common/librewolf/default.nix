@@ -11,7 +11,7 @@
 
   home.file.".librewolf/chrome".source = ./chrome;
 
-  home.sessionVariables = {
-    BROWSER = "librewolf";
-  };
+  # home.sessionVariables = {
+  #   BROWSER = "librewolf";
+  # };
 }

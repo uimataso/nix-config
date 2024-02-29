@@ -17,6 +17,8 @@
     videos = "${config.home.homeDirectory}/vid";
   };
 
+  xdg.mimeApps.enable = true;
+
   # wget
   home.sessionVariables = { WGETRC = "${config.xdg.configHome}/wgetrc"; };
   home.file.".config/wgetrc".text = "hsts-file = ${config.xdg.cacheHome}/wget-hsts";

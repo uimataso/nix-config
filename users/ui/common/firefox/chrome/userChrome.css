@@ -1,9 +1,5 @@
 /* svg.context-properties.content.enable */
 
-@import "colors.css";
-/* @import "chrome/oneliner.css"; */
-@import "chrome/Firefox-Onebar.css";
-
 :root {
   --background: var(--bg-color) !important;
 

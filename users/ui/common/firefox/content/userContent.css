@@ -1,0 +1,13 @@
+/* reader mode */
+body.dark {
+  --main-background: var(--bg-color) !important;
+  --main-foreground: var(--fg-color) !important;
+  --link-foreground: rgb(102, 162, 209) !important;
+}
+
+@-moz-document url-prefix("https://yt.uima.xyz/") {
+  body.dark-theme {
+    background-color: rgba(22, 22, 22, 1) !important;
+    color: #dcdcdc !important;
+  }
+}

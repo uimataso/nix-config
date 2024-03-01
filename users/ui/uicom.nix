@@ -18,6 +18,7 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
+    qmk
     discord
   ];
 
@@ -25,7 +26,6 @@
     ./common/sh
     ./common/sh/bash.nix
     ./common/firefox
-    ./common/librewolf
     ./common/st.nix
     ./common/neovim
 

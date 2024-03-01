@@ -10,6 +10,8 @@
 # exit botton
 # bookmark (local or here)
 # containers (use or not)
+# vim keybind
+# new page to home
 
 {
   imports = [

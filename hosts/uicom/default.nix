@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./nvidia.nix
 
     ../common/user/ui.nix
 
@@ -52,23 +53,9 @@
   networking.hostName = "uicom";
   networking.networkmanager.enable = true;
 
-  services.autorandr.enable = true;
-
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
-  services.xserver.videoDrivers = ["nvidia"];
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    #powerManagement.enable = false;
-  };
-
   # services.openssh.enable = true;
 
+  # TODO: switch account to non-google
   services.tailscale.enable = true;
 
   # for udiskie to work

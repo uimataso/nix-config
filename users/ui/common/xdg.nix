@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   xdg.enable = true;
@@ -18,6 +18,10 @@
   };
 
   xdg.mimeApps.enable = true;
+
+  # .nix-profile
+  nix.package = pkgs.nix;
+  nix.settings.use-xdg-base-directories = true;
 
   # wget
   home.sessionVariables = { WGETRC = "${config.xdg.configHome}/wgetrc"; };

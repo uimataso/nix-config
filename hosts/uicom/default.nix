@@ -20,6 +20,7 @@
   system.stateVersion = "23.11";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.use-xdg-base-directories = true;
 
   nixpkgs.config.allowUnfree = true;
 

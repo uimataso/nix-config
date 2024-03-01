@@ -3,6 +3,7 @@
 # TODO:
 # man pager
 # entr
+# prompt when nix-shell
 
 {
   imports = [

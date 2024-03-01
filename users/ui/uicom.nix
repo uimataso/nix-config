@@ -9,8 +9,8 @@
   programs.home-manager.enable = true;
 
   services.home-manager.autoUpgrade = {
-      enable = true;
-      frequency = "Sat *-*-* 13:20:00";
+    enable = true;
+    frequency = "Sat *-*-* 13:20:00";
   };
 
   news.display = "silent";

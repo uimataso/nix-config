@@ -3,11 +3,11 @@
 # TODO:
 # man pager
 # entr
-# prompt when nix-shell
 
 {
   imports = [
     ./util/fzf.nix
+    ./util/tmux.nix
     ./util/lsd.nix
     ./util/tealdeer.nix
   ];

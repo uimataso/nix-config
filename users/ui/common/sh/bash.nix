@@ -1,5 +1,10 @@
 { config, ... }:
 
+# TODO:
+# prompt:
+# - env
+# - git branch?
+
 {
   home.sessionVariables = { SHELL = "bash"; };
 

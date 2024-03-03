@@ -9,6 +9,16 @@
     driSupport32Bit = true;
   };
 
+  hardware.nvidia = {
+    modesetting.enable = true;
+    #powerManagement.enable = false;
+    prime = {
+      nvidiaBusId = "PCI:1:0:0";
+      intelBusId = "PCI:0:1:0";
+      sync.enable = true;
+    };
+  };
+
   services.xserver = {
     videoDrivers = ["nvidia"];
     config = ''
@@ -28,15 +38,5 @@
     '';
 
     xrandrHeads = [ "HDMI-0" ];
-  };
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    #powerManagement.enable = false;
-    prime = {
-      nvidiaBusId = "PCI:1:0:0";
-      intelBusId = "PCI:0:1:0";
-      sync.enable = true;
-    };
   };
 }

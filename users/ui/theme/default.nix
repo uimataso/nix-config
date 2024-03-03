@@ -6,5 +6,5 @@
   ];
 
   colorScheme = inputs.nix-colors.lib.schemeFromYAML "cool-scheme"
-    (builtins.readFile ../theme/ui-colors.yaml);
+    (builtins.readFile ./ui-colors.yaml);
 }

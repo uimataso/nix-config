@@ -1,12 +1,14 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 # TODO:
-# session manager?
+# session manager? resurrect nvim
+# with ssh
+# send command (after this, delete toggle plugin in nvim)
 
 {
   home.shellAliases = {
     t = "tmux";
-    ta = "tmux new-session -A -s";
+    ta = "tmux new-session -As";
   };
 
   programs.tmux = {
@@ -17,10 +19,26 @@
     baseIndex = 1;
     newSession = true;
     mouse = true;
-    # keyMode = "vi";
+    keyMode = "vi";
     # disableConfirmationPrompt = true;
 
     extraConfig = ''
+      # hjkl to switch
+      bind-key h previous-window
+      bind-key j select-pane -t :.+
+      bind-key k select-pane -t :.-
+      bind-key l next-window
+
+      # split in same dir
+      bind '"' split-window -v -c "#{pane_current_path}"
+      bind % split-window -h -c "#{pane_current_path}"
+
+      # better keybind in copy mode
+      bind-key -T copy-mode-vi v send-keys -X begin-selection
+      bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+      bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+
+      # status
       set -g status-justify left
       set -g status-left " #{?client_prefix,#[fg=black bg=magenta] [#S] #[fg=default bg=default], [#S] } "
       set -g status-left-length 15
@@ -46,7 +64,9 @@
       {
         plugin = tmuxPlugins.resurrect;
         extraConfig = ''
-        set -g @resurrect-strategy-nvim 'session'
+        set -g @resurrect-dir '${config.xdg.dataHome}/tmux/resurrect'
+        # set -g @resurrect-strategy-nvim 'session'
+        # set -g @resurrect-hook-post-save-all 'target=$(readlink -f $resurrect_dir/last); sed "s| --cmd .*-vim-pack-dir||g; s|/etc/profiles/per-user/$USER/bin/||g; s|/home/$USER/.nix-profile/bin/||g" $target | sponge $target'
         bind-key d run-shell "#{@resurrect-save-script-path} quiet" \; detach-client
         '';
       }

@@ -7,7 +7,6 @@ return {
 
   keys = {
     { '<Leader>fe', function() require('telescope.builtin').find_files() end,           desc = 'Telescope for files' },
-    { ';',          function() require('telescope.builtin').find_files() end,           desc = 'Telescope for files' },
     { '<Leader>fb', function() require('telescope.builtin').buffers() end,              desc = 'Telescope for buffers' },
     { '<Leader>fs', function() require('telescope.builtin').live_grep() end,            desc = 'Telescope for live_grep' },
     { '<Leader>fr', function() require('telescope.builtin').resume() end,               desc = 'Telescope for resume' },

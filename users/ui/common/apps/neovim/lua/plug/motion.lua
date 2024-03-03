@@ -58,18 +58,18 @@ return {
     end
   },
 
-  {
-    'ggandor/flit.nvim',
-    dependencies = {
-      'ggandor/leap.nvim',
-      'tpope/vim-repeat',
-    },
-    opts = {},
-    keys = {
-      { 'f', mode = { 'n', 'v' }, desc = 'Flit f' },
-      { 'F', mode = { 'n', 'v' }, desc = 'Filt F' },
-      { 't', mode = { 'n', 'v' }, desc = 'Filt t' },
-      { 'T', mode = { 'n', 'v' }, desc = 'Filt T' },
-    }
-  },
+  -- {
+  --   'ggandor/flit.nvim',
+  --   dependencies = {
+  --     'ggandor/leap.nvim',
+  --     'tpope/vim-repeat',
+  --   },
+  --   opts = {},
+  --   keys = {
+  --     { 'f', mode = { 'n', 'v' }, desc = 'Flit f' },
+  --     { 'F', mode = { 'n', 'v' }, desc = 'Filt F' },
+  --     { 't', mode = { 'n', 'v' }, desc = 'Filt t' },
+  --     { 'T', mode = { 'n', 'v' }, desc = 'Filt T' },
+  --   }
+  -- },
 }

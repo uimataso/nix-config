@@ -1,15 +1,14 @@
 { inputs, pkgs, ... }:
 
 # TODO:
-# tailscale option (settings for non tailscale)
-# cookie exceptions
-# plugin settings
+# [x] cookie exceptions
+# [x] plugin settings
+# [-] firefox view (left toolbar)
+# [-] search suggest (settings dont works)
 # bookmark (local or here)
 # containers (use or not)
 # vim keybind
 # new page to home
-# firefox view (left toolbar)
-# search suggest (settings dont works)
 
 {
   imports = [

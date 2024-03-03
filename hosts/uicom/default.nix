@@ -12,7 +12,6 @@
 
     ../common/pipewire.nix
     ../common/fonts.nix
-    ../common/dash.nix
     ../common/bash.nix
     ../common/doas.nix
   ];
@@ -56,7 +55,6 @@
 
   # services.openssh.enable = true;
 
-  # TODO: switch account to non-google
   services.tailscale.enable = true;
 
   # for udiskie to work

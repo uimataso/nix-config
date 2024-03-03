@@ -22,7 +22,10 @@
 
   home.packages = with pkgs; [
     qmk
-    discord
+    (discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+      })
   ];
 
   imports = [

@@ -19,5 +19,7 @@
     "xrandr --output HDMI-0 --mode 1920x1080 --rate 144.00"
   ];
 
+  # services.picom.enable = true;
+
   services.unclutter.enable = true;
 }

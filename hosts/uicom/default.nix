@@ -57,6 +57,9 @@
 
   services.tailscale.enable = true;
 
+  # TODO: no tablets are detected
+  hardware.opentabletdriver.enable = true;
+
   # for udiskie to work
   services.udisks2.enable = true;
 }

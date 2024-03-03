@@ -17,22 +17,53 @@ in {
       search = {
         force = true;
         default = "Searx";
-        order = [
-          "Searx"
-          "DuckDuckGo"
-        ];
 
         engines = {
           "Searx" = {
-            urls = [{
-              template = "https://search.uima.duckdns.org/search?q={searchTerms}";
-              iconUpdateURL = "https://searx.github.io/searx/_static/searx_logo_small.png";
-              definedAliases = [ "@s" ];
-            }];
+            definedAliases = [ "@s" ];
+            urls = [{ template = "https://search.uima.duckdns.org/search?q={searchTerms}"; }];
+            iconUpdateURL = "https://search.uima.duckdns.org/favicon.ico";
+            updateInterval = 24 * 60 * 60 * 1000;
           };
+
+          "Nix Packages" = {
+            definedAliases = [ "@np" ];
+            urls = [{ template = "https://search.nixos.org/packages?type=packages&query={searchTerms}"; }];
+            iconUpdateURL = "https://nixos.wiki/favicon.png";
+            updateInterval = 24 * 60 * 60 * 1000;
+          };
+
+          "NixOS Wiki" = {
+            definedAliases = [ "@nw" ];
+            urls = [{ template = "https://nixos.wiki/index.php?search={searchTerms}"; }];
+            iconUpdateURL = "https://nixos.wiki/favicon.png";
+            updateInterval = 24 * 60 * 60 * 1000;
+          };
+
+          "MyNixOS" = {
+            definedAliases = [ "@nm" ];
+            urls = [{ template = "https://mynixos.com/search?q={searchTerms}"; }];
+            iconUpdateURL = "https://mynixos.com/favicon.ico";
+            updateInterval = 24 * 60 * 60 * 1000;
+          };
+
+          "ArchWiki" = {
+            definedAliases = [ "@aw" ];
+            urls = [{ template = "https://wiki.archlinux.org/index.php?search={searchTerms}"; }];
+            iconUpdateURL = "https://wiki.archlinux.org/favicon.ico";
+            updateInterval = 24 * 60 * 60 * 1000;
+          };
+
+          "Rust Std" = {
+            definedAliases = [ "@ru" ];
+            urls = [{ template = "https://doc.rust-lang.org/std/iter/?search={searchTerms}"; }];
+            iconUpdateURL = "https://doc.rust-lang.org/favicon.ico";
+            updateInterval = 24 * 60 * 60 * 1000;
+          };
+
           "Google".metaData.hidden = true;
           "Bing".metaData.hidden = true;
-          "Wikipedia".metaData.hidden = true;
+          "Wikipedia (en)".metaData.hidden = true;
         };
       };
 

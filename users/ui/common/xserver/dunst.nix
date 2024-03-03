@@ -2,6 +2,7 @@
 
 let
   # TODO:
+  # disable alert
   palette = config.colorScheme.palette;
 in {
   home.packages = with pkgs; [

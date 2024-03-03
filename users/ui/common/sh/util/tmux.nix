@@ -4,6 +4,7 @@
 # session manager? resurrect nvim
 # with ssh
 # send command (after this, delete toggle plugin in nvim)
+# theme
 
 {
   home.shellAliases = {
@@ -40,13 +41,13 @@
 
       # status
       set -g status-justify left
-      set -g status-left " #{?client_prefix,#[fg=black bg=magenta] [#S] #[fg=default bg=default], [#S] } "
+      set -g status-left " #{?client_prefix,#[fg=black bg=magenta bright] [#S] #[fg=default bg=default],#[bright] [#S] #[]} "
       set -g status-left-length 15
       set -g status-right "#[bright]#(users):#(hostname) "
       setw -g window-status-current-format '-#I:#W- '
-      setw -g window-status-format '#I:#W '
+      setw -g window-status-format '#[fg=#9b9b9b]#I:#W #[fg=default]'
 
-      set-option -g status-style bg=default
+      set-option -g status-style fg='#9b9b9b',bg=default
       set -g message-style bg=black
       set -g message-command-style bg=black
       set -g mode-style fg=black,bg=green

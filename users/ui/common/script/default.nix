@@ -15,10 +15,10 @@
   ];
 
   home.packages = with pkgs; [
-    (callPackage ./swallower.nix {})
-    (callPackage ./power-menu.nix {})
-    (callPackage ./screenshot.nix {})
-    (callPackage ./build.nix {})
+    (callPackage ./swallower.nix { })
+    (callPackage ./power-menu.nix { })
+    (callPackage ./screenshot.nix { })
+    (callPackage ./build.nix { })
   ];
 }
 

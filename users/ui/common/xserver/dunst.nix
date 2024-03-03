@@ -4,7 +4,8 @@ let
   # TODO:
   # disable alert
   palette = config.colorScheme.palette;
-in {
+in
+{
   home.packages = with pkgs; [
     libnotify
   ];

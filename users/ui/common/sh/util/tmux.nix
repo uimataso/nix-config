@@ -59,16 +59,16 @@
       # window title colors
       set -g window-status-current-style fg=magenta,bg=default,bold
       set -g window-status-style fg=brightwhite,bg=default
-      '';
+    '';
 
     plugins = with pkgs; [
       {
         plugin = tmuxPlugins.resurrect;
         extraConfig = ''
-        set -g @resurrect-dir '${config.xdg.dataHome}/tmux/resurrect'
-        # set -g @resurrect-strategy-nvim 'session'
-        # set -g @resurrect-hook-post-save-all 'target=$(readlink -f $resurrect_dir/last); sed "s| --cmd .*-vim-pack-dir||g; s|/etc/profiles/per-user/$USER/bin/||g; s|/home/$USER/.nix-profile/bin/||g" $target | sponge $target'
-        bind-key d run-shell "#{@resurrect-save-script-path} quiet" \; detach-client
+          set -g @resurrect-dir '${config.xdg.dataHome}/tmux/resurrect'
+          # set -g @resurrect-strategy-nvim 'session'
+          # set -g @resurrect-hook-post-save-all 'target=$(readlink -f $resurrect_dir/last); sed "s| --cmd .*-vim-pack-dir||g; s|/etc/profiles/per-user/$USER/bin/||g; s|/home/$USER/.nix-profile/bin/||g" $target | sponge $target'
+          bind-key d run-shell "#{@resurrect-save-script-path} quiet" \; detach-client
         '';
       }
       {
@@ -78,18 +78,21 @@
       {
         plugin = tmuxPlugins.tmux-fzf;
       }
-      { # Prefix Space
+      {
+        # Prefix Space
         plugin = tmuxPlugins.tmux-thumbs;
         extraConfig = "set -g @thumbs-command 'echo -n {} | xclip -sel clip'";
       }
-      { # Prefix Tab
+      {
+        # Prefix Tab
         plugin = tmuxPlugins.extrakto;
         extraConfig = ''
           set -g @extrakto_split_direction v
           set -g @extrakto_split_size 15
         '';
       }
-      { # Prefix u
+      {
+        # Prefix u
         plugin = tmuxPlugins.fzf-tmux-url;
       }
     ];

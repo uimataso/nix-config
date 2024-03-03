@@ -11,7 +11,8 @@ let
       --pr-90tran: color-mix(in srgb, var(--pr-color) 90%, transparent);
     }
   '';
-in {
+in
+{
   programs.firefox = {
     profiles.ui = {
       search = {

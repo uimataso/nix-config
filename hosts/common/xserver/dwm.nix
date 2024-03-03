@@ -12,7 +12,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    (callPackage ../../../pkgs/dwmblocks {})
+    (callPackage ../../../pkgs/dwmblocks { })
   ];
 
   services.xserver = {

@@ -3,7 +3,8 @@
 let
   # TODO:
   palette = config.colorScheme.palette;
-in {
+in
+{
   programs.zathura = {
     enable = true;
 

@@ -4,7 +4,7 @@
   options = {
     xsession.initExtraList = lib.mkOption {
       type = with lib.types; listOf str;
-      default = [];
+      default = [ ];
       example = lib.literalExpression "[ \"xset s off -dpms\" ]";
       description = lib.mdDoc "List of shell commands executed at init.";
     };

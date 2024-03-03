@@ -1,8 +1,10 @@
 { writeShellApplication
 , pkgs
-}: let
+}:
+let
   clip_cmd = "${pkgs.xclip}/bin/xclip -selection clipboard -target image/png < $f";
-in writeShellApplication {
+in
+writeShellApplication {
   name = "screenshot";
   runtimeInputs = with pkgs; [ scrot ];
 

@@ -34,7 +34,8 @@
     dates = "22:30";
     flake = inputs.self.outPath;
     flags = [
-      "--update-input" "nixpkgs"
+      "--update-input"
+      "nixpkgs"
       "-L" # print build logs
     ];
   };

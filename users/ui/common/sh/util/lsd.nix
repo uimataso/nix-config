@@ -62,12 +62,12 @@
         acl = "dark_cyan";
         context = "cyan";
       };
-      date ={
+      date = {
         hour-old = "cyan";
         day-old = "cyan";
         older = "cyan";
       };
-      size ={
+      size = {
         none = 2;
         small = 2;
         medium = 2;

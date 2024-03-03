@@ -17,37 +17,40 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
-  let
-    inherit (self) outputs;
-    systems = [ "x86_64-linux" ];
-    lib = nixpkgs.lib // home-manager.lib;
-  in {
+    let
+      inherit (self) outputs;
+      # systems = [ "x86_64-linux" ];
+      system = "x86_64-linux";
+      lib = nixpkgs.lib // home-manager.lib;
+    in
+    {
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
 
-    nixosConfigurations = {
-      vm = lib.nixosSystem {
-        modules = [ ./hosts/vm ];
-        specialArgs = { inherit inputs outputs; };
+      nixosConfigurations = {
+        vm = lib.nixosSystem {
+          modules = [ ./hosts/vm ];
+          specialArgs = { inherit inputs outputs; };
+        };
+
+        uicom = lib.nixosSystem {
+          modules = [ ./hosts/uicom ];
+          specialArgs = { inherit inputs outputs; };
+        };
       };
 
-      uicom = lib.nixosSystem {
-        modules = [ ./hosts/uicom ];
-        specialArgs = { inherit inputs outputs; };
+      homeConfigurations = {
+        "ui@vm" = lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          modules = [ ./users/ui/vm.nix ];
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
+
+        "ui@uicom" = lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          modules = [ ./users/ui/uicom.nix ];
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
       };
+
     };
-
-    homeConfigurations = {
-      "ui@vm" = lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [ ./users/ui/vm.nix ];
-        extraSpecialArgs = { inherit inputs outputs; };
-      };
-
-      "ui@uicom" = lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [ ./users/ui/uicom.nix ];
-        extraSpecialArgs = { inherit inputs outputs; };
-      };
-    };
-
-  };
 }

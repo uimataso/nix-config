@@ -20,7 +20,7 @@
   };
 
   services.xserver = {
-    videoDrivers = ["nvidia"];
+    videoDrivers = [ "nvidia" ];
     config = ''
       Section "Device"
           Identifier  "nvidia"

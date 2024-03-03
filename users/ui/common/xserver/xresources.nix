@@ -3,12 +3,13 @@
 let
   palette = config.colorScheme.palette;
 
-  bg   = "#${palette.base00}";
-  fg   = "#${palette.base0F}";
+  bg = "#${palette.base00}";
+  fg = "#${palette.base0F}";
   accent = "#${palette.base05}";
 
   font = "MesloLGS Nerd Font";
-in {
+in
+{
   xresources.path = "${config.xdg.configHome}/x11/xresources";
 
   xsession.initExtraList = [
@@ -18,7 +19,7 @@ in {
   xresources.properties = {
     "*.background" = bg;
     "*.foreground" = fg;
-    "*.primary"    = accent;
+    "*.primary" = accent;
 
     "*.font" = font;
     "*.font2" = "Noto Sans CJK TC";
@@ -54,30 +55,30 @@ in {
     "Xft.hintstyle" = "hintfull";
     "Xft.lcdfilter" = "lcdfilter";
 
-    "*.black" =     "#${palette.base00}";
-    "*.red" =       "#${palette.base01}";
-    "*.green" =     "#${palette.base02}";
-    "*.yellow" =    "#${palette.base03}";
-    "*.blue" =      "#${palette.base04}";
-    "*.magenta" =   "#${palette.base05}";
-    "*.cyan" =      "#${palette.base06}";
-    "*.white" =     "#${palette.base07}";
+    "*.black" = "#${palette.base00}";
+    "*.red" = "#${palette.base01}";
+    "*.green" = "#${palette.base02}";
+    "*.yellow" = "#${palette.base03}";
+    "*.blue" = "#${palette.base04}";
+    "*.magenta" = "#${palette.base05}";
+    "*.cyan" = "#${palette.base06}";
+    "*.white" = "#${palette.base07}";
 
-    "*.color0" =    "#${palette.base00}";
-    "*.color1" =    "#${palette.base01}";
-    "*.color2" =    "#${palette.base02}";
-    "*.color3" =    "#${palette.base03}";
-    "*.color4" =    "#${palette.base04}";
-    "*.color5" =    "#${palette.base05}";
-    "*.color6" =    "#${palette.base06}";
-    "*.color7" =    "#${palette.base07}";
-    "*.color8" =    "#${palette.base08}";
-    "*.color9" =    "#${palette.base09}";
-    "*.color10" =   "#${palette.base0A}";
-    "*.color11" =   "#${palette.base0B}";
-    "*.color12" =   "#${palette.base0C}";
-    "*.color13" =   "#${palette.base0D}";
-    "*.color14" =   "#${palette.base0E}";
-    "*.color15" =   "#${palette.base0F}";
+    "*.color0" = "#${palette.base00}";
+    "*.color1" = "#${palette.base01}";
+    "*.color2" = "#${palette.base02}";
+    "*.color3" = "#${palette.base03}";
+    "*.color4" = "#${palette.base04}";
+    "*.color5" = "#${palette.base05}";
+    "*.color6" = "#${palette.base06}";
+    "*.color7" = "#${palette.base07}";
+    "*.color8" = "#${palette.base08}";
+    "*.color9" = "#${palette.base09}";
+    "*.color10" = "#${palette.base0A}";
+    "*.color11" = "#${palette.base0B}";
+    "*.color12" = "#${palette.base0C}";
+    "*.color13" = "#${palette.base0D}";
+    "*.color14" = "#${palette.base0E}";
+    "*.color15" = "#${palette.base0F}";
   };
 }

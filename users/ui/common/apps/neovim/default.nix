@@ -21,7 +21,8 @@
     rustc
   ];
 
-  home.file.".config/nvim".source = ./.;
+  # home.file.".config/nvim".source = ./.;
+  home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/users/ui/common/apps/neovim";
 
   home.sessionVariables = {
     EDITOR = "nvim";

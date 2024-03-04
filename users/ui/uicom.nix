@@ -35,6 +35,7 @@
     ./common/sh/bash.nix
     ./common/script
     ./common/xdg.nix
+    ./common/direnv.nix
 
     ./common/apps/firefox
     ./common/apps/st.nix

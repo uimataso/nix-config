@@ -4,6 +4,7 @@
 # prompt:
 # - env
 # - git branch?
+# - direnv ($DIRENV_FILE)
 
 {
   home.sessionVariables = { SHELL = "bash"; };

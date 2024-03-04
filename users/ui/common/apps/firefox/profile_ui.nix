@@ -75,6 +75,7 @@ in
         bitwarden
         darkreader
         i-dont-care-about-cookies
+        vimium
       ];
 
       # containers = {

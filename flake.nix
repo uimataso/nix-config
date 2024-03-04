@@ -21,10 +21,11 @@
       inherit (self) outputs;
       # systems = [ "x86_64-linux" ];
       system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
       lib = nixpkgs.lib // home-manager.lib;
     in
     {
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
+      formatter.${system} = pkgs.nixpkgs-fmt;
 
       nixosConfigurations = {
         vm = lib.nixosSystem {
@@ -40,14 +41,14 @@
 
       homeConfigurations = {
         "ui@vm" = lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
           modules = [ ./users/ui/vm.nix ];
+          inherit pkgs;
           extraSpecialArgs = { inherit inputs outputs; };
         };
 
         "ui@uicom" = lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
           modules = [ ./users/ui/uicom.nix ];
+          inherit pkgs;
           extraSpecialArgs = { inherit inputs outputs; };
         };
       };

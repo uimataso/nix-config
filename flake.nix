@@ -8,7 +8,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nur.url = "github:nix-community/NUR";
-    nur.inputs.nixpkgs.follows = "nixpkgs";
+    # nur.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-colors.url = "github:misterio77/nix-colors";
 
@@ -19,13 +19,20 @@
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       inherit (self) outputs;
-      # systems = [ "x86_64-linux" ];
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
       lib = nixpkgs.lib // home-manager.lib;
+
+      systems = [ "x86_64-linux" "aarch64-linux" ];
+      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs systems (system: import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      });
     in
     {
-      formatter.${system} = pkgs.nixpkgs-fmt;
+      formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
+      devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
+
+      templates = import ./templates;
 
       nixosConfigurations = {
         vm = lib.nixosSystem {
@@ -42,13 +49,13 @@
       homeConfigurations = {
         "ui@vm" = lib.homeManagerConfiguration {
           modules = [ ./users/ui/vm.nix ];
-          inherit pkgs;
+          pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
 
         "ui@uicom" = lib.homeManagerConfiguration {
           modules = [ ./users/ui/uicom.nix ];
-          inherit pkgs;
+          pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
       };

@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 # TODO:
 # manage git key
@@ -10,8 +10,6 @@
     aliases = {
       s = "status";
     };
-
-    delta.enable = true;
 
     userName = "luck07051";
     userEmail = "luck07051@gmail.com";

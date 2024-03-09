@@ -16,8 +16,6 @@
       profilePath = "${config.xdg.dataHome}/x11/xprofile";
       scriptPath = "${config.xdg.dataHome}/x11/xsession";
       initExtra = lib.strings.concatLines config.xsession.initExtraList;
-
-      initExtraList = [ "xset s off -dpms" ];
     };
   };
 }

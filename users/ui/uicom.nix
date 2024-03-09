@@ -2,6 +2,7 @@
 
 # TODO:
 # direnv
+# flake auto update ?
 
 {
   home.username = "ui";

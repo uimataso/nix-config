@@ -7,11 +7,6 @@
 # theme
 
 {
-  home.shellAliases = {
-    t = "tmux";
-    ta = "tmux new-session -As";
-  };
-
   programs.tmux = {
     enable = true;
 

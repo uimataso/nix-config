@@ -42,3 +42,8 @@ _fzf_bash_completion_selector() {
 		$(__fzfcmd 2>/dev/null || echo fzf) -1 -0 --prompt "${PS1@P}$line" --nth 2 -d "$_FZF_COMPLETION_SEP" --ansi \
 		| tr -d "$_FZF_COMPLETION_SEP"
 }
+
+# Auto start tmux
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux new-session -As default
+fi

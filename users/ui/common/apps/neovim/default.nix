@@ -8,17 +8,11 @@
 
     shellcheck
     nodePackages.bash-language-server
+
     libclang
     # codelldb
     lua-language-server
     stylua
-    python310Packages.python-lsp-server
-
-    cargo
-    rust-analyzer
-    clippy
-    rustfmt
-    rustc
   ];
 
   # home.file.".config/nvim".source = ./.;
@@ -26,6 +20,17 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+
+    PAGER = "nvim +Man!";
+    MANPAGER = "nvim +Man!";
+
+    # TODO: move this out
     CARGO_HOME = "${config.xdg.dataHome}/cargo";
+  };
+
+  # Git pager
+  programs.git.extraConfig = {
+    core.pager = "nvim -R";
+    color.pager = false;
   };
 }

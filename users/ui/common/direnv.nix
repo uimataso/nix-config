@@ -13,6 +13,8 @@
       "~/src"
     ];
 
-    # config.whitelist.exact = [ ];
+    config.whitelist.exact = [
+      "~/nix"
+    ];
   };
 }

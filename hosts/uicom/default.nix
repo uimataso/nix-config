@@ -11,6 +11,7 @@
     ../common/xserver/dwm.nix
     ../common/xserver/sddm.nix
 
+    ../common/vm.nix
     ../common/pipewire.nix
     ../common/fonts.nix
     ../common/bash.nix

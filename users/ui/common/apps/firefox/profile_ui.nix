@@ -150,3 +150,58 @@ in
     };
   };
 }
+
+# vimium:
+# unmapAll
+# map j scrollDown
+# map k scrollUp
+# map h scrollLeft
+# map l scrollRight
+# map gg scrollToTop
+# map G scrollToBottom
+# map <c-d> scrollPageDown
+# map <PageUp> scrollPageUp
+# map <PageDown> scrollPageDown
+#
+# map r reload
+# map yy copyCurrentUrl
+# map p openCopiedUrlInCurrentTab
+# map P openCopiedUrlInNewTab
+# map o Vomnibar.activate
+# map O Vomnibar.activateInNewTab
+# map f LinkHints.activateMode
+# map F LinkHints.activateModeToOpenInNewForegroundTab
+# map <c-f> LinkHints.activateModeToOpenInNewTab
+#
+# map i enterInserMode
+# map v enterVisualMode
+# map a focusInput
+# map / enterFindMode
+# map n performFind
+# map N performBackwardsFind
+#
+# map gf nextFrame
+# map gF mainFame
+#
+# map H goBack
+# map <c-o> goBack
+# map L goForward
+# map <c-i> goForward
+#
+# map t createTab
+# map b previousTab
+# map w nextTab
+# map " visitPreviousTab
+# map g0 firstTab
+# map g$ lastTab
+# map yt duplicateTab
+# map d removeTab
+# map D restoreTab
+#
+# search engines
+# s: https://search.uima.duckdns.org/search?q=%s
+# np: https://search.nixos.org/packages?type=packages&query=%s
+# nw: https://nixos.wiki/index.php?search=%s
+# nm: https://mynixos.com/search?q=%s
+# aw: https://wiki.archlinux.org/index.php?search=%s
+# ru: https://doc.rust-lang.org/std/iter/?search=%s

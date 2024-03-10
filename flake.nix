@@ -37,11 +37,13 @@
       nixosConfigurations = {
         vm = lib.nixosSystem {
           modules = [ ./hosts/vm ];
+          pkgs = pkgsFor.x86_64-linux;
           specialArgs = { inherit inputs outputs; };
         };
 
         uicom = lib.nixosSystem {
           modules = [ ./hosts/uicom ];
+          pkgs = pkgsFor.x86_64-linux;
           specialArgs = { inherit inputs outputs; };
         };
       };

@@ -10,8 +10,6 @@
 
   home.stateVersion = "23.11";
 
-  programs.home-manager.enable = true;
-
   services.home-manager.autoUpgrade = {
     enable = true;
     frequency = "Sat *-*-* 13:20:00";
@@ -22,6 +20,9 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
+    wget
+    gcc
+    git
     qmk
     (discord.override {
       withOpenASAR = true;

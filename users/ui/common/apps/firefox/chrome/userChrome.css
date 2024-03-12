@@ -43,6 +43,11 @@ menupopup, panel {
 #urlbar-background {
   /* background: rgba(0, 0, 0, 0) !important; */
   background: var(--bg-90tran) !important;
+  border: 0px !important;
+}
+
+#urlbar[focused="true"] > #urlbar-background,
+#urlbar:hover > #urlbar-background {
   border: 1px solid var(--pr-90tran) !important;
 }
 

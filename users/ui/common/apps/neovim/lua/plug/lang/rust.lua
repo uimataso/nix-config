@@ -33,7 +33,7 @@ return {
                   '-W', 'clippy::pedantic',
                   '-W', 'clippy::nursery',
                   '-A', 'clippy::must_use_candidate',
-                  '-A', 'clippy::uninlined_format_args',
+                  -- '-A', 'clippy::uninlined_format_args',
                   '-A', 'clippy::redundant_closure_for_method_calls',
                 },
               },

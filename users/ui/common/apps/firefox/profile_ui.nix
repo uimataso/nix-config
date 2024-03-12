@@ -121,7 +121,7 @@ in
         "0000".enable = true;
         "0100".enable = true;
         "0100"."0102"."browser.startup.page".value = 3;
-        "0100"."0103"."browser.startup.homepage".value = "dashboard.uima.duckdns.org";
+        "0100"."0103"."browser.startup.homepage".value = "https://dashboard.uima.duckdns.org";
         "0200".enable = true;
         "0300".enable = true;
         # "0400".enable = true;

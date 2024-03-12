@@ -18,6 +18,7 @@
     htop
     bat
     rsync
+    jq
   ];
 
   home.shellAliases = {

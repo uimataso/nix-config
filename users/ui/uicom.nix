@@ -28,6 +28,8 @@
       withOpenASAR = true;
       withVencord = true;
     })
+    dig
+    whois
   ];
 
   imports = [

@@ -19,6 +19,12 @@
     # disableConfirmationPrompt = true;
 
     extraConfig = ''
+      # keybind to reload config
+      unbind r
+      bind r source-file ~/.config/tmux/tmux.conf
+
+      bind C-b choose-session
+
       # hjkl to switch
       bind-key h previous-window
       bind-key j select-pane -t :.+
@@ -34,11 +40,12 @@
       bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
       bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
 
+
       # status
       set -g status-justify left
       set -g status-left " #{?client_prefix,#[fg=black bg=magenta bright] [#S] #[fg=default bg=default],#[bright] [#S] #[]} "
       set -g status-left-length 15
-      set -g status-right "#[bright]#(users):#(hostname) "
+      set -g status-right "#[bright]#(whoami):#h  "
       setw -g window-status-current-format '-#I:#W- '
       setw -g window-status-format '#[fg=#9b9b9b]#I:#W #[fg=default]'
 

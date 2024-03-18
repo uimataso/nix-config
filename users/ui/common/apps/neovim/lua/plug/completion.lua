@@ -80,9 +80,13 @@ return {
 
         preselect = cmp.PreselectMode.None,
 
+        -- TODO:
+        -- menu enable?
+        -- menu only when C-n?
         formatting = {
           fields = { 'abbr', 'kind' },
           format = function(entry, vim_item)
+            vim_item.menu = nil
             if vim.tbl_contains({ 'path' }, entry.source.name) then
               local icon, hl_group = require('nvim-web-devicons').get_icon(entry:get_completion_item().label)
               if icon then
@@ -93,6 +97,11 @@ return {
             end
             return require('lspkind').cmp_format({ with_text = false })(entry, vim_item)
           end
+        },
+
+        -- for popup delay
+        completion = {
+          autocomplete = false,
         },
 
         enabled = function()
@@ -112,6 +121,22 @@ return {
     end,
 
     config = function(_, opts)
+      -- popup delay
+      local timer = nil
+      vim.api.nvim_create_autocmd({ "TextChangedI", "CmdlineChanged" }, {
+        pattern = "*",
+        callback = function()
+          if timer then
+            vim.loop.timer_stop(timer)
+            timer = nil
+          end
+          timer = vim.loop.new_timer()
+          timer:start(350, 0, vim.schedule_wrap(function()
+            require('cmp').complete({ reason = require('cmp').ContextReason.Auto })
+          end))
+        end
+      })
+
       for _, source in ipairs(opts.sources) do
         source.group_index = source.group_index or 1
       end

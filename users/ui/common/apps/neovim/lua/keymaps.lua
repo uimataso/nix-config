@@ -100,7 +100,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Show help
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Displays hover information' })
     vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, { desc = 'Rename on workspace level' })
-    vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, { desc = 'Code action provided by lsp' })
+    vim.keymap.set('n', '<Leader>la', vim.lsp.buf.code_action, { desc = 'Code action provided by lsp' })
 
     vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, { desc = 'Add workspace folder' })
     vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, { desc = 'Remove workspace folder' })

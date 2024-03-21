@@ -33,23 +33,25 @@
   ];
 
   imports = [
-    ./theme
+    ./tmuxinator
 
-    ./common/sh
-    ./common/sh/bash.nix
-    ./common/script
-    ./common/xdg.nix
-    ./common/direnv.nix
+    ../common/theme
 
-    ./common/apps/firefox
-    ./common/apps/st.nix
-    ./common/apps/neovim
-    ./common/apps/zathura.nix
-    ./common/apps/udiskie.nix
-    ./common/apps/syncthing.nix
-    ./common/apps/git.nix
+    ../common/sh
+    ../common/sh/bash.nix
+    ../common/script
+    ../common/xdg.nix
+    ../common/direnv.nix
 
-    ./common/xserver
-    ./common/xserver/dwm
+    ../common/apps/firefox
+    ../common/apps/st.nix
+    ../common/apps/neovim
+    ../common/apps/zathura.nix
+    ../common/apps/udiskie.nix
+    ../common/apps/syncthing.nix
+    ../common/apps/git.nix
+
+    ../common/xserver
+    ../common/xserver/dwm
   ];
 }

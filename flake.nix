@@ -50,13 +50,13 @@
 
       homeConfigurations = {
         "ui@vm" = lib.homeManagerConfiguration {
-          modules = [ ./users/ui/vm.nix ];
+          modules = [ ./users/ui/vm ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
 
         "ui@uicom" = lib.homeManagerConfiguration {
-          modules = [ ./users/ui/uicom.nix ];
+          modules = [ ./users/ui/uicom ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };

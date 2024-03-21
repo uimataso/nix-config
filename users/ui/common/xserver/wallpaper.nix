@@ -11,7 +11,7 @@ in
   ];
 
   home.file."${config.xdg.dataHome}/wallpaper.png" = {
-    source = ../../theme/wallpaper.png;
+    source = ../theme/wallpaper.png;
     # onChange = ''
     #   ${setWallpaperCmd}
     # '';

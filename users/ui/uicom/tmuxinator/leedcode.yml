@@ -1,0 +1,5 @@
+name: leedcode-rust
+root: ~/src/leedcode
+
+windows:
+  - editor: $EDITOR src/Solution.rs

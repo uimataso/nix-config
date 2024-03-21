@@ -1,0 +1,5 @@
+name: nix
+root: ~/nix
+
+windows:
+  - editor: $EDITOR flake.nix

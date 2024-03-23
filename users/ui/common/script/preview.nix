@@ -4,6 +4,8 @@
 }: writeShellApplication {
   name = "preview";
   runtimeInputs = with pkgs; [
+    bat
+    chafa
   ];
 
   text = ''
@@ -46,15 +48,17 @@
       printf '\n'
     } #}}}
     cat_file(){ #{{{
-      if type bat >/dev/null; then
-        bat -n --style=plain --pager=never --color=always "$1"
-      else
-        cat "$1"
-      fi
+      bat -n --style=plain --pager=never --color=always "$1"
+      # cat "$1"
     } #}}}
     image(){ #{{{
       chafa "$1"
     } #}}}
+
+    if [ -z "''${1+x}" ]; then
+      echo "Usage: ''${0##*/} filename" >&2
+      exit 1
+    fi
 
     file="$1"
 
@@ -82,7 +86,8 @@
       *.[1-8]) man "$file" | col -b ;;
 
       *.png|*.jpg|*.jpeg|*.webp) image "$file" ;;
-      # TODO
+
+      # TODO:
       # *.gif) ;;
       # *.pdf) ;;
 

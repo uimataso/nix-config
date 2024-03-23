@@ -5,22 +5,23 @@
   runtimeInputs = with pkgs; [
     fzf
     (callPackage ./preview.nix { })
+    (callPackage ./open.nix { })
   ];
 
   text = ''
     set +o errexit
 
+    # Temp file
+    _fff_up_dir_temp='/tmp/fff-up-dir'
+
     # Setting ls command
     if type lsd >/dev/null; then
       _fzf_fm_lscmd='lsd -A --group-directories-first --color=always'
     elif type exa >/dev/null; then
-      _fzf_fm_lscmd='exa -a --group-directories-first --icons --color=always'
+      _fzf_fm_lscmd='exa -a --group-directories-first --color=always --icons'
     else
       _fzf_fm_lscmd='ls -A --group-directories-first --color=always'
     fi
-
-    # Temp file
-    _fff_up_dir_temp='/tmp/fff-up-dir'
 
     while :; do
       # prepare the prompt to show current directory
@@ -28,7 +29,7 @@
 
       # shellcheck disable=SC2000
       if [ "$(echo "$pwd" | wc -c)" -gt 25 ]; then
-        # only show first char
+        # only show first char if PWD too long
         pwd="$(printf '%s' "$pwd" | sed 's#\([^/.]\)[^/]\+/#\1/#g')"
       fi
 
@@ -53,17 +54,22 @@
         continue
       fi
 
-      # End, if no selected
-      [ -z "$selected" ] && return
+      # TODO: restore setting, need better way to do this
+      if [ -z "''${selected:+x}" ]; then
+        set +o errexit
+        set +o nounset
+        set +o pipefail
+        return
+      fi
 
       # Open the selected
-      file="$PWD/$selected"
+      # TODO: full path is needed?
+      # file="$PWD/$selected"
+      file="$selected"
       if [ -d "$file" ]; then
         cd "$file"
-      elif type open >/dev/null 2>&1; then
+      else
         open "$file"
-      elif [ "$(file --mime-type "$file" -bL | sed 's#/.*$##')" = 'text' ]; then
-        $EDITOR "$file"
       fi
     done
   '';

@@ -6,6 +6,7 @@
     file
   ];
 
+  # TODO: can i even do this?
   # home.shellAliases = {
   #   o = "open";
   #   os = "open -s";

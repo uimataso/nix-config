@@ -2,9 +2,11 @@
 
 {
   home.sessionPath = [ "$HOME/.local/bin" ];
-  imports = [
-    ./fff
-  ];
+
+  home.shellAliases = {
+    a = ". fff";
+    o = "open";
+  };
 
   home.packages = with pkgs; [
     (callPackage ./swallower.nix { })
@@ -17,6 +19,7 @@
     (callPackage ./bright.nix { })
     (callPackage ./open.nix { })
     (callPackage ./fmenu.nix { })
+    (callPackage ./fff.nix { })
   ];
 }
 

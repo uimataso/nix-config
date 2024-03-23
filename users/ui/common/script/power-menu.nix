@@ -2,17 +2,17 @@
 , pkgs
 }: writeShellApplication {
   name = "power-menu";
-  # runtimeInputs = with pkgs; [ ];
+  runtimeInputs = with pkgs; [ ];
+
   text = ''
-    # dmenu="$${DMENU:-dmenu -i}"
     # TODO:
-    dmenu="fmenu"
+    dmenu="''${DMENU:-dmenu -i}"
 
     # lock;       slock
     list="$(cat <<EOF
     shut down;  poweroff
     reboot;     reboot
-    log out;    loginctl terminate-session $${XDG_SESSION_ID-}
+    log out;    loginctl terminate-session ''${XDG_SESSION_ID-}
     EOF
     )"
 

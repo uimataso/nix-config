@@ -44,6 +44,7 @@
       bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
       bind -T copy-mode-vi y   send-keys -X copy-selection-and-cancel
 
+      set-option -g repeat-time 200
 
       # status
       set -g status-justify left
@@ -51,6 +52,7 @@
       set -g status-left-length 20
       set -g status-right "#[bright]#(whoami):#h  "
       setw -g window-status-current-format '-#I:#W- '
+      # TODO: theme support
       setw -g window-status-format '#[fg=#9b9b9b]#I:#W #[fg=default]'
 
       set-option -g status-style fg='#9b9b9b',bg=default

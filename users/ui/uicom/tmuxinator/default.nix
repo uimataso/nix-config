@@ -7,6 +7,7 @@ let
       runtimeInputs = with pkgs; [ fzf tmux tmuxinator ];
       text = ''
         selected="$(tmuxinator list -n | tail -n +2 | fzf)"
+        test -z "$selected" && exit
         tmuxinator s "$selected"
       '';
     };
@@ -19,6 +20,7 @@ in {
 
   home.shellAliases = {
     ts = "tmuxinator-fzf";
+    t = "tmuxinator start default";
   };
 
   home.file.".config/tmuxinator".source = ./.;

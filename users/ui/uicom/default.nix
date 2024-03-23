@@ -39,6 +39,8 @@
 
     ../common/sh
     ../common/sh/bash.nix
+    ../common/sh-util
+
     ../common/script
     ../common/xdg.nix
     ../common/direnv.nix
@@ -49,7 +51,6 @@
     ../common/apps/zathura.nix
     ../common/apps/udiskie.nix
     ../common/apps/syncthing.nix
-    ../common/apps/git.nix
 
     ../common/xserver
     ../common/xserver/dwm

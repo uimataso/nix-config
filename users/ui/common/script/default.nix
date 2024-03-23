@@ -4,14 +4,6 @@
   home.sessionPath = [ "$HOME/.local/bin" ];
   imports = [
     ./fff
-    ./fmenu
-    ./open
-    ./extract
-
-    ./vl
-    ./bright
-
-    ./app-launcher
   ];
 
   home.packages = with pkgs; [
@@ -19,6 +11,12 @@
     (callPackage ./power-menu.nix { })
     (callPackage ./screenshot.nix { })
     (callPackage ./build.nix { })
+    (callPackage ./app-launcher.nix { })
+    (callPackage ./extract.nix { })
+    (callPackage ./vl.nix { })
+    (callPackage ./bright.nix { })
+    (callPackage ./open.nix { })
+    (callPackage ./fmenu.nix { })
   ];
 }
 

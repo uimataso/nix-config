@@ -6,10 +6,15 @@ let
 in
 writeShellApplication {
   name = "screenshot";
-  runtimeInputs = with pkgs; [ scrot ];
+  runtimeInputs = with pkgs; [
+    scrot
+  ];
 
   text = ''
-    [ -z "$1" ] && { echo "Usage: $${0##*/} sel|cur|full" >&2; exit 1; }
+    if [ -z "''${1+x}" ]; then
+      echo "Usage: ''${0##*/} sel|cur|full" >&2
+      exit 1
+    fi
 
     img_dir="$XDG_PICTURES_DIR/screenshots";
     [ ! -d "$img_dir" ] && mkdir -p "$img_dir"

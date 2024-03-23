@@ -3,3 +3,5 @@ root: ~/nix
 
 windows:
   - editor: $EDITOR flake.nix
+  - lazygit: lazygit
+  - sh:

@@ -1,26 +1,6 @@
 { config, pkgs, ... }:
 
-# TODO:
-# man pager
-# entr
-
 {
-  imports = [
-    ./util/fzf.nix
-    ./util/tmux.nix
-    ./util/lsd.nix
-    ./util/tealdeer.nix
-  ];
-
-  home.packages = with pkgs; [
-    fd
-    ripgrep
-    htop
-    bat
-    rsync
-    jq
-  ];
-
   home.shellAliases = {
     nn = "doas build n";
     nh = "build h";
@@ -47,11 +27,5 @@
     free = "free -h";
     ip = "ip -c";
     grep = "grep --color=auto";
-
-    rc = "rsync -vhP";
-    fclist = "fc-list : family";
-
-    ipinfo = "curl ipinfo.ip";
-    unitest = "curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt";
   };
 }

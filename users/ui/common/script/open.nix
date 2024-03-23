@@ -1,18 +1,23 @@
-{ pkgs, ... }:
-
-pkgs.writeShellApplication {
+{ writeShellApplication
+, pkgs
+}: writeShellApplication {
   name = "open";
   runtimeInputs = with pkgs; [
     file
-    mpv
-    zathura
-    nsxiv
-    # libreoffice
   ];
 
-  text = ''
-    case $(file --mime-type "$1" -bL) in
+  # home.shellAliases = {
+  #   o = "open";
+  #   os = "open -s";
+  # };
 
+  text = ''
+    if [ -z ''${1:+x} ]; then
+      echo "Usage: ''${0##*/} filename" >&2
+      exit 1
+    fi
+
+    case $(file --mime-type "$1" -bL) in
       video/* | audio/*)
         mpv "$@"
         ;;
@@ -36,7 +41,7 @@ pkgs.writeShellApplication {
         ;;
 
       text/*)
-        $${EDITOR} "$@"
+        ''${EDITOR} "$@"
         ;;
 
       *)
@@ -44,5 +49,5 @@ pkgs.writeShellApplication {
         exit 1
         ;;
     esac
-  ''
-    }
+  '';
+}

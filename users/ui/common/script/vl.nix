@@ -3,7 +3,7 @@
 }: writeShellApplication {
   name = "vl";
   runtimeInputs = with pkgs; [
-    pulseaudio # for pactl
+    pulseaudio # bin/pactl
   ];
 
   text = ''

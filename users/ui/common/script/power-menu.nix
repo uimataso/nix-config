@@ -2,7 +2,6 @@
 , pkgs
 }: writeShellApplication {
   name = "power-menu";
-  runtimeInputs = with pkgs; [ ];
 
   text = ''
     # TODO:

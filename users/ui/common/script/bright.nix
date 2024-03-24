@@ -2,8 +2,6 @@
 , pkgs
 }: writeShellApplication {
   name = "bright";
-  runtimeInputs = with pkgs; [
-  ];
 
   text = ''
     # dev='/sys/class/backlight/intel_backlight'

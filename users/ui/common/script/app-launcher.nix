@@ -2,7 +2,6 @@
 , pkgs
 }: writeShellApplication {
   name = "app-launcher";
-  runtimeInputs = with pkgs; [ ];
 
   text = ''
     dmenu="''${DMENU:-dmenu -i}"

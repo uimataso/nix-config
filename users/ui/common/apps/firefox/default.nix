@@ -21,10 +21,6 @@
     inputs.nur.overlay
   ];
 
-  home.sessionVariables = {
-    BROWSER = "firefox";
-  };
-
   xdg.mimeApps.defaultApplications = {
     "text/html" = [ "firefox.desktop" ];
     "text/xml" = [ "firefox.desktop" ];

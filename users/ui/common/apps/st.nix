@@ -17,8 +17,4 @@
   };
 
   home.packages = [ pkgs.st ];
-
-  home.sessionVariables = {
-    TERMINAL = "st";
-  };
 }

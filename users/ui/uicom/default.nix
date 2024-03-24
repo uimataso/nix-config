@@ -19,18 +19,19 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  home.packages = with pkgs; [
-    wget
-    gcc
-    git
-    qmk
-    (discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
-    dig
-    whois
-  ];
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    BROWSER = "firefox";
+    TERMINAL = "st";
+    DMENU = "fmenu";
+    SHELL = "bash";
+  };
+
+  home.shellAliases = {
+    a = ". fff";
+    o = "open";
+  };
 
   imports = [
     ./tmuxinator
@@ -41,7 +42,6 @@
     ../common/sh/bash.nix
     ../common/sh-util
 
-    ../common/script
     ../common/xdg.nix
     ../common/direnv.nix
 
@@ -54,5 +54,38 @@
 
     ../common/xserver
     ../common/xserver/dwm
+  ];
+
+  home.packages = with pkgs; [
+    wget
+    gcc
+    git
+    qmk
+    (discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    })
+    dig
+    whois
+
+    (callPackage ../common/script/swallower.nix { })
+    (callPackage ../common/script/power-menu.nix { })
+    (callPackage ../common/script/screenshot.nix { })
+    (callPackage ../common/script/build.nix { })
+    (callPackage ../common/script/app-launcher.nix { })
+    (callPackage ../common/script/extract.nix { })
+    (callPackage ../common/script/vl.nix { })
+    (callPackage ../common/script/bright.nix { })
+    (callPackage ../common/script/open.nix { })
+    (callPackage ../common/script/fmenu.nix { })
+    (callPackage ../common/script/fff.nix { })
+
+    # TODO:
+    # echo "$XDG_BOOKMARK_DIR/bookmark" | entr -np sync-bookmark &
+    # ibus
+    # clip
+    #
+    # pdf-decrypt
+    # power-menu
   ];
 }

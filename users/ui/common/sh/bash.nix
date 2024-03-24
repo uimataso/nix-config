@@ -7,8 +7,6 @@
 # - direnv ($DIRENV_FILE)
 
 {
-  home.sessionVariables = { SHELL = "bash"; };
-
   programs.bash = {
     enable = true;
 

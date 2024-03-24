@@ -3,6 +3,7 @@
 }: writeShellApplication {
   name = "fmenu";
   runtimeInputs = with pkgs; [
+    xdotool
   ];
 
   text = ''
@@ -49,7 +50,7 @@
       # TODO: wayland support
       true
     elif [ -n "''${DISPLAY:+x}" ]; then
-      actived_window="$(xdotool getactivewindow)"
+      actived_window="$(xdotool getactivewindow || true)"
     fi
 
     # spawn the fzf window
@@ -58,7 +59,7 @@
     # restore actived window
     if [ -n "''${WAYLAND_DISPLAY:+x}" ]; then
       true
-    elif [ -n "''${DISPLAY:+x}" ]; then
+    elif [ -n "''${DISPLAY:+x}" ] && [ -n "$actived_window" ]; then
       xdotool windowactivate "$actived_window"
     fi
   '';

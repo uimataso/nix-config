@@ -11,6 +11,6 @@ const Block blocks[] = {
 	BLOCK("sb-uptime",    5,    25),
 	// BLOCK("sb-ibus",      5,    26),
 	BLOCK("sb-mem",       5,    24),
-	BLOCK("sb-vol",       0,    21),
+	BLOCK("sb-vol",       5,    21),
 	BLOCK("sb-date",      5,    20),
 };

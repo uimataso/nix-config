@@ -3,6 +3,10 @@
 {
   home.sessionPath = [ "$HOME/.local/bin" ];
 
+  home.sessionVariables = {
+    DMENU = "fmenu";
+  };
+
   home.shellAliases = {
     a = ". fff";
     o = "open";

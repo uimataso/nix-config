@@ -11,6 +11,7 @@ in{
     ] ++ ifTheyExist [
       "networkmanager"
       "docker"
+      "podman"
       "libvirtd"
     ];
   };

@@ -1,5 +1,7 @@
 { pkgs, ... }:
 
+# https://github.com/tmuxinator/tmuxinator
+
 let
   script = { writeShellApplication, pkgs }:
     writeShellApplication {

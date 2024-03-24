@@ -1,0 +1,12 @@
+name: rust-web-test
+root: ~/src/rust-web-test
+
+windows:
+  - editor: $EDITOR src/main.rs
+  - sh:
+  - lazygit: lazygit
+  - quick-dev:
+      layout: even-horizontal
+      panes:
+        - cargo watch -q -c -w src/ -x run
+        - cargo watch -q -c -w tests/ -x "test -q quick_dev -- --nocapture"

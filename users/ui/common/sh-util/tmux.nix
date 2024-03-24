@@ -28,6 +28,7 @@
       bind r source-file ~/.config/tmux/tmux.conf
 
       bind C-b run-shell 'tmux neww tmuxinator-fzf'
+      bind BSpace last-window
 
       # hjkl to switch
       bind -r h previous-window

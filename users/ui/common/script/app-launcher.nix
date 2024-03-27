@@ -3,7 +3,10 @@
 }: writeShellApplication {
   name = "app-launcher";
 
+  # TODO: better execute option (only application?)
+
   text = ''
+    # TODO: dmenu solution
     dmenu="''${DMENU:-dmenu -i}"
     term="''${TERMINAL:-st} -e sh -c"
     temp_file='/tmp/launcher_temp'

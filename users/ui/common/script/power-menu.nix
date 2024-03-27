@@ -4,7 +4,7 @@
   name = "power-menu";
 
   text = ''
-    # TODO:
+    # TODO: dmenu solution
     dmenu="''${DMENU:-dmenu -i}"
 
     # lock;       slock

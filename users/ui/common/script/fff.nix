@@ -15,6 +15,7 @@
     _fff_up_dir_temp='/tmp/fff-up-dir'
 
     # Setting ls command
+    # TODO: ls solution
     if type lsd >/dev/null; then
       _fzf_fm_lscmd='lsd -A --group-directories-first --color=always'
     elif type exa >/dev/null; then

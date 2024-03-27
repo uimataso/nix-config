@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  # XDG_CONFIG_HOME not available yet, so $HOME/.config is used
+  # While running init, XDG_CONFIG_HOME not available yet, so $HOME/.config is used there
   environment.shellInit = ''
     if [[ -r "$HOME/.config/bash/profile" ]]; then
       . "$HOME/.config/bash/profile"

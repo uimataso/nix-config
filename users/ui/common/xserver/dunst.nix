@@ -1,8 +1,9 @@
 { config, pkgs, ... }:
 
+# TODO: disable alert
+# TODO: theme
+
 let
-  # TODO:
-  # disable alert
   palette = config.colorScheme.palette;
 in
 {

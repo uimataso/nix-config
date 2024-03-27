@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 # https://github.com/tmuxinator/tmuxinator
+# TODO: quick way to add/edit config
 
 let
   script = { writeShellApplication, pkgs }:

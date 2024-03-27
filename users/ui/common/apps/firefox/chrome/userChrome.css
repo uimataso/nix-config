@@ -1,6 +1,8 @@
 /* svg.context-properties.content.enable */
 
 :root {
+  --bg-90tran: color-mix(in srgb, var(--bg-color) 90%, transparent);
+  --pr-90tran: color-mix(in srgb, var(--pr-color) 90%, transparent);
   --background: var(--bg-color) !important;
 
   /* tab */

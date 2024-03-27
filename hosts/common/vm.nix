@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 
+# TODO: direct GPU render
 {
   programs.virt-manager.enable = true;
 

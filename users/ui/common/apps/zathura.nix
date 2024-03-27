@@ -1,7 +1,8 @@
 { config, ... }:
 
+# TODO: theme support
+
 let
-  # TODO:
   palette = config.colorScheme.palette;
 in
 {

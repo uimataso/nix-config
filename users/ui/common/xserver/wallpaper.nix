@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+# TODO: wayland solution?
+# TODO: hot switch wallpaper when nh
+
 let
   setWallpaperCmd = "${pkgs.xwallpaper}/bin/xwallpaper --screen 0 --zoom ${config.xdg.dataHome}/wallpaper.png";
 in

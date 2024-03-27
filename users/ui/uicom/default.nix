@@ -1,15 +1,13 @@
 { config, pkgs, lib, inputs, ... }:
 
-# TODO:
-# flake auto update?
-# auto gc working?
-
 {
   home.username = "ui";
   home.homeDirectory = "/home/ui";
 
   home.stateVersion = "23.11";
 
+  # TODO: test this
+  # TODO: flake auto update?
   services.home-manager.autoUpgrade = {
     enable = true;
     frequency = "Sat *-*-* 13:20:00";

@@ -1,13 +1,10 @@
 { config, pkgs, ... }:
 
-# TODO:
-# open tmux on boot
-# session manager? resurrect nvim
-# with ssh
-# send command (after this, delete toggle plugin in nvim)
-# theme
+# TODO: open tmux on boot
+# TODO: with ssh
+# TODO: send command
+# TODO: theme support
 
-# https://github.com/tmuxinator/tmuxinator
 # https://man.archlinux.org/man/tmux.1
 
 {
@@ -55,7 +52,6 @@
       set -g status-left-length 20
       set -g status-right "#[bright]#(whoami):#h  "
       setw -g window-status-current-format '-#I:#W- '
-      # TODO: theme support
       setw -g window-status-format '#[fg=#9b9b9b]#I:#W #[fg=default]'
 
       set-option -g status-style fg='#9b9b9b',bg=default

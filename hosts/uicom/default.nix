@@ -36,15 +36,17 @@
 
   networking.hostName = "uicom";
   networking.networkmanager.enable = true;
-  # https://github.com/NixOS/nixpkgs/issues/180175#issuecomment-1473408913
+  # See https://github.com/NixOS/nixpkgs/issues/180175#issuecomment-1473408913
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 
   # services.openssh.enable = true;
 
+  # TODO: manage tailscale key etc
   services.tailscale.enable = true;
 
 
+  # TODO: test this
   system.autoUpgrade = {
     enable = true;
     dates = "22:30";

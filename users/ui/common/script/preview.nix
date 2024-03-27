@@ -37,6 +37,7 @@
         ls -A --group-directories-first --color=always "$1"
       fi
     } #}}}
+    # TODO: ls solution
     file_info(){ #{{{
       if type lsd >/dev/null; then
         lsd -l --color=always "$1"

@@ -7,8 +7,6 @@ let
       --bg-color: #${palette.base00} !important;
       --fg-color: #${palette.base0F} !important;
       --pr-color: #${palette.base05} !important;
-      --bg-90tran: color-mix(in srgb, var(--bg-color) 90%, transparent);
-      --pr-90tran: color-mix(in srgb, var(--pr-color) 90%, transparent);
     }
   '';
 in

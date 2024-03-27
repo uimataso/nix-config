@@ -49,6 +49,7 @@
       header = false;
     };
 
+    # TODO: theme support?
     colors = {
       user = "green";
       group = "dark_green";

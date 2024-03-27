@@ -6,7 +6,7 @@
     file
   ];
 
-  # TODO: can i even do this?
+  # TODO: can i even make alias here?
   # home.shellAliases = {
   #   o = "open";
   #   os = "open -s";

@@ -1,7 +1,6 @@
 { config, ... }:
 
-# TODO:
-# manage git key
+# TODO: manage git key
 
 {
   programs.git = {

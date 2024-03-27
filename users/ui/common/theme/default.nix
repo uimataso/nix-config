@@ -1,5 +1,8 @@
 { inputs, ... }:
 
+# TODO: try this:
+# https://github.com/SenchoPens/base16.nix
+
 {
   imports = [
     inputs.nix-colors.homeManagerModules.default

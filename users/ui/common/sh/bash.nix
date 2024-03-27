@@ -1,11 +1,5 @@
 { config, ... }:
 
-# TODO:
-# prompt:
-# - which nix shell, env im in
-# - git branch?
-# - direnv ($DIRENV_FILE)
-
 {
   programs.bash = {
     enable = true;
@@ -14,7 +8,7 @@
     historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
     historyIgnore = [ ];
 
-    # verify before run his command
+    # verify before run history command
     # shopt -s histverify
 
     bashrcExtra = builtins.readFile ./bashrc;

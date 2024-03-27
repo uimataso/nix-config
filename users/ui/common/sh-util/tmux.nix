@@ -27,8 +27,10 @@
       unbind r
       bind r source-file ~/.config/tmux/tmux.conf
 
-      bind C-b run-shell 'tmux neww tmuxinator-fzf'
+      bind C-b run-shell 'tmux popup -E "tmuxinator-fzf"'
       bind BSpace last-window
+
+      bind g run-shell 'tmux popup -h80% -w80% -E "lazygit"'
 
       # hjkl to switch
       bind -r h previous-window
@@ -64,6 +66,7 @@
       # pane border colors
       set -g pane-border-style        fg='#585858'
       set -g pane-active-border-style fg=magenta
+      set -g popup-border-style       fg='#585858'
 
       # window title colors
       set -g window-status-current-style fg=magenta,bg=default,bold
@@ -71,37 +74,24 @@
     '';
 
     plugins = with pkgs; [
-      # {
-      #   plugin = tmuxPlugins.resurrect;
-      #   extraConfig = ''
-      #     set -g @resurrect-dir '${config.xdg.dataHome}/tmux/resurrect'
-      #     # set -g @resurrect-strategy-nvim 'session'
-      #     # set -g @resurrect-hook-post-save-all 'target=$(readlink -f $resurrect_dir/last); sed "s| --cmd .*-vim-pack-dir||g; s|/etc/profiles/per-user/$USER/bin/||g; s|/home/$USER/.nix-profile/bin/||g" $target | sponge $target'
-      #     bind-key d run-shell "#{@resurrect-save-script-path} quiet" \; detach-client
-      #   '';
-      # }
-      # {
-      #   plugin = tmuxPlugins.continuum;
-      #   extraConfig = "set -g @continuum-restore 'on'";
-      # }
       {
+        # prefix F
         plugin = tmuxPlugins.tmux-fzf;
       }
       {
-        # Prefix Space
-        plugin = tmuxPlugins.tmux-thumbs;
-        extraConfig = "set -g @thumbs-command 'echo -n {} | xclip -sel clip'";
-      }
-      {
-        # Prefix Tab
+        # prefix enter
+        # TODO: custom header (key hint)
         plugin = tmuxPlugins.extrakto;
         extraConfig = ''
-          set -g @extrakto_split_direction v
-          set -g @extrakto_split_size 15
+          set -g @extrakto_key enter
+          set -g @extrakto_fzf_tool 'fzf --height=100%'
+          set -g @extrakto_fzf_layout reverse
+          set -g @extrakto_split_direction p
+          set -g @extrakto_popup_size 50%
         '';
       }
       {
-        # Prefix u
+        # prefix u
         plugin = tmuxPlugins.fzf-tmux-url;
       }
     ];

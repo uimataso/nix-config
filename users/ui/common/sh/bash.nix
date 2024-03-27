@@ -2,7 +2,7 @@
 
 # TODO:
 # prompt:
-# - env
+# - which nix shell, env im in
 # - git branch?
 # - direnv ($DIRENV_FILE)
 

@@ -1,3 +1,5 @@
+-- TODO: show output in tmux pane
+-- https://github.com/vim-test/vim-test?tab=readme-ov-file#strategies
 return {
   {
     'nvim-neotest/neotest',

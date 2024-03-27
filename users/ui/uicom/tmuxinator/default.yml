@@ -2,4 +2,4 @@ name: default
 root: ~/
 
 windows:
-  - window:
+  - window: clear

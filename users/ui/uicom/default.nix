@@ -1,8 +1,8 @@
 { config, pkgs, lib, inputs, ... }:
 
 # TODO:
-# direnv
-# flake auto update ?
+# flake auto update?
+# auto gc working?
 
 {
   home.username = "ui";

@@ -15,20 +15,14 @@
     stylua
   ];
 
-  # home.file.".config/nvim".source = ./.;
-  home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/users/ui/common/apps/neovim";
+  home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./.;
 
   home.sessionVariables = {
-    # TODO: move this out
-    CARGO_HOME = "${config.xdg.dataHome}/cargo";
+    # # TODO: move lang stuff out
+    # CARGO_HOME = "${config.xdg.dataHome}/cargo";
     PAGER = lib.mkDefault "nvim +Man!";
     MANPAGER = lib.mkDefault "nvim +Man!";
   };
-
-  # home.sessionVariables = {
-  #   # TODO: move this out
-  #   CARGO_HOME = "${config.xdg.dataHome}/cargo";
-  # };
 
   # Git pager
   programs.git.extraConfig = {

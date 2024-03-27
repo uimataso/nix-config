@@ -10,7 +10,6 @@
       "--no-separator"
       "--info=inline"
       "--reverse"
-      "--bind=tab:down"
     ];
 
     defaultCommand = "fd -HL --exclude '.git' --type file";

@@ -8,7 +8,7 @@ let
       name = "tmuxinator-fzf";
       runtimeInputs = with pkgs; [ fzf tmux tmuxinator ];
       text = ''
-        selected="$(tmuxinator list -n | tail -n +2 | fzf)"
+        selected="$(tmuxinator list -n | tail -n +2 | fzf || true)"
         test -z "$selected" && exit
         tmuxinator s "$selected"
       '';

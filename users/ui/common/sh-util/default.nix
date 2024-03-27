@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 # TODO:
-# man pager
 # entr
 
 {

@@ -8,6 +8,7 @@
 # bookmark (local or here)
 # containers (use or not)
 # vim keybind
+# vimium search engine, book mark...
 # new page to home
 
 {

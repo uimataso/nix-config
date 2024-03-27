@@ -4,7 +4,6 @@ root: ~/src/rust-web-test
 windows:
   - editor: $EDITOR src/main.rs
   - sh:
-  - lazygit: lazygit
   - quick-dev:
       layout: even-horizontal
       panes:

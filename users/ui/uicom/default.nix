@@ -31,6 +31,21 @@
     o = "open";
   };
 
+  myConfig = {
+    dev = {
+      direnv.enable = true;
+      git.enable = true;
+      lazygit.enable = true;
+    };
+
+    sh-util = {
+      fzf.enable = true;
+      lsd.enable = true;
+      tmux.enable = true;
+      tealdeer.enable = true;
+    };
+  };
+
   imports = [
     ./tmuxinator
 
@@ -38,10 +53,10 @@
 
     ../common/sh
     ../common/sh/bash.nix
-    ../common/sh-util
+    # ../common/sh-util
 
     ../common/xdg.nix
-    ../common/direnv.nix
+    # ../common/direnv.nix
 
     ../common/apps/firefox
     ../common/apps/st.nix

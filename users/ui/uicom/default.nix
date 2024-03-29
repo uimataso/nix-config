@@ -6,18 +6,6 @@
 
   home.stateVersion = "23.11";
 
-  # TODO: test this
-  # TODO: flake auto update?
-  services.home-manager.autoUpgrade = {
-    enable = true;
-    frequency = "Sat *-*-* 13:20:00";
-  };
-
-  news.display = "silent";
-
-  nixpkgs.config.allowUnfree = true;
-
-
   home.sessionVariables = {
     EDITOR = "nvim";
     BROWSER = "firefox";
@@ -32,42 +20,52 @@
   };
 
   myConfig = {
+    sh.bash.enable = true;
+
+    sh-util = {
+      misc.enable = true;
+      fzf.enable = true;
+      lsd.enable = true;
+      tmux.enable = true;
+      tmuxinator.enable = true;
+      tmuxinator.dir = ./tmuxinator;
+      tealdeer.enable = true;
+    };
+
+    desktop.xserver = {
+      enable = true;
+      wm.dwm.enable = true;
+
+      wallpaper.enable = true;
+      wallpaper.imgPath = ./wallpaper.png;
+      dunst.enable = true;
+    };
+
     dev = {
       direnv.enable = true;
       git.enable = true;
       lazygit.enable = true;
     };
 
-    sh-util = {
-      fzf.enable = true;
-      lsd.enable = true;
-      tmux.enable = true;
-      tealdeer.enable = true;
+    programs = {
+      st.enable = true;
+      neovim.enable = true;
+      firefox.enable = true;
+      firefox.profile.ui.enable = true;
+      zathura.enable = true;
+    };
+
+    services = {
+      syncthing.enable = true;
+      udiskie.enable = true;
+    };
+
+    misc = {
+      settings.enable = true;
+      xdg.enable = true;
+      theme.enable = true;
     };
   };
-
-  imports = [
-    ./tmuxinator
-
-    ../common/theme
-
-    ../common/sh
-    ../common/sh/bash.nix
-    # ../common/sh-util
-
-    ../common/xdg.nix
-    # ../common/direnv.nix
-
-    ../common/apps/firefox
-    ../common/apps/st.nix
-    ../common/apps/neovim
-    ../common/apps/zathura.nix
-    ../common/apps/udiskie.nix
-    ../common/apps/syncthing.nix
-
-    ../common/xserver
-    ../common/xserver/dwm
-  ];
 
   home.packages = with pkgs; [
     wget
@@ -81,17 +79,17 @@
     dig
     whois
 
-    (callPackage ../common/script/swallower.nix { })
-    (callPackage ../common/script/power-menu.nix { })
-    (callPackage ../common/script/screenshot.nix { })
-    (callPackage ../common/script/build.nix { })
-    (callPackage ../common/script/app-launcher.nix { })
-    (callPackage ../common/script/extract.nix { })
-    (callPackage ../common/script/vl.nix { })
-    (callPackage ../common/script/bright.nix { })
-    (callPackage ../common/script/open.nix { })
-    (callPackage ../common/script/fmenu.nix { })
-    (callPackage ../common/script/fff.nix { })
+    (callPackage ../../../modules/home-manager/scripts/script/swallower.nix { })
+    (callPackage ../../../modules/home-manager/scripts/script/power-menu.nix { })
+    (callPackage ../../../modules/home-manager/scripts/script/screenshot.nix { })
+    (callPackage ../../../modules/home-manager/scripts/script/build.nix { })
+    (callPackage ../../../modules/home-manager/scripts/script/app-launcher.nix { })
+    (callPackage ../../../modules/home-manager/scripts/script/extract.nix { })
+    (callPackage ../../../modules/home-manager/scripts/script/vl.nix { })
+    (callPackage ../../../modules/home-manager/scripts/script/bright.nix { })
+    (callPackage ../../../modules/home-manager/scripts/script/open.nix { })
+    (callPackage ../../../modules/home-manager/scripts/script/fmenu.nix { })
+    (callPackage ../../../modules/home-manager/scripts/script/fff.nix { })
 
     # TODO:
     # echo "$XDG_BOOKMARK_DIR/bookmark" | entr -np sync-bookmark &

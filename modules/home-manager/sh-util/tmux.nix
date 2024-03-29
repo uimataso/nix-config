@@ -9,8 +9,6 @@ with lib;
 
 # https://man.archlinux.org/man/tmux.1
 
-with lib;
-
 let
   cfg = config.myConfig.sh-util.tmux;
 in {

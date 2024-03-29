@@ -11,12 +11,12 @@ in {
     enable = mkEnableOption "Git";
 
     name = mkOption {
-      type = types.string;
+      type = types.str;
       default = "uima";
       description = "Username to use in git.";
     };
     email = mkOption {
-      type = types.string;
+      type = types.str;
       default = "luck07051@gmail.com";
       description = "User email to use in git.";
     };

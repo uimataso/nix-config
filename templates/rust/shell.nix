@@ -1,4 +1,4 @@
-{ callPackage, rust-analyzer, rustfmt, clippy }:
+{ callPackage, rust-analyzer, rustfmt, clippy, cargo-nextest }:
 
 let
   mainPkg = callPackage ./default.nix { };
@@ -9,5 +9,6 @@ mainPkg.overrideAttrs (oa: {
     rust-analyzer
     rustfmt
     clippy
+    cargo-nextest
   ] ++ (oa.nativeBuildInputs or [ ]);
 })

@@ -12,8 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # TODO: test this
-    # TODO: flake auto update?
+    # TODO: test this, flake auto update?
     services.home-manager.autoUpgrade = {
       enable = true;
       frequency = "Sat *-*-* 13:20:00";

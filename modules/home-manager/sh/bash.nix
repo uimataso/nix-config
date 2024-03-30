@@ -25,7 +25,7 @@ in {
       bashrcExtra = builtins.readFile ./bashrc;
     };
 
-    # XDG-ly
+    # XDG-rized
     home.file = {
       ".bashrc".enable = false;
       "${config.xdg.configHome}/bash/bashrc".source = config.home.file.".bashrc".source;

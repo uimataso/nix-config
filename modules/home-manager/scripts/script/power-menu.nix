@@ -7,16 +7,20 @@
     # TODO: dmenu solution
     dmenu="''${DMENU:-dmenu -i}"
 
-    # lock;       slock
-    list="$(cat <<EOF
-    shut down;  poweroff
-    reboot;     reboot
-    log out;    loginctl terminate-session ''${XDG_SESSION_ID-}
-    EOF
-    )"
+    declare -A actions
+    actions=( #
+      # ["Lock"]="slock"
+      ["Shut Down"]="poweroff"
+      ["Reboot"]="reboot"
+      ["Logout"]="loginctl terminate-session ''${XDG_SESSION_ID-}"
+    )
 
-    selected=$(printf '%s' "$list" | cut -d';' -f1 | $dmenu -p "POWER")
+    selected="$(printf '%s\n' "''${!actions[@]}" | "$dmenu")"
 
-    [ -n "$selected" ] && eval "$(echo "$list" | grep "^$selected;" | sed 's/.*;\s\+//')"
+    if [ -z "$selected" ]; then
+      exit
+    fi
+
+    eval "''${actions["$selected"]}"
   '';
 }

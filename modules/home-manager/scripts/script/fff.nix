@@ -64,8 +64,6 @@
       fi
 
       # Open the selected
-      # TODO: full path is needed?
-      # file="$PWD/$selected"
       file="$selected"
       if [ -d "$file" ]; then
         cd "$file"

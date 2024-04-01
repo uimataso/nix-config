@@ -2,51 +2,55 @@
 , pkgs
 }: writeShellApplication {
   name = "app-launcher";
+  runtimeInputs = with pkgs; [
+    dex
+    (callPackage ./fmenu.nix { })
+  ];
 
-  # TODO: better execute option (only application?)
+  # TODO: reserch desktop entry (desktop entry, desktop action)
 
   text = ''
     # TODO: dmenu solution
-    dmenu="''${DMENU:-dmenu -i}"
+    dmenu="fmenu"
     term="''${TERMINAL:-st} -e sh -c"
-    temp_file='/tmp/launcher_temp'
 
-    cleanup() {
-      rm -f $temp_file
+    declare -A apps
+    apps=()
+
+    for data_dir in $(echo "$XDG_DATA_DIRS" | tr ':' '\n'); do
+      apps_dir="$data_dir/applications"
+      if [ ! -d "$apps_dir" ]; then
+        continue
+      fi
+
+      # shellcheck disable=SC2044
+      for file in $(find "$apps_dir" -name '*.desktop'); do
+        name="$(sed -n 's/^Name=\(.*\)/\1/p;/^\[Desktop Action.*/q' "$file")"
+        if [ -z "$name" ]; then
+          continue
+        fi
+        apps["$name"]="$file"
+      done
+    done
+
+    selected="$(printf '%s\n' "''${!apps[@]}" | "$dmenu")"
+
+    if [ -z "$selected" ]; then
       exit
-    }
-    trap cleanup EXIT INT TERM
-
-    _path(){
-      file="$(echo "$PATH" | tr ':' '\n' | xargs ls 2>/dev/null || true)"
-      echo "$file" | sed '/^\//d; /^$/d' | sort | uniq
-    }
-    _app(){
-      find "$XDG_DATA_HOME/applications" -type f | sort
-    }
-
-    printf 'url-bookmark\n' > "$temp_file"
-    _path >> "$temp_file"
-    _app >> "$temp_file"
-
-    selected="$($dmenu -p "RUN" < "$temp_file")"
-
-    [ -z "$selected" ] && exit
+    fi
 
     case "$selected" in
       # exec command in terminal if query start or end with ';'
       *\;) $term "''${selected%\;}" ;;
       \;*) $term "''${selected#\;}" ;;
 
-      # search if query with ':'
+      # search if query with '/'
+      # TODO: search
       */) xdg-open "$(search-query "''${selected%/}")" ;;
       /*) xdg-open "$(search-query "''${selected#/}")" ;;
 
-      # desktop applications
-      *.desktop) gtk-launch "$selected" ;;
-
       # exec selected
-      *) $selected
+      *) dex "''${apps["$selected"]}"
     esac
   '';
 }

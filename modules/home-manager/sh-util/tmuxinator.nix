@@ -1,9 +1,8 @@
 { config, lib, pkgs, ... }:
 
-with lib;
-
 # https://github.com/tmuxinator/tmuxinator
-# TODO: quick way to add/edit config
+
+with lib;
 
 let
   cfg = config.myConfig.sh-util.tmuxinator;

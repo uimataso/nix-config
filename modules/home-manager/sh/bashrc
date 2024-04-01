@@ -9,7 +9,7 @@ bind 'set completion-ignore-case on'  # Completion case-insensitive
 bind 'set completion-map-case on'     # Treat hypen and underscores as equivalent
 
 # Prompt
-# TODO:
+# TODO: prompt
 # - which nix shell, env im in
 # - git branch
 # - direnv ($DIRENV_FILE)
@@ -22,7 +22,7 @@ PS2='> '
 
 
 # Plugin
-# TODO: nix way to plugin
+# TODO: nix way to install plugin
 plug_dir="$XDG_DATA_HOME/bash"
 [ ! -d "$plug_dir" ] && mkdir "$plug_dir"
 add_dl_file() {

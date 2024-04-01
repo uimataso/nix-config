@@ -80,9 +80,6 @@ return {
 
         preselect = cmp.PreselectMode.None,
 
-        -- TODO:
-        -- menu enable?
-        -- menu only when C-n?
         formatting = {
           fields = { 'abbr', 'kind' },
           format = function(entry, vim_item)

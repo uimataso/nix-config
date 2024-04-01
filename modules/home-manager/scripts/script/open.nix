@@ -6,18 +6,13 @@
     file
   ];
 
-  # TODO: can i even make alias here?
-  # home.shellAliases = {
-  #   o = "open";
-  #   os = "open -s";
-  # };
-
   text = ''
     if [ -z ''${1:+x} ]; then
       echo "Usage: ''${0##*/} filename" >&2
       exit 1
     fi
 
+    # TODO: file or `xdg-mime query default` command
     case $(file --mime-type "$1" -bL) in
       video/* | audio/*)
         mpv "$@"

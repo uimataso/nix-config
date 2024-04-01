@@ -1,13 +1,12 @@
 { config, lib, pkgs, ... }:
 
-with lib;
-
-# TODO: open tmux on boot
 # TODO: with ssh
 # TODO: send command
 # TODO: theme support
 
 # https://man.archlinux.org/man/tmux.1
+
+with lib;
 
 let
   cfg = config.myConfig.sh-util.tmux;
@@ -85,7 +84,7 @@ in {
         }
         {
           # prefix enter
-          # TODO: custom header (key hint)
+          # TODO: custom fzf header (key hint)
           plugin = tmuxPlugins.extrakto;
           extraConfig = ''
             set -g @extrakto_key enter

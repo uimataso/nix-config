@@ -1,6 +1,9 @@
 {
   description = "My flake";
 
+  # TODO: disco, impermanence, sops
+  # TODO: theme, manage key, programs solution
+
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
 
@@ -33,6 +36,9 @@
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
 
       templates = import ./templates;
+
+      nixosModules = import ./modules/nixos;
+      homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
         vm = lib.nixosSystem {

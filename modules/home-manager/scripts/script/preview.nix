@@ -88,7 +88,6 @@
 
       *.png|*.jpg|*.jpeg|*.webp) image "$file" ;;
 
-      # TODO:
       # *.gif) ;;
       # *.pdf) ;;
 

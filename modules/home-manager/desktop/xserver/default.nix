@@ -24,13 +24,13 @@ in {
       xsession.enable = mkDefault true;
     };
 
-    # TODO: make this option
     home.packages = with pkgs; [
       xcompmgr
       xclip
       xorg.xrandr
     ];
 
+    # TODO: make this module
     myConfig.desktop.xserver.xsession.initExtraList = [
       "xcompmgr -n &"
       "xrandr --output HDMI-0 --mode 1920x1080 --rate 144.00"

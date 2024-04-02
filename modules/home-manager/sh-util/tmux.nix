@@ -35,7 +35,7 @@ in {
         bind C-b run-shell 'tmux popup -E "tmuxinator-fzf"'
         bind BSpace last-window
 
-        bind g run-shell 'tmux popup -h80% -w80% -E "lazygit"'
+        bind g run-shell 'tmux popup -h90% -w90% -E "lazygit"'
 
         # hjkl to switch
         bind -r h previous-window

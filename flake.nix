@@ -41,12 +41,6 @@
       homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
-        vm = lib.nixosSystem {
-          modules = [ ./modules/nixos ./hosts/vm ];
-          pkgs = pkgsFor.x86_64-linux;
-          specialArgs = { inherit inputs outputs; };
-        };
-
         uicom = lib.nixosSystem {
           modules = [ ./modules/nixos ./hosts/uicom ];
           pkgs = pkgsFor.x86_64-linux;
@@ -55,12 +49,6 @@
       };
 
       homeConfigurations = {
-        "ui@vm" = lib.homeManagerConfiguration {
-          modules = [ ./modules/home-manager ./users/ui/vm ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-
         "ui@uicom" = lib.homeManagerConfiguration {
           modules = [ ./modules/home-manager ./users/ui/uicom ];
           pkgs = pkgsFor.x86_64-linux;

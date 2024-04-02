@@ -3,4 +3,4 @@ root: ~/src/qmk_firmware/keyboards/ferris/keymaps/uima-keymap
 
 windows:
   - keymap: clear
-  - cmd: grep '// $ qmk' keymap.c
+  - cmd: sed -n 's/\/\/ \$ \(qmk.*\)/\1/p' keymap.c

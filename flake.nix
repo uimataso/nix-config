@@ -13,13 +13,16 @@
     nur.url = "github:nix-community/NUR";
     # nur.inputs.nixpkgs.follows = "nixpkgs";
 
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-colors.url = "github:misterio77/nix-colors";
 
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     arkenfox.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
@@ -30,6 +33,9 @@
         inherit system;
         config.allowUnfree = true;
       });
+
+      nixosModules = file: [ ./modules/nixos disko.nixosModules.disko file ];
+      homeModules = file: [ ./modules/home-manager file ];
     in
     {
       formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
@@ -43,6 +49,12 @@
       nixosConfigurations = {
         uicom = lib.nixosSystem {
           modules = [ ./modules/nixos ./hosts/uicom ];
+          pkgs = pkgsFor.x86_64-linux;
+          specialArgs = { inherit inputs outputs; };
+        };
+
+        vm-disko-test = lib.nixosSystem {
+          modules = nixosModules ./hosts/vm-disko-test;
           pkgs = pkgsFor.x86_64-linux;
           specialArgs = { inherit inputs outputs; };
         };

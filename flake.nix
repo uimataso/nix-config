@@ -65,6 +65,11 @@
           modules = [ ./hosts/vm-minimal ];
           pkgs = pkgsFor.x86_64-linux;
         };
+
+        vm-btrfs = nixosConfig {
+          modules = [ ./hosts/vm-btrfs ];
+          pkgs = pkgsFor.x86_64-linux;
+        };
       };
 
       homeConfigurations = {

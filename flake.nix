@@ -33,9 +33,6 @@
         inherit system;
         config.allowUnfree = true;
       });
-
-      nixosModules = file: [ ./modules/nixos disko.nixosModules.disko file ];
-      homeModules = file: [ ./modules/home-manager file ];
     in
     {
       formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
@@ -53,8 +50,8 @@
           specialArgs = { inherit inputs outputs; };
         };
 
-        vm-disko-test = lib.nixosSystem {
-          modules = nixosModules ./hosts/vm-disko-test;
+        vm-minimal = lib.nixosSystem {
+          modules = [ ./modules/nixos disko.nixosModules.disko ./hosts/vm-minimal ];
           pkgs = pkgsFor.x86_64-linux;
           specialArgs = { inherit inputs outputs; };
         };

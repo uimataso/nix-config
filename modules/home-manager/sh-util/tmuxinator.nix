@@ -39,7 +39,7 @@ in {
 
     home.shellAliases = {
       ts = "tmuxinator-fzf";
-      t = "tmuxinator start default";
+      td = "tmuxinator start default";
     };
 
     home.file.".config/tmuxinator".source = cfg.dir;

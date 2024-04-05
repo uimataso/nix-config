@@ -33,6 +33,18 @@
         inherit system;
         config.allowUnfree = true;
       });
+
+      nixosConfig = { modules, pkgs, specialArgs ? {} }: lib.nixosSystem {
+        inherit pkgs;
+        modules = [ ./modules/nixos disko.nixosModules.disko ] ++ modules;
+        specialArgs = { inherit inputs outputs; } // specialArgs;
+      };
+
+      homeConfig = { modules, pkgs, specialArgs ? {} }: lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./modules/home-manager ] ++ modules;
+        extraSpecialArgs = { inherit inputs outputs; } // specialArgs;
+      };
     in
     {
       formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
@@ -44,24 +56,21 @@
       homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
-        uicom = lib.nixosSystem {
-          modules = [ ./modules/nixos ./hosts/uicom ];
+        uicom = nixosConfig {
+          modules = [ ./hosts/uicom ];
           pkgs = pkgsFor.x86_64-linux;
-          specialArgs = { inherit inputs outputs; };
         };
 
-        vm-minimal = lib.nixosSystem {
-          modules = [ ./modules/nixos disko.nixosModules.disko ./hosts/vm-minimal ];
+        vm-minimal = nixosConfig {
+          modules = [ ./hosts/vm-minimal ];
           pkgs = pkgsFor.x86_64-linux;
-          specialArgs = { inherit inputs outputs; };
         };
       };
 
       homeConfigurations = {
-        "ui@uicom" = lib.homeManagerConfiguration {
-          modules = [ ./modules/home-manager ./users/ui/uicom ];
+        "ui@uicom" = homeConfig {
+          modules = [ ./users/ui/uicom ];
           pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
         };
       };
 

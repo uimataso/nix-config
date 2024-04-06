@@ -36,15 +36,15 @@
               type = "btrfs";
               extraArgs = [ "-f" ]; # Override existing partition
               subvolumes = {
-                "/" = {
+                "@" = {
                   mountpoint = "/";
                   mountOptions = [ "compress=zstd" "noatime" ];
                 };
-                "/home" = {
+                "@home" = {
                   mountpoint = "/home";
                   mountOptions = [ "compress=zstd" ];
                 };
-                "/nix" = {
+                "@nix" = {
                   mountpoint = "/nix";
                   mountOptions = [ "compress=zstd" "noatime" ];
                 };

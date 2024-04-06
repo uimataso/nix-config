@@ -7,7 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./disko-config.nix
+    (import ./disko-config.nix { device = "/dev/vda"; })
   ];
 
   system.stateVersion = "23.11";

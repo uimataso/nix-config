@@ -16,13 +16,15 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    impermanence.url = "github:nix-community/impermanence";
+
     nix-colors.url = "github:misterio77/nix-colors";
 
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     arkenfox.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko, impermanence, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
@@ -36,7 +38,11 @@
 
       nixosConfig = { modules, pkgs, specialArgs ? {} }: lib.nixosSystem {
         inherit pkgs;
-        modules = [ ./modules/nixos disko.nixosModules.disko ] ++ modules;
+        modules = [
+          ./modules/nixos
+          disko.nixosModules.disko
+          impermanence.nixosModules.impermanence
+        ] ++ modules;
         specialArgs = { inherit inputs outputs; } // specialArgs;
       };
 
@@ -68,6 +74,11 @@
 
         vm-btrfs = nixosConfig {
           modules = [ ./hosts/vm-btrfs ];
+          pkgs = pkgsFor.x86_64-linux;
+        };
+
+        vm-impermanence = nixosConfig {
+          modules = [ ./hosts/vm-impermanence ];
           pkgs = pkgsFor.x86_64-linux;
         };
       };

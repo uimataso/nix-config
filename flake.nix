@@ -48,7 +48,10 @@
 
       homeConfig = { modules, pkgs, specialArgs ? {} }: lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./modules/home-manager ] ++ modules;
+        modules = [
+          ./modules/home-manager
+          impermanence.nixosModules.home-manager.impermanence
+        ] ++ modules;
         extraSpecialArgs = { inherit inputs outputs; } // specialArgs;
       };
     in

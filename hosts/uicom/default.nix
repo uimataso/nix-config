@@ -27,7 +27,8 @@
   ];
 
   myConfig = {
-    misc.settings.enable = true;
+    system.nix-settings.enable = true;
+    system.nix-auto.enable = true;
 
     users.ui.enable = true;
 
@@ -39,8 +40,9 @@
       sddm.enable = true;
     };
 
+    networking.networkmanager.enable = true;
+
     services = {
-      networkmanager.enable = true;
       pipewire.enable = true;
       udisks2.enable = true;
     };

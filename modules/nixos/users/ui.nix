@@ -12,6 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+
     users.users.ui = {
       isNormalUser = true;
       shell = pkgs.bashInteractive;
@@ -23,6 +24,10 @@ in {
         "podman"
         "libvirtd"
       ];
+    # } // mkIf config.myConfig.system.impermanence.enable {
+    #   initialPassword = "password";
+    #   hashedPasswordFile = "/persist/passwords/ui";
     };
+
   };
 }

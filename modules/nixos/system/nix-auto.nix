@@ -3,21 +3,14 @@
 with lib;
 
 let
-  cfg = config.myConfig.misc.settings;
+  cfg = config.myConfig.system.nix-auto;
 in {
-  options.myConfig.misc.settings = {
-    enable = mkEnableOption "Misc settings";
+  options.myConfig.system.nix-auto = {
+    enable = mkEnableOption "nix auto";
     # TODO: dates option
   };
 
   config = mkIf cfg.enable {
-    nix = {
-      settings = {
-        experimental-features = [ "nix-command" "flakes" ];
-        use-xdg-base-directories = true;
-      };
-    };
-
     # TODO: test this
     system.autoUpgrade = {
       enable = true;

@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ./settings.nix
+    ./networkmanager.nix
   ];
 }

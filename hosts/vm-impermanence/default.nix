@@ -2,7 +2,7 @@
 
 # flake_url='github:luck07051/nix-config#vm-impermanence'
 # sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko -f "$flake_url"
-# sudo nixos-install --flake "$flake_url"
+# sudo nixos-install --flake "$flake_url" --no-root-passwd
 
 {
   imports = [
@@ -39,7 +39,6 @@
 
   users.users.ui = {
     isNormalUser = true;
-    initialPassword = "pw";
     extraGroups = [ "wheel" ];
   };
 }

@@ -19,15 +19,15 @@
     umount /btrfs_tmp
   '';
 
-
+  users.mutableUsers = false;
   users.users.ui = {
-    hashedPasswordFile = "/persist/passwords/user";
+    initialPassword = "password";
+    hashedPasswordFile = "/persist/passwords/ui";
   };
 
   environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
-      "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"

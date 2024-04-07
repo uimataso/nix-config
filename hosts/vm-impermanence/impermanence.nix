@@ -9,13 +9,34 @@
     mkdir /btrfs_tmp
     mount /dev/vda4 /btrfs_tmp
 
+    echo 'imper: start restore'
+
     mkdir -p /btrfs_tmp/snapshots
     timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/@)" "+%Y-%m-%-d_%H:%M:%S")
-    mv /btrfs_tmp/@ "/btrfs_tmp/snapshots/@/$timestamp"
+    mv /btrfs_tmp/@ "/btrfs_tmp/snapshots/$timestamp"
 
     btrfs subvolume create /btrfs_tmp/@
     umount /btrfs_tmp
   '';
+
+
+  users.users.ui = {
+    hashedPasswordFile = "/persist/passwords/user";
+  };
+
+  environment.persistence."/persist" = {
+    hideMounts = true;
+    directories = [
+      "/var/lib/bluetooth"
+      "/var/lib/nixos"
+      "/var/lib/systemd/coredump"
+      "/etc/NetworkManager/system-connections"
+    ];
+    files = [
+      "/etc/machine-id"
+      { file = "/var/keys/secret_file"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+    ];
+  };
 
   # boot.initrd.postDeviceCommands = pkgs.lib.mkBefore ''
   #   mkdir -p /mnt

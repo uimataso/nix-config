@@ -37,7 +37,9 @@
     experimental-features = [ "nix-command" "flakes" ];
   };
 
-  myConfig = {
-    users.ui.enable = true;
+  users.users.ui = {
+    isNormalUser = true;
+    initialPassword = "pw";
+    extraGroups = [ "wheel" ];
   };
 }

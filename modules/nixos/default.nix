@@ -2,6 +2,7 @@
   imports = [
     ./users
     ./system
+    ./boot
     ./networking
     ./desktop
     ./programs

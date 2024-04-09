@@ -14,11 +14,17 @@ in {
       example = "/dev/sda4";
       description = "TODO: ";
     };
+
+    persist_dir = mkOption {
+      type = types.str;
+      default = "/persist";
+      description = "";
+    };
   };
 
   config = mkIf cfg.enable {
     # Filesystem modifications needed for impermanence
-    fileSystems."/persist".neededForBoot = true;
+    fileSystems.${persist_dir}.neededForBoot = true;
 
     boot.initrd.postDeviceCommands = pkgs.lib.mkAfter ''
       delete_subvolume_recursively() {
@@ -46,8 +52,10 @@ in {
 
     users.mutableUsers = false;
 
-    environment.persistence."/persist" = {
+    environment.persistence.main = {
+      persistentStoragePath = persist_dir;
       hideMounts = true;
+
       directories = [
         "/var/lib/systemd"
         "/var/lib/nixos"
@@ -55,7 +63,6 @@ in {
       ];
       files = [
         "/etc/machine-id"
-        # { file = "/var/keys/secret_file"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
       ];
     };
   };

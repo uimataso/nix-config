@@ -1,4 +1,4 @@
-name: leedcode-rust
+name: leetcode-rust
 root: ~/src/leedcode
 
 windows:

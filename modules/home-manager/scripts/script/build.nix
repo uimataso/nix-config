@@ -2,6 +2,9 @@
 , pkgs
 }: writeShellApplication {
   name = "build";
+  runtimeInputs = with pkgs; [
+    git
+  ];
 
   text = ''
     case "''${1:-}" in

@@ -5,29 +5,32 @@ with lib;
 let
   cfg = config.myConfig.users.ui;
 
-  ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+  ifGroupExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+  ifPersist = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
 in {
   options.myConfig.users.ui = {
     enable = mkEnableOption "User ui";
   };
 
   config = mkIf cfg.enable {
-
     users.users.ui = {
       isNormalUser = true;
       shell = pkgs.bashInteractive;
       extraGroups = [
         "wheel"
-      ] ++ ifTheyExist [
+      ] ++ ifGroupExist [
         "networkmanager"
         "docker"
         "podman"
         "libvirtd"
       ];
-    # } // mkIf config.myConfig.system.impermanence.enable {
-    #   initialPassword = "password";
-    #   hashedPasswordFile = "/persist/passwords/ui";
-    };
 
+      # packages = with pkgs; [
+      #   home-manager
+      # ];
+    } // ifPersist {
+      initialPassword = "password";
+      hashedPasswordFile = "/persist/passwords/ui";
+    };
   };
 }

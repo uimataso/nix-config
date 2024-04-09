@@ -36,6 +36,7 @@
         config.allowUnfree = true;
       });
 
+      # TODO: NUR import here?
       nixosConfig = { modules, pkgs, specialArgs ? {} }: lib.nixosSystem {
         inherit pkgs;
         modules = [

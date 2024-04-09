@@ -13,7 +13,8 @@ let
       --pr-color: #${palette.base05} !important;
     }
   '';
-in {
+in
+{
   options.myConfig.programs.firefox.profile.ui = {
     enable = mkEnableOption "Firefox profile: ui";
   };

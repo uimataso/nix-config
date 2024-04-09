@@ -2,7 +2,8 @@
 
 let
   device = "/dev/vda4";
-in {
+in
+{
   # filesystem modifications needed for impermanence
   fileSystems."/persist".neededForBoot = true;
   fileSystems."/var/log".neededForBoot = true;

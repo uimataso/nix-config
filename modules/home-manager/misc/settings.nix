@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.misc.settings;
-in {
+in
+{
   options.myConfig.misc.settings = {
     enable = mkEnableOption "Misc settings";
 

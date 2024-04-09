@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.desktop.xserver.dwm;
-in {
+in
+{
   options.myConfig.desktop.xserver.dwm = {
     enable = mkEnableOption "dwm";
   };
@@ -21,7 +22,7 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      (callPackage ../../../../pkgs/dwmblocks {})
+      (callPackage ../../../../pkgs/dwmblocks { })
     ];
 
     services.xserver = {

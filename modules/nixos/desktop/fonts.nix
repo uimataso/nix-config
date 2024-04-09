@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.desktop.fonts;
-in {
+in
+{
   options.myConfig.desktop.fonts = {
     enable = mkEnableOption "Fonts";
   };

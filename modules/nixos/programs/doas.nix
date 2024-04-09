@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.programs.doas;
-in {
+in
+{
   options.myConfig.programs.doas = {
     enable = mkEnableOption "doas";
   };

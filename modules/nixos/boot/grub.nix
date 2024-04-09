@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.boot.grub;
-in {
+in
+{
   options.myConfig.boot.grub = {
     enable = mkEnableOption "Grub";
   };

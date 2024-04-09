@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.dev.direnv;
-in {
+in
+{
   options.myConfig.dev.direnv = {
     enable = mkEnableOption "Enables direnv";
   };

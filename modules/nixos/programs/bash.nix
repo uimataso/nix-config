@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.programs.bash;
-in {
+in
+{
   options.myConfig.programs.bash = {
     enable = mkEnableOption "Bash XDG-rized";
   };

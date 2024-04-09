@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.desktop.xserver.wm.dwm;
-in {
+in
+{
   options.myConfig.desktop.xserver.wm.dwm = {
     enable = mkEnableOption "dwm";
   };

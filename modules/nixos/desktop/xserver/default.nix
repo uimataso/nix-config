@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.desktop.xserver;
-in {
+in
+{
   options.myConfig.desktop.xserver = {
     enable = mkEnableOption "Xserver";
   };

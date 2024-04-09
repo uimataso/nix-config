@@ -6,7 +6,8 @@ with lib;
 
 let
   cfg = config.myConfig.services.udiskie;
-in {
+in
+{
   options.myConfig.services.udiskie = {
     enable = mkEnableOption "udiskie";
   };

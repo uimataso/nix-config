@@ -12,7 +12,8 @@ let
 
   # TODO: font manage
   font = "MesloLGS Nerd Font";
-in {
+in
+{
   options.myConfig.desktop.xserver.xresources = {
     enable = mkEnableOption "Xresources";
   };

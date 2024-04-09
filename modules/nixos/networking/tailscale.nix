@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.networking.tailscale;
-in {
+in
+{
   options.myConfig.networking.tailscale = {
     enable = mkEnableOption "Tailscale";
   };

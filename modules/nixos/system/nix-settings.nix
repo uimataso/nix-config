@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.system.nix-settings;
-in {
+in
+{
   options.myConfig.system.nix-settings = {
     enable = mkEnableOption "nix setting";
   };

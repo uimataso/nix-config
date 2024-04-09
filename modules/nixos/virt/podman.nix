@@ -7,7 +7,8 @@ with lib;
 
 let
   cfg = config.myConfig.virt.podman;
-in {
+in
+{
   options.myConfig.virt.podman = {
     enable = mkEnableOption "podman";
   };

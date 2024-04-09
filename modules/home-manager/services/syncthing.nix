@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.services.syncthing;
-in {
+in
+{
   options.myConfig.services.syncthing = {
     enable = mkEnableOption "Syncthing";
   };

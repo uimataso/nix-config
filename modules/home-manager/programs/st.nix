@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.programs.st;
-in {
+in
+{
   options.myConfig.programs.st = {
     enable = mkEnableOption "st";
   };

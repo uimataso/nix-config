@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.system.impermanence;
-in {
+in
+{
   options.myConfig.system.impermanence = {
     enable = mkEnableOption "Impermanence on btrfs";
 

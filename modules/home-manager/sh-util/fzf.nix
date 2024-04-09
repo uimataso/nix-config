@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.sh-util.fzf;
-in {
+in
+{
   options.myConfig.sh-util.fzf = {
     enable = mkEnableOption "fzf";
   };

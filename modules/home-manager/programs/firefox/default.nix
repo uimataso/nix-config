@@ -15,7 +15,8 @@ with lib;
 
 let
   cfg = config.myConfig.programs.firefox;
-in {
+in
+{
   options.myConfig.programs.firefox = {
     enable = mkEnableOption "Firefox";
   };

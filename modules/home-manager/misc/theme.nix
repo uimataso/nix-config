@@ -7,7 +7,8 @@ with lib;
 
 let
   cfg = config.myConfig.misc.theme;
-in {
+in
+{
   options.myConfig.misc.theme = {
     enable = mkEnableOption "theme";
   };

@@ -8,7 +8,8 @@ let
   cfg = config.myConfig.programs.zathura;
 
   palette = config.colorScheme.palette;
-in {
+in
+{
   options.myConfig.programs.zathura = {
     enable = mkEnableOption "zathura";
   };

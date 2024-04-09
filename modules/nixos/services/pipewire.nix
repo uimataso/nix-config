@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.services.pipewire;
-in {
+in
+{
   options.myConfig.services.pipewire = {
     enable = mkEnableOption "pipewire";
   };

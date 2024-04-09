@@ -9,7 +9,8 @@ let
   cfg = config.myConfig.desktop.xserver.wallpaper;
 
   setWallpaperCmd = "${pkgs.xwallpaper}/bin/xwallpaper --screen 0 --zoom ${config.xdg.dataHome}/wallpaper.png";
-in {
+in
+{
   options.myConfig.desktop.xserver.wallpaper = {
     enable = mkEnableOption "Wallpaper";
 

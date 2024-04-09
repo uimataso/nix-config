@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.sh-util.tealdeer;
-in {
+in
+{
   options.myConfig.sh-util.tealdeer = {
     enable = mkEnableOption "tealdeer";
   };

@@ -6,7 +6,8 @@ with lib;
 
 let
   cfg = config.myConfig.services.udisks2;
-in {
+in
+{
   options.myConfig.services.udisks2 = {
     enable = mkEnableOption "udisks2";
   };

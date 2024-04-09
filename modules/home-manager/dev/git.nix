@@ -6,7 +6,8 @@ with lib;
 
 let
   cfg = config.myConfig.dev.git;
-in {
+in
+{
   options.myConfig.dev.git = {
     enable = mkEnableOption "Git";
 

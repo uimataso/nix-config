@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.desktop.xserver.xsession;
-in {
+in
+{
   options.myConfig.desktop.xserver.xsession = {
     enable = mkEnableOption "Xsession";
 

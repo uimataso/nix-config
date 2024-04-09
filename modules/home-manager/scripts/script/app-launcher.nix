@@ -1,11 +1,13 @@
 { writeShellApplication
 , pkgs
-}: let
+}:
+let
   # TODO: dmenu solution
   dmenu = "fmenu";
-  term="$TERMINAL -e sh -c";
+  term = "$TERMINAL -e sh -c";
   # term="${config.home.sessionVariables.TERMINAL} -e sh -c";
-in writeShellApplication {
+in
+writeShellApplication {
   name = "app-launcher";
   runtimeInputs = with pkgs; [
     dex

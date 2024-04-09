@@ -6,7 +6,8 @@ with lib;
 
 let
   cfg = config.myConfig.services.otd;
-in {
+in
+{
   options.myConfig.services.otd = {
     enable = mkEnableOption "open tablet driver";
   };

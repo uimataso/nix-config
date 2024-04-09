@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.boot.systemd-boot;
-in {
+in
+{
   options.myConfig.boot.systemd-boot = {
     enable = mkEnableOption "systemd-boot";
   };

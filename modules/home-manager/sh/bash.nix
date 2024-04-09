@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.sh.bash;
-in {
+in
+{
   options.myConfig.sh.bash = {
     enable = mkEnableOption "Bash";
   };

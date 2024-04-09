@@ -7,7 +7,8 @@ let
 
   ifGroupExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
   ifPersist = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
-in {
+in
+{
   options.myConfig.users.ui = {
     enable = mkEnableOption "User ui";
   };

@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.misc.xdg;
-in {
+in
+{
   options.myConfig.misc.xdg = {
     enable = mkEnableOption "xdg";
   };

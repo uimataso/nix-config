@@ -6,7 +6,8 @@ with lib;
 
 let
   cfg = config.myConfig.virt.vm;
-in {
+in
+{
   options.myConfig.virt.vm = {
     enable = mkEnableOption "vm";
   };

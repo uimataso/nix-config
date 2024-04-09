@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.dev.lazygit;
-in {
+in
+{
   options.myConfig.dev.lazygit = {
     enable = mkEnableOption "Lazygit";
   };
@@ -27,13 +28,13 @@ in {
         gui = {
           theme = {
             # TODO: theme support
-            inactiveBorderColor = ["#777777"];
+            inactiveBorderColor = [ "#777777" ];
           };
           showBottomLine = false;
         };
         git = {
           paging = {
-            colorArg =  "always";
+            colorArg = "always";
             pager = "delta --dark --paging=never";
           };
         };

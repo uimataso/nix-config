@@ -17,7 +17,8 @@ let
         tmuxinator s "$selected"
       '';
     };
-in {
+in
+{
   options.myConfig.sh-util.tmuxinator = {
     enable = mkEnableOption "tmuxinator";
 
@@ -34,7 +35,7 @@ in {
     programs.tmux.tmuxinator.enable = true;
 
     home.packages = with pkgs; [
-      (callPackage script {})
+      (callPackage script { })
     ];
 
     home.shellAliases = {

@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.sh-util.lsd;
-in {
+in
+{
   options.myConfig.sh-util.lsd = {
     enable = mkEnableOption "lsd";
   };

@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.networking.networkmanager;
-in {
+in
+{
   options.myConfig.networking.networkmanager = {
     enable = mkEnableOption "NetworkManager";
   };

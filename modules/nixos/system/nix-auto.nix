@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.system.nix-auto;
-in {
+in
+{
   options.myConfig.system.nix-auto = {
     enable = mkEnableOption "nix auto";
     # TODO: dates option

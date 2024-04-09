@@ -9,7 +9,8 @@ let
   cfg = config.myConfig.desktop.xserver.dunst;
 
   palette = config.colorScheme.palette;
-in {
+in
+{
   options.myConfig.desktop.xserver.dunst = {
     enable = mkEnableOption "dunst";
   };

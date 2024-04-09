@@ -10,7 +10,8 @@ with lib;
 
 let
   cfg = config.myConfig.sh-util.tmux;
-in {
+in
+{
   options.myConfig.sh-util.tmux = {
     enable = mkEnableOption "tmux";
   };

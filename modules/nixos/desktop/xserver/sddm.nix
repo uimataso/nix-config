@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.desktop.xserver.sddm;
-in {
+in
+{
   options.myConfig.desktop.xserver.sddm = {
     enable = mkEnableOption "sddm";
   };

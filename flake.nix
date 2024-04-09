@@ -37,7 +37,7 @@
       });
 
       # TODO: NUR import here?
-      nixosConfig = { modules, pkgs, specialArgs ? {} }: lib.nixosSystem {
+      nixosConfig = { modules, pkgs, specialArgs ? { } }: lib.nixosSystem {
         inherit pkgs;
         modules = [
           ./modules/nixos
@@ -47,7 +47,7 @@
         specialArgs = { inherit inputs outputs; } // specialArgs;
       };
 
-      homeConfig = { modules, pkgs, specialArgs ? {} }: lib.homeManagerConfiguration {
+      homeConfig = { modules, pkgs, specialArgs ? { } }: lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
           ./modules/home-manager

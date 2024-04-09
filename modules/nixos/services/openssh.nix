@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.services.openssh;
-in {
+in
+{
   options.myConfig.services.openssh = {
     enable = mkEnableOption "openssh";
   };

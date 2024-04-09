@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.programs.neovim;
-in {
+in
+{
   options.myConfig.programs.neovim = {
     enable = mkEnableOption "neovim";
   };

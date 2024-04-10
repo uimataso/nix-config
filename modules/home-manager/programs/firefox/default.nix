@@ -27,11 +27,6 @@ in
   ];
 
   config = mkIf cfg.enable {
-
-    nixpkgs.overlays = [
-      inputs.nur.overlay
-    ];
-
     xdg.mimeApps.defaultApplications = {
       "text/html" = [ "firefox.desktop" ];
       "text/xml" = [ "firefox.desktop" ];

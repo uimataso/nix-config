@@ -24,7 +24,7 @@
     arkenfox.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, impermanence, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
@@ -36,30 +36,24 @@
         config.allowUnfree = true;
       });
 
-      # TODO: NUR import here?
       nixosConfig = { modules, pkgs, specialArgs ? { } }: lib.nixosSystem {
         inherit pkgs;
-        modules = [
-          ./modules/nixos
-          disko.nixosModules.disko
-          impermanence.nixosModules.impermanence
-        ] ++ modules;
+        modules = [ ./modules/nixos ] ++ modules;
         specialArgs = { inherit inputs outputs; } // specialArgs;
       };
 
       homeConfig = { modules, pkgs, specialArgs ? { } }: lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [
-          ./modules/home-manager
-          impermanence.nixosModules.home-manager.impermanence
-        ] ++ modules;
+        modules = [ ./modules/home-manager ] ++ modules;
         extraSpecialArgs = { inherit inputs outputs; } // specialArgs;
       };
     in
     {
+      overlays = import ./overlays {inherit inputs outputs;};
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+
       formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
-
       templates = import ./templates;
 
       nixosModules = import ./modules/nixos;
@@ -93,6 +87,5 @@
           pkgs = pkgsFor.x86_64-linux;
         };
       };
-
     };
 }

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 with lib;
 
@@ -22,6 +22,10 @@ in
       description = "";
     };
   };
+
+  imports = [
+    inputs.impermanence.nixosModules.impermanence
+  ];
 
   config = mkIf cfg.enable {
     # Filesystem modifications needed for impermanence

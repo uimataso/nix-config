@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./settings.nix
+    ./auto.nix
     ./xdg.nix
     ./theme.nix
   ];

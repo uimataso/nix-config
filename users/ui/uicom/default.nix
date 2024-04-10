@@ -61,7 +61,7 @@
     };
 
     misc = {
-      settings.enable = true;
+      auto.enable = true;
       xdg.enable = true;
       theme.enable = true;
     };
@@ -79,17 +79,22 @@
     dig
     whois
 
-    (callPackage ../../../modules/home-manager/scripts/script/swallower.nix { })
-    (callPackage ../../../modules/home-manager/scripts/script/power-menu.nix { })
-    (callPackage ../../../modules/home-manager/scripts/script/screenshot.nix { })
-    (callPackage ../../../modules/home-manager/scripts/script/build.nix { })
-    (callPackage ../../../modules/home-manager/scripts/script/app-launcher.nix { })
-    (callPackage ../../../modules/home-manager/scripts/script/extract.nix { })
-    (callPackage ../../../modules/home-manager/scripts/script/vl.nix { })
-    (callPackage ../../../modules/home-manager/scripts/script/bright.nix { })
-    (callPackage ../../../modules/home-manager/scripts/script/open.nix { })
-    (callPackage ../../../modules/home-manager/scripts/script/fmenu.nix { })
-    (callPackage ../../../modules/home-manager/scripts/script/fff.nix { })
+    # Scripts
+    build
+
+    fmenu
+    fff
+
+    extract
+    vl
+    bright
+
+    swallower
+    screenshot
+
+    open
+    power-menu
+    app-launcher
 
     # TODO:
     # echo "$XDG_BOOKMARK_DIR/bookmark" | entr -np sync-bookmark &

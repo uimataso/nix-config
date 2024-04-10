@@ -14,7 +14,6 @@
   myConfig = {
     users.ui.enable = true;
 
-    system.nix-settings.enable = true;
     system.nix-auto.enable = true;
 
     boot.systemd-boot.enable = true;

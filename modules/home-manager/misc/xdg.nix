@@ -30,7 +30,6 @@ in
     xdg.mimeApps.enable = true;
 
     # .nix-profile
-    nix.package = pkgs.nix;
     nix.settings.use-xdg-base-directories = true;
 
     # wget

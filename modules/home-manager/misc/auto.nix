@@ -3,11 +3,11 @@
 with lib;
 
 let
-  cfg = config.myConfig.misc.settings;
+  cfg = config.myConfig.misc.auto;
 in
 {
-  options.myConfig.misc.settings = {
-    enable = mkEnableOption "Misc settings";
+  options.myConfig.misc.auto = {
+    enable = mkEnableOption "auto upgrade";
 
     # TODO: frequency option
   };
@@ -18,9 +18,5 @@ in
       enable = true;
       frequency = "Sat *-*-* 13:20:00";
     };
-
-    news.display = "silent";
-
-    nixpkgs.config.allowUnfree = true;
   };
 }

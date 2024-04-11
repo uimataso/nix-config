@@ -21,7 +21,7 @@ in
     };
 
     environment.systemPackages = with pkgs; [
-      (libsForQt5.callPackage ../../../../pkgs/sddm-astronaut-theme { })
+      sddm-astronaut-theme
     ];
 
     services.xserver.displayManager.sessionCommands = ''

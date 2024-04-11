@@ -14,6 +14,10 @@
     inputs.disko.nixosModules.disko
   ];
 
+  nixpkgs = {
+    overlays = builtins.attrValues outputs.overlays;
+  };
+
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     warn-dirty = false;

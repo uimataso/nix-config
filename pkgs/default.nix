@@ -3,6 +3,13 @@
 with pkgs;
 
 {
+  sddm-astronaut-theme = libsForQt5.callPackage ./sddm-astronaut-theme { };
+
+  my-dwm = dwm.overrideAttrs { src = ./dwm; };
+  dwmblocks = callPackage ./dwmblocks { };
+
+  # scripts
+  # TODO: import script here or ./script/default.nix
   build = callPackage ./scripts/build.nix { };
 
   fmenu = callPackage ./scripts/fmenu.nix { };

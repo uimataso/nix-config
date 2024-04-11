@@ -11,22 +11,16 @@ in
   };
 
   config = mkIf cfg.enable {
-    nixpkgs = {
-      overlays = [
-        (self: super: {
-          dwm = super.dwm.overrideAttrs (oldattrs: {
-            src = ../../../../pkgs/dwm;
-          });
-        })
-      ];
-    };
-
     environment.systemPackages = with pkgs; [
-      (callPackage ../../../../pkgs/dwmblocks { })
+      dwmblocks
     ];
 
     services.xserver = {
-      windowManager.dwm.enable = true;
+      windowManager.dwm = {
+        enable = true;
+        package = pkgs.my-dwm;
+      };
+
       # displayManager.setupCommands = ''
       #   dwmblocks &
       # '';

@@ -128,7 +128,7 @@ return {
             timer = nil
           end
           timer = vim.loop.new_timer()
-          timer:start(350, 0, vim.schedule_wrap(function()
+          timer:start(250, 0, vim.schedule_wrap(function()
             require('cmp').complete({ reason = require('cmp').ContextReason.Auto })
           end))
         end

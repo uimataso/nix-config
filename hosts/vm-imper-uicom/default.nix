@@ -10,7 +10,6 @@
   imports = [
     ./hardware-configuration.nix
     (import ./disko-config.nix { device = "/dev/vda"; })
-    ./impermanence.nix
   ];
 
   system.stateVersion = "23.11";
@@ -21,6 +20,7 @@
   myConfig = {
     users.ui.enable = true;
     system.impermanence.enable = true;
+    system.impermanence.device = "/dev/vda4";
     boot.grub.enable = true;
 
     networking.networkmanager.enable = true;

@@ -13,7 +13,7 @@ in
       type = types.str;
       default = "";
       example = "/dev/sda4";
-      description = "TODO: ";
+      description = "";
     };
 
     persist_dir = mkOption {
@@ -29,7 +29,7 @@ in
 
   config = mkIf cfg.enable {
     # Filesystem modifications needed for impermanence
-    fileSystems.${persist_dir}.neededForBoot = true;
+    fileSystems.${cfg.persist_dir}.neededForBoot = true;
 
     boot.initrd.postDeviceCommands = pkgs.lib.mkAfter ''
       delete_subvolume_recursively() {
@@ -41,7 +41,7 @@ in
       }
 
       mkdir /btrfs_tmp
-      mount ${device} /btrfs_tmp
+      mount ${cfg.device} /btrfs_tmp
 
       mkdir -p /btrfs_tmp/snapshots
       timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/@)" "+%Y-%m-%-d_%H:%M:%S")
@@ -58,7 +58,7 @@ in
     users.mutableUsers = false;
 
     environment.persistence.main = {
-      persistentStoragePath = persist_dir;
+      persistentStoragePath = cfg.persist_dir;
       hideMounts = true;
 
       directories = [

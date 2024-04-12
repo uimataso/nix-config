@@ -79,6 +79,11 @@
           modules = [ ./hosts/vm-impermanence ];
           pkgs = pkgsFor.x86_64-linux;
         };
+
+        vm-imper-uicom = nixosConfig {
+          modules = [ ./hosts/vm-imper-uicom ];
+          pkgs = pkgsFor.x86_64-linux;
+        };
       };
 
       homeConfigurations = {

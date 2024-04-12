@@ -1,6 +1,6 @@
 { config, lib, pkgs, inputs, ... }:
 
-# flake_url='github:luck07051/nix-config#vm-impermanence'
+# flake_url='github:luck07051/nix-config#vm-imper-uicom'
 # sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko -f "$flake_url"
 # sudo nixos-install --flake "$flake_url" --no-root-passwd
 
@@ -15,32 +15,15 @@
 
   system.stateVersion = "23.11";
 
-  networking.hostName = "vm-disko-test";
-
-  networking.networkmanager.enable = true;
-
-  boot.loader.grub.enable = true;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.efiInstallAsRemovable = true;
-
+  networking.hostName = "vm-imper-uicom";
   time.timeZone = "Asia/Taipei";
-  i18n.defaultLocale = "en_US.UTF-8";
 
-  services.openssh.enable = true;
+  myConfig = {
+    users.ui.enable = true;
+    system.impermanence.enable = true;
+    boot.grub.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    neovim
-    git
-    wget
-    gcc
-  ];
-
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-  };
-
-  users.users.ui = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    networking.networkmanager.enable = true;
+    services.openssh.enable = true;
   };
 }

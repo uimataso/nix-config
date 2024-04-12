@@ -4,7 +4,8 @@
 # sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko -f "$flake_url"
 # sudo nixos-install --flake "$flake_url" --no-root-passwd
 
-# mkpasswd "$password" > "/persist/passwords/$user"
+# sudo -i
+# mkpasswd "$password" > "/mnt/persist/passwords/$user"
 
 {
   imports = [

@@ -57,6 +57,7 @@ in
 
     users.mutableUsers = false;
 
+    # Default persistence files
     environment.persistence.main = {
       persistentStoragePath = cfg.persist_dir;
       hideMounts = true;

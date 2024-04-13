@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.networking.networkmanager;
-  ifPersist = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
+  # TODO: more general check
+  ifImpermanence = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
 in
 {
   options.myConfig.networking.networkmanager = {
@@ -18,7 +19,7 @@ in
     systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
     systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 
-    environment.persistence.main = ifPersist {
+    environment.persistence.main = ifImpermanence {
       directories = [
         "/etc/NetworkManager/system-connections"
       ];

@@ -26,9 +26,9 @@ in
         "libvirtd"
       ];
 
-      # packages = with pkgs; [
-      #   home-manager
-      # ];
+      packages = with pkgs; [
+        home-manager
+      ];
     } // ifImpermanence {
       initialPassword = "password";
       hashedPasswordFile = "/persist/passwords/ui";

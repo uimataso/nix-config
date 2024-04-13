@@ -7,6 +7,11 @@
 # mkdir /mnt/persist/passwords
 # mkpasswd "$password" > "/mnt/persist/passwords/$user"
 
+# nix run home-manager/release-23.11 -- init --switch
+# nix shell nixpkgs#git --command git clone https://github.com/luck07051/nix-config nix
+# home-manager switch --flake .#ui@vm-imper-uicom
+
+
 {
   imports = [
     ./hardware-configuration.nix
@@ -23,7 +28,8 @@
 
     system.impermanence.enable = true;
     system.impermanence.device = "/dev/vda4";
-    system.impermanence.subvolumes = [ "@" "@home" ];
+    system.impermanence.subvolumes = [ "@" ];
+    # system.impermanence.subvolumes = [ "@" "@home" ];
 
     boot.grub.enable = true;
 

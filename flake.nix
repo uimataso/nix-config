@@ -56,8 +56,9 @@
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
       templates = import ./templates;
 
-      nixosModules = import ./modules/nixos;
-      homeManagerModules = import ./modules/home-manager;
+      # FIXME: what is this
+      # nixosModules = import ./modules/nixos { inherit inputs outputs; };
+      # homeManagerModules = forEachSystem (pkgs: import ./modules/home-manager { inherit pkgs inputs outputs; });
 
       nixosConfigurations = {
         uicom = nixosConfig {

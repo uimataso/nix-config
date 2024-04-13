@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./system
     ./sh
     ./sh-util
     ./dev
@@ -9,9 +10,6 @@
     ./services
     ./desktop
     ./misc
-  ] ++ [
-    # TODO: make it's own module
-    inputs.impermanence.nixosModules.home-manager.impermanence
   ];
 
   # Global settings

@@ -20,6 +20,11 @@
   };
 
   myConfig = {
+    system = {
+      auto-upgrade.enable = true;
+      xdg.enable = true;
+    };
+
     sh.bash.enable = true;
 
     sh-util = {
@@ -61,8 +66,6 @@
     };
 
     misc = {
-      auto.enable = true;
-      xdg.enable = true;
       theme.enable = true;
     };
   };

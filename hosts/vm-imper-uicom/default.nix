@@ -20,8 +20,11 @@
 
   myConfig = {
     users.ui.enable = true;
+
     system.impermanence.enable = true;
     system.impermanence.device = "/dev/vda4";
+    system.impermanence.subvolumes = [ "@" "@home" ];
+
     boot.grub.enable = true;
 
     networking.networkmanager.enable = true;

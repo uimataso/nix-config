@@ -13,13 +13,28 @@ in
       type = types.str;
       default = "";
       example = "/dev/sda4";
-      description = "";
+      description = "TODO:";
     };
 
     persist_dir = mkOption {
       type = types.str;
       default = "/persist";
-      description = "";
+      example = "/nix/persistent";
+      description = "The directory to store persistent data.";
+    };
+
+    subvolumes = mkOption {
+      type = with types; listOf str;
+      default = [ ];
+      example = [ "@" "@home" ];
+      description = "List of subvolumes to clean up at boot.";
+    };
+
+    delete-older-then = mkOption {
+      type = types.int;
+      default = 7;
+      example = 30;
+      description = "Delete the snapshots that older then this value days.";
     };
   };
 
@@ -43,18 +58,22 @@ in
       mkdir /btrfs_tmp
       mount ${cfg.device} /btrfs_tmp
 
-      mkdir -p /btrfs_tmp/snapshots
-      timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/@)" "+%Y-%m-%-d_%H:%M:%S")
-      mv /btrfs_tmp/@ "/btrfs_tmp/snapshots/$timestamp"
+      for sv in ${lib.strings.escapeShellArgs cfg.subvolumes}; do
+        mkdir -p "/btrfs_tmp/snapshots/$sv"
+        timestamp=$(date --date="@$(stat -c %Y "/btrfs_tmp/$sv")" "+%Y-%m-%-d_%H:%M:%S")
+        mv "/btrfs_tmp/$sv" "/btrfs_tmp/snapshots/$sv/$timestamp"
 
-      for i in $(find /btrfs_tmp/snapshots/ -maxdepth 1 -mtime +7); do
-        delete_subvolume_recursively "$i"
+        for i in $(find "/btrfs_tmp/snapshots/$sv" -maxdepth 1 -mtime +${lib.strings.escapeShellArg cfg.delete-older-then}); do
+          delete_subvolume_recursively "$i"
+        done
+
+        btrfs subvolume create "/btrfs_tmp/$sv"
       done
 
-      btrfs subvolume create /btrfs_tmp/@
       umount /btrfs_tmp
     '';
 
+    programs.fuse.userAllowOther = true;
     users.mutableUsers = false;
 
     # Default persistence files

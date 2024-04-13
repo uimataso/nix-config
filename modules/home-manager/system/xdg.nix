@@ -3,10 +3,12 @@
 with lib;
 
 let
-  cfg = config.myConfig.misc.xdg;
+  cfg = config.myConfig.system.xdg;
+
+  ifImpermanence = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
 in
 {
-  options.myConfig.misc.xdg = {
+  options.myConfig.system.xdg = {
     enable = mkEnableOption "xdg";
   };
 
@@ -40,6 +42,16 @@ in
     home.sessionVariables = {
       XCOMPOSEFILE = "${config.xdg.cacheHome}/X11/xcompose";
       XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
+    };
+
+    home.persistence.main = ifImpermanence {
+      directories = [
+        "doc"
+        "dl"
+        "mus"
+        "img"
+        "vid"
+      ];
     };
   };
 }

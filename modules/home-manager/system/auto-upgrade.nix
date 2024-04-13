@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.misc.auto;
+  cfg = config.myConfig.system.auto-upgrade;
 in
 {
-  options.myConfig.misc.auto = {
+  options.myConfig.system.auto-upgrade = {
     enable = mkEnableOption "auto upgrade";
 
     # TODO: frequency option

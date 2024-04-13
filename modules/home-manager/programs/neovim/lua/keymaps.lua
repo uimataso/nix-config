@@ -31,6 +31,10 @@ vim.keymap.set('n', '<BS>', '<C-^>')
 vim.keymap.set('n', '<Tab>', ':bn<cr>')
 vim.keymap.set('n', '<S-Tab>', ':bp<cr>')
 
+-- Quickfix
+vim.keymap.set('n', '<C-n>', ':cn<cr>')
+vim.keymap.set('n', '<C-p>', ':cp<cr>')
+
 -- Remapping navigation keys
 vim.keymap.set('', '<PageUp>', '<C-u>')
 vim.keymap.set('', '<PageDown>', '<C-d>')
@@ -70,7 +74,7 @@ vim.keymap.set('x', 'A', function()
 end, { expr = true })
 
 -- Redo and search next
-vim.keymap.set('n', '<C-n>', '.nzzzv')
+vim.keymap.set('n', '<M-n>', '.nzzzv')
 
 -- Spell check
 -- TODO: add some lang

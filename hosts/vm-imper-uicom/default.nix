@@ -25,6 +25,24 @@
     boot.grub.enable = true;
 
     networking.networkmanager.enable = true;
+    networking.tailscale.enable = true;
     services.openssh.enable = true;
+
+    desktop.fonts.enable = true;
+    desktop.xserver = {
+      enable = true;
+      dwm.enable = true;
+      sddm.enable = true;
+    };
+
+    services = {
+      pipewire.enable = true;
+      udisks2.enable = true;
+    };
+
+    programs = {
+      doas.enable = true;
+      bash.enable = true;
+    };
   };
 }

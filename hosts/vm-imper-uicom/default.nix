@@ -7,9 +7,11 @@
 # mkdir /mnt/persist/passwords
 # mkpasswd "$password" > "/mnt/persist/passwords/$user"
 
+# doas mkdir -p /persist/home/ui
+# doas chown ui:users -R /persist/home/ui
 # nix run home-manager/release-23.11 -- init --switch
 # nix shell nixpkgs#git --command git clone https://github.com/luck07051/nix-config nix
-# home-manager switch --flake .#ui@vm-imper-uicom
+# nix shell nixpkgs#git --command git home-manager switch --flake .#ui@vm-imper-uicom
 
 
 {

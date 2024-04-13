@@ -27,6 +27,10 @@
 
     sh.bash.enable = true;
 
+    sh-util = {
+      fzf.enable = true;
+    };
+
     desktop.xserver = {
       enable = true;
       wm.dwm.enable = true;

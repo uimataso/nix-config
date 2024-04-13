@@ -1,10 +1,10 @@
 { config, lib, pkgs, inputs, ... }:
 
-# flake_url='github:luck07051/nix-config#vm-imper-uicom'
-# sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko -f "$flake_url"
-# sudo nixos-install --flake "$flake_url" --no-root-passwd
-
 # sudo -i
+# flake_url='github:luck07051/nix-config#vm-imper-uicom'
+# nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko -f "$flake_url"
+# nixos-install --flake "$flake_url" --no-root-passwd
+# mkdir /mnt/persist/passwords
 # mkpasswd "$password" > "/mnt/persist/passwords/$user"
 
 {

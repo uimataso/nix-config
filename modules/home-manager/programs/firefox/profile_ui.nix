@@ -107,7 +107,6 @@ in
           "extensions.pocket.enabled" = false;
           "browser.preferences.moreFromMozilla" = false;
           "browser.tabs.tabmanager.enabled" = false;
-          "security.OCSP.require" = false;
 
           # Try to remove view, didn't work
           "browser.tabs.firefox-view" = false;
@@ -139,6 +138,7 @@ in
           "0900".enable = true;
           "1000".enable = true;
           "1200".enable = true;
+          "1200"."1212"."security.OCSP.require".enable = false;
           "1600".enable = true;
           "1700".enable = true;
           "2000".enable = true;

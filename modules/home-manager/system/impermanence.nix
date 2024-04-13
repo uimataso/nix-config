@@ -11,7 +11,7 @@ in
 
     persist_dir = mkOption {
       type = types.str;
-      default = "/persist/home/${config.home.homeDirectory}";
+      default = "/persist/${config.home.homeDirectory}";
       description = "The directory to store persistent data.";
     };
   };

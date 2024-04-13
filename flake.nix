@@ -92,6 +92,11 @@
           modules = [ ./users/ui/uicom ];
           pkgs = pkgsFor.x86_64-linux;
         };
+
+        "ui@vm-imper-uicom" = homeConfig {
+          modules = [ ./users/ui/vm-imper-uicom ];
+          pkgs = pkgsFor.x86_64-linux;
+        };
       };
     };
 }

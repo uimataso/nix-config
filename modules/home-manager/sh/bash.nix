@@ -5,6 +5,10 @@ with lib;
 let
   cfg = config.myConfig.sh.bash;
 
+  ifImpermanence = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
+  rmHomePath = str: removePrefix config.home.homeDirectory str;
+
+  # Plugins
   fzf-key-bindings = builtins.fetchurl {
     url = "https://raw.githubusercontent.com/junegunn/fzf/0.49.0/shell/key-bindings.bash";
     sha256 = "002vls06ws858jyjzaba852ih81vqfnjsyxd8c1v7s8dw08wx3jn";
@@ -19,8 +23,9 @@ in
     enable = mkEnableOption "Bash";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf cfg.enable rec {
     myConfig.sh.alias.enable = true;
+    myConfig.sh-util.fzf.enable = true;
 
     programs.bash = {
       enable = true;
@@ -47,6 +52,12 @@ in
       "${config.xdg.configHome}/bash/profile".source = config.home.file.".profile".source;
 
       ".bash_profile".enable = false;
+    };
+
+    home.persistence.main = ifImpermanence {
+      files = [
+        (rmHomePath config.programs.bash.historyFile)
+      ];
     };
   };
 }

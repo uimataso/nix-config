@@ -49,7 +49,7 @@
       };
     in
     {
-      overlays = import ./overlays {inherit inputs outputs;};
+      overlays = import ./overlays { inherit inputs outputs; };
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
 
       formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
@@ -66,26 +66,6 @@
           pkgs = pkgsFor.x86_64-linux;
         };
 
-        vm-minimal = nixosConfig {
-          modules = [ ./hosts/vm-minimal ];
-          pkgs = pkgsFor.x86_64-linux;
-        };
-
-        vm-btrfs = nixosConfig {
-          modules = [ ./hosts/vm-btrfs ];
-          pkgs = pkgsFor.x86_64-linux;
-        };
-
-        vm-impermanence = nixosConfig {
-          modules = [ ./hosts/vm-impermanence ];
-          pkgs = pkgsFor.x86_64-linux;
-        };
-
-        vm-imper-uicom = nixosConfig {
-          modules = [ ./hosts/vm-imper-uicom ];
-          pkgs = pkgsFor.x86_64-linux;
-        };
-
         vm-imper-test = nixosConfig {
           modules = [ ./hosts/vm-imper-test ];
           pkgs = pkgsFor.x86_64-linux;
@@ -95,11 +75,6 @@
       homeConfigurations = {
         "ui@uicom" = homeConfig {
           modules = [ ./users/ui/uicom ];
-          pkgs = pkgsFor.x86_64-linux;
-        };
-
-        "ui@vm-imper-uicom" = homeConfig {
-          modules = [ ./users/ui/vm-imper-uicom ];
           pkgs = pkgsFor.x86_64-linux;
         };
       };

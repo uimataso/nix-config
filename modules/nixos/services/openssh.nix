@@ -20,7 +20,6 @@ in
     };
 
     # TODO: how to manage key then?
-    environment.persistence.main = ifImpermanence {
-    };
+    environment.persistence.main = ifImpermanence { };
   };
 }

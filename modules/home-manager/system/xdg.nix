@@ -46,11 +46,20 @@ in
     };
 
     home.persistence.main = ifImpermanence {
-      directories = let
-        dirs = with config.xdg.userDirs; [
-          desktop documents download music pictures publicShare templates videos
-        ];
-      in lists.forEach (lists.remove null dirs) rmHomePath;
+      directories =
+        let
+          dirs = with config.xdg.userDirs; [
+            desktop
+            documents
+            download
+            music
+            pictures
+            publicShare
+            templates
+            videos
+          ];
+        in
+        lists.forEach (lists.remove null dirs) rmHomePath;
     };
   };
 }

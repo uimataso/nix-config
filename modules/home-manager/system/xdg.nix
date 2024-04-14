@@ -6,13 +6,14 @@ let
   cfg = config.myConfig.system.xdg;
 
   ifImpermanence = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
+  rmHomePath = str: removePrefix config.home.homeDirectory str;
 in
 {
   options.myConfig.system.xdg = {
     enable = mkEnableOption "xdg";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf cfg.enable rec {
     xdg.enable = true;
 
     xdg.userDirs = {
@@ -45,13 +46,11 @@ in
     };
 
     home.persistence.main = ifImpermanence {
-      directories = [
-        "doc"
-        "dl"
-        "mus"
-        "img"
-        "vid"
-      ];
+      directories = let
+        dirs = with config.xdg.userDirs; [
+          desktop documents download music pictures publicShare templates videos
+        ];
+      in lists.forEach (lists.remove null dirs) rmHomePath;
     };
   };
 }

@@ -1,12 +1,7 @@
 { config, pkgs, lib, inputs, ... }:
 
 {
-  imports = [
-    ../../../modules/home-manager
-  ];
-
   home.username = "ui";
-  home.homeDirectory = "/home/ui";
 
   home.stateVersion = "23.11";
 

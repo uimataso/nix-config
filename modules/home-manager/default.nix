@@ -1,4 +1,6 @@
-{ pkgs, inputs, outputs, ... }:
+{ config, lib, pkgs, inputs, outputs, ... }:
+
+with lib;
 
 {
   imports = [
@@ -17,9 +19,11 @@
     inputs.nur.overlay
   ] ++ builtins.attrValues outputs.overlays;
 
+  home.homeDirectory = mkDefault "/home/${config.home.username}";
+
   nixpkgs.config.allowUnfree = true;
 
-  # nix.package = pkgs.nix;
+  nix.package = mkDefault pkgs.nix;
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];

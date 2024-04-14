@@ -15,8 +15,10 @@ in
 
   config = mkIf cfg.enable {
     users.users.ui = {
+      home = mkDefault "/home/ui";
       isNormalUser = true;
       shell = pkgs.bashInteractive;
+
       extraGroups = [
         "wheel"
       ] ++ ifGroupExist [
@@ -24,10 +26,6 @@ in
         "docker"
         "podman"
         "libvirtd"
-      ];
-
-      packages = with pkgs; [
-        home-manager
       ];
     } // ifImpermanence {
       initialPassword = "password";

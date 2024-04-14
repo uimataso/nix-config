@@ -2,11 +2,8 @@
 
 {
   home.username = "ui";
-  home.homeDirectory = "/home/ui";
 
   home.stateVersion = "23.11";
-
-  nix.package = pkgs.nix;
 
   home.sessionVariables = {
     EDITOR = "nvim";

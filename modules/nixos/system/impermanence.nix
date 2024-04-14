@@ -25,7 +25,7 @@ in
 
     subvolumes = mkOption {
       type = with types; listOf str;
-      default = [ ];
+      default = [ "@" ];
       example = [ "@" "@home" ];
       description = "List of subvolumes to clean up at boot.";
     };

@@ -40,10 +40,10 @@
                   mountpoint = "/";
                   mountOptions = [ "compress=zstd" "noatime" ];
                 };
-                "@home" = {
-                  mountpoint = "/home";
-                  mountOptions = [ "compress=zstd" "noatime" ];
-                };
+                # "@home" = {
+                #   mountpoint = "/home";
+                #   mountOptions = [ "compress=zstd" "noatime" ];
+                # };
                 "@nix" = {
                   mountpoint = "/nix";
                   mountOptions = [ "compress=zstd" "noatime" ];

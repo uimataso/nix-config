@@ -24,7 +24,7 @@
 
     system.impermanence.enable = true;
     system.impermanence.device = "/dev/vda4";
-    system.impermanence.subvolumes = [ "@" "@home" ];
+    system.impermanence.subvolumes = [ "@" ];
 
     boot.grub.enable = true;
 

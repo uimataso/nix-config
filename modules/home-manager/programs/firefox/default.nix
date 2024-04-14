@@ -15,6 +15,8 @@ with lib;
 
 let
   cfg = config.myConfig.programs.firefox;
+
+  ifImpermanence = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
 in
 {
   options.myConfig.programs.firefox = {
@@ -40,6 +42,10 @@ in
         enable = true;
         # version = "123.0";
       };
+    };
+
+    home.persistence.main = ifImpermanence {
+      directories = [ ".mozilla/filrefox" ];
     };
   };
 }

@@ -56,6 +56,7 @@
       neovim.enable = true;
       firefox.enable = true;
       firefox.profile.ui.enable = true;
+      discord.enable = true;
       zathura.enable = true;
     };
 
@@ -71,10 +72,6 @@
     git
 
     qmk
-    (discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
     dig
     whois
 

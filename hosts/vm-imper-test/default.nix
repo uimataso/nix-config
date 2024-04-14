@@ -7,6 +7,7 @@
 
 # mkdir -p /mnt/persist/home/ui
 # mkdir /mnt/persist/passwords && mkpasswd "pw" > "/mnt/persist/passwords/ui"
+
 # chown ui:users /mnt/persist/home/ui
 # chown ui:users /mnt/persist/passwords/ui
 
@@ -36,7 +37,19 @@
     boot.grub.enable = true;
 
     networking.networkmanager.enable = true;
-    services.openssh.enable = true;
+
+    desktop.fonts.enable = true;
+    desktop.xserver = {
+      enable = true;
+      dwm.enable = true;
+      sddm.enable = true;
+    };
+
+    services = {
+      openssh.enable = true;
+      pipewire.enable = true;
+      udisks2.enable = true;
+    };
 
     programs = {
       doas.enable = true;

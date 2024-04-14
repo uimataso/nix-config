@@ -63,16 +63,13 @@
       syncthing.enable = true;
       udiskie.enable = true;
     };
-
-    misc = {
-      theme.enable = true;
-    };
   };
 
   home.packages = with pkgs; [
     wget
     gcc
     git
+
     qmk
     (discord.override {
       withOpenASAR = true;

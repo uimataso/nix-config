@@ -31,4 +31,6 @@ with lib;
   };
 
   news.display = "silent";
+
+  myConfig.misc.theme.enable = mkDefault true;
 }

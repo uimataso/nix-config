@@ -85,6 +85,11 @@
           modules = [ ./hosts/vm-imper-uicom ];
           pkgs = pkgsFor.x86_64-linux;
         };
+
+        vm-imper-test = nixosConfig {
+          modules = [ ./hosts/vm-imper-test ];
+          pkgs = pkgsFor.x86_64-linux;
+        };
       };
 
       homeConfigurations = {

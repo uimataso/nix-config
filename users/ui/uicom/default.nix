@@ -6,6 +6,8 @@
 
   home.stateVersion = "23.11";
 
+  nix.package = pkgs.nix;
+
   home.sessionVariables = {
     EDITOR = "nvim";
     BROWSER = "firefox";

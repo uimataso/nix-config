@@ -1,6 +1,10 @@
 { config, pkgs, lib, inputs, ... }:
 
 {
+  imports = [
+    ../../../modules/home-manager
+  ];
+
   home.username = "ui";
   home.homeDirectory = "/home/ui";
 
@@ -8,15 +12,11 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    BROWSER = "firefox";
-    TERMINAL = "st";
-    DMENU = "fmenu";
     SHELL = "bash";
   };
 
   home.shellAliases = {
     a = ". fff";
-    o = "open";
   };
 
   myConfig = {
@@ -36,38 +36,16 @@
       git.enable = true;
       lazygit.enable = true;
     };
-
-    programs = {
-      st.enable = true;
-      neovim.enable = true;
-    };
-
-    misc = {
-      theme.enable = true;
-    };
   };
 
   home.packages = with pkgs; [
+    neovim
     wget
     gcc
     git
-    qmk
 
     # Scripts
     build
-
-    fmenu
     fff
-
-    extract
-    vl
-    bright
-
-    swallower
-    screenshot
-
-    open
-    power-menu
-    app-launcher
   ];
 }

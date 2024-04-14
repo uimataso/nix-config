@@ -21,24 +21,11 @@ PS1="$path$prom "
 PS2='> '
 
 
-# Plugin
-# TODO: nix way to install plugin
-plug_dir="$XDG_DATA_HOME/bash"
-[ ! -d "$plug_dir" ] && mkdir "$plug_dir"
-add_dl_file() {
-	url="$1" file="${url##*/}"
-	[ ! -f "$plug_dir/$file" ] && curl "$url" --output "$plug_dir/$file"
-	source "$plug_dir/$file"
-}
-
-# Fzf Shell Keybind
-add_dl_file 'https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.bash'
-
-# Fzf Tab Completion
-add_dl_file 'https://raw.githubusercontent.com/lincheney/fzf-tab-completion/master/bash/fzf-bash-completion.sh'
-
+# Plugins
+# Fzf key bindings
 bind -x '"\t": fzf_bash_completion'
 
+# Fzf completion
 # Hacky way to deal with the bash cleaning the prompt when complete
 # Replace the loading msg and fzf prompt with ${PS1@P}
 _fzf_bash_completion_loading_msg() { echo "${PS1@P}${READLINE_LINE}" | tail -n1; }
@@ -48,6 +35,7 @@ _fzf_bash_completion_selector() {
 		| tr -d "$_FZF_COMPLETION_SEP"
 }
 
+# Tmuxinator-fzf
 bind -x '"\C-b": tmuxinator-fzf'
 
 # Auto start tmux

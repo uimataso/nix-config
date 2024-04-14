@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./nix-auto.nix
+    ./auto-upgrade.nix
     ./impermanence.nix
     ./home-manager.nix
   ];

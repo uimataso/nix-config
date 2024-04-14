@@ -14,7 +14,7 @@
   myConfig = {
     users.ui.enable = true;
 
-    system.nix-auto.enable = true;
+    system.auto-upgrade.enable = true;
 
     boot.systemd-boot.enable = true;
 

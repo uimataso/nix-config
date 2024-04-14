@@ -3,11 +3,11 @@
 with lib;
 
 let
-  cfg = config.myConfig.system.nix-auto;
+  cfg = config.myConfig.system.auto-upgrade;
 in
 {
-  options.myConfig.system.nix-auto = {
-    enable = mkEnableOption "nix auto";
+  options.myConfig.system.auto-upgrade = {
+    enable = mkEnableOption "auto upgrade";
     # TODO: dates option
   };
 

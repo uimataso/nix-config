@@ -58,7 +58,7 @@ local search_count = function()
   end
 
   local ok, searchcount = pcall(vim.fn.searchcount)
-  if not ok or searchcount['total'] == 0 then
+  if not ok or next(searchcount) or searchcount['total'] == 0 then
     return ''
   end
 

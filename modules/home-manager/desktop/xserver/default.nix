@@ -13,9 +13,11 @@ in
   imports = [
     ./xsession.nix
     ./xresources.nix
+    ./xrandr.nix
+    ./xcompmgr.nix
+
     ./wallpaper.nix
     ./dunst.nix
-
     ./dwm
   ];
 
@@ -23,21 +25,20 @@ in
     myConfig.desktop.xserver = {
       xresources.enable = mkDefault true;
       xsession.enable = mkDefault true;
+      xrandr.enable = mkDefault true;
+      xcompmgr.enable = mkDefault true;
     };
 
-    home.packages = with pkgs; [
-      xcompmgr
-      xclip
-      xorg.xrandr
-    ];
-
-    # TODO: make this module
-    myConfig.desktop.xserver.xsession.initExtraList = [
-      "xcompmgr -n &"
-      "xrandr --output HDMI-0 --mode 1920x1080 --rate 144.00"
-      "xset s off -dpms"
-    ];
-
+    # Hide mouse cursor
     services.unclutter.enable = true;
+
+    home.packages = with pkgs; [
+      xclip
+    ];
+
+    myConfig.desktop.xserver.xsession.initExtraList = [
+      "xset s off -dpms"  # No screen saver
+    ];
+
   };
 }

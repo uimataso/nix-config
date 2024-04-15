@@ -4,6 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.services.syncthing;
+
+  ifImpermanence = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
 in
 {
   options.myConfig.services.syncthing = {
@@ -17,6 +19,10 @@ in
         "--no-browser"
         "--no-default-folder"
       ];
+    };
+
+    home.persistence.main = ifImpermanence {
+      directories = [ ".local/share/syncthing" ];
     };
   };
 }

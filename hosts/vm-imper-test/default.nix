@@ -15,7 +15,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    (import ./disko-config.nix { device = "/dev/vda"; })
   ];
 
   system.stateVersion = "23.11";
@@ -31,7 +30,8 @@
       home-manager.users = [ "ui" ];
 
       impermanence.enable = true;
-      impermanence.device = "/dev/vda4";
+      impermanence.btrfs.enable = true;
+      impermanence.btrfs.device = "/dev/vda";
     };
 
     boot.grub.enable = true;

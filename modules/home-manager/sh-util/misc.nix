@@ -13,12 +13,12 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       fd
-      ripgrep
-      htop
-      bat
       rsync
-      jq
     ];
+
+    programs.htop.enable = true;
+    programs.jq.enable = true;
+    programs.ripgrep.enable = true;
 
     home.shellAliases = {
       rc = "rsync -vhP";

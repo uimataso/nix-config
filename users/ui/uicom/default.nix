@@ -29,6 +29,7 @@
     sh-util = {
       misc.enable = true;
       fzf.enable = true;
+      bat.enable = true;
       lsd.enable = true;
       tmux.enable = true;
       tmuxinator.enable = true;

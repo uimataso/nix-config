@@ -13,7 +13,7 @@ in
     enable = mkEnableOption "User ui";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf cfg.enable rec {
     users.users.ui = {
       home = mkDefault "/home/ui";
       isNormalUser = true;
@@ -30,6 +30,10 @@ in
     } // ifImpermanence {
       initialPassword = "password";
       hashedPasswordFile = "/persist/passwords/ui";
+    };
+
+    environment.persistence.main = ifImpermanence {
+      users.ui.home = users.users.ui.home;
     };
   };
 }

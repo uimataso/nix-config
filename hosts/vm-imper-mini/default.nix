@@ -5,10 +5,8 @@
 # nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko -f "$flake_url"
 # nixos-install --flake "$flake_url" --no-root-passwd
 
-# mkdir -p /mnt/persist/home/ui
 # mkdir /mnt/persist/passwords && mkpasswd "pw" > "/mnt/persist/passwords/ui"
 
-# chown ui:users /mnt/persist/home/ui
 # chown ui:users /mnt/persist/passwords/ui
 
 

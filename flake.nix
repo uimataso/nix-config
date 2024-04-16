@@ -1,7 +1,7 @@
 {
   description = "My flake";
 
-  # TODO: disco, impermanence, sops
+  # TODO: sops
   # TODO: theme, manage key, programs solution
 
   inputs = {
@@ -68,6 +68,11 @@
 
         vm-imper-test = nixosConfig {
           modules = [ ./hosts/vm-imper-test ];
+          pkgs = pkgsFor.x86_64-linux;
+        };
+
+        vm-imper-mini = nixosConfig {
+          modules = [ ./hosts/vm-imper-mini ];
           pkgs = pkgsFor.x86_64-linux;
         };
       };

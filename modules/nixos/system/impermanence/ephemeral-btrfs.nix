@@ -66,6 +66,7 @@ in
       supportedFilesystems = [ "btrfs" ];
       systemd.enable = true;
       systemd.services.restore-root = let
+        # dev/disk/by-partlabel/disk-main-root
         root-device = "dev-disk-by\\x2dpartlabel-disk\\x2dmain\\x2droot.device";
       in
       {

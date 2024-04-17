@@ -1,4 +1,4 @@
-{ inputs, outputs, ... }:
+{ inputs, outputs, pkgs, ... }:
 
 {
   imports = [
@@ -17,6 +17,10 @@
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
   };
+
+  environment.systemPackages = with pkgs; [
+    git  # Since all nix command need git
+  ];
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];

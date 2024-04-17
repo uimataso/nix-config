@@ -4,6 +4,7 @@
   name = "build";
   runtimeInputs = with pkgs; [
     git
+    home-manager
   ];
 
   text = ''

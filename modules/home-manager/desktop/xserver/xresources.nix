@@ -21,9 +21,7 @@ in
   config = mkIf cfg.enable {
     xresources.path = "${config.xdg.configHome}/x11/xresources";
 
-    myConfig.desktop.xserver.xsession.initExtraList = [
-      "[ -f ${config.xresources.path} ] && xrdb -merge ${config.xresources.path}"
-    ];
+    # xsession.initExtra = "[ -f ${config.xresources.path} ] && xrdb -merge ${config.xresources.path}";
 
     xresources.properties = {
       "*.background" = bg;

@@ -14,6 +14,7 @@ in
     home.shellAliases = {
       nn = "doas build n";
       nh = "build h";
+      nnt = "doas build nt";
 
       c = "cd";
       "c." = "cd ..";

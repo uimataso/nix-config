@@ -21,11 +21,21 @@ in
 {
   options.myConfig.sh.bash = {
     enable = mkEnableOption "Bash";
+
+    defaultShell = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Use bash as default shell";
+    };
   };
 
   config = mkIf cfg.enable rec {
     myConfig.sh.alias.enable = true;
     myConfig.sh-util.fzf.enable = true;
+
+    home.sessionVariables = mkIf cfg.defaultShell {
+      SHELL = "bash";
+    };
 
     programs.bash = {
       enable = true;

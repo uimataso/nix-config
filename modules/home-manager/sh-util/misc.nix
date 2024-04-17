@@ -24,7 +24,6 @@ in
       rc = "rsync -vhP";
       fclist = "fc-list : family";
 
-      ipinfo = "curl ipinfo.ip";
       unitest = "curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt";
     };
   };

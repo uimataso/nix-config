@@ -3,6 +3,7 @@
 {
   imports = [
     ./fzf.nix
+    ./fff.nix
     ./bat.nix
     ./lsd.nix
     ./tmux.nix

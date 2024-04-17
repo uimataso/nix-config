@@ -21,6 +21,12 @@ in
 {
   options.myConfig.programs.firefox = {
     enable = mkEnableOption "Firefox";
+
+    defaultBrowser = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Use firefox as default browser";
+    };
   };
 
   imports = [
@@ -34,6 +40,10 @@ in
       "text/xml" = [ "firefox.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];
+    };
+
+    home.sessionVariables = mkIf cfg.defaultBrowser {
+      BROWSER = "firefox";
     };
 
     programs.firefox = {

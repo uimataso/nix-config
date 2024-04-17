@@ -11,9 +11,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    myConfig.desktop.xserver.xsession.initExtraList = [
-      "dwmblocks &"
-    ];
+    xsession.initExtra = "dwmblocks &";
 
     home.sessionPath = [ "$HOME/.local/bin/statesbar" ];
     home.file.".local/bin/statesbar".source = ./statusbar;

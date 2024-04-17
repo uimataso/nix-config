@@ -10,6 +10,12 @@ in
 {
   options.myConfig.programs.neovim = {
     enable = mkEnableOption "neovim";
+
+    defaultEditor = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Use neovim as default editor";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -34,7 +40,10 @@ in
       CARGO_HOME = "${config.xdg.dataHome}/cargo";
       PAGER = lib.mkDefault "nvim +Man!";
       MANPAGER = lib.mkDefault "nvim +Man!";
+    } // mkIf cfg.defaultEditor {
+      EDITOR = "nvim";
     };
+
 
     # Git pager
     programs.git.extraConfig = {

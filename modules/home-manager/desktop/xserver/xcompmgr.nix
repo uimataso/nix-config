@@ -15,8 +15,6 @@ in
       xcompmgr
     ];
 
-    myConfig.desktop.xserver.xsession.initExtraList = [
-      "xcompmgr -n &"
-    ];
+    xsession.initExtra = "xcompmgr -n &";
   };
 }

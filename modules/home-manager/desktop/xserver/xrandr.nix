@@ -16,8 +16,6 @@ in
       xorg.xrandr
     ];
 
-    myConfig.desktop.xserver.xsession.initExtraList = [
-      "xrandr --output HDMI-0 --mode 1920x1080 --rate 144.00"
-    ];
+    xsession.initExtra = "xrandr --output HDMI-0 --mode 1920x1080 --rate 144.00";
   };
 }

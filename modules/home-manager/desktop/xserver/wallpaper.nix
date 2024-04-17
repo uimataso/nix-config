@@ -24,9 +24,7 @@ in
   config = mkIf cfg.enable {
     home.packages = [ pkgs.xwallpaper ];
 
-    myConfig.desktop.xserver.xsession.initExtraList = [
-      setWallpaperCmd
-    ];
+    xsession.initExtra = setWallpaperCmd;
 
     home.file."${config.xdg.dataHome}/wallpaper.png" = {
       source = cfg.imgPath;

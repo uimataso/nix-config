@@ -36,9 +36,6 @@ in
       xclip
     ];
 
-    myConfig.desktop.xserver.xsession.initExtraList = [
-      "xset s off -dpms"  # No screen saver
-    ];
-
+    xsession.initExtra = "xset s off -dpms";  # No screen saver
   };
 }

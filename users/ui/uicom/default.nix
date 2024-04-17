@@ -5,19 +5,6 @@
 
   home.stateVersion = "23.11";
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    BROWSER = "firefox";
-    TERMINAL = "st";
-    DMENU = "fmenu";
-    SHELL = "bash";
-  };
-
-  home.shellAliases = {
-    a = ". fff";
-    o = "open";
-  };
-
   myConfig = {
     system = {
       auto-upgrade.enable = true;
@@ -25,10 +12,12 @@
     };
 
     sh.bash.enable = true;
+    sh.bash.defaultShell = true;
 
     sh-util = {
       misc.enable = true;
       fzf.enable = true;
+      fff.enable = true;
       bat.enable = true;
       lsd.enable = true;
       tmux.enable = true;
@@ -54,9 +43,18 @@
 
     programs = {
       st.enable = true;
+      st.defaultTerminal = true;
+
       neovim.enable = true;
+      neovim.defaultEditor = true;
+
       firefox.enable = true;
       firefox.profile.ui.enable = true;
+      firefox.defaultBrowser = true;
+
+      fmenu.enable = true;
+      fmenu.defaultDmenu = true;
+
       discord.enable = true;
       zathura.enable = true;
     };
@@ -78,9 +76,6 @@
 
     # Scripts
     build
-
-    fmenu
-    fff
 
     extract
     vl

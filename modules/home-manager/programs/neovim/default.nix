@@ -5,7 +5,7 @@ with lib;
 let
   cfg = config.myConfig.programs.neovim;
 
-  ifImpermanence = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
+  imper = config.myConfig.system.impermanence;
 in
 {
   options.myConfig.programs.neovim = {
@@ -40,7 +40,7 @@ in
       CARGO_HOME = "${config.xdg.dataHome}/cargo";
       PAGER = lib.mkDefault "nvim +Man!";
       MANPAGER = lib.mkDefault "nvim +Man!";
-    } // mkIf cfg.defaultEditor {
+    } // attrsets.optionalAttrs cfg.defaultEditor {
       EDITOR = "nvim";
     };
 
@@ -52,7 +52,7 @@ in
     };
 
     # TODO: maybe i can try out vim.nix?
-    home.persistence.main = ifImpermanence {
+    home.persistence.main = mkIf imper.enable {
       directories = [
         ".cache/nvim"
         ".local/share/nvim"

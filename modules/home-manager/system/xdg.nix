@@ -5,7 +5,7 @@ with lib;
 let
   cfg = config.myConfig.system.xdg;
 
-  ifImpermanence = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
+  imper = config.myConfig.system.impermanence;
   rmHomePath = str: removePrefix config.home.homeDirectory str;
 in
 {
@@ -45,7 +45,7 @@ in
       XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
     };
 
-    home.persistence.main = ifImpermanence {
+    home.persistence.main = mkIf imper.enable {
       directories =
         let
           dirs = with config.xdg.userDirs; [

@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.networking.tailscale;
-  ifImpermanence = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
+
+  imper = config.myConfig.system.impermanence;
 in
 {
   options.myConfig.networking.tailscale = {
@@ -15,7 +16,7 @@ in
     # TODO: manage tailscale key etc
     services.tailscale.enable = true;
 
-    environment.persistence.main = ifImpermanence {
+    environment.persistence.main = mkIf imper.enable {
       directories = [
         "/var/lib/tailscale"
       ];

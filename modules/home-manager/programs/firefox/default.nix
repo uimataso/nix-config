@@ -16,7 +16,7 @@ with lib;
 let
   cfg = config.myConfig.programs.firefox;
 
-  ifImpermanence = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
+  imper = config.myConfig.system.impermanence;
 in
 {
   options.myConfig.programs.firefox = {
@@ -54,7 +54,7 @@ in
       };
     };
 
-    home.persistence.main = ifImpermanence {
+    home.persistence.main = mkIf imper.enable {
       directories = [ ".mozilla/filrefox" ];
     };
   };

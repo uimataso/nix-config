@@ -9,7 +9,6 @@ let
 
   imper = config.myConfig.system.impermanence;
   ifGroupExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-  ifImpermanence = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
 in
 {
   options.myConfig.users.${username} = {
@@ -22,7 +21,7 @@ in
     };
   };
 
-  config = mkIf cfg.enable rec {
+  config = mkIf cfg.enable {
     users.users.${username} = {
       home = mkDefault cfg.home;
       isNormalUser = true;
@@ -36,12 +35,12 @@ in
         "podman"
         "libvirtd"
       ];
-    } // ifImpermanence {
-      initialPassword = "password";
-      hashedPasswordFile = "${imper.persist_dir}/passwords/${username}";
+    } // attrsets.optionalAttrs imper.enable {
+     initialPassword = "password";
+     hashedPasswordFile = "${imper.persist_dir}/passwords/${username}";
     };
 
-    systemd.tmpfiles = ifImpermanence {
+    systemd.tmpfiles = mkIf imper.enable {
       rules = [
         "d ${imper.persist_dir}/${cfg.home} 0700 ${username} users - -"
       ];

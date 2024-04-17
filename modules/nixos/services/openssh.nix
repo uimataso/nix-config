@@ -4,7 +4,8 @@ with lib;
 
 let
   cfg = config.myConfig.services.openssh;
-  ifImpermanence = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
+
+  imper = config.myConfig.system.impermanence;
 in
 {
   options.myConfig.services.openssh = {
@@ -20,6 +21,6 @@ in
     };
 
     # TODO: how to manage key then?
-    environment.persistence.main = ifImpermanence { };
+    environment.persistence.main = mkIf imper.enable { };
   };
 }

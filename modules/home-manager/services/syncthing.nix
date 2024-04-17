@@ -5,7 +5,7 @@ with lib;
 let
   cfg = config.myConfig.services.syncthing;
 
-  ifImpermanence = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
+  imper = config.myConfig.system.impermanence;
 in
 {
   options.myConfig.services.syncthing = {
@@ -21,7 +21,7 @@ in
       ];
     };
 
-    home.persistence.main = ifImpermanence {
+    home.persistence.main = mkIf imper.enable {
       directories = [ ".local/share/syncthing" ];
     };
   };

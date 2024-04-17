@@ -5,7 +5,7 @@ with lib;
 let
   cfg = config.myConfig.sh.bash;
 
-  ifImpermanence = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
+  imper = config.myConfig.system.impermanence;
   rmHomePath = str: removePrefix config.home.homeDirectory str;
 
   # Plugins
@@ -64,7 +64,7 @@ in
       ".bash_profile".enable = false;
     };
 
-    home.persistence.main = ifImpermanence {
+    home.persistence.main = mkIf imper.enable {
       files = [
         (rmHomePath config.programs.bash.historyFile)
       ];

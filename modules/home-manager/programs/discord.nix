@@ -5,7 +5,7 @@ with lib;
 let
   cfg = config.myConfig.programs.discord;
 
-  ifImpermanence = attrs: attrsets.optionalAttrs config.myConfig.system.impermanence.enable attrs;
+  imper = config.myConfig.system.impermanence;
 in
 {
   options.myConfig.programs.discord = {
@@ -20,7 +20,7 @@ in
       })
     ];
 
-    home.persistence.main = ifImpermanence {
+    home.persistence.main = mkIf imper.enable {
       directories = [
         ".config/discord"
         ".config/Vencord" # TODO: declare the content

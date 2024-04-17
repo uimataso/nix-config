@@ -5,6 +5,13 @@
 
   home.stateVersion = "23.11";
 
+  home.persistence.main = {
+    directories = [
+      "nix"
+      "src"
+    ];
+  };
+
   home.sessionVariables = {
     EDITOR = "nvim";
     BROWSER = "firefox";

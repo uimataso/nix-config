@@ -24,10 +24,6 @@ in
     home.persistence.main = {
       persistentStoragePath = cfg.persist_dir;
       allowOther = true;
-
-      directories = [
-        "nix"
-      ];
     };
   };
 }

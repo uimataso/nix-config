@@ -12,10 +12,6 @@ in
 
   config = mkIf cfg.enable {
     home.shellAliases = {
-      nn = "doas build n";
-      nh = "build h";
-      nnt = "doas build nt";
-
       c = "cd";
       "c." = "cd ..";
       c- = "cd -";

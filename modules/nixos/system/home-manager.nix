@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, outputs, ... }:
+{ config, lib, pkgs, pkgs-unstable, inputs, outputs, ... }:
 
 with lib;
 
@@ -25,7 +25,7 @@ in
     home-manager = {
       sharedModules = [ ../../home-manager ];
       extraSpecialArgs = {
-        inherit inputs outputs;
+        inherit inputs outputs pkgs-unstable;
       };
 
       users = attrsets.genAttrs cfg.users (username: import

@@ -22,8 +22,11 @@
     git  # Since all nix command need git
   ];
 
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    warn-dirty = false;
+  nix = {
+    channel.enable = false;
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      warn-dirty = false;
+    };
   };
 }

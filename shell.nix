@@ -13,7 +13,7 @@
 {
   default = pkgs.mkShell {
     nativeBuildInputs = with pkgs; [
-      git
+      # git
       # home-manager
       # nix
     ];

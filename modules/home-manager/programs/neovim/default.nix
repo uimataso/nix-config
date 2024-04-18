@@ -35,14 +35,17 @@ in
 
     home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./.;
 
-    home.sessionVariables = {
-      # TODO: move lang stuff out
-      CARGO_HOME = "${config.xdg.dataHome}/cargo";
-      PAGER = lib.mkDefault "nvim +Man!";
-      MANPAGER = lib.mkDefault "nvim +Man!";
-    } // attrsets.optionalAttrs cfg.defaultEditor {
-      EDITOR = "nvim";
-    };
+    home.sessionVariables = mkMerge [
+      {
+        # TODO: move lang stuff out
+        CARGO_HOME = "${config.xdg.dataHome}/cargo";
+        PAGER = lib.mkDefault "nvim +Man!";
+        MANPAGER = lib.mkDefault "nvim +Man!";
+      }
+      (mkIf cfg.defaultEditor {
+        EDITOR = "nvim";
+      })
+    ];
 
 
     # Git pager

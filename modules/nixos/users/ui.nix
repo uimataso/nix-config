@@ -22,23 +22,26 @@ in
   };
 
   config = mkIf cfg.enable {
-    users.users.${username} = {
-      home = mkDefault cfg.home;
-      isNormalUser = true;
-      shell = pkgs.bashInteractive;
+    users.users.${username} = mkMerge [
+      {
+        home = mkDefault cfg.home;
+        isNormalUser = true;
+        shell = pkgs.bashInteractive;
 
-      extraGroups = [
-        "wheel"
-      ] ++ ifGroupExist [
-        "networkmanager"
-        "docker"
-        "podman"
-        "libvirtd"
-      ];
-    } // attrsets.optionalAttrs imper.enable {
-     initialPassword = "password";
-     hashedPasswordFile = "${imper.persist_dir}/passwords/${username}";
-    };
+        extraGroups = [
+          "wheel"
+        ] ++ ifGroupExist [
+          "networkmanager"
+          "docker"
+          "podman"
+          "libvirtd"
+        ];
+      }
+      (mkIf imper.enable {
+        initialPassword = "password";
+        hashedPasswordFile = "${imper.persist_dir}/passwords/${username}";
+      })
+    ];
 
     systemd.tmpfiles = mkIf imper.enable {
       rules = [

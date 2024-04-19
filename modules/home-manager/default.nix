@@ -4,6 +4,7 @@ with lib;
 
 {
   imports = [
+    ./global.nix
     ./system
     ./sh
     ./sh-util
@@ -14,23 +15,6 @@ with lib;
     ./misc
   ];
 
-  # Global settings
-  nixpkgs.overlays = [
-    inputs.nur.overlay
-  ] ++ builtins.attrValues outputs.overlays;
-
-  home.homeDirectory = mkDefault "/home/${config.home.username}";
-
-  nixpkgs.config.allowUnfree = true;
-
-  nix.package = mkDefault pkgs.nix;
-
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    warn-dirty = false;
-  };
-
-  news.display = "silent";
-
+  myConfig.global.enable = mkDefault true;
   myConfig.misc.theme.enable = mkDefault true;
 }

@@ -25,5 +25,12 @@ in
       persistentStoragePath = cfg.persist_dir;
       allowOther = true;
     };
+
+    home.activation = {
+      rmSomeThing = hm.dag.entryAfter ["writeBoundary"] ''
+        rm -rf $HOME/.nix-defexpr
+        rm -rf $HOME/.nix-profile
+      '';
+    };
   };
 }

@@ -17,7 +17,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ my-st ];
+    home.packages = with pkgs; [ st ];
 
     home.sessionVariables = mkIf cfg.defaultTerminal {
       TERMINAL = "st";

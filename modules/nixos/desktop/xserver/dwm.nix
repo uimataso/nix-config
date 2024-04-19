@@ -18,7 +18,6 @@ in
     services.xserver = {
       windowManager.dwm = {
         enable = true;
-        package = pkgs.my-dwm;
       };
 
       # displayManager.setupCommands = ''

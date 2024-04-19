@@ -5,8 +5,6 @@ with pkgs;
 {
   sddm-astronaut-theme = libsForQt5.callPackage ./sddm-astronaut-theme { };
 
-  my-dwm = dwm.overrideAttrs { src = ./dwm; };
-  my-st = st.overrideAttrs { src = ./st; };
   dwmblocks = callPackage ./dwmblocks { };
 
   # scripts

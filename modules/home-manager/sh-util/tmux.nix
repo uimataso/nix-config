@@ -84,6 +84,9 @@ in
 
       plugins = with pkgs; [
         {
+          plugin = tmuxPlugins.tmux-nvim;
+        }
+        {
           # prefix F
           plugin = tmuxPlugins.tmux-fzf;
         }

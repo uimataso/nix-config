@@ -1,4 +1,4 @@
 return {
-  'tpope/vim-obsession',
+  'aserowy/tmux.nvim',
   lazy = false,
 }

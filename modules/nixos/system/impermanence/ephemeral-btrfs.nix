@@ -60,6 +60,10 @@ in
     };
   };
 
+  imports = [
+    inputs.disko.nixosModules.disko
+  ];
+
   config = mkIf cfg.enable {
     boot.initrd = {
       enable = true;

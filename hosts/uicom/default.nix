@@ -12,6 +12,8 @@
   time.timeZone = "Asia/Taipei";
 
   myConfig = {
+    global.enable = true;
+
     users.ui.enable = true;
     system.home-manager.enable = true;
     system.home-manager.users = [ "ui" ];

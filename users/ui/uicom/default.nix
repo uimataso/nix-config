@@ -6,6 +6,8 @@
   home.stateVersion = "23.11";
 
   myConfig = {
+    global.enable = true;
+
     system = {
       auto-upgrade.enable = true;
       xdg.enable = true;
@@ -15,6 +17,7 @@
     sh.bash.defaultShell = true;
 
     misc.nh.enable = true;
+    misc.theme.enable = true;
 
     sh-util = {
       misc.enable = true;

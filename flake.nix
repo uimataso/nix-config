@@ -51,6 +51,9 @@
       };
     in
     {
+      nixosModules = import ./modules/nixos;
+      homeManagerModules = import ./modules/home-manager;
+
       overlays = import ./overlays { inherit inputs outputs; };
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
 
@@ -58,8 +61,6 @@
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
       templates = import ./templates;
 
-      # nixosModules = import ./modules/nixos { inherit inputs outputs; };
-      # homeManagerModules = import ./modules/home-manager { inherit inputs outputs; };
 
       nixosConfigurations = {
         uicom = nixosConfig {
@@ -69,11 +70,6 @@
 
         vm-imper-test = nixosConfig {
           modules = [ ./hosts/vm-imper-test ];
-          system = "x86_64-linux";
-        };
-
-        vm-imper-mini = nixosConfig {
-          modules = [ ./hosts/vm-imper-mini ];
           system = "x86_64-linux";
         };
       };

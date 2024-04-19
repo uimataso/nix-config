@@ -26,6 +26,8 @@
   };
 
   myConfig = {
+    global.enable = true;
+
     system = {
       impermanence.enable = true;
       xdg.enable = true;

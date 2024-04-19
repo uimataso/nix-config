@@ -1,7 +1,3 @@
-{ config, lib, pkgs, inputs, outputs, ... }:
-
-with lib;
-
 {
   imports = [
     ./global.nix
@@ -14,7 +10,4 @@ with lib;
     ./desktop
     ./misc
   ];
-
-  myConfig.global.enable = mkDefault true;
-  myConfig.misc.theme.enable = mkDefault true;
 }

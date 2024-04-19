@@ -1,7 +1,3 @@
-{ config, lib, pkgs, inputs, outputs, ... }:
-
-with lib;
-
 {
   imports = [
     ./global.nix
@@ -13,9 +9,5 @@ with lib;
     ./programs
     ./services
     ./virt
-  ] ++ [
-    inputs.disko.nixosModules.disko
   ];
-
-  myConfig.global.enable = mkDefault true;
 }

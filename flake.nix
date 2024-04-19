@@ -49,15 +49,6 @@
           pkgs-unstable = pkgsFor.nixpkgs-unstable.${system};
         } // specialArgs;
       };
-
-      homeConfig = { modules, system, specialArgs ? { } }: lib.homeManagerConfiguration {
-        pkgs = pkgsFor.nixpkgs.${system};
-        modules = [ ./modules/home-manager ] ++ modules;
-        extraSpecialArgs = {
-          inherit inputs outputs;
-          pkgs-unstable = pkgsFor.nixpkgs-unstable.${system};
-        } // specialArgs;
-      };
     in
     {
       overlays = import ./overlays { inherit inputs outputs; };
@@ -67,9 +58,8 @@
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
       templates = import ./templates;
 
-      # FIXME: what is this
       # nixosModules = import ./modules/nixos { inherit inputs outputs; };
-      # homeManagerModules = forEachSystem (pkgs: import ./modules/home-manager { inherit pkgs inputs outputs; });
+      # homeManagerModules = import ./modules/home-manager { inherit inputs outputs; };
 
       nixosConfigurations = {
         uicom = nixosConfig {
@@ -84,13 +74,6 @@
 
         vm-imper-mini = nixosConfig {
           modules = [ ./hosts/vm-imper-mini ];
-          system = "x86_64-linux";
-        };
-      };
-
-      homeConfigurations = {
-        "ui@uicom" = homeConfig {
-          modules = [ ./users/ui/uicom ];
           system = "x86_64-linux";
         };
       };

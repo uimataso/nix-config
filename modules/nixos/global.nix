@@ -1,4 +1,6 @@
-{ inputs, outputs, pkgs, ... }:
+{ config, lib, pkgs, outputs, ... }:
+
+with lib;
 
 let
   cfg = config.myConfig.global;

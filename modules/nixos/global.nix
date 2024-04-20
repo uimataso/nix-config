@@ -16,7 +16,7 @@ in
     };
 
     environment.systemPackages = with pkgs; [
-      git  # Since all nix command need git
+      git # Since all nix command need git
     ];
 
     nix = {

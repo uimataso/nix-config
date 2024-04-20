@@ -5,7 +5,7 @@
   additions = final: prev:
     import ../pkgs { pkgs = final; }
     // {
-      tmuxPlugins = (prev.tmuxPlugins or {}) // import ../pkgs/tmux-plugins { pkgs = final; };
+      tmuxPlugins = (prev.tmuxPlugins or { }) // import ../pkgs/tmux-plugins { pkgs = final; };
     };
 
   dwm = final: prev: {

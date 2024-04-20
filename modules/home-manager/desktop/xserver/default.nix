@@ -36,6 +36,6 @@ in
       xclip
     ];
 
-    xsession.initExtra = "xset s off -dpms";  # No screen saver
+    xsession.initExtra = "xset s off -dpms"; # No screen saver
   };
 }

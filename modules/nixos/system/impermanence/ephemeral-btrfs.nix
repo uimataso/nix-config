@@ -71,24 +71,25 @@ in
       enable = true;
       supportedFilesystems = [ "btrfs" ];
       systemd.enable = true;
-      systemd.services.restore-root = let
-        # /dev/disk/by-partlabel/disk-main-root
-        root-device = "dev-disk-by\\x2dpartlabel-disk\\x2dmain\\x2droot.device";
-      in
-      {
-        description = "Rollback btrfs rootfs";
-        wantedBy = [ "initrd.target" ];
-        requires = [ root-device ];
-        after = [
-          root-device
-          # For luks
-          # "systemd-cryptsetup@${config.networking.hostName}.service"
-        ];
-        before = [ "sysroot.mount" ];
-        unitConfig.DefaultDependencies = "no";
-        serviceConfig.Type = "oneshot";
-        script = wipeScript;
-      };
+      systemd.services.restore-root =
+        let
+          # /dev/disk/by-partlabel/disk-main-root
+          root-device = "dev-disk-by\\x2dpartlabel-disk\\x2dmain\\x2droot.device";
+        in
+        {
+          description = "Rollback btrfs rootfs";
+          wantedBy = [ "initrd.target" ];
+          requires = [ root-device ];
+          after = [
+            root-device
+            # For luks
+            # "systemd-cryptsetup@${config.networking.hostName}.service"
+          ];
+          before = [ "sysroot.mount" ];
+          unitConfig.DefaultDependencies = "no";
+          serviceConfig.Type = "oneshot";
+          script = wipeScript;
+        };
     };
 
     disko.devices.disk.main = {

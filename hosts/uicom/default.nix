@@ -11,7 +11,7 @@
   networking.hostName = "uicom";
   time.timeZone = "Asia/Taipei";
 
-  myConfig = {
+  uimaConfig = {
     global.enable = true;
 
     users.ui.enable = true;

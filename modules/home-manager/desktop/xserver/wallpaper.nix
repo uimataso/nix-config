@@ -6,12 +6,12 @@ with lib;
 # TODO: hot switch wallpaper when nh
 
 let
-  cfg = config.myConfig.desktop.xserver.wallpaper;
+  cfg = config.uimaConfig.desktop.xserver.wallpaper;
 
   setWallpaperCmd = "${pkgs.xwallpaper}/bin/xwallpaper --screen 0 --zoom ${config.xdg.dataHome}/wallpaper.png";
 in
 {
-  options.myConfig.desktop.xserver.wallpaper = {
+  options.uimaConfig.desktop.xserver.wallpaper = {
     enable = mkEnableOption "Wallpaper";
 
     imgPath = mkOption {

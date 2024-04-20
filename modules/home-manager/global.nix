@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.global;
+  cfg = config.uimaConfig.global;
 in
 {
-  options.myConfig.global = {
+  options.uimaConfig.global = {
     enable = mkEnableOption "Global settings";
   };
 
@@ -28,6 +28,6 @@ in
 
     news.display = "silent";
 
-    myConfig.misc.theme.enable = mkDefault true;
+    uimaConfig.misc.theme.enable = mkDefault true;
   };
 }

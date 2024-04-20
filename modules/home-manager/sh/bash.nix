@@ -3,9 +3,9 @@
 with lib;
 
 let
-  cfg = config.myConfig.sh.bash;
+  cfg = config.uimaConfig.sh.bash;
 
-  imper = config.myConfig.system.impermanence;
+  imper = config.uimaConfig.system.impermanence;
   rmHomePath = str: removePrefix config.home.homeDirectory str;
 
   # Plugins
@@ -19,7 +19,7 @@ let
   };
 in
 {
-  options.myConfig.sh.bash = {
+  options.uimaConfig.sh.bash = {
     enable = mkEnableOption "Bash";
 
     defaultShell = mkOption {
@@ -30,8 +30,8 @@ in
   };
 
   config = mkIf cfg.enable rec {
-    myConfig.sh.alias.enable = true;
-    myConfig.sh-util.fzf.enable = true;
+    uimaConfig.sh.alias.enable = true;
+    uimaConfig.sh-util.fzf.enable = true;
 
     home.sessionVariables = mkIf cfg.defaultShell {
       SHELL = "bash";

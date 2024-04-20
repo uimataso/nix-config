@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.system.auto-upgrade;
+  cfg = config.uimaConfig.system.auto-upgrade;
 in
 {
-  options.myConfig.system.auto-upgrade = {
+  options.uimaConfig.system.auto-upgrade = {
     enable = mkEnableOption "auto upgrade";
     # TODO: dates option
   };

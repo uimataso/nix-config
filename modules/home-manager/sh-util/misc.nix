@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.sh-util.misc;
+  cfg = config.uimaConfig.sh-util.misc;
 in
 {
-  options.myConfig.sh-util.misc = {
+  options.uimaConfig.sh-util.misc = {
     enable = mkEnableOption "misc";
   };
 

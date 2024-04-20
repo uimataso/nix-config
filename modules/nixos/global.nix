@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.global;
+  cfg = config.uimaConfig.global;
 in
 {
-  options.myConfig.global = {
+  options.uimaConfig.global = {
     enable = mkEnableOption "Global settings";
   };
 

@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.misc.nh;
+  cfg = config.uimaConfig.misc.nh;
 in
 {
-  options.myConfig.misc.nh = {
+  options.uimaConfig.misc.nh = {
     enable = mkEnableOption "yet-another-nix-helper";
   };
 

@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.desktop.xserver.dwm;
+  cfg = config.uimaConfig.desktop.xserver.dwm;
 in
 {
-  options.myConfig.desktop.xserver.dwm = {
+  options.uimaConfig.desktop.xserver.dwm = {
     enable = mkEnableOption "dwm";
   };
 

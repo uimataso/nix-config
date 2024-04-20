@@ -9,10 +9,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.sh-util.tmux;
+  cfg = config.uimaConfig.sh-util.tmux;
 in
 {
-  options.myConfig.sh-util.tmux = {
+  options.uimaConfig.sh-util.tmux = {
     enable = mkEnableOption "tmux";
   };
 

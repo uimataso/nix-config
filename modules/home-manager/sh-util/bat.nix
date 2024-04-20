@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.sh-util.bat;
+  cfg = config.uimaConfig.sh-util.bat;
 in
 {
-  options.myConfig.sh-util.bat = {
+  options.uimaConfig.sh-util.bat = {
     enable = mkEnableOption "bat";
   };
 

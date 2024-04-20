@@ -5,10 +5,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.services.otd;
+  cfg = config.uimaConfig.services.otd;
 in
 {
-  options.myConfig.services.otd = {
+  options.uimaConfig.services.otd = {
     enable = mkEnableOption "open tablet driver";
   };
 

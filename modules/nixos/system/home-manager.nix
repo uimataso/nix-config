@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.system.home-manager;
+  cfg = config.uimaConfig.system.home-manager;
 in
 {
-  options.myConfig.system.home-manager = {
+  options.uimaConfig.system.home-manager = {
     enable = mkEnableOption "Home Manager";
 
     users = mkOption {

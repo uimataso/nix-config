@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.boot.systemd-boot;
+  cfg = config.uimaConfig.boot.systemd-boot;
 in
 {
-  options.myConfig.boot.systemd-boot = {
+  options.uimaConfig.boot.systemd-boot = {
     enable = mkEnableOption "systemd-boot";
   };
 

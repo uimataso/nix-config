@@ -6,12 +6,12 @@ with lib;
 # TODO: theme support
 
 let
-  cfg = config.myConfig.desktop.xserver.dunst;
+  cfg = config.uimaConfig.desktop.xserver.dunst;
 
   palette = config.colorScheme.palette;
 in
 {
-  options.myConfig.desktop.xserver.dunst = {
+  options.uimaConfig.desktop.xserver.dunst = {
     enable = mkEnableOption "dunst";
   };
 

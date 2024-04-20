@@ -3,12 +3,12 @@
 with lib;
 
 let
-  cfg = config.myConfig.programs.discord;
+  cfg = config.uimaConfig.programs.discord;
 
-  imper = config.myConfig.system.impermanence;
+  imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.myConfig.programs.discord = {
+  options.uimaConfig.programs.discord = {
     enable = mkEnableOption "Discord";
   };
 

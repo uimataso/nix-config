@@ -3,13 +3,13 @@
 with lib;
 
 let
-  cfg = config.myConfig.system.xdg;
+  cfg = config.uimaConfig.system.xdg;
 
-  imper = config.myConfig.system.impermanence;
+  imper = config.uimaConfig.system.impermanence;
   rmHomePath = str: removePrefix config.home.homeDirectory str;
 in
 {
-  options.myConfig.system.xdg = {
+  options.uimaConfig.system.xdg = {
     enable = mkEnableOption "xdg";
   };
 

@@ -3,12 +3,12 @@
 with lib;
 
 let
-  cfg = config.myConfig.services.openssh;
+  cfg = config.uimaConfig.services.openssh;
 
-  imper = config.myConfig.system.impermanence;
+  imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.myConfig.services.openssh = {
+  options.uimaConfig.services.openssh = {
     enable = mkEnableOption "openssh";
   };
 

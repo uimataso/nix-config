@@ -5,10 +5,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.services.udiskie;
+  cfg = config.uimaConfig.services.udiskie;
 in
 {
-  options.myConfig.services.udiskie = {
+  options.uimaConfig.services.udiskie = {
     enable = mkEnableOption "udiskie";
   };
 

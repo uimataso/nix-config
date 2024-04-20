@@ -14,12 +14,12 @@
 with lib;
 
 let
-  cfg = config.myConfig.programs.firefox;
+  cfg = config.uimaConfig.programs.firefox;
 
-  imper = config.myConfig.system.impermanence;
+  imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.myConfig.programs.firefox = {
+  options.uimaConfig.programs.firefox = {
     enable = mkEnableOption "Firefox";
 
     defaultBrowser = mkOption {

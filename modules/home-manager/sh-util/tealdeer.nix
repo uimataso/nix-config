@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.sh-util.tealdeer;
+  cfg = config.uimaConfig.sh-util.tealdeer;
 in
 {
-  options.myConfig.sh-util.tealdeer = {
+  options.uimaConfig.sh-util.tealdeer = {
     enable = mkEnableOption "tealdeer";
   };
 

@@ -3,7 +3,7 @@
 with lib;
 
 let
-  cfg = config.myConfig.programs.firefox.profile.ui;
+  cfg = config.uimaConfig.programs.firefox.profile.ui;
 
   palette = config.colorScheme.palette;
   color = ''
@@ -15,7 +15,7 @@ let
   '';
 in
 {
-  options.myConfig.programs.firefox.profile.ui = {
+  options.uimaConfig.programs.firefox.profile.ui = {
     enable = mkEnableOption "Firefox profile: ui";
   };
 

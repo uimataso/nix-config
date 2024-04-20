@@ -5,12 +5,12 @@
 with lib;
 
 let
-  cfg = config.myConfig.programs.zathura;
+  cfg = config.uimaConfig.programs.zathura;
 
   palette = config.colorScheme.palette;
 in
 {
-  options.myConfig.programs.zathura = {
+  options.uimaConfig.programs.zathura = {
     enable = mkEnableOption "zathura";
   };
 

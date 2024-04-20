@@ -5,10 +5,10 @@ with lib;
 # TODO: manage git key
 
 let
-  cfg = config.myConfig.dev.git;
+  cfg = config.uimaConfig.dev.git;
 in
 {
-  options.myConfig.dev.git = {
+  options.uimaConfig.dev.git = {
     enable = mkEnableOption "Git";
 
     name = mkOption {

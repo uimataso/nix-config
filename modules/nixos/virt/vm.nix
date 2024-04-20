@@ -5,10 +5,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.virt.vm;
+  cfg = config.uimaConfig.virt.vm;
 in
 {
-  options.myConfig.virt.vm = {
+  options.uimaConfig.virt.vm = {
     enable = mkEnableOption "vm";
   };
 

@@ -22,7 +22,7 @@
   networking.hostName = "vm-imper-test";
   time.timeZone = "Asia/Taipei";
 
-  myConfig = {
+  uimaConfig = {
     global.enable = true;
 
     users.ui.enable = true;

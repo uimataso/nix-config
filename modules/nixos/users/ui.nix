@@ -3,15 +3,15 @@
 with lib;
 
 let
-  cfg = config.myConfig.users.ui;
+  cfg = config.uimaConfig.users.ui;
 
   username = "ui";
 
-  imper = config.myConfig.system.impermanence;
+  imper = config.uimaConfig.system.impermanence;
   ifGroupExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in
 {
-  options.myConfig.users.${username} = {
+  options.uimaConfig.users.${username} = {
     enable = mkEnableOption "User ${username}";
 
     home = mkOption {

@@ -3,12 +3,12 @@
 with lib;
 
 let
-  cfg = config.myConfig.networking.tailscale;
+  cfg = config.uimaConfig.networking.tailscale;
 
-  imper = config.myConfig.system.impermanence;
+  imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.myConfig.networking.tailscale = {
+  options.uimaConfig.networking.tailscale = {
     enable = mkEnableOption "Tailscale";
   };
 

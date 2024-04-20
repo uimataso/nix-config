@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.desktop.xserver.sddm;
+  cfg = config.uimaConfig.desktop.xserver.sddm;
 in
 {
-  options.myConfig.desktop.xserver.sddm = {
+  options.uimaConfig.desktop.xserver.sddm = {
     enable = mkEnableOption "sddm";
   };
 

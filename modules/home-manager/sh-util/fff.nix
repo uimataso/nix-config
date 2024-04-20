@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.sh-util.fff;
+  cfg = config.uimaConfig.sh-util.fff;
 in
 {
-  options.myConfig.sh-util.fff = {
+  options.uimaConfig.sh-util.fff = {
     enable = mkEnableOption "fff. Self written script for file browsing.";
     # TODO: option for diff ls
   };

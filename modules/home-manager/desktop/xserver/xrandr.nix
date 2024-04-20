@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.desktop.xserver.xrandr;
+  cfg = config.uimaConfig.desktop.xserver.xrandr;
 in
 {
-  options.myConfig.desktop.xserver.xrandr = {
+  options.uimaConfig.desktop.xserver.xrandr = {
     enable = mkEnableOption "Xrandr";
     # TODO: option to setup monitor
   };

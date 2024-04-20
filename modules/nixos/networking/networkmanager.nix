@@ -3,12 +3,12 @@
 with lib;
 
 let
-  cfg = config.myConfig.networking.networkmanager;
+  cfg = config.uimaConfig.networking.networkmanager;
 
-  imper = config.myConfig.system.impermanence;
+  imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.myConfig.networking.networkmanager = {
+  options.uimaConfig.networking.networkmanager = {
     enable = mkEnableOption "NetworkManager";
   };
 

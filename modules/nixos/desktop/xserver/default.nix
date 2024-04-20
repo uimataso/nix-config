@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.desktop.xserver;
+  cfg = config.uimaConfig.desktop.xserver;
 in
 {
-  options.myConfig.desktop.xserver = {
+  options.uimaConfig.desktop.xserver = {
     enable = mkEnableOption "Xserver";
   };
 

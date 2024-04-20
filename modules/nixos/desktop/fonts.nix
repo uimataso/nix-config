@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.desktop.fonts;
+  cfg = config.uimaConfig.desktop.fonts;
 in
 {
-  options.myConfig.desktop.fonts = {
+  options.uimaConfig.desktop.fonts = {
     enable = mkEnableOption "Fonts";
   };
 

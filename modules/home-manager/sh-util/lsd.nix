@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.sh-util.lsd;
+  cfg = config.uimaConfig.sh-util.lsd;
 in
 {
-  options.myConfig.sh-util.lsd = {
+  options.uimaConfig.sh-util.lsd = {
     enable = mkEnableOption "lsd";
   };
 

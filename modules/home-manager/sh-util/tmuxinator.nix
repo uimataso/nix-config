@@ -5,7 +5,7 @@
 with lib;
 
 let
-  cfg = config.myConfig.sh-util.tmuxinator;
+  cfg = config.uimaConfig.sh-util.tmuxinator;
 
   script = { writeShellApplication, pkgs }:
     writeShellApplication {
@@ -19,7 +19,7 @@ let
     };
 in
 {
-  options.myConfig.sh-util.tmuxinator = {
+  options.uimaConfig.sh-util.tmuxinator = {
     enable = mkEnableOption "tmuxinator";
 
     dir = mkOption {
@@ -30,7 +30,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    myConfig.sh-util.tmux.enable = true;
+    uimaConfig.sh-util.tmux.enable = true;
 
     programs.tmux.tmuxinator.enable = true;
 

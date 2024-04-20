@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.desktop.xserver;
+  cfg = config.uimaConfig.desktop.xserver;
 in
 {
-  options.myConfig.desktop.xserver = {
+  options.uimaConfig.desktop.xserver = {
     enable = mkEnableOption "Xserver";
   };
 
@@ -22,7 +22,7 @@ in
   ];
 
   config = mkIf cfg.enable {
-    myConfig.desktop.xserver = {
+    uimaConfig.desktop.xserver = {
       xresources.enable = mkDefault true;
       xsession.enable = mkDefault true;
       xrandr.enable = mkDefault true;

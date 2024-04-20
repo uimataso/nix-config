@@ -5,7 +5,7 @@
 
   home.stateVersion = "23.11";
 
-  myConfig = {
+  uimaConfig = {
     global.enable = true;
 
     system = {

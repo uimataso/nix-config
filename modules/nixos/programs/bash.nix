@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.programs.bash;
+  cfg = config.uimaConfig.programs.bash;
 in
 {
-  options.myConfig.programs.bash = {
+  options.uimaConfig.programs.bash = {
     enable = mkEnableOption "Bash XDG-rized";
   };
 

@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.sh.alias;
+  cfg = config.uimaConfig.sh.alias;
 in
 {
-  options.myConfig.sh.alias = {
+  options.uimaConfig.sh.alias = {
     enable = mkEnableOption "Alias";
   };
 

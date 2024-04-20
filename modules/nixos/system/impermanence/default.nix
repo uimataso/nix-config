@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.system.impermanence;
+  cfg = config.uimaConfig.system.impermanence;
 in
 {
-  options.myConfig.system.impermanence = {
+  options.uimaConfig.system.impermanence = {
     enable = mkEnableOption "Impermanence setup";
 
     persist_dir = mkOption {

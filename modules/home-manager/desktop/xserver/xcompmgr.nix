@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.desktop.xserver.xcompmgr;
+  cfg = config.uimaConfig.desktop.xserver.xcompmgr;
 in
 {
-  options.myConfig.desktop.xserver.xcompmgr = {
+  options.uimaConfig.desktop.xserver.xcompmgr = {
     enable = mkEnableOption "Xcompmgr";
   };
 

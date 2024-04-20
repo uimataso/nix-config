@@ -25,7 +25,7 @@
     o = "open";
   };
 
-  myConfig = {
+  uimaConfig = {
     global.enable = true;
 
     system = {

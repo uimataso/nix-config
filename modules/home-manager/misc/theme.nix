@@ -6,10 +6,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.misc.theme;
+  cfg = config.uimaConfig.misc.theme;
 in
 {
-  options.myConfig.misc.theme = {
+  options.uimaConfig.misc.theme = {
     enable = mkEnableOption "theme";
   };
 

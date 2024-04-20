@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.boot.grub;
+  cfg = config.uimaConfig.boot.grub;
 in
 {
-  options.myConfig.boot.grub = {
+  options.uimaConfig.boot.grub = {
     enable = mkEnableOption "Grub";
   };
 

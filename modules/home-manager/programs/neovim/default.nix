@@ -3,12 +3,12 @@
 with lib;
 
 let
-  cfg = config.myConfig.programs.neovim;
+  cfg = config.uimaConfig.programs.neovim;
 
-  imper = config.myConfig.system.impermanence;
+  imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.myConfig.programs.neovim = {
+  options.uimaConfig.programs.neovim = {
     enable = mkEnableOption "neovim";
 
     defaultEditor = mkOption {

@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.programs.st;
+  cfg = config.uimaConfig.programs.st;
 in
 {
-  options.myConfig.programs.st = {
+  options.uimaConfig.programs.st = {
     enable = mkEnableOption "st";
 
     defaultTerminal = mkOption {

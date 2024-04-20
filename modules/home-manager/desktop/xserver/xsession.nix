@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.desktop.xserver.xsession;
+  cfg = config.uimaConfig.desktop.xserver.xsession;
 in
 {
-  options.myConfig.desktop.xserver.xsession = {
+  options.uimaConfig.desktop.xserver.xsession = {
     enable = mkEnableOption "Xsession";
   };
 

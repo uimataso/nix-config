@@ -3,7 +3,7 @@
 with lib;
 
 let
-  cfg = config.myConfig.system.impermanence.btrfs;
+  cfg = config.uimaConfig.system.impermanence.btrfs;
 
   subvolumes = {
     "@" = {
@@ -49,7 +49,7 @@ let
   '';
 in
 {
-  options.myConfig.system.impermanence.btrfs = {
+  options.uimaConfig.system.impermanence.btrfs = {
     enable = mkEnableOption "Impermanence on btrfs";
 
     device = mkOption {

@@ -3,7 +3,7 @@
 with lib;
 
 let
-  cfg = config.myConfig.desktop.xserver.xresources;
+  cfg = config.uimaConfig.desktop.xserver.xresources;
 
   palette = config.colorScheme.palette;
   bg = "#${palette.base00}";
@@ -14,7 +14,7 @@ let
   font = "MesloLGS Nerd Font";
 in
 {
-  options.myConfig.desktop.xserver.xresources = {
+  options.uimaConfig.desktop.xserver.xresources = {
     enable = mkEnableOption "Xresources";
   };
 

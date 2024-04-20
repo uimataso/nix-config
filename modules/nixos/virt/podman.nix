@@ -6,10 +6,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.virt.podman;
+  cfg = config.uimaConfig.virt.podman;
 in
 {
-  options.myConfig.virt.podman = {
+  options.uimaConfig.virt.podman = {
     enable = mkEnableOption "podman";
   };
 

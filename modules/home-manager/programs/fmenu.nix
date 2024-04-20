@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.programs.fmenu;
+  cfg = config.uimaConfig.programs.fmenu;
 in
 {
-  options.myConfig.programs.fmenu = {
+  options.uimaConfig.programs.fmenu = {
     enable = mkEnableOption "fmenu. Self written script that using fzf as dmenu.";
 
     defaultDmenu = mkOption {

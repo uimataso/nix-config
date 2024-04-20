@@ -3,15 +3,15 @@
 with lib;
 
 let
-  cfg = config.myConfig.dev.lazygit;
+  cfg = config.uimaConfig.dev.lazygit;
 in
 {
-  options.myConfig.dev.lazygit = {
+  options.uimaConfig.dev.lazygit = {
     enable = mkEnableOption "Lazygit";
   };
 
   config = mkIf cfg.enable {
-    myConfig.dev.git.enable = true;
+    uimaConfig.dev.git.enable = true;
 
     home.shellAliases = {
       lg = "lazygit";

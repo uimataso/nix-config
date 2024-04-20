@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.myConfig.programs.doas;
+  cfg = config.uimaConfig.programs.doas;
 in
 {
-  options.myConfig.programs.doas = {
+  options.uimaConfig.programs.doas = {
     enable = mkEnableOption "doas";
   };
 

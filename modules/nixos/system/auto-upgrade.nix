@@ -8,7 +8,7 @@ in
 {
   options.uimaConfig.system.auto-upgrade = {
     enable = mkEnableOption "auto upgrade";
-    # TODO: dates option
+    # TODO: frequency option
   };
 
   config = mkIf cfg.enable {

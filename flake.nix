@@ -1,9 +1,6 @@
 {
   description = "My flake";
 
-  # TODO: sops
-  # TODO: theme, manage key, programs solution
-
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
 
@@ -41,13 +38,13 @@
         })
       );
 
-      nixosConfig = { modules, system, specialArgs ? { } }: lib.nixosSystem {
+      nixosConfig = { modules, system }: lib.nixosSystem {
         pkgs = pkgsFor.nixpkgs.${system};
         modules = [ ./modules/nixos ] ++ modules;
         specialArgs = {
           inherit inputs outputs;
           pkgs-unstable = pkgsFor.nixpkgs-unstable.${system};
-        } // specialArgs;
+        };
       };
     in
     {

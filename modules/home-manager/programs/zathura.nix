@@ -1,7 +1,5 @@
 { config, lib, pkgs, ... }:
 
-# TODO: theme support
-
 with lib;
 
 let
@@ -36,6 +34,8 @@ in
         scroll-step = 50;
 
         recolor = true;
+
+        # TODO: theme support, font management
 
         font = "MesloLGS Nerd Font 11";
         default-bg = "rgba(18,18,18,0.85)";

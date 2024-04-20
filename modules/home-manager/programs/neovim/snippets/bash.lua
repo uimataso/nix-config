@@ -92,7 +92,7 @@ return {
     t('>/dev/null'), c(1, { t(''), t(' 2>&1') })
   }),
 
-  -- TODO:
+  -- TODO: add these snip
   -- start template
   -- getopt
   -- temp file

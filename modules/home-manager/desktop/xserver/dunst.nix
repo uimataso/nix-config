@@ -2,9 +2,6 @@
 
 with lib;
 
-# TODO: disable alert
-# TODO: theme support
-
 let
   cfg = config.uimaConfig.desktop.xserver.dunst;
 
@@ -20,6 +17,7 @@ in
       libnotify
     ];
 
+    # TODO: disable alert
     services.dunst = {
       enable = true;
 
@@ -41,6 +39,7 @@ in
           horizontal_padding = 12;
           text_icon_padding = 0;
           frame_width = 0;
+          # TODO: theme support
           frame_color = "#aaaaaa";
           gap_size = 4;
 

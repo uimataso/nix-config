@@ -8,7 +8,6 @@ in
 {
   options.uimaConfig.sh-util.fff = {
     enable = mkEnableOption "fff. Self written script for file browsing.";
-    # TODO: option for diff ls
   };
 
   config = mkIf cfg.enable {

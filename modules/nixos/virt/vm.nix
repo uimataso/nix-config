@@ -1,7 +1,5 @@
 { config, lib, pkgs, ... }:
 
-# TODO: direct GPU render
-
 with lib;
 
 let

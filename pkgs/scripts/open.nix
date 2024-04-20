@@ -12,7 +12,7 @@
       exit 1
     fi
 
-    # TODO: file or `xdg-mime query default` command
+    # TODO: `file` or `xdg-mime query default` command
     case $(file --mime-type "$1" -bL) in
       video/* | audio/*)
         mpv "$@"

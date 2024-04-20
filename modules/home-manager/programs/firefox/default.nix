@@ -1,6 +1,6 @@
 { config, lib, pkgs, inputs, ... }:
 
-# TODO:
+# TODO: wish list for firefox
 # [x] cookie exceptions
 # [x] plugin settings
 # [-] firefox view (left toolbar)

@@ -12,8 +12,11 @@ in
     users = mkOption {
       type = with types; listOf str;
       default = [ ];
-      example = [ "ui" ];
-      description = "Users to enable home-manager.";
+      example = [ "uima" ];
+      description = ''
+        List of users to enable home-manager.
+        This module will auto load the home-manager module from ./users/{username}/{hostname}.
+      '';
     };
   };
 
@@ -21,9 +24,12 @@ in
     inputs.home-manager.nixosModules.home-manager
   ];
 
+  # TODO: enable option is needed?
   config = mkIf cfg.enable {
+    # TODO: import home-manager here or in flake.nix?
+    # define home-manager in flake.nix then import from outputs?
     home-manager = {
-      sharedModules = [ ../../home-manager ];
+      sharedModules = [ outputs.homeManagerModules ];
       extraSpecialArgs = {
         inherit inputs outputs pkgs-unstable;
       };

@@ -56,8 +56,10 @@ in
       type = types.str;
       default = "";
       example = "/dev/sda";
-      description = "TODO:";
+      description = "The device that going to implement ephemeral btrfs.";
     };
+
+    # TODO: luks?
   };
 
   imports = [

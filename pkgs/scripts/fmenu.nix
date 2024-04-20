@@ -45,7 +45,7 @@
       alacritty) term_cmd="alacritty -t $name -o window.dimensions.columns=''${column} -o window.dimensions.lines=''${line} -o font.size=''${fontsize} -e" ;;
     esac
 
-    # remember the window actived
+    # remember the window that actived
     if [ -n "''${WAYLAND_DISPLAY:+x}" ]; then
       # TODO: wayland support
       true
@@ -56,7 +56,7 @@
     # spawn the fzf window
     $term_cmd sh -c "fzf $default_fzf_opt --prompt \"$prompt \" $fzf_opt </proc/$$/fd/0 >/proc/$$/fd/1"
 
-    # restore actived window
+    # restore focus to actived window
     if [ -n "''${WAYLAND_DISPLAY:+x}" ]; then
       true
     elif [ -n "''${DISPLAY:+x}" ] && [ -n "$actived_window" ]; then

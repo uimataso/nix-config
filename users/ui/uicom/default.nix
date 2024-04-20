@@ -92,13 +92,5 @@
     open
     power-menu
     app-launcher
-
-    # TODO:
-    # echo "$XDG_BOOKMARK_DIR/bookmark" | entr -np sync-bookmark &
-    # ibus
-    # clip
-    #
-    # pdf-decrypt
-    # power-menu
   ];
 }

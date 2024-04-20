@@ -77,7 +77,6 @@ end, { expr = true })
 vim.keymap.set('n', '<M-n>', '.nzzzv')
 
 -- Spell check
--- TODO: add some lang
 vim.keymap.set('n', '<Leader>sp', ':setlocal spell! spelllang=en_us<CR>')
 
 -- Switch conceal

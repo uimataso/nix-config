@@ -10,7 +10,7 @@ let
   fg = "#${palette.base0F}";
   accent = "#${palette.base05}";
 
-  # TODO: font manage
+  # TODO: font management
   font = "MesloLGS Nerd Font";
 in
 {

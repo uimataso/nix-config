@@ -9,6 +9,7 @@ with pkgs;
 
   # scripts
   # TODO: import script here or ./script/default.nix
+  # TODO: prefix with scripts.abc?
   build = callPackage ./scripts/build.nix { };
 
   fmenu = callPackage ./scripts/fmenu.nix { };
@@ -24,4 +25,11 @@ with pkgs;
   open = callPackage ./scripts/open.nix { };
   power-menu = callPackage ./scripts/power-menu.nix { };
   app-launcher = callPackage ./scripts/app-launcher.nix { };
+  # TODO: these script not import to nix yet
+  # echo "$XDG_BOOKMARK_DIR/bookmark" | entr -np sync-bookmark &
+  # ibus
+  # clip
+  #
+  # pdf-decrypt
+  # power-menu
 }

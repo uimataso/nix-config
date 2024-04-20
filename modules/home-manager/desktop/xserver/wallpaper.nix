@@ -2,8 +2,8 @@
 
 with lib;
 
-# TODO: wayland solution?
-# TODO: hot switch wallpaper when nh
+# TODO: wayland solution
+# TODO: hot switch wallpaper when switch
 
 let
   cfg = config.uimaConfig.desktop.xserver.wallpaper;

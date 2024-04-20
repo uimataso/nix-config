@@ -23,7 +23,7 @@ in
     home.persistence.main = mkIf imper.enable {
       directories = [
         ".config/discord"
-        ".config/Vencord" # TODO: declare the content
+        ".config/Vencord" # TODO: declare the settings for this
       ];
     };
   };

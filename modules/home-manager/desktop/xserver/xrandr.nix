@@ -8,7 +8,7 @@ in
 {
   options.uimaConfig.desktop.xserver.xrandr = {
     enable = mkEnableOption "Xrandr";
-    # TODO: option to setup monitor
+    # TODO: how proper setup monitor
   };
 
   config = mkIf cfg.enable {

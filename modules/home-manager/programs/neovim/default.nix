@@ -37,7 +37,7 @@ in
 
     home.sessionVariables = mkMerge [
       {
-        # TODO: move lang stuff out
+        # TODO: move lang stuff out of here
         CARGO_HOME = "${config.xdg.dataHome}/cargo";
         PAGER = lib.mkDefault "nvim +Man!";
         MANPAGER = lib.mkDefault "nvim +Man!";
@@ -54,7 +54,7 @@ in
       color.pager = false;
     };
 
-    # TODO: maybe i can try out vim.nix?
+    # TODO: maybe try out nixvim?
     home.persistence.main = mkIf imper.enable {
       directories = [
         ".cache/nvim"

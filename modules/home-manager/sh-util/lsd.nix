@@ -12,9 +12,9 @@ in
 
   config = mkIf cfg.enable {
     home.shellAliases = {
-      l = lib.mkForce "lsd --group-directories-first";
-      ls = lib.mkForce "lsd -A --group-directories-first";
-      ll = lib.mkForce "lsd -Al --group-directories-first";
+      l = "lsd --group-directories-first";
+      ls = "lsd -A --group-directories-first";
+      ll = "lsd -Al --group-directories-first";
     };
 
     programs.lsd = {

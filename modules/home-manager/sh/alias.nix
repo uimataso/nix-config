@@ -4,6 +4,9 @@ with lib;
 
 let
   cfg = config.uimaConfig.sh.alias;
+
+  mkEverythingDefault = attr:
+    attrsets.mapAttrs (name: value: mkDefault value) attr;
 in
 {
   options.uimaConfig.sh.alias = {
@@ -11,7 +14,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.shellAliases = {
+    home.shellAliases = mkEverythingDefault {
       c = "cd";
       "c." = "cd ..";
       c- = "cd -";
@@ -29,10 +32,13 @@ in
       rm = "rm -iv";
       md = "mkdir -pv";
 
+      dl = "curl -OJL";
+
       df = "df -h";
       du = "du -h";
       free = "free -h";
       ip = "ip -c";
+      ipa = "ip -c -br a";
       grep = "grep --color=auto";
     };
   };

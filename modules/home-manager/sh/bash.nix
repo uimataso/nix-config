@@ -9,6 +9,7 @@ let
   rmHomePath = str: removePrefix config.home.homeDirectory str;
 
   # Plugins
+  # TODO: move these to pkgs
   fzf-key-bindings = builtins.fetchurl {
     url = "https://raw.githubusercontent.com/junegunn/fzf/0.49.0/shell/key-bindings.bash";
     sha256 = "002vls06ws858jyjzaba852ih81vqfnjsyxd8c1v7s8dw08wx3jn";
@@ -41,11 +42,9 @@ in
       enable = true;
 
       historyFile = "${config.xdg.dataHome}/bash_history";
+      # TODO: use this?: verify before run history command $shopt -s histverify
       historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
-      historyIgnore = [ ];
-
-      # verify before run history command
-      # shopt -s histverify
+      historyIgnore = [ "ls" "ll" "a" ];
 
       bashrcExtra = ''
         source ${fzf-key-bindings}

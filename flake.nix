@@ -40,7 +40,7 @@
 
       nixosConfig = { modules, system }: lib.nixosSystem {
         pkgs = pkgsFor.nixpkgs.${system};
-        modules = [ ./modules/nixos ] ++ modules;
+        modules = [ outputs.nixosModules ] ++ modules;
         specialArgs = {
           inherit inputs outputs;
           pkgs-unstable = pkgsFor.nixpkgs-unstable.${system};

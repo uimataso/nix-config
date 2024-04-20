@@ -72,13 +72,7 @@
   };
 
   home.packages = with pkgs; [
-    wget
-    gcc
-    git
-
     # Scripts
-    build
-
     fmenu
     fff
 

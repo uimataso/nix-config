@@ -71,17 +71,11 @@
   };
 
   home.packages = with pkgs; [
-    wget
-    gcc
-    git
-
     qmk
     dig
     whois
 
     # Scripts
-    build
-
     extract
     vl
     bright

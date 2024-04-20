@@ -33,6 +33,8 @@ in
       # disableConfirmationPrompt = true;
 
       extraConfig = ''
+        set -g set-clipboard external
+
         # keybind to reload config
         unbind r
         bind r source-file ~/.config/tmux/tmux.conf

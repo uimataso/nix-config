@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-unstable, inputs, outputs, ... }:
+{ config, lib, ... }:
 
 with lib;
 
@@ -7,7 +7,11 @@ let
 in
 {
   options.uimaConfig.system.home-manager = {
-    enable = mkEnableOption "Home Manager";
+    enable = mkEnableOption ''
+      Eable Home Manager module.
+      You should import home-manager modules though flake, this module only
+      import users settings.
+    '';
 
     users = mkOption {
       type = with types; listOf str;
@@ -20,20 +24,8 @@ in
     };
   };
 
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-  ];
-
-  # TODO: enable option is needed?
   config = mkIf cfg.enable {
-    # TODO: import home-manager here or in flake.nix?
-    # define home-manager in flake.nix then import from outputs?
     home-manager = {
-      sharedModules = [ outputs.homeManagerModules ];
-      extraSpecialArgs = {
-        inherit inputs outputs pkgs-unstable;
-      };
-
       users = attrsets.genAttrs cfg.users (username: import
         ../../../users/${username}/${config.networking.hostName});
     };

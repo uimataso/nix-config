@@ -38,14 +38,29 @@
         })
       );
 
-      nixosConfig = { modules, system }: lib.nixosSystem {
-        pkgs = pkgsFor.nixpkgs.${system};
-        modules = [ outputs.nixosModules ] ++ modules;
-        specialArgs = {
-          inherit inputs outputs;
-          pkgs-unstable = pkgsFor.nixpkgs-unstable.${system};
+      nixosConfig = { modules, system }:
+        let
+          specialArgs = {
+            inherit inputs outputs;
+            pkgs-unstable = pkgsFor.nixpkgs-unstable.${system};
+          };
+        in
+        lib.nixosSystem {
+          inherit specialArgs;
+          pkgs = pkgsFor.nixpkgs.${system};
+
+          modules = [
+            outputs.nixosModules
+            # Import home-manager
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                sharedModules = [ outputs.homeManagerModules ];
+                extraSpecialArgs = specialArgs;
+              };
+            }
+          ] ++ modules;
         };
-      };
     in
     {
       nixosModules = import ./modules/nixos;
@@ -70,5 +85,7 @@
           system = "x86_64-linux";
         };
       };
+
+      # homeConfigurations = { };
     };
 }

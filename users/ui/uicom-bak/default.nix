@@ -10,7 +10,6 @@
 
     system = {
       ssh.enable = true;
-      impermanence.enable = true;
       auto-upgrade.enable = true;
       xdg.enable = true;
     };
@@ -70,9 +69,9 @@
   };
 
   home.packages = with pkgs; [
-    # qmk
-    # dig
-    # whois
+    qmk
+    dig
+    whois
 
     # Scripts
     extract

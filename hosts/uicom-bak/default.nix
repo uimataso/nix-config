@@ -16,15 +16,9 @@
 
     users.ui.enable = true;
 
-    system = {
-      auto-upgrade.enable = true;
+    system.auto-upgrade.enable = true;
 
-      impermanence.enable = true;
-      impermanence.btrfs.enable = true;
-      impermanence.btrfs.device = "/dev/sda";
-    };
-
-    boot.grub.enable = true;
+    boot.systemd-boot.enable = true;
 
     desktop.fonts.enable = true;
     desktop.xserver = {

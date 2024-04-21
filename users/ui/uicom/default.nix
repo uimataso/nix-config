@@ -9,6 +9,7 @@
     global.enable = true;
 
     system = {
+      ssh.enable = true;
       auto-upgrade.enable = true;
       xdg.enable = true;
     };

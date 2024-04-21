@@ -4,6 +4,8 @@ with lib;
 
 let
   cfg = config.uimaConfig.system.ssh;
+
+  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.system.ssh = {

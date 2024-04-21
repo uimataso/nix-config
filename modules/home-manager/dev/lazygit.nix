@@ -25,6 +25,7 @@ in
       enable = true;
 
       settings = {
+        disableStartupPopups = true;
         gui = {
           theme = {
             # TODO: theme support

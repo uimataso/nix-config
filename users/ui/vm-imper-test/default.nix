@@ -35,8 +35,6 @@
 
     sh.bash.enable = true;
 
-    misc.nh.enable = true;
-
     sh-util = {
       misc.enable = true;
       fzf.enable = true;

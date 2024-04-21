@@ -16,9 +16,6 @@
     sh.bash.enable = true;
     sh.bash.defaultShell = true;
 
-    misc.nh.enable = true;
-    misc.theme.enable = true;
-
     sh-util = {
       misc.enable = true;
       fzf.enable = true;

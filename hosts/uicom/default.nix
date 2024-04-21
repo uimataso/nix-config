@@ -15,8 +15,6 @@
     global.enable = true;
 
     users.ui.enable = true;
-    system.home-manager.enable = true;
-    system.home-manager.users = [ "ui" ];
 
     system.auto-upgrade.enable = true;
 

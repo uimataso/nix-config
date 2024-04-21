@@ -14,6 +14,12 @@ in
 {
   options.uimaConfig.users.${username} = {
     enable = mkEnableOption "User ${username}";
+
+    homeManager = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable home-manager for this user.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -38,10 +44,15 @@ in
       })
     ];
 
+    # Create persist home directory
     systemd.tmpfiles = mkIf imper.enable {
       rules = [
         "d ${imper.persist_dir}/${home} 0700 ${username} users - -"
       ];
+    };
+
+    home-manager.users = mkIf cfg.homeManager {
+      ${username} = import ../../../users/${username}/${config.networking.hostName};
     };
   };
 }

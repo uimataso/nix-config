@@ -28,9 +28,6 @@
     users.ui.enable = true;
 
     system = {
-      home-manager.enable = true;
-      home-manager.users = [ "ui" ];
-
       impermanence.enable = true;
       impermanence.btrfs.enable = true;
       impermanence.btrfs.device = "/dev/vda";

@@ -5,6 +5,8 @@ with lib;
 let
   cfg = config.uimaConfig.programs.firefox.profile.uima;
 
+  name = "uima";
+
   palette = config.colorScheme.palette;
   color = ''
     :root{
@@ -13,15 +15,21 @@ let
       --pr-color: #${palette.base05} !important;
     }
   '';
+
+  imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.programs.firefox.profile.uima= {
-    enable = mkEnableOption "Firefox profile: uima";
+  options.uimaConfig.programs.firefox.profile.${name}= {
+    enable = mkEnableOption "Firefox profile: ${name}";
   };
 
   config = mkIf cfg.enable {
+    home.persistence.main = mkIf imper.enable {
+      directories = [ ".mozilla/firefox/${name}" ];
+    };
+
     programs.firefox = {
-      profiles.uima = {
+      profiles.${name} = {
         search = {
           force = true;
           default = "Searx";
@@ -83,6 +91,7 @@ in
           darkreader
           i-dont-care-about-cookies
           vimium
+          new-tab-override
         ];
 
         # containers = {
@@ -103,11 +112,27 @@ in
         ];
 
         settings = {
+          # Disable firefox account
           "identity.fxaccounts.enabled" = false;
+          # Disable pocket
           "extensions.pocket.enabled" = false;
+          # Disable tabs in settings page
           "browser.preferences.moreFromMozilla" = false;
+          # List all tabs arrow in tab bar
           "browser.tabs.tabmanager.enabled" = false;
+          # Never show bookmark bar
           "browser.toolbars.bookmarks.visibility" = "never";
+          # Dard theme
+          "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
+          # Compact mode
+          "browser.uidensity" = 1;
+          # No title bar
+          "browser.tabs.inTitlebar" = 0;
+
+          # Don't remember password
+          "services.sync.prefs.sync.signon.rememberSignons" = false;
+          "signon.rememberSignons" = false;
+          "signon.rememberSignons.visibilityToggle" = false;
 
           # Try to remove view, didn't work
           "browser.tabs.firefox-view" = false;
@@ -117,11 +142,6 @@ in
           # User chrome
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           "svg.context-properties.content.enabled" = true;
-
-          # Compact mode
-          "browser.uidensity" = 1;
-          # not title bar
-          "browser.tabs.inTitlebar" = 0;
         };
 
         arkenfox = {
@@ -160,58 +180,3 @@ in
     };
   };
 }
-
-# vimium:
-# unmapAll
-# map j scrollDown
-# map k scrollUp
-# map h scrollLeft
-# map l scrollRight
-# map gg scrollToTop
-# map G scrollToBottom
-# map <c-d> scrollPageDown
-# map <PageUp> scrollPageUp
-# map <PageDown> scrollPageDown
-#
-# map r reload
-# map yy copyCurrentUrl
-# map p openCopiedUrlInCurrentTab
-# map P openCopiedUrlInNewTab
-# map o Vomnibar.activate
-# map O Vomnibar.activateInNewTab
-# map f LinkHints.activateMode
-# map F LinkHints.activateModeToOpenInNewForegroundTab
-# map <c-f> LinkHints.activateModeToOpenInNewTab
-#
-# map i enterInserMode
-# map v enterVisualMode
-# map a focusInput
-# map / enterFindMode
-# map n performFind
-# map N performBackwardsFind
-#
-# map gf nextFrame
-# map gF mainFame
-#
-# map H goBack
-# map <c-o> goBack
-# map L goForward
-# map <c-i> goForward
-#
-# map t createTab
-# map b previousTab
-# map w nextTab
-# map " visitPreviousTab
-# map g0 firstTab
-# map g$ lastTab
-# map yt duplicateTab
-# map d removeTab
-# map D restoreTab
-#
-# search engines
-# s: https://search.uima.duckdns.org/search?q=%s
-# np: https://search.nixos.org/packages?type=packages&query=%s
-# nw: https://nixos.wiki/index.php?search=%s
-# nm: https://mynixos.com/search?q=%s
-# aw: https://wiki.archlinux.org/index.php?search=%s
-# ru: https://doc.rust-lang.org/std/iter/?search=%s

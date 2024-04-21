@@ -6,7 +6,6 @@
 # [-] firefox view (left toolbar)
 # [-] search suggest (settings dont works)
 # bookmark (local or here)
-# bookmark bar
 # containers (use or not)
 # vim keybind
 # vimium search engine, book mark...
@@ -16,8 +15,6 @@ with lib;
 
 let
   cfg = config.uimaConfig.programs.firefox;
-
-  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.programs.firefox = {
@@ -53,10 +50,6 @@ in
         enable = true;
         # version = "123.0";
       };
-    };
-
-    home.persistence.main = mkIf imper.enable {
-      directories = [ ".mozilla/firefox" ];
     };
   };
 }

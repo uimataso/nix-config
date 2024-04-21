@@ -4,6 +4,7 @@ return {
   opts = {
     copy_sync = {
       enable = true,
+      sync_clipboard = false,
     },
     navigation = {
       cycle_navigation = false,

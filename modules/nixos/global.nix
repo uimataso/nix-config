@@ -26,5 +26,7 @@ in
         warn-dirty = false;
       };
     };
+
+    uimaConfig.services.openssh.enable = true;
   };
 }

@@ -1,7 +1,7 @@
 { config, pkgs, lib, inputs, ... }:
 
 {
-  home.username = "ui";
+  home.username = "uima";
 
   home.stateVersion = "23.11";
 

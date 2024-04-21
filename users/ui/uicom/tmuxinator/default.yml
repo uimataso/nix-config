@@ -1,5 +1,0 @@
-name: default
-root: ~/
-
-windows:
-  - window: clear

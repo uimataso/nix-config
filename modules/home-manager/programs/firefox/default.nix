@@ -6,6 +6,7 @@
 # [-] firefox view (left toolbar)
 # [-] search suggest (settings dont works)
 # bookmark (local or here)
+# bookmark bar
 # containers (use or not)
 # vim keybind
 # vimium search engine, book mark...
@@ -30,7 +31,7 @@ in
   };
 
   imports = [
-    ./profile_ui.nix
+    ./profile_uima.nix
     inputs.arkenfox.hmModules.default
   ];
 
@@ -55,7 +56,7 @@ in
     };
 
     home.persistence.main = mkIf imper.enable {
-      directories = [ ".mozilla/filrefox" ];
+      directories = [ ".mozilla/firefox" ];
     };
   };
 }

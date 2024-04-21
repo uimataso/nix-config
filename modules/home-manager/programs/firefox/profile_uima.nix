@@ -3,7 +3,7 @@
 with lib;
 
 let
-  cfg = config.uimaConfig.programs.firefox.profile.ui;
+  cfg = config.uimaConfig.programs.firefox.profile.uima;
 
   palette = config.colorScheme.palette;
   color = ''
@@ -15,13 +15,13 @@ let
   '';
 in
 {
-  options.uimaConfig.programs.firefox.profile.ui = {
-    enable = mkEnableOption "Firefox profile: ui";
+  options.uimaConfig.programs.firefox.profile.uima= {
+    enable = mkEnableOption "Firefox profile: uima";
   };
 
   config = mkIf cfg.enable {
     programs.firefox = {
-      profiles.ui = {
+      profiles.uima = {
         search = {
           force = true;
           default = "Searx";

@@ -20,7 +20,7 @@
   uimaConfig = {
     global.enable = true;
 
-    users.ui.enable = true;
+    users.uima.enable = true;
 
     system = {
       # sops.enable = true;

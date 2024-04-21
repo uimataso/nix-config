@@ -1,9 +1,16 @@
 { config, pkgs, lib, inputs, ... }:
 
 {
-  home.username = "ui";
+  home.username = "uima";
 
   home.stateVersion = "23.11";
+
+  home.persistence.main = {
+    directories = [
+      "nix"
+      "src"
+    ];
+  };
 
   uimaConfig = {
     global.enable = true;
@@ -53,7 +60,7 @@
       neovim.defaultEditor = true;
 
       firefox.enable = true;
-      firefox.profile.ui.enable = true;
+      firefox.profile.uima.enable = true;
       firefox.defaultBrowser = true;
 
       fmenu.enable = true;

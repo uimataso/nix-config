@@ -3,9 +3,9 @@
 with lib;
 
 let
-  cfg = config.uimaConfig.users.ui;
+  cfg = config.uimaConfig.users.uima;
 
-  username = "ui";
+  username = "uima";
   home = "/home/${username}";
 
   imper = config.uimaConfig.system.impermanence;

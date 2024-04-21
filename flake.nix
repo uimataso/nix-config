@@ -83,11 +83,6 @@
           system = "x86_64-linux";
         };
 
-        vm-imper-test = nixosConfig {
-          modules = [ ./hosts/vm-imper-test ];
-          system = "x86_64-linux";
-        };
-
         vm-imper-mini = nixosConfig {
           modules = [ ./hosts/vm-imper-mini ];
           system = "x86_64-linux";

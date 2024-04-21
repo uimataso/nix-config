@@ -6,6 +6,7 @@ let
   cfg = config.uimaConfig.users.ui;
 
   username = "ui";
+  home = "/home/${username}";
 
   imper = config.uimaConfig.system.impermanence;
   ifGroupExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
@@ -13,18 +14,12 @@ in
 {
   options.uimaConfig.users.${username} = {
     enable = mkEnableOption "User ${username}";
-
-    home = mkOption {
-      type = types.str;
-      default = "/home/${username}";
-      description = "Home directory for this user.";
-    };
   };
 
   config = mkIf cfg.enable {
     users.users.${username} = mkMerge [
       {
-        home = mkDefault cfg.home;
+        home = mkDefault home;
         isNormalUser = true;
         shell = pkgs.bashInteractive;
 
@@ -45,7 +40,7 @@ in
 
     systemd.tmpfiles = mkIf imper.enable {
       rules = [
-        "d ${imper.persist_dir}/${cfg.home} 0700 ${username} users - -"
+        "d ${imper.persist_dir}/${home} 0700 ${username} users - -"
       ];
     };
   };

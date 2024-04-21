@@ -14,6 +14,7 @@ in
     # Since nh need `sudo` :(
     home.shellAliases = {
       nn = "doas nixos-rebuild switch --flake \"$HOME/nix#$(hostname)\"";
+      nr = "nix repl --expr \"builtins.getFlake \\\"$HOME/nix\\\"\"";
     };
 
     home.packages = [

@@ -18,7 +18,7 @@ in
     };
     email = mkOption {
       type = types.str;
-      default = "luck07051@gmail.com";
+      default = "uimataso@proton.me";
       description = "User email to use in git.";
     };
   };

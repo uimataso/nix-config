@@ -1,7 +1,7 @@
 { config, lib, pkgs, inputs, outputs, ... }:
 
 # sudo -i
-# flake_url='github:luck07051/nix-config#vm-imper-mini'
+# flake_url='github:uimataso/nix-config#vm-imper-mini'
 # nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko -f "$flake_url"
 # nixos-install --flake "$flake_url" --no-root-passwd
 

@@ -1,11 +1,27 @@
 # vim:foldmethod=marker:foldlevel=0
 { writeShellApplication
 , pkgs
-}: writeShellApplication {
+}:
+let
+  # TODO: ls solution
+  # exa -a --group-directories-first --icons --color=always
+  # ls -A --group-directories-first --color=always
+  ls_cmd = "lsd -A --group-directories-first --color=always";
+  # exa -l --icons --color=always "$1"
+  # ls -l --color=always "$1"
+  ls_l_cmd = "lsd -l --color=always";
+in
+writeShellApplication
+{
   name = "preview";
   runtimeInputs = with pkgs; [
+    lsd
     bat
     chafa
+    jq
+
+    xz
+    unzip
   ];
 
   text = ''
@@ -29,28 +45,14 @@
 
       printf '\n'
 
-      if type lsd >/dev/null; then
-        lsd -A --group-directories-first --color=always "$1"
-      elif type exa >/dev/null; then
-        exa -a --group-directories-first --icons --color=always "$1"
-      else
-        ls -A --group-directories-first --color=always "$1"
-      fi
+      ${ls_cmd} "$1"
     } #}}}
-    # TODO: ls solution
     file_info(){ #{{{
-      if type lsd >/dev/null; then
-        lsd -l --color=always "$1"
-      elif type exa >/dev/null; then
-        exa -l --icons --color=always "$1"
-      else
-        ls -l --color=always "$1"
-      fi
+      ${ls_l_cmd} "$1"
       printf '\n'
     } #}}}
     cat_file(){ #{{{
       bat -n --style=plain --pager=never --color=always "$1"
-      # cat "$1"
     } #}}}
     image(){ #{{{
       chafa "$1"
@@ -91,7 +93,9 @@
       # *.gif) ;;
       # *.pdf) ;;
 
-      *) cat_file "$file"
+      *.json) jq -C . "$file" ;;
+
+      *) cat_file "$file" ;;
     esac
   '';
 }

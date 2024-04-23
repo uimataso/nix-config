@@ -1,9 +1,17 @@
 { writeShellApplication
 , pkgs
-}: writeShellApplication {
+}:
+let
+  # TODO: ls solution
+  # exa -a --group-directories-first --color=always --icons
+  # ls -A --group-directories-first --color=always
+  ls_cmd = "lsd -A --group-directories-first --color=always";
+in
+writeShellApplication {
   name = "fff";
   runtimeInputs = with pkgs; [
     fzf
+    lsd
     (callPackage ./preview.nix { })
     (callPackage ./open.nix { })
   ];
@@ -13,16 +21,6 @@
 
     # Temp file
     _fff_up_dir_temp='/tmp/fff-up-dir'
-
-    # Setting ls command
-    # TODO: ls solution
-    if type lsd >/dev/null; then
-      _fzf_fm_lscmd='lsd -A --group-directories-first --color=always'
-    elif type exa >/dev/null; then
-      _fzf_fm_lscmd='exa -a --group-directories-first --color=always --icons'
-    else
-      _fzf_fm_lscmd='ls -A --group-directories-first --color=always'
-    fi
 
     while :; do
       # prepare the prompt to show current directory
@@ -35,7 +33,7 @@
       fi
 
       # shellcheck disable=SC2016
-      selected="$($_fzf_fm_lscmd "$PWD" |
+      selected="$(${ls_cmd} "$PWD" |
         fzf --prompt "$pwd/" \
             --preview 'preview $PWD/{}' \
             --preview-window '70%,border-left' \

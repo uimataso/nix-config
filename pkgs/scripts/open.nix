@@ -36,14 +36,7 @@
         libreoffice "$@"
         ;;
 
-      text/*)
-        ''${EDITOR} "$@"
-        ;;
-
-      *)
-        echo "File type '$(file --mime-type "$1" -bL)' not support!" >&2
-        exit 1
-        ;;
+      *) ''${EDITOR} "$@" ;;
     esac
   '';
 }

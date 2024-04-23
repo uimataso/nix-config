@@ -42,7 +42,6 @@ in
       enable = true;
 
       historyFile = "${config.xdg.dataHome}/bash_history";
-      # TODO: use this?: verify before run history command $shopt -s histverify
       historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
       historyIgnore = [ "ls" "ll" "a" ];
 

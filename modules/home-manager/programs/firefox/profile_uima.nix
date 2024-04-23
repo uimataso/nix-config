@@ -19,7 +19,7 @@ let
   imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.programs.firefox.profile.${name}= {
+  options.uimaConfig.programs.firefox.profile.${name} = {
     enable = mkEnableOption "Firefox profile: ${name}";
   };
 
@@ -92,6 +92,11 @@ in
           i-dont-care-about-cookies
           vimium
           new-tab-override
+
+          # Youtube
+          return-youtube-dislikes
+          youtube-recommended-videos
+          dearrow # clickbait remover
         ];
 
         # containers = {

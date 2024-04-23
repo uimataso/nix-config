@@ -90,7 +90,9 @@ in
           bitwarden
           darkreader
           i-dont-care-about-cookies
+          # keybind, search engine, default search engine
           vimium
+          # set new tab to home and focus on page instead of address bar
           new-tab-override
 
           # Youtube

@@ -7,9 +7,8 @@
 # [-] search suggest (settings dont works)
 # bookmark (local or here)
 # containers (use or not)
-# vim keybind
+# vim keybind backup or auto sync
 # vimium search engine, book mark...
-# new page to home
 
 with lib;
 

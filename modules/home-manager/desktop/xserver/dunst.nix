@@ -17,7 +17,6 @@ in
       libnotify
     ];
 
-    # TODO: disable alert
     services.dunst = {
       enable = true;
 

@@ -54,7 +54,6 @@ in
       color.pager = false;
     };
 
-    # TODO: maybe try out nixvim?
     home.persistence.main = mkIf imper.enable {
       directories = [
         ".cache/nvim"

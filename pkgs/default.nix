@@ -9,7 +9,7 @@ with pkgs;
 
   # scripts
   # TODO: import script here or ./script/default.nix
-  # TODO: prefix with scripts.abc?
+  # TODO: prefix with scripts, like scripts.abc?
   fmenu = callPackage ./scripts/fmenu.nix { };
   fff = callPackage ./scripts/fff.nix { };
 

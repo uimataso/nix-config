@@ -1,5 +1,5 @@
 name: leetcode-rust
-root: ~/src/leedcode
+root: ~/src/leetcode
 
 windows:
-  - editor: $EDITOR src/Solution.rs
+  - editor: $EDITOR src/solution.rs

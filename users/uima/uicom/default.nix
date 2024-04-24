@@ -12,6 +12,7 @@
 
       # TODO: move to pipewire.nix
       ".local/state/wireplumber"
+      ".cache/nix"
     ];
   };
 

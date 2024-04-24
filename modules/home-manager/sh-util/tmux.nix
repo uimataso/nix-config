@@ -1,8 +1,5 @@
 { config, lib, pkgs, ... }:
 
-# TODO: with ssh
-# TODO: send command
-
 # https://man.archlinux.org/man/tmux.1
 
 with lib;

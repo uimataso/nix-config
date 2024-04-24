@@ -24,6 +24,10 @@ in
     home.persistence.main = {
       persistentStoragePath = cfg.persist_dir;
       allowOther = true;
+      directories = [
+        # otherwise cache file will be owned by root
+        ".cache/nix"
+      ];
     };
 
     home.activation = {
@@ -32,5 +36,6 @@ in
         rm -rf $HOME/.nix-profile
       '';
     };
+
   };
 }

@@ -2,7 +2,6 @@
 
 # TODO: with ssh
 # TODO: send command
-# TODO: theme support
 
 # https://man.archlinux.org/man/tmux.1
 
@@ -10,6 +9,8 @@ with lib;
 
 let
   cfg = config.uimaConfig.sh-util.tmux;
+
+  scheme = config.scheme;
 in
 {
   options.uimaConfig.sh-util.tmux = {
@@ -67,17 +68,17 @@ in
         set -g status-left-length 20
         set -g status-right "#[bright]#(whoami):#h  "
         setw -g window-status-current-format '-#I:#W- '
-        setw -g window-status-format '#[fg=#9b9b9b]#I:#W #[fg=default]'
+        setw -g window-status-format '#[fg=#${scheme.base06}]#I:#W #[fg=default]'
 
-        set-option -g status-style fg='#9b9b9b',bg=default
+        set-option -g status-style fg='#${scheme.base06}',bg=default
         set -g message-style bg=black
         set -g message-command-style bg=black
         set -g mode-style fg=black,bg=green
 
         # pane border colors
-        set -g pane-border-style        fg='#585858'
+        set -g pane-border-style        fg='#${scheme.base04}'
         set -g pane-active-border-style fg=magenta
-        set -g popup-border-style       fg='#585858'
+        set -g popup-border-style       fg='#${scheme.base04}'
 
         # window title colors
         set -g window-status-current-style fg=magenta,bg=default,bold

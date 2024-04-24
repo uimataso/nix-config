@@ -5,14 +5,15 @@ with lib;
 let
   cfg = config.uimaConfig.programs.firefox.profile.uima;
 
+  scheme = config.scheme;
+
   name = "uima";
 
-  palette = config.colorScheme.palette;
   color = ''
     :root{
-      --bg-color: #${palette.base00} !important;
-      --fg-color: #${palette.base0F} !important;
-      --pr-color: #${palette.base05} !important;
+      --bg-color: #${scheme.base00} !important;
+      --fg-color: #${scheme.base07} !important;
+      --pr-color: #${scheme.base0E} !important;
     }
   '';
 

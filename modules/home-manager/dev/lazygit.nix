@@ -4,6 +4,8 @@ with lib;
 
 let
   cfg = config.uimaConfig.dev.lazygit;
+
+  scheme = config.scheme;
 in
 {
   options.uimaConfig.dev.lazygit = {
@@ -28,8 +30,7 @@ in
         disableStartupPopups = true;
         gui = {
           theme = {
-            # TODO: theme support
-            inactiveBorderColor = [ "#777777" ];
+            inactiveBorderColor = [ "#${scheme.base05}" ];
           };
           showBottomLine = false;
         };

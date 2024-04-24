@@ -10,7 +10,7 @@ bind 'set completion-map-case on'     # Treat hypen and underscores as equivalen
 
 # Prompt
 # shellcheck disable=SC2016
-direnv='$(test -n "${DIRENV_FILE//}" && printf "\[\e[1;90m\]env|\[\e[0m\]" || true)'
+direnv='$(test -n "${DIRENV_FILE//}" && printf "\[\e[1;37m\]env|\[\e[0m\]" || true)'
 # user='\[\e[32m\e[1m\]\u@\h\[\e[0m\]'
 host='\[\e[32m\e[1m\]\h\[\e[0m\]'
 path='\[\e[36m\e[1m\]\w\[\e[0m\]'

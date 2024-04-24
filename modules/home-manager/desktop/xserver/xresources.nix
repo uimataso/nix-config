@@ -5,12 +5,12 @@ with lib;
 let
   cfg = config.uimaConfig.desktop.xserver.xresources;
 
-  palette = config.colorScheme.palette;
-  bg = "#${palette.base00}";
-  fg = "#${palette.base0F}";
-  accent = "#${palette.base05}";
+  scheme = config.scheme;
 
-  # TODO: font management
+  bg = "#${scheme.base00}";
+  fg = "#${scheme.base07}";
+  accent = "#${scheme.base0E}";
+
   font = "MesloLGS Nerd Font";
 in
 {
@@ -38,8 +38,8 @@ in
       "picom.inactive_opacity" = 1;
 
       "dwm.maincolor" = accent;
-      "dwm.bgaltcolor" = "#444444";
-      "dwm.fgaltcolor" = "#6c6c6c";
+      "dwm.bgaltcolor" = "#${scheme.base03}";
+      "dwm.fgaltcolor" = "#${scheme.base05}";
       "dwm.gappx" = 5;
       "dwm.showbar" = 1;
 
@@ -62,31 +62,23 @@ in
       "Xft.hintstyle" = "hintfull";
       "Xft.lcdfilter" = "lcdfilter";
 
-      "*.black" = "#${palette.base00}";
-      "*.red" = "#${palette.base01}";
-      "*.green" = "#${palette.base02}";
-      "*.yellow" = "#${palette.base03}";
-      "*.blue" = "#${palette.base04}";
-      "*.magenta" = "#${palette.base05}";
-      "*.cyan" = "#${palette.base06}";
-      "*.white" = "#${palette.base07}";
+      "*color0" = "#${scheme.base00}";
+      "*color1" = "#${scheme.base08}";
+      "*color2" = "#${scheme.base0B}";
+      "*color3" = "#${scheme.base0A}";
+      "*color4" = "#${scheme.base0D}";
+      "*color5" = "#${scheme.base0E}";
+      "*color6" = "#${scheme.base0C}";
+      "*color7" = "#${scheme.base05}";
 
-      "*.color0" = "#${palette.base00}";
-      "*.color1" = "#${palette.base01}";
-      "*.color2" = "#${palette.base02}";
-      "*.color3" = "#${palette.base03}";
-      "*.color4" = "#${palette.base04}";
-      "*.color5" = "#${palette.base05}";
-      "*.color6" = "#${palette.base06}";
-      "*.color7" = "#${palette.base07}";
-      "*.color8" = "#${palette.base08}";
-      "*.color9" = "#${palette.base09}";
-      "*.color10" = "#${palette.base0A}";
-      "*.color11" = "#${palette.base0B}";
-      "*.color12" = "#${palette.base0C}";
-      "*.color13" = "#${palette.base0D}";
-      "*.color14" = "#${palette.base0E}";
-      "*.color15" = "#${palette.base0F}";
+      "*color8" = "#${scheme.base03}";
+      "*color9" = "#${scheme.base09}";
+      "*color10" = "#${scheme.base01}";
+      "*color11" = "#${scheme.base02}";
+      "*color12" = "#${scheme.base04}";
+      "*color13" = "#${scheme.base06}";
+      "*color14" = "#${scheme.base0F}";
+      "*color15" = "#${scheme.base07}";
     };
   };
 }

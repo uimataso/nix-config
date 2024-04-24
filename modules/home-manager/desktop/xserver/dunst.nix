@@ -5,7 +5,7 @@ with lib;
 let
   cfg = config.uimaConfig.desktop.xserver.dunst;
 
-  palette = config.colorScheme.palette;
+  scheme = config.scheme;
 in
 {
   options.uimaConfig.desktop.xserver.dunst = {
@@ -38,8 +38,7 @@ in
           horizontal_padding = 12;
           text_icon_padding = 0;
           frame_width = 0;
-          # TODO: theme support
-          frame_color = "#aaaaaa";
+          frame_color = "#${scheme.base06}";
           gap_size = 4;
 
           font = "Monospace 11";
@@ -49,24 +48,21 @@ in
         };
 
         urgency_low = {
-          background = "#262626";
-          foreground = "#d0d0d0";
+          background = "#${scheme.base02}";
+          foreground = "#${scheme.base07}";
           timeout = 5;
-          #default_icon = /path/to/icon;
         };
 
         urgency_normal = {
-          background = "#3a3a3a";
-          foreground = "#d0d0d0";
+          background = "#${scheme.base03}";
+          foreground = "#${scheme.base07}";
           timeout = 5;
-          #default_icon = /path/to/icon;
         };
 
         urgency_critical = {
-          background = "#e67e80";
-          foreground = "#d0d0d0";
+          background = "#${scheme.base08}";
+          foreground = "#${scheme.base06}";
           timeout = 0;
-          #default_icon = /path/to/icon;
         };
       };
     };

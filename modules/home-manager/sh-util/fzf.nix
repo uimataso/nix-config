@@ -23,9 +23,6 @@ in
       ];
 
       defaultCommand = "fd -HL --exclude '.git' --type file";
-
-      # TODO: theme support
-      # color = {}
     };
   };
 }

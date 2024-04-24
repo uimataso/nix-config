@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 with lib;
 
 let
   cfg = config.uimaConfig.programs.zathura;
 
-  palette = config.colorScheme.palette;
+  scheme = config.scheme;
 in
 {
   options.uimaConfig.programs.zathura = {
@@ -35,29 +35,11 @@ in
 
         recolor = true;
 
-        # TODO: theme support, font management
-
         font = "MesloLGS Nerd Font 11";
-        default-bg = "rgba(18,18,18,0.85)";
-        default-fg = "#d0d0d0";
-
-        statusbar-bg = "#121212";
-        statusbar-fg = "#d0d0d0";
-
-        highlight-color = "#ebcb8b";
-        highlight-active-color = "#81a1c1";
-
-        completion-bg = "#121212";
-        completion-fg = "#d0d0d0";
-
-        notification-bg = "#121212";
-        notification-fg = "#d0d0d0";
-
-        recolor-lightcolor = "rgba(18,18,18,0.75)";
-        recolor-darkcolor = "#cccccc";
-        # keep original color
-        recolor-keephue = true;
       };
+
+      # TODO: transparent support
+      extraConfig = builtins.readFile (config.scheme inputs.base16-zathura);
     };
   };
 }

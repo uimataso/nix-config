@@ -61,7 +61,7 @@ in
 
       # TODO: theme support?
       colors = {
-        user = "green";
+        user = "dark_green";
         group = "dark_green";
         permission = {
           read = "dark_green";
@@ -71,12 +71,12 @@ in
           no-access = 245;
           octal = 6;
           acl = "dark_cyan";
-          context = "cyan";
+          context = "dard_cyan";
         };
         date = {
-          hour-old = "cyan";
-          day-old = "cyan";
-          older = "cyan";
+          hour-old = "dark_cyan";
+          day-old = "dark_cyan";
+          older = "dark_cyan";
         };
         size = {
           none = 2;

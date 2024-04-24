@@ -20,10 +20,13 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
-    nix-colors.url = "github:misterio77/nix-colors";
-
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     arkenfox.inputs.nixpkgs.follows = "nixpkgs";
+
+    base16.url = "github:SenchoPens/base16.nix";
+
+    base16-zathura.url = "github:haozeke/base16-zathura";
+    base16-zathura.flake = false;
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:

@@ -30,7 +30,7 @@ in
         disableStartupPopups = true;
         gui = {
           theme = {
-            inactiveBorderColor = [ "#${scheme.base05}" ];
+            inactiveBorderColor = [ "#${scheme.base06}" ];
           };
           showBottomLine = false;
         };

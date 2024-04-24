@@ -43,7 +43,9 @@ writeShellApplication {
             --color prompt:245 \
             --cycle \
             --bind left:"execute(touch $_fff_up_dir_temp)+abort",right:accept \
-            --bind ctrl-h:"execute(touch $_fff_up_dir_temp)+abort",ctrl-l:accept
+            --bind ctrl-h:"execute(touch $_fff_up_dir_temp)+abort",ctrl-l:accept \
+            --bind pgup:preview-up \
+            --bind pgdn:preview-down
       )"
 
       # Go upper dir

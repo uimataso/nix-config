@@ -13,7 +13,9 @@ in
   config = mkIf cfg.enable {
     programs.bat = {
       enable = true;
-      config.theme = "base16";
+      # TODO: how to import yaml to bat?
+      # config.theme = "base16";
+      config.theme = "ansi"; # 8 colors
     };
   };
 }

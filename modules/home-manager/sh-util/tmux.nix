@@ -108,13 +108,6 @@ in
               name = "FZF_DEFAULT_OPTS";
               val = "'${fzfDefOpts} --height=100%'";
             };
-
-            # fzfPkg = pkgs.fzf.overrideAttrs (old: {
-            #   buildInputs = old.buildInputs ++ [ pkgs.makeWrapper ];
-            #   postInstall = old.postInstall or "" + ''
-            #     wrapProgram "$out/bin/fzf" --set FZF_DEFAULT_OPTS '${fzfDefOpts} --height=100%'
-            #   '';
-            # });
           in ''
             set -g @extrakto_key enter
             set -g @extrakto_fzf_tool "${fzfPkg}/bin/fzf"

@@ -17,6 +17,7 @@
     users.uima.enable = true;
 
     system = {
+      doas.enable = true;
       auto-upgrade.enable = true;
 
       impermanence.enable = true;
@@ -42,8 +43,8 @@
     };
 
     programs = {
-      doas.enable = true;
       bash.enable = true;
+      qmk.enable = true;
     };
 
     virt = {

@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./doas.nix
     ./bash.nix
+    ./qmk.nix
   ];
 }

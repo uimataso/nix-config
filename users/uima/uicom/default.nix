@@ -80,7 +80,7 @@
   };
 
   home.packages = with pkgs; [
-    # qmk
+    qmk
     # dig
     # whois
 

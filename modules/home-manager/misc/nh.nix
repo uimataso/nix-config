@@ -15,6 +15,7 @@ in
     home.shellAliases = {
       nn = "doas nixos-rebuild switch --flake \"$HOME/nix#$(hostname)\"";
       nr = "nix repl --expr \"builtins.getFlake \\\"$HOME/nix\\\"\"";
+      no = "nh os switch $HOME/nix";
     };
 
     home.packages = [

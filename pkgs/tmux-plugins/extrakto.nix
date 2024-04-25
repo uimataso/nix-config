@@ -16,7 +16,6 @@ pkgs.tmuxPlugins.mkTmuxPlugin {
   nativeBuildInputs = with pkgs; [ makeWrapper ];
   postInstall = ''
     for f in extrakto.sh open.sh; do
-      chmod +x $target/scripts/$f
       wrapProgram $target/scripts/$f \
         --prefix PATH : ${with pkgs; lib.makeBinPath [ fzf python3 xclip ]}
     done

@@ -17,7 +17,7 @@
     users.uima.enable = true;
 
     system = {
-      doas.enable = true;
+      sudo.enable = true;
       auto-upgrade.enable = true;
 
       impermanence.enable = true;

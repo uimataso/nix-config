@@ -11,10 +11,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    security.sudo.enable = true;
+    security.sudo = {
+      enable = true;
 
-    security.sudo.extraConfig = ''
-      Defaults        lecture = never
-    '';
+      extraConfig = ''
+        Defaults        lecture = never
+      '';
+    };
   };
 }

@@ -7,6 +7,13 @@ with lib;
 let
   cfg = config.uimaConfig.sh-util.tmux;
 
+  setEnvVar = {pkg, binPath, name, val}: pkg.overrideAttrs (old: {
+    buildInputs = old.buildInputs ++ [ pkgs.makeWrapper ];
+    postInstall = old.postInstall or "" + ''
+      wrapProgram "$out/${binPath}" --set ${name} ${val}
+    '';
+  });
+
   scheme = config.scheme;
 in
 {
@@ -92,14 +99,29 @@ in
         }
         {
           # prefix enter
-          # TODO: custom fzf header (key hint)
           plugin = tmuxPlugins.extrakto;
-          extraConfig = ''
+          extraConfig = let
+            fzfDefOpts = config.home.sessionVariables.FZF_DEFAULT_OPTS;
+            fzfPkg = setEnvVar {
+              pkg = pkgs.fzf;
+              binPath = "bin/fzf";
+              name = "FZF_DEFAULT_OPTS";
+              val = "'${fzfDefOpts} --height=100%'";
+            };
+
+            # fzfPkg = pkgs.fzf.overrideAttrs (old: {
+            #   buildInputs = old.buildInputs ++ [ pkgs.makeWrapper ];
+            #   postInstall = old.postInstall or "" + ''
+            #     wrapProgram "$out/bin/fzf" --set FZF_DEFAULT_OPTS '${fzfDefOpts} --height=100%'
+            #   '';
+            # });
+          in ''
             set -g @extrakto_key enter
-            set -g @extrakto_fzf_tool 'fzf --height=100%'
+            set -g @extrakto_fzf_tool "${fzfPkg}/bin/fzf"
             set -g @extrakto_fzf_layout reverse
             set -g @extrakto_split_direction p
             set -g @extrakto_popup_size 50%
+            set -g @extrakto_fzf_header "f g i c"
           '';
         }
         {

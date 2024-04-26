@@ -101,16 +101,12 @@ in
           # prefix enter
           plugin = tmuxPlugins.extrakto;
           extraConfig = let
-            fzfDefOpts = config.home.sessionVariables.FZF_DEFAULT_OPTS;
-            fzfPkg = setEnvVar {
-              pkg = pkgs.fzf;
-              binPath = "bin/fzf";
-              name = "FZF_DEFAULT_OPTS";
-              val = "'${fzfDefOpts} --height=100%'";
-            };
+            myFzf = pkgs.writeShellScriptBin "myFzf" ''
+              ${pkgs.fzf}/bin/fzf --color=pointer:5 "$@"
+            '';
           in ''
             set -g @extrakto_key enter
-            set -g @extrakto_fzf_tool "${fzfPkg}/bin/fzf"
+            set -g @extrakto_fzf_tool "${myFzf}/bin/myFzf"
             set -g @extrakto_fzf_layout reverse
             set -g @extrakto_split_direction p
             set -g @extrakto_popup_size 50%

@@ -1,8 +1,10 @@
 keys:
-  - &uicom age1ql7unw72ckhmrtl6xcltvk9eyheyvkzh0acffuke0ntpecwy7dwsh47e0f
+  - &uicom age1pqewa560qjhshxyqzk2metejc59vd3rj87hxln44vf98jgmm73jsvfruuk
+  - &uima age1tqjk89zjajqr98qxx64vmg5z9ckm8vf0wylh23uzqpjplwk30plqnj9grz
 
 creation_rules:
   - path_regex: secrets.yaml$
     key_groups:
     - age:
       - *uicom
+      - *uima

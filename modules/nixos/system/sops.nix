@@ -4,6 +4,10 @@ with lib;
 
 let
   cfg = config.uimaConfig.system.sops;
+
+  isEd25519 = k: k.type == "ed25519";
+  keys = builtins.filter isEd25519 config.services.openssh.hostKeys;
+  keyPaths = map (k: k.path) keys;
 in
 {
   options.uimaConfig.system.sops = {
@@ -16,18 +20,12 @@ in
 
   config = mkIf cfg.enable {
     sops = {
-      defaultSopsFile = ../../../secrets.yaml;
+      age.sshKeyPaths = keyPaths;
 
-      age = {
-        # Default `sshKeyPaths` is auto generated from `services.openssh.hostKeys` with type `ed25519`
-        # see: https://github.com/Mic92/sops-nix/blob/09f1bc8ba3277c0f052f7887ec92721501541938/modules/sops/default.nix#L266
-        keyFile = "/var/lib/sops-nix/key.txt";
-        generateKey = true;
+      secrets.hello = {
+        sopsFile = ../../../secrets.yaml;
+        owner = "uima";
       };
-
-      # secrets.hello = {
-      #   owner = "ui";
-      # };
     };
 
     # environment.interactiveShellInit = ''

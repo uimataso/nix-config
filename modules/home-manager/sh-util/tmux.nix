@@ -102,7 +102,7 @@ in
           plugin = tmuxPlugins.extrakto;
           extraConfig = let
             myFzf = pkgs.writeShellScriptBin "myFzf" ''
-              ${pkgs.fzf}/bin/fzf --color=pointer:5 "$@"
+              ${pkgs.fzf}/bin/fzf --color=pointer:5,gutter:-1 "$@"
             '';
           in ''
             set -g @extrakto_key enter

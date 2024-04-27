@@ -81,6 +81,7 @@
 
   home.packages = with pkgs; [
     qmk
+    kicad
     # dig
     # whois
 

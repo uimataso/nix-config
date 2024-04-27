@@ -4,6 +4,8 @@ with lib;
 
 let
   cfg = config.uimaConfig.misc.nh;
+
+  flakeDir = "$HOME/nix";
 in
 {
   options.uimaConfig.misc.nh = {
@@ -13,9 +15,9 @@ in
   config = mkIf cfg.enable {
     # Since nh need `sudo` :(
     home.shellAliases = {
-      nn = "doas nixos-rebuild switch --flake \"$HOME/nix#$(hostname)\"";
-      nr = "nix repl --expr \"builtins.getFlake \\\"$HOME/nix\\\"\"";
-      no = "nh os switch $HOME/nix";
+      nr = "nix repl --expr \"builtins.getFlake \\\"${flakeDir}\\\"\"";
+      no = "nh os switch ${flakeDir}";
+      nt = "nh os test ${flakeDir}";
     };
 
     home.packages = [

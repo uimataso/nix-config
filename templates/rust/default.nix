@@ -1,7 +1,7 @@
 { rustPlatform }:
 
 rustPlatform.buildRustPackage {
-  pname = "foo-bar";
+  pname = "{{CODENAME}}";
   version = "0.1.0";
 
   src = ./.;

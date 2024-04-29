@@ -1,5 +1,5 @@
 [package]
-name = "foo-bar"
+name = "{{CODENAME}}"
 version = "0.1.0"
 license = "MIT"
 edition = "2021"

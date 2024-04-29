@@ -10,6 +10,8 @@ with pkgs;
   # scripts
   # TODO: import script here or ./script/default.nix
   # TODO: prefix with scripts, like scripts.abc?
+  nix-template-tool = callPackage ./scripts/nix-template-tool.nix { };
+
   fmenu = callPackage ./scripts/fmenu.nix { };
   fff = callPackage ./scripts/fff.nix { };
 

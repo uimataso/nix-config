@@ -1,5 +1,5 @@
 {
-  description = "Foo Bar Rust Project";
+  description = "{{NAME}}";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";

@@ -20,7 +20,6 @@
       sops.enable = true;
       sudo.enable = true;
       auto-upgrade.enable = true;
-      auto-upgrade.commitLockFile  = true;
 
       impermanence.enable = true;
       impermanence.btrfs.enable = true;

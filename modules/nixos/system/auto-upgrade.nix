@@ -17,12 +17,6 @@ in
       default = false;
       description = "Allow auto reboot when upgrade";
     };
-
-    commitLockFile = mkOption {
-      type = types.bool;
-      default = false;
-      description = "commit lock file when autoupgrade";
-    };
   };
 
   config = mkIf cfg.enable {
@@ -30,12 +24,7 @@ in
       enable = true;
       dates = "22:00";
       randomizedDelaySec = "30min";
-      flake = flakeDir;
-      flags = [
-        "--update-input"
-        "nixpkgs"
-        "-L" # print build logs
-      ] ++ lists.optional cfg.commitLockFile "--commit-lock-file";
+      flake = flakeUri;
       allowReboot = cfg.allowReboot;
     };
 

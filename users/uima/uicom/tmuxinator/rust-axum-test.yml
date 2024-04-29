@@ -1,5 +1,5 @@
-name: leetcode-rust
-root: ~/src/leetcode
+name: rust-axum-test
+root: ~/src/rust-axum-test
 
 startup_window: editor
 startup_pane: 2
@@ -9,4 +9,4 @@ windows:
       layout: b5e4,211x51,0,0{50x51,0,0,14,160x51,51,0,15}
       panes:
         - clear
-        - $EDITOR src/solution.rs
+        - $EDITOR src/main.rs

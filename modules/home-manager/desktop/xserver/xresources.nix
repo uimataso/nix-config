@@ -72,12 +72,12 @@ in
       "*color7" = "#${scheme.base05}";
 
       "*color8" = "#${scheme.base03}";
-      "*color9" = "#${scheme.base09}";
-      "*color10" = "#${scheme.base01}";
-      "*color11" = "#${scheme.base02}";
-      "*color12" = "#${scheme.base04}";
-      "*color13" = "#${scheme.base06}";
-      "*color14" = "#${scheme.base0F}";
+      "*color9" = "#${scheme.base08}";
+      "*color10" = "#${scheme.base0B}";
+      "*color11" = "#${scheme.base0A}";
+      "*color12" = "#${scheme.base0D}";
+      "*color13" = "#${scheme.base0E}";
+      "*color14" = "#${scheme.base0C}";
       "*color15" = "#${scheme.base07}";
     };
   };

@@ -21,7 +21,6 @@
     system = {
       ssh.enable = true;
       impermanence.enable = true;
-      auto-upgrade.enable = true;
       xdg.enable = true;
     };
 

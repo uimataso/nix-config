@@ -24,11 +24,6 @@ in
       ];
     };
 
-    nix.optimise = {
-      automatic = true;
-      dates = [ "23:00" ];
-    };
-
     nix.gc = {
       automatic = true;
       dates = "Mon *-*-* 21:30:00";

@@ -7,7 +7,7 @@ with lib;
 let
   cfg = config.uimaConfig.sh-util.tmux;
 
-  setEnvVar = {pkg, binPath, name, val}: pkg.overrideAttrs (old: {
+  setEnvVar = { pkg, binPath, name, val }: pkg.overrideAttrs (old: {
     buildInputs = old.buildInputs ++ [ pkgs.makeWrapper ];
     postInstall = old.postInstall or "" + ''
       wrapProgram "$out/${binPath}" --set ${name} ${val}
@@ -100,18 +100,20 @@ in
         {
           # prefix enter
           plugin = tmuxPlugins.extrakto;
-          extraConfig = let
-            myFzf = pkgs.writeShellScriptBin "myFzf" ''
-              ${pkgs.fzf}/bin/fzf --color=pointer:5,gutter:-1 "$@"
+          extraConfig =
+            let
+              myFzf = pkgs.writeShellScriptBin "myFzf" ''
+                ${pkgs.fzf}/bin/fzf --color=pointer:5,gutter:-1 "$@"
+              '';
+            in
+            ''
+              set -g @extrakto_key enter
+              set -g @extrakto_fzf_tool "${myFzf}/bin/myFzf"
+              set -g @extrakto_fzf_layout reverse
+              set -g @extrakto_split_direction p
+              set -g @extrakto_popup_size 50%
+              set -g @extrakto_fzf_header "f g i c"
             '';
-          in ''
-            set -g @extrakto_key enter
-            set -g @extrakto_fzf_tool "${myFzf}/bin/myFzf"
-            set -g @extrakto_fzf_layout reverse
-            set -g @extrakto_split_direction p
-            set -g @extrakto_popup_size 50%
-            set -g @extrakto_fzf_header "f g i c"
-          '';
         }
         {
           # prefix u

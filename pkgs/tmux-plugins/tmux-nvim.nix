@@ -5,7 +5,7 @@
 }:
 
 pkgs.tmuxPlugins.mkTmuxPlugin {
-  pluginName = "tmux-nvim";
+  pluginName = "tmux.nvim";
   version = "unstable-2024-03-05";
   src = fetchFromGitHub {
     owner = "aserowy";

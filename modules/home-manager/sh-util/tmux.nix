@@ -92,11 +92,13 @@ in
       plugins = with pkgs; [
         {
           plugin = tmuxPlugins.tmux-nvim;
+          extraConfig = ''
+            set -g @tmux-nvim-resize-step-x 3
+            set -g @tmux-nvim-resize-step-y 3
+          '';
         }
-        {
-          # prefix F
-          plugin = tmuxPlugins.tmux-fzf;
-        }
+        tmuxPlugins.tmux-fzf
+        tmuxPlugins.fzf-tmux-url
         {
           # prefix enter
           plugin = tmuxPlugins.extrakto;
@@ -114,10 +116,6 @@ in
               set -g @extrakto_popup_size 50%
               set -g @extrakto_fzf_header "f g i c"
             '';
-        }
-        {
-          # prefix u
-          plugin = tmuxPlugins.fzf-tmux-url;
         }
       ];
     };

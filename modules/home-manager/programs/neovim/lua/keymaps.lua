@@ -113,29 +113,29 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- Navigate windows
-local function win_focus_resize(arr, dir, cmd)
-  vim.keymap.set('n', '<A-' .. arr .. '>', '<C-w>' .. dir)
-  vim.keymap.set('i', '<A-' .. arr .. '>', '<C-\\><C-N><C-w>' .. dir)
-  vim.keymap.set('t', '<A-' .. arr .. '>', '<C-\\><C-N><C-w>' .. dir)
-  vim.keymap.set('n', '<A-S-' .. arr .. '>', '3<C-w>' .. cmd)
-  vim.keymap.set('i', '<A-S-' .. arr .. '>', '<C-\\><C-N>3<C-w>' .. cmd .. 'gi')
-  vim.keymap.set('t', '<A-S-' .. arr .. '>', '<C-\\><C-N>3<C-w>' .. cmd .. 'i')
-end
-
--- Alt + (Sht) + h/j/k/l
-win_focus_resize('h', 'h', '<')
-win_focus_resize('j', 'j', '+')
-win_focus_resize('k', 'k', '-')
-win_focus_resize('l', 'l', '>')
-win_focus_resize('Left', 'h', '<')
-win_focus_resize('Down', 'j', '+')
-win_focus_resize('Up', 'k', '-')
-win_focus_resize('Right', 'l', '>')
-
-vim.keymap.set('n', '<A-w>', '<C-w><C-w>')
-vim.keymap.set('i', '<A-w>', '<C-\\><C-N><C-w><C-w>')
-vim.keymap.set('t', '<A-w>', '<C-\\><C-N><C-w><C-w>')
+-- -- Navigate windows
+-- local function win_focus_resize(arr, dir, cmd)
+--   vim.keymap.set('n', '<A-' .. arr .. '>', '<C-w>' .. dir)
+--   vim.keymap.set('i', '<A-' .. arr .. '>', '<C-\\><C-N><C-w>' .. dir)
+--   vim.keymap.set('t', '<A-' .. arr .. '>', '<C-\\><C-N><C-w>' .. dir)
+--   vim.keymap.set('n', '<A-S-' .. arr .. '>', '3<C-w>' .. cmd)
+--   vim.keymap.set('i', '<A-S-' .. arr .. '>', '<C-\\><C-N>3<C-w>' .. cmd .. 'gi')
+--   vim.keymap.set('t', '<A-S-' .. arr .. '>', '<C-\\><C-N>3<C-w>' .. cmd .. 'i')
+-- end
+--
+-- -- Alt + (Sht) + h/j/k/l
+-- win_focus_resize('h', 'h', '<')
+-- win_focus_resize('j', 'j', '+')
+-- win_focus_resize('k', 'k', '-')
+-- win_focus_resize('l', 'l', '>')
+-- win_focus_resize('Left', 'h', '<')
+-- win_focus_resize('Down', 'j', '+')
+-- win_focus_resize('Up', 'k', '-')
+-- win_focus_resize('Right', 'l', '>')
+--
+-- vim.keymap.set('n', '<A-w>', '<C-w><C-w>')
+-- vim.keymap.set('i', '<A-w>', '<C-\\><C-N><C-w><C-w>')
+-- vim.keymap.set('t', '<A-w>', '<C-\\><C-N><C-w><C-w>')
 
 
 -- Abbr for command mode

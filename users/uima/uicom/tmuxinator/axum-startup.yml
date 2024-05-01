@@ -1,11 +1,12 @@
 name: rust-web-test
 root: ~/src/axum-startup
 
+startup_window: editor
+startup_pane: 2
+
 windows:
-  - editor: $EDITOR src/main.rs
-  - sh:
-  # - quick-dev:
-  #     layout: even-horizontal
-  #     panes:
-  #       - cargo watch -q -c -w src/ -x run
-  #       - cargo watch -q -c -w tests/ -x "test -q quick_dev -- --nocapture"
+  - editor:
+      layout: b5e4,211x51,0,0{50x51,0,0,14,160x51,51,0,15}
+      panes:
+        - clear
+        - $EDITOR src/main.rs

@@ -83,14 +83,14 @@
     # whois
 
     # Scripts
-    extract
-    bright
+    scripts.extract
+    scripts.bright
 
-    swallower
-    screenshot
+    scripts.swallower
+    scripts.screenshot
 
-    open
-    power-menu
-    app-launcher
+    scripts.open
+    scripts.power-menu
+    scripts.app-launcher
   ];
 }

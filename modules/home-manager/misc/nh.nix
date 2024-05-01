@@ -21,7 +21,7 @@ in
       nr = "nix repl --expr \"builtins.getFlake \\\"${flakeDir}\\\"\"";
       nph = "nix profile history --profile /nix/var/nix/profiles/system";
       npd = "nix profile diff-closures --profile /nix/var/nix/profiles/system";
-      it = "${pkgs.nix-template-tool}/bin/nix-template-tool";
+      it = "${pkgs.scripts.nix-template-tool}/bin/nix-template-tool";
     };
 
     home.packages = [

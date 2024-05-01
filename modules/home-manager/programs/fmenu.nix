@@ -17,7 +17,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ fmenu ];
+    home.packages = with pkgs; [ scripts.fmenu ];
 
     home.sessionVariables = mkIf cfg.defaultDmenu {
       DMENU = "fmenu";

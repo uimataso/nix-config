@@ -12,7 +12,7 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      fff
+      scripts.fff
     ];
 
     home.shellAliases = {

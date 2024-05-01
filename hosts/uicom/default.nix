@@ -51,6 +51,7 @@
     virt = {
       vm.enable = true;
       podman.enable = true;
+      # docker.enable = true;
     };
   };
 }

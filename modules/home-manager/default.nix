@@ -5,6 +5,7 @@
     ./sh
     ./sh-util
     ./dev
+    ./virt
     ./programs
     ./services
     ./desktop

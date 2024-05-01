@@ -52,6 +52,11 @@
       lazygit.enable = true;
     };
 
+    virt = {
+      # docker.enable = true;
+      podman.enable = true;
+    };
+
     programs = {
       st.enable = true;
       st.defaultTerminal = true;

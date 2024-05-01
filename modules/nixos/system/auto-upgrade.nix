@@ -20,6 +20,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    # TODO: nofy when auto upgrade
+    # (https://www.reddit.com/r/NixOS/comments/15yh0qo/systemautoupgrade_with_email_notifications/)
     system.autoUpgrade = {
       enable = true;
       dates = "22:00";
@@ -30,9 +32,9 @@ in
 
     nix.gc = {
       automatic = true;
-      dates = "Mon *-*-* 21:30:00";
+      dates = "weekly";
       randomizedDelaySec = "30min";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 30d";
     };
   };
 }

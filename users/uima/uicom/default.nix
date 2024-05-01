@@ -9,9 +9,6 @@
     directories = [
       "nix"
       "src"
-
-      # TODO: move to pipewire.nix
-      ".local/state/wireplumber"
     ];
   };
 
@@ -22,6 +19,7 @@
       ssh.enable = true;
       impermanence.enable = true;
       xdg.enable = true;
+      pipewire.enable = true;
     };
 
     sh.bash.enable = true;
@@ -86,7 +84,6 @@
 
     # Scripts
     extract
-    vl
     bright
 
     swallower

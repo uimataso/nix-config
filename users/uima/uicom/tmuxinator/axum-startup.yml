@@ -1,4 +1,4 @@
-name: rust-web-test
+name: axum-startup
 root: ~/src/axum-startup
 
 startup_window: editor

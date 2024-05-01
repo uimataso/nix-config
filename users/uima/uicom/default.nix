@@ -81,16 +81,5 @@
     kicad
     # dig
     # whois
-
-    # Scripts
-    scripts.extract
-    scripts.bright
-
-    scripts.swallower
-    scripts.screenshot
-
-    scripts.open
-    scripts.power-menu
-    scripts.app-launcher
   ];
 }

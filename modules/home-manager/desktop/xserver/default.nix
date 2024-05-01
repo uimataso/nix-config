@@ -15,6 +15,7 @@ in
     ./xresources.nix
     ./xrandr.nix
     ./xcompmgr.nix
+    ./scripts.nix
 
     ./wallpaper.nix
     ./dunst.nix
@@ -27,6 +28,7 @@ in
       xsession.enable = mkDefault true;
       xrandr.enable = mkDefault true;
       xcompmgr.enable = mkDefault true;
+      scripts.enable = mkDefault true;
     };
 
     # Hide mouse cursor

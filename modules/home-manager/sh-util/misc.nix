@@ -14,6 +14,7 @@ in
     home.packages = with pkgs; [
       fd
       rsync
+      scripts.extract
     ];
 
     programs.htop.enable = true;

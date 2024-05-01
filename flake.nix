@@ -1,6 +1,10 @@
 {
   description = "My flake";
 
+  # TODO: LSP
+  # TODO: push extrakto to nixpkgs
+  # TODO: sops
+
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
 

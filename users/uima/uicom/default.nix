@@ -30,7 +30,8 @@
       fzf.enable = true;
       fff.enable = true;
       bat.enable = true;
-      lsd.enable = true;
+      # lsd.enable = true;
+      eza.enable = true;
       tmux.enable = true;
       tmuxinator.enable = true;
       tmuxinator.dir = ./tmuxinator;

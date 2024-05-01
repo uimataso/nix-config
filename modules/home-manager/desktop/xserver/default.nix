@@ -15,7 +15,6 @@ in
     ./xresources.nix
     ./xrandr.nix
     ./xcompmgr.nix
-    ./scripts.nix
 
     ./wallpaper.nix
     ./dunst.nix
@@ -28,7 +27,6 @@ in
       xsession.enable = mkDefault true;
       xrandr.enable = mkDefault true;
       xcompmgr.enable = mkDefault true;
-      scripts.enable = mkDefault true;
     };
 
     # Hide mouse cursor
@@ -36,6 +34,11 @@ in
 
     home.packages = with pkgs; [
       xclip
+      scripts.open
+      scripts.power-menu
+      scripts.app-launcher
+      scripts.swallower
+      scripts.screenshot
     ];
 
     xsession.initExtra = "xset s off -dpms"; # No screen saver

@@ -4,6 +4,8 @@ with lib;
 
 let
   cfg = config.uimaConfig.virt.docker;
+
+  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.virt.docker = {
@@ -18,6 +20,12 @@ in
     virtualisation.docker = {
       enable = true;
       rootless.enable = true;
+    };
+
+    environment.persistence.main = mkIf imper.enable {
+      directories = [
+        "/var/lib/docker"
+      ];
     };
   };
 }

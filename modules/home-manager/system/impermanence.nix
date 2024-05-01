@@ -25,7 +25,7 @@ in
       persistentStoragePath = cfg.persist_dir;
       allowOther = true;
       directories = [
-        # otherwise cache file will be owned by root
+        # Otherwise the cache file will be owned by root
         ".cache/nix"
       ];
     };

@@ -1,8 +1,5 @@
 { config, lib, pkgs, ... }:
 
-# TODO: rootless?
-# TODO: docker? lazydocker?
-
 with lib;
 
 let

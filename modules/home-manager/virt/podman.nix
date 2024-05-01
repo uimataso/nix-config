@@ -4,6 +4,8 @@ with lib;
 
 let
   cfg = config.uimaConfig.virt.podman;
+
+  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.virt.podman = {
@@ -23,6 +25,12 @@ in
       pmcd = "podman compose down";
       pmcl = "podman compose logs";
       pmcp = "podman compose pull";
+    };
+
+    home.persistence.main = mkIf imper.enable {
+      directories = [
+        ".local/share/containers/storage"
+      ];
     };
   };
 }

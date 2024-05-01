@@ -10,16 +10,17 @@ in
 {
   options.uimaConfig.misc.nh = {
     enable = mkEnableOption ''
-      Yet-another-nix-helper and other nix alias/secropt that improve QoL.
+      Yet-another-nix-helper and other nix alias/sceripts that improve QoL.
     '';
   };
 
   config = mkIf cfg.enable {
-    # Since nh need `sudo` :(
     home.shellAliases = {
-      nr = "nix repl --expr \"builtins.getFlake \\\"${flakeDir}\\\"\"";
       no = "nh os switch ${flakeDir}";
       nt = "nh os test ${flakeDir}";
+      nr = "nix repl --expr \"builtins.getFlake \\\"${flakeDir}\\\"\"";
+      nph = "nix profile history --profile /nix/var/nix/profiles/system";
+      npd = "nix profile diff-closures --profile /nix/var/nix/profiles/system";
       it = "${pkgs.nix-template-tool}/bin/nix-template-tool";
     };
 

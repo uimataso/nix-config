@@ -16,10 +16,9 @@
     global.enable = true;
 
     system = {
-      ssh.enable = true;
       impermanence.enable = true;
       xdg.enable = true;
-      pipewire.enable = true;
+      xdg-user-dirs.enable = true;
     };
 
     sh.bash.enable = true;
@@ -72,13 +71,12 @@
       fmenu.enable = true;
       fmenu.defaultDmenu = true;
 
-      discord.enable = true;
-      zathura.enable = true;
-    };
-
-    services = {
+      pipewire.enable = true;
+      ssh.enable = true;
       syncthing.enable = true;
       udiskie.enable = true;
+      discord.enable = true;
+      zathura.enable = true;
     };
   };
 

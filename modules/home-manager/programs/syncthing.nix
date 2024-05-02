@@ -3,12 +3,12 @@
 with lib;
 
 let
-  cfg = config.uimaConfig.services.syncthing;
+  cfg = config.uimaConfig.programs.syncthing;
 
   imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.services.syncthing = {
+  options.uimaConfig.programs.syncthing = {
     enable = mkEnableOption "Syncthing";
   };
 

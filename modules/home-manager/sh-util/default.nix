@@ -2,14 +2,15 @@
 
 {
   imports = [
-    ./fzf.nix
-    ./fff.nix
     ./bat.nix
-    ./lsd.nix
     ./eza.nix
-    ./tmux.nix
-    ./tmuxinator.nix
-    ./tealdeer.nix
+    ./fff.nix
+    ./fzf.nix
+    ./lsd.nix
     ./misc.nix
+    ./nh.nix
+    ./tealdeer.nix
+    ./tmuxinator.nix
+    ./tmux.nix
   ];
 }

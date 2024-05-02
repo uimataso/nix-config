@@ -1,14 +1,12 @@
 {
   imports = [
     ./global.nix
-    ./system
+    ./desktop
+    ./dev
+    ./programs
     ./sh
     ./sh-util
-    ./dev
+    ./system
     ./virt
-    ./programs
-    ./services
-    ./desktop
-    ./misc
   ];
 }

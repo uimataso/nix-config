@@ -37,8 +37,6 @@ in
 
     home.sessionVariables = mkMerge [
       {
-        # TODO: move lang stuff out of here
-        CARGO_HOME = "${config.xdg.dataHome}/cargo";
         PAGER = lib.mkDefault "nvim +Man!";
         MANPAGER = lib.mkDefault "nvim +Man!";
       }

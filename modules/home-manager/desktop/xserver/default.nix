@@ -11,22 +11,22 @@ in
   };
 
   imports = [
-    ./xsession.nix
-    ./xresources.nix
-    ./xrandr.nix
     ./xcompmgr.nix
+    ./xrandr.nix
+    ./xresources.nix
+    ./xsession.nix
 
-    ./wallpaper.nix
     ./dunst.nix
     ./dwm
+    ./wallpaper.nix
   ];
 
   config = mkIf cfg.enable {
     uimaConfig.desktop.xserver = {
+      xcompmgr.enable = mkDefault true;
+      xrandr.enable = mkDefault true;
       xresources.enable = mkDefault true;
       xsession.enable = mkDefault true;
-      xrandr.enable = mkDefault true;
-      xcompmgr.enable = mkDefault true;
     };
 
     # Hide mouse cursor
@@ -34,11 +34,11 @@ in
 
     home.packages = with pkgs; [
       xclip
+      scripts.app-launcher
       scripts.open
       scripts.power-menu
-      scripts.app-launcher
-      scripts.swallower
       scripts.screenshot
+      scripts.swallower
     ];
 
     xsession.initExtra = "xset s off -dpms"; # No screen saver

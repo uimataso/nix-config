@@ -3,12 +3,12 @@
 with lib;
 
 let
-  cfg = config.uimaConfig.system.ssh;
+  cfg = config.uimaConfig.programs.ssh;
 
   imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.system.ssh = {
+  options.uimaConfig.programs.ssh = {
     enable = mkEnableOption "ssh";
   };
 

@@ -3,12 +3,12 @@
 with lib;
 
 let
-  cfg = config.uimaConfig.misc.nh;
+  cfg = config.uimaConfig.sh-util.nh;
 
   flakeDir = "$HOME/nix";
 in
 {
-  options.uimaConfig.misc.nh = {
+  options.uimaConfig.sh-util.nh = {
     enable = mkEnableOption ''
       Yet-another-nix-helper and other nix alias/sceripts that improve QoL.
     '';

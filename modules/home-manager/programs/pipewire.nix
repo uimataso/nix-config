@@ -3,12 +3,12 @@
 with lib;
 
 let
-  cfg = config.uimaConfig.system.pipewire;
+  cfg = config.uimaConfig.programs.pipewire;
 
   imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.system.pipewire = {
+  options.uimaConfig.programs.pipewire = {
     enable = mkEnableOption "Settings and tool for pipewire";
   };
 

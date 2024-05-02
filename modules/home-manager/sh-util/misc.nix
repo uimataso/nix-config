@@ -13,7 +13,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       fd
-      rsync
+      # rsync
       scripts.extract
     ];
 
@@ -22,9 +22,8 @@ in
     programs.ripgrep.enable = true;
 
     home.shellAliases = {
-      rc = "rsync -vhP";
+      # rc = "rsync -vhP";
       fclist = "fc-list : family";
-
       unitest = "curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt";
     };
   };

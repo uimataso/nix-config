@@ -3,8 +3,8 @@
 {
   imports = [
     ./impermanence.nix
-    ./ssh.nix
+    ./theme.nix
     ./xdg.nix
-    ./pipewire.nix
+    ./xdg-user-dirs.nix
   ];
 }

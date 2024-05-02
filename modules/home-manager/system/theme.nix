@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.uimaConfig.misc.theme;
+  cfg = config.uimaConfig.system.theme;
 in
 {
-  options.uimaConfig.misc.theme = {
+  options.uimaConfig.system.theme = {
     enable = mkEnableOption "theme";
 
     scheme = mkOption {

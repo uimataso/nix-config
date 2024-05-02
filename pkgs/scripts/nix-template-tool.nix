@@ -8,14 +8,13 @@
   ];
 
   text = ''
-    # TODO: how i pass this value from flake
-    flake="$HOME/nix"
+    flake_home="''${FLAKE_HOME:-$HOME/nix}"
 
     gray=$(tput setaf 247)
     reset=$(tput sgr0)
 
     # Select template
-    selected="$(nix eval -f "$flake/templates" --json \
+    selected="$(nix eval -f "$flake_home/templates" --json \
       | jq --arg gray "$gray" --arg reset "$reset" -r \
         'keys[] as $k | $k + "\t" + $gray + (.[$k] | .description) + $reset' \
       | column -t -s "$(printf '\t')" \
@@ -45,8 +44,8 @@
 
     # Do action
     case "$cmd" in
-      'new') nix flake "$cmd" "$project_code_name" -t "$flake#$selected" ;;
-      'init') nix flake "$cmd" -t "$flake#$selected" ;;
+      'new') nix flake "$cmd" "$project_code_name" -t "$flake_home#$selected" ;;
+      'init') nix flake "$cmd" -t "$flake_home#$selected" ;;
     esac
 
     # Replace template placeholder

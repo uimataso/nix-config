@@ -3,7 +3,7 @@
 }: writeShellApplication {
   name = "open";
   runtimeInputs = with pkgs; [
-    file
+    xdg-utils
   ];
 
   text = ''
@@ -12,8 +12,7 @@
       exit 1
     fi
 
-    # TODO: `file` or `xdg-mime query default` command
-    case $(file --mime-type "$1" -bL) in
+    case $(xdg-mime query filetype "$1") in
       video/* | audio/*)
         mpv "$@"
         ;;
@@ -36,7 +35,7 @@
         libreoffice "$@"
         ;;
 
-      *) ''${EDITOR} "$@" ;;
+      *) ''${EDITOR:-nano} "$@" ;;
     esac
   '';
 }

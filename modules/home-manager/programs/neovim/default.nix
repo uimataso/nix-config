@@ -22,15 +22,18 @@ in
     home.packages = with pkgs; [
       neovim
 
+      # telescope
       ripgrep
 
+      # lua lsp
+      lua-language-server
+      stylua # TODO: not working yet
+      # shell lsp
       shellcheck
       nodePackages.bash-language-server
 
-      libclang
+      # libclang
       # codelldb
-      lua-language-server
-      stylua
     ];
 
     home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./.;
@@ -44,7 +47,6 @@ in
         EDITOR = "nvim";
       })
     ];
-
 
     # Git pager
     programs.git.extraConfig = {

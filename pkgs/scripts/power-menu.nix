@@ -4,7 +4,6 @@
   name = "power-menu";
 
   text = ''
-    # TODO: dmenu solution
     dmenu="''${DMENU:-dmenu -i}"
 
     declare -A actions
@@ -15,7 +14,7 @@
       ["Logout"]="loginctl terminate-session ''${XDG_SESSION_ID-}"
     )
 
-    selected="$(printf '%s\n' "''${!actions[@]}" | "$dmenu")"
+    selected="$(printf '%s\n' "''${!actions[@]}" | $dmenu)"
 
     if [ -z "$selected" ]; then
       exit

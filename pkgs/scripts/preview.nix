@@ -1,21 +1,10 @@
 # vim:foldmethod=marker:foldlevel=0
 { writeShellApplication
 , pkgs
-}:
-let
-  # TODO: ls solution
-  # exa -a --group-directories-first --icons --color=always
-  # ls -A --group-directories-first --color=always
-  ls_cmd = "lsd -A --group-directories-first --color=always";
-  # exa -l --icons --color=always "$1"
-  # ls -l --color=always "$1"
-  ls_l_cmd = "lsd -l --color=always";
-in
-writeShellApplication
+}: writeShellApplication
 {
   name = "preview";
   runtimeInputs = with pkgs; [
-    lsd
     bat
     chafa
     jq
@@ -25,6 +14,9 @@ writeShellApplication
   ];
 
   text = ''
+    ls_cmd="''${PREVIEW_LS_CMD:-ls -A --group-directories-first --color=always}"
+    ls_l_cmd="''${PREVIEW_LS_L_CMD:-ls -l --color=always}"
+
     directory(){ #{{{
       normal=$(tput sgr0)
       green=$(tput setaf 2 bold)
@@ -45,10 +37,10 @@ writeShellApplication
 
       printf '\n'
 
-      ${ls_cmd} "$1"
+      $ls_cmd "$1"
     } #}}}
     file_info(){ #{{{
-      ${ls_l_cmd} "$1"
+      $ls_l_cmd "$1"
       printf '\n'
     } #}}}
     cat_file(){ #{{{

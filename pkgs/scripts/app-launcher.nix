@@ -1,22 +1,16 @@
 { writeShellApplication
 , pkgs
-}:
-let
-  # TODO: dmenu solution
-  dmenu = "fmenu";
-  term = "$TERMINAL -e sh -c";
-  # term="${config.home.sessionVariables.TERMINAL} -e sh -c";
-in
-writeShellApplication {
+}: writeShellApplication {
   name = "app-launcher";
   runtimeInputs = with pkgs; [
     dex
     (callPackage ./fmenu.nix { })
   ];
 
-  # TODO: reserch desktop entry (desktop entry, desktop action)
-
   text = ''
+    dmenu="''${DMENU:-dmenu -i}"
+    term="''${TERMINAL:-st} -e sh -c";
+
     declare -A apps
     apps=()
 
@@ -43,7 +37,7 @@ writeShellApplication {
       done
     done
 
-    selected="$(printf '%s\n' "''${!apps[@]}" | "${dmenu}")"
+    selected="$(printf '%s\n' "''${!apps[@]}" | $dmenu)"
 
     if [ -z "$selected" ]; then
       exit
@@ -51,8 +45,8 @@ writeShellApplication {
 
     case "$selected" in
       # exec command in terminal if query start or end with ';'
-      *\;) ${term} "''${selected%\;}" ;;
-      \;*) ${term} "''${selected#\;}" ;;
+      *\;) $term "''${selected%\;}" ;;
+      \;*) $term "''${selected#\;}" ;;
 
       # search if query start or end with '/'
       # TODO: search-query not implement/import yet

@@ -59,7 +59,7 @@ in
         header = false;
       };
 
-      # TODO: theme support?
+      # TODO: fix theme
       colors = {
         user = "dark_green";
         group = "dark_green";

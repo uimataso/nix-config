@@ -1,23 +1,17 @@
 { writeShellApplication
 , pkgs
-}:
-let
-  # TODO: ls solution
-  # exa -a --group-directories-first --color=always --icons
-  # ls -A --group-directories-first --color=always
-  ls_cmd = "lsd -A --group-directories-first --color=always";
-in
-writeShellApplication {
+}: writeShellApplication {
   name = "fff";
   runtimeInputs = with pkgs; [
     fzf
-    lsd
     (callPackage ./preview.nix { })
     (callPackage ./open.nix { })
   ];
 
   text = ''
     set +o errexit
+
+    ls_cmd="''${FFF_LS_CMD:-ls -A --group-directories-first --color=always}"
 
     # Temp file
     _fff_up_dir_temp='/tmp/fff-up-dir'
@@ -32,8 +26,9 @@ writeShellApplication {
         pwd="$(printf '%s' "$pwd" | sed 's#\([^/.]\)[^/]\+/#\1/#g')"
       fi
 
+      # TODO: eza cant disable showing link in -A, so cut is there
       # shellcheck disable=SC2016
-      selected="$(${ls_cmd} "$PWD" |
+      selected="$($ls_cmd "$PWD" | cut -f1 -d' ' |
         fzf --prompt "$pwd/" \
             --preview 'preview $PWD/{}' \
             --preview-window '70%,border-left' \

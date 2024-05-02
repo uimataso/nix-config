@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./fonts.nix
     ./xserver
+    ./fonts.nix
   ];
 }

@@ -1,14 +1,14 @@
 {
   imports = [
     ./global.nix
-    ./users
-    ./system
     ./boot
+    ./desktop
     ./hardware
     ./networking
-    ./desktop
     ./programs
     ./services
+    ./system
+    ./users
     ./virt
   ];
 }

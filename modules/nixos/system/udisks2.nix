@@ -5,10 +5,10 @@
 with lib;
 
 let
-  cfg = config.uimaConfig.services.udisks2;
+  cfg = config.uimaConfig.system.udisks2;
 in
 {
-  options.uimaConfig.services.udisks2 = {
+  options.uimaConfig.system.udisks2 = {
     enable = mkEnableOption "udisks2";
   };
 

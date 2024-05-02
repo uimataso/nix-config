@@ -27,6 +27,6 @@ in
       };
     };
 
-    uimaConfig.services.openssh.enable = true;
+    uimaConfig.system.openssh.enable = true;
   };
 }

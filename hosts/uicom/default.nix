@@ -16,6 +16,8 @@
 
     users.uima.enable = true;
 
+    boot.grub.enable = true;
+
     system = {
       sops.enable = true;
       sudo.enable = true;
@@ -24,9 +26,10 @@
       impermanence.enable = true;
       impermanence.btrfs.enable = true;
       impermanence.btrfs.device = "/dev/sda";
-    };
 
-    boot.grub.enable = true;
+      pipewire.enable = true;
+      udisks2.enable = true;
+    };
 
     desktop.fonts.enable = true;
     desktop.xserver = {
@@ -35,12 +38,9 @@
       sddm.enable = true;
     };
 
-    networking.networkmanager.enable = true;
-    networking.tailscale.enable = true;
-
-    services = {
-      pipewire.enable = true;
-      udisks2.enable = true;
+    networking = {
+      networkmanager.enable = true;
+      tailscale.enable = true;
     };
 
     programs = {

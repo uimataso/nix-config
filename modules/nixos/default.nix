@@ -4,6 +4,7 @@
     ./users
     ./system
     ./boot
+    ./hardware
     ./networking
     ./desktop
     ./programs

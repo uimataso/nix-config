@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.uimaConfig.services.pipewire;
+  cfg = config.uimaConfig.system.pipewire;
 in
 {
-  options.uimaConfig.services.pipewire = {
+  options.uimaConfig.system.pipewire = {
     enable = mkEnableOption "pipewire";
   };
 

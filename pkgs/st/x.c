@@ -601,7 +601,7 @@ selnotify(XEvent *e)
 		 * Line endings are inconsistent in the terminal and GUI world
 		 * copy and pasting. When receiving some selection data,
 		 * replace all '\n' with '\r'.
-		 * FIXME: Fix the computer world.
+		 * fixme: Fix the computer world.
 		 */
 		repl = data;
 		last = data + nitems * format / 8;

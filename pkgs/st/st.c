@@ -633,7 +633,7 @@ getsel(void)
 		 * something is copied from st and convert '\n' to
 		 * '\r', when something to be pasted is received by
 		 * st.
-		 * FIXME: Fix the computer world.
+		 * fixme: Fix the computer world.
 		 */
 		if ((y < sel.ne.y || lastx >= linelen) &&
 		    (!(last->mode & ATTR_WRAP) || sel.type == SEL_RECTANGULAR))
@@ -895,7 +895,7 @@ ttywriteraw(const char *s, size_t n)
 	 * Remember that we are using a pty, which might be a modem line.
 	 * Writing too much will clog the line. That's why we are doing this
 	 * dance.
-	 * FIXME: Migrate the world to Plan 9.
+	 * fixme: Migrate the world to Plan 9.
 	 */
 	while (n > 0) {
 		FD_ZERO(&wfd);
@@ -2014,7 +2014,7 @@ strhandle(void)
 				        j, p ? p : "(null)");
 			} else {
 				/*
-				 * TODO if defaultbg color is changed, borders
+				 * todo if defaultbg color is changed, borders
 				 * are dirty
 				 */
 				tfulldirt();
@@ -2339,43 +2339,43 @@ tcontrolcode(uchar ascii)
 	case '\023': /* XOFF (IGNORED) */
 	case 0177:   /* DEL (IGNORED) */
 		return;
-	case 0x80:   /* TODO: PAD */
-	case 0x81:   /* TODO: HOP */
-	case 0x82:   /* TODO: BPH */
-	case 0x83:   /* TODO: NBH */
-	case 0x84:   /* TODO: IND */
+	case 0x80:   /* todo: PAD */
+	case 0x81:   /* todo: HOP */
+	case 0x82:   /* todo: BPH */
+	case 0x83:   /* todo: NBH */
+	case 0x84:   /* todo: IND */
 		break;
 	case 0x85:   /* NEL -- Next line */
 		tnewline(1); /* always go to first col */
 		break;
-	case 0x86:   /* TODO: SSA */
-	case 0x87:   /* TODO: ESA */
+	case 0x86:   /* todo: SSA */
+	case 0x87:   /* todo: ESA */
 		break;
 	case 0x88:   /* HTS -- Horizontal tab stop */
 		term.tabs[term.c.x] = 1;
 		break;
-	case 0x89:   /* TODO: HTJ */
-	case 0x8a:   /* TODO: VTS */
-	case 0x8b:   /* TODO: PLD */
-	case 0x8c:   /* TODO: PLU */
-	case 0x8d:   /* TODO: RI */
-	case 0x8e:   /* TODO: SS2 */
-	case 0x8f:   /* TODO: SS3 */
-	case 0x91:   /* TODO: PU1 */
-	case 0x92:   /* TODO: PU2 */
-	case 0x93:   /* TODO: STS */
-	case 0x94:   /* TODO: CCH */
-	case 0x95:   /* TODO: MW */
-	case 0x96:   /* TODO: SPA */
-	case 0x97:   /* TODO: EPA */
-	case 0x98:   /* TODO: SOS */
-	case 0x99:   /* TODO: SGCI */
+	case 0x89:   /* todo: HTJ */
+	case 0x8a:   /* todo: VTS */
+	case 0x8b:   /* todo: PLD */
+	case 0x8c:   /* todo: PLU */
+	case 0x8d:   /* todo: RI */
+	case 0x8e:   /* todo: SS2 */
+	case 0x8f:   /* todo: SS3 */
+	case 0x91:   /* todo: PU1 */
+	case 0x92:   /* todo: PU2 */
+	case 0x93:   /* todo: STS */
+	case 0x94:   /* todo: CCH */
+	case 0x95:   /* todo: MW */
+	case 0x96:   /* todo: SPA */
+	case 0x97:   /* todo: EPA */
+	case 0x98:   /* todo: SOS */
+	case 0x99:   /* todo: SGCI */
 		break;
 	case 0x9a:   /* DECID -- Identify Terminal */
 		ttywrite(vtiden, strlen(vtiden), 0);
 		break;
-	case 0x9b:   /* TODO: CSI */
-	case 0x9c:   /* TODO: ST */
+	case 0x9b:   /* todo: CSI */
+	case 0x9c:   /* todo: ST */
 		break;
 	case 0x90:   /* DCS -- Device Control String */
 	case 0x9d:   /* OSC -- Operating System Command */

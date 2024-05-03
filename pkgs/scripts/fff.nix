@@ -9,7 +9,12 @@
   ];
 
   text = ''
+    # Unset the option that `writeShellApplication` set for us. Because this
+    # script is intended to run as `. fff`, the option still gets effect after
+    # exiting `fff`, so we disable this.
     set +o errexit
+    set +o nounset
+    set +o pipefail
 
     ls_cmd="''${FFF_LS_CMD:-ls -A --group-directories-first --color=always}"
 
@@ -26,7 +31,7 @@
         pwd="$(printf '%s' "$pwd" | sed 's#\([^/.]\)[^/]\+/#\1/#g')"
       fi
 
-      # TODO: eza cant disable showing link in -A, so cut is there
+      # NOTE: eza cant disable showing link with -A, so cut is there
       # shellcheck disable=SC2016
       selected="$($ls_cmd "$PWD" | cut -f1 -d' ' |
         fzf --prompt "$pwd/" \
@@ -50,12 +55,8 @@
         continue
       fi
 
-      # TODO: restore setting, need better way to do this
       if [ -z "''${selected:+x}" ]; then
-        set +o errexit
-        set +o nounset
-        set +o pipefail
-        return
+        break
       fi
 
       # Open the selected

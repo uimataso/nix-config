@@ -29,7 +29,6 @@
       fzf.enable = true;
       fff.enable = true;
       bat.enable = true;
-      # lsd.enable = true;
       eza.enable = true;
       tmux.enable = true;
       tmuxinator.enable = true;
@@ -53,8 +52,8 @@
     };
 
     virt = {
-      # docker.enable = true;
-      podman.enable = true;
+      docker.enable = true;
+      # podman.enable = true;
     };
 
     programs = {

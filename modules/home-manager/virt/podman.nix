@@ -19,7 +19,7 @@ in
 
     home.shellAliases = {
       pm = "podman";
-      pms = "podman ps";
+      pmp = "podman ps";
       pmc = "podman compose";
       pmcu = "podman compose up -d";
       pmcd = "podman compose down";

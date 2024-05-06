@@ -73,6 +73,9 @@ vim.keymap.set('x', 'A', function()
   return vim.fn.mode() == 'V' and '$<C-v>A' or 'A'
 end, { expr = true })
 
+-- Clean highlight
+vim.keymap.set('n', '<Leader>cl', ':nohlsearch<CR>:diffupdate<CR>')
+
 -- Redo and search next
 vim.keymap.set('n', '<M-n>', '.nzzzv')
 

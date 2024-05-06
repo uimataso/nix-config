@@ -24,8 +24,7 @@ in
     # (https://www.reddit.com/r/NixOS/comments/15yh0qo/systemautoupgrade_with_email_notifications/)
     system.autoUpgrade = {
       enable = true;
-      dates = "22:00";
-      randomizedDelaySec = "30min";
+      dates = "*-*-* 00/2:00:00"; # Every two hours
       flake = flakeUri;
       allowReboot = cfg.allowReboot;
     };

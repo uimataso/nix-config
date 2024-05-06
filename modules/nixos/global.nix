@@ -17,6 +17,10 @@ in
 
     environment.systemPackages = with pkgs; [
       git # Since all nix command need git
+
+      sops
+      age
+      ssh-to-age
     ];
 
     nix = {

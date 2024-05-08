@@ -81,7 +81,9 @@
 
   home.packages = with pkgs; [
     qmk
-    kicad
+    # kicad
+    kicad-small
+    freecad
     # dig
     # whois
   ];

@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./cad
     ./firefox
     ./neovim
     ./discord.nix

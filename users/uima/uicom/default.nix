@@ -9,21 +9,11 @@
     directories = [
       "nix"
       "src"
-
-      ".config/kicad"
-      ".local/share/kicad"
-      ".config/freecad"
-      ".local/share/FreeCAD"
     ];
   };
 
   home.packages = with pkgs; [
     qmk
-    # kicad
-    kicad-small
-    freecad
-    # dig
-    # whois
   ];
 
   uimaConfig = {
@@ -90,6 +80,10 @@
       udiskie.enable = true;
       discord.enable = true;
       zathura.enable = true;
+
+      kicad.enable = true;
+      freecad.enable = true;
+      openscad.enable = true;
     };
   };
 }

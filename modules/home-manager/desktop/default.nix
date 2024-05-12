@@ -3,5 +3,6 @@
 {
   imports = [
     ./xserver
+    ./gtk.nix
   ];
 }

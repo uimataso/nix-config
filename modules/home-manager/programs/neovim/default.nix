@@ -21,6 +21,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       neovim
+      gcc
 
       # telescope
       ripgrep

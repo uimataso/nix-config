@@ -28,6 +28,8 @@
     sh.bash.enable = true;
     sh.bash.defaultShell = true;
 
+    sh.nushell.enable = true;
+
     sh-util = {
       misc.enable = true;
       fzf.enable = true;

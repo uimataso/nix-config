@@ -17,6 +17,8 @@ in
         name = "Materia-dark";
         package = pkgs.materia-theme;
       };
+
+      gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
     };
 
     home.packages = with pkgs; [

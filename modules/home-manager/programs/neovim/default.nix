@@ -28,13 +28,11 @@ in
 
       # lua lsp
       lua-language-server
-      stylua # TODO: not working yet
+      stylua
+
       # shell lsp
       shellcheck
       nodePackages.bash-language-server
-
-      # libclang
-      # codelldb
     ];
 
     home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./.;

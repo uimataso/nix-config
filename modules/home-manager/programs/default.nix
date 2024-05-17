@@ -8,6 +8,7 @@
     ./discord.nix
     ./fmenu.nix
     ./pipewire.nix
+    ./prusa-slicer.nix
     ./ssh.nix
     ./st.nix
     ./syncthing.nix

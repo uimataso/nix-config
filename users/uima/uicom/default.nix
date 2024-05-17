@@ -86,6 +86,7 @@
       kicad.enable = true;
       freecad.enable = true;
       openscad.enable = true;
+      prusa-slicer.enable = true;
     };
   };
 }

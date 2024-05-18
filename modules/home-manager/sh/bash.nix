@@ -31,6 +31,10 @@ in
   };
 
   config = mkIf cfg.enable rec {
+    # TODO: make everything run fine without bash.enable
+    # - xdg file
+    # - dwm break
+
     uimaConfig.sh.alias.enable = true;
     uimaConfig.sh-util.fzf.enable = true;
 
@@ -51,7 +55,6 @@ in
       '' + builtins.readFile ./bashrc;
     };
 
-    # XDG-rized
     home.file = {
       ".bashrc".enable = false;
       "${config.xdg.configHome}/bash/bashrc".source = config.home.file.".bashrc".source;

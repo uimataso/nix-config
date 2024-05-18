@@ -17,9 +17,10 @@ in
     # .nix-profile
     nix.settings.use-xdg-base-directories = true;
 
-    # wget
-    home.sessionVariables = { WGETRC = "${config.xdg.configHome}/wgetrc"; };
-    home.file.".config/wgetrc".text = "hsts-file = ${config.xdg.cacheHome}/wget-hsts";
+    home.file = {
+      # wget
+      ".config/wgetrc".text = "hsts-file = ${config.xdg.cacheHome}/wget-hsts";
+    };
 
     home.sessionVariables = {
       # .compose-cache
@@ -28,6 +29,10 @@ in
 
       # Cargo
       CARGO_HOME = "${config.xdg.dataHome}/cargo";
+
+      # wget
+      WGETRC = "${config.xdg.configHome}/wgetrc";
     };
+
   };
 }

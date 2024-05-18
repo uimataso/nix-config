@@ -32,10 +32,11 @@
       fi
 
       # NOTE: eza cant disable showing link with -A, so cut is there
+      # TODO: wraping preview with `sh -c` is only for nushell, may need to rewirte this script
       # shellcheck disable=SC2016
       selected="$($ls_cmd "$PWD" | cut -f1 -d' ' |
         fzf --prompt "$pwd/" \
-            --preview 'preview $PWD/{}' \
+            --preview 'sh -c "preview $PWD/{}"' \
             --preview-window '70%,border-left' \
             --ansi \
             --height 100 \

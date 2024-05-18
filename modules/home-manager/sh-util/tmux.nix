@@ -31,6 +31,8 @@ in
 
       escapeTime = 10;
       terminal = "screen-256color";
+      # TODO: other shell
+      shell = "${config.programs.nushell.package}/bin/nu";
       baseIndex = 1;
       newSession = true;
       mouse = true;

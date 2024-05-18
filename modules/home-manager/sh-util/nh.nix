@@ -6,7 +6,7 @@ let
   cfg = config.uimaConfig.sh-util.nh;
 
   flakeDir = "$HOME/nix";
-  flakeDirNu = "$env.HOME/nix";
+  flakeDirNu = "($env.HOME | path join \"nix\")";
 in
 {
   options.uimaConfig.sh-util.nh = {

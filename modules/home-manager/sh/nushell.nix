@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs-unstable, ... }:
 
 with lib;
 
@@ -21,8 +21,17 @@ in
       SHELL = "nu";
     };
 
+    # TODO:
+    # - fff
+    # - fzf-complete
+    # - tmuxintor
+    # - completion
     programs.nushell = {
+      package = pkgs-unstable.nushell;
       enable = true;
+
+      configFile.source = ./config.nu;
+      envFile.source = ./env.nu;
     };
   };
 }

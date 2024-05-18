@@ -21,6 +21,11 @@ in
       a = ". fff";
     };
 
+    programs.nushell.shellAliases = {
+      # TODO: cd side effert, or rewrite for nu?
+      a = "fff";
+    };
+
     home.sessionVariables =
       let
         ls =

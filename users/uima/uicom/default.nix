@@ -25,10 +25,12 @@
       xdg-user-dirs.enable = true;
     };
 
-    sh.bash.enable = true;
-    sh.bash.defaultShell = true;
-
-    sh.nushell.enable = true;
+    sh = {
+      bash.enable = true;
+      # bash.defaultShell = true;
+      nushell.enable = true;
+      nushell.defaultShell = true;
+    };
 
     sh-util = {
       misc.enable = true;

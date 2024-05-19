@@ -2,8 +2,8 @@
 
 {
   imports = [
+    ./bash
+    ./nushell
     ./alias.nix
-    ./bash.nix
-    ./nushell.nix
   ];
 }

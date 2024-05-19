@@ -5,7 +5,8 @@ with lib;
 let
   cfg = config.uimaConfig.sh-util.nh;
 
-  flakeDir = "${config.home.homeDirectory}/nix";
+  homeDir = config.home.homeDirectory;
+  flakeDir = "${homeDir}/nix";
 in
 {
   options.uimaConfig.sh-util.nh = {
@@ -29,6 +30,12 @@ in
       # npds = ''npd | sed -z 's/Version [0-9]* -> [0-9]*:\n\n//g' '';
 
       it = "${pkgs.scripts.nix-template-tool}/bin/nix-template-tool";
+
+      nvim-test = ''bash -c "
+        rm -f ${homeDir}/.config/nvim
+        ln -s ${flakeDir}/modules/home-manager/programs/neovim ${homeDir}/.config/nvim
+      "'';
+      nvim-clean = "bash -c 'rm ${homeDir}/.config/nvim'";
     };
 
     home.packages = [

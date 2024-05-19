@@ -48,25 +48,6 @@ in
     programs.bash.shellAliases = coreutilsAliases;
 
     # Nushell uses its own coreutils
-    programs.nushell.shellAliases = mkEverythingDefault config.home.shellAliases // {
-      c = "cd";
-      "c." = "cd ..";
-      c- = "cd -";
-      c_ = "cd $env._";
-
-      e = "exec $env.EDITOR";
-      "e." = "exec $env.EDITOR .";
-
-      l = "ls";
-      ls = "ls -a";
-      ll = "ls -al";
-
-      cp = "cp -iv";
-      mv = "mv -iv";
-      rm = "rm -iv";
-      md = "mkdir -v";
-
-      df = "df -h";
-    };
+    programs.nushell.shellAliases = mkEverythingDefault config.home.shellAliases;
   };
 }

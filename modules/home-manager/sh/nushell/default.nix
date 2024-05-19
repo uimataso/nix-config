@@ -32,6 +32,27 @@ in
 
       configFile.source = ./config.nu;
       envFile.source = ./env.nu;
+
+      shellAliases = {
+        c = "cd";
+        "c." = "cd ..";
+        c- = "cd -";
+        c_ = "cd $env._";
+
+        e = "^$env.EDITOR";
+        "e." = "^$env.EDITOR .";
+
+        l = "ls";
+        ls = "ls -a";
+        ll = "ls -al";
+
+        cp = "cp -iv";
+        mv = "mv -iv";
+        rm = "rm -iv";
+        md = "mkdir -v";
+
+        df = "df -h";
+      };
     };
   };
 }

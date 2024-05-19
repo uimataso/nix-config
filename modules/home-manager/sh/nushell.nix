@@ -7,7 +7,7 @@ let
 in
 {
   options.uimaConfig.sh.nushell = {
-    enable = mkEnableOption "Bash";
+    enable = mkEnableOption "Nushell";
 
     defaultShell = mkOption {
       type = types.bool;

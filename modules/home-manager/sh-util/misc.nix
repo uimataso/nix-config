@@ -13,7 +13,6 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       fd
-      ripgrep
       # rsync
       scripts.extract
     ];

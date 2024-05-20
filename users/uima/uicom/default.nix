@@ -14,7 +14,16 @@
 
   home.packages = with pkgs; [
     qmk
+    fd
+    scripts.extract
   ];
+
+  # Options without setting
+  programs.htop.enable = true;
+  programs.btop.enable = true;
+  programs.ripgrep.enable = true;
+  programs.jq.enable = true;
+  programs.bat.enable = true;
 
   uimaConfig = {
     global.enable = true;
@@ -25,8 +34,6 @@
       xdg-user-dirs.enable = true;
     };
 
-    theme.wallpaper = ./wallpaper.png;
-
     sh = {
       bash.enable = true;
       # bash.defaultShell = true;
@@ -35,16 +42,16 @@
     };
 
     sh-util = {
-      misc.enable = true;
       fzf.enable = true;
       fff.enable = true;
-      bat.enable = true;
       eza.enable = true;
       tmux.enable = true;
       tmuxinator.enable = true;
       tmuxinator.dir = ./tmuxinator;
       tealdeer.enable = true;
     };
+
+    theme.wallpaper = ./wallpaper.png;
 
     desktop.xserver = {
       enable = true;

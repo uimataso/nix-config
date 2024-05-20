@@ -27,9 +27,13 @@ in
   ];
 
   config = mkIf cfg.enable {
+    # Setting wallpaper
+    xsession.initExtra = "${pkgs.xwallpaper}/bin/xwallpaper --zoom ${cfg.wallpaper}";
+
     stylix = {
       image = cfg.wallpaper;
       polarity = "dark";
+      # TODO: why cant use yaml
       # base16Scheme = "${cfg.scheme}";
       base16Scheme = {
         base00 = "161616";
@@ -50,6 +54,7 @@ in
         base0F = "b08b76";
       };
 
+      # TODO: font size for firefox
       fonts = {
         serif = {
           package = pkgs.dejavu_fonts;

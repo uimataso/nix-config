@@ -28,9 +28,6 @@ in
 
     home.file."${config.xdg.dataHome}/wallpaper.png" = {
       source = cfg.imgPath;
-      # onChange = ''
-      #   ${setWallpaperCmd}
-      # '';
     };
   };
 }

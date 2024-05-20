@@ -5,7 +5,7 @@ with lib;
 let
   cfg = config.uimaConfig.dev.lazygit;
 
-  # scheme = config.scheme;
+  scheme = config.stylix.base16Scheme;
 in
 {
   options.uimaConfig.dev.lazygit = {
@@ -29,9 +29,7 @@ in
       settings = {
         disableStartupPopups = true;
         gui = {
-          # theme = {
-          #   inactiveBorderColor = [ "#${scheme.base06}" ];
-          # };
+          theme.inactiveBorderColor = [ "#${scheme.base03}" ];
           showBottomLine = false;
         };
         git = {

@@ -4,8 +4,6 @@ with lib;
 
 let
   cfg = config.uimaConfig.programs.zathura;
-
-  # scheme = config.scheme;
 in
 {
   options.uimaConfig.programs.zathura = {
@@ -35,11 +33,8 @@ in
 
         recolor = true;
 
-        font = "MesloLGS Nerd Font 11";
+        # font = "MesloLGS Nerd Font 11";
       };
-
-      # TODO: transparent support
-      # extraConfig = builtins.readFile (config.scheme inputs.base16-zathura);
     };
   };
 }

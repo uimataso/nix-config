@@ -58,42 +58,6 @@ in
         symlink-arrow = "⇒";
         header = false;
       };
-
-      # TODO: fix theme
-      colors = {
-        user = "dark_green";
-        group = "dark_green";
-        permission = {
-          read = "dark_green";
-          write = "dark_yellow";
-          exec = "dark_red";
-          exec-sticky = 5;
-          no-access = 245;
-          octal = 6;
-          acl = "dark_cyan";
-          context = "dard_cyan";
-        };
-        date = {
-          hour-old = "dark_cyan";
-          day-old = "dark_cyan";
-          older = "dark_cyan";
-        };
-        size = {
-          none = 2;
-          small = 2;
-          medium = 2;
-          large = 2;
-        };
-        inode = {
-          valid = 13;
-          invalid = 245;
-        };
-        links = {
-          valid = 13;
-          invalid = 245;
-        };
-        tree-edge = 245;
-      };
     };
   };
 }

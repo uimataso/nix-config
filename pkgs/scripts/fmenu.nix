@@ -8,7 +8,8 @@
 
   text = ''
     name="$(basename "$0")"
-    default_fzf_opt='--height=100% --layout=reverse --color=gutter:-1,pointer:5 --no-separator --info=inline --ansi --bind=enter:replace-query+print-query,alt-enter:print-query,tab:replace-query'
+    # default_fzf_opt='--height=100% --layout=reverse --color=gutter:-1,pointer:5 --no-separator --info=inline --ansi --bind=enter:replace-query+print-query,alt-enter:print-query,tab:replace-query'
+    default_fzf_opt='--height=100% --layout=reverse --no-separator --info=inline --ansi --bind=enter:replace-query+print-query,alt-enter:print-query,tab:replace-query'
     prompt='> '
     line='25'
     column='50'

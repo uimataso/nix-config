@@ -4,8 +4,6 @@ with lib;
 
 let
   cfg = config.uimaConfig.sh-util.fzf;
-
-  # scheme = config.scheme;
 in
 {
   options.uimaConfig.sh-util.fzf = {

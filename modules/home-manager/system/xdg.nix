@@ -17,6 +17,9 @@ in
     # .nix-profile
     nix.settings.use-xdg-base-directories = true;
 
+    # gtkrc-2.0
+    gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+
     home.file = {
       # wget
       ".config/wgetrc".text = "hsts-file = ${config.xdg.cacheHome}/wget-hsts";

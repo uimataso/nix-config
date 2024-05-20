@@ -43,6 +43,11 @@ in
       ipa = "ip -c -br a";
       grep = "grep --color=auto";
       dl = "curl -OJL";
+
+      # extra
+      # TODO: maybe move to other place?
+      fclist = "fc-list : family";
+      unitest = "curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt";
     };
 
     programs.bash.shellAliases = coreutilsAliases;

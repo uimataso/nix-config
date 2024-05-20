@@ -26,6 +26,7 @@ in
     # - fzf-complete
     # - tmuxintor
     # - completion
+    # - history persist
     programs.nushell = {
       package = pkgs-unstable.nushell;
       enable = true;

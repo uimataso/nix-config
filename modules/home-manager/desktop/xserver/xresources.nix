@@ -5,7 +5,7 @@ with lib;
 let
   cfg = config.uimaConfig.desktop.xserver.xresources;
 
-  scheme = config.scheme;
+  scheme = config.stylix.base16Scheme;
 
   bg = "#${scheme.base00}";
   fg = "#${scheme.base07}";
@@ -38,8 +38,8 @@ in
       "picom.inactive_opacity" = 1;
 
       "dwm.maincolor" = accent;
-      "dwm.bgaltcolor" = "#${scheme.base03}";
-      "dwm.fgaltcolor" = "#${scheme.base05}";
+      "dwm.bgaltcolor" = "#${scheme.base02}";
+      "dwm.fgaltcolor" = "#${scheme.base03}";
       "dwm.gappx" = 5;
       "dwm.showbar" = 1;
 
@@ -62,23 +62,23 @@ in
       "Xft.hintstyle" = "hintfull";
       "Xft.lcdfilter" = "lcdfilter";
 
-      "*color0" = "#${scheme.base00}";
-      "*color1" = "#${scheme.base08}";
-      "*color2" = "#${scheme.base0B}";
-      "*color3" = "#${scheme.base0A}";
-      "*color4" = "#${scheme.base0D}";
-      "*color5" = "#${scheme.base0E}";
-      "*color6" = "#${scheme.base0C}";
-      "*color7" = "#${scheme.base05}";
-
-      "*color8" = "#${scheme.base03}";
-      "*color9" = "#${scheme.base08}";
-      "*color10" = "#${scheme.base0B}";
-      "*color11" = "#${scheme.base0A}";
-      "*color12" = "#${scheme.base0D}";
-      "*color13" = "#${scheme.base0E}";
-      "*color14" = "#${scheme.base0C}";
-      "*color15" = "#${scheme.base07}";
+      # "*color0" = "#${scheme.base00}";
+      # "*color1" = "#${scheme.base08}";
+      # "*color2" = "#${scheme.base0B}";
+      # "*color3" = "#${scheme.base0A}";
+      # "*color4" = "#${scheme.base0D}";
+      # "*color5" = "#${scheme.base0E}";
+      # "*color6" = "#${scheme.base0C}";
+      # "*color7" = "#${scheme.base05}";
+      #
+      # "*color8" = "#${scheme.base03}";
+      # "*color9" = "#${scheme.base08}";
+      # "*color10" = "#${scheme.base0B}";
+      # "*color11" = "#${scheme.base0A}";
+      # "*color12" = "#${scheme.base0D}";
+      # "*color13" = "#${scheme.base0E}";
+      # "*color14" = "#${scheme.base0C}";
+      # "*color15" = "#${scheme.base07}";
     };
   };
 }

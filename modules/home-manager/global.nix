@@ -28,7 +28,7 @@ in
 
     news.display = "silent";
 
-    uimaConfig.system.theme.enable = mkDefault true;
+    uimaConfig.theme.enable = mkDefault true;
     uimaConfig.sh-util.nh.enable = mkDefault true;
   };
 }

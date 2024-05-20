@@ -5,7 +5,7 @@ with lib;
 let
   cfg = config.uimaConfig.sh-util.fzf;
 
-  scheme = config.scheme;
+  # scheme = config.scheme;
 in
 {
   options.uimaConfig.sh-util.fzf = {
@@ -29,7 +29,7 @@ in
       defaultCommand = "fd -HL --exclude '.git' --type file";
 
       colors = {
-        pointer = "#${scheme.base0E}";
+        bg = "-1";
         gutter = "-1";
       };
     };

@@ -7,6 +7,7 @@
     ./sh
     ./sh-util
     ./system
+    ./theme
     ./virt
   ];
 }

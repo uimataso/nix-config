@@ -13,8 +13,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    uimaConfig.desktop.gtk.enable = true;
-
     home.packages = with pkgs; [
       prusa-slicer
     ];

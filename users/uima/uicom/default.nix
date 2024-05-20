@@ -25,6 +25,8 @@
       xdg-user-dirs.enable = true;
     };
 
+    theme.wallpaper = ./wallpaper.png;
+
     sh = {
       bash.enable = true;
       # bash.defaultShell = true;
@@ -47,9 +49,6 @@
     desktop.xserver = {
       enable = true;
       wm.dwm.enable = true;
-
-      wallpaper.enable = true;
-      wallpaper.imgPath = ./wallpaper.png;
       dunst.enable = true;
     };
 

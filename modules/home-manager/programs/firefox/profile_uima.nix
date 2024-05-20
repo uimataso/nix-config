@@ -5,7 +5,7 @@ with lib;
 let
   cfg = config.uimaConfig.programs.firefox.profile.uima;
 
-  scheme = config.scheme;
+  scheme = config.stylix.base16Scheme;
 
   name = "uima";
 

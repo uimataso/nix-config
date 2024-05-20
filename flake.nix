@@ -27,10 +27,8 @@
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     arkenfox.inputs.nixpkgs.follows = "nixpkgs";
 
-    base16.url = "github:SenchoPens/base16.nix";
-
-    base16-zathura.url = "github:haozeke/base16-zathura";
-    base16-zathura.flake = false;
+    stylix.url = "github:danth/stylix/release-23.11";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:

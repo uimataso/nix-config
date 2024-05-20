@@ -5,7 +5,7 @@ with lib;
 let
   cfg = config.uimaConfig.programs.zathura;
 
-  scheme = config.scheme;
+  # scheme = config.scheme;
 in
 {
   options.uimaConfig.programs.zathura = {
@@ -39,7 +39,7 @@ in
       };
 
       # TODO: transparent support
-      extraConfig = builtins.readFile (config.scheme inputs.base16-zathura);
+      # extraConfig = builtins.readFile (config.scheme inputs.base16-zathura);
     };
   };
 }

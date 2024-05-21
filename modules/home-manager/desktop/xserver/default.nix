@@ -11,22 +11,28 @@ in
   };
 
   imports = [
-    ./xcompmgr.nix
-    ./xrandr.nix
     ./xresources.nix
-    ./xsession.nix
-
     ./dunst.nix
     ./dwm
-    ./wallpaper.nix
   ];
 
   config = mkIf cfg.enable {
     uimaConfig.desktop.xserver = {
-      xcompmgr.enable = mkDefault true;
-      xrandr.enable = mkDefault true;
       xresources.enable = mkDefault true;
-      xsession.enable = mkDefault true;
+    };
+
+    xsession = {
+      enable = true;
+      profilePath = "${config.xdg.dataHome}/x11/xprofile";
+      scriptPath = "${config.xdg.dataHome}/x11/xsession";
+
+      initExtra = with pkgs; ''
+        ${xcompmgr}/bin/xcompmgr -n &
+        ${xorg.xrandr}/bin/xrandr --output HDMI-0 --mode 1920x1080 --rate 144.00
+        # No screen saver
+        ${xorg.xset}/bin/xset s off -dpms
+      '';
+
     };
 
     # Hide mouse cursor
@@ -34,13 +40,12 @@ in
 
     home.packages = with pkgs; [
       xclip
+
       scripts.app-launcher
       scripts.open
       scripts.power-menu
       scripts.screenshot
       scripts.swallower
     ];
-
-    xsession.initExtra = "xset s off -dpms"; # No screen saver
   };
 }

@@ -7,7 +7,7 @@ let
 in
 {
   options.uimaConfig.theme = {
-    enable = mkEnableOption "theme";
+    enable = mkEnableOption "Theme";
 
     wallpaper = mkOption {
       type = types.path;
@@ -31,6 +31,7 @@ in
     xsession.initExtra = "${pkgs.xwallpaper}/bin/xwallpaper --zoom ${cfg.wallpaper}";
 
     stylix = {
+      # TODO: ~/.icons
       image = cfg.wallpaper;
       polarity = "dark";
       # TODO: why cant use yaml

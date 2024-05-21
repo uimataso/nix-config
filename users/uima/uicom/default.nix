@@ -12,6 +12,8 @@
     ];
   };
 
+  # systemctl status home-uima-* | grep -v -e "^ " -e "^$" -e "-[.]"
+
   home.packages = with pkgs; [
     qmk
     fd

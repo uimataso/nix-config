@@ -35,7 +35,9 @@ in
       nodePackages.bash-language-server
     ];
 
-    home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./.;
+    xdg.configFile = {
+      "nvim".source = config.lib.file.mkOutOfStoreSymlink ./.;
+    };
 
     home.sessionVariables = mkMerge [
       {

@@ -43,6 +43,8 @@ in
       td = "tmuxinator start default";
     };
 
-    home.file.".config/tmuxinator".source = cfg.dir;
+    xdg.configFile = {
+      "tmuxinator".source = cfg.dir;
+    };
   };
 }

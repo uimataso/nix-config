@@ -57,12 +57,12 @@ in
 
     home.file = {
       ".bashrc".enable = false;
-      "${config.xdg.configHome}/bash/bashrc".source = config.home.file.".bashrc".source;
-
       ".profile".enable = false;
-      "${config.xdg.configHome}/bash/profile".source = config.home.file.".profile".source;
-
       ".bash_profile".enable = false;
+    };
+    xdg.configFile = {
+      "bash/bashrc".source = config.home.file.".bashrc".source;
+      "bash/profile".source = config.home.file.".profile".source;
     };
 
     home.persistence.main = mkIf imper.enable {

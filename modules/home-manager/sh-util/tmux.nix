@@ -44,7 +44,7 @@ in
 
         # keybind to reload config
         unbind r
-        bind r source-file ~/.config/tmux/tmux.conf
+        bind r source-file ${config.xdg.configHome}/tmux/tmux.conf
 
         bind C-b run-shell 'tmux popup -E "tmuxinator-fzf"'
         bind BSpace last-window

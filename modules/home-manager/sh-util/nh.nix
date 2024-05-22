@@ -6,6 +6,7 @@ let
   cfg = config.uimaConfig.sh-util.nh;
 
   homeDir = config.home.homeDirectory;
+  configHome = config.xdg.configHome;
   flakeDir = "${homeDir}/nix";
 in
 {
@@ -32,10 +33,10 @@ in
       it = "${pkgs.scripts.nix-template-tool}/bin/nix-template-tool";
 
       nvim-test = ''bash -c "
-        rm -f ${homeDir}/.config/nvim
-        ln -s ${flakeDir}/modules/home-manager/programs/neovim ${homeDir}/.config/nvim
+        rm -f ${configHome}/nvim
+        ln -s ${flakeDir}/modules/home-manager/programs/neovim ${configHome}/nvim
       "'';
-      nvim-clean = "bash -c 'rm ${homeDir}/.config/nvim'";
+      nvim-clean = "bash -c 'rm ${configHome}/nvim'";
     };
 
     home.packages = [

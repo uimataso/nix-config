@@ -20,9 +20,9 @@ in
     # gtkrc-2.0
     gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
-    home.file = {
+    xdg.configFile = {
       # wget
-      ".config/wgetrc".text = "hsts-file = ${config.xdg.cacheHome}/wget-hsts";
+      "wgetrc".text = "hsts-file = ${config.xdg.cacheHome}/wget-hsts";
     };
 
     home.sessionVariables = {

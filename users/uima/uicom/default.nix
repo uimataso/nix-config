@@ -33,6 +33,7 @@
 
     system = {
       impermanence.enable = true;
+      input-method.enable = true;
       xdg.enable = true;
       xdg-user-dirs.enable = true;
     };

@@ -27,6 +27,7 @@
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     arkenfox.inputs.nixpkgs.follows = "nixpkgs";
 
+    base16.url = "github:SenchoPens/base16.nix";
     stylix.url = "github:danth/stylix/release-23.11";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
   };

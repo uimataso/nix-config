@@ -24,17 +24,19 @@ in
 
   imports = [
     inputs.stylix.homeManagerModules.stylix
+    inputs.base16.homeManagerModule
   ];
 
   config = mkIf cfg.enable {
     # Setting wallpaper
     xsession.initExtra = "${pkgs.xwallpaper}/bin/xwallpaper --zoom ${cfg.wallpaper}";
 
+    # TODO: ~/.icons
+
     stylix = {
-      # TODO: ~/.icons
       image = cfg.wallpaper;
       polarity = "dark";
-      # TODO: why cant use yaml
+      # FIXME: WTF
       # base16Scheme = "${cfg.scheme}";
       base16Scheme = {
         base00 = "161616";
@@ -55,60 +57,26 @@ in
         base0F = "b08b76";
       };
 
+      cursor = {
+        size = 14;
+        package = pkgs.vanilla-dmz;
+        name = "Vanilla-DMZ-AA";
+      };
+
       # TODO: font size for firefox
       fonts = {
-        serif = {
-          package = pkgs.dejavu_fonts;
-          name = "DejaVu Serif";
-        };
-        sansSerif = {
-          package = pkgs.dejavu_fonts;
-          name = "DejaVu Sans";
-        };
-        monospace = {
-          package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
-          name = "MesloLGS Nerd Font";
-        };
-        emoji = {
-          package = pkgs.noto-fonts-emoji;
-          name = "Noto Color Emoji";
-        };
+        serif.package = pkgs.dejavu_fonts;
+        serif.name = "DejaVu Serif";
+
+        sansSerif.package = pkgs.dejavu_fonts;
+        sansSerif. name = "DejaVu Sans";
+
+        monospace.package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
+        monospace.name = "MesloLGS Nerd Font";
+
+        emoji.package = pkgs.noto-fonts-emoji;
+        emoji.name = "Noto Color Emoji";
       };
     };
   };
 }
-
-# 0 "#161616"
-# 1 "#1e1e1e"
-# 2 "#272727"
-# 3 "#373737"
-# 4 "#585858"
-# 5 "#808080"
-# 6 "#9b9b9b"
-# 7 "#bcbcbc"
-# 8 "#c68586"
-# 9 "#edb96e"
-# A "#d5be95"
-# B "#86a586"
-# C "#8caeaf"
-# D "#83a0af"
-# E "#d8afad"
-# F "#b08b76"
-
-# 0 "#161616"
-# 1 "#303030"
-# 2 "#454545"
-# 3 "#808080"
-# 4 "#9b9b9b"
-# 5 "#bcbcbc"
-# 6 "#dddddd"
-# 7 "#f5f5f5"
-
-# 8 "#c68586"
-# 9 "#edb96e"
-# A "#d5be95"
-# B "#86a586"
-# C "#8caeaf"
-# D "#83a0af"
-# E "#d8afad"
-# F "#b08b76"

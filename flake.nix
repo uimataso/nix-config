@@ -1,5 +1,5 @@
 {
-  description = "My flake";
+  description = "uima's nixos config";
 
   # TODO: LSP
   # TODO: push extrakto to nixpkgs

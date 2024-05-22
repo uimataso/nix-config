@@ -8,6 +8,7 @@
   home.persistence.main = {
     directories = [
       "nix"
+      # FIXME: when switch gen, ~/src get unmount, become empty dir
       "src"
     ];
   };

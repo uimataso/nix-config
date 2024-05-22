@@ -2,6 +2,8 @@
 
 with lib;
 
+# TODO: secrets
+
 let
   cfg = config.uimaConfig.networking.tailscale;
 
@@ -13,7 +15,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    # TODO: manage tailscale key etc
     services.tailscale.enable = true;
 
     environment.persistence.main = mkIf imper.enable {

@@ -2,6 +2,8 @@
 
 with lib;
 
+# TODO: secrets
+
 let
   cfg = config.uimaConfig.programs.syncthing;
 

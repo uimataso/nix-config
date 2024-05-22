@@ -2,7 +2,7 @@
 
 with lib;
 
-# TODO: manage git key
+# TODO: secrets?
 
 let
   cfg = config.uimaConfig.dev.git;

@@ -4,6 +4,8 @@ with lib;
 
 let
   cfg = config.uimaConfig.sh.nushell;
+
+  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.sh.nushell = {
@@ -54,6 +56,12 @@ in
 
         df = "df -h";
       };
+    };
+
+    home.persistence.main = mkIf imper.enable {
+      files = [
+        ".config/nushell/history.txt"
+      ];
     };
   };
 }

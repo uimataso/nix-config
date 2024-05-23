@@ -42,7 +42,7 @@ in
 
     home.sessionVariables = mkMerge [
       {
-        PAGER = lib.mkDefault "nvim +Man!";
+        # PAGER = lib.mkDefault "nvim +Man!";
         MANPAGER = lib.mkDefault "nvim +Man!";
       }
       (mkIf cfg.defaultEditor {

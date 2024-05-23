@@ -40,6 +40,9 @@ vim.keymap.set('', '<PageUp>', '<C-u>')
 vim.keymap.set('', '<PageDown>', '<C-d>')
 vim.keymap.set('', '<Home>', '^')
 
+vim.keymap.set('', '+', 'j')
+vim.keymap.set('', '-', 'k')
+
 -- Copy paste with clipboard
 vim.keymap.set('', '<Leader>y', '"+y')
 vim.keymap.set('', '<Leader>Y', '"+y$')

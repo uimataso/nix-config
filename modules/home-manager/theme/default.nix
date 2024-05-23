@@ -60,7 +60,6 @@ in
         name = "Vanilla-DMZ-AA";
       };
 
-      # TODO: font size for firefox
       fonts = {
         serif.package = pkgs.dejavu_fonts;
         serif.name = "DejaVu Serif";

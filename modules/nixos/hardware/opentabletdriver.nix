@@ -1,8 +1,8 @@
 { config, lib, ... }:
 
-# TODO: no tablets are detected
-
 with lib;
+
+# TODO: no tablets are detected
 
 let
   cfg = config.uimaConfig.hardware.otd;

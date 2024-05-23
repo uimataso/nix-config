@@ -21,6 +21,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       neovim
+      # TODO: use extra package to install these
       gcc
 
       # telescope

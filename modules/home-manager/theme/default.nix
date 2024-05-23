@@ -28,9 +28,6 @@ in
   ];
 
   config = mkIf cfg.enable {
-    # Setting wallpaper
-    xsession.initExtra = "${pkgs.xwallpaper}/bin/xwallpaper --zoom ${cfg.wallpaper}";
-
     # TODO: ~/.icons
 
     stylix = {
@@ -69,13 +66,20 @@ in
         serif.name = "DejaVu Serif";
 
         sansSerif.package = pkgs.dejavu_fonts;
-        sansSerif. name = "DejaVu Sans";
+        sansSerif.name = "DejaVu Sans";
 
         monospace.package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
         monospace.name = "MesloLGS Nerd Font";
 
         emoji.package = pkgs.noto-fonts-emoji;
         emoji.name = "Noto Color Emoji";
+      };
+
+      opacity = {
+        applications = 0.9;
+        desktop = 1.0;
+        popups = 1.0;
+        terminal = 0.9;
       };
     };
   };

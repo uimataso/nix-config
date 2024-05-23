@@ -18,10 +18,9 @@ in
     home.sessionPath = [ "$HOME/.local/bin/statesbar" ];
     home.file.".local/bin/statesbar".source = ./statusbar;
 
-    xresources.properties = {
-      "dwm.font" = "${config.stylix.fonts.monospace.name}";
-      # TODO: font
-      "dwm.font2" = "Noto Sans CJK TC";
+    xresources.properties = with config.stylix.fonts; {
+      "dwm.font" = "${monospace.name}";
+      "dwm.font2" = "${sansSerif.name}";
       "dwm.primary" = "#${scheme.base0E}";
       "dwm.bgaltcolor" = "#${scheme.base02}";
       "dwm.fgaltcolor" = "#${scheme.base03}";

@@ -61,11 +61,11 @@ in
       };
 
       fonts = {
-        serif.package = pkgs.dejavu_fonts;
-        serif.name = "DejaVu Serif";
+        serif.package = pkgs.noto-fonts-cjk-serif;
+        serif.name = "Noto Serif CJK TC";
 
-        sansSerif.package = pkgs.dejavu_fonts;
-        sansSerif.name = "DejaVu Sans";
+        sansSerif.package = pkgs.noto-fonts-cjk-sans;
+        sansSerif.name = "Noto Sans CJK TC";
 
         monospace.package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
         monospace.name = "MesloLGS Nerd Font";

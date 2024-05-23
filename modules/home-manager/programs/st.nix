@@ -25,12 +25,12 @@ in
       TERMINAL = "st";
     };
 
-    xresources.properties = {
-      "st.font" = "${config.stylix.fonts.monospace.name}:size=11";
+    xresources.properties = with config.stylix; {
+      "st.font" = "${fonts.monospace.name}:size=${builtins.toString fonts.sizes.terminal}";
       "st.cursorColor" = "#${scheme.base05}";
       "st.cwscale" = "0.95";
       "st.shell" = "/bin/bash";
-      "st.alpha" = "${builtins.toString config.stylix.opacity.terminal}";
+      "st.alpha" = "${builtins.toString opacity.terminal}";
     };
   };
 }

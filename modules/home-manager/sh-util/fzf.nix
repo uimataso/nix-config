@@ -31,5 +31,14 @@ in
         gutter = "-1";
       };
     };
+
+    home.shellAliases = {
+      ef = "fzf | xargs -r $EDITOR";
+    };
+
+    programs.nushell = {
+      extraConfig = "def fzf-editor [] { fzf | xargs -r $env.EDITOR }";
+      shellAliases.ef = "fzf-editor";
+    };
   };
 }

@@ -31,7 +31,6 @@
       udisks2.enable = true;
     };
 
-    desktop.fonts.enable = true;
     desktop.xserver = {
       enable = true;
       dwm.enable = true;

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-unstable, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
@@ -39,8 +39,8 @@ in
       nvim-clean = "bash -c 'rm ${configHome}/nvim'";
     };
 
-    home.packages = [
-      pkgs-unstable.nh
+    home.packages = with pkgs; [
+      nh
     ];
   };
 }

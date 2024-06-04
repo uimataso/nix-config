@@ -1,4 +1,4 @@
-{ config, lib, pkgs-unstable, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
@@ -30,7 +30,7 @@ in
     # - completion
     # - history persist
     programs.nushell = {
-      package = pkgs-unstable.nushell;
+      package = pkgs.nushell;
       enable = true;
 
       configFile.source = ./config.nu;

@@ -5,11 +5,10 @@
   # TODO: push extrakto to nixpkgs
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "nixpkgs/nixos-24.05";
 
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nur.url = "github:nix-community/NUR";
@@ -31,13 +30,13 @@
     arkenfox.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
 
       systems = [ "x86_64-linux" "aarch64-linux" ];
-      pkg-inputs = [ "nixpkgs" "nixpkgs-unstable" ];
+      pkg-inputs = [ "nixpkgs" "nixpkgs-stable" ];
       forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.nixpkgs.${system});
       pkgsFor = with lib; genAttrs pkg-inputs (pkg:
         genAttrs systems (system: import inputs.${pkg} {
@@ -50,7 +49,7 @@
         let
           specialArgs = {
             inherit inputs outputs;
-            pkgs-unstable = pkgsFor.nixpkgs-unstable.${system};
+            pkgs-stable = pkgsFor.nixpkgs-stable.${system};
           };
         in
         lib.nixosSystem {

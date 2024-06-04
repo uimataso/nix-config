@@ -13,11 +13,12 @@
     ];
   };
 
-  # systemctl status home-uima-* | grep -v -e "^ " -e "^$" -e "-[.]"
+  # systemctl status home-uima-* | grep -v -e "^ " -e "^$" | sed 's/.* - //' | sed 's#^/home/uima#~#' | sort
 
   home.packages = with pkgs; [
     qmk
     fd
+    libreoffice
     scripts.extract
   ];
 

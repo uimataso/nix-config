@@ -20,6 +20,9 @@ in
     home.persistence.main = mkIf imper.enable {
       directories = [
         ".config/OpenSCAD"
+        ".local/share/OpenSCAD/libraries"
+        # https://github.com/revarbat/BOSL
+        # https://github.com/BelfrySCAD/BOSL2
       ];
     };
   };

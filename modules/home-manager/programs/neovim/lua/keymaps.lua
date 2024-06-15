@@ -21,11 +21,6 @@ vim.keymap.set('t', '<C-[>', '<C-\\><C-n>')
 vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>')
 
 
--- Visual mode mapping
-vim.keymap.set('v', 'J', ":m '>+1<cr>gv=gv")
-vim.keymap.set('v', 'K', ":m '<-2<cr>gv=gv")
-
-
 -- Buffer movement
 vim.keymap.set('n', '<BS>', '<C-^>')
 vim.keymap.set('n', '<Tab>', ':bn<cr>')
@@ -142,6 +137,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- vim.keymap.set('i', '<A-w>', '<C-\\><C-N><C-w><C-w>')
 -- vim.keymap.set('t', '<A-w>', '<C-\\><C-N><C-w><C-w>')
 
+-- Copy text to clipboard using codeblock format ```{ft}{content}```
+vim.api.nvim_create_user_command('CopyCodeBlock', function(opts)
+  local lines = vim.api.nvim_buf_get_lines(0, opts.line1 - 1, opts.line2, true)
+  local content = table.concat(lines, '\n')
+  local result = string.format('```%s\n%s\n```', vim.bo.filetype, content)
+  vim.fn.setreg('+', result)
+end, { range = true })
+vim.keymap.set('', '<Leader>cy', ':CopyCodeBlock<CR>', { desc = 'Copy text with markdown codeblock style' })
 
 -- Abbr for command mode
 local function cabbrev(lhs, rhs)

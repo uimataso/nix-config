@@ -33,7 +33,7 @@ in
 
       # shell lsp
       shellcheck
-      nodePackages.bash-language-server
+      bash-language-server
     ];
 
     xdg.configFile = {

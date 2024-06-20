@@ -52,7 +52,6 @@
       eza.enable = true;
       tmux.enable = true;
       tmuxinator.enable = true;
-      tmuxinator.dir = ./tmuxinator;
       tealdeer.enable = true;
     };
 

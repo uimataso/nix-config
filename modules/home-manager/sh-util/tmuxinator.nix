@@ -7,7 +7,7 @@ with lib;
 let
   cfg = config.uimaConfig.sh-util.tmuxinator;
 
-  script = { writeShellApplication, pkgs }:
+  tmuxinator-fzf = { writeShellApplication, pkgs }:
     writeShellApplication {
       name = "tmuxinator-fzf";
       runtimeInputs = with pkgs; [ fzf tmux tmuxinator ];
@@ -17,16 +17,12 @@ let
         tmuxinator s "$selected"
       '';
     };
+
+  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.sh-util.tmuxinator = {
     enable = mkEnableOption "tmuxinator";
-
-    dir = mkOption {
-      type = types.path;
-      default = ./tmuxinator;
-      description = "Tmuxinator project directory.";
-    };
   };
 
   config = mkIf cfg.enable {
@@ -35,7 +31,7 @@ in
     programs.tmux.tmuxinator.enable = true;
 
     home.packages = with pkgs; [
-      (callPackage script { })
+      (callPackage tmuxinator-fzf { })
     ];
 
     home.shellAliases = {
@@ -43,8 +39,8 @@ in
       td = "tmuxinator start default";
     };
 
-    xdg.configFile = {
-      "tmuxinator".source = cfg.dir;
+    home.persistence.main = mkIf imper.enable {
+      directories = [ ".config/tmuxinator" ];
     };
   };
 }

@@ -19,7 +19,7 @@
     boot.grub.enable = true;
 
     system = {
-      sops.enable = true;
+      # sops.enable = true;
       sudo.enable = true;
       auto-upgrade.enable = true;
 

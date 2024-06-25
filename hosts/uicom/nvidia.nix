@@ -3,12 +3,6 @@
 # https://discourse.nixos.org/t/getting-nvidia-to-work-avoiding-screen-tearing/10422/16
 
 {
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
   hardware.nvidia = {
     modesetting.enable = true;
     #powerManagement.enable = false;

@@ -39,7 +39,7 @@ in
       keyMode = "vi";
       # disableConfirmationPrompt = true;
 
-      extraConfig = ''
+      extraConfig = /*tmux*/ ''
         set -g set-clipboard external
 
         # keybind to reload config
@@ -94,7 +94,7 @@ in
       plugins = with pkgs; [
         {
           plugin = tmuxPlugins.tmux-nvim;
-          extraConfig = ''
+          extraConfig = /*tmux*/ ''
             set -g @tmux-nvim-resize-step-x 3
             set -g @tmux-nvim-resize-step-y 3
           '';
@@ -110,7 +110,7 @@ in
                 ${pkgs.fzf}/bin/fzf --color=pointer:5,gutter:-1 "$@"
               '';
             in
-            ''
+            /*tmux*/ ''
               set -g @extrakto_key enter
               set -g @extrakto_fzf_tool "${myFzf}/bin/myFzf"
               set -g @extrakto_fzf_layout reverse

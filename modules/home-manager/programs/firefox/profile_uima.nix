@@ -9,7 +9,7 @@ let
 
   name = "uima";
 
-  color = ''
+  color = /*css*/ ''
     :root{
       --bg-color: #${scheme.base00} !important;
       --fg-color: #${scheme.base07} !important;

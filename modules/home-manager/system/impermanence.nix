@@ -31,7 +31,7 @@ in
     };
 
     home.activation = {
-      rmSomeThing = hm.dag.entryAfter [ "writeBoundary" ] ''
+      rmSomeThing = hm.dag.entryAfter [ "writeBoundary" ] /*sh*/ ''
         rm -rf $HOME/.nix-defexpr
         rm -rf $HOME/.nix-profile
       '';

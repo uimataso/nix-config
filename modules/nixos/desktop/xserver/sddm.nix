@@ -11,7 +11,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.xserver.displayManager.sddm = {
+    services.displayManager.sddm = {
       enable = true;
       theme = "astronaut";
 

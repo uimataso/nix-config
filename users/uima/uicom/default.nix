@@ -8,12 +8,9 @@
   home.persistence.main = {
     directories = [
       "nix"
-      # FIXME: when switch gen, ~/src get unmount, become empty dir
       "src"
     ];
   };
-
-  # systemctl status home-uima-* | grep -v -e "^ " -e "^$" | sed 's/.* - //' | sed 's#^/home/uima#~#' | sort
 
   home.packages = with pkgs; [
     qmk
@@ -95,8 +92,8 @@
       discord.enable = true;
       zathura.enable = true;
 
-      kicad.enable = true;
-      freecad.enable = true;
+      # kicad.enable = true;
+      # freecad.enable = true;
       openscad.enable = true;
       prusa-slicer.enable = true;
     };

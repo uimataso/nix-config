@@ -2,7 +2,7 @@ return {
   'stevearc/oil.nvim',
   lazy = false,
   keys = {
-    { '<enter>',    mode = { 'n' }, function() require('oil').open() end,       desc = 'Open oil browser for a directory' },
+    { '<BS>',       mode = { 'n' }, function() require('oil').open() end,       desc = 'Open oil browser for a directory' },
     { '<Leader>fo', mode = { 'n' }, function() require('oil').open_float() end, desc = 'Open oil browser in a floating window' },
   },
   opts = {

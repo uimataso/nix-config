@@ -2,7 +2,7 @@
   description = "{{NAME}}";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     poetry2nix.url = "github:nix-community/poetry2nix";
   };
 

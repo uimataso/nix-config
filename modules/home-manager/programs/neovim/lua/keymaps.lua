@@ -22,7 +22,7 @@ vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>')
 
 
 -- Buffer movement
-vim.keymap.set('n', '<Enter>', '<C-^>')
+vim.keymap.set('n', '<BS>', '<C-^>')
 vim.keymap.set('n', '<Tab>', ':bn<cr>')
 vim.keymap.set('n', '<S-Tab>', ':bp<cr>')
 

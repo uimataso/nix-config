@@ -6,6 +6,7 @@ let
   cfg = config.uimaConfig.sh.nushell;
 
   imper = config.uimaConfig.system.impermanence;
+  defaultEditor = config.home.sessionVariables.EDITOR;
 in
 {
   options.uimaConfig.sh.nushell = {
@@ -42,8 +43,8 @@ in
         c- = "cd -";
         c_ = "cd $env._";
 
-        e = "^$env.EDITOR";
-        "e." = "^$env.EDITOR .";
+        e = "${defaultEditor}";
+        "e." = "${defaultEditor} .";
 
         l = "ls";
         ls = "ls -a";

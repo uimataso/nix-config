@@ -20,6 +20,7 @@ return {
       "yaml", "toml", "json",
       "git_config", "git_rebase", "gitattributes",
       "gitcommit", "gitignore",
+      "nu",
     },
     -- ignore_install = { '' },
 

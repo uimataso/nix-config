@@ -1,5 +1,18 @@
 { config, lib, pkgs, inputs, ... }:
 
+# Cookie Exceptions
+# - https://uima.duckdns.org
+# - https://accounts.google.com
+# - https://www.google.com
+# - https://www.youtube.com
+# - https://proton.me
+# - https://chatgpt.com
+# - https://github.com
+# - https://mynixos.com
+# - https://www.reddit.com
+# - https://leetcode.com
+# - https://www.printables.com
+
 with lib;
 
 let
@@ -88,11 +101,11 @@ in
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
           skip-redirect
-          bitwarden
-          darkreader
           i-dont-care-about-cookies
-          # keybind, search engine, default search engine
-          vimium
+
+          darkreader
+          bitwarden
+          vimium # TODO: manage setting, search engine
           # set new tab to home and focus on page instead of address bar
           new-tab-override
 
@@ -126,7 +139,7 @@ in
           "extensions.pocket.enabled" = false;
           # Disable tabs in settings page
           "browser.preferences.moreFromMozilla" = false;
-          # List all tabs arrow in tab bar
+          # Disable List all tabs arrow in tab bar
           "browser.tabs.tabmanager.enabled" = false;
           # Never show bookmark bar
           "browser.toolbars.bookmarks.visibility" = "never";
@@ -134,10 +147,10 @@ in
           "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
           # Compact mode
           "browser.uidensity" = 1;
-          # No title bar
+          # Disable title bar
           "browser.tabs.inTitlebar" = 0;
 
-          # Don't remember password
+          # Don't Ask to remember password
           "services.sync.prefs.sync.signon.rememberSignons" = false;
           "signon.rememberSignons" = false;
           "signon.rememberSignons.visibilityToggle" = false;
@@ -179,7 +192,7 @@ in
           # "4500".enable = true;
           # "5000".enable = true;
           # "5500".enable = true;
-          "6000".enable = true;
+          # "6000".enable = true;
           # "7000".enable = true;
           # "8000".enable = true;
           "9000".enable = true;

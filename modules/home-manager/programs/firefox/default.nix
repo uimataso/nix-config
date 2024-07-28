@@ -3,8 +3,7 @@
 # NOTE: wish list for firefox
 # [x] cookie exceptions
 # [x] plugin settings
-# [-] firefox view (left toolbar)
-# [-] search suggest (settings dont works)
+# [-] disable firefox view (left toolbar)
 # bookmark (local or here)
 # containers (use or not)
 # vim keybind backup or auto sync
@@ -47,7 +46,7 @@ in
       enable = true;
       arkenfox = {
         enable = true;
-        # version = "123.0";
+        version = "126.0";
       };
     };
   };

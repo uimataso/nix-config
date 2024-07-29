@@ -31,7 +31,7 @@
 
     system = {
       impermanence.enable = true;
-      input-method.enable = true;
+      input-method.fcitx5.enable = true;
       xdg.enable = true;
       xdg-user-dirs.enable = true;
     };

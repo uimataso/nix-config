@@ -95,6 +95,9 @@ return {
   diffOldFile    = { fg = c.cyan },
   diffNewFile    = { fg = c.cyan },
 
+  Added          = { link = 'DiffAdd' },
+  Removed        = { link = 'DiffDelete' },
+  Changed        = { link = 'DiffChange' },
 
 
   --------------------------

@@ -65,4 +65,16 @@
       ssh.enable = true;
     };
   };
+
+  programs.ssh.extraConfig = ''
+    Host github
+      HostName github.com
+      IdentityFile ~/.ssh/id_ed25519
+      IdentitiesOnly yes
+
+    Host github-araizen
+      HostName github.com
+      IdentityFile ~/.ssh/id_ed25519_uima_chen
+      IdentitiesOnly yes
+  '';
 }

@@ -4,6 +4,8 @@ return {
   build = ':TSUpdate',
   dependencies = {
     'nvim-treesitter/playground',
+    -- parser for nu-lang
+    'nushell/tree-sitter-nu',
   },
 
   keys = {
@@ -13,14 +15,14 @@ return {
   main = 'nvim-treesitter.configs',
   opts = {
     ensure_installed = {
-      "vim", "vimdoc", "query",
-      "bash", "awk", "nix", "diff", "corn",
-      "python", "rust", "c", "lua",
-      "markdown", "markdown_inline", "org",
-      "yaml", "toml", "json",
-      "git_config", "git_rebase", "gitattributes",
-      "gitcommit", "gitignore",
-      "nu",
+      'vim', 'vimdoc', 'query',
+      'bash', 'awk', 'nix', 'diff', 'corn',
+      'python', 'rust', 'c', 'lua',
+      'markdown', 'markdown_inline', 'org',
+      'yaml', 'toml', 'json',
+      'git_config', 'git_rebase', 'gitattributes',
+      'gitcommit', 'gitignore',
+      'nu',
     },
     -- ignore_install = { '' },
 

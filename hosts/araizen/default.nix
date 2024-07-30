@@ -34,13 +34,8 @@
     users.uima.enable = true;
 
     system = {
-      # sops.enable = true;
       sudo.enable = true;
       auto-upgrade.enable = true;
-
-      # impermanence.enable = true;
-      # impermanence.btrfs.enable = true;
-      # impermanence.btrfs.device = "/dev/sda";
     };
 
     networking = {
@@ -51,9 +46,5 @@
     programs = {
       bash.enable = true;
     };
-
-    # virt = {
-    #   docker.enable = true;
-    # };
   };
 }

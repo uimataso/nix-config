@@ -28,6 +28,8 @@
 
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     arkenfox.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
@@ -89,6 +91,11 @@
 
         vm-mini = nixosConfig {
           modules = [ ./hosts/vm-mini ];
+          system = "x86_64-linux";
+        };
+
+        araizen = nixosConfig {
+          modules = [ ./hosts/araizen ];
           system = "x86_64-linux";
         };
       };

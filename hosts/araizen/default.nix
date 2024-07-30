@@ -1,18 +1,28 @@
 { config, lib, pkgs, inputs, ... }:
 
 {
-  # imports = [
-  #   ./hardware-configuration.nix
-  #   ./nvidia.nix
-  # ];
-
   imports = [
     inputs.nixos-wsl.nixosModules.default
   ];
 
   system.stateVersion = "23.11";
 
-  wsl.enable = true;
+  # This mechine is under WSL
+  wsl = {
+    enable = true;
+    defaultUser = "uima";
+    docker-desktop.enable = true;
+  };
+
+  # Manual start dockerd
+  # TODO: Figure out other way to do this, but, this worked
+  system.activationScripts = {
+    startDocker.text = ''
+      nohup ${pkgs.docker}/bin/dockerd > /tmp/docker.log 2> /tmp/docker.err.log &
+    '';
+  };
+
+  # For Home-Manager
   programs.dconf.enable = true;
 
   networking.hostName = "araizen";
@@ -41,5 +51,9 @@
     programs = {
       bash.enable = true;
     };
+
+    # virt = {
+    #   docker.enable = true;
+    # };
   };
 }

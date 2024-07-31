@@ -13,7 +13,8 @@ let
       r = c."${color}-rgb-r";
       g = c."${color}-rgb-g";
       b = c."${color}-rgb-b";
-    in "rgba(${r},${g},${b},${builtins.toString opacity})";
+    in
+    "rgba(${r},${g},${b},${builtins.toString opacity})";
 in
 {
   options.uimaConfig.programs.zathura = {

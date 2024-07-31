@@ -35,6 +35,6 @@ in
         Option "ScrollButton" "9"
         Option "ScrollPixelDistance" "32"
       EndSection
-      '';
+    '';
   };
 }

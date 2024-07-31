@@ -110,7 +110,7 @@ in
                 ${pkgs.fzf}/bin/fzf --color=pointer:5,gutter:-1 "$@"
               '';
             in
-            /*tmux*/ ''
+              /*tmux*/ ''
               set -g @extrakto_key enter
               set -g @extrakto_fzf_tool "${myFzf}/bin/myFzf"
               set -g @extrakto_fzf_layout reverse

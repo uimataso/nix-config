@@ -100,6 +100,7 @@
         };
       };
 
+      # TODO: Make home-manager can be used standalone
       # homeConfigurations = { };
     };
 }

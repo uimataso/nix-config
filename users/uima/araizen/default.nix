@@ -26,7 +26,7 @@
     jq.enable = true;
     bat.enable = true;
     ssh.extraConfig = ''
-      Host github
+      Host github.com
         HostName github.com
         IdentityFile ~/.ssh/id_ed25519_uima_chen
         IdentitiesOnly yes

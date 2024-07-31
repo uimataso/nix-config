@@ -5,13 +5,6 @@
 
   home.stateVersion = "23.11";
 
-  # home.persistence.main = {
-  #   directories = [
-  #     "nix"
-  #     "src"
-  #   ];
-  # };
-
   home.packages = with pkgs; [
     fd
     scripts.extract
@@ -30,8 +23,6 @@
     theme.wallpaper = ./wallpaper.png;
 
     system = {
-      # impermanence.enable = true;
-      # input-method.fcitx5.enable = true;
       xdg.enable = true;
       xdg-user-dirs.enable = true;
     };

@@ -54,7 +54,11 @@
 
     dev = {
       direnv.enable = true;
-      git.enable = true;
+      git = {
+        enable = true;
+        name = "Uima";
+        email = "uima.chen@araizen.com";
+      };
       lazygit.enable = true;
     };
 
@@ -69,12 +73,12 @@
   programs.ssh.extraConfig = ''
     Host github
       HostName github.com
-      IdentityFile ~/.ssh/id_ed25519
+      IdentityFile ~/.ssh/id_ed25519_uima_chen
       IdentitiesOnly yes
 
-    Host github-araizen
+    Host github-personal
       HostName github.com
-      IdentityFile ~/.ssh/id_ed25519_uima_chen
+      IdentityFile ~/.ssh/id_ed25519
       IdentitiesOnly yes
   '';
 }

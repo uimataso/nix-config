@@ -84,6 +84,7 @@ return {
           fields = { 'abbr', 'kind' },
           format = function(entry, vim_item)
             vim_item.menu = nil
+
             if vim.tbl_contains({ 'path' }, entry.source.name) then
               local icon, hl_group = require('nvim-web-devicons').get_icon(entry:get_completion_item().label)
               if icon then
@@ -92,7 +93,13 @@ return {
                 return vim_item
               end
             end
-            return require('lspkind').cmp_format({ with_text = false })(entry, vim_item)
+
+            -- TODO: Icon has bug in wsl (blank space after icons)
+            return require('lspkind').cmp_format({
+              -- mode = 'symbol',
+              mode = 'text',
+              maxwidth = 40,
+            })(entry, vim_item)
           end
         },
 

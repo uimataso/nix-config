@@ -15,6 +15,19 @@ let
   });
 
   scheme = config.stylix.base16Scheme;
+
+  tmux-select-sessions-src = { writeShellApplication, pkgs }:
+    writeShellApplication {
+      name = "tmux-select-sessions";
+      runtimeInputs = with pkgs; [ fzf tmux ];
+      text = ''
+        selected="$(tmux list-sessions -F "#{session_name}" | fzf || true)"
+        test -z "$selected" && exit
+        tmux switch-client -t "$selected"
+      '';
+    };
+
+  tmux-select-sessions = pkgs.callPackage tmux-select-sessions-src { };
 in
 {
   options.uimaConfig.sh-util.tmux = {
@@ -36,19 +49,20 @@ in
       baseIndex = 1;
       newSession = true;
       mouse = true;
-      keyMode = "vi";
       # disableConfirmationPrompt = true;
 
       extraConfig = /*tmux*/ ''
+        set -g mode-keys vi
+        set -g status-keys emacs
         set -g set-clipboard external
 
         # keybind to reload config
-        unbind r
         bind r source-file ${config.xdg.configHome}/tmux/tmux.conf
 
-        bind C-b run-shell 'tmux popup -E "tmuxinator-fzf"'
+        bind C-b run-shell 'tmux popup -E "${tmux-select-sessions}/bin/tmux-select-sessions"'
         bind BSpace last-window
 
+        # TODO: control flow: if has lazygit
         bind g new-window -S -n "lazygit" -c "#{pane_current_path}" "lazygit"
 
         # hjkl to switch
@@ -60,13 +74,17 @@ in
         # split in same dir
         bind '"' split-window -v -c "#{pane_current_path}"
         bind  %  split-window -h -c "#{pane_current_path}"
+        bind  |  split-window -h -c "#{pane_current_path}"
+
+        # create window in smae dir
+        bind c new-window -c "#{pane_current_path}"
 
         # better keybind in copy mode
         bind -T copy-mode-vi v   send-keys -X begin-selection
         bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
         bind -T copy-mode-vi y   send-keys -X copy-selection-and-cancel
 
-        set-option -g repeat-time 200
+        set -g repeat-time 200
 
         # status
         set -g status-justify left
@@ -76,10 +94,10 @@ in
         setw -g window-status-current-format '-#I:#W- '
         setw -g window-status-format '#[fg=#${scheme.base04}]#I:#W #[fg=default]'
 
-        set-option -g status-style fg='#${scheme.base04}',bg=default
-        set -g message-style bg=black
+        set -g status-style          fg='#${scheme.base04}',bg=default
+        set -g message-style         bg=black
         set -g message-command-style bg=black
-        set -g mode-style fg=black,bg=green
+        set -g mode-style            fg=black,bg=green
 
         # pane border colors
         set -g pane-border-style        fg='#${scheme.base03}'
@@ -88,7 +106,7 @@ in
 
         # window title colors
         set -g window-status-current-style fg=magenta,bg=default,bold
-        set -g window-status-style fg=brightwhite,bg=default
+        set -g window-status-style         fg=brightwhite,bg=default
       '';
 
       plugins = with pkgs; [

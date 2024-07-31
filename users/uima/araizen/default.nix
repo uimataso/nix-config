@@ -1,14 +1,21 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, pkgs-stable, lib, inputs, ... }:
 
 {
   home.username = "uima";
 
   home.stateVersion = "23.11";
 
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
     fd
     scripts.extract
-  ];
+  ]) ++ (with pkgs-stable; [
+    cargo
+    rust-analyzer
+    rustfmt
+    clippy
+    cargo-nextest
+    sqlx-cli
+  ]);
 
   # Options without setting
   programs.htop.enable = true;

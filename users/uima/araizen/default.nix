@@ -16,7 +16,18 @@
     clippy
     cargo-nextest
     sqlx-cli
+
+    libiconv
+    openssl
+    pkg-config
   ]);
+
+  # NOTE: try to fix openssl issue when `cargo test`, idk these variables are necessary needed
+  # TODO: test this
+  home.sessionVariables = {
+    OPENSSL_DEV = pkgs-stable.openssl.dev;
+    PKG_CONFIG_PATH="${pkgs-stable.openssl.dev}/lib/pkgconfig";
+  };
 
   # Options without custom setting
   programs = {

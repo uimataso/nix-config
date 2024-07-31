@@ -9,6 +9,7 @@
     fd
     scripts.extract
   ]) ++ (with pkgs-stable; [
+    # Project dependencies, bc I don't want to use flake there
     cargo
     rust-analyzer
     rustfmt
@@ -17,12 +18,25 @@
     sqlx-cli
   ]);
 
-  # Options without setting
-  programs.htop.enable = true;
-  programs.btop.enable = true;
-  programs.ripgrep.enable = true;
-  programs.jq.enable = true;
-  programs.bat.enable = true;
+  # Options without custom setting
+  programs = {
+    htop.enable = true;
+    btop.enable = true;
+    ripgrep.enable = true;
+    jq.enable = true;
+    bat.enable = true;
+    ssh.extraConfig = ''
+      Host github
+        HostName github.com
+        IdentityFile ~/.ssh/id_ed25519_uima_chen
+        IdentitiesOnly yes
+
+      Host github-personal
+        HostName github.com
+        IdentityFile ~/.ssh/id_ed25519
+        IdentitiesOnly yes
+    '';
+  };
 
   uimaConfig = {
     global.enable = true;
@@ -67,16 +81,4 @@
       ssh.enable = true;
     };
   };
-
-  programs.ssh.extraConfig = ''
-    Host github
-      HostName github.com
-      IdentityFile ~/.ssh/id_ed25519_uima_chen
-      IdentitiesOnly yes
-
-    Host github-personal
-      HostName github.com
-      IdentityFile ~/.ssh/id_ed25519
-      IdentitiesOnly yes
-  '';
 }

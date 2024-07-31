@@ -7,7 +7,7 @@
 
   system.stateVersion = "23.11";
 
-  # This mechine is under WSL
+  # Since this mechine is under WSL
   wsl = {
     enable = true;
     defaultUser = "uima";
@@ -15,7 +15,7 @@
   };
 
   # Manual start dockerd
-  # TODO: Figure out other way to do this, but, this worked
+  # TODO: Figure out a better other way to do this, but, this works :)
   system.activationScripts = {
     startDocker.text = ''
       nohup ${pkgs.docker}/bin/dockerd > /tmp/docker.log 2> /tmp/docker.err.log &
@@ -23,6 +23,7 @@
   };
 
   # For Home-Manager
+  # TODO: Move to global?
   programs.dconf.enable = true;
 
   networking.hostName = "araizen";
@@ -38,13 +39,7 @@
       auto-upgrade.enable = true;
     };
 
-    networking = {
-      networkmanager.enable = true;
-      # tailscale.enable = true;
-    };
-
-    programs = {
-      bash.enable = true;
-    };
+    networking.networkmanager.enable = true;
+    programs.bash.enable = true;
   };
 }

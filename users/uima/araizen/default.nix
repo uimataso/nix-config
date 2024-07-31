@@ -10,6 +10,7 @@
     scripts.extract
   ]) ++ (with pkgs-stable; [
     # Project dependencies, bc I don't want to use flake there
+    rustc
     cargo
     rust-analyzer
     rustfmt
@@ -22,8 +23,7 @@
     pkg-config
   ]);
 
-  # NOTE: try to fix openssl issue when `cargo test`, idk these variables are necessary needed
-  # TODO: test this
+  # NOTE: try to fix openssl issue when `cargo test`, these variables are necessary needed
   home.sessionVariables = {
     OPENSSL_DEV = pkgs-stable.openssl.dev;
     PKG_CONFIG_PATH="${pkgs-stable.openssl.dev}/lib/pkgconfig";

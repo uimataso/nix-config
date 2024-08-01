@@ -11,7 +11,7 @@ in
 
     wallpaper = mkOption {
       type = types.path;
-      default = ./wallpaper.png;
+      default = ./default-wallpaper.png;
       description = "Wallpaper image path.";
     };
 

@@ -23,13 +23,12 @@
     pkg-config
   ]);
 
-  # NOTE: try to fix openssl issue when `cargo test`, these variables are necessary needed
+  # NOTE: try to fix openssl issue when `cargo test`, these variables are necessary needed, idk why
   home.sessionVariables = {
     OPENSSL_DEV = pkgs-stable.openssl.dev;
     PKG_CONFIG_PATH="${pkgs-stable.openssl.dev}/lib/pkgconfig";
   };
 
-  # Options without custom setting
   programs = {
     htop.enable = true;
     btop.enable = true;
@@ -51,8 +50,6 @@
 
   uimaConfig = {
     global.enable = true;
-
-    theme.wallpaper = ./wallpaper.png;
 
     system = {
       xdg.enable = true;

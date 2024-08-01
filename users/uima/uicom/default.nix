@@ -19,7 +19,6 @@
     scripts.extract
   ];
 
-  # Options without setting
   programs.htop.enable = true;
   programs.btop.enable = true;
   programs.ripgrep.enable = true;
@@ -50,8 +49,6 @@
       tmux.enable = true;
       tealdeer.enable = true;
     };
-
-    theme.wallpaper = ./wallpaper.png;
 
     desktop.xserver = {
       enable = true;

@@ -34,8 +34,6 @@
       fff.enable = true;
     };
 
-    theme.wallpaper = ../uicom/wallpaper.png;
-
     desktop.xserver = {
       enable = true;
       wm.dwm.enable = true;

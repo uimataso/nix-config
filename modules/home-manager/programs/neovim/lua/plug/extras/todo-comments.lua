@@ -8,5 +8,6 @@ return {
   keys = {
     { '<Leader>ft', '<cmd>TodoTelescope<cr>', desc = 'List all project todos in Tekescope' },
   },
+
   opts = {},
 }

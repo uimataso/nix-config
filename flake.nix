@@ -1,8 +1,10 @@
 {
   description = "uima's nixos config";
 
-  # TODO: LSP
-  # TODO: push extrakto to nixpkgs
+  # TODO: LSP for nix
+  # TODO: CI for `nh test` or `nix test`
+  # TODO: Push extrakto to nixpkgs
+  # TODO: Test nix build speed with and without overlays
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
@@ -12,7 +14,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nur.url = "github:nix-community/NUR";
-    # nur.inputs.nixpkgs.follows = "nixpkgs";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
@@ -30,6 +32,7 @@
     arkenfox.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:

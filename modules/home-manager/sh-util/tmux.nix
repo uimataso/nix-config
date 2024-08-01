@@ -26,8 +26,21 @@ let
         tmux switch-client -t "$selected"
       '';
     };
-
   tmux-select-sessions = pkgs.callPackage tmux-select-sessions-src { };
+
+  tmuxinator-fzf-src = { writeShellApplication, pkgs }:
+    writeShellApplication {
+      name = "tmuxinator-fzf";
+      runtimeInputs = with pkgs; [ fzf tmux tmuxinator ];
+      text = ''
+        selected="$(tmuxinator list -n | tail -n +2 | fzf || true)"
+        test -z "$selected" && exit
+        tmuxinator s "$selected"
+      '';
+    };
+  tmuxinator-fzf = pkgs.callPackage tmuxinator-fzf-src { };
+
+  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.sh-util.tmux = {
@@ -37,6 +50,8 @@ in
   config = mkIf cfg.enable {
     home.shellAliases = {
       t = "tmux";
+      ts = "${tmuxinator-fzf}/bin/tmuxinator-fzf";
+      td = "tmuxinator start default";
     };
 
     programs.tmux = {
@@ -139,5 +154,12 @@ in
         }
       ];
     };
+
+    programs.tmux.tmuxinator.enable = true;
+
+    home.persistence.main = mkIf imper.enable {
+      directories = [ ".config/tmuxinator" ];
+    };
+
   };
 }

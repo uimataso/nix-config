@@ -71,7 +71,6 @@
       fff.enable = true;
       eza.enable = true;
       tmux.enable = true;
-      tmuxinator.enable = true;
       tealdeer.enable = true;
     };
 

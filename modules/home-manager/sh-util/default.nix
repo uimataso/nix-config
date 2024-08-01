@@ -8,7 +8,6 @@
     ./lsd.nix
     ./nh.nix
     ./tealdeer.nix
-    ./tmuxinator.nix
     ./tmux.nix
   ];
 }

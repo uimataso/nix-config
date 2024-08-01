@@ -5,6 +5,7 @@
     ./cad
     ./firefox
     ./neovim
+    ./qutebrowser
     ./discord.nix
     ./fmenu.nix
     ./pipewire.nix

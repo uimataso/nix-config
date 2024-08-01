@@ -82,6 +82,8 @@
       firefox.profile.uima.enable = true;
       firefox.defaultBrowser = true;
 
+      qutebrowser.enable = true;
+
       fmenu.enable = true;
       fmenu.defaultDmenu = true;
 

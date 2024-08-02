@@ -25,6 +25,8 @@
   programs.jq.enable = true;
   programs.bat.enable = true;
 
+  services.easyeffects.enable = true;
+
   uimaConfig = {
     global.enable = true;
 
@@ -78,7 +80,7 @@
       firefox.profile.uima.enable = true;
       firefox.defaultBrowser = true;
 
-      qutebrowser.enable = true;
+      # qutebrowser.enable = true;
 
       fmenu.enable = true;
       fmenu.defaultDmenu = true;

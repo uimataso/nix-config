@@ -11,6 +11,8 @@
   networking.hostName = "uicom";
   time.timeZone = "Asia/Taipei";
 
+  programs.dconf.enable = true;
+
   uimaConfig = {
     global.enable = true;
 

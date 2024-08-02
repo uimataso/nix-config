@@ -14,6 +14,11 @@ return {
       "[uU]nused",
       "[nN]ever [rR]ead",
       "[nN]ot [rR]ead",
+      cs = {
+        "CS8019",
+      },
+      -- disable `regex` option when filetype is "rust"
+      rust = {},
     },
     priority = 128,
     disable = {},

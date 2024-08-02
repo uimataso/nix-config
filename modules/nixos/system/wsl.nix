@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
@@ -11,7 +11,7 @@ in
 
     docker = mkOption {
       type = types.bool;
-      default = false;
+      default = true;
       description = "Enable Docker integration";
     };
   };
@@ -20,12 +20,12 @@ in
     wsl = {
       enable = true;
       defaultUser = "uima";
-      docker-desktop.enable = true;
+      docker-desktop.enable = cfg.docker;
     };
 
     # Manual start dockerd
     # TODO: Figure out a better other way to do this, but, this works :)
-    system.activationScripts = {
+    system.activationScripts = mkIf cfg.docker {
       startDocker.text = ''
         nohup ${pkgs.docker}/bin/dockerd > /tmp/docker.log 2> /tmp/docker.err.log &
       '';

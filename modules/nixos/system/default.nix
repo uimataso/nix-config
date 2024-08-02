@@ -10,5 +10,6 @@
     ./doas.nix
     ./sudo.nix
     ./udisks2.nix
+    ./wsl.nix
   ];
 }

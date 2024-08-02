@@ -16,11 +16,7 @@
     users.uima.enable = true;
 
     system = {
-      wsl = {
-        enable = true;
-        docker = true;
-      };
-
+      wsl.enable = true;
       sudo.enable = true;
       auto-upgrade.enable = true;
     };

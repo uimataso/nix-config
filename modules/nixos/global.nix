@@ -31,6 +31,9 @@ in
       };
     };
 
+    # Needed by home-manager and other, so I put this here
+    programs.dconf.enable = true;
+
     uimaConfig.system.openssh.enable = true;
   };
 }

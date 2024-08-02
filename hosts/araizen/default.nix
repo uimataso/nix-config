@@ -20,8 +20,4 @@
     networking.networkmanager.enable = true;
     programs.bash.enable = true;
   };
-
-  # For Home-Manager
-  # TODO: Why do I need this?
-  programs.dconf.enable = true;
 }

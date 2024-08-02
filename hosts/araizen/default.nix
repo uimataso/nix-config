@@ -1,10 +1,6 @@
 { config, lib, pkgs, inputs, ... }:
 
 {
-  imports = [
-    inputs.nixos-wsl.nixosModules.default
-  ];
-
   system.stateVersion = "23.11";
 
   networking.hostName = "araizen";

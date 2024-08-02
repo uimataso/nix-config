@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 with lib;
 
@@ -15,6 +15,10 @@ in
       description = "Enable Docker integration";
     };
   };
+
+  imports = [
+    inputs.nixos-wsl.nixosModules.default
+  ];
 
   config = mkIf cfg.enable {
     wsl = {

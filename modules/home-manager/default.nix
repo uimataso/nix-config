@@ -4,6 +4,7 @@
     ./desktop
     ./dev
     ./programs
+    ./services
     ./sh
     ./sh-util
     ./system

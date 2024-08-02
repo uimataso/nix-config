@@ -25,8 +25,6 @@
   programs.jq.enable = true;
   programs.bat.enable = true;
 
-  services.easyeffects.enable = true;
-
   uimaConfig = {
     global.enable = true;
 
@@ -35,6 +33,10 @@
       input-method.fcitx5.enable = true;
       xdg.enable = true;
       xdg-user-dirs.enable = true;
+    };
+
+    services = {
+      easyeffects.enable = true;
     };
 
     sh = {

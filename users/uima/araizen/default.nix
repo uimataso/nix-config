@@ -17,6 +17,7 @@
     clippy
     cargo-nextest
     sqlx-cli
+    awscli2
 
     libiconv
     openssl

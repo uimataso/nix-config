@@ -18,7 +18,7 @@ return {
       'vim', 'vimdoc', 'query',
       'bash', 'awk', 'nix', 'diff', 'corn',
       'python', 'rust', 'c', 'lua',
-      'markdown', 'markdown_inline', 'org',
+      'markdown', 'markdown_inline', 'org', 'html',
       'yaml', 'toml', 'json',
       'git_config', 'git_rebase', 'gitattributes',
       'gitcommit', 'gitignore',

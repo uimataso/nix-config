@@ -283,6 +283,8 @@ return {
   Yank                                            = { bg = c.green, fg = c.black },
 
   RenderMarkdownCode                              = { bg = c.gray1 },
+  MarkviewCode                                    = { bg = c.gray1 },
+  MarkviewInlineCode                              = { link = 'MarkviewCode' },
 
   DiagnosticError                                 = { fg = c.red },
   DiagnosticWarn                                  = { fg = c.yellow },

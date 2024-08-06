@@ -36,6 +36,5 @@ in
         rm -rf $HOME/.nix-profile
       '';
     };
-
   };
 }

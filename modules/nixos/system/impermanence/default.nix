@@ -4,6 +4,9 @@ with lib;
 
 let
   cfg = config.uimaConfig.system.impermanence;
+
+  isUser = user: user.group == "users";
+  users = builtins.filter isUser (builtins.attrValues config.users.users);
 in
 {
   options.uimaConfig.system.impermanence = {
@@ -42,6 +45,11 @@ in
       files = [
         "/etc/machine-id"
       ];
+    };
+
+    # Create persist home directory
+    systemd.tmpfiles = {
+      rules = map (user: "d ${cfg.persist_dir}/${user.home} 0700 ${user.name} ${user.group} - -") users;
     };
   };
 }

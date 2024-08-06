@@ -50,6 +50,7 @@ in
   config = mkIf cfg.enable {
     home.shellAliases = {
       t = "tmux";
+      ta = "tmux attach";
       ts = "${tmuxinator-fzf}/bin/tmuxinator-fzf";
       td = "tmuxinator start default";
     };

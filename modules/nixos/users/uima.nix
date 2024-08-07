@@ -6,7 +6,6 @@ let
   cfg = config.uimaConfig.users.uima;
 
   username = "uima";
-  home = "/home/${username}";
 
   imper = config.uimaConfig.system.impermanence;
   ifGroupExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
@@ -25,7 +24,7 @@ in
   config = mkIf cfg.enable {
     users.users.${username} = mkMerge [
       {
-        home = mkDefault home;
+        home = mkDefault "home/${username}";
         isNormalUser = true;
         shell = pkgs.bashInteractive;
 
@@ -39,13 +38,14 @@ in
         ];
       }
 
-      # NOTE:
+      # WARN:
       # ┃ trace: evaluation warning: The user 'uima' has multiple of the options
       # ┃ `hashedPassword`, `password`, `hashedPasswordFile`, `initialPassword`
       # ┃ & `initialHashedPassword` set to a non-null value.
       # ┃ The options silently discard others by the order of precedence
       # ┃ given above which can lead to surprising results. To resolve this warning,
       # ┃ set at most one of the options above to a non-`null` value.
+      # TODO: move this to impermanence module
       (mkIf imper.enable {
         initialPassword = "password";
         hashedPasswordFile = "${imper.persist_dir}/passwords/${username}";

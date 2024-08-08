@@ -50,20 +50,26 @@ in
   config = mkIf cfg.enable {
     home.shellAliases = {
       t = "tmux";
-      ta = "tmux attach";
+      ta = "tmux attach-session || tmux new-session -s default";
       ts = "${tmuxinator-fzf}/bin/tmuxinator-fzf";
       td = "tmuxinator start default";
     };
 
+    programs.nushell.shellAliases = {
+      # ta = mkForce "try { tmux attach-session } catch { tmux new-session -s default }";
+      ta = mkForce "bash -c \"tmux attach-session || tmux new-session -s default\"";
+    };
+
     programs.tmux = {
       enable = true;
+
+      prefix = "M-b";
 
       escapeTime = 10;
       terminal = "screen-256color";
       # TODO: other shell
       shell = "${config.programs.nushell.package}/bin/nu";
       baseIndex = 1;
-      newSession = true;
       mouse = true;
       # disableConfirmationPrompt = true;
 
@@ -75,7 +81,7 @@ in
         # keybind to reload config
         bind r source-file ${config.xdg.configHome}/tmux/tmux.conf
 
-        bind C-b run-shell 'tmux popup -E "${tmux-select-sessions}/bin/tmux-select-sessions"'
+        bind f run-shell 'tmux popup -E "${tmux-select-sessions}/bin/tmux-select-sessions"'
         bind BSpace last-window
 
         # TODO: control flow: if has lazygit

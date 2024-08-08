@@ -12,12 +12,12 @@
   time.timeZone = "Asia/Taipei";
 
   # Help my poor networking
-  services.dnsmasq = {
-    enable = true;
-    settings = {
-      address = "/#.uima.duckdns.org/uima.duckdns.org/ui.pi/192.168.1.113";
-    };
-  };
+  # services.dnsmasq = {
+  #   enable = true;
+  #   settings = {
+  #     address = "/#.uima.duckdns.org/uima.duckdns.org/ui.pi/192.168.1.113";
+  #   };
+  # };
 
   uimaConfig = {
     global.enable = true;

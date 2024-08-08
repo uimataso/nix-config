@@ -16,6 +16,8 @@ in
       fcitx5.addons = with pkgs; [ fcitx5-rime ];
     };
 
+    # TODO: theme
+
     # ref:
     # - https://github.com/search?q=nix+fcitx5&type=code
     # - https://github.com/ryan4yin/nix-config/blob/82dccbdecaf73835153a6470c1792d397d2881fa/home/linux/gui/base/fcitx5/default.nix

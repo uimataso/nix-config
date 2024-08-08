@@ -4,6 +4,7 @@ return {
     { '<Leader>q', mode = { 'n' }, function() require("quicker").toggle() end,                   desc = 'Toggle quickfik' },
     { '<Leader>l', mode = { 'n' }, function() require("quicker").toggle({ loclist = true }) end, desc = 'Toggle locfik' },
   },
+
   opts = {
     keys = {
       {

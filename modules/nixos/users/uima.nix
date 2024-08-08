@@ -24,7 +24,7 @@ in
   config = mkIf cfg.enable {
     users.users.${username} = mkMerge [
       {
-        home = mkDefault "home/${username}";
+        home = mkDefault "/home/${username}";
         isNormalUser = true;
         shell = pkgs.bashInteractive;
 

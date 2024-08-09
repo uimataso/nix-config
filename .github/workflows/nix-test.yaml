@@ -13,4 +13,4 @@ jobs:
         uses: cachix/install-nix-action@v24
 
       - name: Nix Test
-        run: nix eval .#evalTests --show-trace --verbose
+        run: nix eval .#evalTests --verbose

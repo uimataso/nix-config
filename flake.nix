@@ -14,7 +14,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nur.url = "github:nix-community/NUR";
-    nur.inputs.nixpkgs.follows = "nixpkgs";
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
@@ -85,7 +84,9 @@
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
       templates = import ./templates;
 
-      evalTests."uicom" = nixosConfigurations."uicom".config.system.build.toplevel;
+      # FIXME: idk
+      # [](https://github.com/ryan4yin/nix-config/blob/main/.github/workflows/flake_evaltests.yml)
+      evalTests."araizen" = nixosConfigurations."araizen".config.system.build.toplevel;
 
       nixosConfigurations = {
         uicom = nixosConfig {

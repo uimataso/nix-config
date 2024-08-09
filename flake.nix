@@ -74,7 +74,7 @@
           ] ++ modules;
         };
     in
-    {
+    rec {
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
 
@@ -85,6 +85,7 @@
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
       templates = import ./templates;
 
+      evalTests."uicom" = nixosConfigurations."uicom".config.system.build.toplevel;
 
       nixosConfigurations = {
         uicom = nixosConfig {

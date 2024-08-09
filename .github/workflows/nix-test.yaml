@@ -15,4 +15,4 @@ jobs:
         uses: cachix/install-nix-action@v20
 
       - name: Nix Test
-        run: nixos-rebuild test --flake .
+        run: nix eval .#evalTests --show-trace --print-build-logs --verbose

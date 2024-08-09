@@ -2,7 +2,6 @@
   description = "uima's nixos config";
 
   # TODO: LSP for nix
-  # TODO: CI for `nh test` or `nix test`
   # TODO: Push extrakto to nixpkgs
   # TODO: Test nix build speed with and without overlays
 
@@ -84,7 +83,7 @@
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
       templates = import ./templates;
 
-      # FIXME: idk
+      # FIXME: Github CI: nix eval always stack overflow
       # [](https://github.com/ryan4yin/nix-config/blob/main/.github/workflows/flake_evaltests.yml)
       evalTests."araizen" = nixosConfigurations."araizen".config.system.build.toplevel;
 

@@ -23,6 +23,6 @@ jobs:
             exit 1
           fi
 
-      - name: Determine lint result
+      - name: Determine result
         id: build-result
         run: echo "success=${{ env.success }}" >> $GITHUB_OUTPUT

@@ -13,16 +13,4 @@ jobs:
         uses: cachix/install-nix-action@v24
 
       - name: Nix Test
-        run: |
-          if nix eval .#evalTests --show-trace --print-build-logs --verbose; then
-            echo "success=true" >> $GITHUB_ENV
-          else
-            echo "Eval test failed, listing flake.lock for debugging:"
-            cat flake.lock
-            echo "success=false" >> $GITHUB_ENV
-            exit 1
-          fi
-
-      - name: Determine result
-        id: build-result
-        run: echo "success=${{ env.success }}" >> $GITHUB_OUTPUT
+        run: nix eval .#evalTests --show-trace --verbose

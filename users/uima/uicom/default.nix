@@ -3,7 +3,7 @@
 {
   home.username = "uima";
 
-  home.stateVersion = "23.11";
+  ome.stateVersion = "23.11";
 
   home.persistence.main = {
     directories = [

@@ -30,5 +30,15 @@ in
         force = true;
       };
     };
+
+    # Rime
+    home.file.".local/share/fcitx5/rime" = {
+      source = ../rime/yuhao-schema;
+      recursive = true;
+    };
+
+    home.file.".local/share/fcitx5/rime/default.custom.yaml" = {
+      source = ../rime/default.custom.yaml;
+    };
   };
 }

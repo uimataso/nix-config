@@ -52,7 +52,7 @@ in
 
         cp = "cp -iv";
         mv = "mv -iv";
-        rm = "rm -iv";
+        rm = "rm -ivr";
         md = "mkdir -v";
 
         df = "df -h";

@@ -285,6 +285,8 @@ return {
   RenderMarkdownCode                              = { bg = c.gray1 },
   MarkviewCode                                    = { bg = c.gray1 },
   MarkviewInlineCode                              = { link = 'MarkviewCode' },
+  HelpviewCode                                    = { link = 'MarkviewCode' },
+  HelpviewCodeLanguage                            = { link = 'MarkviewCode' },
 
   DiagnosticError                                 = { fg = c.red },
   DiagnosticWarn                                  = { fg = c.yellow },

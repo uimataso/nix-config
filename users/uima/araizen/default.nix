@@ -5,30 +5,10 @@
 
   home.stateVersion = "23.11";
 
-  home.packages = (with pkgs; [
+  home.packages = with pkgs; [
     fd
     scripts.extract
-  ]) ++ (with pkgs-stable; [
-    # Project dependencies, bc I don't want to use flake there
-    rustc
-    cargo
-    rust-analyzer
-    rustfmt
-    clippy
-    cargo-nextest
-    sqlx-cli
-    awscli2
-
-    libiconv
-    openssl
-    pkg-config
-  ]);
-
-  # NOTE: try to fix openssl issue when `cargo test`, these variables are necessary needed, idk why
-  home.sessionVariables = {
-    OPENSSL_DEV = pkgs-stable.openssl.dev;
-    PKG_CONFIG_PATH="${pkgs-stable.openssl.dev}/lib/pkgconfig";
-  };
+  ];
 
   programs = {
     htop.enable = true;

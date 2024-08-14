@@ -4,7 +4,7 @@ return {
   -- event = 'VeryLazy',
   lazy = false,
   command = 'Hardtime',
-  disabled_filetypes = { 'qf', 'netrw', 'NvimTree', 'lazy', 'mason', 'oil' },
+  disabled_filetypes = { 'qf', 'netrw', 'NvimTree', 'lazy', 'oil' },
   dependencies = {
     'MunifTanjim/nui.nvim',
     'nvim-lua/plenary.nvim'

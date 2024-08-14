@@ -5,7 +5,6 @@ return {
     dependencies = {
       { 'theHamsta/nvim-dap-virtual-text', opts = {}, },
       'rcarriga/nvim-dap-ui',
-      'jay-babu/mason-nvim-dap.nvim',
     },
 
     keys = {
@@ -57,21 +56,5 @@ return {
       dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
       dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
     end,
-  },
-
-  {
-    'jay-babu/mason-nvim-dap.nvim',
-    dependencies = {
-      'williamboman/mason.nvim',
-    },
-    cmd = { 'DapInstall', 'DapUninstall' },
-    opts = {
-      automatic_installation = true,
-      handlers = {
-        function(config)
-          require('mason-nvim-dap').default_setup(config)
-        end,
-      },
-    },
   },
 }

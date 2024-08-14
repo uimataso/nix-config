@@ -12,11 +12,28 @@ end
 
 return {
   {
-    'neovim/nvim-lspconfig',
-    opts = {
-      servers = {
-        rust_analyzer = {
-          settings = {
+    'mrcjkb/rustaceanvim',
+    version = '^5',  -- Recommended
+    lazy    = false, -- This plugin is already lazy
+
+    config  = function()
+      vim.g.rustaceanvim = {
+        -- Plugin configuration
+        tools = {
+        },
+
+        -- LSP configuration
+        server = {
+          on_attach = function(client, bufnr)
+            vim.keymap.set('n', '<Leader>e', ':RustLsp renderDiagnostic current<CR>')
+            vim.keymap.set('n', '<Leader>r', ':RustLsp explainError<CR>')
+            vim.keymap.set('n', '<Leader>la', ':RustLsp hover actions<CR>')
+
+            vim.keymap.set('n', 'J', ':RustLsp joinLines<CR>')
+          end,
+
+          default_settings = {
+            -- rust-analyzer language server configuration
             ['rust-analyzer'] = {
               checkOnSave = {
                 allFeatures = true,
@@ -26,8 +43,20 @@ return {
             },
           },
         },
-      },
-    }
+
+
+        -- DAP configuration
+        dap = {
+        },
+      }
+    end
+  },
+
+  { -- Rustaceanvim Neotest integration
+    'nvim-neotest/neotest',
+    opts = function(_, opts)
+      table.insert(opts.adapters, require('rustaceanvim.neotest'))
+    end
   },
 
   {
@@ -60,15 +89,5 @@ return {
         }
       },
     },
-  },
-
-  {
-    'nvim-neotest/neotest',
-    dependencies = {
-      'rouge8/neotest-rust', -- $ cargo install cargo-nextest
-    },
-    opts = function(_, opts)
-      table.insert(opts.adapters, require('neotest-rust'))
-    end
   },
 }

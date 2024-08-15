@@ -281,6 +281,7 @@ return {
   MarkviewCode = { bg = c.gray1 },
   MarkviewInlineCode = { link = 'MarkviewCode' },
   HelpviewCode = { link = 'MarkviewCode' },
+  HelpviewInlineCode = { link = 'MarkviewCode' },
   HelpviewCodeLanguage = { link = 'MarkviewCode' },
 
   DiagnosticError = { fg = c.red },

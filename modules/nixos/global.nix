@@ -17,6 +17,7 @@ in
 
     environment.systemPackages = with pkgs; [
       git # Since all nix command need git
+      nil # nix lsp
 
       sops
       age

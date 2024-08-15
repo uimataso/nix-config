@@ -5,20 +5,21 @@
   ...
 }:
 # https://man.archlinux.org/man/tmux.1
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.sh-util.tmux;
 
-  setEnvVar = {
-    pkg,
-    binPath,
-    name,
-    val,
-  }:
+  setEnvVar =
+    {
+      pkg,
+      binPath,
+      name,
+      val,
+    }:
     pkg.overrideAttrs (old: {
-      buildInputs = old.buildInputs ++ [pkgs.makeWrapper];
+      buildInputs = old.buildInputs ++ [ pkgs.makeWrapper ];
       postInstall =
-        old.postInstall
-        or ""
+        old.postInstall or ""
         + ''
           wrapProgram "$out/${binPath}" --set ${name} ${val}
         '';
@@ -26,10 +27,8 @@ with lib; let
 
   scheme = config.stylix.base16Scheme;
 
-  tmux-select-sessions-src = {
-    writeShellApplication,
-    pkgs,
-  }:
+  tmux-select-sessions-src =
+    { writeShellApplication, pkgs }:
     writeShellApplication {
       name = "tmux-select-sessions";
       runtimeInputs = with pkgs; [
@@ -42,12 +41,10 @@ with lib; let
         tmux switch-client -t "$selected"
       '';
     };
-  tmux-select-sessions = pkgs.callPackage tmux-select-sessions-src {};
+  tmux-select-sessions = pkgs.callPackage tmux-select-sessions-src { };
 
-  tmuxinator-fzf-src = {
-    writeShellApplication,
-    pkgs,
-  }:
+  tmuxinator-fzf-src =
+    { writeShellApplication, pkgs }:
     writeShellApplication {
       name = "tmuxinator-fzf";
       runtimeInputs = with pkgs; [
@@ -61,10 +58,11 @@ with lib; let
         tmuxinator s "$selected"
       '';
     };
-  tmuxinator-fzf = pkgs.callPackage tmuxinator-fzf-src {};
+  tmuxinator-fzf = pkgs.callPackage tmuxinator-fzf-src { };
 
   imper = config.uimaConfig.system.impermanence;
-in {
+in
+{
   options.uimaConfig.sh-util.tmux = {
     enable = mkEnableOption "tmux";
   };
@@ -170,11 +168,12 @@ in {
         {
           # prefix enter
           plugin = tmuxPlugins.extrakto;
-          extraConfig = let
-            myFzf = pkgs.writeShellScriptBin "myFzf" ''
-              ${pkgs.fzf}/bin/fzf --color=pointer:5,gutter:-1 "$@"
-            '';
-          in
+          extraConfig =
+            let
+              myFzf = pkgs.writeShellScriptBin "myFzf" ''
+                ${pkgs.fzf}/bin/fzf --color=pointer:5,gutter:-1 "$@"
+              '';
+            in
             # tmux
             ''
               set -g @extrakto_key enter
@@ -190,6 +189,6 @@ in {
 
     programs.tmux.tmuxinator.enable = true;
 
-    home.persistence.main = mkIf imper.enable {directories = [".config/tmuxinator"];};
+    home.persistence.main = mkIf imper.enable { directories = [ ".config/tmuxinator" ]; };
   };
 }

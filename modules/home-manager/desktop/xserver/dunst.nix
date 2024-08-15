@@ -4,15 +4,17 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.desktop.xserver.dunst;
-in {
+in
+{
   options.uimaConfig.desktop.xserver.dunst = {
     enable = mkEnableOption "dunst";
   };
 
   config = {
-    home.packages = with pkgs; [libnotify];
+    home.packages = with pkgs; [ libnotify ];
 
     services.dunst = {
       enable = true;

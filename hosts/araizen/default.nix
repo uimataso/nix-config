@@ -4,7 +4,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   system.stateVersion = "23.11";
 
   networking.hostName = "araizen";

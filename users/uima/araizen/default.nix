@@ -5,7 +5,8 @@
   lib,
   inputs,
   ...
-}: {
+}:
+{
   home.username = "uima";
 
   home.stateVersion = "23.11";

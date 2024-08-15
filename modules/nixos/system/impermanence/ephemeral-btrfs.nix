@@ -5,7 +5,8 @@
   inputs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.system.impermanence.btrfs;
 
   subvolumes = {
@@ -61,7 +62,8 @@ with lib; let
 
       umount /btrfs_tmp
     '';
-in {
+in
+{
   options.uimaConfig.system.impermanence.btrfs = {
     enable = mkEnableOption "Impermanence on btrfs";
 
@@ -75,30 +77,32 @@ in {
     # TODO: luks?
   };
 
-  imports = [inputs.disko.nixosModules.disko];
+  imports = [ inputs.disko.nixosModules.disko ];
 
   config = mkIf cfg.enable {
     boot.initrd = {
       enable = true;
-      supportedFilesystems = ["btrfs"];
+      supportedFilesystems = [ "btrfs" ];
       systemd.enable = true;
-      systemd.services.restore-root = let
-        # /dev/disk/by-partlabel/disk-main-root
-        root-device = "dev-disk-by\\x2dpartlabel-disk\\x2dmain\\x2droot.device";
-      in {
-        description = "Rollback btrfs rootfs";
-        wantedBy = ["initrd.target"];
-        requires = [root-device];
-        after = [
-          root-device
-          # For luks
-          # "systemd-cryptsetup@${config.networking.hostName}.service"
-        ];
-        before = ["sysroot.mount"];
-        unitConfig.DefaultDependencies = "no";
-        serviceConfig.Type = "oneshot";
-        script = wipeScript;
-      };
+      systemd.services.restore-root =
+        let
+          # /dev/disk/by-partlabel/disk-main-root
+          root-device = "dev-disk-by\\x2dpartlabel-disk\\x2dmain\\x2droot.device";
+        in
+        {
+          description = "Rollback btrfs rootfs";
+          wantedBy = [ "initrd.target" ];
+          requires = [ root-device ];
+          after = [
+            root-device
+            # For luks
+            # "systemd-cryptsetup@${config.networking.hostName}.service"
+          ];
+          before = [ "sysroot.mount" ];
+          unitConfig.DefaultDependencies = "no";
+          serviceConfig.Type = "oneshot";
+          script = wipeScript;
+        };
     };
 
     disko.devices.disk.main = {
@@ -126,7 +130,7 @@ in {
             content = {
               inherit subvolumes;
               type = "btrfs";
-              extraArgs = ["-f"]; # Override existing partition
+              extraArgs = [ "-f" ]; # Override existing partition
             };
           };
         };

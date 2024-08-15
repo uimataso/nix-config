@@ -5,18 +5,20 @@
   inputs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.system.sops;
 
   isEd25519 = k: k.type == "ed25519";
   keys = builtins.filter isEd25519 config.services.openssh.hostKeys;
   keyPaths = map (k: k.path) keys;
-in {
+in
+{
   options.uimaConfig.system.sops = {
     enable = mkEnableOption "sops";
   };
 
-  imports = [inputs.sops-nix.nixosModules.sops];
+  imports = [ inputs.sops-nix.nixosModules.sops ];
 
   config = mkIf cfg.enable {
     sops = {

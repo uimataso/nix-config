@@ -5,9 +5,11 @@
   inputs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.theme;
-in {
+in
+{
   options.uimaConfig.theme = {
     enable = mkEnableOption "Theme";
 
@@ -69,7 +71,7 @@ in {
         sansSerif.package = pkgs.noto-fonts-cjk-sans;
         sansSerif.name = "Noto Sans CJK TC";
 
-        monospace.package = pkgs.nerdfonts.override {fonts = ["Meslo"];};
+        monospace.package = pkgs.nerdfonts.override { fonts = [ "Meslo" ]; };
         monospace.name = "MesloLGS Nerd Font";
 
         emoji.package = pkgs.noto-fonts-emoji;

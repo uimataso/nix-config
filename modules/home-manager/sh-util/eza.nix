@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.sh-util.eza;
-in {
+in
+{
   options.uimaConfig.sh-util.eza = {
     enable = mkEnableOption "eza";
   };

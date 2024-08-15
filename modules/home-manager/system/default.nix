@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./input-method
     ./impermanence.nix

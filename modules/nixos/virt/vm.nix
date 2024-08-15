@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.virt.vm;
-in {
+in
+{
   options.uimaConfig.virt.vm = {
     enable = mkEnableOption "vm";
   };
@@ -27,7 +29,7 @@ in {
         qemu = {
           swtpm.enable = true;
           ovmf.enable = true;
-          ovmf.packages = [pkgs.OVMFFull.fd];
+          ovmf.packages = [ pkgs.OVMFFull.fd ];
         };
       };
       spiceUSBRedirection.enable = true;

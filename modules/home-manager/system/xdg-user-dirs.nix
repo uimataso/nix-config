@@ -4,12 +4,14 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.system.xdg-user-dirs;
 
   imper = config.uimaConfig.system.impermanence;
   rmHomePath = str: removePrefix config.home.homeDirectory str;
-in {
+in
+{
   options.uimaConfig.system.xdg-user-dirs = {
     enable = mkEnableOption "XDG User Dirs";
   };
@@ -30,18 +32,19 @@ in {
     };
 
     home.persistence.main = mkIf imper.enable {
-      directories = let
-        dirs = with config.xdg.userDirs; [
-          desktop
-          documents
-          download
-          music
-          pictures
-          publicShare
-          templates
-          videos
-        ];
-      in
+      directories =
+        let
+          dirs = with config.xdg.userDirs; [
+            desktop
+            documents
+            download
+            music
+            pictures
+            publicShare
+            templates
+            videos
+          ];
+        in
         lists.forEach (lists.remove null dirs) rmHomePath;
     };
   };

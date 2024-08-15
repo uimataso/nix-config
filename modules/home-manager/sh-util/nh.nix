@@ -4,13 +4,15 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.sh-util.nh;
 
   homeDir = config.home.homeDirectory;
   configHome = config.xdg.configHome;
   flakeDir = "${homeDir}/nix";
-in {
+in
+{
   options.uimaConfig.sh-util.nh = {
     enable = mkEnableOption ''
       Yet-another-nix-helper and other nix alias/sceripts that improve QoL.
@@ -41,6 +43,6 @@ in {
       nvim-clean = "bash -c 'rm ${configHome}/nvim'";
     };
 
-    home.packages = with pkgs; [nh];
+    home.packages = with pkgs; [ nh ];
   };
 }

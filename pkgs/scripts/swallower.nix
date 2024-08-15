@@ -1,10 +1,7 @@
-{
-  writeShellApplication,
-  pkgs,
-}:
+{ writeShellApplication, pkgs }:
 writeShellApplication {
   name = "swallower";
-  runtimeInputs = with pkgs; [xdotool];
+  runtimeInputs = with pkgs; [ xdotool ];
 
   text = ''
     winid="$(xdotool getactivewindow)"

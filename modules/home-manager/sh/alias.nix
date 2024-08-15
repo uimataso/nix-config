@@ -4,7 +4,8 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.sh.alias;
 
   mkEverythingDefault = attr: attrsets.mapAttrs (name: value: mkDefault value) attr;
@@ -31,7 +32,8 @@ with lib; let
     df = "df -h";
     du = "du -h";
   };
-in {
+in
+{
   options.uimaConfig.sh.alias = {
     enable = mkEnableOption "Aliases for coreutils and common commands";
   };

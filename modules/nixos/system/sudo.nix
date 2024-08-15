@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.uimaConfig.system.sudo;
-in {
+in
+{
   options.uimaConfig.system.sudo = {
     enable = mkEnableOption "sudo";
   };

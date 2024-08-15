@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.system.xdg;
-in {
+in
+{
   options.uimaConfig.system.xdg = {
     enable = mkEnableOption "XDG";
   };

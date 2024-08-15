@@ -32,99 +32,98 @@
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    home-manager,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    lib = nixpkgs.lib // home-manager.lib;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-stable,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+      lib = nixpkgs.lib // home-manager.lib;
 
-    systems = [
-      "x86_64-linux"
-      "aarch64-linux"
-    ];
-    pkg-inputs = [
-      "nixpkgs"
-      "nixpkgs-stable"
-    ];
-    forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.nixpkgs.${system});
-    pkgsFor = with lib;
-      genAttrs pkg-inputs (
-        pkg:
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+      pkg-inputs = [
+        "nixpkgs"
+        "nixpkgs-stable"
+      ];
+      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.nixpkgs.${system});
+      pkgsFor =
+        with lib;
+        genAttrs pkg-inputs (
+          pkg:
           genAttrs systems (
             system:
-              import inputs.${pkg} {
-                inherit system;
-                config.allowUnfree = true;
-              }
+            import inputs.${pkg} {
+              inherit system;
+              config.allowUnfree = true;
+            }
           )
-      );
+        );
 
-    nixosConfig = {
-      modules,
-      system,
-    }: let
-      specialArgs = {
-        inherit inputs outputs;
-        pkgs-stable = pkgsFor.nixpkgs-stable.${system};
-      };
-    in
-      lib.nixosSystem {
-        inherit specialArgs;
-        pkgs = pkgsFor.nixpkgs.${system};
+      nixosConfig =
+        { modules, system }:
+        let
+          specialArgs = {
+            inherit inputs outputs;
+            pkgs-stable = pkgsFor.nixpkgs-stable.${system};
+          };
+        in
+        lib.nixosSystem {
+          inherit specialArgs;
+          pkgs = pkgsFor.nixpkgs.${system};
 
-        modules =
-          [
+          modules = [
             outputs.nixosModules
             # Import home-manager
             home-manager.nixosModules.home-manager
             {
               home-manager = {
-                sharedModules = [outputs.homeManagerModules];
+                sharedModules = [ outputs.homeManagerModules ];
                 extraSpecialArgs = specialArgs;
               };
             }
-          ]
-          ++ modules;
+          ] ++ modules;
+        };
+    in
+    rec {
+      nixosModules = import ./modules/nixos;
+      homeManagerModules = import ./modules/home-manager;
+
+      overlays = import ./overlays { inherit inputs outputs; };
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+
+      formatter = forEachSystem (pkgs: pkgs.nixfmt-rfc-style);
+      devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
+      templates = import ./templates;
+
+      # FIXME: Github CI: nix eval always stack overflow
+      # [](https://github.com/ryan4yin/nix-config/blob/main/.github/workflows/flake_evaltests.yml)
+      evalTests."araizen" = nixosConfigurations."araizen".config.system.build.toplevel;
+
+      nixosConfigurations = {
+        uicom = nixosConfig {
+          modules = [ ./hosts/uicom ];
+          system = "x86_64-linux";
+        };
+
+        vm-mini = nixosConfig {
+          modules = [ ./hosts/vm-mini ];
+          system = "x86_64-linux";
+        };
+
+        araizen = nixosConfig {
+          modules = [ ./hosts/araizen ];
+          system = "x86_64-linux";
+        };
       };
-  in rec {
-    nixosModules = import ./modules/nixos;
-    homeManagerModules = import ./modules/home-manager;
 
-    overlays = import ./overlays {inherit inputs outputs;};
-    packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
-
-    formatter = forEachSystem (pkgs: pkgs.alejandra);
-    # formatter = forEachSystem (pkgs: pkgs.nixfmt-rfc-style);
-    # formatter = forEachSystem (pkgs: pkgs.nixfmt-rfc-style);
-    devShells = forEachSystem (pkgs: import ./shell.nix {inherit pkgs;});
-    templates = import ./templates;
-
-    # FIXME: Github CI: nix eval always stack overflow
-    # [](https://github.com/ryan4yin/nix-config/blob/main/.github/workflows/flake_evaltests.yml)
-    evalTests."araizen" = nixosConfigurations."araizen".config.system.build.toplevel;
-
-    nixosConfigurations = {
-      uicom = nixosConfig {
-        modules = [./hosts/uicom];
-        system = "x86_64-linux";
-      };
-
-      vm-mini = nixosConfig {
-        modules = [./hosts/vm-mini];
-        system = "x86_64-linux";
-      };
-
-      araizen = nixosConfig {
-        modules = [./hosts/araizen];
-        system = "x86_64-linux";
-      };
+      # TODO: Make home-manager can be used standalone
+      # homeConfigurations = { };
     };
-
-    # TODO: Make home-manager can be used standalone
-    # homeConfigurations = { };
-  };
 }

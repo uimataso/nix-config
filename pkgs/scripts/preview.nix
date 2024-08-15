@@ -1,8 +1,5 @@
 # vim:foldmethod=marker:foldlevel=0
-{
-  writeShellApplication,
-  pkgs,
-}:
+{ writeShellApplication, pkgs }:
 writeShellApplication {
   name = "preview";
   runtimeInputs = with pkgs; [

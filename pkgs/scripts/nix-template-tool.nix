@@ -1,7 +1,4 @@
-{
-  writeShellApplication,
-  pkgs,
-}:
+{ writeShellApplication, pkgs }:
 writeShellApplication {
   name = "nix-template-tool";
   runtimeInputs = with pkgs; [

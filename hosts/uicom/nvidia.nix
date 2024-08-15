@@ -1,4 +1,4 @@
-{...}:
+{ ... }:
 # https://discourse.nixos.org/t/getting-nvidia-to-work-avoiding-screen-tearing/10422/16
 {
   hardware.nvidia = {
@@ -12,7 +12,7 @@
   };
 
   services.xserver = {
-    videoDrivers = ["nvidia"];
+    videoDrivers = [ "nvidia" ];
     config = ''
       Section "Device"
           Identifier  "nvidia"
@@ -29,6 +29,6 @@
       Option         "TripleBuffer" "on"
     '';
 
-    xrandrHeads = ["HDMI-0"];
+    xrandrHeads = [ "HDMI-0" ];
   };
 }

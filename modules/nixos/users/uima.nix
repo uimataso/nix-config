@@ -4,14 +4,16 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.users.uima;
 
   username = "uima";
 
   imper = config.uimaConfig.system.impermanence;
   ifGroupExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-in {
+in
+{
   options.uimaConfig.users.${username} = {
     enable = mkEnableOption "User ${username}";
 
@@ -30,7 +32,7 @@ in {
         shell = pkgs.bashInteractive;
 
         extraGroups =
-          ["wheel"]
+          [ "wheel" ]
           ++ ifGroupExist [
             "networkmanager"
             "docker"

@@ -4,11 +4,13 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.programs.qutebrowser;
 
   imper = config.uimaConfig.system.impermanence;
-in {
+in
+{
   options.uimaConfig.programs.qutebrowser = {
     enable = mkEnableOption "qutebrowser";
   };

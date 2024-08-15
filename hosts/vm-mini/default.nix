@@ -12,7 +12,7 @@
 # nixos-install --flake "$flake_url" --no-root-passwd
 # chown ui:users /mnt/persist/passwords/ui
 {
-  imports = [./hardware-configuration.nix];
+  imports = [ ./hardware-configuration.nix ];
 
   system.stateVersion = "23.11";
 

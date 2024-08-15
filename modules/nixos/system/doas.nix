@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.uimaConfig.system.doas;
-in {
+in
+{
   options.uimaConfig.system.doas = {
     enable = mkEnableOption "doas";
 
@@ -24,7 +22,7 @@ in {
 
       extraRules = [
         {
-          groups = ["wheel"];
+          groups = [ "wheel" ];
           keepEnv = true;
           persist = true;
         }

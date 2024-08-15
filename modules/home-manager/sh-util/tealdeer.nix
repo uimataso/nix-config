@@ -1,13 +1,11 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.uimaConfig.sh-util.tealdeer;
 
   imper = config.uimaConfig.system.impermanence;
-in {
+in
+{
   options.uimaConfig.sh-util.tealdeer = {
     enable = mkEnableOption "tealdeer";
   };
@@ -22,6 +20,6 @@ in {
       };
     };
 
-    home.persistence.main = mkIf imper.enable {directories = [".cache/tealdeer"];};
+    home.persistence.main = mkIf imper.enable { directories = [ ".cache/tealdeer" ]; };
   };
 }

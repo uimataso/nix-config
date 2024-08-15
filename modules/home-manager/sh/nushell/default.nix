@@ -4,12 +4,14 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.sh.nushell;
 
   imper = config.uimaConfig.system.impermanence;
   defaultEditor = config.home.sessionVariables.EDITOR;
-in {
+in
+{
   options.uimaConfig.sh.nushell = {
     enable = mkEnableOption "Nushell";
 
@@ -21,7 +23,7 @@ in {
   };
 
   config = mkIf cfg.enable rec {
-    home.sessionVariables = mkIf cfg.defaultShell {SHELL = "nu";};
+    home.sessionVariables = mkIf cfg.defaultShell { SHELL = "nu"; };
 
     # TODO:
     # - fff
@@ -58,6 +60,6 @@ in {
       };
     };
 
-    home.persistence.main = mkIf imper.enable {files = [".config/nushell/history.txt"];};
+    home.persistence.main = mkIf imper.enable { files = [ ".config/nushell/history.txt" ]; };
   };
 }

@@ -1,10 +1,7 @@
-{
-  writeShellApplication,
-  pkgs,
-}:
+{ writeShellApplication, pkgs }:
 writeShellApplication {
   name = "fmenu";
-  runtimeInputs = with pkgs; [xdotool];
+  runtimeInputs = with pkgs; [ xdotool ];
 
   text = ''
     name="$(basename "$0")"

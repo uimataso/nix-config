@@ -17,7 +17,8 @@
 # - https://www.reddit.com
 # - https://leetcode.com
 # - https://www.printables.com
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.programs.firefox.profile.uima;
 
   scheme = config.stylix.base16Scheme;
@@ -35,13 +36,14 @@ with lib; let
     '';
 
   imper = config.uimaConfig.system.impermanence;
-in {
+in
+{
   options.uimaConfig.programs.firefox.profile.${name} = {
     enable = mkEnableOption "Firefox profile: ${name}";
   };
 
   config = mkIf cfg.enable {
-    home.persistence.main = mkIf imper.enable {directories = [".mozilla/firefox/${name}"];};
+    home.persistence.main = mkIf imper.enable { directories = [ ".mozilla/firefox/${name}" ]; };
 
     programs.firefox = {
       profiles.${name} = {
@@ -51,43 +53,43 @@ in {
 
           engines = {
             "Searx" = {
-              definedAliases = ["@s"];
-              urls = [{template = "https://search.uima.duckdns.org/search?q={searchTerms}";}];
+              definedAliases = [ "@s" ];
+              urls = [ { template = "https://search.uima.duckdns.org/search?q={searchTerms}"; } ];
               iconUpdateURL = "https://search.uima.duckdns.org/favicon.ico";
               updateInterval = 24 * 60 * 60 * 1000;
             };
 
             "Nix Packages" = {
-              definedAliases = ["@np"];
-              urls = [{template = "https://search.nixos.org/packages?type=packages&query={searchTerms}";}];
+              definedAliases = [ "@np" ];
+              urls = [ { template = "https://search.nixos.org/packages?type=packages&query={searchTerms}"; } ];
               iconUpdateURL = "https://nixos.wiki/favicon.png";
               updateInterval = 24 * 60 * 60 * 1000;
             };
 
             "NixOS Wiki" = {
-              definedAliases = ["@nw"];
-              urls = [{template = "https://nixos.wiki/index.php?search={searchTerms}";}];
+              definedAliases = [ "@nw" ];
+              urls = [ { template = "https://nixos.wiki/index.php?search={searchTerms}"; } ];
               iconUpdateURL = "https://nixos.wiki/favicon.png";
               updateInterval = 24 * 60 * 60 * 1000;
             };
 
             "MyNixOS" = {
-              definedAliases = ["@nm"];
-              urls = [{template = "https://mynixos.com/search?q={searchTerms}";}];
+              definedAliases = [ "@nm" ];
+              urls = [ { template = "https://mynixos.com/search?q={searchTerms}"; } ];
               iconUpdateURL = "https://mynixos.com/favicon.ico";
               updateInterval = 24 * 60 * 60 * 1000;
             };
 
             "ArchWiki" = {
-              definedAliases = ["@aw"];
-              urls = [{template = "https://wiki.archlinux.org/index.php?search={searchTerms}";}];
+              definedAliases = [ "@aw" ];
+              urls = [ { template = "https://wiki.archlinux.org/index.php?search={searchTerms}"; } ];
               iconUpdateURL = "https://wiki.archlinux.org/favicon.ico";
               updateInterval = 24 * 60 * 60 * 1000;
             };
 
             "Rust Std" = {
-              definedAliases = ["@ru"];
-              urls = [{template = "https://doc.rust-lang.org/std/iter/?search={searchTerms}";}];
+              definedAliases = [ "@ru" ];
+              urls = [ { template = "https://doc.rust-lang.org/std/iter/?search={searchTerms}"; } ];
               iconUpdateURL = "https://doc.rust-lang.org/favicon.ico";
               updateInterval = 24 * 60 * 60 * 1000;
             };

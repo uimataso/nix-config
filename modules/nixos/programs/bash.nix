@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.uimaConfig.programs.bash;
-in {
+in
+{
   options.uimaConfig.programs.bash = {
     enable = mkEnableOption "Bash XDG-rized";
   };

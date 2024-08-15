@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.uimaConfig.sh-util.fzf;
-in {
+in
+{
   options.uimaConfig.sh-util.fzf = {
     enable = mkEnableOption "fzf";
   };

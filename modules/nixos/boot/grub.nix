@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.uimaConfig.boot.grub;
-in {
+in
+{
   options.uimaConfig.boot.grub = {
     enable = mkEnableOption "Grub";
   };

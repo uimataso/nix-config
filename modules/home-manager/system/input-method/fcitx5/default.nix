@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.system.input-method.fcitx5;
-in {
+in
+{
   options.uimaConfig.system.input-method.fcitx5 = {
     enable = mkEnableOption "input-method fcitx5";
   };
@@ -14,7 +16,7 @@ in {
   config = mkIf cfg.enable {
     i18n.inputMethod = {
       enabled = "fcitx5";
-      fcitx5.addons = with pkgs; [fcitx5-rime];
+      fcitx5.addons = with pkgs; [ fcitx5-rime ];
     };
 
     # TODO: theme

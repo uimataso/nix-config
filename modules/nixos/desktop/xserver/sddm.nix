@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.desktop.xserver.sddm;
-in {
+in
+{
   options.uimaConfig.desktop.xserver.sddm = {
     enable = mkEnableOption "sddm";
   };
@@ -21,7 +23,7 @@ in {
       };
     };
 
-    environment.systemPackages = with pkgs; [sddm-astronaut-theme];
+    environment.systemPackages = with pkgs; [ sddm-astronaut-theme ];
 
     services.xserver.displayManager.sessionCommands =
       # sh

@@ -4,11 +4,13 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.programs.st;
 
   scheme = config.stylix.base16Scheme;
-in {
+in
+{
   options.uimaConfig.programs.st = {
     enable = mkEnableOption "st";
 
@@ -20,9 +22,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [st];
+    home.packages = with pkgs; [ st ];
 
-    home.sessionVariables = mkIf cfg.defaultTerminal {TERMINAL = "st";};
+    home.sessionVariables = mkIf cfg.defaultTerminal { TERMINAL = "st"; };
 
     xresources.properties = with config.stylix; {
       "st.font" = "${fonts.monospace.name}:size=${builtins.toString fonts.sizes.terminal}";

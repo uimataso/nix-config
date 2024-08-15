@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./impermanence
     ./auto-upgrade.nix

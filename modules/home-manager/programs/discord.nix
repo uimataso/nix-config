@@ -4,11 +4,13 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.programs.discord;
 
   imper = config.uimaConfig.system.impermanence;
-in {
+in
+{
   options.uimaConfig.programs.discord = {
     enable = mkEnableOption "Discord";
   };

@@ -5,9 +5,11 @@
   outputs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.global;
-in {
+in
+{
   options.uimaConfig.global = {
     enable = mkEnableOption "Global settings";
   };
@@ -29,7 +31,10 @@ in {
     nix = {
       channel.enable = false;
       settings = {
-        experimental-features = ["nix-command" "flakes"];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
         warn-dirty = false;
       };
     };

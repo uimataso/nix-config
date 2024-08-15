@@ -1,22 +1,19 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 with lib;
 # TODO: secrets
-  let
-    cfg = config.uimaConfig.programs.ssh;
+let
+  cfg = config.uimaConfig.programs.ssh;
 
-    imper = config.uimaConfig.system.impermanence;
-  in {
-    options.uimaConfig.programs.ssh = {
-      enable = mkEnableOption "ssh";
-    };
+  imper = config.uimaConfig.system.impermanence;
+in
+{
+  options.uimaConfig.programs.ssh = {
+    enable = mkEnableOption "ssh";
+  };
 
-    config = mkIf cfg.enable {
-      programs.ssh.enable = true;
+  config = mkIf cfg.enable {
+    programs.ssh.enable = true;
 
-      home.persistence.main = mkIf imper.enable {directories = [".ssh"];};
-    };
-  }
+    home.persistence.main = mkIf imper.enable { directories = [ ".ssh" ]; };
+  };
+}

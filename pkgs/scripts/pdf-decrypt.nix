@@ -1,10 +1,7 @@
-{
-  writeShellApplication,
-  pkgs,
-}:
+{ writeShellApplication, pkgs }:
 writeShellApplication {
   name = "pdf-decrypt";
-  runtimeInputs = with pkgs; [qpdf];
+  runtimeInputs = with pkgs; [ qpdf ];
 
   text = ''
     if [ $# -ne 2 ] && [ $# -ne 3 ];then

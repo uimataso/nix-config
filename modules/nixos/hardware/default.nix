@@ -1,3 +1,4 @@
-{...}: {
-  imports = [./opentabletdriver.nix];
+{ ... }:
+{
+  imports = [ ./opentabletdriver.nix ];
 }

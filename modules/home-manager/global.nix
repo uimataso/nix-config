@@ -6,15 +6,17 @@
   outputs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.global;
-in {
+in
+{
   options.uimaConfig.global = {
     enable = mkEnableOption "Global settings";
   };
 
   config = mkIf cfg.enable {
-    nixpkgs.overlays = [inputs.nur.overlay] ++ builtins.attrValues outputs.overlays;
+    nixpkgs.overlays = [ inputs.nur.overlay ] ++ builtins.attrValues outputs.overlays;
 
     home.homeDirectory = mkDefault "/home/${config.home.username}";
 

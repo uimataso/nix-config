@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./freecad.nix
     ./kicad.nix

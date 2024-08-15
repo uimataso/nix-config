@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.desktop.xserver;
-in {
+in
+{
   options.uimaConfig.desktop.xserver = {
     enable = mkEnableOption "Xserver";
   };

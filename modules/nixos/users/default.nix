@@ -1,3 +1,4 @@
-{...}: {
-  imports = [./uima.nix];
+{ ... }:
+{
+  imports = [ ./uima.nix ];
 }

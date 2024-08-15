@@ -4,11 +4,13 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.programs.neovim;
 
   imper = config.uimaConfig.system.impermanence;
-in {
+in
+{
   options.uimaConfig.programs.neovim = {
     enable = mkEnableOption "neovim";
 
@@ -46,7 +48,7 @@ in {
         # PAGER = lib.mkDefault "nvim +Man!";
         MANPAGER = lib.mkDefault "nvim +Man!";
       }
-      (mkIf cfg.defaultEditor {EDITOR = "nvim";})
+      (mkIf cfg.defaultEditor { EDITOR = "nvim"; })
     ];
 
     # Git pager

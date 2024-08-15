@@ -1,13 +1,11 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.uimaConfig.networking.networkmanager;
 
   imper = config.uimaConfig.system.impermanence;
-in {
+in
+{
   options.uimaConfig.networking.networkmanager = {
     enable = mkEnableOption "NetworkManager";
   };
@@ -20,7 +18,7 @@ in {
     systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 
     environment.persistence.main = mkIf imper.enable {
-      directories = ["/etc/NetworkManager/system-connections"];
+      directories = [ "/etc/NetworkManager/system-connections" ];
     };
   };
 }

@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./eza.nix
     ./fff.nix

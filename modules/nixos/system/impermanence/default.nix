@@ -5,12 +5,14 @@
   inputs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.system.impermanence;
 
   isUser = user: user.group == "users";
   users = builtins.filter isUser (builtins.attrValues config.users.users);
-in {
+in
+{
   options.uimaConfig.system.impermanence = {
     enable = mkEnableOption "Impermanence setup";
 
@@ -44,7 +46,7 @@ in {
         "/var/lib/nixos"
         "/var/log"
       ];
-      files = ["/etc/machine-id"];
+      files = [ "/etc/machine-id" ];
     };
 
     # Create persist home directory

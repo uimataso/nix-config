@@ -1,9 +1,6 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.uimaConfig.sh.bash;
 
   imper = config.uimaConfig.system.impermanence;
@@ -19,7 +16,8 @@ with lib; let
     url = "https://raw.githubusercontent.com/lincheney/fzf-tab-completion/97658f9f6370606cf337ef04c6b8553d1daf51cc/bash/fzf-bash-completion.sh";
     sha256 = "15wbd45xxwiv6db34gm1x7czcy181kak8wby4k3gy9ahskwmsp5f";
   };
-in {
+in
+{
   options.uimaConfig.sh.bash = {
     enable = mkEnableOption "Bash";
 
@@ -38,7 +36,7 @@ in {
     uimaConfig.sh.alias.enable = true;
     uimaConfig.sh-util.fzf.enable = true;
 
-    home.sessionVariables = mkIf cfg.defaultShell {SHELL = "bash";};
+    home.sessionVariables = mkIf cfg.defaultShell { SHELL = "bash"; };
 
     programs.bash = {
       enable = true;
@@ -74,7 +72,7 @@ in {
     };
 
     home.persistence.main = mkIf imper.enable {
-      files = [(rmHomePath config.programs.bash.historyFile)];
+      files = [ (rmHomePath config.programs.bash.historyFile) ];
     };
   };
 }

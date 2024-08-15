@@ -5,15 +5,17 @@
   stdenv,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.desktop.xserver.dwm;
-in {
+in
+{
   options.uimaConfig.desktop.xserver.dwm = {
     enable = mkEnableOption "dwm";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [dwmblocks];
+    environment.systemPackages = with pkgs; [ dwmblocks ];
 
     services.xserver = {
       windowManager.dwm = {

@@ -6,23 +6,26 @@
     poetry2nix.url = "github:nix-community/poetry2nix";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    poetry2nix,
-  }: let
-    forAllSystems = nixpkgs.lib.genAttrs [
-      "x86_64-linux"
-      "aarch64-linux"
-    ];
-    pkgsFor = nixpkgs.legacyPackages;
-  in rec {
-    packages = forAllSystems (system: {
-      default = pkgsFor.${system}.callPackage ./default.nix {};
-    });
+  outputs =
+    {
+      self,
+      nixpkgs,
+      poetry2nix,
+    }:
+    let
+      forAllSystems = nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+      pkgsFor = nixpkgs.legacyPackages;
+    in
+    rec {
+      packages = forAllSystems (system: {
+        default = pkgsFor.${system}.callPackage ./default.nix { };
+      });
 
-    devShells = forAllSystems (system: {
-      default = pkgsFor.${system}.callPackage ./shell.nix {};
-    });
-  };
+      devShells = forAllSystems (system: {
+        default = pkgsFor.${system}.callPackage ./shell.nix { };
+      });
+    };
 }

@@ -5,9 +5,11 @@
   inputs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.uimaConfig.system.wsl;
-in {
+in
+{
   options.uimaConfig.system.wsl = {
     enable = mkEnableOption "WSL";
 
@@ -18,7 +20,7 @@ in {
     };
   };
 
-  imports = [inputs.nixos-wsl.nixosModules.default];
+  imports = [ inputs.nixos-wsl.nixosModules.default ];
 
   config = mkIf cfg.enable {
     wsl = {

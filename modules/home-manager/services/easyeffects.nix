@@ -1,14 +1,12 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.uimaConfig.services.easyeffects;
   settings = config.services.easyeffects;
 
   imper = config.uimaConfig.system.impermanence;
-in {
+in
+{
   options.uimaConfig.services.easyeffects = {
     enable = mkEnableOption "Easyeffects";
   };

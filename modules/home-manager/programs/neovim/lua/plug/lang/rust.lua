@@ -25,11 +25,12 @@ return {
         -- LSP configuration
         server = {
           on_attach = function(client, bufnr)
+            -- vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
+
             vim.keymap.set('n', '<Leader>e', ':RustLsp renderDiagnostic current<CR>')
             vim.keymap.set('n', '<Leader>r', ':RustLsp explainError<CR>')
-            vim.keymap.set('n', '<Leader>la', ':RustLsp hover actions<CR>')
-
-            vim.keymap.set('n', 'J', ':RustLsp joinLines<CR>')
+            vim.keymap.set('n', 'K', ':RustLsp hover actions<CR>')
+            -- vim.keymap.set('n', 'J', ':RustLsp joinLines<CR>')
           end,
 
           default_settings = {

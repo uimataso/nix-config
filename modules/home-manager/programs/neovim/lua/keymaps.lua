@@ -45,7 +45,7 @@ vim.keymap.set('', '<Leader>p', '"+p')
 vim.keymap.set('', '<Leader>P', '"+P')
 vim.keymap.set('', '<Leader><Leader>y', 'gg"+yG\'\'')
 
--- Select the context just paste
+-- Select the context just pasted
 vim.keymap.set('', 'gp', function()
   local v = vim.fn.getregtype():sub(1, 1)
   if v == '' then
@@ -56,7 +56,7 @@ vim.keymap.set('', 'gp', function()
   return '`[' .. v .. '`]'
 end, { expr = true, desc = 'Selecting the paste' })
 
--- Center the search
+-- Center the screen when search
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('c', '<CR>', function()
@@ -94,17 +94,16 @@ vim.keymap.set('n', '<Leader>dl', vim.diagnostic.setloclist, { desc = 'Add diagn
 -- LSP
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-  callback = function(ev)
-    -- Use Telescope
-    -- vim.keymap.set('n', '<space>gd', vim.diagnostic.setloclist, { desc = '' } )
-    -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition,           { desc = '' } )
-    -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration,          { desc = '' } )
-    -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation,       { desc = '' } )
-    -- vim.keymap.set('n', 'gr', vim.lsp.buf.references,           { desc = '' } )
+  callback = function(args)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'vim.lsp.buf.definition()' })
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'vim.lsp.buf.declaration()' })
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = 'vim.lsp.buf.implementation()' })
+    vim.keymap.set('n', 'grr', vim.lsp.buf.references, { desc = 'vim.lsp.buf.references()' })
+    vim.keymap.set('n', 'grn', vim.lsp.buf.rename, { desc = 'vim.lsp.buf.rename()' })
+    vim.keymap.set({ 'n', 'x' }, 'gra', vim.lsp.buf.code_action, { desc = 'vim.lsp.buf.code_action()' })
+    vim.keymap.set('i', '<C-s>', vim.lsp.buf.signature_help, { desc = 'vim.lsp.buf.signature_help()' })
 
-    vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, { desc = 'Rename on workspace level' })
-    vim.keymap.set('n', '<Leader>la', vim.lsp.buf.code_action, { desc = 'Code action provided by lsp' })
-
+    -- Workspace
     vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, { desc = 'Add workspace folder' })
     vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, { desc = 'Remove workspace folder' })
     vim.keymap.set('n', '<Leader>wl', function()
@@ -120,6 +119,7 @@ vim.api.nvim_create_user_command('CopyCodeBlock', function(opts)
   local result = string.format('```%s\n%s\n```', vim.bo.filetype, content)
   vim.fn.setreg('+', result)
 end, { range = true })
+
 vim.keymap.set('', '<Leader>cy', ':CopyCodeBlock<CR>', { desc = 'Copy text with markdown codeblock style' })
 
 -- Abbr for command mode

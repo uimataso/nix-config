@@ -1,23 +1,20 @@
 return {
   'nvim-telescope/telescope.nvim',
-  cmd = { 'Telescope' },
+  lazy = false,
+
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope-ui-select.nvim',
+    'gbrlsnchs/telescope-lsp-handlers.nvim',
   },
 
   keys = {
-    { '=',          function() require('telescope.builtin').find_files() end,           desc = 'Telescope for files' },
-    { '<Leader>fe', function() require('telescope.builtin').find_files() end,           desc = 'Telescope for files' },
-    { '<Leader>fu', function() require('telescope.builtin').buffers() end,              desc = 'Telescope for buffers' },
-    { '<Leader>fs', function() require('telescope.builtin').live_grep() end,            desc = 'Telescope for live_grep' },
-    { '<Leader>fr', function() require('telescope.builtin').resume() end,               desc = 'Telescope for resume' },
-
-    { '<Leader>gd', function() require('telescope.builtin').diagnostics() end,          desc = 'Telescope for lsp_diagnostics' },
-    { 'gd',         function() require('telescope.builtin').lsp_definitions() end,      desc = 'Telescope for lsp_definitions' },
-    { 'gD',         function() require('telescope.builtin').lsp_type_definitions() end, desc = 'Telescope for lsp_type_definitions' },
-    { 'gi',         function() require('telescope.builtin').lsp_implementations() end,  desc = 'Telescope for lsp_implementations' },
-    { 'gr',         function() require('telescope.builtin').lsp_references() end,       desc = 'Telescope for lsp_references' },
+    { '=',          function() require('telescope.builtin').find_files() end,  desc = 'Telescope for files' },
+    { '<Leader>fe', function() require('telescope.builtin').find_files() end,  desc = 'Telescope for files' },
+    { '<Leader>fu', function() require('telescope.builtin').buffers() end,     desc = 'Telescope for buffers' },
+    { '<Leader>fs', function() require('telescope.builtin').live_grep() end,   desc = 'Telescope for live_grep' },
+    { '<Leader>fr', function() require('telescope.builtin').resume() end,      desc = 'Telescope for resume' },
+    { '<Leader>di', function() require('telescope.builtin').diagnostics() end, desc = 'Telescope for diagnostics' },
   },
 
   config = function()
@@ -34,7 +31,12 @@ return {
       extensions = {
         ["ui-select"] = {
           require("telescope.themes").get_dropdown {}
-        }
+        },
+
+        -- Use telescope when using lsp command
+        ["lsp_handlers"] = {
+          require('telescope').load_extension('lsp_handlers')
+        },
       }
     }
 

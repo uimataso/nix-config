@@ -14,6 +14,17 @@ vim.keymap.set('i', '<C-Right>', '<C-o>w')
 vim.keymap.set('i', '<Home>', '<C-o>^')
 vim.keymap.set('i', '<End>', '<C-o>$')
 
+vim.keymap.set({ 'i', 's' }, '<PageDown>', function()
+  if vim.snippet.active { direction = 1 } then
+    vim.snippet.jump(1)
+  end
+end, { expr = true, desc = 'Jump to next snip placeholder' })
+vim.keymap.set({ 'i', 's' }, '<PageUp>', function()
+  if vim.snippet.active { direction = -1 } then
+    vim.snippet.jump(-1)
+  end
+end, { expr = true, desc = 'Jump to prev snip placeholder' })
+
 
 -- Terminal mapping
 vim.keymap.set('', '<Leader>sh', ':terminal<cr>')

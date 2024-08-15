@@ -1,11 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
-  cfg = config.uimaConfig.virt.docker;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.uimaConfig.virt.docker;
+in {
   options.uimaConfig.virt.docker = {
     enable = mkEnableOption "Docker";
   };

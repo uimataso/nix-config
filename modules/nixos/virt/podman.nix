@@ -1,19 +1,18 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
-  cfg = config.uimaConfig.virt.podman;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.uimaConfig.virt.podman;
+in {
   options.uimaConfig.virt.podman = {
     enable = mkEnableOption "Podman";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      podman-compose
-    ];
+    environment.systemPackages = with pkgs; [podman-compose];
 
     virtualisation.podman = {
       enable = true;

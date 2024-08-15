@@ -1,7 +1,3 @@
-{ ... }:
-
-{
-  imports = [
-    ./xserver
-  ];
+{...}: {
+  imports = [./xserver];
 }

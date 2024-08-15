@@ -1,14 +1,15 @@
-{ config, lib, inputs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  inputs,
+  ...
+}:
+with lib; let
   cfg = config.uimaConfig.system.auto-upgrade;
 
   flakeDir = "$HOME/nix";
   flakeUri = "github:luck07051/nix-config";
-in
-{
+in {
   options.uimaConfig.system.auto-upgrade = {
     enable = mkEnableOption "Auto upgrade";
 

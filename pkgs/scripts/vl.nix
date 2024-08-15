@@ -1,6 +1,8 @@
-{ writeShellApplication
-, pkgs
-}: writeShellApplication {
+{
+  writeShellApplication,
+  pkgs,
+}:
+writeShellApplication {
   name = "vl";
   runtimeInputs = with pkgs; [
     pulseaudio # bin/pactl

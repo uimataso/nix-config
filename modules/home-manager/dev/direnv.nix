@@ -1,11 +1,11 @@
-{ config, lib, ... }:
-
-with lib;
-
-let
-  cfg = config.uimaConfig.dev.direnv;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.uimaConfig.dev.direnv;
+in {
   options.uimaConfig.dev.direnv = {
     enable = mkEnableOption "Enables direnv";
   };
@@ -19,13 +19,9 @@ in
       enable = true;
       nix-direnv.enable = true;
 
-      config.whitelist.prefix = [
-        "~/src"
-      ];
+      config.whitelist.prefix = ["~/src"];
 
-      config.whitelist.exact = [
-        "~/nix"
-      ];
+      config.whitelist.exact = ["~/nix"];
     };
   };
 }

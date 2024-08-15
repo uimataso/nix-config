@@ -1,11 +1,13 @@
-{ config, lib, pkgs, inputs, ... }:
-
-with lib;
-
-let
-  cfg = config.uimaConfig.system.wsl;
-in
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+with lib; let
+  cfg = config.uimaConfig.system.wsl;
+in {
   options.uimaConfig.system.wsl = {
     enable = mkEnableOption "WSL";
 
@@ -16,9 +18,7 @@ in
     };
   };
 
-  imports = [
-    inputs.nixos-wsl.nixosModules.default
-  ];
+  imports = [inputs.nixos-wsl.nixosModules.default];
 
   config = mkIf cfg.enable {
     wsl = {

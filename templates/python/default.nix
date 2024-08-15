@@ -1,5 +1,4 @@
-{ python311Packages }:
-
+{python311Packages}:
 python311Packages.buildPythonApplication {
   pname = "{{CODENAME}}";
   version = "0.1.0";
@@ -7,7 +6,5 @@ python311Packages.buildPythonApplication {
 
   src = ./.;
 
-  propagatedBuildInputs = [
-    python311Packages.setuptools
-  ];
+  propagatedBuildInputs = [python311Packages.setuptools];
 }

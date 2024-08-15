@@ -1,11 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
-  cfg = config.uimaConfig.sh-util.lsd;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.uimaConfig.sh-util.lsd;
+in {
   options.uimaConfig.sh-util.lsd = {
     enable = mkEnableOption "lsd";
   };

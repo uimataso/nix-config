@@ -1,11 +1,13 @@
-{ writeShellApplication
-, pkgs
-}: writeShellApplication {
+{
+  writeShellApplication,
+  pkgs,
+}:
+writeShellApplication {
   name = "fff";
   runtimeInputs = with pkgs; [
     fzf
-    (callPackage ./preview.nix { })
-    (callPackage ./open.nix { })
+    (callPackage ./preview.nix {})
+    (callPackage ./open.nix {})
   ];
 
   text = ''

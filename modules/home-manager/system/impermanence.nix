@@ -1,11 +1,12 @@
-{ config, lib, inputs, ... }:
-
-with lib;
-
-let
-  cfg = config.uimaConfig.system.impermanence;
-in
 {
+  config,
+  lib,
+  inputs,
+  ...
+}:
+with lib; let
+  cfg = config.uimaConfig.system.impermanence;
+in {
   options.uimaConfig.system.impermanence = {
     enable = mkEnableOption "impermanence";
 
@@ -16,9 +17,7 @@ in
     };
   };
 
-  imports = [
-    inputs.impermanence.nixosModules.home-manager.impermanence
-  ];
+  imports = [inputs.impermanence.nixosModules.home-manager.impermanence];
 
   config = mkIf cfg.enable {
     home.persistence.main = {
@@ -31,10 +30,13 @@ in
     };
 
     home.activation = {
-      rmSomeThing = hm.dag.entryAfter [ "writeBoundary" ] /*sh*/ ''
-        rm -rf $HOME/.nix-defexpr
-        rm -rf $HOME/.nix-profile
-      '';
+      rmSomeThing =
+        hm.dag.entryAfter ["writeBoundary"] # sh
+        
+        ''
+          rm -rf $HOME/.nix-defexpr
+          rm -rf $HOME/.nix-profile
+        '';
     };
   };
 }

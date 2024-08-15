@@ -1,11 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
-  cfg = config.uimaConfig.desktop.xserver.sddm;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.uimaConfig.desktop.xserver.sddm;
+in {
   options.uimaConfig.desktop.xserver.sddm = {
     enable = mkEnableOption "sddm";
   };
@@ -20,13 +21,13 @@ in
       };
     };
 
-    environment.systemPackages = with pkgs; [
-      sddm-astronaut-theme
-    ];
+    environment.systemPackages = with pkgs; [sddm-astronaut-theme];
 
-    services.xserver.displayManager.sessionCommands = /*sh*/ ''
-      [[ -f $XDG_DATA_HOME/x11/xprofile ]] && . $XDG_DATA_HOME/x11/xprofile
-      [[ -f $XDG_DATA_HOME/x11/xsession ]] && . $XDG_DATA_HOME/x11/xsession
-    '';
+    services.xserver.displayManager.sessionCommands =
+      # sh
+      ''
+        [[ -f $XDG_DATA_HOME/x11/xprofile ]] && . $XDG_DATA_HOME/x11/xprofile
+        [[ -f $XDG_DATA_HOME/x11/xsession ]] && . $XDG_DATA_HOME/x11/xsession
+      '';
   };
 }

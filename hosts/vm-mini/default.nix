@@ -1,17 +1,18 @@
-{ config, lib, pkgs, inputs, outputs, ... }:
-
-
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  outputs,
+  ...
+}:
 # sudo -i
 # flake_url='github:uimataso/nix-config#vm-mini'
 # nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko -f "$flake_url"
 # nixos-install --flake "$flake_url" --no-root-passwd
-
 # chown ui:users /mnt/persist/passwords/ui
-
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [./hardware-configuration.nix];
 
   system.stateVersion = "23.11";
 

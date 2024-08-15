@@ -1,6 +1,11 @@
-{ config, pkgs, pkgs-stable, lib, inputs, ... }:
-
 {
+  config,
+  pkgs,
+  pkgs-stable,
+  lib,
+  inputs,
+  ...
+}: {
   home.username = "uima";
 
   home.stateVersion = "23.11";

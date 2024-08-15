@@ -1,7 +1,3 @@
-{ ... }:
-
-{
-  imports = [
-    ./fcitx5
-  ];
+{...}: {
+  imports = [./fcitx5];
 }

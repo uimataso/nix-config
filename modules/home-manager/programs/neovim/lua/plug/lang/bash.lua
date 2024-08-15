@@ -5,6 +5,6 @@ return {
       servers = {
         bashls = {},
       },
-    }
+    },
   },
 }

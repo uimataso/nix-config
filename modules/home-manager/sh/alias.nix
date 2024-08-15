@@ -1,12 +1,13 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.uimaConfig.sh.alias;
 
-  mkEverythingDefault = attr:
-    attrsets.mapAttrs (name: value: mkDefault value) attr;
+  mkEverythingDefault = attr: attrsets.mapAttrs (name: value: mkDefault value) attr;
 
   # Core Utils alias
   coreutilsAliases = mkEverythingDefault {
@@ -30,23 +31,24 @@ let
     df = "df -h";
     du = "du -h";
   };
-in
-{
+in {
   options.uimaConfig.sh.alias = {
     enable = mkEnableOption "Aliases for coreutils and common commands";
   };
 
   config = mkIf cfg.enable {
-    home.shellAliases = {
-      free = "free -h";
-      ip = "ip -c";
-      ipa = "ip -c -br a";
-      grep = "grep --color=auto";
-      dl = "curl -OJL";
-    } // {
-      fclist = "fc-list : family";
-      unitest = "curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt";
-    };
+    home.shellAliases =
+      {
+        free = "free -h";
+        ip = "ip -c";
+        ipa = "ip -c -br a";
+        grep = "grep --color=auto";
+        dl = "curl -OJL";
+      }
+      // {
+        fclist = "fc-list : family";
+        unitest = "curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt";
+      };
 
     programs.bash.shellAliases = coreutilsAliases;
 

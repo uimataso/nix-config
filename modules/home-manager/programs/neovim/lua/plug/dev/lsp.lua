@@ -4,13 +4,13 @@ return {
     lazy = false,
     dependencies = {
       {
-        "hrsh7th/nvim-cmp",
+        'hrsh7th/nvim-cmp',
         dependencies = {
           'hrsh7th/cmp-nvim-lsp',
           'hrsh7th/cmp-nvim-lsp-signature-help',
         },
         opts = function(_, opts)
-          local cmp = require("cmp")
+          local cmp = require('cmp')
           opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
             { name = 'nvim_lsp' },
             { name = 'nvim_lsp_signature_help' },
@@ -54,7 +54,7 @@ return {
             capabilities = vim.deepcopy(capabilities),
           }, server_opts or {})
 
-          require("lspconfig")[server].setup(server_opts)
+          require('lspconfig')[server].setup(server_opts)
         end
       end
 
@@ -69,10 +69,10 @@ return {
 
       vim.diagnostic.config(opts.diagnostics)
 
-      vim.lsp.handlers['textDocument/hover']         = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded', })
-      vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help,
-        { border = 'rounded', })
-    end
+      vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
+      vim.lsp.handlers['textDocument/signatureHelp'] =
+        vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
+    end,
   },
 
   { -- notification for lsp
@@ -82,8 +82,8 @@ return {
       notification = {
         window = {
           winblend = 0,
-        }
-      }
+        },
+      },
     },
   },
 }

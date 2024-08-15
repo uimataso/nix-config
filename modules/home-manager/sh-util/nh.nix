@@ -1,15 +1,16 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.uimaConfig.sh-util.nh;
 
   homeDir = config.home.homeDirectory;
   configHome = config.xdg.configHome;
   flakeDir = "${homeDir}/nix";
-in
-{
+in {
   options.uimaConfig.sh-util.nh = {
     enable = mkEnableOption ''
       Yet-another-nix-helper and other nix alias/sceripts that improve QoL.
@@ -32,15 +33,14 @@ in
 
       it = "${pkgs.scripts.nix-template-tool}/bin/nix-template-tool";
 
-      nvim-test = ''bash -c "
-        rm -f ${configHome}/nvim
-        ln -s ${flakeDir}/modules/home-manager/programs/neovim ${configHome}/nvim
-      "'';
+      nvim-test = ''
+        bash -c "
+                rm -f ${configHome}/nvim
+                ln -s ${flakeDir}/modules/home-manager/programs/neovim ${configHome}/nvim
+              "'';
       nvim-clean = "bash -c 'rm ${configHome}/nvim'";
     };
 
-    home.packages = with pkgs; [
-      nh
-    ];
+    home.packages = with pkgs; [nh];
   };
 }

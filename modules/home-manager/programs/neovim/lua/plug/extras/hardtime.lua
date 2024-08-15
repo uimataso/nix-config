@@ -7,7 +7,7 @@ return {
   disabled_filetypes = { 'qf', 'netrw', 'NvimTree', 'lazy', 'oil' },
   dependencies = {
     'MunifTanjim/nui.nvim',
-    'nvim-lua/plenary.nvim'
+    'nvim-lua/plenary.nvim',
   },
   opts = {
     max_count = 3,
@@ -23,5 +23,5 @@ return {
       ['<Left>'] = { 'n', 'x' },
       ['<Right>'] = { 'n', 'x' },
     },
-  }
+  },
 }

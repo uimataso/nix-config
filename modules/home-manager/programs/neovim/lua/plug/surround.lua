@@ -5,5 +5,5 @@ return {
     { 'ds', desc = 'Delete the surround' },
     { 'ys', desc = 'Add the surround' },
   },
-  config = true
+  config = true,
 }

@@ -3,10 +3,10 @@ return {
     'uimataso/uicolors.nvim',
     -- enabled = false,
     lazy = false,
-    dir = "~/.config/nvim/plugins/uicolors.nvim",
+    dir = '~/.config/nvim/plugins/uicolors.nvim',
     config = function()
       vim.cmd.colorscheme('uicolors')
-    end
+    end,
   },
 
   {
@@ -37,6 +37,6 @@ return {
 
     config = function(_, opts)
       require('mini.base16').setup(opts)
-    end
+    end,
   },
 }

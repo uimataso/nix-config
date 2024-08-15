@@ -1,5 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
-
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 # NOTE: wish list for firefox
 # [x] cookie exceptions
 # [x] plugin settings
@@ -8,13 +13,9 @@
 # containers (use or not)
 # vim keybind backup or auto sync
 # vimium search engine, book mark...
-
-with lib;
-
-let
+with lib; let
   cfg = config.uimaConfig.programs.firefox;
-in
-{
+in {
   options.uimaConfig.programs.firefox = {
     enable = mkEnableOption "Firefox";
 
@@ -32,15 +33,13 @@ in
 
   config = mkIf cfg.enable {
     xdg.mimeApps.defaultApplications = {
-      "text/html" = [ "firefox.desktop" ];
-      "text/xml" = [ "firefox.desktop" ];
-      "x-scheme-handler/http" = [ "firefox.desktop" ];
-      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "text/html" = ["firefox.desktop"];
+      "text/xml" = ["firefox.desktop"];
+      "x-scheme-handler/http" = ["firefox.desktop"];
+      "x-scheme-handler/https" = ["firefox.desktop"];
     };
 
-    home.sessionVariables = mkIf cfg.defaultBrowser {
-      BROWSER = "firefox";
-    };
+    home.sessionVariables = mkIf cfg.defaultBrowser {BROWSER = "firefox";};
 
     programs.firefox = {
       enable = true;

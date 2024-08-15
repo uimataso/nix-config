@@ -10,14 +10,10 @@ return {
               diagnostics = {
                 globals = {
                   'vim',
-                  -- Luasnip env
-                  'ls', 's', 'sn', 'isn', 't', 'i', 'f', 'c', 'd', 'r',
-                  'events', 'ai', 'extras', 'l', 'rep', 'p', 'm', 'n', 'dl',
-                  'fmt', 'fmta', 'conds', 'postfix', 'types', 'parse', 'ms', 'k',
                 },
               },
             },
-          }
+          },
         },
       },
     },

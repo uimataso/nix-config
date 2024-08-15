@@ -1,5 +1,5 @@
-require 'options'
-require 'keymaps'
-require 'plugins'
-require 'autocmd'
-require 'status'
+require('options')
+require('keymaps')
+require('plugins')
+require('autocmd')
+require('status')

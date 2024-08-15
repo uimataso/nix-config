@@ -1,16 +1,17 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.uimaConfig.users.uima;
 
   username = "uima";
 
   imper = config.uimaConfig.system.impermanence;
   ifGroupExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-in
-{
+in {
   options.uimaConfig.users.${username} = {
     enable = mkEnableOption "User ${username}";
 
@@ -28,14 +29,14 @@ in
         isNormalUser = true;
         shell = pkgs.bashInteractive;
 
-        extraGroups = [
-          "wheel"
-        ] ++ ifGroupExist [
-          "networkmanager"
-          "docker"
-          "podman"
-          "libvirtd"
-        ];
+        extraGroups =
+          ["wheel"]
+          ++ ifGroupExist [
+            "networkmanager"
+            "docker"
+            "podman"
+            "libvirtd"
+          ];
       }
 
       # WARN:

@@ -1,11 +1,11 @@
-{ config, lib, ... }:
-
-with lib;
-
-let
-  cfg = config.uimaConfig.system.pipewire;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.uimaConfig.system.pipewire;
+in {
   options.uimaConfig.system.pipewire = {
     enable = mkEnableOption "pipewire";
   };

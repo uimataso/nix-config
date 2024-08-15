@@ -1,11 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
-  cfg = config.uimaConfig.system.xdg;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.uimaConfig.system.xdg;
+in {
   options.uimaConfig.system.xdg = {
     enable = mkEnableOption "XDG";
   };
@@ -36,6 +37,5 @@ in
       # wget
       WGETRC = "${config.xdg.configHome}/wgetrc";
     };
-
   };
 }

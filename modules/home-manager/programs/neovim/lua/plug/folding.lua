@@ -6,14 +6,41 @@ return {
   },
 
   keys = {
-    { 'zR', function() require('ufo').openAllFolds() end,         desc = 'ufo open all folds' },
-    { 'zM', function() require('ufo').closeAllFolds() end,        desc = 'ufo close all flods' },
-    { 'zr', function() require('ufo').openFoldsExceptKinds() end, desc = '' },
-    { 'zm', function() require('ufo').closeFoldsWith() end },
-    { 'K', function()
-      local winid = require('ufo').peekFoldedLinesUnderCursor()
-      if not winid then vim.lsp.buf.hover() end
-    end
+    {
+      'zR',
+      function()
+        require('ufo').openAllFolds()
+      end,
+      desc = 'ufo open all folds',
+    },
+    {
+      'zM',
+      function()
+        require('ufo').closeAllFolds()
+      end,
+      desc = 'ufo close all flods',
+    },
+    {
+      'zr',
+      function()
+        require('ufo').openFoldsExceptKinds()
+      end,
+      desc = '',
+    },
+    {
+      'zm',
+      function()
+        require('ufo').closeFoldsWith()
+      end,
+    },
+    {
+      'K',
+      function()
+        local winid = require('ufo').peekFoldedLinesUnderCursor()
+        if not winid then
+          vim.lsp.buf.hover()
+        end
+      end,
     },
   },
 
@@ -59,6 +86,6 @@ return {
       end
       table.insert(newVirtText, { suffix, 'MoreMsg' })
       return newVirtText
-    end
+    end,
   },
 }

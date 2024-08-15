@@ -1,13 +1,14 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.uimaConfig.dev.lazygit;
 
   scheme = config.stylix.base16Scheme;
-in
-{
+in {
   options.uimaConfig.dev.lazygit = {
     enable = mkEnableOption "Lazygit";
   };
@@ -19,9 +20,7 @@ in
       lg = "lazygit";
     };
 
-    home.packages = with pkgs; [
-      delta
-    ];
+    home.packages = with pkgs; [delta];
 
     programs.lazygit = {
       enable = true;
@@ -29,7 +28,7 @@ in
       settings = {
         disableStartupPopups = true;
         gui = {
-          theme.inactiveBorderColor = [ "#${scheme.base03}" ];
+          theme.inactiveBorderColor = ["#${scheme.base03}"];
           showBottomLine = false;
         };
         git = {

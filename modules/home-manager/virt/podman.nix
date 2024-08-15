@@ -1,21 +1,20 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.uimaConfig.virt.podman;
 
   imper = config.uimaConfig.system.impermanence;
-in
-{
+in {
   options.uimaConfig.virt.podman = {
     enable = mkEnableOption "Podman";
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      podman-compose
-    ];
+    home.packages = with pkgs; [podman-compose];
 
     home.shellAliases = {
       pm = "podman";
@@ -27,10 +26,6 @@ in
       pmcp = "podman compose pull";
     };
 
-    home.persistence.main = mkIf imper.enable {
-      directories = [
-        ".local/share/containers/storage"
-      ];
-    };
+    home.persistence.main = mkIf imper.enable {directories = [".local/share/containers/storage"];};
   };
 }

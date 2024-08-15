@@ -28,21 +28,21 @@ local vcs = function()
   local added = format_count(' +%s', git_info.added)
   local changed = format_count(' ~%s', git_info.changed)
   local removed = format_count(' -%s', git_info.removed)
-  return table.concat {
+  return table.concat({
     '  ' .. git_info.head,
     added,
     changed,
     removed,
-  }
+  })
 end
 
 local diagnostics = function()
-  return table.concat {
+  return table.concat({
     format_count(' %s', #(vim.diagnostic.get(0, { severity = 'Error' }))),
     format_count(' %s', #(vim.diagnostic.get(0, { severity = 'Warn' }))),
     format_count(' %s', #(vim.diagnostic.get(0, { severity = 'Info' }))),
     format_count(' %s', #(vim.diagnostic.get(0, { severity = 'Hint' }))),
-  }
+  })
 end
 
 local macro_recoding = function()
@@ -64,7 +64,6 @@ local search_count = function()
 
   return '  ' .. searchcount['current'] .. '∕' .. searchcount['total']
 end
-
 
 function Statusline()
   return table.concat({

@@ -1,4 +1,6 @@
-{ pkgs ? # If pkgs is not defined, instanciate nixpkgs from locked commit
+{
+  pkgs ?
+  # If pkgs is not defined, instanciate nixpkgs from locked commit
   let
     lock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
     nixpkgs = fetchTarball {
@@ -6,15 +8,14 @@
       sha256 = lock.narHash;
     };
   in
-  import nixpkgs { overlays = [ ]; }
-, ...
-}:
-
-{
+    import nixpkgs {overlays = [];},
+  ...
+}: {
   default = pkgs.mkShell {
     NIX_CONFIG = "extra-experimental-features = nix-command flakes";
     nativeBuildInputs = with pkgs; [
       git
+      nil
 
       sops
       age

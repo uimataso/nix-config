@@ -12,7 +12,7 @@ M.load = function()
 
   vim.g.skip_ts_default_groups = true
 
-  for name, val in pairs(require 'uicolors.theme') do
+  for name, val in pairs(require('uicolors.theme')) do
     vim.api.nvim_set_hl(0, name, val)
   end
 end

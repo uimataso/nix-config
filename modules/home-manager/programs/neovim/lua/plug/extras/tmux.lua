@@ -13,6 +13,6 @@ return {
       enable_default_keybindings = true,
       resize_step_x = 3,
       resize_step_y = 3,
-    }
-  }
+    },
+  },
 }

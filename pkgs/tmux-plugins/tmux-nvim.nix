@@ -1,9 +1,9 @@
-{ lib
-, fetchFromGitHub
-, pkgs
-, stdenv
+{
+  lib,
+  fetchFromGitHub,
+  pkgs,
+  stdenv,
 }:
-
 pkgs.tmuxPlugins.mkTmuxPlugin {
   pluginName = "tmux.nvim";
   version = "unstable-2024-03-05";

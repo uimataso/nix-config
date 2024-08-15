@@ -5,8 +5,8 @@ local ag = vim.api.nvim_create_augroup
 au('FileType', {
   pattern = { '*' },
   callback = function()
-    vim.opt.formatoptions:remove { 'c', 'r', 'o' }
-  end
+    vim.opt.formatoptions:remove({ 'c', 'r', 'o' })
+  end,
 })
 
 -- Delete trailing spaces and extra line when save file
@@ -14,10 +14,10 @@ au('BufWrite', {
   desc = 'Delete trailing spaces and extra line',
   callback = function()
     local pos = vim.fn.getpos('.')
-    vim.cmd [[ %s/\s\+$//e ]]
-    vim.cmd [[ %s/\n\+\%$//e ]]
+    vim.cmd([[ %s/\s\+$//e ]])
+    vim.cmd([[ %s/\n\+\%$//e ]])
     vim.fn.setpos('.', pos)
-  end
+  end,
 })
 
 -- Restore the cursor position after yank
@@ -122,7 +122,7 @@ au({ 'BufWritePre' }, {
 local function corrft(pattern, ft)
   au('BufEnter', {
     pattern = { pattern },
-    command = 'setf ' .. ft
+    command = 'setf ' .. ft,
   })
 end
 

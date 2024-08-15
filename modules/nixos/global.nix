@@ -1,11 +1,13 @@
-{ config, lib, pkgs, outputs, ... }:
-
-with lib;
-
-let
-  cfg = config.uimaConfig.global;
-in
 {
+  config,
+  lib,
+  pkgs,
+  outputs,
+  ...
+}:
+with lib; let
+  cfg = config.uimaConfig.global;
+in {
   options.uimaConfig.global = {
     enable = mkEnableOption "Global settings";
   };
@@ -27,7 +29,7 @@ in
     nix = {
       channel.enable = false;
       settings = {
-        experimental-features = [ "nix-command" "flakes" ];
+        experimental-features = ["nix-command" "flakes"];
         warn-dirty = false;
       };
     };

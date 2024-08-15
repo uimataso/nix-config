@@ -1,11 +1,11 @@
-{ config, lib, ... }:
-
-with lib;
-
-let
-  cfg = config.uimaConfig.system.doas;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.uimaConfig.system.doas;
+in {
   options.uimaConfig.system.doas = {
     enable = mkEnableOption "doas";
 
@@ -17,16 +17,18 @@ in
   };
 
   config = mkIf cfg.enable {
-    security.sudo.enable = mkDefault (! cfg.disableSudo);
+    security.sudo.enable = mkDefault (!cfg.disableSudo);
 
     security.doas = {
       enable = true;
 
-      extraRules = [{
-        groups = [ "wheel" ];
-        keepEnv = true;
-        persist = true;
-      }];
+      extraRules = [
+        {
+          groups = ["wheel"];
+          keepEnv = true;
+          persist = true;
+        }
+      ];
     };
   };
 }

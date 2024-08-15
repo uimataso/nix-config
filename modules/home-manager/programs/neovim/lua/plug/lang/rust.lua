@@ -13,14 +13,13 @@ end
 return {
   {
     'mrcjkb/rustaceanvim',
-    version = '^5',  -- Recommended
-    lazy    = false, -- This plugin is already lazy
+    version = '^5', -- Recommended
+    lazy = false, -- This plugin is already lazy
 
-    config  = function()
+    config = function()
       vim.g.rustaceanvim = {
         -- Plugin configuration
-        tools = {
-        },
+        tools = {},
 
         -- LSP configuration
         server = {
@@ -45,19 +44,17 @@ return {
           },
         },
 
-
         -- DAP configuration
-        dap = {
-        },
+        dap = {},
       }
-    end
+    end,
   },
 
   { -- Rustaceanvim Neotest integration
     'nvim-neotest/neotest',
     opts = function(_, opts)
       table.insert(opts.adapters, require('rustaceanvim.neotest'))
-    end
+    end,
   },
 
   {
@@ -74,7 +71,7 @@ return {
             end,
             cwd = '${workspaceFolder}',
             stopOnEntry = false,
-            showDisassembly = 'never'
+            showDisassembly = 'never',
           },
           {
             name = 'Debug Bin',
@@ -85,9 +82,9 @@ return {
             end,
             cwd = '${workspaceFolder}',
             stopOnEntry = false,
-            showDisassembly = 'never'
-          }
-        }
+            showDisassembly = 'never',
+          },
+        },
       },
     },
   },

@@ -7,6 +7,7 @@ return {
       lua = { 'stylua' },
       python = { 'isort', 'black' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
+      -- TODO: nix fmt not works
       nix = { 'nix fmt', lsp_format = 'fallback' },
     },
     default_format_opts = {
@@ -14,7 +15,7 @@ return {
     },
     format_on_save = {
       lsp_format = 'fallback',
-      timeout_ms = 500,
+      timeout_ms = 1000,
     },
   },
 }

@@ -52,7 +52,9 @@
         "nixpkgs"
         "nixpkgs-stable"
       ];
+
       forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.nixpkgs.${system});
+
       pkgsFor =
         with lib;
         genAttrs pkg-inputs (

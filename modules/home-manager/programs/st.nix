@@ -41,6 +41,13 @@ in
       "st.cwscale" = "0.95";
       "st.shell" = "/bin/bash";
       "st.alpha" = "${builtins.toString opacity.terminal}";
+      "Xft.dpi" = 96;
+      "Xft.antialias" = true;
+      "Xft.hinting" = true;
+      "Xft.rgba" = "rgb";
+      "Xft.autohint" = true;
+      "Xft.hintstyle" = "hintfull";
+      "Xft.lcdfilter" = "lcdfilter";
     };
   };
 }

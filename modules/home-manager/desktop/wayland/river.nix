@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.uimaConfig.desktop.wayland.wm.river;
+  cfg = config.uimaConfig.desktop.wayland.river;
 
   scheme = config.stylix.base16Scheme;
 
@@ -14,7 +14,7 @@ let
   in pow' base exp;
 in
 {
-  options.uimaConfig.desktop.wayland.wm.river = {
+  options.uimaConfig.desktop.wayland.river = {
     enable = mkEnableOption "river";
   };
 

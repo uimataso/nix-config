@@ -1,16 +1,18 @@
 { config, lib, ... }:
 with lib;
 let
-  cfg = config.uimaConfig.desktop.xserver.wm.dwm;
+  cfg = config.uimaConfig.desktop.xserver.dwm;
 
   scheme = config.stylix.base16Scheme;
 in
 {
-  options.uimaConfig.desktop.xserver.wm.dwm = {
+  options.uimaConfig.desktop.xserver.dwm = {
     enable = mkEnableOption "dwm";
   };
 
   config = mkIf cfg.enable {
+    uimaConfig.desktop.xserver.enable = true;
+
     xsession.initExtra = "dwmblocks &";
 
     home.sessionPath = [ "$HOME/.local/bin/statesbar" ];

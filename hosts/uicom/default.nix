@@ -62,10 +62,13 @@
       udisks2.enable = true;
     };
 
-    desktop.xserver = {
-      dwm.enable = true;
-      # qtile.enable = true;
-      sddm.enable = true;
+    # desktop.xserver = {
+    #   dwm.enable = true;
+    #   sddm.enable = true;
+    # };
+
+    desktop.wayland = {
+      river.enable = true;
     };
 
     networking = {

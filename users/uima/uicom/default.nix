@@ -41,7 +41,8 @@
     };
 
     services = {
-      easyeffects.enable = true;
+      # FIXME: enable me if easyeffects if fixed in unstable
+      # easyeffects.enable = true;
     };
 
     sh = {
@@ -58,10 +59,13 @@
       tealdeer.enable = true;
     };
 
-    desktop.xserver = {
-      enable = true;
-      wm.dwm.enable = true;
-      dunst.enable = true;
+    # desktop.xserver = {
+    #   dwm.enable = true;
+    #   dunst.enable = true;
+    # };
+
+    desktop.wayland = {
+      river.enable = true;
     };
 
     dev = {
@@ -78,6 +82,9 @@
     programs = {
       st.enable = true;
       st.defaultTerminal = true;
+
+      alacritty.enable = true;
+      foot.enable = true;
 
       neovim.enable = true;
       neovim.defaultEditor = true;

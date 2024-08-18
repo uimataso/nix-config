@@ -87,11 +87,11 @@ in
 
       escapeTime = 10;
       terminal = "screen-256color";
-      # TODO: other shell
-      shell = "${config.programs.nushell.package}/bin/nu";
       baseIndex = 1;
       mouse = true;
       # disableConfirmationPrompt = true;
+      # TODO: Change shell
+      # shell = "${config.programs.nushell.package}/bin/nu";
 
       extraConfig =
         # tmux

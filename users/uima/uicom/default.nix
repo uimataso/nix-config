@@ -46,9 +46,8 @@
 
     sh = {
       bash.enable = true;
-      # bash.defaultShell = true;
+      bash.defaultShell = true;
       nushell.enable = true;
-      nushell.defaultShell = true;
     };
 
     sh-util = {

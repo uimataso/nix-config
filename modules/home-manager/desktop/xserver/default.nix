@@ -25,8 +25,8 @@ in
       scriptPath = "${config.xdg.dataHome}/x11/xsession";
 
       initExtra = with pkgs; /*sh*/ ''
-        # TODO: How can i set monitor properly
-        ${xorg.xrandr}/bin/xrandr --output HDMI-0 --mode 1920x1080 --rate 144.00
+        # TODO: Better way to manage monitor, see wayland/river.nix
+        ${xorg.xrandr}/bin/xrandr --output HDMI-1 --mode 1920x1080 --rate 144.00
 
         ${xcompmgr}/bin/xcompmgr -n &
         # No screen saver

@@ -26,6 +26,8 @@ in
     wayland.windowManager.river = {
       enable = true;
       settings = {
+        default-layout = "rivertile";
+
         map = {
           normal = {
             "Super Q" = "close";
@@ -93,15 +95,9 @@ in
                 "Super+Shift+Control ${key}" = "toggle-view-tags ${tag'}";
               };
             in
-              (tag_fn "X" 1) //
-              (tag_fn "C" 2) //
-              (tag_fn "V" 3) //
-              (tag_fn "S" 4) //
-              (tag_fn "D" 5) //
-              (tag_fn "F" 6) //
-              (tag_fn "W" 7) //
-              (tag_fn "E" 8) //
-              (tag_fn "R" 9)
+              (tag_fn "X" 1) // (tag_fn "C" 2) // (tag_fn "V" 3) //
+              (tag_fn "S" 4) // (tag_fn "D" 5) // (tag_fn "F" 6) //
+              (tag_fn "W" 7) // (tag_fn "E" 8) // (tag_fn "R" 9)
           ) // (let all_tags = builtins.toString ((pow 2 32) - 1); in{
             "Super G" = "set-focused-tags ${all_tags}";
             "Super+Shift G" = "set-view-tags ${all_tags}";
@@ -116,8 +112,6 @@ in
             "super BTN_MIDDLE" = "toggle-float";
           };
         };
-
-        default-layout = "rivertile";
       };
 
       extraConfig = /*sh*/ ''

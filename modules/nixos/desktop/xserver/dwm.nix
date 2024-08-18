@@ -20,6 +20,14 @@ in
     services.xserver = {
       windowManager.dwm = {
         enable = true;
+        package = with pkgs; (dwm.overrideAttrs {
+          src = fetchFromGitHub {
+            owner = "uimataso";
+            repo = "dwm";
+            rev = "caf45180c0f1a2c21baf9c8445ef8c53b72c68e7";
+            sha256 = "sha256-CKo+Z2IQ5gd7zQJmGWPv0WCzpRqLQsTg7TJCrCRNW5k=";
+          };
+        });
       };
 
       # displayManager.setupCommands = ''

@@ -22,7 +22,16 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ st ];
+    home.packages = with pkgs; [
+      (st.overrideAttrs {
+        src = fetchFromGitHub {
+          owner = "uimataso";
+          repo = "st";
+          rev = "7cf4187e0b931a906770b4fa5f00d4d884473e4b";
+          sha256 = "sha256-N5TRSVfBHm6B3PfeR6PR7nPF2dL4ad9LJaQGIPRQ3cA=";
+        };
+      })
+    ];
 
     home.sessionVariables = mkIf cfg.defaultTerminal { TERMINAL = "st"; };
 

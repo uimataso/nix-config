@@ -8,8 +8,8 @@
       tmuxPlugins = (prev.tmuxPlugins or { }) // import ../pkgs/tmux-plugins { pkgs = final; };
     };
 
-  modifications = final: prev: {
-    dwm = prev.dwm.overrideAttrs { src = ../pkgs/dwm; };
-    st = prev.st.overrideAttrs { src = ../pkgs/st; };
-  };
+  # modifications = final: prev: {
+  #   dwm = prev.dwm.overrideAttrs { src = ../pkgs/dwm; };
+  #   st = prev.st.overrideAttrs { src = ../pkgs/st; };
+  # };
 }

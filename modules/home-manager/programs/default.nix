@@ -8,6 +8,7 @@
     ./alacritty.nix
     ./discord.nix
     ./fmenu.nix
+    ./foot.nix
     ./pipewire.nix
     ./prusa-slicer.nix
     ./ssh.nix

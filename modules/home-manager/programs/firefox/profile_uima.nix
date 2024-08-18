@@ -151,7 +151,7 @@ in
           # Compact mode
           "browser.uidensity" = 1;
           # Disable title bar
-          "browser.tabs.inTitlebar" = 0;
+          "browser.tabs.inTitlebar" = 1;
 
           # Don't Ask to remember password
           "services.sync.prefs.sync.signon.rememberSignons" = false;

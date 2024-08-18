@@ -113,14 +113,29 @@ in
             "super BTN_MIDDLE" = "toggle-float";
           };
         };
+
+        rule-add = {
+          "-app-id" = {
+            # Make Firefox have border
+            firefox = "ssd";
+          };
+        };
+
+        border-color-unfocused = "0x${scheme.base00}00";
+        border-color-focused = "0x${scheme.base0E}";
+        border-color-urgent = "0x${scheme.base08}";
+        border-width = 1;
       };
 
       extraConfig = /*sh*/ ''
         rivertile -view-padding 6 -outer-padding 6 &
+
         # Set monitor
-        # TODO: better way to manage monitor
+        # TODO: Better way to manage monitor
         # see: https://github.com/Misterio77/nix-config/blob/main/modules/home-manager/monitors.nix
         wlr-randr --output HDMI-A-1 --mode 1920x1080@144Hz
+
+        # Wallpaper
         swww-daemon &
         swww img ${config.stylix.image}
       '';

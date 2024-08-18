@@ -1,7 +1,6 @@
 { ... }:
 {
   imports = [
-    ./dwm.nix
-    ./sddm.nix
+    ./river.nix
   ];
 }

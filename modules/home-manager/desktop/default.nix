@@ -1,4 +1,7 @@
 { ... }:
 {
-  imports = [ ./xserver ];
+  imports = [
+    ./wayland
+    ./xserver
+  ];
 }

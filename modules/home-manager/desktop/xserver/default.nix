@@ -14,8 +14,8 @@ in
   };
 
   imports = [
-    ./dunst.nix
     ./dwm
+    ./dunst.nix
   ];
 
   config = mkIf cfg.enable {
@@ -25,6 +25,7 @@ in
       scriptPath = "${config.xdg.dataHome}/x11/xsession";
 
       initExtra = with pkgs; /*sh*/ ''
+        # TODO: How can i set monitor properly
         ${xorg.xrandr}/bin/xrandr --output HDMI-0 --mode 1920x1080 --rate 144.00
 
         ${xcompmgr}/bin/xcompmgr -n &

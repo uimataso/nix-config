@@ -27,9 +27,7 @@ in
 
     environment.systemPackages = with pkgs; [ sddm-astronaut-theme ];
 
-    services.xserver.displayManager.sessionCommands =
-      # sh
-      ''
+    services.xserver.displayManager.sessionCommands = /*sh*/ ''
         [[ -f $XDG_DATA_HOME/x11/xprofile ]] && . $XDG_DATA_HOME/x11/xprofile
         [[ -f $XDG_DATA_HOME/x11/xsession ]] && . $XDG_DATA_HOME/x11/xsession
       '';

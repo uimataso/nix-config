@@ -8,7 +8,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./nvidia.nix
   ];
 
   system.stateVersion = "23.11";
@@ -16,16 +15,7 @@
   networking.hostName = "uicom";
   time.timeZone = "Asia/Taipei";
 
-  # Help my poor networking
-  # services.dnsmasq = {
-  #   enable = true;
-  #   settings = {
-  #     address = "/#.uima.duckdns.org/uima.duckdns.org/ui.pi/192.168.1.113";
-  #   };
-  # };
-
   hardware.nvidia = {
-    # open = true;
     modesetting.enable = true;
     nvidiaSettings = true;
   };

@@ -41,8 +41,7 @@
     };
 
     services = {
-      # FIXME: enable me if easyeffects if fixed in unstable
-      # easyeffects.enable = true;
+      easyeffects.enable = true;
     };
 
     sh = {

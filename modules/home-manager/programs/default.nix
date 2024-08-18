@@ -5,6 +5,7 @@
     ./firefox
     ./neovim
     ./qutebrowser
+    ./alacritty.nix
     ./discord.nix
     ./fmenu.nix
     ./pipewire.nix

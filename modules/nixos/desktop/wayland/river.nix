@@ -16,10 +16,7 @@ in
   config = mkIf cfg.enable {
     programs.river = {
       enable = true;
-      extraPackages = with pkgs; [
-        swaylock
-        dmenu
-      ];
+      extraPackages = [ ];
     };
   };
 }

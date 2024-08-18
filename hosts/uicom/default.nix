@@ -24,6 +24,12 @@
   #   };
   # };
 
+  hardware.nvidia = {
+    # open = true;
+    modesetting.enable = true;
+    nvidiaSettings = true;
+  };
+
   services.xserver.extraConfig = ''
     Section "InputClass"
       Identifier "ELECOM trackball catchall"

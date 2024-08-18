@@ -13,9 +13,11 @@ in
     enable = mkEnableOption "XDG";
   };
 
-  config = mkIf cfg.enable rec {
+  config = mkIf cfg.enable {
     xdg.enable = true;
     xdg.mimeApps.enable = true;
+
+    xresources.path = "${config.xdg.configHome}/x11/xresources";
 
     # .nix-profile
     nix.settings.use-xdg-base-directories = true;

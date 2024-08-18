@@ -15,6 +15,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    services.xserver.enable = true;
+
     environment.systemPackages = with pkgs; [
       (callPackage (fetchFromGitHub {
         owner  = "uimataso";

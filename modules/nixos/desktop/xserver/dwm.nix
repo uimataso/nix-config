@@ -15,7 +15,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ dwmblocks ];
+    environment.systemPackages = with pkgs; [
+      (fetchFromGitHub {
+        owner  = "uimataso";
+        repo   = "dwmblocks";
+        rev    = "38816c2ff7ab820594e3f8402fb5b4171eb973a4";
+        sha256 = "sha256-yglc30rq7LH7YT4U84yDwrltc5kI7BWmMfBWZ2/r3Lw=";
+      })
+    ];
 
     services.xserver = {
       windowManager.dwm = {

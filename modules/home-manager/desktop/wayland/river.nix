@@ -36,6 +36,8 @@ in
       swww
     ];
 
+    # TODO: make each tag has its own split width
+
     wayland.windowManager.river = {
       enable = true;
 

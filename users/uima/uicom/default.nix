@@ -41,6 +41,7 @@
     };
 
     services = {
+      # TODO: This work on wayland?
       easyeffects.enable = true;
     };
 

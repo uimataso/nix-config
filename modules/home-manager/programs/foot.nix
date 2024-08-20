@@ -24,7 +24,11 @@ in
   config = mkIf cfg.enable {
     programs.foot = {
       enable = true;
-      settings = { };
+      settings = {
+        main = {
+          pad = "5x3";
+        };
+      };
     };
 
     home.sessionVariables = mkIf cfg.defaultTerminal { TERMINAL = "foot"; };

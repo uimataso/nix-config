@@ -5,7 +5,7 @@
     ./fff.nix
     ./fzf.nix
     ./lsd.nix
-    ./nh.nix
+    ./nix-helper.nix
     ./tealdeer.nix
     ./tmux.nix
   ];

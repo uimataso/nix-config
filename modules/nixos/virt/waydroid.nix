@@ -10,6 +10,8 @@ in
     enable = mkEnableOption "Waydroid";
   };
 
+  # TODO: https://apkcombo.com/line/jp.naver.line.android/download/apk
+
   config = mkIf cfg.enable {
     virtualisation.waydroid.enable = true;
 

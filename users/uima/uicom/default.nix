@@ -98,6 +98,8 @@
       fmenu.enable = true;
       fmenu.defaultDmenu = true;
 
+      tofi.enable = true;
+
       pipewire.enable = true;
       ssh.enable = true;
       syncthing.enable = true;

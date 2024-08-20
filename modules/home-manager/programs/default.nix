@@ -14,6 +14,7 @@
     ./ssh.nix
     ./st.nix
     ./syncthing.nix
+    ./tofi.nix
     ./udiskie.nix
     ./zathura.nix
   ];

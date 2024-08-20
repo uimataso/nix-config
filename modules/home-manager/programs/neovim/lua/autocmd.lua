@@ -102,7 +102,7 @@ au('FileType', {
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
+    vim.keymap.set('n', 'q', '<cmd>quit<cr>', { buffer = event.buf, silent = true })
   end,
 })
 

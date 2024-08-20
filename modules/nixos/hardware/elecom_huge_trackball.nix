@@ -40,8 +40,8 @@ in
       *HUGE*TrackBall*
        KEYBOARD_KEY_90002=btn_middle
        KEYBOARD_KEY_90008=btn_right
-       KEYBOARD_KEY_90005=key_pageup
-       KEYBOARD_KEY_90004=key_pagedown
+       KEYBOARD_KEY_90005=key_pagedown
+       KEYBOARD_KEY_90004=key_pageup
        KEYBOARD_KEY_90006=btn_side
        KEYBOARD_KEY_90007=btn_extra
     '';

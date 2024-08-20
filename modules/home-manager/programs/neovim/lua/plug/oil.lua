@@ -10,6 +10,15 @@ return {
       end,
       desc = 'Open oil browser in a floating window',
     },
+
+    {
+      '<Tab>',
+      mode = { 'n' },
+      function()
+        require('oil').open_float()
+      end,
+      desc = 'Open oil browser in a floating window',
+    },
   },
   opts = {
     skip_confirm_for_simple_edits = true,
@@ -18,8 +27,14 @@ return {
     },
     keymaps = {
       ['<BS>'] = 'actions.parent',
+      ['q'] = 'actions.close',
+      ['<Tab>'] = 'actions.close',
+      ['-'] = false,
     },
     float = {
+      padding = 5,
+      max_width = 80,
+      max_height = 0,
       win_options = {
         winblend = 0,
       },

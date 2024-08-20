@@ -28,6 +28,9 @@ in
         main = {
           pad = "5x3";
         };
+        cursor = {
+          color = "${scheme.base00}  ${scheme.base05}";
+        };
       };
     };
 

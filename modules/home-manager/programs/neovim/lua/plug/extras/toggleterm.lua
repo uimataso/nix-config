@@ -16,7 +16,7 @@ return {
     { '<Leader>te', '<cmd>TermExec cmd="!!"<cr>', desc = 'Exec previous command' },
     { '<Leader>tp', '<cmd>TermExec cmd="run -i run.py"<cr>', desc = 'run run.py, use in ipy' },
 
-    { '<leader>tc', '<cmd>execute v:count1.\'TermExec cmd="<C-v><C-c>"\'<CR>', desc = 'Send <C-c> to terminal' },
+    { '<leader>tc', '<cmd>execute v:count1.\'TermExec cmd="<C-v><C-c>"\'<cr>', desc = 'Send <C-c> to terminal' },
   },
 
   opts = {

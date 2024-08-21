@@ -4,9 +4,9 @@ return {
   event = 'QuickFixCmdPre',
   opts = {},
   keys = {
-    { '<C-j>', ':QNext<cr>' },
-    { '<C-k>', ':QPrev<cr>' },
-    { '<leader>q', ':QFToggle!<cr>' },
-    { '<leader>l', ':LLToggle!<cr>' },
+    { '<C-j>', '<cmd>QNext<cr>' },
+    { '<C-k>', '<cmd>QPrev<cr>' },
+    { '<leader>q', '<cmd>QFToggle!<cr>' },
+    { '<leader>l', '<cmd>LLToggle!<cr>' },
   },
 }

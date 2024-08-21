@@ -25,18 +25,18 @@ vim.keymap.set({ 'i', 's' }, '<PageUp>', function()
 end, { expr = true, desc = 'Jump to prev snip placeholder' })
 
 -- Terminal mapping
-vim.keymap.set('', '<Leader>sh', ':terminal<cr>')
+vim.keymap.set('', '<Leader>sh', '<cmd>terminal<cr>')
 vim.keymap.set('t', '<C-[>', '<C-\\><C-n>')
 vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>')
 
 -- Buffer movement
 vim.keymap.set('n', '<BS>', '<C-^>')
-vim.keymap.set('n', '<Tab>', ':bn<cr>')
-vim.keymap.set('n', '<S-Tab>', ':bp<cr>')
+vim.keymap.set('n', '<Tab>', '<cmd>bn<cr>')
+vim.keymap.set('n', '<S-Tab>', '<cmd>bp<cr>')
 
 -- Quickfix
-vim.keymap.set('n', '<C-n>', ':cn<cr>')
-vim.keymap.set('n', '<C-p>', ':cp<cr>')
+vim.keymap.set('n', '<C-n>', '<cmd>cn<cr>')
+vim.keymap.set('n', '<C-p>', '<cmd>cp<cr>')
 
 -- Remapping navigation keys
 vim.keymap.set('', '<PageUp>', '<C-u>')
@@ -68,7 +68,7 @@ end, { expr = true, desc = 'Selecting the paste' })
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('c', '<CR>', function()
-  return vim.fn.getcmdtype() == '/' and '<CR>zzzv' or '<CR>'
+  return vim.fn.getcmdtype() == '/' and '<cr>zzzv' or '<cr>'
 end, { expr = true })
 
 -- Block insert in line visual mode
@@ -80,13 +80,13 @@ vim.keymap.set('x', 'A', function()
 end, { expr = true })
 
 -- Clean highlight
-vim.keymap.set('n', '<Leader>cl', ':nohlsearch<CR>:diffupdate<CR>')
+vim.keymap.set('n', '<Leader>cl', '<cmd>nohlsearch<cr><cmd>diffupdate<cr>')
 
 -- Repeat and search next
 vim.keymap.set('n', '<M-n>', '.nzzzv')
 
 -- Spell check
-vim.keymap.set('n', '<Leader>sp', ':setlocal spell! spelllang=en_us<CR>')
+vim.keymap.set('n', '<Leader>sp', '<cmd>setlocal spell! spelllang=en_us<CR>')
 
 -- Switch conceal
 vim.keymap.set('n', '<Leader>zc', function()
@@ -128,7 +128,7 @@ vim.api.nvim_create_user_command('CopyCodeBlock', function(opts)
   vim.fn.setreg('+', result)
 end, { range = true })
 
-vim.keymap.set('', '<Leader>cy', ':CopyCodeBlock<CR>', { desc = 'Copy text with markdown codeblock style' })
+vim.keymap.set('', '<Leader>cy', '<cmd>CopyCodeBlock<cr>', { desc = 'Copy text with markdown codeblock style' })
 
 -- Abbr for command mode
 local function cabbrev(lhs, rhs)

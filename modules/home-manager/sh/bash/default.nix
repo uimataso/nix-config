@@ -51,6 +51,11 @@ in
         "ls"
         "ll"
         "a"
+        "e"
+        "e."
+        "ts"
+        "no"
+        "exit"
       ];
 
       bashrcExtra =

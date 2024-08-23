@@ -13,9 +13,13 @@ let
   # Core Utils alias
   coreutilsAliases = mkEverythingDefault {
     c = "cd";
-    "c." = "cd ..";
     c- = "cd -";
     c_ = "cd $_";
+    "c." = "cd ..";
+    "c.." = "cd ../..";
+    "c..." = "cd ../../..";
+    "c...." = "cd ../../../..";
+    "c....." = "cd ../../../../..";
 
     e = "$EDITOR";
     "e." = "$EDITOR .";

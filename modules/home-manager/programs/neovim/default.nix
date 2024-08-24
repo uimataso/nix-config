@@ -22,21 +22,25 @@ in
   };
 
   config = mkIf cfg.enable {
+    # TODO: Learn `g;`, `[]` commands, marks, quicklist, register
+
     home.packages = with pkgs; [
       neovim
-      # TODO: use extra package to install these
-      gcc
 
-      # telescope
+      # For Telescope
       ripgrep
 
-      # lua lsp
+      # Lua LSP
       lua-language-server
       stylua
 
-      # shell lsp
+      # Shell LSP
       shellcheck
       bash-language-server
+
+      # Nix LSP (bc we on NixOS!)
+      nil
+      nixd
     ];
 
     xdg.configFile = {

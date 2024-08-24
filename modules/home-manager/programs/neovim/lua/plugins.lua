@@ -14,8 +14,12 @@ vim.opt.runtimepath:prepend(lazypath)
 require('lazy').setup({
   { import = 'plug' },
   { import = 'plug.dev' },
+  { import = 'plug.enhance' },
+  { import = 'plug.fuzzy' },
   { import = 'plug.lang' },
-  { import = 'plug.extras' },
+  { import = 'plug.misc' },
+  { import = 'plug.motion' },
+  { import = 'plug.visual' },
 }, {
   defaults = { lazy = true },
   install = { colorscheme = { 'uicolors' } },

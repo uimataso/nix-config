@@ -9,6 +9,7 @@
     ./discord.nix
     ./fmenu.nix
     ./foot.nix
+    ./nixcord.nix
     ./pipewire.nix
     ./prusa-slicer.nix
     ./ssh.nix

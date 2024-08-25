@@ -104,7 +104,8 @@
       ssh.enable = true;
       syncthing.enable = true;
       udiskie.enable = true;
-      discord.enable = true;
+      # discord.enable = true;
+      nixcord.enable = true;
       zathura.enable = true;
 
       # kicad.enable = true;

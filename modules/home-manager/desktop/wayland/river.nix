@@ -118,7 +118,7 @@ in
               # Spawn
               "Super Return" = "spawn foot";
               "Super B" = "spawn firefox";
-              "Super O" = "spawn $(tofi-run)";
+              "Super O" = "spawn '$(tofi-run)'";
             }
             // (
               let

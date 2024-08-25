@@ -27,6 +27,11 @@ in
     home.packages = with pkgs; [
       neovim
 
+      gcc
+
+      # For rest.nvim
+      luarocks
+      lua51Packages.lua
       # For Telescope
       ripgrep
 
@@ -44,7 +49,11 @@ in
     ];
 
     xdg.configFile = {
-      "nvim".source = config.lib.file.mkOutOfStoreSymlink ./.;
+      "nvim" = {
+        source = ./.;
+        # make lazy.lock outof control
+        recursive = true;
+      };
     };
 
     home.sessionVariables = mkMerge [

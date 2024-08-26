@@ -16,9 +16,7 @@ in
     enable = mkEnableOption "Nixcord";
   };
 
-  imports = [
-    inputs.nixcord.homeManagerModules.nixcord
-  ];
+  imports = [ inputs.nixcord.homeManagerModules.nixcord ];
 
   config = mkIf cfg.enable {
     programs.nixcord = {
@@ -46,10 +44,6 @@ in
       # };
     };
 
-    home.persistence.main = mkIf imper.enable {
-      directories = [
-        ".config/discord"
-      ];
-    };
+    home.persistence.main = mkIf imper.enable { directories = [ ".config/discord" ]; };
   };
 }

@@ -2,21 +2,9 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }:
-# Cookie Exceptions
-# - https://uima.duckdns.org
-# - https://accounts.google.com
-# - https://www.google.com
-# - https://www.youtube.com
-# - https://proton.me
-# - https://chatgpt.com
-# - https://github.com
-# - https://mynixos.com
-# - https://www.reddit.com
-# - https://leetcode.com
-# - https://www.printables.com
+
 with lib;
 let
   cfg = config.uimaConfig.programs.firefox.profile.uima;
@@ -35,6 +23,59 @@ let
       }
     '';
 
+  searchEngines = {
+    # Search
+    "Searx" = {
+      aliases = [ "@s" ];
+      url = "https://search.uima.duckdns.org/search?q={searchTerms}";
+    };
+    "DuckDuckGo" = {
+      aliases = [ "@d" ];
+      url = "https://duckduckgo.com/?q={searchTerms}";
+    };
+    "Google" = {
+      aliases = [ "@g" ];
+      url = "https://www.google.com/search?q={searchTerms}";
+    };
+
+    # Nix
+    "Nix Packages" = {
+      aliases = [ "@np" ];
+      url = "https://search.nixos.org/packages?type=packages&query={searchTerms}";
+    };
+    "NixOS Wiki" = {
+      aliases = [ "@nw" ];
+      url = "https://nixos.wiki/index.php?search={searchTerms}";
+    };
+    "MyNixOS" = {
+      aliases = [ "@nm" ];
+      url = "https://mynixos.com/search?q={searchTerms}";
+    };
+
+    # Dev
+    "ArchWiki" = {
+      aliases = [ "@aw" ];
+      url = "https://wiki.archlinux.org/index.php?search={searchTerms}";
+    };
+    "Rust Std" = {
+      aliases = [ "@ru" ];
+      url = "https://doc.rust-lang.org/std/iter/?search={searchTerms}";
+    };
+  };
+
+  getFavicon =
+    url:
+    lib.strings.concatStrings (
+      (builtins.elemAt (builtins.split "(https://[^/]*/).*" url) 1) ++ [ "favicon.ico" ]
+    );
+
+  mapEngine = engine: {
+    definedAliases = engine.aliases;
+    urls = [ { template = engine.url; } ];
+    iconUpdateURL = getFavicon engine.url;
+    updateInterval = 24 * 60 * 60 * 1000;
+  };
+
   imper = config.uimaConfig.system.impermanence;
 in
 {
@@ -51,50 +92,7 @@ in
           force = true;
           default = "Searx";
 
-          engines = {
-            "Searx" = {
-              definedAliases = [ "@s" ];
-              urls = [ { template = "https://search.uima.duckdns.org/search?q={searchTerms}"; } ];
-              iconUpdateURL = "https://search.uima.duckdns.org/favicon.ico";
-              updateInterval = 24 * 60 * 60 * 1000;
-            };
-
-            "Nix Packages" = {
-              definedAliases = [ "@np" ];
-              urls = [ { template = "https://search.nixos.org/packages?type=packages&query={searchTerms}"; } ];
-              iconUpdateURL = "https://nixos.wiki/favicon.png";
-              updateInterval = 24 * 60 * 60 * 1000;
-            };
-
-            "NixOS Wiki" = {
-              definedAliases = [ "@nw" ];
-              urls = [ { template = "https://nixos.wiki/index.php?search={searchTerms}"; } ];
-              iconUpdateURL = "https://nixos.wiki/favicon.png";
-              updateInterval = 24 * 60 * 60 * 1000;
-            };
-
-            "MyNixOS" = {
-              definedAliases = [ "@nm" ];
-              urls = [ { template = "https://mynixos.com/search?q={searchTerms}"; } ];
-              iconUpdateURL = "https://mynixos.com/favicon.ico";
-              updateInterval = 24 * 60 * 60 * 1000;
-            };
-
-            "ArchWiki" = {
-              definedAliases = [ "@aw" ];
-              urls = [ { template = "https://wiki.archlinux.org/index.php?search={searchTerms}"; } ];
-              iconUpdateURL = "https://wiki.archlinux.org/favicon.ico";
-              updateInterval = 24 * 60 * 60 * 1000;
-            };
-
-            "Rust Std" = {
-              definedAliases = [ "@ru" ];
-              urls = [ { template = "https://doc.rust-lang.org/std/iter/?search={searchTerms}"; } ];
-              iconUpdateURL = "https://doc.rust-lang.org/favicon.ico";
-              updateInterval = 24 * 60 * 60 * 1000;
-            };
-
-            "Google".metaData.hidden = true;
+          engines = lib.attrsets.mapAttrs (name: value: mapEngine value) searchEngines // {
             "Bing".metaData.hidden = true;
             "Wikipedia (en)".metaData.hidden = true;
           };
@@ -136,6 +134,9 @@ in
         ];
 
         settings = {
+          # Auto enable extensions
+          "extensions.autoDisableScopes" = 0;
+
           # Disable firefox account
           "identity.fxaccounts.enabled" = false;
           # Disable pocket
@@ -163,7 +164,7 @@ in
           "browser.firefox-view.search.enabled" = false;
           "browser.firefox-view.view-count" = 0;
 
-          # User chrome
+          # User chrome preferences
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           "svg.context-properties.content.enabled" = true;
         };

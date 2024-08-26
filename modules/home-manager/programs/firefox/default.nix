@@ -13,6 +13,8 @@
 # - [ ] Bookmark (local or here)
 # - [ ] Containers (use or not)
 # - [-] Disable firefox view (left toolbar)
+# - [ ] remove items when start search
+# - [ ] precise persistence files
 
 with lib;
 let

@@ -61,6 +61,12 @@ let
       aliases = [ "@ru" ];
       url = "https://doc.rust-lang.org/std/iter/?search={searchTerms}";
     };
+
+    # Translation
+    "Google Translate" = {
+      aliases = [ "@gt" ];
+      url = "https://translate.google.com/?text={searchTerms}";
+    };
   };
 
   getFavicon =

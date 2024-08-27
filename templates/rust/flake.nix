@@ -16,11 +16,28 @@
     in
     rec {
       packages = forAllSystems (system: {
-        default = pkgsFor.${system}.callPackage ./default.nix { };
+        default = pkgsFor.${system}.rustPlatform.buildRustPackage {
+          pname = "{{CODENAME}}";
+          version = "0.1.0";
+
+          src = ./.;
+          cargoLock.lockFile = ./Cargo.lock;
+        };
       });
 
       devShells = forAllSystems (system: {
-        default = pkgsFor.${system}.callPackage ./shell.nix { };
+        default = packages.${system}.default.overrideAttrs (oa: {
+          nativeBuildInputs =
+            with pkgsFor.${system};
+            [
+              # Additional rust tooling
+              rust-analyzer
+              rustfmt
+              clippy
+              cargo-nextest
+            ]
+            ++ (oa.nativeBuildInputs or [ ]);
+        });
       });
     };
 }

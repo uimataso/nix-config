@@ -21,11 +21,23 @@
     in
     rec {
       packages = forAllSystems (system: {
-        default = pkgsFor.${system}.callPackage ./default.nix { };
+        default = pkgsFor.${system}.python311Packages.buildPythonApplication {
+          pname = "{{CODENAME}}";
+          version = "0.1.0";
+          # format = "pyproject";
+
+          src = ./.;
+
+          propagatedBuildInputs = with pkgsFor.${system}; [ python311Packages.setuptools ];
+        };
       });
 
       devShells = forAllSystems (system: {
-        default = pkgsFor.${system}.callPackage ./shell.nix { };
+        default = pkgsFor.${system}.packages.default.overrideAttrs (oa: {
+          nativeBuildInputs =
+            with pkgsFor.${system};
+            [ python311Packages.python-lsp-server ] ++ (oa.nativeBuildInputs or [ ]);
+        });
       });
     };
 }

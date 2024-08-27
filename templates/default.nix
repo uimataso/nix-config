@@ -3,9 +3,9 @@
     path = ./rust;
     description = "Basic Rust Project";
   };
-  axum-startup = {
-    path = ./axum-startup;
-    description = "Basic Axum Project";
+  axum-full = {
+    path = ./axum-full;
+    description = "Rust Axum Project";
   };
   python = {
     path = ./python;

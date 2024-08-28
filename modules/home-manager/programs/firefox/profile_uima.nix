@@ -48,8 +48,12 @@ let
       url = "https://nixos.wiki/index.php?search={searchTerms}";
     };
     "MyNixOS" = {
-      aliases = [ "@nm" ];
+      aliases = [ "@mn" ];
       url = "https://mynixos.com/search?q={searchTerms}";
+    };
+    "Home Manager Options" = {
+      aliases = [ "@hmo" ];
+      url = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
     };
 
     # Dev
@@ -120,6 +124,9 @@ in
           return-youtube-dislikes
           youtube-recommended-videos
           dearrow # clickbait remover
+
+          # Add Furigana (振り仮名) on Japanese kanji.
+          furiganaize
         ];
 
         # containers = {

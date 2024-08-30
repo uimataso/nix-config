@@ -86,7 +86,6 @@ in
       prefix = "M-b";
 
       escapeTime = 10;
-      terminal = "screen-256color";
       baseIndex = 1;
       mouse = true;
       # disableConfirmationPrompt = true;
@@ -96,6 +95,8 @@ in
       extraConfig =
         # tmux
         ''
+          set -sa terminal-overrides ",xterm-256color:RGB"
+
           set -g mode-keys vi
           set -g status-keys emacs
           set -g set-clipboard external

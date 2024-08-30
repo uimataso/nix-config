@@ -9,8 +9,6 @@ return {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
-
-      'kdheepak/cmp-latex-symbols',
     },
 
     keys = {
@@ -76,7 +74,6 @@ return {
         },
 
         sources = {
-          { name = 'latex_symbols' },
           { name = 'treesitter' },
           { name = 'buffer' },
           { name = 'path' },
@@ -98,7 +95,6 @@ return {
               end
             end
 
-            -- TODO: Icon has bug in wsl (blank space after icons)
             return require('lspkind').cmp_format({
               -- mode = 'symbol',
               mode = 'text',
@@ -131,7 +127,7 @@ return {
     config = function(_, opts)
       -- Delay popup menu
       local timer = nil
-      vim.api.nvim_create_autocmd({ 'TextChangedI', 'CmdlineChanged' }, {
+      vim.api.nvim_create_autocmd({ 'TextChangedI', 'TextChangedP' }, {
         pattern = '*',
         callback = function()
           if timer then
@@ -140,7 +136,7 @@ return {
           end
           timer = vim.loop.new_timer()
           timer:start(
-            250,
+            100,
             0,
             vim.schedule_wrap(function()
               require('cmp').complete({ reason = require('cmp').ContextReason.Auto })
@@ -152,6 +148,7 @@ return {
       for _, source in ipairs(opts.sources) do
         source.group_index = source.group_index or 1
       end
+
       require('cmp').setup(opts)
     end,
   },

@@ -9,6 +9,5 @@
     ./sh-util
     ./system
     ./theme
-    ./virt
   ];
 }

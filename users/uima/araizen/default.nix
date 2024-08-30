@@ -14,6 +14,7 @@
   home.packages = with pkgs; [
     fd
     scripts.extract
+    minikube
   ];
 
   programs = {
@@ -22,6 +23,7 @@
     ripgrep.enable = true;
     jq.enable = true;
     bat.enable = true;
+
     ssh.extraConfig = ''
       Host github.com
         HostName github.com
@@ -47,7 +49,6 @@
       bash.enable = true;
       bash.defaultShell = true;
       nushell.enable = true;
-      # nushell.defaultShell = true;
     };
 
     sh-util = {
@@ -66,6 +67,8 @@
         email = "uima.chen@araizen.com";
       };
       lazygit.enable = true;
+      docker.enable = true;
+      k8s.enable = true;
     };
 
     programs = {

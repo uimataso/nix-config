@@ -72,9 +72,6 @@
       direnv.enable = true;
       git.enable = true;
       lazygit.enable = true;
-    };
-
-    virt = {
       docker.enable = true;
       # podman.enable = true;
     };

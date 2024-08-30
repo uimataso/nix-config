@@ -6,10 +6,10 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.virt.docker;
+  cfg = config.uimaConfig.dev.docker;
 in
 {
-  options.uimaConfig.virt.docker = {
+  options.uimaConfig.dev.docker = {
     enable = mkEnableOption "Docker";
   };
 

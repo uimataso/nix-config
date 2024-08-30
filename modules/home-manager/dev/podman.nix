@@ -6,12 +6,12 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.virt.podman;
+  cfg = config.uimaConfig.dev.podman;
 
   imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.virt.podman = {
+  options.uimaConfig.dev.podman = {
     enable = mkEnableOption "Podman";
   };
 

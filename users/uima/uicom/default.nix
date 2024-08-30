@@ -80,7 +80,6 @@
       st.enable = true;
       st.defaultTerminal = true;
 
-      alacritty.enable = true;
       foot.enable = true;
 
       neovim.enable = true;

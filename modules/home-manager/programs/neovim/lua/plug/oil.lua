@@ -1,6 +1,7 @@
 return {
   'stevearc/oil.nvim',
   lazy = false,
+
   keys = {
     {
       '<Leader>o',
@@ -11,6 +12,7 @@ return {
       desc = 'Open oil browser in a floating window',
     },
   },
+
   opts = {
     skip_confirm_for_simple_edits = true,
     view_options = {
@@ -18,6 +20,7 @@ return {
     },
     keymaps = {
       ['<BS>'] = 'actions.parent',
+      ['<Esc>'] = 'actions.close',
       ['q'] = 'actions.close',
       ['-'] = false,
     },

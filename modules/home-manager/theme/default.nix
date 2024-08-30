@@ -32,12 +32,11 @@ in
   ];
 
   config = mkIf cfg.enable {
-    # TODO: ~/.icons
-
     stylix = {
+      enable = true;
+
       image = cfg.wallpaper;
       polarity = "dark";
-      # FIXME: WTF
       # base16Scheme = "${cfg.scheme}";
       base16Scheme = {
         base00 = "161616";

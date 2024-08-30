@@ -24,7 +24,7 @@ in
     programs.tofi = {
       enable = true;
       settings = {
-        background-color = "#000A";
+        background-color = mkForce "#000A";
 
         width = "100%";
         height = "100%";

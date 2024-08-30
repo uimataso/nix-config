@@ -25,8 +25,8 @@ in
       defaultCommand = "fd -HL --exclude '.git' --type file";
 
       colors = {
-        bg = "-1";
-        gutter = "-1";
+        bg = mkForce "-1";
+        gutter = mkForce "-1";
       };
     };
 

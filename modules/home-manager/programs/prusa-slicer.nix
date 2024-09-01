@@ -16,13 +16,13 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ prusa-slicer ];
-
     home.persistence.main = mkIf imper.enable {
       directories = [
         ".config/PrusaSlicer"
         ".local/share/PrusaSlicer"
       ];
     };
+
+    home.packages = with pkgs; [ prusa-slicer ];
   };
 }

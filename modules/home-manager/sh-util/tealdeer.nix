@@ -11,6 +11,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.persistence.main = mkIf imper.enable { directories = [ ".cache/tealdeer" ]; };
+
     programs.tealdeer = {
       enable = true;
       settings = {
@@ -19,7 +21,5 @@ in
         };
       };
     };
-
-    home.persistence.main = mkIf imper.enable { directories = [ ".cache/tealdeer" ]; };
   };
 }

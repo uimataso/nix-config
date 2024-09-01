@@ -13,8 +13,8 @@ in
   # TODO: https://apkcombo.com/line/jp.naver.line.android/download/apk
 
   config = mkIf cfg.enable {
-    virtualisation.waydroid.enable = true;
-
     environment.persistence.main = mkIf imper.enable { directories = [ "/var/lib/waydroid" ]; };
+
+    virtualisation.waydroid.enable = true;
   };
 }

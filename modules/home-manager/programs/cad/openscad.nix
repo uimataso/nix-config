@@ -16,8 +16,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ openscad ];
-
     home.persistence.main = mkIf imper.enable {
       directories = [
         ".config/OpenSCAD"
@@ -26,5 +24,7 @@ in
         # https://github.com/BelfrySCAD/BOSL2
       ];
     };
+
+    home.packages = with pkgs; [ openscad ];
   };
 }

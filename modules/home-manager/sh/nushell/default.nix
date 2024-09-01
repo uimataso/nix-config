@@ -23,6 +23,8 @@ in
   };
 
   config = mkIf cfg.enable rec {
+    home.persistence.main = mkIf imper.enable { files = [ ".config/nushell/history.txt" ]; };
+
     home.sessionVariables = mkIf cfg.defaultShell { SHELL = "nu"; };
 
     # TODO:
@@ -59,7 +61,5 @@ in
         df = "df -h";
       };
     };
-
-    home.persistence.main = mkIf imper.enable { files = [ ".config/nushell/history.txt" ]; };
   };
 }

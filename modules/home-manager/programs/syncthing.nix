@@ -12,6 +12,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.persistence.main = mkIf imper.enable { directories = [ ".local/share/syncthing" ]; };
+
     services.syncthing = {
       enable = true;
       extraOptions = [
@@ -19,7 +21,5 @@ in
         "--no-default-folder"
       ];
     };
-
-    home.persistence.main = mkIf imper.enable { directories = [ ".local/share/syncthing" ]; };
   };
 }

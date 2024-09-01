@@ -16,13 +16,13 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.persistence.main = mkIf imper.enable { directories = [ "/var/lib/docker" ]; };
+
     environment.systemPackages = with pkgs; [ docker-compose ];
 
     virtualisation.docker = {
       enable = true;
       # rootless.enable = true;
     };
-
-    environment.persistence.main = mkIf imper.enable { directories = [ "/var/lib/docker" ]; };
   };
 }

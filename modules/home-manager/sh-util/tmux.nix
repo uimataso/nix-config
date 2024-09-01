@@ -86,6 +86,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.persistence.main = mkIf imper.enable { directories = [ ".config/tmuxinator" ]; };
+
     home.shellAliases = {
       t = "tmux";
       ta = "tmux attach-session || tmux new-session -s default";
@@ -207,7 +209,5 @@ in
     };
 
     programs.tmux.tmuxinator.enable = true;
-
-    home.persistence.main = mkIf imper.enable { directories = [ ".config/tmuxinator" ]; };
   };
 }

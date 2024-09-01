@@ -10,6 +10,16 @@ let
 
   imper = config.uimaConfig.system.impermanence;
   rmHomePath = str: removePrefix config.home.homeDirectory str;
+  dirs = with config.xdg.userDirs; [
+    desktop
+    documents
+    download
+    music
+    pictures
+    publicShare
+    templates
+    videos
+  ];
 in
 {
   options.uimaConfig.system.xdg-user-dirs = {
@@ -17,6 +27,10 @@ in
   };
 
   config = mkIf cfg.enable rec {
+    home.persistence.main = mkIf imper.enable {
+      directories = lists.forEach (lists.remove null dirs) rmHomePath;
+    };
+
     xdg.userDirs = mkIf cfg.enable {
       enable = true;
       createDirectories = true;
@@ -31,21 +45,5 @@ in
       videos = "${config.home.homeDirectory}/vid";
     };
 
-    home.persistence.main = mkIf imper.enable {
-      directories =
-        let
-          dirs = with config.xdg.userDirs; [
-            desktop
-            documents
-            download
-            music
-            pictures
-            publicShare
-            templates
-            videos
-          ];
-        in
-        lists.forEach (lists.remove null dirs) rmHomePath;
-    };
   };
 }

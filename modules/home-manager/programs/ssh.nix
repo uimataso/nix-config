@@ -12,8 +12,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.ssh.enable = true;
-
     home.persistence.main = mkIf imper.enable { directories = [ ".ssh" ]; };
+
+    programs.ssh.enable = true;
   };
 }

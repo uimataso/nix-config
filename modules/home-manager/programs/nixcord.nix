@@ -19,6 +19,8 @@ in
   imports = [ inputs.nixcord.homeManagerModules.nixcord ];
 
   config = mkIf cfg.enable {
+    home.persistence.main = mkIf imper.enable { directories = [ ".config/discord" ]; };
+
     programs.nixcord = {
       enable = true;
       # quickCss = "some CSS";  # quickCSS file
@@ -43,7 +45,5 @@ in
       #   # ...
       # };
     };
-
-    home.persistence.main = mkIf imper.enable { directories = [ ".config/discord" ]; };
   };
 }

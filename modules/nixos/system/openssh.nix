@@ -12,6 +12,13 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.persistence.main = mkIf imper.enable {
+      files = [
+        "/etc/ssh/ssh_host_ed25519_key"
+        "/etc/ssh/ssh_host_ed25519_key.pub"
+      ];
+    };
+
     services.openssh = {
       enable = true;
       settings = {
@@ -25,13 +32,6 @@ in
           path = "${lib.optionalString imper.enable imper.persist_dir}/etc/ssh/ssh_host_ed25519_key";
           type = "ed25519";
         }
-      ];
-    };
-
-    environment.persistence.main = mkIf imper.enable {
-      files = [
-        "/etc/ssh/ssh_host_ed25519_key"
-        "/etc/ssh/ssh_host_ed25519_key.pub"
       ];
     };
   };

@@ -16,13 +16,13 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ freecad ];
-
     home.persistence.main = mkIf imper.enable {
       directories = [
         ".config/freecad"
         ".local/share/FreeCAD"
       ];
     };
+
+    home.packages = with pkgs; [ freecad ];
   };
 }

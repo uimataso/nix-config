@@ -22,7 +22,13 @@ in
   };
 
   config = mkIf cfg.enable {
-    # TODO: Learn `g;`, `[]` commands, marks, quicklist, register
+    home.persistence.main = mkIf imper.enable {
+      directories = [
+        ".cache/nvim"
+        ".local/share/nvim"
+        ".local/state/nvim"
+      ];
+    };
 
     home.packages = with pkgs; [
       neovim
@@ -68,14 +74,6 @@ in
     programs.git.extraConfig = {
       core.pager = "nvim -R";
       color.pager = false;
-    };
-
-    home.persistence.main = mkIf imper.enable {
-      directories = [
-        ".cache/nvim"
-        ".local/share/nvim"
-        ".local/state/nvim"
-      ];
     };
   };
 }

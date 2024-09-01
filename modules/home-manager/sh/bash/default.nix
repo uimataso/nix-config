@@ -34,9 +34,9 @@ in
   };
 
   config = mkIf cfg.enable rec {
-    # TODO: make everything run fine without bash.enable
-    # - xdg file
-    # - dwm break
+    home.persistence.main = mkIf imper.enable {
+      files = [ (rmHomePath config.programs.bash.historyFile) ];
+    };
 
     uimaConfig.sh.alias.enable = true;
     uimaConfig.sh-util.fzf.enable = true;
@@ -120,10 +120,6 @@ in
     xdg.configFile = {
       "bash/bashrc".source = config.home.file.".bashrc".source;
       "bash/profile".source = config.home.file.".profile".source;
-    };
-
-    home.persistence.main = mkIf imper.enable {
-      files = [ (rmHomePath config.programs.bash.historyFile) ];
     };
   };
 }

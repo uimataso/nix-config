@@ -16,6 +16,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.persistence.main = mkIf imper.enable { directories = [ ".local/share/containers/storage" ]; };
+
     home.packages = with pkgs; [ podman-compose ];
 
     home.shellAliases = {
@@ -27,7 +29,5 @@ in
       pmcl = "podman compose logs";
       pmcp = "podman compose pull";
     };
-
-    home.persistence.main = mkIf imper.enable { directories = [ ".local/share/containers/storage" ]; };
   };
 }

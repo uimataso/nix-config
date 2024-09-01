@@ -12,8 +12,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.tailscale.enable = true;
-
     environment.persistence.main = mkIf imper.enable { directories = [ "/var/lib/tailscale" ]; };
+
+    services.tailscale.enable = true;
   };
 }

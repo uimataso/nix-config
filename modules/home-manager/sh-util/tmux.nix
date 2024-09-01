@@ -34,31 +34,49 @@ let
       runtimeInputs = with pkgs; [
         fzf
         tmux
-      ];
-      text = ''
-        selected="$(tmux list-sessions -F "#{session_name}" | fzf || true)"
-        test -z "$selected" && exit
-        tmux switch-client -t "$selected"
-      '';
-    };
-  tmux-select-sessions = pkgs.callPackage tmux-select-sessions-src { };
-
-  tmuxinator-fzf-src =
-    { writeShellApplication, pkgs }:
-    writeShellApplication {
-      name = "tmuxinator-fzf";
-      runtimeInputs = with pkgs; [
-        fzf
-        tmux
         tmuxinator
       ];
       text = ''
-        selected="$(tmuxinator list -n | tail -n +2 | fzf || true)"
-        test -z "$selected" && exit
-        tmuxinator s "$selected"
+        sessions_list() {
+          # Get tmux sessions that sort by created time (i actually want last visit time...)
+          ( tmux list-sessions 2>/dev/null || true ) | sort -t' ' -k3 | cut -d: -f1
+
+          # Get tmux sessions
+
+          tmp="$(mktemp)"
+          ( tmux list-sessions -F '#{session_name}' 2>/dev/null || true ) | sort > "$tmp"
+
+          # Get tmuxinator project that are not created
+          printf '\e[38;5;242m'
+          tmuxinator list -n | tail -n+2 | sort | comm "$tmp" - -13
+          printf '\e[0m'
+
+          rm "$tmp"
+        }
+
+        selected=$(sessions_list | fzf --bind=enter:replace-query+print-query --ansi || true)
+
+        [ -z "$selected" ] && exit
+
+        if ( tmux list-sessions 2>/dev/null || true ) | grep -x "$selected" >/dev/null; then
+          if [ -z "''${TMUX+x}" ]; then
+            tmux attach-session -t "$selected"
+          else
+            tmux switch-client -t "$selected"
+          fi
+        elif tmuxinator list -n | tail -n+2 | grep -x "$selected" >/dev/null ;then
+          tmuxinator start "$selected"
+        else
+          if [ -z "''${TMUX+x}" ]; then
+            tmux new-session -s "$selected"
+          else
+            tmux new-session -d -s "$selected"
+            tmux switch-client -t "$selected"
+          fi
+        fi
       '';
     };
-  tmuxinator-fzf = pkgs.callPackage tmuxinator-fzf-src { };
+  tmux-select-sessions = pkgs.callPackage tmux-select-sessions-src { };
 
   imper = config.uimaConfig.system.impermanence;
 in
@@ -71,7 +89,7 @@ in
     home.shellAliases = {
       t = "tmux";
       ta = "tmux attach-session || tmux new-session -s default";
-      ts = "${tmuxinator-fzf}/bin/tmuxinator-fzf";
+      ts = "${tmux-select-sessions}/bin/tmux-select-sessions";
       td = "tmuxinator start default";
     };
 

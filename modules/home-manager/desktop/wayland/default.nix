@@ -1,4 +1,7 @@
 { ... }:
 {
-  imports = [ ./river.nix ];
+  imports = [
+    ./river.nix
+    ./waybar.nix
+  ];
 }

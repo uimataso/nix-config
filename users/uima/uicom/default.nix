@@ -41,7 +41,6 @@
     };
 
     services = {
-      # TODO: This work on wayland?
       easyeffects.enable = true;
     };
 
@@ -66,6 +65,7 @@
 
     desktop.wayland = {
       river.enable = true;
+      waybar.enable = true;
     };
 
     dev = {

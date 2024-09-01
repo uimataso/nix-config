@@ -38,13 +38,14 @@ in
     ];
 
     # TODO: make each tag has its own split width
+    # TODO: use systemd to auto start programs
 
     wayland.windowManager.river = {
       enable = true;
 
       extraConfig = # sh
         ''
-          rivertile -view-padding 6 -outer-padding 6 &
+          rivertile -view-padding 3 -outer-padding 3 &
 
           # Set monitor
           # TODO: Better way to manage monitor

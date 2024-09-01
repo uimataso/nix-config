@@ -1,12 +1,10 @@
 {
   description = "uima's nixos config";
 
-  # TODO: Push extrakto to nixpkgs
-  # TODO: Test nix build speed with and without overlays
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    # nixpkgs-local.url = "git+file:///home/uima/src/nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -39,7 +37,6 @@
     {
       self,
       nixpkgs,
-      nixpkgs-stable,
       home-manager,
       ...
     }@inputs:
@@ -54,6 +51,7 @@
       pkg-inputs = [
         "nixpkgs"
         "nixpkgs-stable"
+        # "nixpkgs-local"
       ];
 
       forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.nixpkgs.${system});
@@ -77,6 +75,7 @@
           specialArgs = {
             inherit inputs outputs;
             pkgs-stable = pkgsFor.nixpkgs-stable.${system};
+            # pkgs-local = pkgsFor.nixpkgs-local.${system};
           };
         in
         lib.nixosSystem {

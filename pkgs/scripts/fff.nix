@@ -7,14 +7,10 @@ writeShellApplication {
     (callPackage ./open.nix { })
   ];
 
-  text = ''
-    # Unset the option that `writeShellApplication` set for us. Because this
-    # script is intended to run as `. fff`, the option still gets effect after
-    # exiting `fff`, so we disable this.
-    set +o errexit
-    set +o nounset
-    set +o pipefail
+  # Disable options `errexit`, `nounset` and `pipefail`
+  bashOptions = [];
 
+  text = ''
     ls_cmd="''${FFF_LS_CMD:-ls -A --group-directories-first --color=always}"
 
     # Temp file
@@ -62,7 +58,7 @@ writeShellApplication {
       # Open the selected
       file="$selected"
       if [ -d "$file" ]; then
-        cd "$file"
+        cd "$file" || return
       else
         open "$file"
       fi

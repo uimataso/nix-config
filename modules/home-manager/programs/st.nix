@@ -7,8 +7,6 @@
 with lib;
 let
   cfg = config.uimaConfig.programs.st;
-
-  scheme = config.stylix.base16Scheme;
 in
 {
   options.uimaConfig.programs.st = {
@@ -35,9 +33,12 @@ in
 
     home.sessionVariables = mkIf cfg.defaultTerminal { TERMINAL = "st"; };
 
-    xresources.properties = with config.stylix; {
+    xresources.properties =
+      with config.lib.stylix.colors.withHashtag;
+      with config.stylix;
+    {
       "st.font" = "${fonts.monospace.name}:size=${builtins.toString fonts.sizes.terminal}";
-      "st.cursorColor" = "#${scheme.base05}";
+      "st.cursorColor" = base05;
       "st.cwscale" = "0.95";
       "st.shell" = "/bin/bash";
       "st.alpha" = "${builtins.toString opacity.terminal}";

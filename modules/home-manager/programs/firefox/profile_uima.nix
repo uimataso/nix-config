@@ -9,17 +9,16 @@ with lib;
 let
   cfg = config.uimaConfig.programs.firefox.profile.uima;
 
-  scheme = config.stylix.base16Scheme;
-
   name = "uima";
 
   color =
+    with config.lib.stylix.colors.withHashtag;
     # css
     ''
       :root{
-        --bg-color: #${scheme.base00} !important;
-        --fg-color: #${scheme.base07} !important;
-        --pr-color: #${scheme.base0E} !important;
+        --bg-color: ${base00} !important;
+        --fg-color: ${base07} !important;
+        --pr-color: ${base0E} !important;
       }
     '';
 

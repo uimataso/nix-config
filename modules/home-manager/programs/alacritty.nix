@@ -7,8 +7,6 @@
 with lib;
 let
   cfg = config.uimaConfig.programs.alacritty;
-
-  scheme = config.stylix.base16Scheme;
 in
 {
   options.uimaConfig.programs.alacritty = {

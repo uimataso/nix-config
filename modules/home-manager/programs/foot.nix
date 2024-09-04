@@ -7,8 +7,6 @@
 with lib;
 let
   cfg = config.uimaConfig.programs.foot;
-
-  scheme = config.stylix.base16Scheme;
 in
 {
   options.uimaConfig.programs.foot = {
@@ -24,12 +22,12 @@ in
   config = mkIf cfg.enable {
     programs.foot = {
       enable = true;
-      settings = {
+      settings = with config.stylix.base16Scheme; {
         main = {
           pad = "5x3";
         };
         cursor = {
-          color = "${scheme.base00}  ${scheme.base05}";
+          color = "${base00}  ${base05}";
         };
       };
     };

@@ -25,8 +25,6 @@ let
         '';
     });
 
-  scheme = config.stylix.base16Scheme;
-
   tmux-select-sessions-src =
     { writeShellApplication, pkgs }:
     writeShellApplication {
@@ -113,6 +111,7 @@ in
       # shell = "${config.programs.nushell.package}/bin/nu";
 
       extraConfig =
+        with config.lib.stylix.colors.withHashtag;
         # tmux
         ''
           set -sa terminal-overrides ",xterm-256color:RGB"
@@ -157,17 +156,17 @@ in
           set -g status-left-length 20
           set -g status-right "#[bright]#(whoami):#h  "
           setw -g window-status-current-format '-#I:#W- '
-          setw -g window-status-format '#[fg=#${scheme.base04}]#I:#W #[fg=default]'
+          setw -g window-status-format '#[fg=${base04}]#I:#W #[fg=default]'
 
-          set -g status-style          fg='#${scheme.base04}',bg=default
+          set -g status-style          fg='${base04}',bg=default
           set -g message-style         bg=black
           set -g message-command-style bg=black
           set -g mode-style            fg=black,bg=green
 
           # pane border colors
-          set -g pane-border-style        fg='#${scheme.base03}'
+          set -g pane-border-style        fg='${base03}'
           set -g pane-active-border-style fg=magenta
-          set -g popup-border-style       fg='#${scheme.base03}'
+          set -g popup-border-style       fg='${base03}'
 
           # window title colors
           set -g window-status-current-style fg=magenta,bg=default,bold

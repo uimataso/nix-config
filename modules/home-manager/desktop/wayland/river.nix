@@ -8,8 +8,6 @@ with lib;
 let
   cfg = config.uimaConfig.desktop.wayland.river;
 
-  scheme = config.stylix.base16Scheme;
-
   # cal power
   pow =
     base: exp:
@@ -39,6 +37,7 @@ in
 
     # TODO: make each tag has its own split width
     # TODO: use systemd to auto start programs
+    # TODO: manage scripts
 
     wayland.windowManager.river = {
       enable = true;
@@ -57,7 +56,7 @@ in
           swww img ${config.stylix.image}
         '';
 
-      settings = {
+      settings = with config.stylix.base16Scheme; {
         default-layout = "rivertile";
 
         map = {
@@ -173,9 +172,9 @@ in
           };
         };
 
-        border-color-unfocused = "0x${scheme.base00}00";
-        border-color-focused = "0x${scheme.base0E}";
-        border-color-urgent = "0x${scheme.base08}";
+        border-color-unfocused = "0x${base00}00";
+        border-color-focused = "0x${base0E}";
+        border-color-urgent = "0x${base08}";
         border-width = 1;
       };
     };

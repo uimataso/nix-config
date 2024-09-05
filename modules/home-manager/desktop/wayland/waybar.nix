@@ -15,66 +15,38 @@ in
   config = mkIf cfg.enable {
     stylix.targets.waybar.enable = false;
 
-    programs.waybar = {
+    programs.waybar = with config.lib.stylix.colors.withHashtag; {
       enable = true;
       systemd.enable = true;
 
       settings = let
         modules = {
-          keyboard-state = {
-            numlock = true;
-            capslock = true;
-            format = "{name} {icon}";
-            format-icons = {
-              locked = "";
-              unlocked = "";
+          clock = {
+            format = "{:%a %b %d  %H:%M} ";
+            tooltip-format = "{calendar}";
+            calendar = {
+              mode = "year";
+              weeks-pos = "right";
+              mode-mon-col = 3;
+              on-scroll = 1;
+              format = {
+                months   = "<span color='${base0A}'><b>{}</b></span>";
+                days     = "<span color='${base05}'><b>{}</b></span>";
+                weeks    = "<span color='${base0C}'><b>W{}</b></span>";
+                weekdays = "<span color='${base09}'><b>{}</b></span>";
+                today    = "<span color='${base08}'><b><u>{}</u></b></span>";
+              };
             };
-          };
-
-          mpd = {
-            format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ";
-            format-disconnected = "Disconnected ";
-            format-stopped = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ";
-            unknown-tag = "N/A";
-            interval = 5;
-            consume-icons = {
-              on = " ";
-            };
-            random-icons = {
-              off = "<span color=\"#f53c3c\"></span> ";
-              on = " ";
-            };
-            repeat-icons = {
-              on = " ";
-            };
-            single-icons = {
-              on = "1 ";
-            };
-            state-icons = {
-              paused = "";
-              playing = "";
-            };
-            tooltip-format = "MPD (connected)";
-            tooltip-format-disconnected = "MPD (disconnected)";
-          };
-
-          idle_inhibitor = {
-            format = "{icon}";
-            format-icons = {
-              activated = "";
-              deactivated = "";
+            actions = {
+              on-click-right = "mode";
+              on-scroll-up = "shift_up";
+              on-scroll-down = "shift_down";
             };
           };
 
           tray = {
             # icon-size = 21;
             spacing = 10;
-          };
-
-          clock = {
-            # timezone = "America/New_York";
-            tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-            format-alt = "{:%Y-%m-%d}";
           };
 
           cpu = {
@@ -84,15 +56,6 @@ in
 
           memory = {
               format = "{}% ";
-          };
-
-          temperature = {
-            # thermal-zone = 2;
-            # hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
-            critical-threshold = 80;
-            # format-critical = "{temperatureC}°C {icon}";
-            format = "{temperatureC}°C {icon}";
-            format-icons = ["" "" ""];
           };
 
           backlight = {
@@ -129,16 +92,6 @@ in
             };
           };
 
-          network = {
-              # interface = "wlp2*", // (Optional) To force the use of this interface
-              format-wifi = "{essid} ({signalStrength}%) ";
-              format-ethernet = "{ipaddr}/{cidr} ";
-              tooltip-format = "{ifname} via {gwaddr} ";
-              format-linked = "{ifname} (No IP) ";
-              format-disconnected = "Disconnected ⚠";
-              format-alt = "{ifname}: {ipaddr}/{cidr}";
-          };
-
           pulseaudio = {
               # scroll-step = 1, // %, can be a float
               format = "{volume}% {icon} {format_source}";
@@ -159,17 +112,19 @@ in
               on-click = "pavucontrol";
           };
 
-          "custom/power" = {
-            format = "⏻ ";
+          network = {
+              # interface = "wlp2*", // (Optional) To force the use of this interface
+              format-wifi = "{essid} ({signalStrength}%) ";
+              format-ethernet = "{ipaddr}/{cidr} ";
+              tooltip-format = "{ifname} via {gwaddr} ";
+              format-linked = "{ifname} (No IP) ";
+              format-disconnected = "Disconnected ⚠";
+              format-alt = "{ifname}: {ipaddr}/{cidr}";
+          };
+
+          "river/window" = {
+            max-length = 80;
             tooltip = false;
-            menu = "on-click";
-            menu-file = "$HOME/.config/waybar/power_menu.xml"; # Menu file in resources folder
-            menu-actions = {
-              shutdown = "shutdown";
-              reboot = "reboot";
-              suspend = "systemctl suspend";
-              hibernate = "systemctl hibernate";
-            };
           };
         };
       in
@@ -180,7 +135,7 @@ in
 
           modules-left = [
             "river/tags"
-            "river/mode"
+            # "river/mode"
             "sway/workspaces"
             "sway/mode"
             "sway/scratchpad"
@@ -190,20 +145,18 @@ in
             "sway/window"
           ];
           modules-right = [
-            "mpd"
-            "idle_inhibitor"
+            "tray"
+
             "pulseaudio"
-            "network"
-            "power-profiles-daemon"
+
             "cpu"
             "memory"
-            "temperature"
             "backlight"
-            "keyboard-state"
+
+            "network"
             "battery"
+
             "clock"
-            "tray"
-            "custom/power"
           ];
         };
       };
@@ -220,7 +173,7 @@ in
         @define-color base0C ${base0C}; @define-color base0D ${base0D}; @define-color base0E ${base0E}; @define-color base0F ${base0F};
 
         * {
-          font-family: "${fonts.sansSerif.name}";
+          font-family: "${fonts.monospace.name}";
           font-size: ${builtins.toString fonts.sizes.desktop}pt;
         }
 

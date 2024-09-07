@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib;
@@ -71,26 +72,42 @@ in
             tooltip = false;
           };
 
-          pulseaudio = {
+          pulseaudio = let
+            pactl = "${pkgs.pulseaudio}/bin/pactl";
+
+            pulseaudioSwitchSink = pkgs.writeShellScript "pulseaudio-switch-sink" /*sh*/ ''
+              PATH="${pkgs.coreutils}/bin:${pkgs.gnugrep}/bin:${pkgs.gnused}/bin/:${pkgs.findutils}/bin"
+
+              def=$(${pactl} get-default-sink)
+              ${pactl} list short sinks |
+                cut -f2 |
+                grep -v easyeffects_sink |
+                tr '\n' ' ' |
+                sed "s/^.*$def \(\S*\) .*/\1/" | # look for next sink
+                sed "s/^\(\S*\) .*/\1/" | # if $def is last, look for first
+                xargs ${pactl} set-default-sink
+            '';
+          in {
             scroll-step = 5.0;
             max-volume = 120;
 
-            format = "{icon}  {volume:3}% {format_source}";
+            format = "{icon} {format_source}";
             format-muted = "  {format_source}";
-            format-bluetooth = "{icon}  {volume:3}% {format_source}";
+            format-bluetooth = "{icon} {format_source}";
             format-bluetooth-muted = "  {format_source}";
             format-source = "";
             format-source-muted = "";
             format-icons = {
-              default = ["" "" ""];
-              headphone = "";
-              "alsa_output.pci-0000_00_1f.3.analog-stereo" = "";
+              default = [" " " " " "];
+              headphone = " ";
+              "alsa_output.pci-0000_00_1f.3.analog-stereo" = " ";
+              "bluez_output.04_57_91_F0_A1_EA.1" = "󱡏";
             };
 
-            tooltip-format = "{desc}";
+            tooltip-format = "{volume}%  {desc}";
 
-            on-click = "vl mute";
-            on-click-right = "vl switch";
+            on-click = "${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
+            on-click-right = "${pulseaudioSwitchSink} 2> /tmp/output";
 
             ignored-sinks = ["Easy Effects Sink"];
           };

@@ -12,12 +12,6 @@
     nvidiaSettings = true;
   };
 
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
-  services.blueman.enable = true;
-
   uimaConfig = {
     global.enable = true;
 
@@ -53,6 +47,7 @@
     };
 
     hardware = {
+      bluetooth.enable = true;
       elecom_huge_trackball.enable = true;
     };
 

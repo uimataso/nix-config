@@ -27,7 +27,9 @@ writeShellApplication {
 
     switch() {
       def=$(pactl get-default-sink)
-      pactl list short sinks | cut -f2 | tr '\n' ' ' |
+      pactl list short sinks | cut -f2 |
+        grep -v easyeffects_sink |
+        tr '\n' ' ' |
         sed "s/^.*$def \(\S*\) .*/\1/" | # look for next sink
         sed "s/^\(\S*\) .*/\1/" | # if $def is last, look for first
         xargs pactl set-default-sink

@@ -22,6 +22,7 @@ in
 
       settings = let
         withColor = color: text : "<span color='${color}'>${text}</span>";
+        withColorGray = withColor base03;
 
         modules = {
           clock = {
@@ -52,9 +53,9 @@ in
           battery = { };
 
           network = let
-            tooltip-format = "{ifname} ${withColor base03 "via"} {gwaddr} ${withColor base03 "at"} {ipaddr}/{cidr}";
+            tooltip-format = "{ifname} ${withColorGray "via"} {gwaddr} ${withColorGray "at"} {ipaddr}/{cidr}";
           in {
-            interval = 5;
+            interval = 1;
             format-ethernet = "{ipaddr}/{cidr} 󰛳 {icon}";
             format-wifi = "{essid} 󰖩 {icon}";
             format-linked = "{ifname} (No IP) 󰛳 {icon}";
@@ -62,7 +63,7 @@ in
             format-icons = ["󰣾" "󰣴" "󰣶" "󰣸" "󰣺"];
 
             inherit tooltip-format;
-            tooltip-format-wifi = "{signalStrength}% ${withColor base03 "at"} {frequency}G  ${tooltip-format}";
+            tooltip-format-wifi = "{signalStrength}% ${withColorGray "at"} {frequency}G  ${tooltip-format}";
           };
 
           "network#bandwidth" = {
@@ -113,13 +114,16 @@ in
           };
 
           bluetooth = {
-            # controller = "controller1"; # specify the alias of the controller if there are more than 1 on the system
-            format = " {status}";
             format-disabled = ""; # an empty format will hide the module
-            format-connected = " {num_connections} connected";
-            tooltip-format = "{controller_alias}\t{controller_address}";
-            tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
-            tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+            format-off = "󰂲";
+            format-on = "<sub>0</sub>";
+            format-connected = "<sub>{num_connections}</sub>";
+            format-connected-battery = "<sub>{num_connections}</sub> 󰥄 {device_battery_percentage}%";
+
+            tooltip-format = "{controller_alias}: {controller_address_type} {controller_address}";
+            tooltip-format-connected = "{controller_alias}: {controller_address_type} {controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
+            tooltip-format-enumerate-connected = "{device_alias}:\t{device_address_type} {device_address}";
+            tooltip-format-enumerate-connected-battery = "{device_alias} {device_battery_percentage:3}%:\t{device_address_type} {device_address}";
           };
 
           cpu = {

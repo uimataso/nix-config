@@ -20,8 +20,11 @@ in
       systemd.enable = true;
 
       settings = let
+        withColor = color: text : "<span color='${color}'>${text}</span>";
+
         modules = {
           clock = {
+            interval = 10;
             format = "{:%a %b %d  %H:%M} ";
             tooltip-format = "{calendar}";
             calendar = {
@@ -30,11 +33,11 @@ in
               mode-mon-col = 3;
               on-scroll = 1;
               format = {
-                months   = "<span color='${base0A}'><b>{}</b></span>";
-                days     = "<span color='${base05}'><b>{}</b></span>";
-                weeks    = "<span color='${base0C}'><b>W{}</b></span>";
-                weekdays = "<span color='${base09}'><b>{}</b></span>";
-                today    = "<span color='${base08}'><b><u>{}</u></b></span>";
+                months   = withColor base0A "<b>{}</b>";
+                days     = withColor base05 "<b>{}</b>";
+                weeks    = withColor base0C "<b>W{}</b>";
+                weekdays = withColor base09 "<b>{}</b>";
+                today    = withColor base08 "<b><u>{}</u></b>";
               };
             };
             actions = {
@@ -44,82 +47,111 @@ in
             };
           };
 
-          tray = {
-            # icon-size = 21;
-            spacing = 10;
+          # TODO: when I need this
+          battery = { };
+
+          network = let
+            tooltip-format = "{ifname} ${withColor base03 "via"} {gwaddr} ${withColor base03 "at"} {ipaddr}/{cidr}";
+          in {
+            interval = 5;
+            format-ethernet = "{ipaddr}/{cidr} 󰛳 {icon}";
+            format-wifi = "{essid} 󰖩 {icon}";
+            format-linked = "{ifname} (No IP) 󰛳 {icon}";
+            format-disconnected = "󰲜 ";
+            format-icons = ["󰣾" "󰣴" "󰣶" "󰣸" "󰣺"];
+
+            inherit tooltip-format;
+            tooltip-format-wifi = "{signalStrength}% ${withColor base03 "at"} {frequency}G  ${tooltip-format}";
           };
 
-          cpu = {
-              format = "{usage}% ";
-              tooltip = false;
-          };
-
-          memory = {
-              format = "{}% ";
-          };
-
-          backlight = {
-              # "device" = "acpi_video1";
-              format = "{percent}% {icon}";
-              format-icons = ["" "" "" "" "" "" "" "" ""];
-          };
-
-          battery = {
-              states = {
-                  # good = 95;
-                  warning = 30;
-                  critical = 15;
-              };
-              format = "{capacity}% {icon}";
-              format-full = "{capacity}% {icon}";
-              format-charging = "{capacity}% ";
-              format-plugged = "{capacity}% ";
-              format-alt = "{time} {icon}";
-              # format-good = "", // An empty format will hide the module
-              # format-full = "";
-              format-icons = ["" "" "" "" ""];
-          };
-
-          power-profiles-daemon = {
-            format = "{icon}";
-            tooltip-format = "Power profile: {profile}\nDriver: {driver}";
-            tooltip = true;
-            format-icons = {
-              default = "";
-              performance = "";
-              balanced = "";
-              power-saver = "";
-            };
+          "network#bandwidth" = {
+            interval = 1;
+            # icon: nf-oct-arrow_up
+            format = "{bandwidthDownBytes:>16} {bandwidthUpBytes:>16} ";
+            tooltip = false;
           };
 
           pulseaudio = {
-              # scroll-step = 1, // %, can be a float
-              format = "{volume}% {icon} {format_source}";
-              format-bluetooth = "{volume}% {icon} {format_source}";
-              format-bluetooth-muted = " {icon} {format_source}";
-              format-muted = " {format_source}";
-              format-source = "{volume}% ";
-              format-source-muted = "";
-              format-icons = {
-                  headphone = "";
-                  hands-free = "";
-                  headset = "";
-                  phone = "";
-                  portable = "";
-                  car = "";
-                  default = ["" "" ""];
-              };
-              on-click = "pavucontrol";
+            scroll-step = 5.0;
+            max-volume = 120;
+
+            format = "{icon}  {volume:3}% {format_source}";
+            format-muted = "  {format_source}";
+            format-bluetooth = "{icon}  {volume:3}% {format_source}";
+            format-bluetooth-muted = "  {format_source}";
+            format-source = "";
+            format-source-muted = "";
+            format-icons = {
+              default = ["" "" ""];
+              headphone = "";
+              "alsa_output.pci-0000_00_1f.3.analog-stereo" = "";
+            };
+
+            tooltip-format = "{desc}";
+
+            on-click = "vl mute";
+            on-click-right = "vl switch";
+
+            ignored-sinks = ["Easy Effects Sink"];
           };
 
-          network = {
-              # interface = "wlp2*", // (Optional) To force the use of this interface
-              format-wifi = "{essid} ({signalStrength}%) ";
-              format-ethernet = "{ipaddr}/{cidr} ";
-              tooltip-format = "{ifname} via {gwaddr} ";
-              format-linked = "{ifname} (No IP) ";
-              format-disconnected = "Disconnected ⚠";
-              format-alt = "{ifname}: {ipaddr}/{cidr}";
+          bluetooth = {
+            # controller = "controller1"; # specify the alias of the controller if there are more than 1 on the system
+            format = " {status}";
+            format-disabled = ""; # an empty format will hide the module
+            format-connected = " {num_connections} connected";
+            tooltip-format = "{controller_alias}\t{controller_address}";
+            tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+            tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+          };
+
+          cpu = {
+            interval = 10;
+            format = " {usage:2}%";
+            tooltip = false;
+          };
+
+          memory = {
+            interval = 10;
+            # format = " {used:2.1f}/{total:2.1f}G";
+            format = " {percentage}%";
+            tooltip-format = "{used:0.1f}GiB of {total:0.1f}GiB used";
+          };
+
+          # TODO: when i need this
+          backlight = {
+              format = "{icon} ";
+              format-icons = ["" "" "" "" "" "" "" "" ""];
+          };
+
+          privacy = let
+            icon-size = 16;
+          in{
+            icon-spacing = 8;
+            icon-size = icon-size;
+            transition-duration = 250;
+            modules = [
+              {
+                type = "screenshare";
+                tooltip = true;
+                tooltip-icon-size = icon-size;
+              }
+              {
+                type = "audio-out";
+                tooltip = true;
+                tooltip-icon-size = icon-size;
+              }
+              {
+                type = "audio-in";
+                tooltip = true;
+                tooltip-icon-size = icon-size;
+              }
+            ];
+          };
+
+          tray = {
+            icon-size = 16;
+            spacing = 10;
           };
 
           "river/window" = {
@@ -139,19 +171,23 @@ in
             "sway/workspaces"
             "sway/mode"
             "sway/scratchpad"
+            "tray"
+            "systemd-failed-units"
           ];
           modules-center= [
             "river/window"
             "sway/window"
           ];
           modules-right = [
-            "tray"
-
-            "pulseaudio"
+            "privacy"
+            "network#bandwidth"
 
             "cpu"
             "memory"
             "backlight"
+
+            "bluetooth"
+            "pulseaudio"
 
             "network"
             "battery"

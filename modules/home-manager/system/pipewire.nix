@@ -6,12 +6,12 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.programs.pipewire;
+  cfg = config.uimaConfig.system.pipewire;
 
   imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.programs.pipewire = {
+  options.uimaConfig.system.pipewire = {
     enable = mkEnableOption "Settings and tool for pipewire";
   };
 
@@ -19,7 +19,5 @@ in
     home.persistence.main = {
       directories = [ ".local/state/wireplumber" ];
     };
-
-    home.packages = with pkgs; [ scripts.vl ];
   };
 }

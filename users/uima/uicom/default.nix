@@ -33,6 +33,7 @@
     scripts.power-menu
     scripts.screenshot
     scripts.swallower
+    scripts.vl
   ];
 
   programs.htop.enable = true;
@@ -49,6 +50,7 @@
       input-method.fcitx5.enable = true;
       xdg.enable = true;
       xdg-user-dirs.enable = true;
+      pipewire.enable = true;
     };
 
     sh = {
@@ -57,32 +59,18 @@
       nushell.enable = true;
     };
 
-    sh-util = {
-      fzf.enable = true;
-      fff.enable = true;
-      eza.enable = true;
-      tmux.enable = true;
-      tealdeer.enable = true;
-    };
+    desktop = {
+      # xserver = {
+      #   dwm.enable = true;
+      #   dwmblocks.enable = true;
+      #   dunst.enable = true;
+      # };
 
-    # desktop.xserver = {
-    #   dwm.enable = true;
-    #   dwmblocks.enable = true;
-    #   dunst.enable = true;
-    # };
-
-    desktop.wayland = {
-      river.enable = true;
-      waybar.enable = true;
-      swww.enable = true;
-    };
-
-    dev = {
-      direnv.enable = true;
-      git.enable = true;
-      lazygit.enable = true;
-      docker.enable = true;
-      # podman.enable = true;
+      wayland = {
+        river.enable = true;
+        waybar.enable = true;
+        swww.enable = true;
+      };
     };
 
     services = {
@@ -112,6 +100,15 @@
         # qutebrowser.enable = true;
       };
 
+      dev = {
+        ssh.enable = true;
+        direnv.enable = true;
+        git.enable = true;
+        lazygit.enable = true;
+        docker.enable = true;
+        # podman.enable = true;
+      };
+
       menu = {
         fmenu.enable = true;
         fmenu.defaultDmenu = true;
@@ -119,21 +116,25 @@
         tofi.enable = true;
       };
 
-      pipewire.enable = true;
-      ssh.enable = true;
+      sh-util = {
+        fzf.enable = true;
+        fff.enable = true;
+        eza.enable = true;
+        tmux.enable = true;
+        tealdeer.enable = true;
+      };
 
       # discord.enable = true;
       nixcord.enable = true;
 
       zathura.enable = true;
+      prusa-slicer.enable = true;
 
       cad = {
         # kicad.enable = true;
         # freecad.enable = true;
         openscad.enable = true;
       };
-
-      prusa-slicer.enable = true;
     };
   };
 }

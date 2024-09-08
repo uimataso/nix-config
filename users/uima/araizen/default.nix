@@ -51,31 +51,32 @@
       nushell.enable = true;
     };
 
-    sh-util = {
-      fzf.enable = true;
-      fff.enable = true;
-      eza.enable = true;
-      tmux.enable = true;
-      tealdeer.enable = true;
-    };
-
-    dev = {
-      direnv.enable = true;
-      git = {
-        enable = true;
-        name = "Uima";
-        email = "uima.chen@araizen.com";
-      };
-      lazygit.enable = true;
-      docker.enable = true;
-      k8s.enable = true;
-    };
-
     programs = {
-      neovim.enable = true;
-      neovim.defaultEditor = true;
+      editor = {
+        neovim.enable = true;
+        neovim.defaultEditor = true;
+      };
 
-      ssh.enable = true;
+      sh-util = {
+        fzf.enable = true;
+        fff.enable = true;
+        eza.enable = true;
+        tmux.enable = true;
+        tealdeer.enable = true;
+      };
+
+      dev = {
+        ssh.enable = true;
+        direnv.enable = true;
+        git = {
+          enable = true;
+          name = "Uima";
+          email = "uima.chen@araizen.com";
+        };
+        lazygit.enable = true;
+        docker.enable = true;
+        k8s.enable = true;
+      };
     };
   };
 }

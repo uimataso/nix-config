@@ -3,14 +3,14 @@
   imports = [
     ./browser
     ./cad
+    ./dev
     ./editor
     ./menu
+    ./sh-util
     ./terminal
     ./discord.nix
     ./nixcord.nix
-    ./pipewire.nix
     ./prusa-slicer.nix
-    ./ssh.nix
     ./zathura.nix
   ];
 }

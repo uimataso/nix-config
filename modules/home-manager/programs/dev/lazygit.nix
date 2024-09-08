@@ -6,15 +6,15 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.dev.lazygit;
+  cfg = config.uimaConfig.programs.dev.lazygit;
 in
 {
-  options.uimaConfig.dev.lazygit = {
+  options.uimaConfig.programs.dev.lazygit = {
     enable = mkEnableOption "Lazygit";
   };
 
   config = mkIf cfg.enable {
-    uimaConfig.dev.git.enable = true;
+    uimaConfig.programs.dev.git.enable = true;
 
     home.shellAliases = {
       lg = "lazygit";

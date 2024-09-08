@@ -6,10 +6,10 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.sh-util.lsd;
+  cfg = config.uimaConfig.programs.sh-util.lsd;
 in
 {
-  options.uimaConfig.sh-util.lsd = {
+  options.uimaConfig.programs.sh-util.lsd = {
     enable = mkEnableOption "lsd";
   };
 

@@ -1,10 +1,10 @@
 { config, lib, ... }:
 with lib;
 let
-  cfg = config.uimaConfig.sh-util.fzf;
+  cfg = config.uimaConfig.programs.sh-util.fzf;
 in
 {
-  options.uimaConfig.sh-util.fzf = {
+  options.uimaConfig.programs.sh-util.fzf = {
     enable = mkEnableOption "fzf";
   };
 

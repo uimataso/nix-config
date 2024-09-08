@@ -1,12 +1,12 @@
 { config, lib, ... }:
 with lib;
 let
-  cfg = config.uimaConfig.sh-util.tealdeer;
+  cfg = config.uimaConfig.programs.sh-util.tealdeer;
 
   imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.sh-util.tealdeer = {
+  options.uimaConfig.programs.sh-util.tealdeer = {
     enable = mkEnableOption "tealdeer";
   };
 

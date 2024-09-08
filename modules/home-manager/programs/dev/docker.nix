@@ -6,10 +6,10 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.dev.docker;
+  cfg = config.uimaConfig.programs.dev.docker;
 in
 {
-  options.uimaConfig.dev.docker = {
+  options.uimaConfig.programs.dev.docker = {
     enable = mkEnableOption "Docker";
   };
 

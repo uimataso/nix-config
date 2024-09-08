@@ -7,5 +7,6 @@
     ./k8s.nix
     ./lazygit.nix
     ./podman.nix
+    ./ssh.nix
   ];
 }

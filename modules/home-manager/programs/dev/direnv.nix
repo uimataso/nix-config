@@ -1,10 +1,10 @@
 { config, lib, ... }:
 with lib;
 let
-  cfg = config.uimaConfig.dev.direnv;
+  cfg = config.uimaConfig.programs.dev.direnv;
 in
 {
-  options.uimaConfig.dev.direnv = {
+  options.uimaConfig.programs.dev.direnv = {
     enable = mkEnableOption "Enables direnv";
   };
 

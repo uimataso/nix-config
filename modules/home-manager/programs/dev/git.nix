@@ -2,10 +2,10 @@
 with lib;
 # TODO: secrets?
 let
-  cfg = config.uimaConfig.dev.git;
+  cfg = config.uimaConfig.programs.dev.git;
 in
 {
-  options.uimaConfig.dev.git = {
+  options.uimaConfig.programs.dev.git = {
     enable = mkEnableOption "Git";
 
     name = mkOption {

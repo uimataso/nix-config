@@ -6,12 +6,12 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.sh-util.fff;
+  cfg = config.uimaConfig.programs.sh-util.fff;
 
-  shUtil = config.uimaConfig.sh-util;
+  shUtil = config.uimaConfig.programs.sh-util;
 in
 {
-  options.uimaConfig.sh-util.fff = {
+  options.uimaConfig.programs.sh-util.fff = {
     enable = mkEnableOption "fff. Self written script for file browsing.";
   };
 

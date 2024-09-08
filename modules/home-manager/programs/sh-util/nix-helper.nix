@@ -6,13 +6,13 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.sh-util.nix-helper;
+  cfg = config.uimaConfig.programs.sh-util.nix-helper;
 
   homeDir = config.home.homeDirectory;
   configHome = config.xdg.configHome;
 in
 {
-  options.uimaConfig.sh-util.nix-helper = {
+  options.uimaConfig.programs.sh-util.nix-helper = {
     enable = mkEnableOption ''
       Yet-another-nix-helper and other nix alias/sceripts that improve QoL.
     '';

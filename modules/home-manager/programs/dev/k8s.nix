@@ -6,10 +6,10 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.dev.k8s;
+  cfg = config.uimaConfig.programs.dev.k8s;
 in
 {
-  options.uimaConfig.dev.k8s = {
+  options.uimaConfig.programs.dev.k8s = {
     enable = mkEnableOption "k8s";
   };
 

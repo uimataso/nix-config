@@ -39,7 +39,7 @@ in
     };
 
     uimaConfig.sh.alias.enable = true;
-    uimaConfig.sh-util.fzf.enable = true;
+    uimaConfig.programs.sh-util.fzf.enable = true;
 
     home.sessionVariables = mkIf cfg.defaultShell { SHELL = "bash"; };
 

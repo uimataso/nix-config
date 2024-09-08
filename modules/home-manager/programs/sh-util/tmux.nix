@@ -7,7 +7,7 @@
 # https://man.archlinux.org/man/tmux.1
 with lib;
 let
-  cfg = config.uimaConfig.sh-util.tmux;
+  cfg = config.uimaConfig.programs.sh-util.tmux;
 
   setEnvVar =
     {
@@ -79,7 +79,7 @@ let
   imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.sh-util.tmux = {
+  options.uimaConfig.programs.sh-util.tmux = {
     enable = mkEnableOption "tmux";
   };
 

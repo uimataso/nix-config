@@ -6,10 +6,10 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.sh-util.eza;
+  cfg = config.uimaConfig.programs.sh-util.eza;
 in
 {
-  options.uimaConfig.sh-util.eza = {
+  options.uimaConfig.programs.sh-util.eza = {
     enable = mkEnableOption "eza";
   };
 

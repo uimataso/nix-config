@@ -20,7 +20,6 @@
   home.packages = with pkgs; [
     qmk
     fd
-    libreoffice
     scripts.extract
   ];
 
@@ -98,7 +97,7 @@
 
       pipewire.enable = true;
       ssh.enable = true;
-      syncthing.enable = true;
+      # syncthing.enable = true;
       udiskie.enable = true;
       # discord.enable = true;
       nixcord.enable = true;

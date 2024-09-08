@@ -110,9 +110,10 @@ in
               "Super Space" = "zoom";
 
               # Spawn
-              "Super Return" = "spawn foot";
-              "Super B" = "spawn firefox";
+              "Super Return" = "spawn $TERMINAL";
+              "Super B" = "spawn $BROWSER";
               "Super O" = "spawn '$(tofi-run)'";
+              "Super Esc" = "spawn power-menu";
             }
             // (
               let

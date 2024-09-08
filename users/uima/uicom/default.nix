@@ -60,12 +60,6 @@
     };
 
     desktop = {
-      # xserver = {
-      #   dwm.enable = true;
-      #   dwmblocks.enable = true;
-      #   dunst.enable = true;
-      # };
-
       wayland = {
         river.enable = true;
         waybar.enable = true;
@@ -81,10 +75,8 @@
 
     programs = {
       terminal = {
-        st.enable = true;
-        st.defaultTerminal = true;
-
         foot.enable = true;
+        foot.defaultTerminal = true;
       };
 
       editor = {
@@ -96,8 +88,6 @@
         firefox.enable = true;
         firefox.profile.uima.enable = true;
         firefox.defaultBrowser = true;
-
-        # qutebrowser.enable = true;
       };
 
       dev = {
@@ -124,7 +114,6 @@
         tealdeer.enable = true;
       };
 
-      # discord.enable = true;
       nixcord.enable = true;
 
       zathura.enable = true;

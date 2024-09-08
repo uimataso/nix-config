@@ -46,6 +46,7 @@
 
     services = {
       easyeffects.enable = true;
+      udiskie.enable = true;
       # syncthing.enable = true;
     };
 
@@ -105,7 +106,6 @@
 
       pipewire.enable = true;
       ssh.enable = true;
-      udiskie.enable = true;
       # discord.enable = true;
       nixcord.enable = true;
       zathura.enable = true;

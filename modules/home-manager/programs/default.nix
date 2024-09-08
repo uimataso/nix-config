@@ -15,7 +15,6 @@
     ./ssh.nix
     ./st.nix
     ./tofi.nix
-    ./udiskie.nix
     ./zathura.nix
   ];
 }

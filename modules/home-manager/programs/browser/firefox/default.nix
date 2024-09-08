@@ -18,10 +18,10 @@
 
 with lib;
 let
-  cfg = config.uimaConfig.programs.firefox;
+  cfg = config.uimaConfig.programs.browser.firefox;
 in
 {
-  options.uimaConfig.programs.firefox = {
+  options.uimaConfig.programs.browser.firefox = {
     enable = mkEnableOption "Firefox";
 
     defaultBrowser = mkOption {

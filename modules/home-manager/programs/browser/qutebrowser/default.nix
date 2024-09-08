@@ -6,12 +6,12 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.programs.qutebrowser;
+  cfg = config.uimaConfig.programs.browser.qutebrowser;
 
   imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.programs.qutebrowser = {
+  options.uimaConfig.programs.browser.qutebrowser = {
     enable = mkEnableOption "qutebrowser";
   };
 

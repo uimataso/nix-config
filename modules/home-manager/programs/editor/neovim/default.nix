@@ -6,12 +6,12 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.programs.neovim;
+  cfg = config.uimaConfig.programs.editor.neovim;
 
   imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.programs.neovim = {
+  options.uimaConfig.programs.editor.neovim = {
     enable = mkEnableOption "neovim";
 
     defaultEditor = mkOption {

@@ -6,10 +6,10 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.programs.tofi;
+  cfg = config.uimaConfig.programs.menu.tofi;
 in
 {
-  options.uimaConfig.programs.tofi = {
+  options.uimaConfig.programs.menu.tofi = {
     enable = mkEnableOption "tofi";
 
     # TODO: make a value that can setting default app-luncher AND dmenu

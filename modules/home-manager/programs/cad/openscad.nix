@@ -6,12 +6,12 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.programs.openscad;
+  cfg = config.uimaConfig.programs.cad.openscad;
 
   imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.programs.openscad = {
+  options.uimaConfig.programs.cad.openscad = {
     enable = mkEnableOption "OpenSCAD";
   };
 

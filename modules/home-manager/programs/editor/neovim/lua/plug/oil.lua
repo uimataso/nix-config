@@ -20,7 +20,6 @@ return {
     },
     keymaps = {
       ['<BS>'] = 'actions.parent',
-      ['<Esc>'] = 'actions.close',
       ['q'] = 'actions.close',
       ['-'] = false,
     },

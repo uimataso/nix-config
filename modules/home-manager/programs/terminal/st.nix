@@ -6,10 +6,10 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.programs.st;
+  cfg = config.uimaConfig.programs.terminal.st;
 in
 {
-  options.uimaConfig.programs.st = {
+  options.uimaConfig.programs.terminal.st = {
     enable = mkEnableOption "st";
 
     defaultTerminal = mkOption {

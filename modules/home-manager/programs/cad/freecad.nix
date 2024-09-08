@@ -6,12 +6,12 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.programs.freecad;
+  cfg = config.uimaConfig.programs.cad.freecad;
 
   imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.programs.freecad = {
+  options.uimaConfig.programs.cad.freecad = {
     enable = mkEnableOption "FreeCad";
   };
 

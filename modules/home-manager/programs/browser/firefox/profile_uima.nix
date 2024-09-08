@@ -7,7 +7,7 @@
 
 with lib;
 let
-  cfg = config.uimaConfig.programs.firefox.profile.uima;
+  cfg = config.uimaConfig.programs.browser.firefox.profile.uima;
 
   name = "uima";
 
@@ -88,7 +88,7 @@ let
   imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.programs.firefox.profile.${name} = {
+  options.uimaConfig.programs.browser.firefox.profile.${name} = {
     enable = mkEnableOption "Firefox profile: ${name}";
   };
 

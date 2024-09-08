@@ -6,12 +6,12 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.programs.kicad;
+  cfg = config.uimaConfig.programs.cad.kicad;
 
   imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.programs.kicad = {
+  options.uimaConfig.programs.cad.kicad = {
     enable = mkEnableOption "KiCad";
   };
 

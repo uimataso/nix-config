@@ -5,6 +5,13 @@
   inputs,
   ...
 }:
+# TODO: manage default app:
+# - terminal
+# - editor
+# - browser
+# - dmenu
+# - shell
+# TODO: manage scripts
 {
   home.username = "uima";
 
@@ -44,12 +51,6 @@
       xdg-user-dirs.enable = true;
     };
 
-    services = {
-      easyeffects.enable = true;
-      udiskie.enable = true;
-      # syncthing.enable = true;
-    };
-
     sh = {
       bash.enable = true;
       bash.defaultShell = true;
@@ -84,35 +85,54 @@
       # podman.enable = true;
     };
 
+    services = {
+      easyeffects.enable = true;
+      udiskie.enable = true;
+      # syncthing.enable = true;
+    };
+
     programs = {
-      st.enable = true;
-      st.defaultTerminal = true;
+      terminal = {
+        st.enable = true;
+        st.defaultTerminal = true;
 
-      foot.enable = true;
+        foot.enable = true;
+      };
 
-      neovim.enable = true;
-      neovim.defaultEditor = true;
+      editor = {
+        neovim.enable = true;
+        neovim.defaultEditor = true;
+      };
 
-      firefox.enable = true;
-      firefox.profile.uima.enable = true;
-      firefox.defaultBrowser = true;
+      browser = {
+        firefox.enable = true;
+        firefox.profile.uima.enable = true;
+        firefox.defaultBrowser = true;
 
-      # qutebrowser.enable = true;
+        # qutebrowser.enable = true;
+      };
 
-      fmenu.enable = true;
-      fmenu.defaultDmenu = true;
+      menu = {
+        fmenu.enable = true;
+        fmenu.defaultDmenu = true;
 
-      tofi.enable = true;
+        tofi.enable = true;
+      };
 
       pipewire.enable = true;
       ssh.enable = true;
+
       # discord.enable = true;
       nixcord.enable = true;
+
       zathura.enable = true;
 
-      # kicad.enable = true;
-      # freecad.enable = true;
-      openscad.enable = true;
+      cad = {
+        # kicad.enable = true;
+        # freecad.enable = true;
+        openscad.enable = true;
+      };
+
       prusa-slicer.enable = true;
     };
   };

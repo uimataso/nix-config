@@ -6,10 +6,10 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.programs.alacritty;
+  cfg = config.uimaConfig.programs.terminal.alacritty;
 in
 {
-  options.uimaConfig.programs.alacritty = {
+  options.uimaConfig.programs.terminal.alacritty = {
     enable = mkEnableOption "alacritty";
 
     defaultTerminal = mkOption {

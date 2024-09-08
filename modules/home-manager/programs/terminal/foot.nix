@@ -6,10 +6,10 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.programs.foot;
+  cfg = config.uimaConfig.programs.terminal.foot;
 in
 {
-  options.uimaConfig.programs.foot = {
+  options.uimaConfig.programs.terminal.foot = {
     enable = mkEnableOption "foot";
 
     defaultTerminal = mkOption {

@@ -1,20 +1,16 @@
 { ... }:
 {
   imports = [
+    ./browser
     ./cad
-    ./firefox
-    ./neovim
-    ./qutebrowser
-    ./alacritty.nix
+    ./editor
+    ./menu
+    ./terminal
     ./discord.nix
-    ./fmenu.nix
-    ./foot.nix
     ./nixcord.nix
     ./pipewire.nix
     ./prusa-slicer.nix
     ./ssh.nix
-    ./st.nix
-    ./tofi.nix
     ./zathura.nix
   ];
 }

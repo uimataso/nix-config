@@ -35,7 +35,6 @@ in
     ];
 
     # TODO: make each tag has its own split width
-    # TODO: manage scripts
 
     wayland.windowManager.river = {
       enable = true;

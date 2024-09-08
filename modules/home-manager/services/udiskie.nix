@@ -2,10 +2,10 @@
 # Need hosts/udisks2 to work
 with lib;
 let
-  cfg = config.uimaConfig.programs.udiskie;
+  cfg = config.uimaConfig.services.udiskie;
 in
 {
-  options.uimaConfig.programs.udiskie = {
+  options.uimaConfig.services.udiskie = {
     enable = mkEnableOption "udiskie";
   };
 

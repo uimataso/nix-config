@@ -185,7 +185,7 @@ in
       in
       {
         mainBar = modules // {
-          height = 16;
+          height = 18;
           spacing = 16;
 
           modules-left = [
@@ -234,6 +234,9 @@ in
         * {
           font-family: "${fonts.monospace.name}";
           font-size: ${builtins.toString fonts.sizes.desktop}pt;
+          border: none;
+          border-radius: 0;
+          min-height: 0;
         }
 
         window#waybar, tooltip {
@@ -243,6 +246,21 @@ in
 
         tooltip {
           border-color: @base0D;
+        }
+
+        #tags button {
+          color: @base03;
+        }
+        #tags button.occupied {
+          color: @base05;
+          background: @base00;
+        }
+        #tags button.focused {
+          color: @base00;
+          background: @base05;
+        }
+        #tags button.urgent {
+          color: @base08;
         }
       '';
     };

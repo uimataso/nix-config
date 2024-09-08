@@ -65,6 +65,7 @@
     desktop.wayland = {
       river.enable = true;
       waybar.enable = true;
+      swww.enable = true;
     };
 
     dev = {

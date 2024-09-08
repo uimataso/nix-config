@@ -32,11 +32,9 @@ in
     home.packages = with pkgs; [
       wl-clipboard
       wlr-randr
-      swww
     ];
 
     # TODO: make each tag has its own split width
-    # TODO: use systemd to auto start programs
     # TODO: manage scripts
 
     wayland.windowManager.river = {
@@ -50,10 +48,6 @@ in
           # TODO: Better way to manage monitor
           # see: https://github.com/Misterio77/nix-config/blob/main/modules/home-manager/monitors.nix
           wlr-randr --output HDMI-A-1 --mode 1920x1080@144Hz
-
-          # Wallpaper
-          swww-daemon &
-          swww img ${config.stylix.image}
         '';
 
       settings = with config.stylix.base16Scheme; {

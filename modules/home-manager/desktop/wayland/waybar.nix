@@ -56,14 +56,14 @@ in
             tooltip-format = "{ifname} ${withColorGray "via"} {gwaddr} ${withColorGray "at"} {ipaddr}/{cidr}";
           in {
             interval = 1;
-            format-ethernet = "{ipaddr}/{cidr} 󰛳 {icon}";
-            format-wifi = "{essid} 󰖩 {icon}";
-            format-linked = "{ifname} (No IP) 󰛳 {icon}";
+            format-ethernet = "󰛳 {icon}";
+            format-wifi = "󰖩 {icon}";
+            format-linked = "󰲝 {icon}";
             format-disconnected = "󰲜 ";
             format-icons = ["󰣾" "󰣴" "󰣶" "󰣸" "󰣺"];
 
             inherit tooltip-format;
-            tooltip-format-wifi = "{signalStrength}% ${withColorGray "at"} {frequency}G  ${tooltip-format}";
+            tooltip-format-wifi = "{essid} ${withColorGray "at"} {signalStrength}% ${withColorGray "on"} {frequency}G  ${tooltip-format}";
           };
 
           "network#bandwidth" = {
@@ -102,6 +102,7 @@ in
               default = [" " " " " "];
               headphone = " ";
               "alsa_output.pci-0000_00_1f.3.analog-stereo" = " ";
+              "alsa_output.pci-0000_00_1f.3.iec958-stereo" = " ";
               "bluez_output.04_57_91_F0_A1_EA.1" = "󱡏";
             };
 
@@ -114,6 +115,7 @@ in
           };
 
           bluetooth = {
+            format = "";
             format-disabled = ""; # an empty format will hide the module
             format-off = "󰂲";
             format-on = "<sub>0</sub>";

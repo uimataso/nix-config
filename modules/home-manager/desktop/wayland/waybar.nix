@@ -55,7 +55,7 @@ in
           network = let
             tooltip-format = "{ifname} ${withColorGray "via"} {gwaddr} ${withColorGray "at"} {ipaddr}/{cidr}";
           in {
-            interval = 1;
+            interval = 10;
             format-ethernet = "󰛳 {icon}";
             format-wifi = "󰖩 {icon}";
             format-linked = "󰲝 {icon}";
@@ -89,7 +89,7 @@ in
                 xargs ${pactl} set-default-sink
             '';
           in {
-            scroll-step = 5.0;
+            scroll-step = 1.0;
             max-volume = 120;
 
             format = "{icon} {format_source}";

@@ -2,12 +2,12 @@
 with lib;
 # TODO: secrets
 let
-  cfg = config.uimaConfig.programs.syncthing;
+  cfg = config.uimaConfig.services.syncthing;
 
   imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.programs.syncthing = {
+  options.uimaConfig.services.syncthing = {
     enable = mkEnableOption "Syncthing";
   };
 

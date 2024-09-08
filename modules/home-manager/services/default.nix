@@ -1,4 +1,7 @@
 { ... }:
 {
-  imports = [ ./easyeffects.nix ];
+  imports = [
+    ./easyeffects.nix
+    ./syncthing.nix
+  ];
 }

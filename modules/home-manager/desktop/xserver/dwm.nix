@@ -11,11 +11,6 @@ in
   config = mkIf cfg.enable {
     uimaConfig.desktop.xserver.enable = true;
 
-    xsession.initExtra = "dwmblocks &";
-
-    home.sessionPath = [ "$HOME/.local/bin/statesbar" ];
-    home.file.".local/bin/statesbar".source = ./statusbar;
-
     xresources.properties =
       with config.lib.stylix.colors.withHashtag;
       with config.stylix.fonts;

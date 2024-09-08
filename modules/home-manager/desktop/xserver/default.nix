@@ -14,8 +14,9 @@ in
   };
 
   imports = [
-    ./dwm
+    ./dwmblocks
     ./dunst.nix
+    ./dwm.nix
   ];
 
   config = mkIf cfg.enable {
@@ -42,12 +43,6 @@ in
 
     home.packages = with pkgs; [
       xclip
-
-      scripts.app-launcher
-      scripts.open
-      scripts.power-menu
-      scripts.screenshot
-      scripts.swallower
     ];
   };
 }

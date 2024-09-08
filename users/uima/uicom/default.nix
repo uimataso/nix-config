@@ -21,6 +21,11 @@
     qmk
     fd
     scripts.extract
+    scripts.app-launcher
+    scripts.open
+    scripts.power-menu
+    scripts.screenshot
+    scripts.swallower
   ];
 
   programs.htop.enable = true;
@@ -59,6 +64,7 @@
 
     # desktop.xserver = {
     #   dwm.enable = true;
+    #   dwmblocks.enable = true;
     #   dunst.enable = true;
     # };
 

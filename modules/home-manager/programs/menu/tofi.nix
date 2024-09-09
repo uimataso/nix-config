@@ -13,7 +13,7 @@ in
     enable = mkEnableOption "tofi";
 
     # TODO: make a value that can setting default app-luncher AND dmenu
-    defaultDmenu = mkOption {
+    defaultMenu = mkOption {
       type = types.bool;
       default = false;
       description = "Use tofi as default dmenu";
@@ -40,6 +40,6 @@ in
       };
     };
 
-    home.sessionVariables = mkIf cfg.defaultDmenu { DMENU = "tofi"; };
+    home.sessionVariables = mkIf cfg.defaultMenu { DMENU = "tofi"; };
   };
 }

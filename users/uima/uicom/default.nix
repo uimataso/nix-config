@@ -101,9 +101,9 @@
 
       menu = {
         fmenu.enable = true;
-        fmenu.defaultDmenu = true;
 
         tofi.enable = true;
+        tofi.defaultMenu = true;
       };
 
       sh-util = {

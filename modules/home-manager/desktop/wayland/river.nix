@@ -113,7 +113,7 @@ in
               "Super Return" = "spawn $TERMINAL";
               "Super B" = "spawn $BROWSER";
               "Super O" = "spawn '$(tofi-run)'";
-              "Super Esc" = "spawn power-menu";
+              "Super Escape" = "spawn power-menu";
             }
             // (
               let

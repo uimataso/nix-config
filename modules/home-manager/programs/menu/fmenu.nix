@@ -12,7 +12,7 @@ in
   options.uimaConfig.programs.menu.fmenu = {
     enable = mkEnableOption "fmenu. Self written script that using fzf as dmenu.";
 
-    defaultDmenu = mkOption {
+    defaultMenu = mkOption {
       type = types.bool;
       default = false;
       description = "Use fmenu as default dmenu";
@@ -22,6 +22,6 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ scripts.fmenu ];
 
-    home.sessionVariables = mkIf cfg.defaultDmenu { DMENU = "fmenu"; };
+    home.sessionVariables = mkIf cfg.defaultMenu { DMENU = "fmenu"; };
   };
 }

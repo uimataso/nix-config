@@ -27,7 +27,7 @@ in
 
     systemd.user.services.swww = {
       Unit = {
-        Description = "A Solution to your Wayland Wallpaper Woes.";
+        Description = "Swww Wayland wallpaper manager";
         Documentation = "https://github.com/LGFae/swww";
         PartOf = [ "graphical-session.target" ];
         After = [ "graphical-session-pre.target" ];

@@ -52,6 +52,7 @@ in
 
     # Copy from [nixos modules](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/virtualisation/docker.nix)
     systemd.services.docker = mkIf cfg.docker.enable {
+      description = "Docker Application Container Engine";
       wantedBy = optional cfg.docker.enableOnBoot "multi-user.target";
       after = [ "network.target" "docker.socket" ];
       requires = [ "docker.socket" ];

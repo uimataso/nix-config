@@ -19,7 +19,7 @@
       ];
       pkgsFor = nixpkgs.legacyPackages;
     in
-    rec {
+    {
       packages = forAllSystems (system: {
         default = pkgsFor.${system}.python311Packages.buildPythonApplication {
           pname = "{{CODENAME}}";

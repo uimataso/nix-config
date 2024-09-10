@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   imports = [ ./hardware-configuration.nix ];
 
@@ -32,13 +32,16 @@
       udisks2.enable = true;
     };
 
-    # desktop.xserver = {
-    #   dwm.enable = true;
-    #   sddm.enable = true;
-    # };
+    desktop = {
+      # xserver = {
+      #   dwm.enable = true;
+      #   sddm.enable = true;
+      # };
 
-    desktop.wayland = {
-      river.enable = true;
+      # TODO: auto start
+      wayland = {
+        river.enable = true;
+      };
     };
 
     networking = {

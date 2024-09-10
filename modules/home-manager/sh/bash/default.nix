@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib;
@@ -33,7 +32,7 @@ in
     };
   };
 
-  config = mkIf cfg.enable rec {
+  config = mkIf cfg.enable {
     home.persistence.main = mkIf imper.enable {
       files = [ (rmHomePath config.programs.bash.historyFile) ];
     };

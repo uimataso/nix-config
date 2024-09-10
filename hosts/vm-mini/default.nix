@@ -1,11 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  outputs,
-  ...
-}:
+{ ... }:
 # sudo -i
 # flake_url='github:uimataso/nix-config#vm-mini'
 # nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko -f "$flake_url"

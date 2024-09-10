@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib;
@@ -26,7 +25,7 @@ in
     enable = mkEnableOption "XDG User Dirs";
   };
 
-  config = mkIf cfg.enable rec {
+  config = mkIf cfg.enable {
     home.persistence.main = mkIf imper.enable {
       directories = lists.forEach (lists.remove null dirs) rmHomePath;
     };

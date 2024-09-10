@@ -43,7 +43,7 @@ in
           else
             "${ls} -A --group-directories-first";
       in
-      rec {
+      {
         FFF_LS_CMD = ls_cmd;
         PREVIEW_LS_CMD = ls_cmd;
         PREVIEW_LS_L_CMD = "${ls} -l";

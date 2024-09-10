@@ -1,11 +1,10 @@
 {
-  lib,
   stdenv,
   fetchFromGitHub,
   qtgraphicaleffects,
   qtmultimedia,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "sddm-astronaut-theme";
   version = "1.0";
   dontBuild = true;

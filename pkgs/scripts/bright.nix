@@ -1,4 +1,4 @@
-{ writeShellApplication, pkgs }:
+{ writeShellApplication }:
 writeShellApplication {
   name = "bright";
 

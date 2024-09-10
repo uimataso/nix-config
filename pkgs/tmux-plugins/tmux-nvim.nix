@@ -1,8 +1,6 @@
 {
-  lib,
   fetchFromGitHub,
   pkgs,
-  stdenv,
 }:
 pkgs.tmuxPlugins.mkTmuxPlugin {
   pluginName = "tmux.nvim";

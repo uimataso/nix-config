@@ -1,11 +1,4 @@
-{
-  config,
-  pkgs,
-  pkgs-stable,
-  lib,
-  inputs,
-  ...
-}:
+{ pkgs, ... }:
 {
   home.username = "uima";
 

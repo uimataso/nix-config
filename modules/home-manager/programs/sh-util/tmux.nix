@@ -9,22 +9,6 @@ with lib;
 let
   cfg = config.uimaConfig.programs.sh-util.tmux;
 
-  setEnvVar =
-    {
-      pkg,
-      binPath,
-      name,
-      val,
-    }:
-    pkg.overrideAttrs (old: {
-      buildInputs = old.buildInputs ++ [ pkgs.makeWrapper ];
-      postInstall =
-        old.postInstall or ""
-        + ''
-          wrapProgram "$out/${binPath}" --set ${name} ${val}
-        '';
-    });
-
   tmux-select-sessions-src =
     { writeShellApplication, pkgs }:
     writeShellApplication {

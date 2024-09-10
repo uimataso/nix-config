@@ -3,8 +3,6 @@ with lib;
 let
   cfg = config.uimaConfig.services.easyeffects;
   settings = config.services.easyeffects;
-
-  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.services.easyeffects = {

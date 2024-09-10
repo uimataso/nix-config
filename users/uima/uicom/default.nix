@@ -1,8 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
-  inputs,
   ...
 }:
 # TODO: manage default app:
@@ -64,6 +61,7 @@
         river.enable = true;
         waybar.enable = true;
         swww.enable = true;
+        dunst.enable = true;
       };
     };
 

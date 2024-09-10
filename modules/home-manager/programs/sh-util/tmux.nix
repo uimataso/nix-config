@@ -56,7 +56,7 @@ let
 
         [ -z "$selected" ] && exit
 
-        if ( tmux list-sessions 2>/dev/null || true ) | grep -x "$selected" >/dev/null; then
+        if ( tmux list-sessions 2>/dev/null || true ) | cut -d: -f1 | grep -x "$selected" >/dev/null; then
           if [ -z "''${TMUX+x}" ]; then
             tmux attach-session -t "$selected"
           else

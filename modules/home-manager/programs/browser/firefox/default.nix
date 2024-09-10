@@ -7,11 +7,11 @@
 
 # NOTE: Wish list for firefox
 # - [-] plugin settings
-# -- For uBlock settings, look [here](https://github.com/Kreyren/nixos-config/blob/bd4765eb802a0371de7291980ce999ccff59d619/nixos/users/kreyren/home/modules/web-browsers/firefox/firefox.nix#L116-L148)
-# -- Vimium is unknow
+#   - For uBlock settings, look [here](https://github.com/Kreyren/nixos-config/blob/bd4765eb802a0371de7291980ce999ccff59d619/nixos/users/kreyren/home/modules/web-browsers/firefox/firefox.nix#L116-L148)
+#   - Vimium is unknow
 # - [ ] Bookmark (local or here)
 # - [ ] Containers (use or not)
-# - [-] Disable firefox view (left toolbar)
+# - [-] Disable firefox view (top left on toolbar) (can removed manually)
 # - [ ] remove items when start search
 # - [ ] precise persistence files
 

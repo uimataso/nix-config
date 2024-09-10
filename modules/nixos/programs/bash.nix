@@ -9,7 +9,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    # While running init, XDG_CONFIG_HOME not available yet, so $HOME/.config is used there
+    # While running init, `$XDG_CONFIG_HOME` not available yet, so `$HOME/.config` is used instead of `$XDG_CONFIG_HOME`
     environment.shellInit =
       # sh
       ''

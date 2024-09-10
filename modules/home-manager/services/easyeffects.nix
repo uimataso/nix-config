@@ -24,7 +24,6 @@ in
       "easyeffects/input/${settings.preset}.json".source = ./${settings.preset}.json;
     };
 
-    # TODO: upstream this?
     # Original command has --load-preset and --gapplication-service in one line,
     # and that whill make --load-preset has not effect in my test.
     systemd.user.services.easyeffects.Service = {

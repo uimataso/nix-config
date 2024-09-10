@@ -13,7 +13,9 @@ in
     enable = mkEnableOption "dunst";
   };
 
-  config = {
+  # NOTE: This module also used in wayland, so when you make a change that only make sense to xserver, fix wayland side
+
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [ libnotify ];
 
     services.dunst = {

@@ -19,8 +19,13 @@ pkgs.tmuxPlugins.mkTmuxPlugin {
     done
 
     wrapProgram $target/scripts/open.sh \
-      --prefix PATH : ${ with pkgs; lib.makeBinPath
-        [ fzf xclip wl-clipboard ]
+      --prefix PATH : ${
+        with pkgs;
+        lib.makeBinPath [
+          fzf
+          xclip
+          wl-clipboard
+        ]
       }
   '';
   meta = {

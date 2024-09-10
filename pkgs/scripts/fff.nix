@@ -8,7 +8,7 @@ writeShellApplication {
   ];
 
   # Disable options `errexit`, `nounset` and `pipefail`
-  bashOptions = [];
+  bashOptions = [ ];
 
   text = ''
     ls_cmd="''${FFF_LS_CMD:-ls -A --group-directories-first --color=always}"

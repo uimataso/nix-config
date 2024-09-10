@@ -36,19 +36,19 @@ in
     xresources.properties =
       with config.lib.stylix.colors.withHashtag;
       with config.stylix;
-    {
-      "st.font" = "${fonts.monospace.name}:size=${builtins.toString fonts.sizes.terminal}";
-      "st.cursorColor" = base05;
-      "st.cwscale" = "0.95";
-      "st.shell" = "/bin/bash";
-      "st.alpha" = "${builtins.toString opacity.terminal}";
-      "Xft.dpi" = 96;
-      "Xft.antialias" = true;
-      "Xft.hinting" = true;
-      "Xft.rgba" = "rgb";
-      "Xft.autohint" = true;
-      "Xft.hintstyle" = "hintfull";
-      "Xft.lcdfilter" = "lcdfilter";
-    };
+      {
+        "st.font" = "${fonts.monospace.name}:size=${builtins.toString fonts.sizes.terminal}";
+        "st.cursorColor" = base05;
+        "st.cwscale" = "0.95";
+        "st.shell" = "/bin/bash";
+        "st.alpha" = "${builtins.toString opacity.terminal}";
+        "Xft.dpi" = 96;
+        "Xft.antialias" = true;
+        "Xft.hinting" = true;
+        "Xft.rgba" = "rgb";
+        "Xft.autohint" = true;
+        "Xft.hintstyle" = "hintfull";
+        "Xft.lcdfilter" = "lcdfilter";
+      };
   };
 }

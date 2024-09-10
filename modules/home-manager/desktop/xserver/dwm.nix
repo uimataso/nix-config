@@ -14,14 +14,14 @@ in
     xresources.properties =
       with config.lib.stylix.colors.withHashtag;
       with config.stylix.fonts;
-    {
-      "dwm.font" = monospace.name;
-      "dwm.font2" = sansSerif.name;
-      "dwm.primary" = base0E;
-      "dwm.bgaltcolor" = base02;
-      "dwm.fgaltcolor" = base03;
-      "dwm.gappx" = 5;
-      "dwm.showbar" = 1;
-    };
+      {
+        "dwm.font" = monospace.name;
+        "dwm.font2" = sansSerif.name;
+        "dwm.primary" = base0E;
+        "dwm.bgaltcolor" = base02;
+        "dwm.fgaltcolor" = base03;
+        "dwm.gappx" = 5;
+        "dwm.showbar" = 1;
+      };
   };
 }

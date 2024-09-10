@@ -54,7 +54,10 @@ in
     systemd.services.docker = mkIf cfg.docker.enable {
       description = "Docker Application Container Engine";
       wantedBy = optional cfg.docker.enableOnBoot "multi-user.target";
-      after = [ "network.target" "docker.socket" ];
+      after = [
+        "network.target"
+        "docker.socket"
+      ];
       requires = [ "docker.socket" ];
       environment = config.networking.proxy.envVars;
       serviceConfig = {

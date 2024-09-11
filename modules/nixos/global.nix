@@ -24,6 +24,7 @@ in
     ];
 
     nix = {
+      # Disable channel since we use flakes
       channel.enable = false;
       settings = {
         experimental-features = [
@@ -34,7 +35,7 @@ in
       };
     };
 
-    # Needed by home-manager and other, so I put this here
+    # Needed by home-manager and other
     programs.dconf.enable = true;
 
     # Make bash read `$XDG_CONFIG_HOME/bash/{profile, bashrc}`

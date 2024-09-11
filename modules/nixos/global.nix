@@ -20,11 +20,7 @@ in
     };
 
     environment.systemPackages = with pkgs; [
-      git # Since all nix command need git
-
-      sops
-      age
-      ssh-to-age
+      git # Since all nix command required Git
     ];
 
     nix = {

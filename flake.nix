@@ -89,7 +89,7 @@
       #     y = { a = "y-a"; c = "y-c"; };
       #   }
       #   ```
-      # mapSubAttrsets :: TODO:
+      # mapSubAttrsets :: f -> set -> set
       # f :: key -> val -> any
       mapSubAttrsets = f: lib.attrsets.mapAttrs (key: vals: lib.attrsets.genAttrs (builtins.attrNames vals) (val: f key val));
 
@@ -107,7 +107,7 @@
       #     y = { y-a-3 = 3; y-c-4 = 4; };
       #   }
       #   ```
-      # renameSubAttrsetsKey :: TODO:
+      # renameSubAttrsetsKey :: f -> set -> set
       # f :: key -> sub_key -> sub_val -> str
       renameSubAttrsetsKey = f: lib.attrsets.mapAttrs (
         key: val: lib.attrsets.mapAttrs' (sub_key: sub_val: lib.attrsets.nameValuePair (f key sub_key sub_val) sub_val) val

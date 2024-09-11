@@ -48,70 +48,26 @@
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
+      util = import ./utils.nix { inherit lib; };
 
       # Generate attrset for each system
       genAttrsForSystem = f: lib.genAttrs (import systems) f;
 
-      # Nixpkgs for each system
-      pkgsFor = genAttrsForSystem (
-        system:
-          import nixpkgs {
+      inputPkgsFor =
+        pkgs:
+        genAttrsForSystem (
+          system:
+          import pkgs {
             inherit system;
             config.allowUnfree = true;
           }
-      );
+        );
+
+      # Nixpkgs for each system
+      pkgsFor = inputPkgsFor nixpkgs;
 
       # Generate attrset for each system with Nixpkgs
       forEachSystem = f: genAttrsForSystem (system: f pkgsFor.${system});
-
-      # Merge list of attrsets
-      # Example:
-      #   `mergeAttrsets [ { a = 1; b = 2; } { a = 3; c = 4; } ] -> { a = 3; b = 2; c = 4; }`
-      # mergeAttrsets :: [set] -> set
-      mergeAttrsets = list: lib.lists.foldl (acc: val: acc // val) { } list;
-
-      # Merge sub attrsets
-      # Example:
-      #   `mergeSubAttrsets { x = { a = 1; b = 2; }; y = { a = 3; c = 4; }; } -> { a = 3; b = 2; c = 4; }`
-      # mergeSubAttrsets :: set -> set
-      mergeSubAttrsets = set: mergeAttrsets (lib.attrsets.attrValues set);
-
-      # Map sub attrsets
-      # Example:
-      #   ```nix
-      #   v = { x = { a = 1; b = 2; }; y = { a = 3; c = 4; }; }
-      #   f = f = key: val: "${key}-${val}"
-      #   nestMapAttrsets f v
-      #   ```
-      #   ```nix
-      #   {
-      #     x = { a = "x-a"; b = "x-b"; };
-      #     y = { a = "y-a"; c = "y-c"; };
-      #   }
-      #   ```
-      # mapSubAttrsets :: f -> set -> set
-      # f :: key -> val -> any
-      mapSubAttrsets = f: lib.attrsets.mapAttrs (key: vals: lib.attrsets.genAttrs (builtins.attrNames vals) (val: f key val));
-
-      # Rename sub attrset's key
-      # Example:
-      #   ```nix
-      #   v = { x = { a = 1; b = 2; }; y = { a = 3; c = 4; }; }
-      #   f = f = key: val: "${key}-${val}"
-      #   f = key: sub_key: sub_val: "${key}-${sub_key}-${builtins.toString sub_val}"
-      #   renameSubAttrsetsKey f v
-      #   ```
-      #   ```nix
-      #   {
-      #     x = { x-a-1 = 1; x-b-2 = 2; };
-      #     y = { y-a-3 = 3; y-c-4 = 4; };
-      #   }
-      #   ```
-      # renameSubAttrsetsKey :: f -> set -> set
-      # f :: key -> sub_key -> sub_val -> str
-      renameSubAttrsetsKey = f: lib.attrsets.mapAttrs (
-        key: val: lib.attrsets.mapAttrs' (sub_key: sub_val: lib.attrsets.nameValuePair (f key sub_key sub_val) sub_val) val
-      );
 
       # Read hosts from `./hosts`
       #   Output: { host = "system type"; }
@@ -121,7 +77,7 @@
             src = ./hosts;
             loader = haumea.lib.loaders.path;
           };
-          hosts' = mergeSubAttrsets (mapSubAttrsets (system: _: system) hosts);
+          hosts' = util.mergeSubAttrsets (util.mapSubAttrsets (system: _: system) hosts);
         in
         hosts';
 
@@ -133,26 +89,22 @@
             src = ./users;
             loader = haumea.lib.loaders.path;
           };
-          users' = mapSubAttrsets (user: host: { inherit user host; }) users;
-          users'' = renameSubAttrsetsKey (user: host: val: "${user}@${host}") users';
-          users''' = mergeSubAttrsets users'';
+          users' = util.mapSubAttrsets (user: host: { inherit user host; }) users;
+          users'' = util.renameSubAttrsetsKey (
+            user: host: val:
+            "${user}@${host}"
+          ) users';
+          users''' = util.mergeSubAttrsets users'';
         in
         users''';
 
       # SpecialArgs that share between nixosConfig and homeConfig
-      specialArgs = let
-        inputPkgsFor = pkgs: genAttrsForSystem (
-          system:
-            import inputs.${pkgs} {
-              inherit system;
-              config.allowUnfree = true;
-            }
-        );
-      in genAttrsForSystem (system: {
-        inherit inputs outputs;
-        pkgs-stable = inputPkgsFor.${system} "nixpkgs-stable";
-        # pkgs-local = inputPkgsFor.${system} "nixpkgs-local";
-      });
+      specialArgs =
+        genAttrsForSystem (system: {
+          inherit inputs outputs;
+          pkgs-stable = (inputPkgsFor inputs.nixpkgs-stable).${system};
+          # pkgs-local = (inputPkgsFor inputs.nixpkgs-local).${system};
+        });
 
       # Given host name and system type, returning Nixos System
       # nixosConfig :: host name -> system type -> nixosSystem

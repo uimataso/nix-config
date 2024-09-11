@@ -28,7 +28,6 @@ in
 
   imports = [
     inputs.stylix.homeManagerModules.stylix
-    inputs.base16.homeManagerModule
   ];
 
   config = mkIf cfg.enable {

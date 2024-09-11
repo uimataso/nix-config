@@ -19,8 +19,6 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
-    base16.url = "github:SenchoPens/base16.nix";
-
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 

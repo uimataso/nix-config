@@ -41,6 +41,18 @@ in
     # Needed by home-manager and other, so I put this here
     programs.dconf.enable = true;
 
-    uimaConfig.system.openssh.enable = true;
+    # Make bash read `$XDG_CONFIG_HOME/bash/{profile, bashrc}`
+    # Note, while running init, `$XDG_CONFIG_HOME` not available yet, so `$HOME/.config` is used instead of `$XDG_CONFIG_HOME`
+    environment.shellInit = # sh
+      ''
+        if [[ -r "$HOME/.config/bash/profile" ]]; then . "$HOME/.config/bash/profile"; fi
+      '';
+    environment.interactiveShellInit = # sh
+      ''
+        if [[ -r "$HOME/.config/bash/bashrc" ]]; then . "$HOME/.config/bash/bashrc"; fi
+      '';
+
+    # Enable ssh by default
+    uimaConfig.system.openssh.enable = mkDefault true;
   };
 }

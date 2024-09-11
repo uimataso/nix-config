@@ -17,6 +17,5 @@
     };
 
     networking.networkmanager.enable = true;
-    programs.bash.enable = true;
   };
 }

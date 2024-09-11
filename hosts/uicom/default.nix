@@ -12,6 +12,8 @@
     nvidiaSettings = true;
   };
 
+  hardware.keyboard.qmk.enable = true;
+
   uimaConfig = {
     global.enable = true;
 
@@ -27,9 +29,6 @@
       impermanence.enable = true;
       impermanence.btrfs.enable = true;
       impermanence.btrfs.device = "/dev/sda";
-
-      pipewire.enable = true;
-      udisks2.enable = true;
     };
 
     desktop = {
@@ -50,13 +49,13 @@
     };
 
     hardware = {
+      pipewire.enable = true;
       bluetooth.enable = true;
       elecom_huge_trackball.enable = true;
     };
 
-    programs = {
-      bash.enable = true;
-      qmk.enable = true;
+    services = {
+      udisks2.enable = true;
     };
 
     virt = {

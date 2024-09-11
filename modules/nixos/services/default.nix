@@ -1,4 +1,4 @@
 { ... }:
 {
-  imports = [ ];
+  imports = [ ./udisks2.nix ];
 }

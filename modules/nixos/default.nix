@@ -5,7 +5,6 @@
     ./desktop
     ./hardware
     ./networking
-    ./programs
     ./services
     ./system
     ./users

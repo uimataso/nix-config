@@ -2,10 +2,10 @@
 # For users/udiskie to work
 with lib;
 let
-  cfg = config.uimaConfig.system.udisks2;
+  cfg = config.uimaConfig.services.udisks2;
 in
 {
-  options.uimaConfig.system.udisks2 = {
+  options.uimaConfig.services.udisks2 = {
     enable = mkEnableOption "udisks2";
   };
 

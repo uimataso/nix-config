@@ -52,6 +52,7 @@
       pipewire.enable = true;
       bluetooth.enable = true;
       elecom_huge_trackball.enable = true;
+      tpLinkUsbWifiAdapter.enable = true;
     };
 
     services = {

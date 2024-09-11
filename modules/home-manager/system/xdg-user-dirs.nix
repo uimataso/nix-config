@@ -5,7 +5,7 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.system.xdg-user-dirs;
+  cfg = config.uimaConfig.system.xdgUserDirs;
 
   imper = config.uimaConfig.system.impermanence;
   rmHomePath = str: removePrefix config.home.homeDirectory str;
@@ -21,7 +21,7 @@ let
   ];
 in
 {
-  options.uimaConfig.system.xdg-user-dirs = {
+  options.uimaConfig.system.xdgUserDirs = {
     enable = mkEnableOption "XDG User Dirs";
   };
 

@@ -44,9 +44,9 @@
 
     system = {
       impermanence.enable = true;
-      input-method.fcitx5.enable = true;
+      inputMethod.fcitx5.enable = true;
       xdg.enable = true;
-      xdg-user-dirs.enable = true;
+      xdgUserDirs.enable = true;
       pipewire.enable = true;
     };
 
@@ -115,7 +115,7 @@
       nixcord.enable = true;
 
       zathura.enable = true;
-      prusa-slicer.enable = true;
+      prusaSlicer.enable = true;
 
       cad = {
         # kicad.enable = true;

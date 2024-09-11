@@ -13,7 +13,7 @@
     system = {
       wsl.enable = true;
       sudo.enable = true;
-      auto-upgrade.enable = true;
+      autoUpgrade.enable = true;
     };
 
     networking.networkmanager.enable = true;

@@ -6,12 +6,12 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.programs.prusa-slicer;
+  cfg = config.uimaConfig.programs.prusaSlicer;
 
   imper = config.uimaConfig.system.impermanence;
 in
 {
-  options.uimaConfig.programs.prusa-slicer = {
+  options.uimaConfig.programs.prusaSlicer = {
     enable = mkEnableOption "Prusa Slicer";
   };
 

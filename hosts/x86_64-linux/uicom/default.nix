@@ -24,7 +24,7 @@
     system = {
       # sops.enable = true;
       sudo.enable = true;
-      auto-upgrade.enable = true;
+      autoUpgrade.enable = true;
 
       impermanence.enable = true;
       impermanence.btrfs.enable = true;
@@ -51,7 +51,7 @@
     hardware = {
       pipewire.enable = true;
       bluetooth.enable = true;
-      elecom_huge_trackball.enable = true;
+      elecomHugeTrackball.enable = true;
       tpLinkUsbWifiAdapter.enable = true;
     };
 

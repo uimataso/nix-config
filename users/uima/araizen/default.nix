@@ -35,7 +35,7 @@
 
     system = {
       xdg.enable = true;
-      xdg-user-dirs.enable = true;
+      xdgUserDirs.enable = true;
     };
 
     sh = {

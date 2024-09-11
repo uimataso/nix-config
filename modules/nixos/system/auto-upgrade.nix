@@ -5,12 +5,12 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.system.auto-upgrade;
+  cfg = config.uimaConfig.system.autoUpgrade;
 
   flakeUri = "github:luck07051/nix-config";
 in
 {
-  options.uimaConfig.system.auto-upgrade = {
+  options.uimaConfig.system.autoUpgrade = {
     enable = mkEnableOption "Auto upgrade";
 
     allowReboot = mkOption {

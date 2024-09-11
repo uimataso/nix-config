@@ -7,10 +7,10 @@
 with lib;
 
 let
-  cfg = config.uimaConfig.hardware.elecom_huge_trackball;
+  cfg = config.uimaConfig.hardware.elecomHugeTrackball;
 in
 {
-  options.uimaConfig.hardware.elecom_huge_trackball = {
+  options.uimaConfig.hardware.elecomHugeTrackball = {
     enable = mkEnableOption "ELECOM TrackBall Mouse HUGE TrackBall";
   };
 

@@ -6,10 +6,10 @@
 }:
 with lib;
 let
-  cfg = config.uimaConfig.system.input-method.fcitx5;
+  cfg = config.uimaConfig.system.inputMethod.fcitx5;
 in
 {
-  options.uimaConfig.system.input-method.fcitx5 = {
+  options.uimaConfig.system.inputMethod.fcitx5 = {
     enable = mkEnableOption "input-method fcitx5";
   };
 

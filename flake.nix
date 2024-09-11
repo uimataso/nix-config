@@ -120,6 +120,7 @@
             ./hosts/${system}/${host}
             # Home Manager
             home-manager.nixosModules.home-manager
+            # TODO: remove this
             {
               home-manager = {
                 sharedModules = [ outputs.homeManagerModules ];
@@ -164,7 +165,7 @@
       templates = import ./templates;
 
       # FIXME: Github CI: nix eval always stack overflow
-      # [](https://github.com/ryan4yin/nix-config/blob/main/.github/workflows/flake_evaltests.yml)
+      # [this line is come from this](https://github.com/ryan4yin/nix-config/blob/main/.github/workflows/flake_evaltests.yml)
       # evalTests."araizen" = nixosConfigurations."araizen".config.system.build.toplevel;
     };
 }

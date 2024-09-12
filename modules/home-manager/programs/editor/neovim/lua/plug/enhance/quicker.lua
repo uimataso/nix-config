@@ -1,20 +1,11 @@
 return {
   'stevearc/quicker.nvim',
   keys = {
-    {
-      '<Leader>q',
-      mode = { 'n' },
-      function()
-        require('quicker').toggle()
-      end,
-      desc = 'Toggle quickfik',
-    },
+    { '<Leader>q', mode = { 'n' }, function() require('quicker').toggle() end, desc = 'Toggle quickfik' },
     {
       '<Leader>lf',
       mode = { 'n' },
-      function()
-        require('quicker').toggle({ loclist = true })
-      end,
+      function() require('quicker').toggle({ loclist = true }) end,
       desc = 'Toggle locfik',
     },
   },
@@ -23,16 +14,12 @@ return {
     keys = {
       {
         '>',
-        function()
-          require('quicker').expand({ before = 2, after = 2, add_to_existing = true })
-        end,
+        function() require('quicker').expand({ before = 2, after = 2, add_to_existing = true }) end,
         desc = 'Expand quickfix context',
       },
       {
         '<',
-        function()
-          require('quicker').collapse()
-        end,
+        function() require('quicker').collapse() end,
         desc = 'Collapse quickfix context',
       },
     },

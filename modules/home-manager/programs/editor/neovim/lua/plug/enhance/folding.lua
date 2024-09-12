@@ -6,33 +6,10 @@ return {
   },
 
   keys = {
-    {
-      'zR',
-      function()
-        require('ufo').openAllFolds()
-      end,
-      desc = 'ufo open all folds',
-    },
-    {
-      'zM',
-      function()
-        require('ufo').closeAllFolds()
-      end,
-      desc = 'ufo close all flods',
-    },
-    {
-      'zr',
-      function()
-        require('ufo').openFoldsExceptKinds()
-      end,
-      desc = '',
-    },
-    {
-      'zm',
-      function()
-        require('ufo').closeFoldsWith()
-      end,
-    },
+    { 'zR', function() require('ufo').openAllFolds() end, desc = 'ufo open all folds' },
+    { 'zM', function() require('ufo').closeAllFolds() end, desc = 'ufo close all flods' },
+    { 'zr', function() require('ufo').openFoldsExceptKinds() end, desc = '' },
+    { 'zm', function() require('ufo').closeFoldsWith() end, desc = '' },
     {
       'K',
       function()
@@ -41,17 +18,14 @@ return {
           vim.lsp.buf.hover()
         end
       end,
+      desc = '',
     },
   },
 
-  init = function()
-    vim.opt.foldlevel = 9999
-  end,
+  init = function() vim.opt.foldlevel = 9999 end,
 
   opts = {
-    provider_selector = function(bufnr, filetype, buftype)
-      return { 'treesitter', 'indent' }
-    end,
+    provider_selector = function(bufnr, filetype, buftype) return { 'treesitter', 'indent' } end,
 
     preview = {
       win_config = {

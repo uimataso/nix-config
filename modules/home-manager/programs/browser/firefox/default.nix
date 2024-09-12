@@ -59,16 +59,23 @@ in
           Allow = [
             # Mysite
             "https://uima.duckdns.org"
+            "https://uimataso.com"
+
+            # Mail
+            "https://proton.me"
+            "https://simplelogin.io"
 
             # Google
             "https://accounts.google.com"
             "https://www.google.com"
             "https://www.youtube.com"
 
-            # Must have
-            "https://proton.me"
-            "https://github.com"
+            # Self hosted
             "https://tailscale.com"
+            "https://porkbun.com"
+
+            # Dev
+            "https://github.com"
             "https://mynixos.com"
 
             # Other

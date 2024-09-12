@@ -115,6 +115,7 @@ in
 
           darkreader
           bitwarden
+          simplelogin
           vimium # TODO: manage setting, search engine
           # set new tab to home and focus on page instead of address bar
           new-tab-override

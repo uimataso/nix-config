@@ -7,15 +7,13 @@ return {
     'nvim-telescope/telescope.nvim',
   },
 
-  command = 'Neogit',
+  cmd = 'Neogit',
 
   keys = {
     {
       '<Leader>git',
       mode = { 'n' },
-      function()
-        require('neogit').open()
-      end,
+      function() require('neogit').open() end,
       desc = 'Open neogit',
     },
   },

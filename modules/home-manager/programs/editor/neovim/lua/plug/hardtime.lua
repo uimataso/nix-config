@@ -1,13 +1,14 @@
 return {
   'm4xshen/hardtime.nvim',
   event = 'VeryLazy',
-  -- lazy = false,
-  -- command = 'Hardtime',
+  cmd = 'Hardtime',
+
   disabled_filetypes = { 'qf', 'netrw', 'NvimTree', 'lazy', 'oil' },
   dependencies = {
     'MunifTanjim/nui.nvim',
     'nvim-lua/plenary.nvim',
   },
+
   opts = {
     enabled = true,
     max_count = 3,

@@ -138,9 +138,7 @@ return {
           timer:start(
             100,
             0,
-            vim.schedule_wrap(function()
-              require('cmp').complete({ reason = require('cmp').ContextReason.Auto })
-            end)
+            vim.schedule_wrap(function() require('cmp').complete({ reason = require('cmp').ContextReason.Auto }) end)
           )
         end,
       })

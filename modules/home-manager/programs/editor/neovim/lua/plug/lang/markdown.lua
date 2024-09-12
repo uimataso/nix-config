@@ -10,8 +10,7 @@ return {
 
   {
     'OXY2DEV/markview.nvim',
-    lazy = false, -- Lazy load itself
-    -- ft = "markdown",
+    ft = 'markdown',
 
     dependencies = {
       'nvim-treesitter/nvim-treesitter',

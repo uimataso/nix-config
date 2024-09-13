@@ -29,7 +29,6 @@ return {
 
   opts = {
     mappings = {},
-    -- TODO: find the best one
-    -- easing = 'linear',
+    easing = 'sine',
   },
 }

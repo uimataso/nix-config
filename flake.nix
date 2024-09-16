@@ -120,7 +120,6 @@
             ./hosts/${system}/${host}
             # Home Manager
             home-manager.nixosModules.home-manager
-            # TODO: remove this
             {
               home-manager = {
                 sharedModules = [ outputs.homeManagerModules ];

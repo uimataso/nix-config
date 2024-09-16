@@ -31,9 +31,8 @@ in
         isNormalUser = true;
         shell = pkgs.bashInteractive;
 
-        extraGroups =
-          [ "wheel" ]
-          ++ ifGroupExist [
+        extraGroups = ifGroupExist [
+            "wheel"
             "networkmanager"
             "docker"
             "podman"

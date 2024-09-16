@@ -67,17 +67,11 @@ end, { expr = true, desc = 'Selecting the paste' })
 -- Center the screen when search
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
-vim.keymap.set('c', '<CR>', function()
-  return vim.fn.getcmdtype() == '/' and '<cr>zzzv' or '<cr>'
-end, { expr = true })
+vim.keymap.set('c', '<CR>', function() return vim.fn.getcmdtype() == '/' and '<cr>zzzv' or '<cr>' end, { expr = true })
 
 -- Block insert in line visual mode
-vim.keymap.set('x', 'I', function()
-  return vim.fn.mode() == 'V' and '^<C-v>I' or 'I'
-end, { expr = true })
-vim.keymap.set('x', 'A', function()
-  return vim.fn.mode() == 'V' and '$<C-v>A' or 'A'
-end, { expr = true })
+vim.keymap.set('x', 'I', function() return vim.fn.mode() == 'V' and '^<C-v>I' or 'I' end, { expr = true })
+vim.keymap.set('x', 'A', function() return vim.fn.mode() == 'V' and '$<C-v>A' or 'A' end, { expr = true })
 
 -- Clean highlight
 vim.keymap.set('n', '<Leader>cl', '<cmd>nohlsearch<cr><cmd>diffupdate<cr>')
@@ -89,9 +83,12 @@ vim.keymap.set('n', '<M-n>', '.nzzzv')
 vim.keymap.set('n', '<Leader>sp', '<cmd>setlocal spell! spelllang=en_us<CR>')
 
 -- Switch conceal
-vim.keymap.set('n', '<Leader>zc', function()
-  vim.o.conceallevel = vim.o.conceallevel > 0 and 0 or 3
-end, { silent = true, desc = 'Toggle conceal' })
+vim.keymap.set(
+  'n',
+  '<Leader>zc',
+  function() vim.o.conceallevel = vim.o.conceallevel > 0 and 0 or 3 end,
+  { silent = true, desc = 'Toggle conceal' }
+)
 
 -- Diagnostic
 vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostics in a floating window' })
@@ -114,9 +111,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Workspace
     vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, { desc = 'Add workspace folder' })
     vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, { desc = 'Remove workspace folder' })
-    vim.keymap.set('n', '<Leader>wl', function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, { desc = 'Display the workspace folders' })
+    vim.keymap.set(
+      'n',
+      '<Leader>wl',
+      function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+      { desc = 'Display the workspace folders' }
+    )
   end,
 })
 

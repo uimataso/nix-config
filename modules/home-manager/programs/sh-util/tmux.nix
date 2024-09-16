@@ -163,6 +163,9 @@ in
           extraConfig =
             # tmux
             ''
+              set -g @tmux-nvim-navigation false
+              set -g @tmux-nvim-resize false
+
               set -g @tmux-nvim-resize-step-x 3
               set -g @tmux-nvim-resize-step-y 3
             '';

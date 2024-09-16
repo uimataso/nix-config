@@ -73,9 +73,6 @@ vim.keymap.set('c', '<CR>', function() return vim.fn.getcmdtype() == '/' and '<c
 vim.keymap.set('x', 'I', function() return vim.fn.mode() == 'V' and '^<C-v>I' or 'I' end, { expr = true })
 vim.keymap.set('x', 'A', function() return vim.fn.mode() == 'V' and '$<C-v>A' or 'A' end, { expr = true })
 
--- Clean highlight
-vim.keymap.set('n', '<Leader>cl', '<cmd>nohlsearch<cr><cmd>diffupdate<cr>')
-
 -- Repeat and search next
 vim.keymap.set('n', '<M-n>', '.nzzzv')
 

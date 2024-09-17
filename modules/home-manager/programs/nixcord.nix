@@ -18,31 +18,19 @@ in
   imports = [ inputs.nixcord.homeManagerModules.nixcord ];
 
   config = mkIf cfg.enable {
-    home.persistence.main = mkIf imper.enable { directories = [ ".config/discord" ]; };
+    home.persistence.main = mkIf imper.enable {
+      directories = [
+        ".config/discord"
+        ".config/vesktop"
+      ];
+    };
 
     programs.nixcord = {
       enable = true;
-      # quickCss = "some CSS";  # quickCSS file
-      # config = {
-      #   useQuickCss = true;   # use out quickCSS
-      #   themeLinks = [        # or use an online theme
-      #     "https://raw.githubusercontent.com/link/to/some/theme.css"
-      #   ];
-      #   frameless = true; # set some Vencord options
-      #   plugins = {
-      #     hideAttachments.enable = true;    # Enable a Vencord plugin
-      #     ignoreActivities = {    # Enable a plugin and set some options
-      #       enable = true;
-      #       ignorePlaying = true;
-      #       ignoreWatching = true;
-      #       ignoredActivities = [ "someActivity" ];
-      #     };
-      #   };
-      # };
-      # extraConfig = {
-      #   # Some extra JSON config here
-      #   # ...
-      # };
+      vesktop.enable = true;
+      config.plugins = {
+        # fakeNitro.enable = true;
+      };
     };
   };
 }

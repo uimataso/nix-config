@@ -9,6 +9,7 @@
 # - dmenu
 # - shell
 # TODO: manage scripts
+# TODO: check easyeffects and discord screen sharing
 {
   home.username = "uima";
 

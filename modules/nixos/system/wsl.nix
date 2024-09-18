@@ -54,20 +54,9 @@ in
         ];
       };
 
-      virtualisation.docker = {
-        enable = true;
-        enableOnBoot = true;
-        autoPrune.enable = true;
-      };
-
-      ## patch the script
-      systemd.services.docker-desktop-proxy.script =
-        let
-          automountRoot = config.wsl.wslConf.automount.root;
-        in
-        lib.mkForce ''
-          ${automountRoot}/wsl/docker-desktop/docker-desktop-user-distro proxy --docker-desktop-root ${automountRoot}/wsl/docker-desktop "C:\Program Files\Docker\Docker\resources"
-        '';
+      users.users.${cfg.defaultUser}.extraGroups = [
+        "docker"
+      ];
     })
   ]);
 }

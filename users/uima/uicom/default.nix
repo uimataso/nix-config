@@ -2,12 +2,6 @@
   pkgs,
   ...
 }:
-# TODO: manage default app:
-# - terminal
-# - editor
-# - browser
-# - dmenu
-# - shell
 # TODO: manage scripts
 # TODO: check easyeffects and discord screen sharing
 {

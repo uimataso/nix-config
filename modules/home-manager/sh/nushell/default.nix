@@ -25,7 +25,11 @@ in
   config = mkIf cfg.enable {
     home.persistence.main = mkIf imper.enable { files = [ ".config/nushell/history.txt" ]; };
 
-    home.sessionVariables = mkIf cfg.defaultShell { SHELL = "nu"; };
+    uimaConfig.sh = mkIf cfg.defaultShell {
+      enable = true;
+      executable = "nu";
+      tmuxShell = "${config.programs.nushell.package}/bin/nu";
+    };
 
     # TODO:
     # - fff

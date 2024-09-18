@@ -37,10 +37,13 @@ in
       files = [ (rmHomePath config.programs.bash.historyFile) ];
     };
 
-    uimaConfig.sh.alias.enable = true;
-    uimaConfig.programs.sh-util.fzf.enable = true;
+    uimaConfig.sh = mkIf cfg.defaultShell {
+      enable = true;
+      executable = "bash";
+      tmuxShell = null;
+    };
 
-    home.sessionVariables = mkIf cfg.defaultShell { SHELL = "bash"; };
+    uimaConfig.programs.sh-util.fzf.enable = true;
 
     programs.bash = {
       enable = true;

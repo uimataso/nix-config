@@ -30,6 +30,11 @@ in
       ];
     };
 
+    uimaConfig.programs.editor = mkIf cfg.defaultEditor {
+      enable = true;
+      executable = "nvim";
+    };
+
     home.packages = with pkgs; [
       neovim
 
@@ -62,13 +67,10 @@ in
       };
     };
 
-    home.sessionVariables = mkMerge [
-      {
-        # PAGER = lib.mkDefault "nvim +Man!";
-        MANPAGER = lib.mkDefault "nvim +Man!";
-      }
-      (mkIf cfg.defaultEditor { EDITOR = "nvim"; })
-    ];
+    home.sessionVariables = {
+      # PAGER = lib.mkDefault "nvim +Man!";
+      MANPAGER = lib.mkDefault "nvim +Man!";
+    };
 
     # Git pager
     programs.git.extraConfig = {

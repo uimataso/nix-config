@@ -19,6 +19,11 @@ in
   };
 
   config = mkIf cfg.enable {
+    uimaConfig.programs.terminal = mkIf cfg.defaultTerminal {
+      enable = true;
+      executable = "alacritty";
+    };
+
     programs.alacritty = {
       enable = true;
       settings = {
@@ -30,7 +35,5 @@ in
         };
       };
     };
-
-    home.sessionVariables = mkIf cfg.defaultTerminal { TERMINAL = "alacritty"; };
   };
 }

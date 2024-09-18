@@ -31,7 +31,10 @@ in
       })
     ];
 
-    home.sessionVariables = mkIf cfg.defaultTerminal { TERMINAL = "st"; };
+    uimaConfig.programs.terminal = mkIf cfg.defaultTerminal {
+      enable = true;
+      executable = "st";
+    };
 
     xresources.properties =
       with config.lib.stylix.colors.withHashtag;

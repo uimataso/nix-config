@@ -15,13 +15,16 @@ in
     defaultMenu = mkOption {
       type = types.bool;
       default = false;
-      description = "Use fmenu as default dmenu";
+      description = "Use fmenu as default menu";
     };
   };
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ scripts.fmenu ];
 
-    home.sessionVariables = mkIf cfg.defaultMenu { DMENU = "fmenu"; };
+    uimaConfig.programs.menu = mkIf cfg.defaultMenu {
+      enable = true;
+      executable = "fmenu";
+    };
   };
 }

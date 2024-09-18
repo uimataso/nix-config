@@ -15,12 +15,17 @@ in
     defaultMenu = mkOption {
       type = types.bool;
       default = false;
-      description = "Use tofi as default dmenu";
+      description = "Use tofi as default menu";
     };
   };
 
   config = mkIf cfg.enable {
     stylix.targets.tofi.enable = false;
+
+    uimaConfig.programs.menu = mkIf cfg.defaultMenu {
+      enable = true;
+      executable = "tofi";
+    };
 
     programs.tofi = {
       enable = true;
@@ -51,7 +56,5 @@ in
         num-results = 10;
       };
     };
-
-    home.sessionVariables = mkIf cfg.defaultMenu { DMENU = "tofi"; };
   };
 }

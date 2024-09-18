@@ -36,14 +36,11 @@ in
   ];
 
   config = mkIf cfg.enable {
-    xdg.mimeApps.defaultApplications = {
-      "text/html" = [ "firefox.desktop" ];
-      "text/xml" = [ "firefox.desktop" ];
-      "x-scheme-handler/http" = [ "firefox.desktop" ];
-      "x-scheme-handler/https" = [ "firefox.desktop" ];
+    uimaConfig.programs.browser = mkIf cfg.defaultBrowser {
+      enable = true;
+      executable = "firefox";
+      desktop = "firefox.desktop";
     };
-
-    home.sessionVariables = mkIf cfg.defaultBrowser { BROWSER = "firefox"; };
 
     programs.firefox = {
       enable = true;

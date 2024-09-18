@@ -77,12 +77,12 @@ in
 
           # Prompt
           prompt(){
-          	_exit_code=$?
-          	env="$([ -n "''${DIRENV_FILE//}" ] && printf '\[\e[1;37m\]env|')"
-          	host='\[\e[32m\e[1m\]\h\[\e[0m\]'
-          	path='\[\e[36m\e[1m\]\w\[\e[0m\]'
-          	prom="$([ $_exit_code -ne 0 ] && printf '\[\e[31m\]')$\[\e[0m\]"
-          	PS1="$env$host:$path$prom "
+            _exit_code=$?
+            env="$([ -n "''${DIRENV_FILE//}" ] && printf '\[\e[1;37m\]env|')"
+            host='\[\e[32m\e[1m\]\h\[\e[0m\]'
+            path='\[\e[36m\e[1m\]\w\[\e[0m\]'
+            prom="$([ $_exit_code -ne 0 ] && printf '\[\e[31m\]')$\[\e[0m\]"
+            PS1="$env$host:$path$prom "
           }
           PROMPT_COMMAND=prompt
           PS2='> '
@@ -104,9 +104,9 @@ in
           # Replace the loading msg and fzf prompt with ''${PS1@P} so the experience is better
           _fzf_bash_completion_loading_msg() { echo "''${PS1@P}''${READLINE_LINE}" | tail -n1; }
           _fzf_bash_completion_selector() {
-          	FZF_DEFAULT_OPTS="--height ''${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_COMPLETION_OPTS" \
-          		$(__fzfcmd 2>/dev/null || echo fzf) -1 -0 --prompt "''${PS1@P}$line" --nth 2 -d "$_FZF_COMPLETION_SEP" --ansi \
-          		| tr -d "$_FZF_COMPLETION_SEP"
+            FZF_DEFAULT_OPTS="--height ''${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_COMPLETION_OPTS" \
+              $(__fzfcmd 2>/dev/null || echo fzf) -1 -0 --prompt "''${PS1@P}$line" --nth 2 -d "$_FZF_COMPLETION_SEP" --ansi \
+              | tr -d "$_FZF_COMPLETION_SEP"
           }
         '';
     };

@@ -99,12 +99,11 @@
         users''';
 
       # SpecialArgs that share between nixosConfig and homeConfig
-      specialArgs =
-        genAttrsForSystem (system: {
-          inherit inputs outputs;
-          pkgs-stable = (inputPkgsFor inputs.nixpkgs-stable).${system};
-          # pkgs-local = (inputPkgsFor inputs.nixpkgs-local).${system};
-        });
+      specialArgs = genAttrsForSystem (system: {
+        inherit inputs outputs;
+        pkgs-stable = (inputPkgsFor inputs.nixpkgs-stable).${system};
+        # pkgs-local = (inputPkgsFor inputs.nixpkgs-local).${system};
+      });
 
       # Given host name and system type, returning Nixos System
       # nixosConfig :: host name -> system type -> nixosSystem

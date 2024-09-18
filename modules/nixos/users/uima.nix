@@ -32,12 +32,12 @@ in
         shell = pkgs.bashInteractive;
 
         extraGroups = ifGroupExist [
-            "wheel"
-            "networkmanager"
-            "docker"
-            "podman"
-            "libvirtd"
-          ];
+          "wheel"
+          "networkmanager"
+          "docker"
+          "podman"
+          "libvirtd"
+        ];
       }
 
       # WARN:

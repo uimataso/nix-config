@@ -15,7 +15,5 @@
       sudo.enable = true;
       autoUpgrade.enable = true;
     };
-
-    networking.networkmanager.enable = true;
   };
 }

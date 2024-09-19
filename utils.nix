@@ -51,9 +51,11 @@ let
     f:
     lib.attrsets.mapAttrs (
       key: val:
-      lib.attrsets.mapAttrs' (
-        sub_key: sub_val: lib.attrsets.nameValuePair (f key sub_key sub_val) sub_val
-      ) val
+      lib.attrsets.mapAttrs'
+        (
+          sub_key: sub_val: lib.attrsets.nameValuePair (f key sub_key sub_val) sub_val
+        )
+        val
     );
 in
 {

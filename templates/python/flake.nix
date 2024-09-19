@@ -7,10 +7,10 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      poetry2nix,
+    { self
+    , nixpkgs
+    , poetry2nix
+    ,
     }:
     let
       forAllSystems = nixpkgs.lib.genAttrs [

@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 with lib;
 let
@@ -17,12 +16,14 @@ in
     services.xserver.enable = true;
 
     environment.systemPackages = with pkgs; [
-      (callPackage (fetchFromGitHub {
-        owner = "uimataso";
-        repo = "dwmblocks";
-        rev = "38816c2ff7ab820594e3f8402fb5b4171eb973a4";
-        sha256 = "sha256-yglc30rq7LH7YT4U84yDwrltc5kI7BWmMfBWZ2/r3Lw=";
-      }) { })
+      (callPackage
+        (fetchFromGitHub {
+          owner = "uimataso";
+          repo = "dwmblocks";
+          rev = "38816c2ff7ab820594e3f8402fb5b4171eb973a4";
+          sha256 = "sha256-yglc30rq7LH7YT4U84yDwrltc5kI7BWmMfBWZ2/r3Lw=";
+        })
+        { })
     ];
 
     services.xserver = {

@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 with lib;
 let
@@ -20,7 +19,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ scripts.fmenu ];
+    home.packages = [ pkgs.fmenu ];
 
     uimaConfig.programs.menu = mkIf cfg.defaultMenu {
       enable = true;

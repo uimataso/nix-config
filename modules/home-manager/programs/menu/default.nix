@@ -1,7 +1,6 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 with lib;
 let
@@ -28,6 +27,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.sessionVariables = { DMENU = cfg.executable; };
+    home.sessionVariables = {
+      DMENU = cfg.executable;
+    };
   };
 }

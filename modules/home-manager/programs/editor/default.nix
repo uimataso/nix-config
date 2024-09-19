@@ -1,7 +1,6 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 with lib;
 let
@@ -23,6 +22,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.sessionVariables = { EDITOR = cfg.executable; };
+    home.sessionVariables = {
+      EDITOR = cfg.executable;
+    };
   };
 }

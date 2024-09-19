@@ -1,7 +1,6 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 with lib;
 let
@@ -37,6 +36,8 @@ in
       "x-scheme-handler/https" = [ cfg.desktop ];
     };
 
-    home.sessionVariables = { BROWSER = cfg.executable; };
+    home.sessionVariables = {
+      BROWSER = cfg.executable;
+    };
   };
 }

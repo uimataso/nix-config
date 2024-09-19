@@ -8,6 +8,8 @@
 
     systems.url = "github:nix-systems/default-linux";
 
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -37,13 +39,12 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      systems,
-      haumea,
-      ...
+    { self
+    , nixpkgs
+    , home-manager
+    , systems
+    , haumea
+    , ...
     }@inputs:
     let
       inherit (self) outputs;
@@ -51,11 +52,11 @@
       util = import ./utils.nix { inherit lib; };
 
       # Generate attrset for each system
-      genAttrsForSystem = f: lib.genAttrs (import systems) f;
+      forAllSystems = lib.genAttrs (import systems);
 
       inputPkgsFor =
         pkgs:
-        genAttrsForSystem (
+        forAllSystems (
           system:
           import pkgs {
             inherit system;
@@ -65,9 +66,6 @@
 
       # Nixpkgs for each system
       pkgsFor = inputPkgsFor nixpkgs;
-
-      # Generate attrset for each system with Nixpkgs
-      forEachSystem = f: genAttrsForSystem (system: f pkgsFor.${system});
 
       # Read hosts from `./hosts`
       #   Output: { host = "system type"; }
@@ -90,16 +88,18 @@
             loader = haumea.lib.loaders.path;
           };
           users' = util.mapSubAttrsets (user: host: { inherit user host; }) users;
-          users'' = util.renameSubAttrsetsKey (
-            user: host: val:
-            "${user}@${host}"
-          ) users';
+          users'' = util.renameSubAttrsetsKey
+            (
+              user: host: val:
+                "${user}@${host}"
+            )
+            users';
           users''' = util.mergeSubAttrsets users'';
         in
         users''';
 
       # SpecialArgs that share between nixosConfig and homeConfig
-      specialArgs = genAttrsForSystem (system: {
+      specialArgs = forAllSystems (system: {
         inherit inputs outputs;
         pkgs-stable = (inputPkgsFor inputs.nixpkgs-stable).${system};
         # pkgs-local = (inputPkgsFor inputs.nixpkgs-local).${system};
@@ -156,14 +156,25 @@
       homeManagerModules = import ./modules/home-manager;
 
       overlays = import ./overlays { inherit inputs outputs; };
-      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+      packages = forAllSystems (system: import ./pkgs { pkgs = pkgsFor.${system}; });
 
-      formatter = forEachSystem (pkgs: pkgs.nixfmt-rfc-style);
-      devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
       templates = import ./templates;
 
-      # FIXME: Github CI: nix eval always stack overflow
-      # [this line is come from this](https://github.com/ryan4yin/nix-config/blob/main/.github/workflows/flake_evaltests.yml)
-      # evalTests."araizen" = nixosConfigurations."araizen".config.system.build.toplevel;
+      formatter = forAllSystems (system: pkgsFor.${system}.nixfmt-rfc-style);
+      devShells = forAllSystems (
+        system:
+        import ./shell.nix {
+          pkgs = pkgsFor.${system};
+          pre-commit-check = self.checks.${system}.pre-commit-check;
+        }
+      );
+      checks = forAllSystems (system: {
+        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            nixpkgs-fmt.enable = true;
+          };
+        };
+      });
     };
 }

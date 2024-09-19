@@ -1,5 +1,7 @@
 { pkgs }:
-with pkgs;
+let
+  inherit (pkgs) callPackage;
+in
 {
   # Nix utils
   nix-template-tool = callPackage ./nix-template-tool.nix { };

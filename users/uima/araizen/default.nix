@@ -6,7 +6,7 @@
 
   home.packages = with pkgs; [
     fd
-    scripts.extract
+    extract
     minikube
   ];
 

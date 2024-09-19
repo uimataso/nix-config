@@ -1,7 +1,6 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 with lib;
 let
@@ -25,6 +24,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.sessionVariables = { TERMINAL = cfg.executable; };
+    home.sessionVariables = {
+      TERMINAL = cfg.executable;
+    };
   };
 }

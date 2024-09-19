@@ -1,6 +1,5 @@
-{
-  pkgs,
-  ...
+{ pkgs
+, ...
 }:
 # TODO: manage scripts
 # TODO: check easyeffects and discord screen sharing
@@ -19,13 +18,13 @@
   home.packages = with pkgs; [
     qmk
     fd
-    scripts.extract
-    scripts.app-launcher
-    scripts.open
-    scripts.power-menu
-    scripts.screenshot
-    scripts.swallower
-    scripts.vl
+    extract
+    app-launcher
+    open
+    power-menu
+    screenshot
+    swallower
+    vl
   ];
 
   programs.htop.enable = true;

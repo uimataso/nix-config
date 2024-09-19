@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 with lib;
 let
@@ -16,7 +15,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ scripts.fff ];
+    home.packages = [ pkgs.fff ];
 
     home.shellAliases = {
       a = ". fff";

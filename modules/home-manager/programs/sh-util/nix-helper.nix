@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 with lib;
 let
@@ -30,7 +29,7 @@ in
       nt = "nh os test ${cfg.flakeDir}";
       nr = "nix repl --expr 'builtins.getFlake \"${cfg.flakeDir}\"'";
 
-      it = "${pkgs.scripts.nix-template-tool}/bin/nix-template-tool";
+      it = "${pkgs.nix-template-tool}/bin/nix-template-tool";
 
       nvim-test = ''
         rm -f ${configHome}/nvim && ln -s ${cfg.flakeDir}/modules/home-manager/programs/neovim ${configHome}/nvim

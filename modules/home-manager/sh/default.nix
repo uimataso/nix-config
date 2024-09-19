@@ -1,7 +1,6 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 with lib;
 let
@@ -60,7 +59,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.sessionVariables = { SHELL = cfg.executable; };
+    home.sessionVariables = {
+      SHELL = cfg.executable;
+    };
 
     # TODO: manage aliases
     home.shellAliases =

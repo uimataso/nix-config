@@ -1,8 +1,7 @@
-{
-  pkgs ? import <nixpkgs> { },
+{ pkgs ? import <nixpkgs> { }
+,
 }:
-with pkgs;
 {
-  sddm-astronaut-theme = libsForQt5.callPackage ./sddm-astronaut-theme { };
-  scripts = callPackage ./scripts { };
+  sddm-astronaut-theme = pkgs.libsForQt5.callPackage ./sddm-astronaut-theme { };
 }
+  // import ./scripts { inherit pkgs; }

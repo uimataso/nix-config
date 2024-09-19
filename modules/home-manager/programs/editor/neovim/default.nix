@@ -3,8 +3,8 @@
 , pkgs
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.uimaConfig.programs.editor.neovim;
 
   imper = config.uimaConfig.system.impermanence;

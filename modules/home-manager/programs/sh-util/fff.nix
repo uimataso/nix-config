@@ -3,8 +3,8 @@
 , pkgs
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.programs.sh-util.fff;
 
   shUtil = config.uimaConfig.programs.sh-util;

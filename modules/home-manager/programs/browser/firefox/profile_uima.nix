@@ -3,9 +3,8 @@
 , pkgs
 , ...
 }:
-
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.programs.browser.firefox.profile.uima;
 
   name = "uima";

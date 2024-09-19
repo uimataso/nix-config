@@ -4,8 +4,8 @@
 , ...
 }:
 # https://man.archlinux.org/man/tmux.1
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption mkForce;
   cfg = config.uimaConfig.programs.sh-util.tmux;
 
   tmux-select-sessions-src =

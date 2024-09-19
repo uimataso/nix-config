@@ -3,8 +3,8 @@
 , inputs
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.uimaConfig.system.impermanence;
 in
 {
@@ -32,7 +32,7 @@ in
 
     home.activation = {
       rmSomeThing =
-        hm.dag.entryAfter [ "writeBoundary" ] # sh
+        lib.hm.dag.entryAfter [ "writeBoundary" ] # sh
 
           ''
             rm -rf $HOME/.nix-defexpr

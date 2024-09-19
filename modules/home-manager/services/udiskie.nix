@@ -1,7 +1,7 @@
 { config, lib, ... }:
 # Need hosts/udisks2 to work
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.services.udiskie;
 in
 {

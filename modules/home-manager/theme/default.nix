@@ -4,8 +4,8 @@
 , inputs
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.uimaConfig.theme;
 in
 {

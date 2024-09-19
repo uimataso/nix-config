@@ -3,8 +3,8 @@
 , inputs
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.uimaConfig.system.impermanence;
 
   isUser = user: user.group == "users";

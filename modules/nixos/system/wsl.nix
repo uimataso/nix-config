@@ -4,8 +4,8 @@
 , inputs
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption mkOption mkMerge types;
   cfg = config.uimaConfig.system.wsl;
 in
 {

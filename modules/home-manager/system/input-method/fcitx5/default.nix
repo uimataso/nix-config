@@ -3,8 +3,8 @@
 , pkgs
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.system.inputMethod.fcitx5;
 in
 {

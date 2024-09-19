@@ -3,8 +3,8 @@
 , inputs
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.programs.nixcord;
 
   imper = config.uimaConfig.system.impermanence;

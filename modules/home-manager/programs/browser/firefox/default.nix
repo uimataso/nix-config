@@ -14,8 +14,8 @@
 # - [ ] remove items when start search
 # - [ ] precise persistence files
 
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.uimaConfig.programs.browser.firefox;
 in
 {

@@ -3,8 +3,8 @@
 , pkgs
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.programs.cad.kicad;
 
   imper = config.uimaConfig.system.impermanence;

@@ -3,8 +3,8 @@
 , pkgs
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption mkOption mkDefault mkMerge types;
   cfg = config.uimaConfig.users.uima;
 
   username = "uima";

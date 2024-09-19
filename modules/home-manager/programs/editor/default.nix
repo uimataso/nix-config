@@ -2,8 +2,8 @@
 , lib
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.uimaConfig.programs.editor;
 in
 {

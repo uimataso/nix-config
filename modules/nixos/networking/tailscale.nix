@@ -1,7 +1,7 @@
 { config, lib, ... }:
-with lib;
 # TODO: secrets
 let
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.networking.tailscale;
 
   imper = config.uimaConfig.system.impermanence;

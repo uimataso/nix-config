@@ -4,8 +4,8 @@
 , inputs
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.system.sops;
 
   isEd25519 = k: k.type == "ed25519";

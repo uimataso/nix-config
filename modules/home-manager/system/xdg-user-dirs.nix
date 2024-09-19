@@ -2,12 +2,12 @@
 , lib
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.system.xdgUserDirs;
 
   imper = config.uimaConfig.system.impermanence;
-  rmHomePath = str: removePrefix config.home.homeDirectory str;
+  rmHomePath = str: lib.removePrefix config.home.homeDirectory str;
   dirs = with config.xdg.userDirs; [
     desktop
     documents
@@ -26,7 +26,7 @@ in
 
   config = mkIf cfg.enable {
     home.persistence.main = mkIf imper.enable {
-      directories = lists.forEach (lists.remove null dirs) rmHomePath;
+      directories = lib.lists.forEach (lib.lists.remove null dirs) rmHomePath;
     };
 
     xdg.userDirs = mkIf cfg.enable {

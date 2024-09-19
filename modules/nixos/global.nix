@@ -4,8 +4,8 @@
 , outputs
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption mkDefault;
   cfg = config.uimaConfig.global;
 in
 {

@@ -3,8 +3,8 @@
 , pkgs
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.uimaConfig.desktop.wayland.swww;
 in
 {
@@ -14,7 +14,7 @@ in
     package = mkOption {
       type = types.package;
       default = pkgs.swww;
-      defaultText = literalExpression "pkgs.swww";
+      defaultText = lib.literalExpression "pkgs.swww";
       description = ''
         Swww package to use. Set to `null` to use the default package.
       '';

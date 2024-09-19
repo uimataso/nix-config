@@ -1,7 +1,7 @@
 { config, lib, ... }:
-with lib;
 # TODO: secrets
 let
+  inherit (lib) mkIf mkEnableOption mkForce;
   cfg = config.uimaConfig.system.openssh;
 
   imper = config.uimaConfig.system.impermanence;

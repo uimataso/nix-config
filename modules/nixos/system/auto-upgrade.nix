@@ -2,8 +2,8 @@
 , lib
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.uimaConfig.system.autoUpgrade;
 
   flakeUri = "github:luck07051/nix-config";

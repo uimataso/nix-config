@@ -2,11 +2,11 @@
 , lib
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption mkOption types mkDefault;
   cfg = config.uimaConfig.sh;
 
-  mkEverythingDefault = attr: attrsets.mapAttrs (name: value: mkDefault value) attr;
+  mkEverythingDefault = attr: lib.attrsets.mapAttrs (name: value: mkDefault value) attr;
 
   # Core Utils alias
   coreutilsAliases = mkEverythingDefault {

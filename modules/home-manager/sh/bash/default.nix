@@ -2,12 +2,12 @@
 , lib
 , ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.uimaConfig.sh.bash;
 
   imper = config.uimaConfig.system.impermanence;
-  rmHomePath = str: removePrefix config.home.homeDirectory str;
+  rmHomePath = str: lib.removePrefix config.home.homeDirectory str;
 
   # Plugins
   # TODO: move these to pkgs

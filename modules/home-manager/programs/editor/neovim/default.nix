@@ -56,6 +56,15 @@ in
       # Nix LSP (bc we on NixOS!)
       nil
       nixd
+
+      # Rust
+      rust-analyzer
+      rustfmt
+      clippy
+      cargo-nextest
+
+      # C/Cpp
+      clang-tools
     ];
 
     xdg.configFile = {

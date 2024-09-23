@@ -4,9 +4,7 @@ local ag = vim.api.nvim_create_augroup
 -- Disable auto comment new line
 au('FileType', {
   pattern = { '*' },
-  callback = function()
-    vim.opt.formatoptions:remove({ 'c', 'r', 'o' })
-  end,
+  callback = function() vim.opt.formatoptions:remove({ 'c', 'r', 'o' }) end,
 })
 
 -- Delete trailing spaces and extra line when save file
@@ -25,9 +23,7 @@ local yank_restore_cursor = ag('yank_restore_cursor', {})
 au({ 'VimEnter', 'CursorMoved' }, {
   group = yank_restore_cursor,
   desc = 'Tracking the cursor position',
-  callback = function()
-    Cursor_pos = vim.fn.getpos('.')
-  end,
+  callback = function() Cursor_pos = vim.fn.getpos('.') end,
 })
 
 au('TextYankPost', {
@@ -130,3 +126,10 @@ corrft('*qmk*/*.keymap', 'c') -- C for qmk file
 corrft('*qmk*/*.def', 'c')
 
 corrft('*manuscript/*.txt', 'markdown') -- Use md to open the book 'pure bash bible'
+
+vim.filetype.add({
+  pattern = {
+    ['openapi.*%.ya?ml'] = 'yaml.openapi',
+    ['openapi.*%.json'] = 'json.openapi',
+  },
+})

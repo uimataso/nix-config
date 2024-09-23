@@ -53,18 +53,25 @@ in
       shellcheck
       bash-language-server
 
-      # Nix LSP (bc we on NixOS!)
+      # Nix LSP
       nil
       nixd
 
-      # Rust
+      # Rust LSP
       rust-analyzer
       rustfmt
       clippy
       cargo-nextest
 
-      # C/Cpp
+      # C/Cpp LSP
       clang-tools
+
+      # Yaml LSP
+      yaml-language-server
+      yamlfmt
+
+      # OpenAPI LSP
+      vacuum-go
     ];
 
     xdg.configFile = {

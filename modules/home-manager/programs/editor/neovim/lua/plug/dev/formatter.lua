@@ -7,6 +7,7 @@ return {
       lua = { 'stylua' },
       python = { 'isort', 'black' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
+      yaml = { 'yamlfmt' },
       -- TODO: nix fmt not works
       nix = { 'nix fmt', lsp_format = 'fallback' },
     },

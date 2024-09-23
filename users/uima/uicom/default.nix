@@ -67,8 +67,8 @@
 
     programs = {
       terminal = {
-        foot.enable = true;
-        foot.defaultTerminal = true;
+        alacritty.enable = true;
+        alacritty.defaultTerminal = true;
       };
 
       editor = {

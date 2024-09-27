@@ -4,9 +4,18 @@ return {
     opts = {
       servers = {
         yamlls = {
-          -- filetypes = { 'yaml', 'yaml.docker-compose', 'yaml.gitlab', 'yaml.openapi', 'json.openapi' },
+          filetypes = { 'yaml', 'yaml.docker-compose', 'yaml.gitlab', 'yaml.openapi', 'json.openapi' },
         },
         vacuum = {},
+      },
+    },
+  },
+
+  {
+    'stevearc/conform.nvim',
+    opts = {
+      formatters_by_ft = {
+        yaml = { 'yamlfmt' },
       },
     },
   },

@@ -36,41 +36,40 @@ in
 
     home.packages = with pkgs; [
       neovim
-
       gcc
-
-      # For rest.nvim
-      luarocks
-      lua51Packages.lua
       # For Telescope
       ripgrep
 
-      # Lua LSP
+      # LSP / Formatter
+      # Grammar Checker
+      harper
+
+      # Lua
       lua-language-server
       stylua
 
-      # Shell LSP
+      # Shell
       shellcheck
       bash-language-server
 
-      # Nix LSP
+      # Nix
       nil
       nixd
 
-      # Rust LSP
+      # Rust
       rust-analyzer
       rustfmt
       clippy
       cargo-nextest
 
-      # C/Cpp LSP
+      # C/Cpp
       clang-tools
 
-      # Yaml LSP
+      # Yaml
       yaml-language-server
       yamlfmt
 
-      # OpenAPI LSP
+      # OpenAPI
       vacuum-go
     ];
 

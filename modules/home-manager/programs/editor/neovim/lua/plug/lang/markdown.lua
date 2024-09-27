@@ -1,3 +1,4 @@
+-- TODO: find good markdown tool for linting and formatting
 return {
   -- {
   --   'MeanderingProgrammer/markdown.nvim',

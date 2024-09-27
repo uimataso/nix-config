@@ -21,10 +21,15 @@ return {
     },
 
     opts = {
+      servers = {
+        -- Grammar Checker
+        harper_ls = {},
+      },
+
       diagnostics = {
         virtual_text = false,
         update_in_insert = true,
-        underline = false,
+        underline = true,
         severity_sort = true,
         float = {
           focusable = false,

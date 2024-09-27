@@ -1,7 +1,7 @@
 return {
   {
     'neovim/nvim-lspconfig',
-    event = 'VeryLazy',
+    lazy = false,
 
     dependencies = {
       {
@@ -78,7 +78,7 @@ return {
 
   { -- notification for lsp
     'j-hui/fidget.nvim',
-    event = 'VeryLazy',
+    event = 'BufReadPre',
 
     opts = {
       notification = {

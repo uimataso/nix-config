@@ -1,18 +1,16 @@
 vim.opt.ruler = false
 vim.opt.showmode = false
 vim.opt.laststatus = 3 -- global statusline
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 
--- Some shortmess work with cmdheight=0
-vim.opt.shortmess:append('c')
-vim.opt.shortmess:append('C')
-vim.opt.shortmess:append('s')
-vim.opt.shortmess:append('S')
-vim.opt.shortmess:remove('t')
+-- -- Some shortmess work with cmdheight=0
+-- vim.opt.shortmess:append('c')
+-- vim.opt.shortmess:append('C')
+-- vim.opt.shortmess:append('s')
+-- vim.opt.shortmess:append('S')
+-- vim.opt.shortmess:remove('t')
 
-local hi = function(group)
-  return '%#' .. group .. '#'
-end
+local hi = function(group) return '%#' .. group .. '#' end
 
 local format_count = function(format, count)
   if not count or count == 0 then

@@ -54,7 +54,6 @@ in
           Behavior = "reject";
           Allow = [
             # Mysite
-            "https://uima.duckdns.org"
             "https://uimataso.com"
 
             # Mail

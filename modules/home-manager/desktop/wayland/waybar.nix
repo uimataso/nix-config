@@ -58,9 +58,9 @@ in
               in
               {
                 interval = 10;
-                format-ethernet = "󰛳 {icon}";
+                format-ethernet = "󰛳 ";
                 format-wifi = "󰖩 {icon}";
-                format-linked = "󰲝 {icon}";
+                format-linked = "󰲝 ";
                 format-disconnected = "󰲜 ";
                 format-icons = [
                   "󰣾"

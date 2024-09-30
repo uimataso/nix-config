@@ -9,6 +9,7 @@ in
 {
   imports = [
     ./neovim
+    ./vscode
   ];
 
   options.uimaConfig.programs.editor = {

@@ -41,9 +41,11 @@ in
       ];
 
       userSettings = {
+        "workbench.startupEditor" = "none";
         "editor.formatOnSave" = true;
         "vim.foldfix" = true;
         "editor.lineNumbers" = "relative";
+        "editor.fontSize" = 13;
       };
     };
   };

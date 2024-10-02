@@ -125,7 +125,7 @@ vim.api.nvim_create_user_command('CopyCodeBlock', function(opts)
   vim.fn.setreg('+', result)
 end, { range = true })
 
-vim.keymap.set('', '<Leader>cy', '<cmd>CopyCodeBlock<cr>', { desc = 'Copy text with markdown codeblock style' })
+vim.keymap.set('', '<Leader>cy', ':CopyCodeBlock<cr>', { desc = 'Copy text with markdown codeblock style' })
 
 -- Abbr for command mode
 local function cabbrev(lhs, rhs)

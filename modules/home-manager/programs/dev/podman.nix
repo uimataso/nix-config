@@ -20,13 +20,13 @@ in
     home.packages = with pkgs; [ podman-compose ];
 
     home.shellAliases = {
-      pm = "podman";
-      pmp = "podman ps";
-      pmc = "podman compose";
-      pmcu = "podman compose up -d";
-      pmcd = "podman compose down";
-      pmcl = "podman compose logs";
-      pmcp = "podman compose pull";
+      p = "podman";
+      pp = "podman ps";
+      pc = "podman compose";
+      pcu = "podman compose up -d";
+      pcd = "podman compose down";
+      pcl = "podman compose logs";
+      pcp = "podman compose pull";
     };
   };
 }

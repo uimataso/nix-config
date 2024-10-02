@@ -89,6 +89,7 @@
         git.enable = true;
         lazygit.enable = true;
         docker.enable = true;
+        lazydocker.enable = true;
         # podman.enable = true;
       };
 

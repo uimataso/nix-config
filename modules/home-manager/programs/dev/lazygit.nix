@@ -16,7 +16,7 @@ in
     uimaConfig.programs.dev.git.enable = true;
 
     home.shellAliases = {
-      lg = "lazygit";
+      lzg = "lazygit";
     };
 
     home.packages = with pkgs; [ delta ];

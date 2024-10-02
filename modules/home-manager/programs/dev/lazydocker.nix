@@ -5,20 +5,20 @@
 }:
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.uimaConfig.programs.dev.k8s;
+  cfg = config.uimaConfig.programs.dev.lazydocker;
 in
 {
-  options.uimaConfig.programs.dev.k8s = {
-    enable = mkEnableOption "k8s";
+  options.uimaConfig.programs.dev.lazydocker = {
+    enable = mkEnableOption "Lazydocker";
   };
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      kubectl
+      lazydocker
     ];
 
     home.shellAliases = {
-      k = "kubectl";
+      lzd = "lazydocker";
     };
   };
 }

@@ -12,7 +12,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.persistence.main = mkIf imper.enable { directories = [ ".local/share/syncthing" ]; };
+    home.persistence.main = mkIf imper.enable {
+      directories = [
+        ".local/share/syncthing"
+        ".local/state/syncthing"
+      ];
+    };
 
     home.shellAliases = {
       syncb = "syncthing serve --browser-only";

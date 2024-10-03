@@ -14,6 +14,10 @@ in
   config = mkIf cfg.enable {
     home.persistence.main = mkIf imper.enable { directories = [ ".local/share/syncthing" ]; };
 
+    home.shellAliases = {
+      syncb = "syncthing serve --browser-only";
+    };
+
     services.syncthing = {
       enable = true;
       extraOptions = [

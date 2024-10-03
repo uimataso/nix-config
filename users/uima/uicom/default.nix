@@ -16,6 +16,7 @@
   };
 
   home.packages = with pkgs; [
+    calibre
     qmk
     fd
     extract
@@ -62,7 +63,7 @@
     services = {
       easyeffects.enable = true;
       udiskie.enable = true;
-      # syncthing.enable = true;
+      syncthing.enable = true;
     };
 
     programs = {

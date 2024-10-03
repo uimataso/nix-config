@@ -8,6 +8,7 @@
     ./menu
     ./sh-util
     ./terminal
+    ./calibre.nix
     ./discord.nix
     ./nixcord.nix
     ./prusa-slicer.nix

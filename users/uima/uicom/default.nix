@@ -16,7 +16,6 @@
   };
 
   home.packages = with pkgs; [
-    calibre
     qmk
     fd
     extract
@@ -110,6 +109,8 @@
       };
 
       nixcord.enable = true;
+
+      calibre.enable = true;
 
       zathura.enable = true;
       prusaSlicer.enable = true;

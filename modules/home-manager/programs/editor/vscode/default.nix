@@ -42,6 +42,7 @@ in
 
       userSettings = {
         "workbench.startupEditor" = "none";
+        "update.showReleaseNotes" = false;
         "editor.formatOnSave" = true;
         "vim.foldfix" = true;
         "editor.lineNumbers" = "relative";

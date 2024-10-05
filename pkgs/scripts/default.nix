@@ -10,6 +10,7 @@ in
   fff = callPackage ./fff.nix { };
   extract = callPackage ./extract.nix { };
   pdf-decrypt = callPackage ./pdf-decrypt.nix { };
+  mkbigfile = callPackage ./mkbigfile.nix { };
 
   # System
   vl = callPackage ./vl.nix { };

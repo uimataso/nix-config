@@ -25,6 +25,7 @@
     screenshot
     swallower
     vl
+    mkbigfile
   ];
 
   programs.htop.enable = true;

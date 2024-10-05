@@ -6,11 +6,11 @@ writeShellApplication {
     usage() {
       cat <<EOF
     Usage: ''${0##*/} [OPTION] FILE
-    Make random big file.
+    Make a random big file.
 
       -h, --help            Show this help.
-      -s, --size            Specify the size to make. Default: 1G
-      -b, --bs              Write how much bytes in one time. Default: 4k
+      -s, --size            Specify the file size to make. Default: 1G
+      -b, --bs              Write up to this much bytes at a time. Default: 4k
 
     P.S. This just a dd wrapper
     EOF

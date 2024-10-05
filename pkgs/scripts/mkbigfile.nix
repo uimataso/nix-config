@@ -21,6 +21,7 @@ writeShellApplication {
     size='1G'
     bs='4k'
 
+    # Parse options
     TEMP=$(getopt -o 'hs:b:' -l 'help,size:,bs:' -n "$0" -- "$@")
     # shellcheck disable=SC2181
     [ $? -ne 0 ] && exit 1
@@ -41,6 +42,7 @@ writeShellApplication {
         esac
     done
 
+    # Do actual stuff
     dd if=/dev/random of="$filename" bs="$bs" iflag=fullblock,count_bytes status=progress count="$size"
   '';
 }

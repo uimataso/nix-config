@@ -34,7 +34,6 @@
               rust-analyzer
               rustfmt
               clippy
-              cargo-nextest
             ]
             ++ (oa.nativeBuildInputs or [ ]);
         });

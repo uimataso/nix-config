@@ -34,8 +34,6 @@
               rust-analyzer
               rustfmt
               clippy
-              cargo-nextest
-              sqlx-cli
             ]
             ++ (oa.nativeBuildInputs or [ ]);
         });

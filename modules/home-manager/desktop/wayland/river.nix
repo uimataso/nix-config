@@ -21,6 +21,8 @@ let
           (pow' base (exp - 1)) * base;
     in
     pow' base exp;
+
+  mkTag = tag: builtins.toString (pow 2 (tag - 1));
 in
 {
   options.uimaConfig.desktop.wayland.river = {
@@ -118,14 +120,11 @@ in
               let
                 tag_fn =
                   key: tag:
-                  let
-                    tag' = builtins.toString (pow 2 (tag - 1));
-                  in
                   {
-                    "Super ${key}" = "set-focused-tags ${tag'}";
-                    "Super+Shift ${key}" = "set-view-tags ${tag'}";
-                    "Super+Control ${key}" = "toggle-focused-tags ${tag'}";
-                    "Super+Shift+Control ${key}" = "toggle-view-tags ${tag'}";
+                    "Super ${key}" = "set-focused-tags ${mkTag tag}";
+                    "Super+Shift ${key}" = "set-view-tags ${mkTag tag}";
+                    "Super+Control ${key}" = "toggle-focused-tags ${mkTag tag}";
+                    "Super+Shift+Control ${key}" = "toggle-view-tags ${mkTag tag}";
                   };
               in
               (tag_fn "X" 1)
@@ -162,6 +161,8 @@ in
           "-app-id" = {
             # Make Firefox have border
             firefox = "ssd";
+            "*discord*" = "tags ${mkTag 9}";
+            "*vesktop*" = "tags ${mkTag 9}";
           };
         };
 

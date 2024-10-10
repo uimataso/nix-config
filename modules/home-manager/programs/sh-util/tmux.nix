@@ -1,6 +1,7 @@
 { config
 , lib
 , pkgs
+, pkgs-stable
 , ...
 }:
 # https://man.archlinux.org/man/tmux.1
@@ -15,7 +16,7 @@ let
       runtimeInputs = with pkgs; [
         fzf
         tmux
-        tmuxinator
+        pkgs-stable.tmuxinator
       ];
       text = ''
         sessions_list() {

@@ -39,7 +39,7 @@ in
     uimaConfig.sh = mkIf cfg.defaultShell {
       enable = true;
       executable = "bash";
-      tmuxShell = null;
+      tmuxShell = "${config.programs.bash.package}/bin/bash";
     };
 
     uimaConfig.programs.sh-util.fzf.enable = true;

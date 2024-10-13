@@ -23,7 +23,7 @@ return {
     opts = {
       servers = {
         -- Grammar Checker
-        harper_ls = {},
+        -- harper_ls = {},
       },
 
       diagnostics = {

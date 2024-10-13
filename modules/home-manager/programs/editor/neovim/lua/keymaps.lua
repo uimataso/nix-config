@@ -103,6 +103,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'grr', vim.lsp.buf.references, { desc = 'vim.lsp.buf.references()' })
     vim.keymap.set('n', 'grn', vim.lsp.buf.rename, { desc = 'vim.lsp.buf.rename()' })
     vim.keymap.set({ 'n', 'x' }, 'gra', vim.lsp.buf.code_action, { desc = 'vim.lsp.buf.code_action()' })
+    vim.keymap.set({ 'n', 'x' }, '<Leader>a', vim.lsp.buf.code_action, { desc = 'vim.lsp.buf.code_action()' })
     vim.keymap.set('i', '<C-s>', vim.lsp.buf.signature_help, { desc = 'vim.lsp.buf.signature_help()' })
 
     -- Workspace

@@ -23,10 +23,10 @@ color['float_bg'] = color.gray0
 -- Syntax --
 color['comment'] = color.gray5
 
-color['preproc'] = color.red
+color['preproc'] = color.white
 color['keyword'] = color.magenta
-color['func'] = color.blue
-color['type'] = color.cyan
+color['func'] = color.white
+color['type'] = color.gray8
 color['field'] = color.white
 color['namespace'] = color.gray8
 color['punctuation'] = color.gray6

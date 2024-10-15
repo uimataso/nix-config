@@ -28,7 +28,7 @@ color['keyword'] = color.magenta
 color['func'] = color.white
 color['type'] = color.white
 color['field'] = color.white
-color['namespace'] = color.gray8
+color['namespace'] = color.white
 color['punctuation'] = color.gray6
 
 color['variable'] = color.white

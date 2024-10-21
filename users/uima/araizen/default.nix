@@ -8,6 +8,22 @@
     fd
     extract
     minikube
+
+    # Project dependency
+    rustc
+    cargo
+    rust-analyzer
+    rustfmt
+    clippy
+    sqlx-cli
+    cargo-nextest
+    cargo-machete
+    awscli2
+
+    # With `env.{OPENSSL_DEV, PKG_CONFIG_PATH}` to fix ssl issue
+    libiconv
+    openssl
+    pkg-config
   ];
 
   programs = {

@@ -26,7 +26,21 @@ return {
           on_attach = function(client, bufnr)
             -- vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
 
-            vim.keymap.set('n', '<Leader>e', '<cmd>RustLsp renderDiagnostic current<cr>')
+            vim.keymap.set('n', '<Leader>e', function()
+              local diagnostics = vim.diagnostic.get(0, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 })
+              if diagnostics[1] == nil then
+                vim.print('not diagnostic found')
+                return
+              end
+
+              local source = diagnostics[1].source
+              if source == 'rustc' or source == 'rust-analyzer' then
+                vim.cmd.RustLsp({ 'renderDiagnostic', 'current' })
+              else
+                vim.diagnostic.open_float()
+              end
+            end)
+
             vim.keymap.set('n', '<Leader>r', '<cmd>RustLsp explainError<cr>')
             vim.keymap.set('n', 'K', '<cmd>RustLsp hover actions<cr>')
             -- vim.keymap.set('n', 'J', '<cmd>RustLsp joinLines<cr>')

@@ -1,6 +1,7 @@
 { config
 , lib
 , pkgs
+, pkgs-stable
 , ...
 }:
 let
@@ -23,7 +24,7 @@ in
     };
 
     home.packages = with pkgs; [
-      calibre
+      pkgs-stable.calibre
     ];
   };
 }

@@ -72,6 +72,7 @@ in
             # Dev
             "https://github.com"
             "https://mynixos.com"
+            "https://kaggle.com"
 
             # Other
             "https://chatgpt.com"

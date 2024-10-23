@@ -11,9 +11,7 @@ return {
   keys = {
     {
       '<Leader>hi',
-      function()
-        vim.print(vim.treesitter.get_captures_at_cursor(0))
-      end,
+      function() vim.print(vim.treesitter.get_captures_at_cursor(0)) end,
       desc = 'Print treesitter structure',
     },
   },
@@ -42,6 +40,7 @@ return {
       'nu',
       'org',
       'python',
+      'javascript',
       'query',
       'rust',
       'toml',

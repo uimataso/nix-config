@@ -9,6 +9,7 @@
     extract
     minikube
     gnumake
+    k6
 
     # Project dependency
     rustc

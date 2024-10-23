@@ -8,6 +8,7 @@
     fd
     extract
     minikube
+    gnumake
 
     # Project dependency
     rustc

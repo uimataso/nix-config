@@ -23,7 +23,15 @@ return {
     opts = {
       servers = {
         -- Grammar Checker
-        harper_ls = {},
+        harper_ls = {
+          settings = {
+            ['harper-ls'] = {
+              linters = {
+                sentence_capitalization = false,
+              },
+            },
+          },
+        },
       },
 
       diagnostics = {

@@ -43,6 +43,8 @@ in
       # LSP / Formatter
       # Grammar Checker
       harper
+      # Generic Formatter
+      prettierd
 
       # Lua
       lua-language-server

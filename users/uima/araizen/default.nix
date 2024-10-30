@@ -28,6 +28,11 @@
     pkg-config
   ];
 
+  home.sessionVariables = {
+    OPENSSL_DEV = pkgs.openssl.dev;
+    PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+  };
+
   programs = {
     htop.enable = true;
     btop.enable = true;

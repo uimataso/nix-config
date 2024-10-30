@@ -86,7 +86,7 @@
         direnv.enable = true;
         git = {
           enable = true;
-          name = "Uima";
+          name = "uima-chen";
           email = "uima.chen@araizen.com";
         };
         lazygit.enable = true;

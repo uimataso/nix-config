@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home.username = "uima";
 
@@ -52,6 +52,8 @@
         IdentitiesOnly yes
     '';
   };
+
+  nix.settings.use-xdg-base-directories = lib.mkForce false;
 
   uimaConfig = {
     global.enable = true;

@@ -1,5 +1,9 @@
 { pkgs, lib, ... }:
 {
+  imports = [
+    ./project.nix
+  ];
+
   home.username = "uima";
 
   home.stateVersion = "23.11";
@@ -31,8 +35,6 @@
         IdentitiesOnly yes
     '';
   };
-
-  nix.settings.use-xdg-base-directories = lib.mkForce false;
 
   uimaConfig = {
     global.enable = true;

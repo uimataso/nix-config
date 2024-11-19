@@ -14,6 +14,7 @@
     minikube
     gnumake
     k6
+    redis
   ];
 
   programs = {

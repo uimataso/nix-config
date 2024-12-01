@@ -68,7 +68,7 @@ in
         sansSerif.package = pkgs.noto-fonts-cjk-sans;
         sansSerif.name = "Noto Sans CJK TC";
 
-        monospace.package = pkgs.nerdfonts.override { fonts = [ "Meslo" ]; };
+        monospace.package = pkgs.nerd-fonts.meslo-lg;
         monospace.name = "MesloLGS Nerd Font";
 
         emoji.package = pkgs.noto-fonts-emoji;

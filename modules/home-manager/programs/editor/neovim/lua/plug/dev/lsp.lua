@@ -21,19 +21,6 @@ return {
     },
 
     opts = {
-      servers = {
-        -- Grammar Checker
-        harper_ls = {
-          settings = {
-            ['harper-ls'] = {
-              linters = {
-                sentence_capitalization = false,
-              },
-            },
-          },
-        },
-      },
-
       diagnostics = {
         virtual_text = false,
         update_in_insert = true,

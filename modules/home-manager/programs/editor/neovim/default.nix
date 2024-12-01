@@ -41,8 +41,6 @@ in
       ripgrep
 
       # LSP / Formatter
-      # Grammar Checker
-      harper
       # Generic Formatter
       prettierd
 

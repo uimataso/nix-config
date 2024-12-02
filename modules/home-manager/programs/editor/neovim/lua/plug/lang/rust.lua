@@ -64,15 +64,6 @@ return {
     end,
   },
 
-  {
-    'stevearc/conform.nvim',
-    opts = {
-      formatters_by_ft = {
-        rust = { 'rustfmt', lsp_format = 'fallback' },
-      },
-    },
-  },
-
   { -- Rustaceanvim Neotest integration
     'nvim-neotest/neotest',
     opts = function(_, opts) table.insert(opts.adapters, require('rustaceanvim.neotest')) end,

@@ -1,5 +1,6 @@
 return {
   'gbprod/substitute.nvim',
+  enabled = false,
   keys = {
     { 's', mode = { 'n' }, function() require('substitute').operator() end, desc = '' },
     { 'ss', mode = { 'n' }, function() require('substitute').line() end, desc = '' },

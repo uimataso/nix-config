@@ -71,8 +71,7 @@ in
         ipa = "ip -c -br a";
         grep = "grep --color=auto";
         dl = "curl -OJL";
-      }
-      // {
+        man = "COLUMNS=$(($COLUMNS - 1)) man"; # make columns slightly small, so nvim doesn't wrap line
         fclist = "fc-list : family";
         unitest = "curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt";
       };

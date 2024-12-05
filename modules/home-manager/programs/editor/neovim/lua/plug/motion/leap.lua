@@ -12,37 +12,34 @@ return {
       { 'X', mode = { 'x', 'o' }, '<Plug>(leap-backward-till)', desc = 'Leap backward till' },
       { 'gs', mode = { 'n', 'x', 'o' }, '<Plug>(leap-from-window)', desc = 'Leap from window' },
       { 'gs', mode = { 'n', 'x', 'o' }, '<Plug>(leap-cross-window)', desc = 'Leap from window' },
+      { 'gr', mode = { 'n', 'o' }, function() require('leap.remote').action() end, desc = 'Leap remot' },
+      {
+        'ga',
+        mode = { 'n', 'x', 'o' },
+        function() require('leap.treesitter').select() end,
+        desc = 'Treesitter node selection',
+      },
+      {
+        'gA',
+        mode = { 'n', 'x', 'o' },
+        'V<cmd>lua require("leap.treesitter").select()<cr>',
+        desc = 'Treesitter node selection linewise',
+      },
     },
-    config = function()
-      -- fix cursor highlight
-      vim.api.nvim_create_autocmd('User', {
-        callback = function()
-          vim.cmd.hi('Cursor', 'blend=100')
-          vim.opt.guicursor:append({ 'a:Cursor/lCursor' })
-        end,
-        pattern = 'LeapEnter',
-      })
-      vim.api.nvim_create_autocmd('User', {
-        callback = function()
-          vim.cmd.hi('Cursor', 'blend=0')
-          vim.opt.guicursor:remove({ 'a:Cursor/lCursor' })
-        end,
-        pattern = 'LeapLeave',
-      })
-    end,
   },
-  -- {
-  --   'ggandor/flit.nvim',
-  --   dependencies = {
-  --     'ggandor/leap.nvim',
-  --     'tpope/vim-repeat',
-  --   },
-  --   opts = {},
-  --   keys = {
-  --     { 'f', mode = { 'n', 'v' }, desc = 'Flit f' },
-  --     { 'F', mode = { 'n', 'v' }, desc = 'Filt F' },
-  --     { 't', mode = { 'n', 'v' }, desc = 'Filt t' },
-  --     { 'T', mode = { 'n', 'v' }, desc = 'Filt T' },
-  --   }
-  -- },
+
+  {
+    'ggandor/flit.nvim',
+    dependencies = {
+      'ggandor/leap.nvim',
+      'tpope/vim-repeat',
+    },
+    opts = {},
+    keys = {
+      { 'f', mode = { 'n', 'v' }, desc = 'Flit f' },
+      { 'F', mode = { 'n', 'v' }, desc = 'Filt F' },
+      { 't', mode = { 'n', 'v' }, desc = 'Filt t' },
+      { 'T', mode = { 'n', 'v' }, desc = 'Filt T' },
+    },
+  },
 }

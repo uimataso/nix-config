@@ -6,13 +6,12 @@ return {
       'tpope/vim-repeat',
     },
     keys = {
-      { 's', mode = { 'n', 'x', 'o' }, '<Plug>(leap-forward-to)', desc = 'Leap forward to' },
-      { 'S', mode = { 'n', 'x', 'o' }, '<Plug>(leap-backward-to)', desc = 'Leap backward to' },
+      { 's', mode = { 'n', 'x', 'o' }, '<Plug>(leap-forward)', desc = 'Leap forward' },
+      { 'S', mode = { 'n', 'x', 'o' }, '<Plug>(leap-backward)', desc = 'Leap backward' },
       { 'x', mode = { 'x', 'o' }, '<Plug>(leap-forward-till)', desc = 'Leap forward till' },
       { 'X', mode = { 'x', 'o' }, '<Plug>(leap-backward-till)', desc = 'Leap backward till' },
-      { 'gs', mode = { 'n', 'x', 'o' }, '<Plug>(leap-from-window)', desc = 'Leap from window' },
-      { 'gs', mode = { 'n', 'x', 'o' }, '<Plug>(leap-cross-window)', desc = 'Leap from window' },
-      { 'gr', mode = { 'n', 'o' }, function() require('leap.remote').action() end, desc = 'Leap remot' },
+      { 'gw', mode = { 'n', 'x', 'o' }, '<Plug>(leap-from-window)', desc = 'Leap from window' },
+      { 'gs', mode = { 'n', 'o' }, function() require('leap.remote').action() end, desc = 'Leap remot' },
       {
         'ga',
         mode = { 'n', 'x', 'o' },
@@ -26,6 +25,11 @@ return {
         desc = 'Treesitter node selection linewise',
       },
     },
+
+    config = function()
+      -- Greying out the search area
+      vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' })
+    end,
   },
 
   {

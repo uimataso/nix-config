@@ -53,6 +53,10 @@ vim.keymap.set('', '<Leader>p', '"+p')
 vim.keymap.set('', '<Leader>P', '"+P')
 vim.keymap.set('', '<Leader><Leader>y', "gg\"+yG''")
 
+-- Visual paste not overwrite resgister by default
+vim.keymap.set('x', 'p', 'P')
+vim.keymap.set('x', 'P', 'p')
+
 -- Select the context just pasted
 vim.keymap.set('', 'gp', function()
   local v = vim.fn.getregtype():sub(1, 1)

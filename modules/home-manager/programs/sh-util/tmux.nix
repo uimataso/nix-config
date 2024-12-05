@@ -116,6 +116,16 @@ in
           bind -r j select-pane -t :.+
           bind -r k select-pane -t :.-
           bind -r l next-window
+          bind -n 'M-h' previous-window
+          bind -n 'M-j' select-pane -t :.+
+          bind -n 'M-k' select-pane -t :.-
+          bind -n 'M-l' next-window
+
+          # resize pane
+          bind -n 'M-H' resize-pane -L 3
+          bind -n 'M-J' resize-pane -D 3
+          bind -n 'M-K' resize-pane -U 3
+          bind -n 'M-L' resize-pane -R 3
 
           # split in same dir
           bind '"' split-window -v -c "#{pane_current_path}"

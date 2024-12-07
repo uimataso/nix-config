@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf mkEnableOption mkForce;
   cfg = config.uimaConfig.desktop.wayland.river;
 
   # cal power

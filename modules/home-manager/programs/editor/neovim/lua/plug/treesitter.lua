@@ -69,5 +69,13 @@ return {
       -- use_virtual_text = true,
       -- lint_events = { 'BufWrite', 'CursorHold' },
     },
+
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        node_incremental = 'v',
+        node_decremental = 'V',
+      },
+    },
   },
 }

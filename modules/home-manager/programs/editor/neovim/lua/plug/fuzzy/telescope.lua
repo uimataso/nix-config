@@ -1,11 +1,10 @@
 return {
   'nvim-telescope/telescope.nvim',
-  cmd = 'Telescope',
+  lazy = false,
 
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope-ui-select.nvim',
-    'gbrlsnchs/telescope-lsp-handlers.nvim',
   },
 
   keys = {
@@ -31,11 +30,6 @@ return {
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown({}),
-        },
-
-        -- Use telescope when using lsp command
-        ['lsp_handlers'] = {
-          require('telescope').load_extension('lsp_handlers'),
         },
       },
     })

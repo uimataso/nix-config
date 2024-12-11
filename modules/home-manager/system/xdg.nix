@@ -17,9 +17,6 @@ in
 
     xresources.path = "${config.xdg.configHome}/x11/xresources";
 
-    # .nix-profile
-    nix.settings.use-xdg-base-directories = true;
-
     # gtkrc-2.0
     gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 

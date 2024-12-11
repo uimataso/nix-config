@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption mkOption types;
+  inherit (lib) mkIf mkEnableOption mkOption mkForce types;
   cfg = config.uimaConfig.programs.editor.vscode;
 
   imper = config.uimaConfig.system.impermanence;
@@ -46,7 +46,7 @@ in
         "editor.formatOnSave" = true;
         "vim.foldfix" = true;
         "editor.lineNumbers" = "relative";
-        "editor.fontSize" = 13;
+        "editor.fontSize" = mkForce 13;
       };
     };
   };

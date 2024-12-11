@@ -74,11 +74,7 @@ in
     ];
 
     xdg.configFile = {
-      "nvim" = {
-        source = ./.;
-        # make lazy.lock outof control
-        recursive = true;
-      };
+      "nvim".source = ./.;
     };
 
     home.sessionVariables = {

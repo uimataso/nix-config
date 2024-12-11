@@ -22,6 +22,7 @@ require('lazy').setup({
   { import = 'plug.visual' },
 }, {
   defaults = { lazy = true },
+  lockfile = vim.fn.stdpath('data') .. '/lazy-lock.json', -- for nix
   install = { colorscheme = { 'uicolors' } },
   change_detection = { notify = false },
   performance = {

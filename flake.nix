@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
     # nixpkgs-local.url = "git+file:///home/uima/src/nixpkgs";
 
     systems.url = "github:nix-systems/default-linux";
@@ -12,9 +12,6 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    haumea.url = "github:nix-community/haumea/v0.2.2";
-    haumea.inputs.nixpkgs.follows = "nixpkgs";
 
     nur.url = "github:nix-community/NUR";
 
@@ -43,13 +40,11 @@
     , nixpkgs
     , home-manager
     , systems
-    , haumea
     , ...
     }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
-      util = import ./utils.nix { inherit lib; };
 
       # Generate attrset for each system
       forAllSystems = lib.genAttrs (import systems);
@@ -65,38 +60,7 @@
         );
 
       # Nixpkgs for each system
-      pkgsFor = inputPkgsFor nixpkgs;
-
-      # Read hosts from `./hosts`
-      #   Output: { host = "system type"; }
-      hosts =
-        let
-          hosts = haumea.lib.load {
-            src = ./hosts;
-            loader = haumea.lib.loaders.path;
-          };
-          hosts' = util.mergeSubAttrsets (util.mapSubAttrsets (system: _: system) hosts);
-        in
-        hosts';
-
-      # Read users from `./users`
-      #   Output: { "user@host" = { user = "user"; host = "host" }; }
-      users =
-        let
-          users = haumea.lib.load {
-            src = ./users;
-            loader = haumea.lib.loaders.path;
-          };
-          users' = util.mapSubAttrsets (user: host: { inherit user host; }) users;
-          users'' = util.renameSubAttrsetsKey
-            (
-              user: host: val:
-                "${user}@${host}"
-            )
-            users';
-          users''' = util.mergeSubAttrsets users'';
-        in
-        users''';
+      nixpkgsFor = inputPkgsFor nixpkgs;
 
       # SpecialArgs that share between nixosConfig and homeConfig
       specialArgs = forAllSystems (system: {
@@ -105,19 +69,13 @@
         # pkgs-local = (inputPkgsFor inputs.nixpkgs-local).${system};
       });
 
-      # Given host name and system type, returning Nixos System
-      # nixosConfig :: host name -> system type -> nixosSystem
-      nixosConfig =
-        host: system:
+      nixosConfig = { modules, system }:
         lib.nixosSystem {
-          pkgs = pkgsFor.${system};
+          pkgs = nixpkgsFor.${system};
           specialArgs = specialArgs.${system};
 
-          modules = [
-            # NixOS
+          modules = modules ++ [
             outputs.nixosModules
-            ./hosts/${system}/${host}
-            # Home Manager
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -128,35 +86,43 @@
           ];
         };
 
-      # Given user name and host name, returning Home Manager Configuration
-      # homeConfig :: user name -> host name -> homeManagerConfiguration
-      homeConfig =
-        user: host:
-        let
-          system = hosts.${host};
-        in
+      homeConfig = { modules, system }:
         lib.homeManagerConfiguration {
-          pkgs = pkgsFor.${system};
+          pkgs = nixpkgsFor.${system};
           extraSpecialArgs = specialArgs.${system};
-          modules = [
+          modules = modules ++ [
             outputs.homeManagerModules
-            ./users/${user}/${host}
           ];
         };
-
-      nixosConfigurations = lib.attrsets.mapAttrs nixosConfig hosts;
-      homeConfigurations = lib.attrsets.mapAttrs (key: val: homeConfig val.user val.host) users;
     in
     {
       inherit lib;
-      inherit nixosConfigurations;
-      inherit homeConfigurations;
 
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
 
+      nixosConfigurations = {
+        uicom = nixosConfig {
+          modules = [ ./hosts/uicom ];
+          system = "x86_64-linux";
+        };
+
+        araizen = nixosConfig {
+          modules = [ ./hosts/araizen ];
+          system = "x86_64-linux";
+        };
+      };
+
+      # TODO: not tested yet
+      homeConfigurations = {
+        "uima@uicom" = homeConfig {
+          modules = [ ./users/uima/uicom ];
+          system = "x86_64-linux";
+        };
+      };
+
       overlays = import ./overlays { inherit inputs outputs; };
-      packages = forAllSystems (system: import ./pkgs { pkgs = pkgsFor.${system}; });
+      packages = forAllSystems (system: import ./pkgs { pkgs = nixpkgsFor.${system}; });
 
       templates = import ./templates;
 
@@ -165,7 +131,7 @@
       devShells = forAllSystems (
         system:
         import ./shell.nix {
-          pkgs = pkgsFor.${system};
+          pkgs = nixpkgsFor.${system};
           pre-commit-check = self.checks.${system}.pre-commit-check;
         }
       );

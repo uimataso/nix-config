@@ -75,7 +75,6 @@
       editor = {
         neovim.enable = true;
         neovim.defaultEditor = true;
-        vscode.enable = true;
       };
 
       browser = {

@@ -33,6 +33,7 @@ in
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium;
+      # TODO: xdg dir: `.vscode-oss`
       extensions = with pkgs.vscode-extensions; [
         vscodevim.vim
         esbenp.prettier-vscode

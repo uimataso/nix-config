@@ -20,6 +20,8 @@ in
     # gtkrc-2.0
     gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
+    nix.settings.use-xdg-base-directories = true;
+
     xdg.configFile = {
       # wget
       "wgetrc".text = "hsts-file = ${config.xdg.cacheHome}/wget-hsts";

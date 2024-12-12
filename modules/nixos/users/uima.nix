@@ -24,6 +24,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    nix.settings.trusted-users = [ username ];
+
     users.users.${username} = mkMerge [
       {
         home = mkDefault "/home/${username}";

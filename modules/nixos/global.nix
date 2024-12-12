@@ -26,7 +26,6 @@ in
       # Disable channel since we use flakes
       channel.enable = false;
       settings = {
-        use-xdg-base-directories = true;
         experimental-features = [
           "nix-command"
           "flakes"

@@ -28,11 +28,13 @@
     mkbigfile
   ];
 
-  programs.htop.enable = true;
-  programs.btop.enable = true;
-  programs.ripgrep.enable = true;
-  programs.jq.enable = true;
-  programs.bat.enable = true;
+  programs = {
+    htop.enable = true;
+    btop.enable = true;
+    ripgrep.enable = true;
+    jq.enable = true;
+    bat.enable = true;
+  };
 
   uimaConfig = {
     global.enable = true;

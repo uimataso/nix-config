@@ -79,7 +79,9 @@ in
 
     home.sessionVariables = {
       # PAGER = lib.mkDefault "nvim +Man!";
-      MANPAGER = lib.mkDefault "nvim +Man!";
+      # MANPAGER = "nvim -c Man! -c 'set signcolumn=no'";
+      MANPAGER = "nvim -c Man!";
+      MANWIDTH = 1000000;
     };
 
     # Git pager

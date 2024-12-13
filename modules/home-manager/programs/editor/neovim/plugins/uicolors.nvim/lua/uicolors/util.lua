@@ -1,6 +1,6 @@
 local M = {}
 
--- source from: https://github.com/folke/tokyonight.nvim/
+-- stealed from: https://github.com/folke/tokyonight.nvim/
 
 ---@param c  string
 local function hexToRgb(c)

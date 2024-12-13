@@ -33,7 +33,7 @@ in
       it = "${pkgs.nix-template-tool}/bin/nix-template-tool";
 
       nvim-test = ''
-        rm -f ${configHome}/nvim && ln -s ${cfg.flakeDir}/modules/home-manager/programs/neovim ${configHome}/nvim
+        rm ${configHome}/nvim && ln -s ${cfg.flakeDir}/modules/home-manager/programs/editor/neovim ${configHome}/nvim
       '';
       nvim-clean = "rm ${configHome}/nvim";
     };

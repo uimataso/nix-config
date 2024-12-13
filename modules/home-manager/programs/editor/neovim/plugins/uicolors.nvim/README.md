@@ -1,1 +1,3 @@
-# NeoVim
+# Uicolors
+
+My custom theme!

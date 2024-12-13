@@ -1,5 +1,11 @@
 local M = {}
 
+M.themes = {
+  'ui',
+  'syntax',
+  'plugs',
+}
+
 M.load = function()
   -- Reset colors
   if vim.g.colors_name then
@@ -10,10 +16,11 @@ M.load = function()
   vim.o.termguicolors = true
   vim.o.background = 'dark'
 
-  vim.g.skip_ts_default_groups = true
-
-  for name, val in pairs(require('uicolors.theme')) do
-    vim.api.nvim_set_hl(0, name, val)
+  for _, theme_name in ipairs(M.themes) do
+    local theme = require('uicolors.themes.' .. theme_name)
+    for name, val in pairs(theme) do
+      vim.api.nvim_set_hl(0, name, val)
+    end
   end
 end
 

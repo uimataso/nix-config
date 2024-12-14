@@ -96,7 +96,8 @@ in
         with config.lib.stylix.colors.withHashtag;
         # tmux
         ''
-          set -sa terminal-overrides ",xterm-256color:RGB"
+          set -g default-terminal 'tmux-256color'
+          set -sa terminal-overrides ",alacritty*:Tc"
 
           set -g mode-keys vi
           set -g status-keys emacs

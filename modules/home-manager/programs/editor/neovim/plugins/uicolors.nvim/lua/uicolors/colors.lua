@@ -1,9 +1,6 @@
 local util = require('uicolors.util')
 
 -- https://ok-color-picker.netlify.app
--- Saturation: 20%
--- Lightness: 65%
-
 -- https://coolors.co/161616-ababab-db988d-aa9c86-94a38d-86a5a6-8aa1b2-b49599
 
 local colors = {
@@ -22,8 +19,8 @@ function colors:gray(level)
   return util.blend(self.white, self.black, level)
 end
 
--- colors.none = 'NONE'
-colors.none = colors.black
+colors.none = 'NONE'
+-- colors.none = colors.black
 colors.fg = colors.white
 colors.bg = colors.black
 colors.bg_float = colors:gray(0.05)
@@ -36,16 +33,16 @@ colors.border = colors:gray(0.3)
 colors.status_line = colors:gray(0.75)
 colors.search = colors.yellow
 
+colors.non_text = colors:gray(0.5)
+colors.comment = colors:gray(0.5)
+colors.title = colors.magenta
+
 colors.error = colors.red
 colors.warning = colors.yellow
 colors.info = colors.cyan
 colors.hint = colors:gray(0.75)
 colors.guide = colors.green
 colors.todo = colors.green
-
-colors.non_text = colors:gray(0.5)
-colors.comment = colors:gray(0.5)
-colors.title = colors.magenta
 
 colors.diff = {
   add = colors.green,

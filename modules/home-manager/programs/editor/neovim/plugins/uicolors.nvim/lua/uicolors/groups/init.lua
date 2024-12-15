@@ -12,6 +12,8 @@ end
 M.load = function(colors)
   local groups = {
     base = true,
+    -- lsp = true,
+    -- diagnostic = true,
     syntax = true,
   }
 

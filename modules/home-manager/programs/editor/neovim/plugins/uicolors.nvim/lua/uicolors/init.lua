@@ -1,16 +1,7 @@
 local M = {}
 
-M.themes = {
-  'ui',
-  'syntax',
-  'plugs',
-}
-
 M.load = function()
-  if vim.g.colors_name then
-    vim.cmd('hi clear')
-  end
-
+  vim.cmd('hi clear')
   vim.g.colors_name = 'uicolors'
   vim.o.termguicolors = true
   vim.o.background = 'dark'

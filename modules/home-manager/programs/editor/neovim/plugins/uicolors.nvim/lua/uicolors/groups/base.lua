@@ -9,16 +9,16 @@ M.get = function(c)
     NormalFloat = { fg = c.fg, bg = c.bg_float },
     FloatBorder = { fg = c.bg_float, bg = c.bg_float },
     FloatTitle = { fg = c.title, bg = c.bg_float, bold = true },
-    -- FloatFooter = { fg = c.fg, bg = c.bg_float },
-    -- WinBar = {},
-    -- WinBarNC = {},
+    FloatFooter = { fg = c.fg, bg = c.bg_float },
     WinSeparator = { fg = c.border },
 
     StatusLine = { fg = c.status_line, bold = true },
     StatusLineNC = { fg = c.status_line },
-    -- TabLine = {},
-    -- TabLineFill = {},
-    -- TabLineSel = {},
+    TabLine = { fg = c.status_line },
+    TabLineFill = {},
+    TabLineSel = { fg = c.fg, bold = true },
+    WinBar = 'StatusLine',
+    WinBarNC = 'StatusLineNc',
 
     -- Pmenu = {},
     -- PmenuSel = {},
@@ -81,36 +81,23 @@ M.get = function(c)
     DiffDelete = { fg = c.diff.delete },
     DiffText = { fg = c.comment },
 
-    SpellBad = { fg = c.error, underline = true },
-    SpellCap = { fg = c.warning, underline = true },
-    SpellLocal = { fg = c.hint, underline = true },
-    SpellRare = { fg = c.hint, underline = true },
+    SpellBad = { sp = c.error, undercurl = true },
+    SpellCap = { sp = c.warning, undercurl = true },
+    SpellLocal = { sp = c.hint, undercurl = true },
+    SpellRare = { sp = c.hint, undercurl = true },
+
+    -- extra
+    -- diffAdded = { link = 'DiffAdd' },
+    -- diffRemoved = { link = 'DiffDelete' },
+    -- diffChanged = { link = 'DiffChange' },
+    -- diffFile = { fg = c.cyan },
+    -- diffOldFile = { fg = c.cyan },
+    -- diffNewFile = { fg = c.cyan },
+    --
+    -- Added = { link = 'DiffAdd' },
+    -- Removed = { link = 'DiffDelete' },
+    -- Changed = { link = 'DiffChange' },
   }
 end
 
 return M
-
--- TabLine = { fg = c.gray5, bold = true },
--- TabLineSel = { bold = true },
--- TabLineFill = {},
---
--- WinBar = { link = 'TabLineSel' },
--- WinBarNC = { link = 'TabLine' },
---
--- Pmenu = { bg = c.gray2 },
--- PmenuSel = { bg = c.gray4 },
--- PmenuSbar = { link = 'Pmenu' },
--- PmenuThumb = { link = 'PmenuSel' },
--- WildMenu = {},
---
--- diffAdded = { link = 'DiffAdd' },
--- diffRemoved = { link = 'DiffDelete' },
--- diffChanged = { link = 'DiffChange' },
--- diffFile = { fg = c.cyan },
--- diffOldFile = { fg = c.cyan },
--- diffNewFile = { fg = c.cyan },
---
--- Added = { link = 'DiffAdd' },
--- Removed = { link = 'DiffDelete' },
--- Changed = { link = 'DiffChange' },
---

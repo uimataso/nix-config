@@ -1,8 +1,8 @@
 local M = {}
 
 M.plugins = {
-  -- ['telescope.nvim'] = 'plugs',
   ['indent-blankline.nvim'] = 'indent-blankline',
+  ['telescope.nvim'] = 'telescope',
 }
 
 M.get = function(name, colors)

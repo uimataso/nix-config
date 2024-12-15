@@ -4,13 +4,14 @@ local M = {}
 
 M.get = function(c)
   return {
-    LspReferenceText,
-    LspReferenceRead,
-    LspReferenceWrite,
-    LspInlayHint,
-    LspCodeLens,
-    LspCodeLensSeparator,
-    LspSignatureActiveParameter,
+    -- TODO: wtf is these
+    -- LspReferenceText,
+    -- LspReferenceRead,
+    -- LspReferenceWrite,
+    -- LspInlayHint,
+    -- LspCodeLens,
+    -- LspCodeLensSeparator,
+    -- LspSignatureActiveParameter,
   }
 end
 

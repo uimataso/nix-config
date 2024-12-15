@@ -1,7 +1,8 @@
 local M = {}
 
 M.plugins = {
-  ['telescope.nvim'] = 'plugs',
+  -- ['telescope.nvim'] = 'plugs',
+  ['indent-blankline.nvim'] = 'indent-blankline',
 }
 
 M.get = function(name, colors)
@@ -12,9 +13,11 @@ end
 M.load = function(colors)
   local groups = {
     base = true,
-    -- lsp = true,
-    -- diagnostic = true,
+    treesitter = true,
     syntax = true,
+    lsp = true,
+    diagnostic = true,
+    custom = true,
   }
 
   for _, group in pairs(M.plugins) do

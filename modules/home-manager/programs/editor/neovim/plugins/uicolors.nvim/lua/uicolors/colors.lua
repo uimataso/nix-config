@@ -32,78 +32,52 @@ colors.bg_visual = colors:gray(0.2)
 colors.border = colors:gray(0.3)
 colors.status_line = colors:gray(0.75)
 colors.search = colors.yellow
-
 colors.non_text = colors:gray(0.5)
-colors.comment = colors:gray(0.5)
 colors.title = colors.magenta
+
+colors.syntax = {
+  comment = colors:gray(0.5),
+  literal = colors.yellow,
+  variable = colors.white,
+  fn = colors.white,
+  type = colors:gray(0.8),
+  keyword = colors.magenta,
+
+  punctuation = colors:gray(0.5),
+  operator = colors:gray(0.7),
+  module = colors.white,
+  label = colors.magenta,
+  tag = colors.white,
+}
+
+colors.markup = {
+  title1 = colors.title,
+  title2 = colors.blue,
+  title3 = colors.cyan,
+  title4 = colors.title,
+  title5 = colors.blue,
+  title6 = colors.cyan,
+
+  link = colors:gray(0.5),
+  url = colors:gray(0.7),
+  quote = colors:gray(0.8),
+  bullet = colors:gray(0.6),
+}
 
 colors.error = colors.red
 colors.warning = colors.yellow
 colors.info = colors.cyan
 colors.hint = colors:gray(0.75)
+colors.ok = colors.green
 colors.guide = colors.green
 colors.todo = colors.green
+colors.unused = colors:gray(0.75)
 
 colors.diff = {
   add = colors.green,
   change = colors.blue,
   delete = colors.red,
+  text = colors:gray(0.5),
 }
-
--- bg          -> 10
--- float bg    -> 13
--- cursor line -> 17
--- visual      -> 20
--- fold        -> 23
--- border      -> 30
--- nontext     -> 40
--- line number -> 40
--- comment     -> 40
-
-colors.gray0 = util.blend(colors.white, colors.black, 0.05)
-colors.gray1 = util.blend(colors.white, colors.black, 0.1)
-colors.gray2 = util.blend(colors.white, colors.black, 0.2)
-colors.gray3 = util.blend(colors.white, colors.black, 0.3)
-colors.gray4 = util.blend(colors.white, colors.black, 0.4)
-colors.gray5 = util.blend(colors.white, colors.black, 0.5)
-colors.gray6 = util.blend(colors.white, colors.black, 0.6)
-colors.gray7 = util.blend(colors.white, colors.black, 0.7)
-colors.gray8 = util.blend(colors.white, colors.black, 0.8)
-colors.gray9 = util.blend(colors.white, colors.black, 0.9)
-
--- UI --
-colors.cursor_line = colors.gray1
-colors.nontext = colors.gray4
-colors.float_bg = colors.gray0
-
--- Syntax --
--- colors.comment = colors.gray5
-
-colors.preproc = colors.white
-colors.keyword = colors.magenta
-colors.func = colors.white
-colors.type = colors.white
-colors.field = colors.white
-colors.namespace = colors.white
-colors.punctuation = colors.gray6
-
-colors.variable = colors.white
-colors.constant = colors.white
-colors.string = colors.yellow
-colors.value = colors.yellow
-
-colors.uri = colors.cyan
-
-colors.diff_add = util.blend('#00ff00', colors.black, 0.15)
-colors.diff_delete = util.blend('#ff0000', colors.black, 0.15)
-
-colors.reference = util.blend(colors.cyan, colors.white, 0.6)
-
--- Plugin --
-colors.prompt = colors.gray1
-
-colors.neorg_tags_ranver_name = util.blend(colors.magenta, colors.black, 0.4)
-colors.neorg_tags_ranver_deli = util.blend(colors.punctuation, colors.black, 0.4)
-colors.neorg_tags_ranver_para = util.blend(colors.blue, colors.black, 0.4)
 
 return colors

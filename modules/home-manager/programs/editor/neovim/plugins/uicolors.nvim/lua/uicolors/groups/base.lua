@@ -1,6 +1,13 @@
 local M = {}
 
 -- see :h highlight-groups
+-- see :h expr-highlight
+
+-- run this to get all default hi group in file
+-- $ nvim --clean
+-- :redir > file
+-- :highlight
+-- :redir END
 
 M.get = function(c)
   return {
@@ -15,7 +22,7 @@ M.get = function(c)
     StatusLine = { fg = c.status_line, bold = true },
     StatusLineNC = { fg = c.status_line },
     TabLine = { fg = c.status_line },
-    TabLineFill = {},
+    TabLineFill = 'Normal',
     TabLineSel = { fg = c.fg, bold = true },
     WinBar = 'StatusLine',
     WinBarNC = 'StatusLineNc',
@@ -79,25 +86,22 @@ M.get = function(c)
     DiffAdd = { fg = c.diff.add },
     DiffChange = { fg = c.diff.change },
     DiffDelete = { fg = c.diff.delete },
-    DiffText = { fg = c.comment },
+    DiffText = { fg = c.diff.text },
 
     SpellBad = { sp = c.error, undercurl = true },
     SpellCap = { sp = c.warning, undercurl = true },
     SpellLocal = { sp = c.hint, undercurl = true },
     SpellRare = { sp = c.hint, undercurl = true },
-
-    -- extra
-    -- diffAdded = { link = 'DiffAdd' },
-    -- diffRemoved = { link = 'DiffDelete' },
-    -- diffChanged = { link = 'DiffChange' },
-    -- diffFile = { fg = c.cyan },
-    -- diffOldFile = { fg = c.cyan },
-    -- diffNewFile = { fg = c.cyan },
-    --
-    -- Added = { link = 'DiffAdd' },
-    -- Removed = { link = 'DiffDelete' },
-    -- Changed = { link = 'DiffChange' },
   }
 end
 
 return M
+
+-- FloatShadow    xxx ctermbg=0 guibg=NvimDarkGrey4 blend=80
+-- FloatShadowThrough xxx ctermbg=0 guibg=NvimDarkGrey4 blend=100
+--
+-- RedrawDebugNormal xxx cterm=reverse gui=reverse
+-- RedrawDebugClear xxx ctermfg=0 ctermbg=11 guibg=NvimDarkYellow
+-- RedrawDebugComposed xxx ctermfg=0 ctermbg=10 guibg=NvimDarkGreen
+-- RedrawDebugRecompose xxx ctermfg=0 ctermbg=9 guibg=NvimDarkRed
+--

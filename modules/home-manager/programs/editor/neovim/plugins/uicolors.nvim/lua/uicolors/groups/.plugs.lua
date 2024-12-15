@@ -12,11 +12,6 @@ M.get = function(c)
     HelpviewInlineCode = { link = 'MarkviewCode' },
     HelpviewCodeLanguage = { link = 'MarkviewCode' },
 
-    DiagnosticError = { fg = c.red },
-    DiagnosticWarn = { fg = c.yellow },
-    DiagnosticInfo = { fg = c.todo },
-    DiagnosticHint = { fg = c.hint },
-
     -- Telescope
     TelescopeNormal = { link = 'NormalFloat' },
     TelescopeBorder = { link = 'FloatBorder' },

@@ -7,7 +7,6 @@ M.themes = {
 }
 
 M.load = function()
-  -- Reset colors
   if vim.g.colors_name then
     vim.cmd('hi clear')
   end
@@ -16,11 +15,12 @@ M.load = function()
   vim.o.termguicolors = true
   vim.o.background = 'dark'
 
-  for _, theme_name in ipairs(M.themes) do
-    local theme = require('uicolors.themes.' .. theme_name)
-    for name, val in pairs(theme) do
-      vim.api.nvim_set_hl(0, name, val)
-    end
+  local colors = require('uicolors.colors')
+  local groups = require('uicolors.groups').load(colors)
+
+  for group, hl in pairs(groups) do
+    hl = type(hl) == 'string' and { link = hl } or hl
+    vim.api.nvim_set_hl(0, group, hl)
   end
 end
 

@@ -8,8 +8,22 @@ return {
     {
       '<Leader>o',
       mode = { 'n' },
-      function() require('oil').open_float() end,
-      desc = 'Open oil browser in a floating window',
+      -- function() require('oil').open_float() end,
+      function() require('oil').open() end,
+      desc = 'Open oil browser',
+    },
+
+    {
+      '-',
+      mode = { 'n' },
+      function()
+        if vim.v.count > 0 then
+          vim.api.nvim_feedkeys(vim.v.count .. '-', 'n', false)
+        else
+          require('oil').open()
+        end
+      end,
+      desc = 'Open Oil browser if no count prefix, otherwise do default action',
     },
   },
 

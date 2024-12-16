@@ -97,12 +97,21 @@ in
         # tmux
         ''
           set -g default-terminal 'tmux-256color'
+
+          # true colors
           set -as terminal-overrides ",alacritty*:Tc"
-          set -as terminal-overrides ",xterm-256color:RGB"
+          set -as terminal-overrides ",xterm-256color:Tc"
+
           # color on underline and undercurl
           # ref: https://evantravers.com/articles/2021/02/05/curly-underlines-in-kitty-tmux-neovim/
           set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
           set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
+
+          # underscore colours - needs tmux-3.0 (wsl2 in Windows Terminal)}
+          # ref: https://github.com/leonasdev/.dotfiles/issues/15#issuecomment-1931906339
+          if-shell 'test -n "$WSL_DISTRO_NAME"' {
+            set -as terminal-overrides ',*:Setulc=\E[58::2::::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'
+          }
 
           set -g mode-keys vi
           set -g status-keys emacs

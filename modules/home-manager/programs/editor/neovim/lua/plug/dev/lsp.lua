@@ -21,6 +21,13 @@ return {
     },
 
     opts = {
+      servers = {
+        typos_lsp = {
+          init_options = {
+            diagnosticSeverity = 'Hint',
+          },
+        },
+      },
       diagnostics = {
         virtual_text = false,
         update_in_insert = true,

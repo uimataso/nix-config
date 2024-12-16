@@ -3,6 +3,7 @@ local M = {}
 M.plugins = {
   ['indent-blankline.nvim'] = 'indent-blankline',
   ['telescope.nvim'] = 'telescope',
+  ['helpview.nvim'] = 'helpview',
 }
 
 M.get = function(name, colors)

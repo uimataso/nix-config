@@ -98,6 +98,7 @@ in
         ''
           set -g default-terminal 'tmux-256color'
           set -as terminal-overrides ",alacritty*:Tc"
+          set -as terminal-overrides ",xterm-256color:RGB"
           # color on underline and undercurl
           # ref: https://evantravers.com/articles/2021/02/05/curly-underlines-in-kitty-tmux-neovim/
           set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support

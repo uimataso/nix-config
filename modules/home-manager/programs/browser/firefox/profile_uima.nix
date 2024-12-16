@@ -123,8 +123,6 @@ in
           youtube-recommended-videos
           dearrow # clickbait remover
 
-          # Translate via Google or DeepL
-          simple-translate
           # Add Furigana (振り仮名) on Japanese kanji.
           furiganaize
         ];

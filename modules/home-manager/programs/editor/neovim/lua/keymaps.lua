@@ -73,6 +73,19 @@ vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('c', '<CR>', function() return vim.fn.getcmdtype() == '/' and '<cr>zzzv' or '<cr>' end, { expr = true })
 
+-- '*' but not jump to next, eg. just highlight the word under the cursor
+-- ref: https://stackoverflow.com/a/49944815
+vim.keymap.set('n', '*', function()
+  local word = '\\<' .. vim.fn.expand('<cword>') .. '\\>'
+  vim.fn.setreg('/', word)
+  vim.o.hlsearch = true
+end, { expr = true })
+vim.keymap.set('n', 'g*', function()
+  local word = vim.fn.expand('<cword>')
+  vim.fn.setreg('/', word)
+  vim.o.hlsearch = true
+end, { expr = true })
+
 -- Block insert in line visual mode
 vim.keymap.set('x', 'I', function() return vim.fn.mode() == 'V' and '^<C-v>I' or 'I' end, { expr = true })
 vim.keymap.set('x', 'A', function() return vim.fn.mode() == 'V' and '$<C-v>A' or 'A' end, { expr = true })

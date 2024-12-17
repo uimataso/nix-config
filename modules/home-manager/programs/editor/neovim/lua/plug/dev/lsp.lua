@@ -4,21 +4,6 @@ return {
     lazy = false,
 
     dependencies = {
-      -- {
-      --   'hrsh7th/nvim-cmp',
-      --   dependencies = {
-      --     'hrsh7th/cmp-nvim-lsp',
-      --     'hrsh7th/cmp-nvim-lsp-signature-help',
-      --   },
-      --   opts = function(_, opts)
-      --     local cmp = require('cmp')
-      --     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
-      --       { name = 'nvim_lsp' },
-      --       { name = 'nvim_lsp_signature_help' },
-      --     }))
-      --   end,
-      -- },
-
       { 'saghen/blink.cmp' },
     },
 
@@ -73,6 +58,14 @@ return {
           header = '',
           prefix = '',
         },
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = '',
+            [vim.diagnostic.severity.WARN] = '',
+            [vim.diagnostic.severity.HINT] = '',
+            [vim.diagnostic.severity.INFO] = '',
+          },
+        },
       },
     },
 
@@ -98,15 +91,6 @@ return {
           require('lspconfig')[server].setup(server_opts)
         end
       end
-
-      -- Icon define
-      local function set_sign(name, text)
-        vim.fn.sign_define('DiagnosticSign' .. name, { texthl = 'DiagnosticSign' .. name, text = text, numhl = '' })
-      end
-      set_sign('Error', '')
-      set_sign('Warn', '')
-      set_sign('Hint', '')
-      set_sign('Info', '')
 
       vim.diagnostic.config(opts.diagnostics)
     end,

@@ -1,5 +1,46 @@
 return {
   {
+    'mfussenegger/nvim-lint',
+    lazy = false,
+    config = function()
+      local typos_ns = require('lint').get_namespace('typos')
+      local typos_hl_ns = vim.api.nvim_create_namespace('typos_hl')
+
+      vim.diagnostic.handlers[typos_hl_ns] = {
+        show = function(namespace, bufnr, diagnostics, _)
+          if namespace ~= typos_ns then
+            return
+          end
+
+          for _, diagnostic in ipairs(diagnostics) do
+            vim.api.nvim_buf_add_highlight(
+              bufnr,
+              typos_hl_ns,
+              'SpellBad',
+              diagnostic.lnum,
+              diagnostic.col,
+              diagnostic.end_col
+            )
+          end
+        end,
+
+        hide = function(namespace, bufnr)
+          if namespace == typos_ns then
+            vim.api.nvim_buf_clear_namespace(bufnr, typos_hl_ns, 0, -1)
+          end
+        end,
+      }
+
+      vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+        callback = function()
+          -- run typos on all filetype
+          require('lint').try_lint('typos')
+        end,
+      })
+    end,
+  },
+
+  {
     'neovim/nvim-lspconfig',
     lazy = false,
 
@@ -21,42 +62,42 @@ return {
     },
 
     opts = {
-      servers = {
-        typos_lsp = {
-          init_options = {
-            diagnosticSeverity = 'Hint',
-          },
-          on_attach = function(client, _)
-            local diagnostic_ns = vim.lsp.diagnostic.get_namespace(client.id)
-            local typos_hl_ns = vim.api.nvim_create_namespace('typos_hl')
-
-            vim.diagnostic.handlers[typos_hl_ns] = {
-              show = function(namespace, bufnr, diagnostics, _)
-                if namespace ~= diagnostic_ns then
-                  return
-                end
-
-                for _, diagnostic in ipairs(diagnostics) do
-                  vim.api.nvim_buf_add_highlight(
-                    bufnr,
-                    typos_hl_ns,
-                    'SpellBad',
-                    diagnostic.lnum,
-                    diagnostic.col,
-                    diagnostic.end_col
-                  )
-                end
-              end,
-
-              hide = function(namespace, bufnr)
-                if namespace == diagnostic_ns then
-                  vim.api.nvim_buf_clear_namespace(bufnr, typos_hl_ns, 0, -1)
-                end
-              end,
-            }
-          end,
-        },
-      },
+      -- servers = {
+      --   typos_lsp = {
+      --     init_options = {
+      --       diagnosticSeverity = 'Hint',
+      --     },
+      --     on_attach = function(client, _)
+      --       local diagnostic_ns = vim.lsp.diagnostic.get_namespace(client.id)
+      --       local typos_hl_ns = vim.api.nvim_create_namespace('typos_hl')
+      --
+      --       vim.diagnostic.handlers[typos_hl_ns] = {
+      --         show = function(namespace, bufnr, diagnostics, _)
+      --           if namespace ~= diagnostic_ns then
+      --             return
+      --           end
+      --
+      --           for _, diagnostic in ipairs(diagnostics) do
+      --             vim.api.nvim_buf_add_highlight(
+      --               bufnr,
+      --               typos_hl_ns,
+      --               'SpellBad',
+      --               diagnostic.lnum,
+      --               diagnostic.col,
+      --               diagnostic.end_col
+      --             )
+      --           end
+      --         end,
+      --
+      --         hide = function(namespace, bufnr)
+      --           if namespace == diagnostic_ns then
+      --             vim.api.nvim_buf_clear_namespace(bufnr, typos_hl_ns, 0, -1)
+      --           end
+      --         end,
+      --       }
+      --     end,
+      --   },
+      -- },
 
       diagnostics = {
         virtual_text = false,

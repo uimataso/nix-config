@@ -4,20 +4,22 @@ return {
     lazy = false,
 
     dependencies = {
-      {
-        'hrsh7th/nvim-cmp',
-        dependencies = {
-          'hrsh7th/cmp-nvim-lsp',
-          'hrsh7th/cmp-nvim-lsp-signature-help',
-        },
-        opts = function(_, opts)
-          local cmp = require('cmp')
-          opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
-            { name = 'nvim_lsp' },
-            { name = 'nvim_lsp_signature_help' },
-          }))
-        end,
-      },
+      -- {
+      --   'hrsh7th/nvim-cmp',
+      --   dependencies = {
+      --     'hrsh7th/cmp-nvim-lsp',
+      --     'hrsh7th/cmp-nvim-lsp-signature-help',
+      --   },
+      --   opts = function(_, opts)
+      --     local cmp = require('cmp')
+      --     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
+      --       { name = 'nvim_lsp' },
+      --       { name = 'nvim_lsp_signature_help' },
+      --     }))
+      --   end,
+      -- },
+
+      { 'saghen/blink.cmp' },
     },
 
     opts = {
@@ -77,11 +79,13 @@ return {
     config = function(_, opts)
       -- Capabilities
       local has_cmp, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+      local has_blink, blink = pcall(require, 'blink.cmp')
       local capabilities = vim.tbl_deep_extend(
         'force',
         {},
         vim.lsp.protocol.make_client_capabilities(),
         has_cmp and cmp_nvim_lsp.default_capabilities() or {},
+        has_blink and blink.get_lsp_capabilities() or {},
         opts.capabilities or {}
       )
 

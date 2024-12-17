@@ -53,7 +53,7 @@ vim.keymap.set('', '<Leader>p', '"+p')
 vim.keymap.set('', '<Leader>P', '"+P')
 vim.keymap.set('', '<Leader><Leader>y', "gg\"+yG''")
 
--- Visual paste not overwrite resgister by default
+-- Visual paste not overwrite register by default
 vim.keymap.set('x', 'p', 'P')
 vim.keymap.set('x', 'P', 'p')
 
@@ -75,16 +75,8 @@ vim.keymap.set('c', '<CR>', function() return vim.fn.getcmdtype() == '/' and '<c
 
 -- '*' but not jump to next, eg. just highlight the word under the cursor
 -- ref: https://stackoverflow.com/a/49944815
-vim.keymap.set('n', '*', function()
-  local word = '\\<' .. vim.fn.expand('<cword>') .. '\\>'
-  vim.fn.setreg('/', word)
-  vim.o.hlsearch = true
-end, { expr = true })
-vim.keymap.set('n', 'g*', function()
-  local word = vim.fn.expand('<cword>')
-  vim.fn.setreg('/', word)
-  vim.o.hlsearch = true
-end, { expr = true })
+vim.keymap.set('n', '*', [[<cmd>let @/ = '\<' . expand('<cword>') . '\>' <bar> set hls <cr>]])
+vim.keymap.set('n', 'g*', [[<cmd>let @/=expand('<cword>') <bar> set hls <cr>]])
 
 -- Block insert in line visual mode
 vim.keymap.set('x', 'I', function() return vim.fn.mode() == 'V' and '^<C-v>I' or 'I' end, { expr = true })

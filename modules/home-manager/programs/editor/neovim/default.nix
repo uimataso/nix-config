@@ -43,8 +43,7 @@ in
       # LSP / Formatter
       # Generic Formatter
       prettierd
-      # typos-lsp
-      typos
+      typos-lsp
 
       # Lua
       lua-language-server

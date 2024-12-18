@@ -25,7 +25,7 @@ vim.keymap.set({ 'i', 's' }, '<PageUp>', function()
 end, { expr = true, desc = 'Jump to prev snip placeholder' })
 
 -- Terminal mapping
-vim.keymap.set('', '<Leader>sh', '<cmd>terminal<cr>')
+vim.keymap.set({ 'n', 't' }, '<C-t>', require('term').toggleterm)
 vim.keymap.set('t', '<C-[>', '<C-\\><C-n>')
 vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>')
 

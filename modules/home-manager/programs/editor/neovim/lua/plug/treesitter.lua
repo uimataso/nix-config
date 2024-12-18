@@ -3,18 +3,10 @@ return {
   event = 'BufReadPost',
   build = ':TSUpdate',
   dependencies = {
-    'nvim-treesitter/playground',
+    -- 'nvim-treesitter/playground',
     'nvim-treesitter/nvim-treesitter-textobjects',
     -- parser for nu-lang
     'nushell/tree-sitter-nu',
-  },
-
-  keys = {
-    {
-      '<Leader>hi',
-      function() vim.print(vim.treesitter.get_captures_at_cursor(0)) end,
-      desc = 'Print treesitter structure',
-    },
   },
 
   main = 'nvim-treesitter.configs',

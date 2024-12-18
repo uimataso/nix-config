@@ -96,6 +96,8 @@ vim.keymap.set(
   { silent = true, desc = 'Toggle conceal' }
 )
 
+vim.keymap.set('n', '<Leader>hi', '<cmd>Inspect<cr>')
+
 -- Diagnostic
 vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostics in a floating window' })
 vim.keymap.set('n', '<Leader>dj', vim.diagnostic.goto_prev, { desc = 'Move to the prev diagnostic' })

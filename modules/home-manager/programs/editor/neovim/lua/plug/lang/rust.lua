@@ -17,6 +17,11 @@ return {
     ft = 'rust',
 
     config = function()
+      -- disable 'Vim ftplugin for Rust' mapping
+      -- see: nvim/runtime/ftplugin/rust.vim
+      -- see: https://github.com/rust-lang/rust.vim
+      vim.g.no_plugin_maps = true
+
       vim.g.rustaceanvim = {
         -- Plugin configuration
         tools = {},

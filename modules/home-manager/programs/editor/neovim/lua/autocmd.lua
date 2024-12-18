@@ -4,6 +4,16 @@ local ag = function(name, fn)
   fn(group)
 end
 
+-- Disable auto comment new line
+-- TODO: check runtime/ftplugin
+ag('uima/Fromatoptions', function(g)
+  au('FileType', {
+    group = g,
+    pattern = { '*' },
+    callback = function() vim.opt.formatoptions:remove({ 'c', 'r', 'o' }) end,
+  })
+end)
+
 -- Delete trailing spaces and extra line when save file
 ag('uima/DeleteTrailingSpace', function(g)
   au('BufWrite', {

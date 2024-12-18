@@ -89,11 +89,12 @@ in
 
 
           # Fzf Shell Integration
-          ## C-T: Insert file name
           ## C-R: Search history
-          ## A-C: Cd into selected directory
           ## **<Tab>: Fzf's completion
+          FZF_CTRL_T_COMMAND='''
+          FZF_ALT_C_COMMAND='''
           source ${fzf-key-bindings}
+          bind -x '"\C-r": __fzf_history__'
 
 
           # Fzf Compltion

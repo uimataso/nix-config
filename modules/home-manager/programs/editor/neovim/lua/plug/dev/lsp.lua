@@ -41,7 +41,7 @@ return {
           },
           on_attach = function(client, _)
             local diagnostic_ns = vim.lsp.diagnostic.get_namespace(client.id)
-            local typos_hl_ns = vim.api.nvim_create_namespace('typos_hl')
+            local typos_hl_ns = vim.api.nvim_create_namespace('uima/TyposLspHighlight')
             overwrite_diagnostic_highlight(diagnostic_ns, typos_hl_ns, 'SpellBad')
           end,
         },

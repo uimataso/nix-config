@@ -65,7 +65,7 @@ end
 
 function Statusline()
   return table.concat({
-    '  %t %h%m%r%w', -- Flie info
+    '  %t %h%m%r%w', -- File info
     vcs(),
     diagnostics(),
 

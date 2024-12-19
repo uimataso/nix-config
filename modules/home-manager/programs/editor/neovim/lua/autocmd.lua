@@ -28,6 +28,18 @@ ag('uima/DeleteTrailingSpace', function(g)
   })
 end)
 
+-- Check if we need to reload the file when it changed
+ag(
+  'uima/Checktime',
+  function(g)
+    au({ 'FocusGained', 'BufEnter', 'TermClose', 'TermLeave' }, {
+      group = g,
+      desc = 'Check if any file changed outsite of vim',
+      command = 'checktime',
+    })
+  end
+)
+
 -- Restore the cursor position after yank
 ag('uima/RestoreCursorAfterYank', function(g)
   au({ 'VimEnter', 'CursorMoved' }, {

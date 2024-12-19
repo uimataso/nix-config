@@ -14,7 +14,8 @@ return {
   opts = {
     -- stylua: ignore start
     ensure_installed = {
-      'c', 'rust', 'python', 'javascript', 'lua', 'nix', 'nu', 'html',
+      'c', 'rust', 'python', 'javascript', 'lua', 'nix', 'nu',
+      'html', 'sql',
       'markdown', 'markdown_inline', 'org',
       'json', 'yaml', 'toml',
       'awk', 'bash', 'corn', 'diff', 'http', 'query',

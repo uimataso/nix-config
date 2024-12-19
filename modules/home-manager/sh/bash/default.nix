@@ -108,6 +108,11 @@ in
             FZF_DEFAULT_OPTS="--height ''${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_COMPLETION_OPTS" \
               $(__fzfcmd 2>/dev/null || echo fzf) -1 -0 --prompt "''${PS1@P}$line" --nth 2 -d "$_FZF_COMPLETION_SEP" --ansi \
               | tr -d "$_FZF_COMPLETION_SEP"
+
+
+          # goto the nixstore of a executable
+          ng() {
+            cd $(dirname $(readlink $(which $1)))
           }
         '';
     };

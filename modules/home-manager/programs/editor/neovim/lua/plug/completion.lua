@@ -26,7 +26,14 @@ return {
         ['<PageUp>'] = { 'snippet_backward' },
       },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        -- default = { 'lsp', 'path', 'snippets', 'buffer' },
+        completion = {
+          enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
+        },
+        providers = {
+          lsp = { fallback_for = { 'lazydev' } },
+          lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink' },
+        },
       },
       completion = {
         list = {

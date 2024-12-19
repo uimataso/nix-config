@@ -1,4 +1,4 @@
-return { -- Only used for seeting working directory
+return { -- Only used for setting working directory
   'ahmedkhalf/project.nvim',
   -- enabled = false,
   event = 'BufReadPre',

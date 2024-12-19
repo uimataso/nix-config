@@ -1,3 +1,6 @@
+-- disable default ftplugin mapping
+vim.g.no_plugin_maps = true
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = 'yes'

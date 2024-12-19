@@ -5,7 +5,7 @@ local ag = function(name, fn)
 end
 
 -- Disable auto comment new line
--- TODO: check runtime/ftplugin
+-- TODO: can I disable runtime/ftplugin completely?
 ag('uima/Fromatoptions', function(g)
   au('FileType', {
     group = g,

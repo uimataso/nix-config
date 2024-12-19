@@ -12,7 +12,6 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require('lazy').setup({
-  { import = 'plug' },
   { import = 'plug.core' },
   { import = 'plug.dev' },
   { import = 'plug.enhance' },

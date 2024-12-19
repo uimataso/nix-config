@@ -22,7 +22,7 @@ return {
         ['<Tab>'] = { 'snippet_forward', 'fallback' },
         ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
 
-        ['<PageDown>'] = { 'select_and_accept', 'snippet_forward' },
+        ['<PageDown>'] = { 'snippet_forward' },
         ['<PageUp>'] = { 'snippet_backward' },
       },
       sources = {

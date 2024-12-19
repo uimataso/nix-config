@@ -3,7 +3,6 @@ return {
   event = 'BufReadPost',
   build = ':TSUpdate',
   dependencies = {
-    -- 'nvim-treesitter/playground',
     'nvim-treesitter/nvim-treesitter-textobjects',
     -- parser for nu-lang
     'nushell/tree-sitter-nu',

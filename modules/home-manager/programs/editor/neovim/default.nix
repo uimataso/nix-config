@@ -37,7 +37,8 @@ in
     home.packages = with pkgs; [
       neovim
       gcc
-      # For Telescope
+
+      fd
       ripgrep
 
       # LSP / Formatter

@@ -58,7 +58,7 @@ M.get = function(c)
     ['@operator'] = { fg = c.syntax.operator },
 
     -- Keywords
-    ['@keyword'] = { fg = c.syntax.keyword },
+    ['@keyword'] = { fg = c.syntax.keyword, bold = true },
     ['@keyword.coroutine'] = '@keyword',
     ['@keyword.function'] = '@keyword',
     ['@keyword.operator'] = '@keyword',

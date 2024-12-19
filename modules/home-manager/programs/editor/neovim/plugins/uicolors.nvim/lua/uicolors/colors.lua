@@ -39,9 +39,11 @@ colors.syntax = {
   comment = colors:gray(0.5),
   literal = colors.yellow,
   variable = colors.white,
-  fn = colors.white,
+  -- fn = colors.white,
+  fn = '#95a0a8', -- 240 10 65
   type = colors:gray(0.8),
-  keyword = colors.magenta,
+  -- keyword = colors.magenta,
+  keyword = '#ac999a', -- 10 12 65
 
   punctuation = colors:gray(0.5),
   operator = colors:gray(0.7),
@@ -70,7 +72,7 @@ colors.info = colors.cyan
 colors.hint = colors:gray(0.75)
 colors.ok = colors.green
 colors.guide = colors.green
-colors.todo = colors.green
+colors.todo = util.blend(colors.green, colors.black, 0.8)
 colors.unused = colors:gray(0.75)
 
 colors.diff = {

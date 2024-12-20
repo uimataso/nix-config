@@ -15,8 +15,9 @@ return {
     { '<Leader>fw', '<cmd>FzfLua grep_cword<cr>', desc = 'Find Word' },
     { '<Leader>fW', '<cmd>FzfLua grep_cWORD<cr>', desc = 'Find WORD' },
     { '<Leader>f"', '<cmd>FzfLua registers<cr>', desc = 'Find register' },
+    { '<Leader>ft', '<cmd>TodoFzfLua', desc = 'Find Todo' },
 
-    { '<Leader>fd', '<cmd>FzfLua diagnostics_workspace<cr>', desc = 'Find Diagnostics' },
+    { '<Leader>fd', '<cmd>FzfLua diagnostics_workspace<cr>', desc = 'Find Diagnostic' },
 
     { '<Leader>fh', '<cmd>FzfLua helptags<cr>', desc = 'Find Help' },
 

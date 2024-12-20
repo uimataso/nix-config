@@ -1,6 +1,7 @@
 return {
   'nvim-telescope/telescope.nvim',
   lazy = false,
+  disabled = true,
 
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -12,29 +13,25 @@ return {
   },
 
   keys = {
-    -- { '=', function() require('telescope.builtin').find_files() end, desc = 'Telescope find files' },
-    -- { '<Leader>fe', function() require('telescope.builtin').find_files() end, desc = 'Telescope find files' },
-    -- { '<Leader>fu', function() require('telescope.builtin').buffers() end, desc = 'Telescope find buffers' },
-    -- { '<Leader>fs', function() require('telescope.builtin').live_grep() end, desc = 'Telescope live grep' },
-    { '<Leader>fr', function() require('telescope.builtin').resume() end, desc = 'Telescope resume last search' },
-    -- { '<Leader>fh', function() require('telescope.builtin').help_tags() end, desc = 'Telescope search help' },
-    { '<Leader>di', function() require('telescope.builtin').diagnostics() end, desc = 'Telescope diagnostics list' },
-    {
-      '<Leader>do',
-      function() require('telescope.builtin').diagnostics({ bufnr = 0 }) end,
-      desc = 'Telescope diagnostics list in this buffer',
-    },
-    { '<Leader>gc', function() require('telescope.builtin').git_commits() end, desc = 'Telescope git commits list' },
+    { '=', function() require('telescope.builtin').find_files() end, desc = 'Find Files' },
+    { '<Leader>ff', function() require('telescope.builtin').find_files() end, desc = 'Find Files' },
+    { '<Leader>fb', function() require('telescope.builtin').buffers() end, desc = 'Find Buffer' },
+    { '<Leader>fs', function() require('telescope.builtin').live_grep() end, desc = 'Find by Search' },
+    { '<Leader>ft', '<cmd>TodoTelescope', desc = 'Find Todo' },
+    { '<Leader>fd', function() require('telescope.builtin').diagnostics() end, desc = 'Find Diagnostic' },
+    { '<Leader>fr', function() require('telescope.builtin').resume() end, desc = 'Find Resume' },
+    { '<Leader>fh', function() require('telescope.builtin').help_tags() end, desc = 'Find Help' },
+    { '<Leader>gc', function() require('telescope.builtin').git_commits() end, desc = 'Git Commit' },
     {
       '<Leader>gb',
       function() require('telescope.builtin').git_bcommits() end,
-      desc = 'Telescope git commits list for this buffer',
+      desc = 'Git Commit in Buffer',
     },
     {
       '<Leader>gb',
       mode = { 'x' },
       function() require('telescope.builtin').git_bcommits_range() end,
-      desc = 'Telescope git commits list for this buffer',
+      desc = 'Git Commit in Buffer',
     },
     {
       '<Leader>fp',
@@ -44,7 +41,7 @@ return {
           cwd = vim.fs.joinpath(vim.fn.stdpath('data'), 'lazy'),
         })
       end,
-      desc = 'Telescope search help',
+      desc = 'Find Package Code',
     },
   },
 

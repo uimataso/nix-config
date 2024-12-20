@@ -13,11 +13,11 @@ return {
 
   keys = {
     -- { '=', function() require('telescope.builtin').find_files() end, desc = 'Telescope find files' },
-    { '<Leader>fe', function() require('telescope.builtin').find_files() end, desc = 'Telescope find files' },
-    { '<Leader>fu', function() require('telescope.builtin').buffers() end, desc = 'Telescope find buffers' },
-    { '<Leader>fs', function() require('telescope.builtin').live_grep() end, desc = 'Telescope live grep' },
+    -- { '<Leader>fe', function() require('telescope.builtin').find_files() end, desc = 'Telescope find files' },
+    -- { '<Leader>fu', function() require('telescope.builtin').buffers() end, desc = 'Telescope find buffers' },
+    -- { '<Leader>fs', function() require('telescope.builtin').live_grep() end, desc = 'Telescope live grep' },
     { '<Leader>fr', function() require('telescope.builtin').resume() end, desc = 'Telescope resume last search' },
-    { '<Leader>fh', function() require('telescope.builtin').help_tags() end, desc = 'Telescope search help' },
+    -- { '<Leader>fh', function() require('telescope.builtin').help_tags() end, desc = 'Telescope search help' },
     { '<Leader>di', function() require('telescope.builtin').diagnostics() end, desc = 'Telescope diagnostics list' },
     {
       '<Leader>do',
@@ -61,13 +61,13 @@ return {
 
       extensions = {
         -- fzf = {},
-        ['ui-select'] = {
-          require('telescope.themes').get_dropdown({}),
-        },
+        -- ['ui-select'] = {
+        --   require('telescope.themes').get_dropdown({}),
+        -- },
       },
     })
 
     -- require('telescope').load_extension('fzf')
-    require('telescope').load_extension('ui-select')
+    -- require('telescope').load_extension('ui-select')
   end,
 }

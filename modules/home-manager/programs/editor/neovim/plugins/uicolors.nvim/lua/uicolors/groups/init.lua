@@ -1,9 +1,10 @@
 local M = {}
 
 M.plugins = {
+  ['fzf-lua'] = 'fzf-lua',
+  ['helpview.nvim'] = 'helpview',
   ['indent-blankline.nvim'] = 'indent-blankline',
   ['telescope.nvim'] = 'telescope',
-  ['helpview.nvim'] = 'helpview',
 }
 
 M.get = function(name, colors)

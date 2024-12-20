@@ -40,6 +40,7 @@ in
 
       fd
       ripgrep
+      delta
 
       # LSP / Formatter
       # Generic Formatter

@@ -2,15 +2,6 @@ local M = {}
 
 M.config = {
   cmd = { vim.o.shell },
-  winopt = {
-    relative = 'editor',
-    col = math.floor(vim.o.columns * 0.1),
-    row = math.floor(vim.o.lines * 0.1),
-    width = math.floor(vim.o.columns * 0.8),
-    height = math.floor(vim.o.lines * 0.8),
-    border = 'rounded',
-    style = 'minimal',
-  },
 }
 
 M.toggleterm = function()
@@ -23,7 +14,16 @@ M.toggleterm = function()
     M.buf = vim.api.nvim_create_buf(false, true)
   end
 
-  M.win = vim.api.nvim_open_win(M.buf, true, M.config.winopt)
+  local winopts = {
+    relative = 'editor',
+    col = math.floor(vim.o.columns * 0.1),
+    row = math.floor(vim.o.lines * 0.1),
+    width = math.floor(vim.o.columns * 0.8),
+    height = math.floor(vim.o.lines * 0.8),
+    border = 'rounded',
+    style = 'minimal',
+  }
+  M.win = vim.api.nvim_open_win(M.buf, true, winopts)
 
   if vim.bo[M.buf].buftype ~= 'terminal' then
     vim.fn.termopen(M.config.cmd)

@@ -13,9 +13,9 @@ M.get = function(c)
   return {
     Normal = { fg = c.fg, bg = c.none },
     NormalNC = 'Normal',
-    NormalFloat = { fg = c.fg, bg = c.bg_float },
-    FloatBorder = { fg = c.bg_float, bg = c.bg_float },
-    FloatTitle = { fg = c.title, bg = c.bg_float, bold = true },
+    NormalFloat = 'Normal',
+    FloatBorder = { fg = c.border },
+    FloatTitle = { fg = c.title, bold = true },
     FloatFooter = { fg = c.fg, bg = c.bg_float },
     WinSeparator = { fg = c.border },
 

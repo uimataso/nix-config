@@ -27,7 +27,7 @@ in
       colors = with config.lib.stylix.colors.withHashtag; {
         bg = mkForce "-1";
         gutter = mkForce "-1";
-        prompt = mkForce base0B;
+        prompt = mkForce base0C;
       };
     };
 

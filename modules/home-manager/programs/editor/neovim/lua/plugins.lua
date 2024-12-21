@@ -12,20 +12,7 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require('lazy').setup({
-  { import = 'plug.core' },
-  { import = 'plug.dev' },
-  { import = 'plug.enhance' },
-  { import = 'plug.fuzzy' },
-  { import = 'plug.lang' },
-  { import = 'plug.misc' },
-  { import = 'plug.motion' },
-  { import = 'plug.visual' },
-  {
-    'uimataso/uicolors.nvim',
-    lazy = false,
-    dir = vim.fn.stdpath('config') .. '/plugins/uicolors.nvim',
-    config = function() vim.cmd.colorscheme('uicolors') end,
-  },
+  { import = 'plug' },
 }, {
   defaults = { lazy = true },
   lockfile = vim.fn.stdpath('data') .. '/lazy-lock.json', -- for nix

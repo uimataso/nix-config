@@ -19,6 +19,8 @@ return {
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
+
+  ---@type conform.setupOpts
   opts = {
     default_format_opts = {
       lsp_format = 'fallback',
@@ -27,7 +29,9 @@ return {
       html = prettier,
       javascript = prettier,
       lua = { 'stylua' },
-      markdown = function(bufnr) return { first(bufnr, 'prettierd', 'prettier'), 'injected' } end,
+      markdown = function(bufnr)
+        return { first(bufnr, 'prettierd', 'prettier'), 'injected' }
+      end,
       python = { 'isort', 'black' },
       yaml = { 'yamlfmt' },
     },

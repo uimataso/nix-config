@@ -7,6 +7,8 @@ return {
       'nvim-tree/nvim-web-devicons',
     },
     version = 'v0.*',
+
+    ---@type blink.cmp.Config
     opts = {
       keymap = {
         ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
@@ -22,8 +24,8 @@ return {
         ['<Tab>'] = { 'snippet_forward', 'fallback' },
         ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
 
-        ['<PageDown>'] = { 'snippet_forward' },
-        ['<PageUp>'] = { 'snippet_backward' },
+        -- ['<PageDown>'] = { 'snippet_forward' },
+        -- ['<PageUp>'] = { 'snippet_backward' },
       },
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },

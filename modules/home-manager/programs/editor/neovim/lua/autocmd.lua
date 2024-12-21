@@ -1,8 +1,5 @@
-local au = vim.api.nvim_create_autocmd
-local ag = function(name, fn)
-  local group = vim.api.nvim_create_augroup(name, { clear = true })
-  fn(group)
-end
+local au = require('utils').au
+local ag = require('utils').ag
 
 -- Disable auto comment new line
 -- TODO: can I disable runtime/ftplugin completely?
@@ -10,7 +7,9 @@ ag('uima/Fromatoptions', function(g)
   au('FileType', {
     group = g,
     pattern = { '*' },
-    callback = function() vim.opt.formatoptions:remove({ 'c', 'r', 'o' }) end,
+    callback = function()
+      vim.opt.formatoptions:remove({ 'c', 'r', 'o' })
+    end,
   })
 end)
 
@@ -28,24 +27,14 @@ ag('uima/DeleteTrailingSpace', function(g)
   })
 end)
 
--- Check if we need to reload the file when it changed
-ag(
-  'uima/Checktime',
-  function(g)
-    au({ 'FocusGained', 'BufEnter', 'TermClose', 'TermLeave' }, {
-      group = g,
-      desc = 'Check if any file changed outsite of vim',
-      command = 'checktime',
-    })
-  end
-)
-
 -- Restore the cursor position after yank
 ag('uima/RestoreCursorAfterYank', function(g)
   au({ 'VimEnter', 'CursorMoved' }, {
     group = g,
     desc = 'Tracking the cursor position',
-    callback = function() Cursor_pos = vim.fn.getpos('.') end,
+    callback = function()
+      Cursor_pos = vim.fn.getpos('.')
+    end,
   })
 
   au('TextYankPost', {
@@ -79,15 +68,19 @@ ag('uima/TermSettings', function(g)
   au('TermOpen', {
     group = g,
     callback = function(opts)
-      -- delay a small time, so some plugins that open a terminal on
-      -- other window, don't exec these cmd
-      vim.defer_fn(function()
-        if vim.api.nvim_buf_get_option(0, 'buftype') == 'terminal' then
-          vim.cmd('startinsert')
-          vim.cmd('setlocal nonu')
-          vim.cmd('setlocal signcolumn=no')
-        end
-      end, 100)
+      vim.cmd('startinsert')
+      vim.cmd('setlocal nonu')
+      vim.cmd('setlocal signcolumn=no')
+      -- TODO: try to do without delay and check buftype
+      -- -- delay a small time, so some plugins that open a terminal on
+      -- -- other window, don't exec these cmd
+      -- vim.defer_fn(function()
+      --   if vim.api.nvim_get_option_value('buftype', { buf = 0 }) == 'terminal' then
+      --     vim.cmd('startinsert')
+      --     vim.cmd('setlocal nonu')
+      --     vim.cmd('setlocal signcolumn=no')
+      --   end
+      -- end, 100)
     end,
   })
 end)

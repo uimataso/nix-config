@@ -7,7 +7,9 @@ return {
     {
       '<Leader>o',
       mode = { 'n' },
-      function() require('oil').open_float() end,
+      function()
+        require('oil').open_float()
+      end,
       desc = 'Open oil browser',
     },
 
@@ -25,6 +27,7 @@ return {
     },
   },
 
+  ---@type oil.SetupOpts
   opts = {
     skip_confirm_for_simple_edits = true,
     view_options = {

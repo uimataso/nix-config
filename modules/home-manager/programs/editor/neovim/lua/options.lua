@@ -8,30 +8,26 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 5
 -- vim.opt.conceallevel = 3
 
--- Indent --
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-vim.opt.shiftround = true
-
--- Menu --
+-- Completion --
+vim.opt.pumheight = 10
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.wildignorecase = true
 vim.opt.wildignore = { '*.git/*', '*.tags', 'tags', '*.o', '*.class', '*models/*.pt' }
-vim.opt.path:append('**')
-vim.opt.pumheight = 10
-vim.opt.inccommand = 'split'
+-- vim.opt.suffixesadd = '.md'
 
--- Special Char Visualization --
+-- Special Char --
 vim.opt.list = true
 vim.opt.listchars = { tab = '▸ ', trail = '·' }
 vim.opt.fillchars = 'eob: '
 
--- Msic --
-vim.opt.shortmess:append('I') -- no intro message
+-- Split --
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.inccommand = 'split'
+
+-- Msic --
+vim.opt.shortmess:append('I') -- no intro message
 vim.opt.swapfile = false
 vim.opt.updatetime = 100
-vim.opt.mouse = ''
-vim.opt.suffixesadd = '.md'
+vim.opt.mouse = 'n'

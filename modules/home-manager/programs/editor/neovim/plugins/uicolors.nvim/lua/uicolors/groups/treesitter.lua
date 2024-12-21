@@ -138,6 +138,7 @@ end
 
 return M
 
+-- TODO: see :h lsp-semantic-highlight
 -- @lsp           xxx cleared
 -- @lsp.type.class xxx links to @type
 -- @lsp.type.comment xxx links to @comment

@@ -2,6 +2,7 @@ vim.opt.ruler = false
 vim.opt.showmode = false
 vim.opt.laststatus = 3 -- global statusline
 vim.opt.cmdheight = 1
+vim.opt.statusline = '%!v:lua.Statusline()'
 
 -- -- Some shortmess work with cmdheight=0
 -- vim.opt.shortmess:append('c')
@@ -10,7 +11,17 @@ vim.opt.cmdheight = 1
 -- vim.opt.shortmess:append('S')
 -- vim.opt.shortmess:remove('t')
 
-local hi = function(group) return '%#' .. group .. '#' end
+local hi = function(group)
+  return '%#' .. group .. '#'
+end
+
+local with_hi = function(group, tables)
+  return table.concat({
+    hi(group),
+    table.concat(tables),
+    hi('StatusLine'),
+  })
+end
 
 local format_count = function(format, count)
   if not count or count == 0 then
@@ -18,6 +29,7 @@ local format_count = function(format, count)
   end
   return string.format(format, count)
 end
+
 local vcs = function()
   local git_info = vim.b.gitsigns_status_dict
   if not git_info or git_info.head == '' then
@@ -35,11 +47,17 @@ local vcs = function()
 end
 
 local diagnostics = function()
+  local format_diagnostic_count = function(level)
+    local sign = require('config').signs.diagnostic[level]
+    return format_count(' ' .. sign .. '%s', #(vim.diagnostic.get(0, { severity = level })))
+  end
+
+  local severity = vim.diagnostic.severity
   return table.concat({
-    format_count(' %s', #(vim.diagnostic.get(0, { severity = 'Error' }))),
-    format_count(' %s', #(vim.diagnostic.get(0, { severity = 'Warn' }))),
-    format_count(' %s', #(vim.diagnostic.get(0, { severity = 'Info' }))),
-    format_count(' %s', #(vim.diagnostic.get(0, { severity = 'Hint' }))),
+    format_diagnostic_count(severity.ERROR),
+    format_diagnostic_count(severity.WARN),
+    format_diagnostic_count(severity.INFO),
+    format_diagnostic_count(severity.HINT),
   })
 end
 
@@ -68,13 +86,11 @@ function Statusline()
     '  %t %h%m%r%w', -- File info
     vcs(),
     diagnostics(),
-
     '%=', -- Separation
-
-    hi('MatchParen'),
-    macro_recoding(),
-    search_count(),
-    hi('StatusLine'),
+    with_hi('MatchParen', {
+      macro_recoding(),
+      search_count(),
+    }),
     '  %{&filetype}', -- Flietype
     '  %{&expandtab?"󱁐 ":"󰌒 "}%{&tabstop}', -- Indent info
     '  %L', -- Line info
@@ -82,4 +98,4 @@ function Statusline()
   })
 end
 
-vim.opt.statusline = '%!v:lua.Statusline()'
+return {}

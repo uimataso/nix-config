@@ -1,4 +1,5 @@
-return { -- I'm not really tested it, but I think this plugin has more function than buildin one (2024-08-24)
+return {
+  -- I'm not really tested it, but I think this plugin has more function than buildin one (2024-08-24)
   'numToStr/Comment.nvim',
   keys = {
     { 'gc', mode = { 'n', 'v' }, desc = 'Line comment' },

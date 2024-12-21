@@ -27,7 +27,8 @@ return {
             -- vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
 
             vim.keymap.set('n', '<Leader>e', function()
-              local diagnostics = vim.diagnostic.get(0, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 })
+              local diagnostics =
+                vim.diagnostic.get(0, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 })
               if diagnostics[1] == nil then
                 vim.print('not diagnostic found')
                 return
@@ -66,7 +67,9 @@ return {
 
   { -- Rustaceanvim Neotest integration
     'nvim-neotest/neotest',
-    opts = function(_, opts) table.insert(opts.adapters, require('rustaceanvim.neotest')) end,
+    opts = function(_, opts)
+      table.insert(opts.adapters, require('rustaceanvim.neotest'))
+    end,
   },
 
   {
@@ -78,7 +81,9 @@ return {
             name = 'Debug Test',
             type = 'codelldb',
             request = 'launch',
-            program = function() return cargo_build('cargo build --tests -q --message-format=json') end,
+            program = function()
+              return cargo_build('cargo build --tests -q --message-format=json')
+            end,
             cwd = '${workspaceFolder}',
             stopOnEntry = false,
             showDisassembly = 'never',
@@ -87,7 +92,9 @@ return {
             name = 'Debug Bin',
             type = 'codelldb',
             request = 'launch',
-            program = function() return cargo_build('cargo build -q --message-format=json') end,
+            program = function()
+              return cargo_build('cargo build -q --message-format=json')
+            end,
             cwd = '${workspaceFolder}',
             stopOnEntry = false,
             showDisassembly = 'never',

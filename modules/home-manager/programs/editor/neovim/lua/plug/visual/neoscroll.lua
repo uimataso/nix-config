@@ -1,6 +1,7 @@
 return {
   'karb94/neoscroll.nvim',
 
+  -- stylua: ignore start
   keys = {
     { '<C-u>', function() require('neoscroll').ctrl_u({ duration = 150 }) end, desc = 'Neoscroll <C-u>' },
     { '<C-d>', function() require('neoscroll').ctrl_d({ duration = 150 }) end, desc = 'Neoscroll <C-d>' },
@@ -22,10 +23,8 @@ return {
     { 'zt', function() require('neoscroll').zt({ half_win_duration = 100 }) end, desc = 'Neoscroll zt' },
     { 'zz', function() require('neoscroll').zz({ half_win_duration = 100 }) end, desc = 'Neoscroll zz' },
     { 'zb', function() require('neoscroll').zb({ half_win_duration = 100 }) end, desc = 'Neoscroll zb' },
-
-    { '<PageUp>', '<C-u>', remap = true },
-    { '<PageDown>', '<C-d>', remap = true },
   },
+  -- stylua: ignore end
 
   opts = {
     mappings = {},

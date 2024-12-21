@@ -11,11 +11,20 @@ return {
       { 'x', mode = { 'x', 'o' }, '<Plug>(leap-forward-till)', desc = 'Leap forward till' },
       { 'X', mode = { 'x', 'o' }, '<Plug>(leap-backward-till)', desc = 'Leap backward till' },
       { 'gw', mode = { 'n', 'x', 'o' }, '<Plug>(leap-from-window)', desc = 'Leap from window' },
-      { 'gs', mode = { 'n', 'o' }, function() require('leap.remote').action() end, desc = 'Leap remot' },
+      {
+        'gs',
+        mode = { 'n', 'o' },
+        function()
+          require('leap.remote').action()
+        end,
+        desc = 'Leap remote',
+      },
       {
         'ga',
         mode = { 'n', 'x', 'o' },
-        function() require('leap.treesitter').select() end,
+        function()
+          require('leap.treesitter').select()
+        end,
         desc = 'Treesitter node selection',
       },
       {

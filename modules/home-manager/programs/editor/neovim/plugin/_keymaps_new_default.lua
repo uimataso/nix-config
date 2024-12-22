@@ -9,9 +9,10 @@
 ---
 --- See |grr|, |grn|, |gra|, |gri|, |gO|, |i_CTRL-S|.
 do
-  vim.keymap.set('n', 'grn', function()
-    vim.lsp.buf.rename()
-  end, { desc = 'vim.lsp.buf.rename()' })
+  -- use plugin for this
+  -- vim.keymap.set('n', 'grn', function()
+  --   vim.lsp.buf.rename()
+  -- end, { desc = 'vim.lsp.buf.rename()' })
 
   vim.keymap.set({ 'n', 'x' }, 'gra', function()
     vim.lsp.buf.code_action()

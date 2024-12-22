@@ -5,6 +5,7 @@ return {
     dependencies = {
       'rafamadriz/friendly-snippets',
       'nvim-tree/nvim-web-devicons',
+      'folke/lazydev.nvim',
     },
     version = 'v0.*',
 

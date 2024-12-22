@@ -56,5 +56,12 @@ return {
         desc = 'Collapse quickfix context',
       },
     },
+    type_icons = {
+      E = '󰅚 ',
+      W = '󰀪 ',
+      I = ' ',
+      N = ' ',
+      H = ' ',
+    },
   },
 }

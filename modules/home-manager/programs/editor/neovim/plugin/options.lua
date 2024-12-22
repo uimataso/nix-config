@@ -8,10 +8,10 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 5
 -- vim.opt.conceallevel = 3
 
--- Completion --
-vim.opt.pumheight = 10
+-- Search --
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.pumheight = 10
 vim.opt.wildignorecase = true
 vim.opt.wildignore = { '*.git/*', '*.tags', 'tags', '*.o', '*.class', '*models/*.pt' }
 -- vim.opt.suffixesadd = '.md'

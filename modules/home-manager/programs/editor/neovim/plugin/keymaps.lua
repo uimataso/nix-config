@@ -1,18 +1,6 @@
 -- to see which char map to which mode:
 -- :h map-table
 
-require('_keymaps_new_default')
-
--- Make space as leader key
-vim.keymap.set('', '<Space>', '<Nop>')
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ','
-
--- Execute lua
-vim.keymap.set('n', '<Leader><Leader>x', '<cmd>source %<CR>')
-vim.keymap.set('n', '<Leader>xx', ':.lua<CR>')
-vim.keymap.set('v', '<Leader>x', ':lua<CR>')
-
 -- Insert mode mapping
 vim.keymap.set('i', '<C-h>', '<C-w>') -- map <C-BS> to <C-w>
 vim.keymap.set('i', '<C-Left>', '<C-o>b')
@@ -20,10 +8,31 @@ vim.keymap.set('i', '<C-Right>', '<C-o>w')
 vim.keymap.set('i', '<Home>', '<C-o>^')
 vim.keymap.set('i', '<End>', '<C-o>$')
 
--- Terminal mapping
-vim.keymap.set({ 'n', 't' }, '<C-t>', require('utils').toggleterm)
-vim.keymap.set('t', '<C-[>', '<C-\\><C-n>')
-vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>')
+-- Hover
+local function show_documentation()
+  if require('ufo').peekFoldedLinesUnderCursor() then
+    return
+  end
+
+  local filetype = vim.bo.filetype
+  if filetype == 'vim' or filetype == 'help' then
+    vim.cmd('h ' .. vim.fn.expand('<cword>'))
+  elseif filetype == 'man' then
+    vim.cmd('Man ' .. vim.fn.expand('<cword>'))
+  elseif vim.fn.expand('%:t') == 'Cargo.toml' and require('crates').popup_available() then
+    require('crates').show_popup()
+  elseif filetype == 'rust' then
+    vim.cmd.RustLsp { 'hover', 'actions' }
+  else
+    vim.lsp.buf.hover()
+  end
+end
+vim.keymap.set('n', 'K', show_documentation, { silent = true })
+
+-- Execute lua
+vim.keymap.set('n', '<Leader><Leader>x', '<cmd>source %<CR>')
+vim.keymap.set('n', '<Leader>xx', ':.lua<CR>')
+vim.keymap.set('v', '<Leader>x', ':lua<CR>')
 
 -- Buffer movement
 vim.keymap.set('n', '<BS>', '<C-^>')
@@ -36,7 +45,7 @@ vim.keymap.set('', '<PageDown>', '<C-d>', { remap = true })
 vim.keymap.set('', '<Home>', '^', { remap = true })
 vim.keymap.set('', '<End>', '$', { remap = true })
 vim.keymap.set('', '+', 'j', { remap = true })
-vim.keymap.set('', '-', 'k', { remap = true })
+-- vim.keymap.set('', '-', 'k', { remap = true }) -- remap in `oil.nvim`
 
 -- Copy paste with clipboard
 vim.keymap.set('', '<Leader>y', '"+y')
@@ -100,25 +109,9 @@ vim.api.nvim_create_user_command('CopyCodeBlock', function(opts)
   local result = string.format('```%s\n%s\n```', vim.bo.filetype, content)
   vim.fn.setreg('+', result)
 end, { range = true })
-
 vim.keymap.set(
   '',
   '<Leader>cy',
   ':CopyCodeBlock<cr>',
   { desc = 'Copy text with markdown codeblock style' }
 )
-
--- Abbr for command mode
-local function cabbrev(lhs, rhs)
-  -- only working on ':' mode
-  local command =
-    "cnoreabbrev <expr> %s ((getcmdtype() is# ':' && getcmdline() is# '%s')?('%s'):('%s'))"
-  vim.cmd(command:format(lhs, lhs, rhs, lhs))
-end
-
-cabbrev('f', 'find')
-cabbrev('s', 'sp')
-cabbrev('v', 'vs')
--- Write file as root
-cabbrev('sudow', 'w !sudo tee %')
-cabbrev('doasw', 'w !doas tee %')

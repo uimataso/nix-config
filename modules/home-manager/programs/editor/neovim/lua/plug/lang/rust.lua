@@ -19,7 +19,11 @@ return {
     config = function()
       vim.g.rustaceanvim = {
         -- Plugin configuration
-        tools = {},
+        tools = {
+          float_win_config = {
+            border = require('config').border,
+          },
+        },
 
         -- LSP configuration
         server = {
@@ -41,10 +45,7 @@ return {
                 vim.diagnostic.open_float()
               end
             end)
-
             vim.keymap.set('n', '<Leader>r', '<cmd>RustLsp explainError<cr>')
-            vim.keymap.set('n', 'K', '<cmd>RustLsp hover actions<cr>')
-            -- vim.keymap.set('n', 'J', '<cmd>RustLsp joinLines<cr>')
           end,
 
           default_settings = {
@@ -102,5 +103,46 @@ return {
         },
       },
     },
+  },
+
+  {
+    'saecki/crates.nvim',
+    tag = 'stable',
+    event = { 'BufRead Cargo.toml' },
+    cmd = { 'Crates' },
+
+    opts = {
+      popup = {
+        border = require('config').border,
+      },
+    },
+
+    config = function(_, opts)
+      local crates = require('crates')
+      crates.setup(opts)
+
+      vim.keymap.set('n', '<leader>ct', crates.toggle)
+      vim.keymap.set('n', '<leader>cr', crates.reload)
+
+      vim.keymap.set('n', '<leader>cv', crates.show_versions_popup)
+      vim.keymap.set('n', '<leader>cf', crates.show_features_popup)
+      vim.keymap.set('n', '<leader>cd', crates.show_dependencies_popup)
+
+      vim.keymap.set('n', '<leader>cu', crates.update_crate)
+      vim.keymap.set('v', '<leader>cu', crates.update_crates)
+      vim.keymap.set('n', '<leader>ca', crates.update_all_crates)
+      vim.keymap.set('n', '<leader>cU', crates.upgrade_crate)
+      vim.keymap.set('v', '<leader>cU', crates.upgrade_crates)
+      vim.keymap.set('n', '<leader>cA', crates.upgrade_all_crates)
+
+      vim.keymap.set('n', '<leader>cx', crates.expand_plain_crate_to_inline_table)
+      vim.keymap.set('n', '<leader>cX', crates.extract_crate_into_table)
+
+      vim.keymap.set('n', '<leader>cH', crates.open_homepage)
+      vim.keymap.set('n', '<leader>cR', crates.open_repository)
+      vim.keymap.set('n', '<leader>cD', crates.open_documentation)
+      vim.keymap.set('n', '<leader>cC', crates.open_crates_io)
+      vim.keymap.set('n', '<leader>cL', crates.open_lib_rs)
+    end,
   },
 }

@@ -1,16 +1,17 @@
 return {
-  'nvim-treesitter/nvim-treesitter',
-  event = 'BufReadPost',
-  build = ':TSUpdate',
-  dependencies = {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    -- parser for nu-lang
-    'nushell/tree-sitter-nu',
-  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    event = 'BufReadPost',
+    build = ':TSUpdate',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      -- parser for nu-lang
+      'nushell/tree-sitter-nu',
+    },
 
-  main = 'nvim-treesitter.configs',
+    main = 'nvim-treesitter.configs',
 
-  opts = {
+    opts = {
     -- stylua: ignore start
     ensure_installed = {
       'c', 'rust', 'python', 'javascript', 'lua', 'nix', 'nu',
@@ -21,66 +22,70 @@ return {
       'gitattributes', 'gitcommit', 'git_config', 'gitignore', 'git_rebase',
       'vim', 'vimdoc',
     },
-    -- stylua: ignore end
+      -- stylua: ignore end
 
-    highlight = {
-      enable = true,
-      disable = { 'help' },
-    },
-
-    indent = {
-      enable = true,
-      disable = { 'yaml' },
-    },
-
-    playground = {
-      enable = true,
-    },
-
-    query_linter = {
-      enable = true,
-      -- use_virtual_text = true,
-      -- lint_events = { 'BufWrite', 'CursorHold' },
-    },
-
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        node_incremental = 'v',
-        node_decremental = 'V',
-      },
-    },
-
-    textobjects = {
-      select = {
+      highlight = {
         enable = true,
-        lookahead = true,
+        disable = { 'help' },
+      },
+
+      indent = {
+        enable = true,
+        disable = { 'yaml' },
+      },
+
+      playground = {
+        enable = true,
+      },
+
+      query_linter = {
+        enable = true,
+        -- use_virtual_text = true,
+        -- lint_events = { 'BufWrite', 'CursorHold' },
+      },
+
+      incremental_selection = {
+        enable = true,
         keymaps = {
-          ['af'] = '@function.outer',
-          ['if'] = '@function.inner',
-          ['ac'] = '@class.outer',
-          ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class region' },
-          ['as'] = {
-            query = '@local.scope',
-            query_group = 'locals',
-            desc = 'Select language scope',
-          },
+          node_incremental = 'v',
+          node_decremental = 'V',
         },
-        selection_modes = {
-          ['@parameter.outer'] = 'v', -- charwise
-          ['@function.outer'] = 'V', -- linewise
-          ['@class.outer'] = '<c-v>', -- blockwise
-        },
-        include_surrounding_whitespace = true,
       },
 
-      swap = {
-        enable = true,
-        swap_next = {
-          ['<leader>sa'] = '@parameter.inner',
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ['af'] = '@function.outer',
+            ['if'] = '@function.inner',
+            ['ac'] = '@class.outer',
+            ['ic'] = '@class.inner',
+            ['aa'] = '@parameter.outer',
+            ['ia'] = '@parameter.inner',
+            ['ab'] = '@block.outer',
+            ['ib'] = '@block.inner',
+            ['al'] = '@loop.outer',
+            ['il'] = '@loop.inner',
+            ['ai'] = '@conditional.outer',
+            ['ii'] = '@conditional.inner',
+          },
+          selection_modes = {
+            ['@parameter.outer'] = 'v', -- charwise
+            ['@function.outer'] = 'V', -- linewise
+            ['@class.outer'] = '<c-v>', -- blockwise
+          },
+          include_surrounding_whitespace = false,
         },
-        swap_previous = {
-          ['<leader>sA'] = '@parameter.inner',
+
+        swap = {
+          enable = true,
+          swap_next = {
+            ['<leader>sa'] = '@parameter.inner',
+          },
+          swap_previous = {
+            ['<leader>sA'] = '@parameter.inner',
+          },
         },
       },
     },

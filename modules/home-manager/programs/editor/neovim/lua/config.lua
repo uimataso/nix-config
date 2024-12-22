@@ -11,14 +11,4 @@ M.signs = {
   },
 }
 
--- TODO:
--- local function set_sign(level, sign)
---   local name = 'DiagnosticSign' .. level
---   vim.fn.sign_define(name, { texthl = name, text = sign, numhl = '' })
--- end
--- set_sign('Error', '')
--- set_sign('Warn', '')
--- set_sign('Hint', '')
--- set_sign('Info', '')
-
 return M

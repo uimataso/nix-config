@@ -1,5 +1,3 @@
--- TODO: show output in tmux pane
--- https://github.com/vim-test/vim-test?tab=readme-ov-file#strategies
 return {
   {
     'nvim-neotest/neotest',
@@ -11,55 +9,15 @@ return {
     },
 
     keys = {
-      {
-        '<Leader>tt',
-        function()
-          require('neotest').run.run(vim.fn.expand('%'))
-        end,
-        desc = "Run current file's test",
-      },
-      {
-        '<leader>tT',
-        function()
-          require('neotest').run.run(vim.loop.cwd())
-        end,
-        desc = 'Run all test files',
-      },
-      {
-        '<Leader>tr',
-        function()
-          require('neotest').run.run()
-        end,
-        desc = 'Run the nearest test',
-      },
-      {
-        '<leader>to',
-        function()
-          require('neotest').output.open({ enter = true, auto_close = true })
-        end,
-        desc = 'Show test output',
-      },
-      {
-        '<leader>tO',
-        function()
-          require('neotest').output_panel.toggle()
-        end,
-        desc = 'Toggle output panel',
-      },
-      {
-        '<Leader>ts',
-        function()
-          require('neotest').summary.toggle()
-        end,
-        desc = 'Toggle test summary',
-      },
-      {
-        '<leader>tS',
-        function()
-          require('neotest').run.stop()
-        end,
-        desc = 'Stop test',
-      },
+      -- stylua: ignore start
+      { '<Leader>tt', function() require('neotest').run.run(vim.fn.expand('%')) end, desc = "Run current file's test" },
+      { '<leader>tT', function() require('neotest').run.run(vim.loop.cwd()) end, desc = 'Run all test files' },
+      { '<Leader>tr', function() require('neotest').run.run() end, desc = 'Run the nearest test' },
+      { '<leader>to', function() require('neotest').output.open({ enter = true, auto_close = true }) end, desc = 'Show test output' },
+      { '<leader>tO', function() require('neotest').output_panel.toggle() end, desc = 'Toggle output panel' },
+      { '<Leader>ts', function() require('neotest').summary.toggle() end, desc = 'Toggle test summary' },
+      { '<leader>tS', function() require('neotest').run.stop() end, desc = 'Stop test' },
+      -- stylua: ignore end
     },
 
     opts = {

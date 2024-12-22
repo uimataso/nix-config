@@ -48,14 +48,6 @@ return {
 
     dependencies = {
       { 'saghen/blink.cmp' },
-      {
-        'folke/lazydev.nvim',
-        opts = {
-          library = {
-            { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-          },
-        },
-      },
     },
 
     opts = {
@@ -76,9 +68,8 @@ return {
           settings = {
             Lua = {
               diagnostics = {
-                globals = {
-                  'vim',
-                },
+                disable = { 'missing-fields' },
+                globals = { 'vim' },
               },
             },
           },
@@ -133,6 +124,15 @@ return {
     end,
   },
 
+  {
+    'folke/lazydev.nvim',
+    opts = {
+      library = {
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+      },
+    },
+  },
+
   { -- notification for lsp
     'j-hui/fidget.nvim',
     event = 'BufReadPre',
@@ -144,6 +144,21 @@ return {
         },
       },
     },
+  },
+
+  {
+    'smjonas/inc-rename.nvim',
+    keys = {
+      {
+        'grn',
+        mode = { 'n' },
+        function()
+          return ':IncRename ' .. vim.fn.expand('<cword>')
+        end,
+        expr = true,
+      },
+    },
+    opts = {},
   },
 
   -- {

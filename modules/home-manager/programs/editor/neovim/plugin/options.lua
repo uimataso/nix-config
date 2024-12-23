@@ -19,7 +19,8 @@ vim.opt.wildignore = { '*.git/*', '*.tags', 'tags', '*.o', '*.class', '*models/*
 -- Special Char --
 vim.opt.list = true
 vim.opt.listchars = { tab = '▸ ', trail = '·' }
-vim.opt.fillchars = 'eob: '
+vim.opt.fillchars:append { eob = ' ' }
+vim.opt.fillchars:append { diff = '╱' }
 
 -- Split --
 vim.opt.splitbelow = true

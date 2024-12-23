@@ -1,7 +1,9 @@
 local M = {}
 
 M.plugins = {
+  ['diffview.nvim'] = 'diffview',
   ['fzf-lua'] = 'fzf-lua',
+  ['gitsigns.nvim'] = 'gitsigns',
   ['helpview.nvim'] = 'helpview',
   ['indent-blankline.nvim'] = 'indent-blankline',
   ['telescope.nvim'] = 'telescope',

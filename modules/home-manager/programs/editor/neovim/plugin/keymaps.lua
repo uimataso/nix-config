@@ -27,7 +27,12 @@ local function show_documentation()
     vim.lsp.buf.hover()
   end
 end
-vim.keymap.set('n', 'K', show_documentation, { silent = true })
+vim.keymap.set(
+  'n',
+  'K',
+  show_documentation,
+  { silent = true, desc = 'vim.lsp.buf.hover() but more' }
+)
 
 -- Execute lua
 vim.keymap.set('n', '<Leader><Leader>x', '<cmd>source %<CR>')
@@ -79,7 +84,7 @@ end, { expr = true })
 -- '*' but not jump to next, eg. just highlight the word under the cursor
 -- ref: https://stackoverflow.com/a/49944815
 vim.keymap.set('n', '*', [[<cmd>let @/ = '\<' . expand('<cword>') . '\>' <bar> set hls <cr>]])
-vim.keymap.set('n', 'g*', [[<cmd>let @/=expand('<cword>') <bar> set hls <cr>]])
+vim.keymap.set('n', 'g*', [[<cmd>let @/ = expand('<cword>') <bar> set hls <cr>]])
 
 -- Block insert in line visual mode
 vim.keymap.set('x', 'I', function()

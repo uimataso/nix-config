@@ -16,7 +16,7 @@ M.get = function(c)
     NormalFloat = 'Normal',
     FloatBorder = { fg = c.border },
     FloatTitle = { fg = c.title, bold = true },
-    FloatFooter = { fg = c.fg, bg = c.bg_float },
+    FloatFooter = { fg = c.fg },
     WinSeparator = { fg = c.border },
 
     StatusLine = { fg = c.status_line, bold = true },
@@ -27,8 +27,8 @@ M.get = function(c)
     WinBar = 'StatusLine',
     WinBarNC = 'StatusLineNc',
 
-    -- Pmenu = {},
-    -- PmenuSel = {},
+    Pmenu = { bg = c.bg_popup },
+    PmenuSel = { bg = c.bg_cursor_line },
     -- PmenuKind = {},
     -- PmenuKindSel = {},
     -- PmenuExtra = {},
@@ -83,25 +83,21 @@ M.get = function(c)
     Directory = { fg = c.blue },
     QuickFixLine = { bg = c.bg_qf_select, bold = true },
 
-    DiffAdd = { fg = c.diff.add },
-    DiffChange = { fg = c.diff.change },
-    DiffDelete = { fg = c.diff.delete },
-    DiffText = { fg = c.diff.text },
+    DiffAdd = { bg = c.diff.bg_add },
+    DiffChange = { bg = c.diff.bg_change },
+    DiffDelete = { bg = c.diff.bg_delete },
+    DiffText = { bg = c.diff.bg_text },
 
     SpellBad = { sp = c.error, undercurl = true },
     SpellCap = { sp = c.warning, undercurl = true },
     SpellLocal = { sp = c.hint, undercurl = true },
     SpellRare = { sp = c.hint, undercurl = true },
+
+    -- legacy
+    diffAdded = { fg = c.diff.add },
+    diffRemoved = { fg = c.diff.delete },
+    diffChanged = { fg = c.diff.change },
   }
 end
 
 return M
-
--- FloatShadow    xxx ctermbg=0 guibg=NvimDarkGrey4 blend=80
--- FloatShadowThrough xxx ctermbg=0 guibg=NvimDarkGrey4 blend=100
---
--- RedrawDebugNormal xxx cterm=reverse gui=reverse
--- RedrawDebugClear xxx ctermfg=0 ctermbg=11 guibg=NvimDarkYellow
--- RedrawDebugComposed xxx ctermfg=0 ctermbg=10 guibg=NvimDarkGreen
--- RedrawDebugRecompose xxx ctermfg=0 ctermbg=9 guibg=NvimDarkRed
---

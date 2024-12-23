@@ -23,8 +23,9 @@ colors.none = 'NONE'
 -- colors.none = colors.black
 colors.fg = colors.white
 colors.bg = colors.black
-colors.bg_float = colors:gray(0.05)
 
+colors.bg_popup = colors:gray(0.05)
+colors.bg_quote = colors:gray(0.05)
 colors.bg_cursor_line = colors:gray(0.1)
 colors.bg_fold = colors:gray(0.135)
 colors.bg_qf_select = colors:gray(0.135)
@@ -80,6 +81,11 @@ colors.diff = {
   change = colors.blue,
   delete = colors.red,
   text = colors:gray(0.5),
+
+  bg_add = util.blend(colors.green, colors.bg, 0.3),
+  bg_change = util.blend(colors.blue, colors.bg, 0.3),
+  bg_delete = util.blend(colors.red, colors.bg, 0.3),
+  bg_text = util.blend(colors.blue, colors.bg, 0.5),
 }
 
 return colors

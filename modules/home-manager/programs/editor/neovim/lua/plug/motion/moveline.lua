@@ -6,10 +6,6 @@ return {
     { 'L', mode = 'v', desc = 'Move visual block right' },
     { 'J', mode = 'v', desc = 'Move visual block down' },
     { 'K', mode = 'v', desc = 'Move visual block up' },
-    { '<M-h>', mode = 'n', desc = 'Move current line left' },
-    { '<M-l>', mode = 'n', desc = 'Move current line right' },
-    { '<M-j>', mode = 'n', desc = 'Move current line down' },
-    { '<M-k>', mode = 'n', desc = 'Move current line up' },
   },
   opts = {
     mappings = {

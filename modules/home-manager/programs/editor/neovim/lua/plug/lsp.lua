@@ -97,6 +97,7 @@ return {
           },
         },
         vacuum = {},
+        ts_ls = {},
       },
     },
 

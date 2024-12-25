@@ -74,6 +74,9 @@ in
 
       # OpenAPI
       vacuum-go
+
+      # Typescript
+      typescript-language-server
     ];
 
     xdg.configFile = {

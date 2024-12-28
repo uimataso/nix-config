@@ -15,7 +15,11 @@
   home.persistence.main = {
     directories = [
       "nix"
-      "src"
+      # "src"
+      {
+        directory = "src";
+        method = "symlink";
+      }
     ];
   };
 

@@ -1,3 +1,6 @@
+local au = require('utils').au
+local ag = require('utils').ag
+
 return {
   'stevearc/oil.nvim',
   lazy = false,
@@ -34,7 +37,7 @@ return {
       show_hidden = true,
     },
     keymaps = {
-      ['<BS>'] = 'actions.parent',
+      ['<Esc><Esc>'] = 'actions.close',
       ['q'] = 'actions.close',
       ['-'] = false,
     },
@@ -47,4 +50,19 @@ return {
       },
     },
   },
+
+  config = function(_, opts)
+    require('oil').setup(opts)
+
+    ag('uima/OilSettings', function(g)
+      au('FileType', {
+        group = g,
+        pattern = 'oil',
+        callback = function()
+          vim.keymap.set('n', '<BS>', '<Nop>', { buffer = 0 })
+          vim.keymap.set('n', '-', 'k', { buffer = 0 })
+        end,
+      })
+    end)
+  end,
 }

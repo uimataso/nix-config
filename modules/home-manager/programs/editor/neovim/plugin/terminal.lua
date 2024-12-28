@@ -1,3 +1,6 @@
+local au = require('utils').au
+local ag = require('utils').ag
+
 local M = {}
 
 --- toggle float terminal
@@ -33,3 +36,18 @@ end
 vim.keymap.set({ 'n', 't' }, '<C-t>', M.toggleterm)
 vim.keymap.set('t', '<C-[>', '<C-\\><C-n>')
 vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>')
+
+-- Settings for terminal mode
+ag('uima/TermSettings', function(g)
+  au('TermOpen', {
+    group = g,
+    callback = function(opts)
+      vim.cmd('startinsert')
+      vim.cmd('setlocal nonu')
+      vim.cmd('setlocal signcolumn=no')
+
+      vim.keymap.set('n', '<Esc><Esc>', '<cmd>close<cr>', { buffer = 0 })
+      vim.keymap.set('n', '<BS>', '<Nop>', { buffer = 0 })
+    end,
+  })
+end)

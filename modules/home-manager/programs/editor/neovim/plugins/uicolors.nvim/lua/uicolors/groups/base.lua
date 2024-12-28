@@ -41,7 +41,7 @@ M.get = function(c)
     lCursor = 'Cursor',
     CursorIM = 'Cursor',
     TermCursor = 'Cursor',
-    TermCursorNC = 'Cursor',
+    TermCursorNC = 'CursorLine',
 
     CursorLine = { bg = c.bg_cursor_line },
     CursorLineNr = { fg = c.status_line, bg = c.bg_cursor_line, bold = true },

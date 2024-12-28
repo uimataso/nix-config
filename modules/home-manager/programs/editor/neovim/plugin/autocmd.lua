@@ -63,28 +63,6 @@ ag('uima/YankHighlight', function(g)
   })
 end)
 
--- Settings for terminal mode
-ag('uima/TermSettings', function(g)
-  au('TermOpen', {
-    group = g,
-    callback = function(opts)
-      vim.cmd('startinsert')
-      vim.cmd('setlocal nonu')
-      vim.cmd('setlocal signcolumn=no')
-      -- TODO: try to do without delay and check buftype
-      -- -- delay a small time, so some plugins that open a terminal on
-      -- -- other window, don't exec these cmd
-      -- vim.defer_fn(function()
-      --   if vim.api.nvim_get_option_value('buftype', { buf = 0 }) == 'terminal' then
-      --     vim.cmd('startinsert')
-      --     vim.cmd('setlocal nonu')
-      --     vim.cmd('setlocal signcolumn=no')
-      --   end
-      -- end, 100)
-    end,
-  })
-end)
-
 -- Only focused window has cursorline
 ag('uima/FocusedOnlyCursorline', function(g)
   au('WinEnter', { group = g, command = 'setlocal cursorline' })

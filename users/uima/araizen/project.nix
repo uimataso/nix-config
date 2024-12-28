@@ -10,6 +10,7 @@
     sqlx-cli
     cargo-nextest
     cargo-machete
+    gnumake
     awscli2
 
     # With `env.{OPENSSL_DEV, PKG_CONFIG_PATH}` to fix ssl issue

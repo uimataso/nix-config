@@ -4,6 +4,10 @@
 # TODO: manage scripts
 # TODO: check easyeffects and discord screen sharing
 {
+  imports = [
+    ../araizen/project.nix
+  ];
+
   home.username = "uima";
 
   home.stateVersion = "23.11";
@@ -34,6 +38,18 @@
     ripgrep.enable = true;
     jq.enable = true;
     bat.enable = true;
+
+    ssh.extraConfig = ''
+      Host github.com
+        HostName github.com
+        IdentityFile ~/.ssh/id_ed25519
+        IdentitiesOnly yes
+
+      Host github-araizen
+        HostName github.com
+        IdentityFile ~/.ssh/id_ed25519_araizen
+        IdentitiesOnly yes
+    '';
   };
 
   uimaConfig = {

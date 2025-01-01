@@ -77,6 +77,7 @@ in
             # Other
             "https://chatgpt.com"
             "https://leetcode.com"
+            "https://codeforces.com"
             "https://monkeytype.com"
             "https://typ.ing"
             "https://www.reddit.com"

@@ -4,10 +4,6 @@
 # TODO: manage scripts
 # TODO: check easyeffects and discord screen sharing
 {
-  imports = [
-    ../araizen/project.nix
-  ];
-
   home.username = "uima";
 
   home.stateVersion = "23.11";

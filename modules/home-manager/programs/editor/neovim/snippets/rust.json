@@ -1,0 +1,7 @@
+{
+    "allow": {
+        "prefix": "fn",
+        "body": ["fn name() {}"],
+        "description": "fn"
+    }
+}

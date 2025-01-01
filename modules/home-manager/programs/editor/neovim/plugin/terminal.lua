@@ -34,7 +34,7 @@ end
 
 -- Terminal mapping
 vim.keymap.set({ 'n', 't' }, '<C-t>', M.toggleterm)
-vim.keymap.set('t', '<C-[>', '<C-\\><C-n>')
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>')
 vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>')
 
 -- Settings for terminal mode

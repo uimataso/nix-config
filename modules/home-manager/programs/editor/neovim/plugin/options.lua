@@ -31,4 +31,4 @@ vim.opt.inccommand = 'split'
 vim.opt.shortmess:append('I') -- no intro message
 vim.opt.swapfile = false
 vim.opt.updatetime = 100
-vim.opt.mouse = 'n'
+vim.opt.mouse = ''

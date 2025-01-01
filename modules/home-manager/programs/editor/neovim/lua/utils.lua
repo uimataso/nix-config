@@ -39,13 +39,4 @@ M.overwrite_diagnostic_highlight = function(diagnostic_ns, highlight_ns, highlig
   }
 end
 
---- add diagnostics to qflist
----@param buf integer|nil
----@param get_opts vim.diagnostic.GetOpts
-M.get_diagnostic_to_qf = function(buf, get_opts)
-  local diagnostics = vim.diagnostic.get(buf, get_opts)
-  local qf_list = vim.diagnostic.toqflist(diagnostics)
-  vim.fn.setqflist(qf_list, 'r')
-end
-
 return M

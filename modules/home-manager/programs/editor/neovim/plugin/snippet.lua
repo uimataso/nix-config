@@ -1,0 +1,47 @@
+-- local snippets = { ['abc'] = 'function ${1:name}($1)\n\t${0}\nend\n' }
+
+-- vim.keymap.set('i', '<C-x><C-s>', function()
+--   local pos = vim.fn.getpos('.')
+--   local line = string.sub(vim.fn.getline('.'), 0, pos[3] - 1)
+--
+--   local snippet = nil
+--   for i = 1, #line, 1 do
+--     local a = string.sub(line, i, #line)
+--     local snip = snippets[a]
+--     if snip ~= nil then
+--       snippet = snip
+--       break
+--     end
+--   end
+--
+--   if snippet then
+--     vim.snippet.expand(snippet)
+--   else
+--     vim.notify('Snippet not found', vim.log.levels.ERROR)
+--   end
+-- end, { desc = 'Expand snippet' })
+
+-- ---@param trigger string trigger string for snippet
+-- ---@param body string snippet text that will be expanded
+-- ---@param opts? vim.keymap.set.Opts
+-- ---
+-- ---Refer to <https://microsoft.github.io/language-server-protocol/specification/#snippet_syntax>
+-- ---for the specification of valid body.
+-- function vim.snippet.add(trigger, body, opts)
+--   vim.keymap.set('ia', trigger, function()
+--     -- If abbrev is expanded with keys like "(", ")", "<cr>", "<space>",
+--     -- don't expand the snippet. Only accept "<c-]>" as trigger key.
+--     local c = vim.fn.nr2char(vim.fn.getchar(0))
+--     if c ~= '' then
+--       vim.api.nvim_feedkeys(trigger .. c, 'i', true)
+--       return
+--     end
+--     vim.snippet.expand(body)
+--   end, opts)
+-- end
+--
+-- vim.snippet.add('fn', 'function ${1:name}($1)\n\t${0}\nend\n')
+-- vim.snippet.add(
+--   'sfn',
+--   'local function ${1|one,two,three|}(${2:$(echo abc)})\n\t${3}\nend\n$TM_FILENAME'
+-- )

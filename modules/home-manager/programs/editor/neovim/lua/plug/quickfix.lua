@@ -1,18 +1,21 @@
-local keymap_dia_to_qf = function(lhs, buf, get_opts)
-  vim.keymap.set('n', lhs, function()
-    require('utils').get_diagnostic_to_qf(buf, get_opts)
-    require('quicker').open()
-  end, { desc = 'Add Diagnostics to QuckFix' })
-end
+-- vim.keymap.set('n', '<C-n>', '<cmd>cnext<cr>')
+-- vim.keymap.set('n', '<C-p>', '<cmd>cprev<cr>')
+vim.keymap.set('n', '<C-n>', '<cmd>lnext<cr>')
+vim.keymap.set('n', '<C-p>', '<cmd>lprev<cr>')
 
-vim.keymap.set('n', '<C-n>', '<cmd>cnext<cr>')
-vim.keymap.set('n', '<C-p>', '<cmd>cprev<cr>')
-keymap_dia_to_qf('<Leader>dwn', nil, {})
-keymap_dia_to_qf('<Leader>dln', 0, {})
-keymap_dia_to_qf('<Leader>dwe', nil, { severity = { min = vim.diagnostic.severity.ERROR } })
-keymap_dia_to_qf('<Leader>dle', 0, { severity = { min = vim.diagnostic.severity.ERROR } })
-keymap_dia_to_qf('<Leader>dww', nil, { severity = { min = vim.diagnostic.severity.WARN } })
-keymap_dia_to_qf('<Leader>dlw', 0, { severity = { min = vim.diagnostic.severity.WARN } })
+vim.keymap.set('n', '<Leader>da', function()
+  local diagnostics = vim.diagnostic.get(nil, {})
+  local qf_list = vim.diagnostic.toqflist(diagnostics)
+  vim.fn.setqflist(qf_list, 'r')
+  require('quicker').open()
+end, { desc = 'add diagnostic to quickfix' })
+
+vim.keymap.set('n', '<Leader>dl', function()
+  local diagnostics = vim.diagnostic.get(0, {})
+  local qf_list = vim.diagnostic.toqflist(diagnostics)
+  vim.fn.setloclist(0, qf_list, 'r')
+  require('quicker').open({ loclist = true })
+end, { desc = 'add diagnostic to quickfix' })
 
 return {
   'stevearc/quicker.nvim',

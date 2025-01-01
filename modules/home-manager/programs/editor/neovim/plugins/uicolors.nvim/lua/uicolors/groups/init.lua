@@ -1,6 +1,7 @@
 local M = {}
 
 M.plugins = {
+  ['blink.cmp'] = 'blink-cmp',
   ['diffview.nvim'] = 'diffview',
   ['fzf-lua'] = 'fzf-lua',
   ['gitsigns.nvim'] = 'gitsigns',

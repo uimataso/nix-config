@@ -104,19 +104,15 @@ return {
     config = function(_, opts)
       local capabilities = get_capabilities(opts.capabilities)
 
-      local handlers = {
-        ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' }),
-        ['textDocument/signatureHelp'] = vim.lsp.with(
-          vim.lsp.handlers.signature_help,
-          { border = 'rounded' }
-        ),
-      }
+      vim.lsp.handlers['textDocument/hover'] =
+        vim.lsp.with(vim.lsp.handlers.hover, { border = require('config').border })
+      vim.lsp.handlers['textDocument/signatureHelp'] =
+        vim.lsp.with(vim.lsp.handlers.signature_help, { border = require('config').border })
 
       for server, server_opts in pairs(opts.servers) do
         if server_opts then
           server_opts = vim.tbl_deep_extend('force', {
             capabilities = vim.deepcopy(capabilities),
-            handlers = handlers,
           }, server_opts or {})
 
           require('lspconfig')[server].setup(server_opts)

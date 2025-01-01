@@ -17,7 +17,10 @@ in
       enable = true;
       nix-direnv.enable = true;
 
-      config.whitelist.prefix = [ "~/src" ];
+      config.whitelist.prefix = [
+        "~/src"
+        "/persist/home/uima/src"
+      ];
 
       config.whitelist.exact = [ "~/nix" ];
     };

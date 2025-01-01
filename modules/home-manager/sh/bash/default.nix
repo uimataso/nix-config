@@ -53,14 +53,7 @@ in
         "ignoredups"
         "ignorespace"
       ];
-      historyIgnore = [
-        "ls"
-        "ll"
-        "a"
-        "e"
-        "e."
-        "exit"
-      ];
+      historyIgnore = [ "exit" ];
 
       bashrcExtra =
         # sh

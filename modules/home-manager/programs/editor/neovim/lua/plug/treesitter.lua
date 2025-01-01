@@ -4,7 +4,6 @@ return {
     event = 'BufReadPost',
     build = ':TSUpdate',
     dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
       -- parser for nu-lang
       'nushell/tree-sitter-nu',
     },
@@ -12,16 +11,16 @@ return {
     main = 'nvim-treesitter.configs',
 
     opts = {
-    -- stylua: ignore start
-    ensure_installed = {
-      'c', 'rust', 'python', 'javascript', 'lua', 'nix', 'nu',
-      'html', 'sql',
-      'markdown', 'markdown_inline', 'org',
-      'json', 'yaml', 'toml',
-      'awk', 'bash', 'corn', 'diff', 'http', 'query',
-      'gitattributes', 'gitcommit', 'git_config', 'gitignore', 'git_rebase',
-      'vim', 'vimdoc',
-    },
+      -- stylua: ignore start
+      ensure_installed = {
+        'c', 'rust', 'python', 'javascript', 'lua', 'nix', 'nu',
+        'html', 'sql',
+        'markdown', 'markdown_inline', 'org',
+        'json', 'yaml', 'toml',
+        'awk', 'bash', 'corn', 'diff', 'http', 'query',
+        'gitattributes', 'gitcommit', 'git_config', 'gitignore', 'git_rebase',
+        'vim', 'vimdoc',
+      },
       -- stylua: ignore end
 
       highlight = {
@@ -42,51 +41,6 @@ return {
         enable = true,
         -- use_virtual_text = true,
         -- lint_events = { 'BufWrite', 'CursorHold' },
-      },
-
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          node_incremental = 'v',
-          node_decremental = 'V',
-        },
-      },
-
-      textobjects = {
-        select = {
-          enable = true,
-          lookahead = true,
-          keymaps = {
-            ['af'] = '@function.outer',
-            ['if'] = '@function.inner',
-            ['ac'] = '@class.outer',
-            ['ic'] = '@class.inner',
-            ['aa'] = '@parameter.outer',
-            ['ia'] = '@parameter.inner',
-            ['ab'] = '@block.outer',
-            ['ib'] = '@block.inner',
-            ['al'] = '@loop.outer',
-            ['il'] = '@loop.inner',
-            ['ai'] = '@conditional.outer',
-            ['ii'] = '@conditional.inner',
-          },
-          selection_modes = {
-            ['@parameter.outer'] = 'v', -- charwise
-            ['@function.outer'] = 'V', -- linewise
-            ['@class.outer'] = '<c-v>', -- blockwise
-          },
-          include_surrounding_whitespace = false,
-        },
-
-        swap = {
-          enable = true,
-          swap_next = {
-            ['<leader>sa'] = '@parameter.inner',
-          },
-          swap_previous = {
-            ['<leader>sA'] = '@parameter.inner',
-          },
-        },
       },
     },
   },

@@ -47,7 +47,6 @@ return {
             return ctx.mode == 'cmdline'
           end,
           draw = {
-            align_to = 'cursor',
             treesitter = { 'lsp' },
           },
         },

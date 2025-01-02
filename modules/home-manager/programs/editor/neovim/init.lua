@@ -21,8 +21,10 @@ vim.opt.runtimepath:prepend(lazypath)
 require('lazy').setup({
   { import = 'plug' },
 }, {
+  -- for nix
+  lockfile = vim.fn.stdpath('data') .. '/lazy-lock.json',
+
   defaults = { lazy = true },
-  lockfile = vim.fn.stdpath('data') .. '/lazy-lock.json', -- for nix
   change_detection = { notify = false },
   performance = {
     rtp = {

@@ -34,53 +34,58 @@ in
       executable = "nvim";
     };
 
-    home.packages = with pkgs; [
-      neovim
-      gcc
+    programs.neovim = {
+      enable = true;
+      extraPackages = with pkgs; [
+        fd
+        ripgrep
+        delta
 
-      fd
-      ripgrep
-      delta
+        # LSP / Formatter
+        # Generic Formatter
+        prettierd
+        typos-lsp
 
-      # LSP / Formatter
-      # Generic Formatter
-      prettierd
-      typos-lsp
+        # Lua
+        lua-language-server
+        stylua
 
-      # Lua
-      lua-language-server
-      stylua
+        # Shell
+        shellcheck
+        bash-language-server
 
-      # Shell
-      shellcheck
-      bash-language-server
+        # Nix
+        nil
+        nixd
 
-      # Nix
-      nil
-      nixd
+        # Rust
+        rust-analyzer
+        rustfmt
+        clippy
+        cargo-nextest
 
-      # Rust
-      rust-analyzer
-      rustfmt
-      clippy
-      cargo-nextest
+        # C/Cpp
+        clang-tools
 
-      # C/Cpp
-      clang-tools
+        # Yaml
+        yaml-language-server
+        yamlfmt
 
-      # Yaml
-      yaml-language-server
-      yamlfmt
-
-      # OpenAPI
-      vacuum-go
-
-      # Typescript
-      typescript-language-server
-    ];
+        # Typescript
+        typescript-language-server
+      ];
+    };
 
     xdg.configFile = {
       "nvim".source = ./.;
+    };
+
+    home.file."./.local/share/nvim/nvim-treesitter" = {
+      recursive = true;
+      source = pkgs.symlinkJoin {
+        name = "nvim-treesitter-grammars";
+        paths = pkgs.vimPlugins.nvim-treesitter.withAllGrammars.dependencies;
+      };
     };
 
     home.sessionVariables = {

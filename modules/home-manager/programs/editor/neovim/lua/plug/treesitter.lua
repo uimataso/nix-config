@@ -2,27 +2,9 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     event = 'BufReadPost',
-    build = ':TSUpdate',
-    dependencies = {
-      -- parser for nu-lang
-      'nushell/tree-sitter-nu',
-    },
-
-    main = 'nvim-treesitter.configs',
+    -- build = ':TSUpdate',
 
     opts = {
-      -- stylua: ignore start
-      ensure_installed = {
-        'c', 'rust', 'python', 'javascript', 'lua', 'nix', 'nu',
-        'html', 'sql',
-        'markdown', 'markdown_inline', 'org',
-        'json', 'yaml', 'toml',
-        'awk', 'bash', 'corn', 'diff', 'http', 'query',
-        'gitattributes', 'gitcommit', 'git_config', 'gitignore', 'git_rebase',
-        'vim', 'vimdoc',
-      },
-      -- stylua: ignore end
-
       highlight = {
         enable = true,
         disable = { 'help' },
@@ -43,5 +25,10 @@ return {
         -- lint_events = { 'BufWrite', 'CursorHold' },
       },
     },
+
+    config = function(_, opts)
+      require('nvim-treesitter.configs').setup(opts)
+      vim.opt.runtimepath:append(vim.fn.stdpath('data') .. '/nvim-treesitter')
+    end,
   },
 }

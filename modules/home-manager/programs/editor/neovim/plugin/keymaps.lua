@@ -34,6 +34,9 @@ vim.keymap.set(
   { silent = true, desc = 'vim.lsp.buf.hover() but more' }
 )
 
+-- Snippet
+vim.keymap.set('i', '<C-x><C-s>', '<C-]>')
+
 -- Execute lua
 vim.keymap.set('n', '<Leader><Leader>x', '<cmd>source %<CR>')
 vim.keymap.set('n', '<Leader>xx', ':.lua<CR>')

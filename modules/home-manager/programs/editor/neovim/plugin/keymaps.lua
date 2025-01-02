@@ -10,7 +10,8 @@ vim.keymap.set('i', '<End>', '<C-o>$')
 
 -- Hover
 local function show_documentation()
-  if require('ufo').peekFoldedLinesUnderCursor() then
+  local has_ufo, ufo = pcall(require, 'ufo')
+  if has_ufo and ufo.peekFoldedLinesUnderCursor() then
     return
   end
 

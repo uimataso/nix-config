@@ -32,3 +32,15 @@ vim.opt.shortmess:append('I') -- no intro message
 vim.opt.swapfile = false
 vim.opt.updatetime = 100
 vim.opt.mouse = ''
+
+-- vim.opt.foldenable = true
+-- vim.opt.foldlevel = 99
+-- vim.opt.foldmethod = 'expr'
+-- vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+-- vim.opt.foldtext = 'v:lua.Foldtext()'
+--
+-- function Foldtext()
+--   local line = vim.fn.getline(vim.v.foldstart)
+--   local line_count = vim.v.foldend - vim.v.foldstart + 1
+--   return line .. ('   󰁂 [ %d ] '):format(line_count)
+-- end

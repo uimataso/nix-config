@@ -4,6 +4,7 @@ return {
     event = 'BufReadPost',
     -- build = ':TSUpdate',
 
+    ---@class TSConfig
     opts = {
       highlight = {
         enable = true,
@@ -13,16 +14,6 @@ return {
       indent = {
         enable = true,
         disable = { 'yaml' },
-      },
-
-      playground = {
-        enable = true,
-      },
-
-      query_linter = {
-        enable = true,
-        -- use_virtual_text = true,
-        -- lint_events = { 'BufWrite', 'CursorHold' },
       },
     },
 

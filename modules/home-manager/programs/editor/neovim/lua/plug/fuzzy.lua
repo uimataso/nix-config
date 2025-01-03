@@ -21,6 +21,16 @@ return {
       { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = 'Find Resume' },
       { '<Leader>fd', '<cmd>FzfLua diagnostics_document<cr>', desc = 'Find Diagnostic' },
       { '<Leader>fD', '<cmd>FzfLua diagnostics_workspace<cr>', desc = 'Find Diagnostic Wrokspace' },
+      {
+        '<Leader>fee',
+        '<cmd>FzfLua diagnostics_workspace severity_limit=1<cr>',
+        desc = 'Find Error Diagnostic Wrokspace',
+      },
+      {
+        '<Leader>few',
+        '<cmd>FzfLua diagnostics_workspace severity_limit=2<cr>',
+        desc = 'Find Warning Diagnostic Wrokspace',
+      },
 
       { '<leader>gc', '<cmd>FzfLua git_commits<cr>', desc = 'Git Commits' },
       { '<leader>gs', '<cmd>FzfLua git_status<cr>', desc = 'Git Status' },

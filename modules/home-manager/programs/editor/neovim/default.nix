@@ -43,7 +43,7 @@ in
 
         # LSP / Formatter
         # Generic Formatter
-        prettierd
+        nodePackages.prettier
         typos-lsp
 
         # Lua

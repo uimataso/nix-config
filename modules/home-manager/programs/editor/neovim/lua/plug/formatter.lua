@@ -3,6 +3,7 @@ return {
   event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
 
+  ---@module 'conform.nvim'
   ---@type conform.setupOpts
   opts = {
     default_format_opts = {
@@ -10,10 +11,10 @@ return {
     },
 
     formatters_by_ft = {
-      html = { 'prettierd' },
-      javascript = { 'prettierd' },
+      html = { 'prettier' },
+      javascript = { 'prettier' },
       lua = { 'stylua' },
-      markdown = { 'prettierd', 'injected' },
+      markdown = { 'prettier', 'injected' },
       python = { 'isort', 'black' },
       yaml = { 'yamlfmt' },
     },

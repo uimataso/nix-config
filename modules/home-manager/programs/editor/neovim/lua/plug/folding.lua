@@ -1,3 +1,5 @@
+vim.opt.foldlevel = 9999
+
 return {
   'kevinhwang91/nvim-ufo',
   event = 'VeryLazy',
@@ -35,10 +37,6 @@ return {
       desc = '',
     },
   },
-
-  init = function()
-    vim.opt.foldlevel = 9999
-  end,
 
   opts = {
     provider_selector = function(bufnr, filetype, buftype)

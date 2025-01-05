@@ -11,6 +11,8 @@
   home.persistence.main = {
     directories = [
       "nix"
+      "notes"
+
       # "src"
       {
         directory = "src";

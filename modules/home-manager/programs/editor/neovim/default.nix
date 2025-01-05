@@ -49,28 +49,21 @@ in
         # Lua
         lua-language-server
         stylua
-
         # Shell
         shellcheck
         bash-language-server
-
         # Nix
         nil
         nixd
-
-        # Rust
-        rust-analyzer
-        rustfmt
-        clippy
-        cargo-nextest
-
-        # C/Cpp
-        clang-tools
 
         # Yaml
         yaml-language-server
         yamlfmt
 
+        # Rust
+        cargo-nextest
+        # C/Cpp
+        clang-tools
         # Typescript
         typescript-language-server
       ];

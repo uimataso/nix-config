@@ -52,6 +52,12 @@ return {
 
     opts = {
       servers = {
+        bashls = {},
+        clangd = {},
+        nil_ls = {},
+        nixd = {},
+        vacuum = {},
+        ts_ls = {},
         typos_lsp = {
           init_options = {
             diagnosticSeverity = 'Hint',
@@ -62,8 +68,6 @@ return {
             require('utils').overwrite_diagnostic_highlight(diagnostic_ns, typos_hl_ns, 'SpellBad')
           end,
         },
-        bashls = {},
-        clangd = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -74,8 +78,6 @@ return {
             },
           },
         },
-        nil_ls = {},
-        nixd = {},
         pylsp = {
           settings = {
             pylsp = {
@@ -96,8 +98,6 @@ return {
             'json.openapi',
           },
         },
-        vacuum = {},
-        ts_ls = {},
       },
     },
 

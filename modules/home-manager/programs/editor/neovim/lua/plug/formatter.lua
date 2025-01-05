@@ -13,10 +13,13 @@ return {
     formatters_by_ft = {
       html = { 'prettier' },
       javascript = { 'prettier' },
-      lua = { 'stylua' },
       markdown = { 'prettier', 'injected' },
-      python = { 'isort', 'black' },
+
       yaml = { 'yamlfmt' },
+      toml = { 'taplo' },
+
+      lua = { 'stylua' },
+      python = { 'isort', 'black' },
       nix = { 'nixpkgs_fmt' },
       -- nix = { 'nixfmt' }, // nixfmt is official formatter but not yet stable, not sure which one to use
     },

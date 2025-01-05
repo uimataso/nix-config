@@ -60,6 +60,8 @@ in
         # Yaml
         yaml-language-server
         yamlfmt
+        # Toml
+        taplo
 
         # Rust
         cargo-nextest

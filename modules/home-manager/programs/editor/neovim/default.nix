@@ -55,6 +55,7 @@ in
         # Nix
         nil
         nixd
+        nixfmt-classic
 
         # Yaml
         yaml-language-server

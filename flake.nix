@@ -126,8 +126,8 @@
 
       templates = import ./templates;
 
-      # NOTE: use `pre-commit run --all-files`, see [this issue](https://github.com/cachix/git-hooks.nix/issues/287)
-      # formatter = forAllSystems (system: pkgsFor.${system}.nixfmt-rfc-style);
+      # formatter = forAllSystems (system: nixpkgsFor.${system}.nixfmt-rfc-style);
+      formatter = forAllSystems (system: nixpkgsFor.${system}.nixfmt-classic);
       devShells = forAllSystems (
         system:
         import ./shell.nix {

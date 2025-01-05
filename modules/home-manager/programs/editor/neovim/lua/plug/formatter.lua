@@ -17,6 +17,8 @@ return {
       markdown = { 'prettier', 'injected' },
       python = { 'isort', 'black' },
       yaml = { 'yamlfmt' },
+      nix = { 'nixpkgs_fmt' },
+      -- nix = { 'nixfmt' }, // nixfmt is official formatter but not yet stable, not sure which one to use
     },
 
     format_on_save = {

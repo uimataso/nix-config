@@ -55,15 +55,15 @@ colors.syntax = {
 
 colors.markup = {
   title1 = colors.title,
-  title2 = colors.blue,
-  title3 = colors.cyan,
+  title2 = colors.title,
+  title3 = colors.title,
   title4 = colors.title,
-  title5 = colors.blue,
-  title6 = colors.cyan,
+  title5 = colors.title,
+  title6 = colors.title,
 
   link = colors:gray(0.5),
   url = colors:gray(0.7),
-  quote = colors:gray(0.8),
+  quote = colors:gray(0.9),
   bullet = colors:gray(0.6),
 }
 

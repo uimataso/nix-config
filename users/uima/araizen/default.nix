@@ -1,9 +1,5 @@
 { pkgs, lib, ... }:
 {
-  imports = [
-    ./project.nix
-  ];
-
   home.username = "uima";
 
   home.stateVersion = "23.11";

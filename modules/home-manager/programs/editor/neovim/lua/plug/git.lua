@@ -23,6 +23,23 @@ return {
           vim.keymap.set(mode, lhs, rhs, { desc = desc, buffer = bufnr })
         end
 
+        -- Navigation
+        map('n', ']c', function()
+          if vim.wo.diff then
+            vim.cmd.normal({ ']c', bang = true })
+          else
+            gitsigns.nav_hunk('next')
+          end
+        end)
+
+        map('n', '[c', function()
+          if vim.wo.diff then
+            vim.cmd.normal({ '[c', bang = true })
+          else
+            gitsigns.nav_hunk('prev')
+          end
+        end)
+
         -- stylua: ignore start
         map('n', '<leader>hs', gitsigns.stage_hunk, 'Stage hunk')
         map('n', '<leader>hr', gitsigns.reset_hunk, 'Reset hunk')

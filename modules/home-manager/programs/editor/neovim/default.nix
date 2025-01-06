@@ -46,6 +46,8 @@ in
         nodePackages.prettier
         typos-lsp
 
+        # Markdown
+        marksman
         # Lua
         lua-language-server
         stylua

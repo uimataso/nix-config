@@ -58,6 +58,7 @@ return {
         nixd = {},
         vacuum = {},
         ts_ls = {},
+        marksman = {},
         typos_lsp = {
           init_options = {
             diagnosticSeverity = 'Hint',

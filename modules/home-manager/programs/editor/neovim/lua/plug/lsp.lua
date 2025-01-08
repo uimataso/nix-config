@@ -66,16 +66,16 @@ local servers = {
       require('utils').overwrite_diagnostic_highlight(diagnostic_ns, hl_ns, 'SpellBad')
     end,
   },
-  harper_ls = {
-    settings = {
-      ['harper-ls'] = {},
-    },
-    on_attach = function(client, _)
-      local diagnostic_ns = vim.lsp.diagnostic.get_namespace(client.id)
-      local hl_ns = vim.api.nvim_create_namespace('uima/HarperLspHighlight')
-      require('utils').overwrite_diagnostic_highlight(diagnostic_ns, hl_ns, 'SpellBad')
-    end,
-  },
+  -- harper_ls = {
+  --   settings = {
+  --     ['harper-ls'] = {},
+  --   },
+  --   on_attach = function(client, _)
+  --     local diagnostic_ns = vim.lsp.diagnostic.get_namespace(client.id)
+  --     local hl_ns = vim.api.nvim_create_namespace('uima/HarperLspHighlight')
+  --     require('utils').overwrite_diagnostic_highlight(diagnostic_ns, hl_ns, 'SpellBad')
+  --   end,
+  -- },
   lua_ls = {
     settings = {
       Lua = {

@@ -171,29 +171,4 @@ return {
     },
     opts = {},
   },
-
-  -- {
-  --   'rachartier/tiny-inline-diagnostic.nvim',
-  --   event = 'VeryLazy', -- Or `LspAttach`
-  --   priority = 1000, -- needs to be loaded in first
-  --   opts = {
-  --     options = {
-  --       multiple_diag_under_cursor = true,
-  --       -- show_all_diags_on_cursorline = true,
-  --     },
-  --     signs = {
-  --       left = '',
-  --       right = '',
-  --       diag = '●',
-  --       -- arrow = '       ',
-  --       arrow = '',
-  --       up_arrow = '    ',
-  --       vertical = ' │',
-  --       vertical_end = ' └',
-  --     },
-  --     blend = {
-  --       factor = 0.22,
-  --     },
-  --   },
-  -- },
 }

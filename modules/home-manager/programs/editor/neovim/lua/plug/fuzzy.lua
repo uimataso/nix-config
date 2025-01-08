@@ -12,26 +12,19 @@ return {
       { '<Leader>ff', '<cmd>FzfLua files<cr>', desc = 'Find Files' },
       { '<Leader>fb', '<cmd>FzfLua buffers<cr>', desc = 'Find Buffer' },
       { '<Leader>fs', '<cmd>FzfLua live_grep<cr>', desc = 'Find by Search' },
-      { '<Leader>fs', mode = { 'x' }, '<cmd>FzfLua grep_visual<cr>', desc = 'Find by Search' },
+      { '<Leader>fs', mode = 'x', '<cmd>FzfLua grep_visual<cr>', desc = 'Find by Search' },
       { '<Leader>fw', '<cmd>FzfLua grep_cword<cr>', desc = 'Find Word' },
       { '<Leader>fW', '<cmd>FzfLua grep_cWORD<cr>', desc = 'Find WORD' },
       { '<Leader>f"', '<cmd>FzfLua registers<cr>', desc = 'Find register' },
-      { '<Leader>ft', '<cmd>TodoFzfLua<cr>', desc = 'Find Todo' },
       { '<leader>fj', '<cmd>FzfLua jumps<cr>', desc = 'Find Jumplist' },
-
       { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = 'Find Resume' },
-      { '<Leader>fd', '<cmd>FzfLua diagnostics_document<cr>', desc = 'Find Diagnostic' },
-      { '<Leader>fD', '<cmd>FzfLua diagnostics_workspace<cr>', desc = 'Find Diagnostic Wrokspace' },
-      {
-        '<Leader>fee',
-        '<cmd>FzfLua diagnostics_workspace severity_limit=1<cr>',
-        desc = 'Find Error Diagnostic Wrokspace',
-      },
-      {
-        '<Leader>few',
-        '<cmd>FzfLua diagnostics_workspace severity_limit=2<cr>',
-        desc = 'Find Warning Diagnostic Wrokspace',
-      },
+
+      { '<Leader>fd', '<cmd>FzfLua diagnostics_document<cr>' },
+      { '<Leader>fD', '<cmd>FzfLua diagnostics_workspace<cr>' },
+      { '<Leader>fee', '<cmd>FzfLua diagnostics_workspace severity_limit=1<cr>' },
+      { '<Leader>few', '<cmd>FzfLua diagnostics_workspace severity_limit=2<cr>' },
+
+      { '<Leader>ft', '<cmd>TodoFzfLua<cr>', desc = 'Find Todo' },
 
       { '<leader>gc', '<cmd>FzfLua git_commits<cr>', desc = 'Git Commits' },
       { '<leader>gs', '<cmd>FzfLua git_status<cr>', desc = 'Git Status' },
@@ -39,24 +32,9 @@ return {
       { '<Leader>fh', '<cmd>FzfLua helptags<cr>', desc = 'Find Help' },
       { '<Leader>hl', '<cmd>FzfLua highlights<cr>', desc = 'Find HighLight' },
 
-      {
-        '<C-x><C-p>',
-        mode = { 'i' },
-        '<cmd>FzfLua complete_path<cr>',
-        desc = 'Fzf Path InsComplete',
-      },
-      {
-        '<C-x><C-f>',
-        mode = { 'i' },
-        '<cmd>FzfLua complete_file<cr>',
-        desc = 'Fzf File InsComplete',
-      },
-      {
-        '<C-x><C-l>',
-        mode = { 'i' },
-        '<cmd>FzfLua complete_line<cr>',
-        desc = 'Fzf Line InsComplete',
-      },
+      { '<C-x><C-p>', mode = 'i', '<cmd>FzfLua complete_path<cr>' },
+      { '<C-x><C-f>', mode = 'i', '<cmd>FzfLua complete_file<cr>' },
+      { '<C-x><C-l>', mode = 'i', '<cmd>FzfLua complete_line<cr>' },
     },
 
     opts = {

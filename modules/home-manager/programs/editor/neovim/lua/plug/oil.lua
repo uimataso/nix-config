@@ -1,6 +1,3 @@
-local au = require('utils').au
-local ag = require('utils').ag
-
 return {
   'stevearc/oil.nvim',
   lazy = false,
@@ -54,6 +51,9 @@ return {
 
   config = function(_, opts)
     require('oil').setup(opts)
+
+    local au = require('utils').au
+    local ag = require('utils').ag
 
     ag('uima/OilSettings', function(g)
       au('FileType', {

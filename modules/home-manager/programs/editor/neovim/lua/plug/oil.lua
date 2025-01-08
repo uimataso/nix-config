@@ -37,7 +37,6 @@ return {
       ['<Esc><Esc>'] = 'actions.close',
       ['q'] = 'actions.close',
       ['-'] = false,
-      ['<C-t>'] = false,
     },
     float = {
       padding = 5,

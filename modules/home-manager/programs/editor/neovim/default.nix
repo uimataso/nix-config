@@ -45,6 +45,7 @@ in
         # Generic Formatter
         nodePackages.prettier
         typos-lsp
+        harper
 
         # Markdown
         marksman

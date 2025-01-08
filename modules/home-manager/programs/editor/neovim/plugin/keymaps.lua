@@ -7,6 +7,8 @@ vim.keymap.set('i', '<C-Left>', '<C-o>b')
 vim.keymap.set('i', '<C-Right>', '<C-o>w')
 vim.keymap.set('i', '<Home>', '<C-o>^')
 vim.keymap.set('i', '<End>', '<C-o>$')
+vim.keymap.set('i', '<PageDown>', '<Nop>')
+vim.keymap.set('i', '<PageUp>', '<Nop>')
 
 -- Hover
 local function show_documentation()

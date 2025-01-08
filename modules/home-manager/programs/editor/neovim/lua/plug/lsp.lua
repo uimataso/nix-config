@@ -14,6 +14,7 @@ local get_capabilities = function(override)
   return capabilities
 end
 
+-- LSP Settings
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('uima/LspKeymap', { clear = true }),
   callback = function(args)
@@ -41,6 +42,72 @@ vim.diagnostic.config({
   },
 })
 
+vim.lsp.handlers['textDocument/hover'] =
+  vim.lsp.with(vim.lsp.handlers.hover, { border = require('config').border })
+vim.lsp.handlers['textDocument/signatureHelp'] =
+  vim.lsp.with(vim.lsp.handlers.signature_help, { border = require('config').border })
+
+-- Server Settings
+local servers = {
+  bashls = {},
+  clangd = {},
+  nil_ls = {},
+  nixd = {},
+  vacuum = {},
+  ts_ls = {},
+  marksman = {},
+  typos_lsp = {
+    init_options = {
+      diagnosticSeverity = 'Hint',
+    },
+    on_attach = function(client, _)
+      local diagnostic_ns = vim.lsp.diagnostic.get_namespace(client.id)
+      local hl_ns = vim.api.nvim_create_namespace('uima/TyposLspHighlight')
+      require('utils').overwrite_diagnostic_highlight(diagnostic_ns, hl_ns, 'SpellBad')
+    end,
+  },
+  harper_ls = {
+    settings = {
+      ['harper-ls'] = {},
+    },
+    on_attach = function(client, _)
+      local diagnostic_ns = vim.lsp.diagnostic.get_namespace(client.id)
+      local hl_ns = vim.api.nvim_create_namespace('uima/HarperLspHighlight')
+      require('utils').overwrite_diagnostic_highlight(diagnostic_ns, hl_ns, 'SpellBad')
+    end,
+  },
+  lua_ls = {
+    settings = {
+      Lua = {
+        diagnostics = {
+          disable = { 'missing-fields' },
+          globals = { 'vim' },
+        },
+      },
+    },
+  },
+  pylsp = {
+    settings = {
+      pylsp = {
+        plugins = {
+          flake8 = { enabled = true },
+          pycodestyle = { enabled = false },
+          pyflakes = { enabled = false },
+        },
+      },
+    },
+  },
+  yamlls = {
+    filetypes = {
+      'yaml',
+      'yaml.docker-compose',
+      'yaml.gitlab',
+      'yaml.openapi',
+      'json.openapi',
+    },
+  },
+}
+
 return {
   {
     'neovim/nvim-lspconfig',
@@ -51,65 +118,11 @@ return {
     },
 
     opts = {
-      servers = {
-        bashls = {},
-        clangd = {},
-        nil_ls = {},
-        nixd = {},
-        vacuum = {},
-        ts_ls = {},
-        marksman = {},
-        typos_lsp = {
-          init_options = {
-            diagnosticSeverity = 'Hint',
-          },
-          on_attach = function(client, _)
-            local diagnostic_ns = vim.lsp.diagnostic.get_namespace(client.id)
-            local typos_hl_ns = vim.api.nvim_create_namespace('uima/TyposLspHighlight')
-            require('utils').overwrite_diagnostic_highlight(diagnostic_ns, typos_hl_ns, 'SpellBad')
-          end,
-        },
-        lua_ls = {
-          settings = {
-            Lua = {
-              diagnostics = {
-                disable = { 'missing-fields' },
-                globals = { 'vim' },
-              },
-            },
-          },
-        },
-        pylsp = {
-          settings = {
-            pylsp = {
-              plugins = {
-                flake8 = { enabled = true },
-                pycodestyle = { enabled = false },
-                pyflakes = { enabled = false },
-              },
-            },
-          },
-        },
-        yamlls = {
-          filetypes = {
-            'yaml',
-            'yaml.docker-compose',
-            'yaml.gitlab',
-            'yaml.openapi',
-            'json.openapi',
-          },
-        },
-      },
+      servers = servers,
     },
 
     config = function(_, opts)
       local capabilities = get_capabilities(opts.capabilities)
-
-      vim.lsp.handlers['textDocument/hover'] =
-        vim.lsp.with(vim.lsp.handlers.hover, { border = require('config').border })
-      vim.lsp.handlers['textDocument/signatureHelp'] =
-        vim.lsp.with(vim.lsp.handlers.signature_help, { border = require('config').border })
-
       for server, server_opts in pairs(opts.servers) do
         if server_opts then
           server_opts = vim.tbl_deep_extend('force', {

@@ -38,19 +38,11 @@ return {
     },
 
     opts = {
-      -- https://www.reddit.com/r/neovim/comments/1hhiidm/a_few_nice_fzflua_configurations_now_that_lazyvim/
-      oldfiles = {
-        include_current_session = true,
-      },
-      previewers = {
-        builtin = {
-          syntax_limit_b = 1024 * 100, -- 100KB
-        },
-      },
       grep = {
-        rg_glob = true, -- enable glob parsing
-        glob_flag = '--iglob', -- case insensitive globs
-        glob_separator = '%s%s', -- query separator pattern (lua): ' '
+        formatter = 'path.dirname_first',
+      },
+      diagnostics = {
+        formatter = 'path.dirname_first',
       },
     },
 

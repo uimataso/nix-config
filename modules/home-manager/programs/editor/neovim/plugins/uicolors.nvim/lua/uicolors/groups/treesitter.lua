@@ -128,7 +128,7 @@ M.get = function(c)
     ['@tag.delimiter'] = '@punctuation.delimiter',
 
     -- Non-highlighting captures
-    -- ['@none']
+    ['@none'] = 'NonText',
     -- ['@conceal']
 
     -- ['@spell'] = {},

@@ -1,7 +1,98 @@
 return {
   {
+    'nvim-telescope/telescope.nvim',
+    lazy = false,
+
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'nvim-telescope/telescope-ui-select.nvim',
+      -- {
+      --   'nvim-telescope/telescope-fzf-native.nvim',
+      --   build = 'make',
+      -- },
+    },
+
+    keys = {
+      { '=', '<cmd>Telescope find_files<cr>' },
+
+      { '<Leader>ff', '<cmd>Telescope find_files<cr>' },
+      { '<Leader>fb', '<cmd>Telescope buffers<cr>' },
+      { '<Leader>fs', '<cmd>Telescope live_grep<cr>' },
+      -- { '<Leader>fs', mode = 'x' },
+      -- { '<Leader>fw' },
+      { '<Leader>fr', '<cmd>Telescope resume<cr>' },
+
+      { '<Leader>fd', '<cmd>Telescope diagnostics<cr>' },
+
+      { '<Leader>ft', '<cmd>TodoTelescope<cr>' },
+
+      { '<Leader>gc', '<cmd>Telescope git_commits<cr>' },
+      { '<Leader>gb', '<cmd>Telescope git_bcommits<cr>' },
+      { '<Leader>gb', mode = 'x', '<cmd>Telescope git_bcommits_range<cr>' },
+
+      { '<Leader>fhe', '<cmd>Telescope help_tags<cr>' },
+      { '<Leader>fhl', '<cmd>Telescope highlights<cr>' },
+      {
+        '<Leader>fp',
+        function()
+          require('telescope.builtin').find_files({
+            prompt_title = 'Lazy Package Files',
+            cwd = vim.fs.joinpath(vim.fn.stdpath('data'), 'lazy'),
+          })
+        end,
+        desc = 'Find Package Code',
+      },
+
+      -- { '<C-x><C-p>', mode = 'i', '<cmd>FzfLua complete_path<cr>' },
+      -- { '<C-x><C-f>', mode = 'i', '<cmd>FzfLua complete_file<cr>' },
+      -- { '<C-x><C-l>', mode = 'i', '<cmd>FzfLua complete_line<cr>' },
+    },
+
+    config = function()
+      local actions = require('telescope.actions')
+
+      require('telescope').setup({
+        defaults = {
+          mappings = {
+            i = {
+              -- ['<esc>'] = actions.close,
+            },
+          },
+        },
+
+        extensions = {
+          -- fzf = {},
+          ['ui-select'] = {
+            require('telescope.themes').get_dropdown({}),
+          },
+        },
+      })
+
+      -- require('telescope').load_extension('fzf')
+      require('telescope').load_extension('ui-select')
+
+      -- fix the `TelescopePromptNormal` got override by `CursorLine`
+      local au = require('utils').au
+      local ag = require('utils').ag
+      ag('uima/TelescopeCursorLine', function(g)
+        au('FileType', {
+          group = g,
+          pattern = 'TelescopePrompt',
+          callback = function()
+            vim.opt.cursorline = false
+          end,
+        })
+      end)
+    end,
+  },
+
+  {
     'ibhagwan/fzf-lua',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    enabled = false,
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
     lazy = false,
     command = 'FzfLua',
 
@@ -49,129 +140,6 @@ return {
     config = function(_, opts)
       require('fzf-lua').setup(opts)
       require('fzf-lua').register_ui_select()
-    end,
-  },
-
-  {
-    'nvim-telescope/telescope.nvim',
-    lazy = false,
-    enabled = false,
-
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-ui-select.nvim',
-      -- {
-      --   'nvim-telescope/telescope-fzf-native.nvim',
-      --   build = 'make',
-      -- },
-    },
-
-    keys = {
-      {
-        '=',
-        function()
-          require('telescope.builtin').find_files()
-        end,
-        desc = 'Find Files',
-      },
-      {
-        '<Leader>ff',
-        function()
-          require('telescope.builtin').find_files()
-        end,
-        desc = 'Find Files',
-      },
-      {
-        '<Leader>fb',
-        function()
-          require('telescope.builtin').buffers()
-        end,
-        desc = 'Find Buffer',
-      },
-      {
-        '<Leader>fs',
-        function()
-          require('telescope.builtin').live_grep()
-        end,
-        desc = 'Find by Search',
-      },
-      { '<Leader>ft', '<cmd>TodoTelescope', desc = 'Find Todo' },
-      {
-        '<Leader>fd',
-        function()
-          require('telescope.builtin').diagnostics()
-        end,
-        desc = 'Find Diagnostic',
-      },
-      {
-        '<Leader>fr',
-        function()
-          require('telescope.builtin').resume()
-        end,
-        desc = 'Find Resume',
-      },
-      {
-        '<Leader>fh',
-        function()
-          require('telescope.builtin').help_tags()
-        end,
-        desc = 'Find Help',
-      },
-      {
-        '<Leader>gc',
-        function()
-          require('telescope.builtin').git_commits()
-        end,
-        desc = 'Git Commit',
-      },
-      {
-        '<Leader>gb',
-        function()
-          require('telescope.builtin').git_bcommits()
-        end,
-        desc = 'Git Commit in Buffer',
-      },
-      {
-        '<Leader>gb',
-        mode = { 'x' },
-        function()
-          require('telescope.builtin').git_bcommits_range()
-        end,
-        desc = 'Git Commit in Buffer',
-      },
-      {
-        '<Leader>fp',
-        function()
-          require('telescope.builtin').find_files({
-            prompt_title = 'Lazy Package Files',
-            cwd = vim.fs.joinpath(vim.fn.stdpath('data'), 'lazy'),
-          })
-        end,
-        desc = 'Find Package Code',
-      },
-    },
-
-    config = function()
-      local actions = require('telescope.actions')
-      require('telescope').setup({
-        defaults = {
-          mappings = {
-            i = {
-              ['<esc>'] = actions.close,
-            },
-          },
-        },
-
-        extensions = {
-          -- fzf = {},
-          -- ['ui-select'] = {
-          --   require('telescope.themes').get_dropdown({}),
-          -- },
-        },
-      })
-
-      -- require('telescope').load_extension('fzf')
-      -- require('telescope').load_extension('ui-select')
     end,
   },
 }

@@ -33,7 +33,7 @@ M.toggleterm = function()
 end
 
 -- Terminal mapping
-vim.keymap.set({ 'n', 't' }, '<C-s>', M.toggleterm)
+vim.keymap.set({ 'n', 't' }, '<M-t>', M.toggleterm)
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>')
 vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>')
 

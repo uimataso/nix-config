@@ -88,10 +88,10 @@ M.get = function(c)
     DiffDelete = { bg = c.diff.bg_delete },
     DiffText = { bg = c.diff.bg_text },
 
-    SpellBad = { sp = c.error, undercurl = true },
-    SpellCap = { sp = c.warning, undercurl = true },
-    SpellLocal = { sp = c.hint, undercurl = true },
-    SpellRare = { sp = c.hint, undercurl = true },
+    SpellBad = { sp = c:dim(c.error, 0.6), undercurl = true },
+    SpellCap = { sp = c:dim(c.warning, 0.6), undercurl = true },
+    SpellLocal = { sp = c:dim(c.hint, 0.6), undercurl = true },
+    SpellRare = { sp = c:dim(c.hint, 0.6), undercurl = true },
 
     -- legacy
     diffAdded = { fg = c.diff.add },

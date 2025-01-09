@@ -9,10 +9,13 @@ local colors = {
   red = '#bf918c', -- 25 30 65
   yellow = '#aa9c86', -- 80 20 65
   green = '#94a38d', -- 135 20 65
-  cyan = '#86a5a6', -- 200 20 65
   blue = '#8aa1b2', -- 240 20 65
   magenta = '#b49599', -- 10 20 65
 }
+
+function colors:dim(color, level)
+  return util.blend(color, self.black, level)
+end
 
 function colors:gray(level)
   -- between black and white
@@ -31,25 +34,23 @@ colors.bg_fold = colors:gray(0.135)
 colors.bg_qf_select = colors:gray(0.135)
 colors.bg_visual = colors:gray(0.2)
 colors.border = colors:gray(0.3)
+colors.non_text = colors:gray(0.5)
 colors.status_line = colors:gray(0.75)
 colors.search = colors.yellow
-colors.non_text = colors:gray(0.5)
 colors.title = colors.white
 
 colors.syntax = {
   comment = colors:gray(0.5),
-  -- literal = colors.yellow,
   literal = '#a49d92', -- 80 10 65
   variable = colors.white,
-  -- fn = colors.white,
-  fn = '#95a0a8', -- 240 10 65
-  type = colors:gray(0.9),
-  keyword = colors:gray(0.8),
+  fn = colors.white,
+  type = colors.white,
+  keyword = colors.white,
 
   punctuation = colors:gray(0.5),
-  operator = colors:gray(0.7),
+  operator = colors.white,
   module = colors.white,
-  label = colors.fn,
+  label = colors.white,
   tag = colors.white,
 }
 
@@ -69,7 +70,7 @@ colors.markup = {
 
 colors.error = colors.red
 colors.warning = colors.yellow
-colors.info = colors.cyan
+colors.info = colors.blue
 colors.hint = colors:gray(0.75)
 colors.ok = colors.green
 colors.guide = colors.green
@@ -82,10 +83,10 @@ colors.diff = {
   delete = colors.red,
   text = colors:gray(0.5),
 
-  bg_add = util.blend(colors.green, colors.bg, 0.3),
-  bg_change = util.blend(colors.blue, colors.bg, 0.3),
-  bg_delete = util.blend(colors.red, colors.bg, 0.3),
-  bg_text = util.blend(colors.blue, colors.bg, 0.5),
+  bg_add = colors:dim(colors.green, 0.3),
+  bg_change = colors:dim(colors.blue, 0.3),
+  bg_delete = colors:dim(colors.red, 0.3),
+  bg_text = colors:dim(colors.blue, 0.5),
 }
 
 return colors

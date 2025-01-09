@@ -37,7 +37,7 @@ M.get = function(c)
     ['@number.float'] = '@number',
 
     -- Types
-    ['@type'] = { fg = c.syntax.type, bold = true },
+    ['@type'] = { fg = c.syntax.type },
     ['@type.builtin'] = '@type',
     ['@type.definition'] = '@keyword',
 

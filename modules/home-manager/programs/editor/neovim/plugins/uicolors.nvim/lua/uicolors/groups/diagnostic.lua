@@ -1,3 +1,5 @@
+local util = require('uicolors.util')
+
 local M = {}
 
 -- see :h diagnostic-highlights
@@ -14,11 +16,11 @@ M.get = function(c)
     -- DiagnosticVirtualTextInfo,
     -- DiagnosticVirtualTextHint,
     -- DiagnosticVirtualTextOk,
-    DiagnosticUnderlineError = { sp = c.error, underline = true },
-    DiagnosticUnderlineWarn = { sp = c.warning, underline = true },
-    DiagnosticUnderlineInfo = { sp = c.info, underline = true },
-    DiagnosticUnderlineHint = { sp = c.hint, underline = true },
-    DiagnosticUnderlineOk = { sp = c.ok, underline = true },
+    DiagnosticUnderlineError = { sp = c:dim(c.error, 0.6), underline = true },
+    DiagnosticUnderlineWarn = { sp = c:dim(c.warning, 0.6), underline = true },
+    DiagnosticUnderlineInfo = { sp = c:dim(c.info, 0.6), underline = true },
+    DiagnosticUnderlineHint = { sp = c:dim(c.hint, 0.6), underline = true },
+    DiagnosticUnderlineOk = { sp = c:dim(c.ok, 0.6), underline = true },
     -- DiagnosticFloatingError,
     -- DiagnosticFloatingWarn,
     -- DiagnosticFloatingInfo,

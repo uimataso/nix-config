@@ -34,22 +34,22 @@ colors.border = colors:gray(0.3)
 colors.status_line = colors:gray(0.75)
 colors.search = colors.yellow
 colors.non_text = colors:gray(0.5)
-colors.title = colors.magenta
+colors.title = colors.white
 
 colors.syntax = {
   comment = colors:gray(0.5),
-  literal = colors.yellow,
+  -- literal = colors.yellow,
+  literal = '#a49d92', -- 80 10 65
   variable = colors.white,
   -- fn = colors.white,
   fn = '#95a0a8', -- 240 10 65
-  type = colors:gray(0.8),
-  -- keyword = colors.magenta,
-  keyword = '#ac999a', -- 10 12 65
+  type = colors:gray(0.9),
+  keyword = colors:gray(0.8),
 
   punctuation = colors:gray(0.5),
   operator = colors:gray(0.7),
   module = colors.white,
-  label = colors.magenta,
+  label = colors.fn,
   tag = colors.white,
 }
 

@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   inherit (lib) mkIf mkEnableOption mkForce;
@@ -118,14 +119,12 @@ in
             }
             // (
               let
-                tag_fn =
-                  key: tag:
-                  {
-                    "Super ${key}" = "set-focused-tags ${mkTag tag}";
-                    "Super+Shift ${key}" = "set-view-tags ${mkTag tag}";
-                    "Super+Control ${key}" = "toggle-focused-tags ${mkTag tag}";
-                    "Super+Shift+Control ${key}" = "toggle-view-tags ${mkTag tag}";
-                  };
+                tag_fn = key: tag: {
+                  "Super ${key}" = "set-focused-tags ${mkTag tag}";
+                  "Super+Shift ${key}" = "set-view-tags ${mkTag tag}";
+                  "Super+Control ${key}" = "toggle-focused-tags ${mkTag tag}";
+                  "Super+Shift+Control ${key}" = "toggle-view-tags ${mkTag tag}";
+                };
               in
               (tag_fn "X" 1)
               // (tag_fn "C" 2)

@@ -1,8 +1,9 @@
-{ config
-, lib
-, pkgs
-, pkgs-stable
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  pkgs-stable,
+  ...
 }:
 let
   inherit (lib) mkIf mkEnableOption mkForce;

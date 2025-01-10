@@ -16,10 +16,12 @@
 
   networking = {
     interfaces.enp7s0 = {
-      ipv4.addresses = [{
-        address = "192.168.10.10";
-        prefixLength = 24;
-      }];
+      ipv4.addresses = [
+        {
+          address = "192.168.10.10";
+          prefixLength = 24;
+        }
+      ];
     };
     defaultGateway = {
       address = "192.168.10.1";

@@ -1,5 +1,6 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 # TODO: manage scripts
 # TODO: check easyeffects and discord screen sharing

@@ -9,6 +9,7 @@
     systems.url = "github:nix-systems/default-linux";
 
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -36,11 +37,13 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , systems
-    , ...
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      systems,
+      treefmt-nix,
+      ...
     }@inputs:
     let
       inherit (self) outputs;
@@ -62,6 +65,9 @@
       # Nixpkgs for each system
       nixpkgsFor = inputPkgsFor nixpkgs;
 
+      # Eval the treefmt modules from ./treefmt.nix
+      treefmtEval = forAllSystems (system: treefmt-nix.lib.evalModule nixpkgsFor.${system} ./treefmt.nix);
+
       # SpecialArgs that share between nixosConfig and homeConfig
       specialArgs = forAllSystems (system: {
         inherit inputs outputs;
@@ -69,7 +75,8 @@
         # pkgs-local = (inputPkgsFor inputs.nixpkgs-local).${system};
       });
 
-      nixosConfig = { modules, system }:
+      nixosConfig =
+        { modules, system }:
         lib.nixosSystem {
           pkgs = nixpkgsFor.${system};
           specialArgs = specialArgs.${system};
@@ -86,13 +93,12 @@
           ];
         };
 
-      homeConfig = { modules, system }:
+      homeConfig =
+        { modules, system }:
         lib.homeManagerConfiguration {
           pkgs = nixpkgsFor.${system};
           extraSpecialArgs = specialArgs.${system};
-          modules = modules ++ [
-            outputs.homeManagerModules
-          ];
+          modules = modules ++ [ outputs.homeManagerModules ];
         };
     in
     {
@@ -126,8 +132,8 @@
 
       templates = import ./templates;
 
-      # formatter = forAllSystems (system: nixpkgsFor.${system}.nixfmt-rfc-style);
-      formatter = forAllSystems (system: nixpkgsFor.${system}.nixfmt-classic);
+      formatter = forAllSystems (system: treefmtEval.${system}.config.build.wrapper);
+
       devShells = forAllSystems (
         system:
         import ./shell.nix {
@@ -135,11 +141,13 @@
           pre-commit-check = self.checks.${system}.pre-commit-check;
         }
       );
+
       checks = forAllSystems (system: {
+        formatting = treefmtEval.${system}.config.build.check self;
         pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
           src = ./.;
           hooks = {
-            nixpkgs-fmt.enable = true;
+            # treefmt.enable = true;
           };
         };
       });

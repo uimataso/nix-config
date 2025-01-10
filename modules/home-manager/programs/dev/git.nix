@@ -1,7 +1,12 @@
 { config, lib, ... }:
 # TODO: secrets?
 let
-  inherit (lib) mkIf mkEnableOption mkOption types;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkOption
+    types
+    ;
   cfg = config.uimaConfig.programs.dev.git;
 in
 {

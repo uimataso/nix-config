@@ -1,9 +1,16 @@
-{ config
-, lib
-, ...
+{
+  config,
+  lib,
+  ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption mkOption types mkDefault;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkOption
+    types
+    mkDefault
+    ;
   cfg = config.uimaConfig.sh;
 
   mkEverythingDefault = attr: lib.attrsets.mapAttrs (name: value: mkDefault value) attr;
@@ -64,16 +71,15 @@ in
     };
 
     # TODO: manage aliases
-    home.shellAliases =
-      {
-        free = "free -h";
-        ip = "ip -c";
-        ipa = "ip -c -br a";
-        grep = "grep --color=auto";
-        dl = "curl -OJL";
-        fclist = "fc-list : family";
-        unitest = "curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt";
-      };
+    home.shellAliases = {
+      free = "free -h";
+      ip = "ip -c";
+      ipa = "ip -c -br a";
+      grep = "grep --color=auto";
+      dl = "curl -OJL";
+      fclist = "fc-list : family";
+      unitest = "curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt";
+    };
 
     programs.bash.shellAliases = coreutilsAliases;
 

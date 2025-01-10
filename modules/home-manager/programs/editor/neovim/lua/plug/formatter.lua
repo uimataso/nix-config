@@ -20,8 +20,8 @@ return {
 
       lua = { 'stylua' },
       python = { 'isort', 'black' },
-      nix = { 'nixpkgs_fmt' },
-      -- nix = { 'nixfmt' }, // nixfmt is official formatter but not yet stable, not sure which one to use
+      -- nix = { 'nixpkgs_fmt' },
+      nix = { 'nixfmt' }, -- nixfmt is official formatter but not yet stable, not sure which one to use
     },
 
     format_on_save = {

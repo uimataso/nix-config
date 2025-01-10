@@ -1,6 +1,12 @@
 { config, lib, ... }:
 let
-  inherit (lib) mkIf mkEnableOption mkOption mkDefault types;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkOption
+    mkDefault
+    types
+    ;
   cfg = config.uimaConfig.system.doas;
 in
 {

@@ -1,7 +1,7 @@
-{ lib
-, fetchFromGitHub
-, pkgs
-,
+{
+  lib,
+  fetchFromGitHub,
+  pkgs,
 }:
 pkgs.tmuxPlugins.mkTmuxPlugin {
   pluginName = "extrakto";

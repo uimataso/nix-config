@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   inherit (lib) mkIf mkEnableOption;
@@ -78,7 +79,7 @@ let
 
   mapEngine = engine: {
     definedAliases = engine.aliases;
-    urls = [{ template = engine.url; }];
+    urls = [ { template = engine.url; } ];
     iconUpdateURL = getFavicon engine.url;
     updateInterval = 24 * 60 * 60 * 1000;
   };

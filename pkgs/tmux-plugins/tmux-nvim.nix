@@ -1,6 +1,6 @@
-{ fetchFromGitHub
-, pkgs
-,
+{
+  fetchFromGitHub,
+  pkgs,
 }:
 pkgs.tmuxPlugins.mkTmuxPlugin {
   pluginName = "tmux.nvim";

@@ -1,10 +1,16 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption mkOption types;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkOption
+    types
+    ;
   cfg = config.uimaConfig.programs.editor.neovim;
 
   imper = config.uimaConfig.system.impermanence;
@@ -58,7 +64,7 @@ in
         # Nix
         nil
         nixd
-        nixfmt-classic
+        nixfmt-rfc-style
 
         # Yaml
         yaml-language-server

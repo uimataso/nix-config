@@ -1,7 +1,8 @@
-{ config
-, lib
-, inputs
-, ...
+{
+  config,
+  lib,
+  inputs,
+  ...
 }:
 let
   inherit (lib) mkIf mkEnableOption;

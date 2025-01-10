@@ -1,7 +1,8 @@
-{ config
-, lib
-, inputs
-, ...
+{
+  config,
+  lib,
+  inputs,
+  ...
 }:
 
 # NOTE: Wish list for firefox
@@ -15,7 +16,12 @@
 # - [ ] precise persistence files
 
 let
-  inherit (lib) mkIf mkEnableOption mkOption types;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkOption
+    types
+    ;
   cfg = config.uimaConfig.programs.browser.firefox;
 in
 {

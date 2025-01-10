@@ -1,9 +1,10 @@
-{ config
-, lib
-, pkgs
-, inputs
-, outputs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  outputs,
+  ...
 }:
 let
   inherit (lib) mkIf mkEnableOption mkDefault;

@@ -1,10 +1,17 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption mkOption mkForce types;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkOption
+    mkForce
+    types
+    ;
   cfg = config.uimaConfig.programs.editor.vscode;
 
   imper = config.uimaConfig.system.impermanence;

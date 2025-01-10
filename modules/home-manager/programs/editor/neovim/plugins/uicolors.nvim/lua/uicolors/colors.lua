@@ -5,7 +5,8 @@ local util = require('uicolors.util')
 
 local colors = {
   black = '#161616', -- 0 0 10
-  white = '#ababab', -- 0 0 70
+  -- white = '#ababab', -- 0 0 70
+  white = '#b2a182',
   red = '#bf918c', -- 25 30 65
   yellow = '#aa9c86', -- 80 20 65
   green = '#94a38d', -- 135 20 65
@@ -41,7 +42,8 @@ colors.title = colors.white
 
 colors.syntax = {
   comment = colors:gray(0.5),
-  literal = '#a49d92', -- 80 10 65
+  -- literal = '#a49d92', -- 80 10 65
+  literal = '#ba904d',
   variable = colors.white,
   fn = colors.white,
   type = colors.white,

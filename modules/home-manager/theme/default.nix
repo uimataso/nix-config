@@ -13,6 +13,9 @@ let
     types
     ;
   cfg = config.uimaConfig.theme;
+
+  # See: https://github.com/tinted-theming/schemes
+  pre-configured = name: "${pkgs.base16-schemes}/share/themes/${name}.yaml";
 in
 {
   options.uimaConfig.theme = {
@@ -41,25 +44,8 @@ in
 
       image = cfg.wallpaper;
       polarity = "dark";
-      # base16Scheme = "${cfg.scheme}";
-      base16Scheme = {
-        base00 = "161616";
-        base01 = "303030";
-        base02 = "454545";
-        base03 = "808080";
-        base04 = "9b9b9b";
-        base05 = "bcbcbc";
-        base06 = "dddddd";
-        base07 = "f5f5f5";
-        base08 = "c68586";
-        base09 = "edb96e";
-        base0A = "d5be95";
-        base0B = "86a586";
-        base0C = "8caeaf";
-        base0D = "83a0af";
-        base0E = "d8afad";
-        base0F = "b08b76";
-      };
+      # base16Scheme = cfg.scheme;
+      base16Scheme = pre-configured "gruvbox-material-dark-hard";
 
       cursor = {
         size = 14;
@@ -97,20 +83,3 @@ in
     };
   };
 }
-
-# base00 = "#161616";
-# base01 = "#303030";
-# base02 = "#454545";
-# base03 = "#808080";
-# base04 = "#9b9b9b";
-# base05 = "#bcbcbc";
-# base06 = "#dddddd";
-# base07 = "#f5f5f5";
-# base08 = "#c68586";
-# base09 = "#edb96e";
-# base0A = "#d5be95";
-# base0B = "#86a586";
-# base0C = "#8caeaf";
-# base0D = "#83a0af";
-# base0E = "#d8afad";
-# base0F = "#b08b76";

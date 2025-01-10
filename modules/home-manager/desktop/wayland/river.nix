@@ -51,7 +51,7 @@ in
           wlr-randr --output HDMI-A-1 --mode 1920x1080@144Hz
         '';
 
-      settings = with config.stylix.base16Scheme; {
+      settings = with config.lib.stylix.colors; {
         default-layout = "rivertile";
 
         map = {

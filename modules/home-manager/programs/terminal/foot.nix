@@ -31,7 +31,7 @@ in
 
     programs.foot = {
       enable = true;
-      settings = with config.stylix.base16Scheme; {
+      settings = with config.lib.stylix.colors; {
         main = {
           pad = "5x3";
         };

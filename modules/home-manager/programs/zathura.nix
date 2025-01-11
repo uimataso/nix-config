@@ -3,7 +3,6 @@
   lib,
   ...
 }:
-# TODO: push default-bg and font to stylix
 let
   inherit (lib) mkIf mkEnableOption mkForce;
   cfg = config.uimaConfig.programs.zathura;

@@ -148,7 +148,7 @@ in
           bind  %  split-window -h -c "#{pane_current_path}"
           bind  |  split-window -h -c "#{pane_current_path}"
 
-          # create window in smae dir
+          # create window in same dir
           bind c new-window -c "#{pane_current_path}"
 
           # better keybind in copy mode
@@ -160,7 +160,7 @@ in
 
           # status
           set -g status-justify left
-          set -g status-left " #{?client_prefix,#[fg=black bg=magenta bright] [#S] #[fg=default bg=default],#[bright] [#S] #[]} "
+          set -g status-left " #{?client_prefix,#[fg=black bg=white bright] [#S] #[fg=default bg=default],#[bright] [#S] #[]} "
           set -g status-left-length 20
           set -g status-right "#[bright]#(whoami):#h  "
           setw -g window-status-current-format '-#I:#W- '
@@ -172,12 +172,12 @@ in
           set -g mode-style            fg=black,bg=green
 
           # pane border colors
-          set -g pane-border-style        fg='${base03}'
-          set -g pane-active-border-style fg=magenta
-          set -g popup-border-style       fg='${base03}'
+          set -g pane-border-style        fg='${base01}'
+          set -g pane-active-border-style fg=white
+          set -g popup-border-style       fg='${base01}'
 
           # window title colors
-          set -g window-status-current-style fg=magenta,bg=default,bold
+          set -g window-status-current-style fg=white,bg=default,bold
           set -g window-status-style         fg=brightwhite,bg=default
         '';
 

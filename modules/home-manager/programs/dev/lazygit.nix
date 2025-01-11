@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf mkForce mkEnableOption;
   cfg = config.uimaConfig.programs.dev.lazygit;
 in
 {
@@ -29,7 +29,7 @@ in
         disableStartupPopups = true;
         gui = {
           theme = with config.lib.stylix.colors.withHashtag; {
-            inactiveBorderColor = [ base03 ];
+            inactiveBorderColor = mkForce [ base03 ];
           };
           showBottomLine = false;
         };

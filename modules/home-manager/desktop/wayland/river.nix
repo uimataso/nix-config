@@ -166,8 +166,7 @@ in
         };
 
         border-color-unfocused = mkForce "0x${base00}00";
-        border-color-focused = mkForce "0x${base0E}";
-        border-color-urgent = mkForce "0x${base08}";
+        border-color-focused = mkForce "0x${base05}";
         border-width = 1;
       };
     };

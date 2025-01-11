@@ -24,10 +24,9 @@ in
 
       defaultCommand = "fd -HL --exclude '.git' --type file";
 
-      colors = with config.lib.stylix.colors.withHashtag; {
+      colors = {
         bg = mkForce "-1";
         gutter = mkForce "-1";
-        prompt = mkForce base0C;
       };
     };
 

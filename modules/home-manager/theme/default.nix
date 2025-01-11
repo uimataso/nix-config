@@ -45,7 +45,8 @@ in
       image = cfg.wallpaper;
       polarity = "dark";
       # base16Scheme = cfg.scheme;
-      base16Scheme = pre-configured "gruvbox-material-dark-hard";
+      # base16Scheme = pre-configured "gruvbox-material-dark-hard";
+      base16Scheme = ./gruvbox-dark-moded.yaml;
 
       cursor = {
         size = 14;
@@ -61,7 +62,7 @@ in
         sansSerif.name = "Noto Sans CJK TC";
 
         monospace.package = pkgs.nerd-fonts.meslo-lg;
-        monospace.name = "MesloLGS Nerd Font";
+        monospace.name = "MesloLGM Nerd Font";
 
         emoji.package = pkgs.noto-fonts-emoji;
         emoji.name = "Noto Color Emoji";
@@ -77,7 +78,7 @@ in
       opacity = {
         applications = 0.9;
         desktop = 1.0;
-        popups = 1.0;
+        popups = 0.9;
         terminal = 0.9;
       };
     };

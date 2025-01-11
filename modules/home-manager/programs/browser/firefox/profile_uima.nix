@@ -94,6 +94,12 @@ in
   config = mkIf cfg.enable {
     home.persistence.main = mkIf imper.enable { directories = [ ".mozilla/firefox/${name}" ]; };
 
+    stylix.targets.firefox = {
+      enable = true;
+      firefoxGnomeTheme.enable = true;
+      profileNames = [ name ];
+    };
+
     programs.firefox = {
       profiles.${name} = {
         search = {
@@ -131,19 +137,19 @@ in
         # containers = {
         # };
 
-        userChrome = lib.strings.concatLines [
-          color
-          (builtins.readFile ./chrome/userChrome.css)
-          (builtins.readFile ./chrome/onebar.css)
-        ];
-
-        userContent = lib.strings.concatLines [
-          color
-          (builtins.readFile ./content/userContent.css)
-          (builtins.readFile ./content/newtab_background.css)
-          (builtins.readFile ./content/youtube.css)
-          (builtins.readFile ./content/hacker_news.css)
-        ];
+        # userChrome = lib.strings.concatLines [
+        #   color
+        #   (builtins.readFile ./chrome/userChrome.css)
+        #   (builtins.readFile ./chrome/onebar.css)
+        # ];
+        #
+        # userContent = lib.strings.concatLines [
+        #   color
+        #   (builtins.readFile ./content/userContent.css)
+        #   (builtins.readFile ./content/newtab_background.css)
+        #   (builtins.readFile ./content/youtube.css)
+        #   (builtins.readFile ./content/hacker_news.css)
+        # ];
 
         settings = {
           # Auto enable extensions

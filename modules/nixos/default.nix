@@ -7,6 +7,7 @@
     ./networking
     ./services
     ./system
+    ./theme
     ./users
     ./virt
   ];

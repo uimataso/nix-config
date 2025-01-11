@@ -20,7 +20,7 @@ local c = {
 }
 
 local opts = {
-  trans_bg = false,
+  trans_bg = true,
   minimal = true,
 }
 

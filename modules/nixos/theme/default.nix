@@ -13,40 +13,23 @@ let
     types
     ;
   cfg = config.uimaConfig.theme;
-
-  # See: https://github.com/tinted-theming/schemes
-  pre-configured = name: "${pkgs.base16-schemes}/share/themes/${name}.yaml";
 in
 {
   options.uimaConfig.theme = {
     enable = mkEnableOption "Theme";
-
-    wallpaper = mkOption {
-      type = types.path;
-      default = ./default-wallpaper.png;
-      description = "Wallpaper image path.";
-    };
-
-    scheme = mkOption {
-      type = types.path;
-      default = ./base16-uicolor.yaml;
-      description = "Base16 color scheme to use.";
-    };
   };
 
   imports = [
-    inputs.stylix.homeManagerModules.stylix
+    inputs.stylix.nixosModules.stylix
   ];
 
   config = mkIf cfg.enable {
     stylix = {
       enable = true;
 
-      image = cfg.wallpaper;
-      polarity = "dark";
-      # base16Scheme = cfg.scheme;
-      # base16Scheme = pre-configured "gruvbox-material-dark-hard";
+      image = ./default-wallpaper.png;
       base16Scheme = ./gruvbox-dark-moded.yaml;
+      polarity = "dark";
 
       cursor = {
         size = 14;

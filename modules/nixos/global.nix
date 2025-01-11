@@ -49,6 +49,8 @@ in
         if [[ -r "$HOME/.config/bash/bashrc" ]]; then . "$HOME/.config/bash/bashrc"; fi
       '';
 
+    # Enable theme
+    uimaConfig.theme.enable = true;
     # Enable ssh by default
     uimaConfig.system.openssh.enable = mkDefault true;
   };

@@ -82,6 +82,8 @@ in
       ta = mkForce ''bash -c "tmux attach-session || tmux new-session -s default"'';
     };
 
+    stylix.targets.tmux.enable = false;
+
     programs.tmux = {
       enable = true;
 

@@ -6,6 +6,5 @@
     ./services
     ./sh
     ./system
-    ./theme
   ];
 }

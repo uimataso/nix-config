@@ -1,16 +1,11 @@
-/* reader mode */
-body.dark {
-  --bg-90tran: color-mix(in srgb, var(--bg-color) 90%, transparent);
-  --pr-90tran: color-mix(in srgb, var(--pr-color) 90%, transparent);
-
-  --main-background: var(--bg-color) !important;
-  --main-foreground: var(--fg-color) !important;
-  --link-foreground: rgb(102, 162, 209) !important;
-}
-
-@-moz-document url-prefix("https://yt.uima.xyz/") {
-  body.dark-theme {
-    background-color: rgba(22, 22, 22, 1) !important;
-    color: #dcdcdc !important;
-  }
+@-moz-document domain(home.uimataso.com){
+    :root {
+      --color-background: transparent !important;
+      --color-widget-background: var(--base00-trans) !important;
+      --color-widget-content-border: var(--base01) !important;
+      --color-text-base: var(--base04) !important;
+      --color-text-highlight: var(--base05) !important;
+      --color-text-base-muted: var(--base03) !important;
+      --color-text-subdue: var(--base03) !important;
+    }
 }

@@ -102,6 +102,7 @@
         firefox.enable = true;
         firefox.profile.uima.enable = true;
         firefox.defaultBrowser = true;
+        qutebrowser.enable = true;
       };
 
       dev = {

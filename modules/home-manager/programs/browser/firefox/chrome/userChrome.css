@@ -1,83 +1,29 @@
-/* svg.context-properties.content.enable */
-
 :root {
-  --bg-90tran: color-mix(in srgb, var(--bg-color) 90%, transparent);
-  --pr-90tran: color-mix(in srgb, var(--pr-color) 90%, transparent);
-  --background: var(--bg-color) !important;
+  --tab-selected-bgcolor: var(--base01) !important;
+  --tab-selected-textcolor: var(--base05) !important;
 
-  /* tab */
-  --toolbar-bgcolor: var(--bg-color) !important;
-  --lwt-accent-color: var(--bg-color) !important;
-  --lwt-selected-tab-background-color: rgba(255,255,255,0.15) !important;
-  --button-active-bgcolor: rgba(255,255,255,0.2) !important;
-  --button-hover-bgcolor: rgba(255,255,255,0.15) !important;
-
-
-  /* url border color */
-  --focus-outline-color: var(--pr-90tran) !important;
+  --focus-outline-color: var(--base05) !important;
   --focus-outline-width: 1px !important;
-  --toolbar-field-focus-border-color: var(--focus-outline-color)!important;
-}
 
-menupopup, panel {
-  --panel-background: var(--bg-90tran) !important;
-  --panel-border-color: var(--pr-90tran) !important;
-  --panel-border-radius: 0px !important;
-  --arrowpanel-background: var(--bg-90tran) !important;
-  --arrowpanel-border-color: var(--pr-90tran) !important;
-  --arrowpanel-border-radius: 0px !important;
-}
+  --urlbarView-highlight-background: var(--base02) !important;
+  --urlbarView-highlight-color: var(--base05) !important;
 
-.ContentSelectDropdown-item-0 {
-  color: var(--fg-color) !important;
+  --tabpanel-background-color: var(--base00-trans) !important;
 }
 
 #navigator-toolbox {
   border-bottom: none !important;
+  background-color: var(--base00-trans) !important;
 }
 
-.urlbarView {
-  /* background: var(--bg-90tran) !important; */
-  /* border: 1px solid var(--pr-90tran) !important; */
-  background: rgba(0, 0, 0, 0) !important;
+menupopup,
+panel {
+  --panel-background: var(--base00-trans) !important;
+  --panel-border-color: var(--base01) !important;
+  --arrowpanel-background: var(--base00-trans) !important;
+  --arrowpanel-border-color: var(--base01) !important;
 }
 
 #urlbar-background {
-  /* background: rgba(0, 0, 0, 0) !important; */
-  background: var(--bg-90tran) !important;
-  border: 0px !important;
-}
-
-#urlbar[focused="true"] > #urlbar-background,
-#urlbar:hover > #urlbar-background {
-  border: 1px solid var(--pr-90tran) !important;
-}
-
-.tab-background{
-  outline: 0px !important;
-}
-
-spacer {
-  border: none !important;
-}
-
-#titlebar,
-#PersonalToolbar,
-.toolbar-items {
-  background: var(--bg-color);
-}
-
-/* Hide some button */
-#new-tab-button,
-#tabs-newtab-button,
-.unified-extensions-item-open-menu.subviewbutton.subviewbutton-iconic,
-#tracking-protection-icon-container,
-#pageAction-urlbar-_testpilot-containers,
-#star-button-box
-{
-  display: none;
-}
-#alltabs-button {
-  opacity: 0;
-  width: 0;
+  background-color: var(--base00-trans) !important;
 }

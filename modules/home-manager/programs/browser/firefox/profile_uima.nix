@@ -10,14 +10,22 @@ let
 
   name = "uima";
 
-  color =
+  userCssColor =
     with config.lib.stylix.colors.withHashtag;
+    with config.stylix;
+    let
+      trans = builtins.toString (builtins.floor (opacity.applications * 100));
+    in
     # css
     ''
       :root{
-        --bg-color: ${base00} !important;
-        --fg-color: ${base07} !important;
-        --pr-color: ${base0E} !important;
+        --base00: ${base00};
+        --base01: ${base01};
+        --base02: ${base02};
+        --base03: ${base03};
+        --base04: ${base04};
+        --base05: ${base05};
+        --base00-trans: color-mix(in srgb, var(--base00) ${trans}%, transparent);
       }
     '';
 
@@ -94,12 +102,6 @@ in
   config = mkIf cfg.enable {
     home.persistence.main = mkIf imper.enable { directories = [ ".mozilla/firefox/${name}" ]; };
 
-    stylix.targets.firefox = {
-      enable = true;
-      firefoxGnomeTheme.enable = true;
-      profileNames = [ name ];
-    };
-
     programs.firefox = {
       profiles.${name} = {
         search = {
@@ -137,19 +139,16 @@ in
         # containers = {
         # };
 
-        # userChrome = lib.strings.concatLines [
-        #   color
-        #   (builtins.readFile ./chrome/userChrome.css)
-        #   (builtins.readFile ./chrome/onebar.css)
-        # ];
-        #
-        # userContent = lib.strings.concatLines [
-        #   color
-        #   (builtins.readFile ./content/userContent.css)
-        #   (builtins.readFile ./content/newtab_background.css)
-        #   (builtins.readFile ./content/youtube.css)
-        #   (builtins.readFile ./content/hacker_news.css)
-        # ];
+        userChrome = lib.strings.concatLines [
+          userCssColor
+          (builtins.readFile ./chrome/userChrome.css)
+          (builtins.readFile ./chrome/onebar.css)
+        ];
+
+        userContent = lib.strings.concatLines [
+          userCssColor
+          (builtins.readFile ./content/userContent.css)
+        ];
 
         settings = {
           # Auto enable extensions
@@ -165,12 +164,14 @@ in
           "browser.tabs.tabmanager.enabled" = false;
           # Never show bookmark bar
           "browser.toolbars.bookmarks.visibility" = "never";
-          # Dard theme
-          "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
+          # # Dard theme
+          # "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
           # Compact mode
           "browser.uidensity" = 1;
           # Disable title bar
           "browser.tabs.inTitlebar" = 1;
+          # Transparent page
+          "browser.tabs.allow_transparent_browser" = true;
 
           # Don't Ask to remember password
           "services.sync.prefs.sync.signon.rememberSignons" = false;

@@ -6,7 +6,7 @@ M.get = function(c)
   return {
     TelescopeNormal = 'NormalFloat',
     TelescopeBorder = 'FloatBorder',
-    TelescopeMatching = { fg = c.blue },
+    TelescopeMatching = { fg = c.green },
     TelescopeSelection = 'CursorLine',
   }
 end

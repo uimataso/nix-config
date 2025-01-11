@@ -105,11 +105,11 @@ M.get = function(c)
     ['@markup.heading.6'] = { fg = c.markup.title6, bold = true },
 
     ['@markup.quote'] = { fg = c.markup.quote },
-    ['@markup.math'] = { fg = c.fg },
+    ['@markup.math'] = { fg = c.markup.quote },
 
-    ['@markup.link'] = { fg = c.markup.url, sp = c.markup.link, underline = true },
+    ['@markup.link'] = { fg = c.markup.link, sp = c.markup.link, underline = true },
     ['@markup.link.label'] = { sp = c.markup.link, underline = true },
-    ['@markup.link.url'] = { fg = c.markup.url, sp = c.markup.link, underline = true },
+    ['@markup.link.url'] = { fg = c.markup.link, sp = c.markup.link, underline = true },
 
     ['@markup.raw'] = { fg = c.markup.quote, bg = c.bg_quote },
     ['@markup.raw.block'] = { fg = c.markup.quote, bg = c.bg_quote },

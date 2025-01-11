@@ -1,101 +1,89 @@
 local util = require('uicolors.util')
 
--- https://ok-color-picker.netlify.app
--- https://coolors.co/161616-ababab-db988d-aa9c86-94a38d-86a5a6-8aa1b2-b49599
+local M = {}
 
-local colors = {
-  black = '#161616', -- 0 0 10
-  -- white = '#ababab', -- 0 0 70
-  -- red = '#bf918c', -- 25 30 65
-  -- yellow = '#aa9c86', -- 80 20 65
-  -- green = '#94a38d', -- 135 20 65
-  -- blue = '#8aa1b2', -- 240 20 65
-  -- magenta = '#b49599', -- 10 20 65
-  white = '#ddc7a1',
-  red = '#ea6962', -- 25 30 65
-  yellow = '#d8a657', -- 80 20 65
-  green = '#a9b665', -- 135 20 65
-  blue = '#7daea3', -- 240 20 65
-  magenta = '#d3869b', -- 10 20 65
-  brown = '#bd6f3e',
-}
+function M.setup(base16_palette, opts)
+  local c = base16_palette
 
-function colors:dim(color, level)
-  return util.blend(color, self.black, level)
+  function c:dim(color, level)
+    return util.blend(color, self.base00, level)
+  end
+
+  -- Color name for human :)
+  c.black = c.base00
+  c.white = c.base05
+  c.red = c.base08
+  c.orange = c.base09
+  c.yellow = c.base0A
+  c.green = c.base0B
+  c.cyan = c.base0C
+  c.blue = c.base0D
+  c.magenta = c.base0E
+  c.brown = c.base0F
+
+  c.none = opts.trans_bg and 'NONE' or c.black
+  c.fg = c.white
+  c.bg = c.black
+
+  c.bg_popup = util.blend(c.base01, c.base00, 0.25)
+  c.bg_quote = util.blend(c.base01, c.base00, 0.25)
+  c.bg_cursor_line = util.blend(c.base01, c.base00, 0.5)
+  c.bg_fold = c.base01
+  c.bg_selection = c.base01
+  c.bg_visual = c.base02
+  c.border = c.base01
+  c.non_text = c.base03
+  c.status_line = c.base04
+  c.selection = c.white
+
+  c.syntax = {
+    comment = c.base03,
+    literal = c.orange,
+    variable = c.white,
+    fn = c.white,
+    type = c.white,
+    keyword = c.white,
+
+    punctuation = c.base03,
+    operator = c.white,
+    module = c.white,
+    label = c.white,
+    tag = c.base04,
+  }
+
+  c.markup = {
+    title1 = c.title,
+    title2 = c.title,
+    title3 = c.title,
+    title4 = c.title,
+    title5 = c.title,
+    title6 = c.title,
+
+    link = c.base04,
+    quote = c.white,
+    bullet = c.base04,
+  }
+
+  c.footer = c.base04
+  c.title = c.base06
+  c.search = c.yellow
+  c.error = c.red
+  c.warning = c.yellow
+  c.info = c.blue
+  c.hint = c.base04
+  c.ok = c.green
+  c.guide = c.green
+  c.todo = c:dim(c.green, 0.8)
+  c.unused = c.base04
+
+  c.diff = {
+    add = c.green,
+    change = c.blue,
+    delete = c.red,
+    text = c.base03,
+  }
+
+  return c
 end
 
-function colors:gray(level)
-  -- between black and white
-  return util.blend(self.white, self.black, level)
-end
-
-colors.none = 'NONE'
--- colors.none = colors.black
-colors.fg = colors.white
-colors.bg = colors.black
-
-colors.bg_popup = colors:gray(0.05)
-colors.bg_quote = colors:gray(0.05)
-colors.bg_cursor_line = colors:gray(0.1)
-colors.bg_fold = colors:gray(0.135)
-colors.bg_qf_select = colors:gray(0.135)
-colors.bg_visual = colors:gray(0.3)
-colors.border = colors:gray(0.2)
-colors.non_text = colors:gray(0.5)
-colors.status_line = colors:gray(0.75)
-colors.search = colors.yellow
-colors.title = colors.white
-
-colors.syntax = {
-  comment = colors:gray(0.5),
-  -- literal = '#a49d92', -- 80 10 65
-  -- literal = '#ba904d',
-  literal = colors.brown,
-  variable = colors.white,
-  fn = colors.white,
-  type = colors.white,
-  keyword = colors.white,
-
-  punctuation = colors:gray(0.5),
-  operator = colors.white,
-  module = colors.white,
-  label = colors.white,
-  tag = colors.white,
-}
-
-colors.markup = {
-  title1 = colors.title,
-  title2 = colors.title,
-  title3 = colors.title,
-  title4 = colors.title,
-  title5 = colors.title,
-  title6 = colors.title,
-
-  link = colors:gray(0.5),
-  url = colors:gray(0.7),
-  quote = colors:gray(0.9),
-  bullet = colors:gray(0.6),
-}
-
-colors.error = colors.red
-colors.warning = colors.yellow
-colors.info = colors.blue
-colors.hint = colors:gray(0.75)
-colors.ok = colors.green
-colors.guide = colors.green
-colors.todo = util.blend(colors.green, colors.black, 0.8)
-colors.unused = colors:gray(0.75)
-
-colors.diff = {
-  add = colors.green,
-  change = colors.blue,
-  delete = colors.red,
-  text = colors:gray(0.5),
-
-  bg_add = colors:dim(colors.green, 0.3),
-  bg_change = colors:dim(colors.blue, 0.3),
-  bg_delete = colors:dim(colors.red, 0.3),
-  bg_text = colors:dim(colors.blue, 0.5),
-}
-
-return colors
+return M

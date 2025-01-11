@@ -31,7 +31,7 @@ M.get = function(c)
     -- DiagnosticSignInfo,
     -- DiagnosticSignHint,
     -- DiagnosticSignOk,
-    DiagnosticDeprecated = { sp = c.fg, strikethrough = true },
+    DiagnosticDeprecated = { sp = c.unused, strikethrough = true },
     DiagnosticUnnecessary = { fg = c.unused },
   }
 end

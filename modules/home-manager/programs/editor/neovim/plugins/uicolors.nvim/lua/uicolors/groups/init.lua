@@ -15,7 +15,7 @@ M.get = function(name, colors)
   return g.get(colors)
 end
 
-M.load = function(colors)
+M.setup = function(colors)
   local groups = {
     base = true,
     treesitter = true,

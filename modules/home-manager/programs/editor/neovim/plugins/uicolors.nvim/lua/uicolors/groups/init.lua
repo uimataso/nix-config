@@ -8,6 +8,7 @@ M.plugins = {
   ['helpview.nvim'] = 'helpview',
   ['indent-blankline.nvim'] = 'indent-blankline',
   ['telescope.nvim'] = 'telescope',
+  ['visimatch.nvim'] = 'visimatch',
 }
 
 M.get = function(name, colors)

@@ -36,6 +36,18 @@ in
       wlr-randr
     ];
 
+    # NOTE: try to hide the title bar
+    gtk = {
+      gtk4.extraConfig.gtk-dialogs-use-header = false;
+      gtk3.extraConfig.gtk-dialogs-use-header = false;
+    };
+    stylix.targets.gtk.extraCss = ''
+      headerbar.default-decoration {
+        margin-bottom: 50px;
+        margin-top: -100px;
+      }
+    '';
+
     # TODO: make each tag has its own split width
 
     wayland.windowManager.river = {

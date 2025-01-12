@@ -171,4 +171,18 @@ return {
     },
     opts = {},
   },
+
+  {
+    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+    opts = {},
+    keys = {
+      {
+        '<Leader>e',
+        function()
+          require('lsp_lines').toggle()
+        end,
+        { desc = 'Toggle lsp_lines' },
+      },
+    },
+  },
 }

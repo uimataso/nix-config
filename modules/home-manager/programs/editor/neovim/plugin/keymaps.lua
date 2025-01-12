@@ -37,6 +37,10 @@ vim.keymap.set(
   { silent = true, desc = 'vim.lsp.buf.hover() but more' }
 )
 
+vim.keymap.set({ 'n', 'x' }, '<Leader>a', function()
+  vim.lsp.buf.code_action()
+end, { desc = 'vim.lsp.buf.code_action()' })
+
 -- Snippet
 vim.keymap.set('i', '<C-x><C-s>', '<C-]>')
 

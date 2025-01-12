@@ -30,7 +30,7 @@ return {
           on_attach = function(client, bufnr)
             -- vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
 
-            vim.keymap.set('n', '<Leader>e', function()
+            vim.keymap.set('n', '<Leader>rr', function()
               local diagnostics =
                 vim.diagnostic.get(0, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 })
               if diagnostics[1] == nil then
@@ -45,7 +45,7 @@ return {
                 vim.diagnostic.open_float()
               end
             end)
-            vim.keymap.set('n', '<Leader>r', '<cmd>RustLsp explainError<cr>')
+            vim.keymap.set('n', '<Leader>re', '<cmd>RustLsp explainError<cr>')
           end,
 
           default_settings = {

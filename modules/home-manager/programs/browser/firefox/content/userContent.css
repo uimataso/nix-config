@@ -1,11 +1,29 @@
+/* reader mode */
+body.dark {
+  --main-background: transparent !important;
+  --main-foreground: var(--base05) !important;
+  --primary-color: var(--base05) !important;
+  --toolbar-border: var(--base02) !important;
+  --icon-fill: var(--base02) !important;
+  --link-foreground: var(--base0C) !important;
+  --visited-link-foreground: var(--base0C) !important;
+  --toolbar-button-foreground-hover: var(--base03) !important;
+  --toolbar-button-background-hover: var(--base01) !important;
+  --toolbar-box-shadow: transparent !important;
+  --tooltip-foreground: var(--base03) !important;
+  --tooltip-background: var(--base01) !important;
+  --popup-background: var(--base01) !important;
+  --popup-button-background: var(--base03) !important;
+}
+
 @-moz-document domain(home.uimataso.com){
-    :root {
-      --color-background: transparent !important;
-      --color-widget-background: var(--base00-trans) !important;
-      --color-widget-content-border: var(--base01) !important;
-      --color-text-base: var(--base04) !important;
-      --color-text-highlight: var(--base05) !important;
-      --color-text-base-muted: var(--base03) !important;
-      --color-text-subdue: var(--base03) !important;
-    }
+  :root {
+    --color-background: transparent !important;
+    --color-widget-background: var(--base00-trans) !important;
+    --color-widget-content-border: var(--base01) !important;
+    --color-text-base: var(--base04) !important;
+    --color-text-highlight: var(--base05) !important;
+    --color-text-base-muted: var(--base03) !important;
+    --color-text-subdue: var(--base03) !important;
+  }
 }

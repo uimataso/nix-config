@@ -29,8 +29,9 @@ return {
       },
 
       sources = {
-        default = { 'lsp', 'path', 'buffer', 'lazydev' },
+        default = { 'lsp', 'path', 'buffer', 'ecolog', 'lazydev' },
         providers = {
+          ecolog = { name = 'ecolog', module = 'ecolog.integrations.cmp.blink_cmp' },
           lazydev = {
             name = 'LazyDev',
             module = 'lazydev.integrations.blink',

@@ -24,6 +24,8 @@ let
         --base08: ${base08}; --base09: ${base09}; --base0A: ${base0A}; --base0B: ${base0B};
         --base0C: ${base0C}; --base0D: ${base0D}; --base0E: ${base0E}; --base0F: ${base0F};
         --base00-trans: color-mix(in srgb, var(--base00) ${trans}%, transparent);
+
+        --t: #00ff00;
       }
     '';
 
@@ -143,9 +145,11 @@ in
           (builtins.readFile ./chrome/onebar.css)
         ];
 
+        # TODO: custom github, youtube?
         userContent = lib.strings.concatLines [
           userCssColor
           (builtins.readFile ./content/userContent.css)
+          (builtins.readFile ./content/github.css)
         ];
 
         settings = {

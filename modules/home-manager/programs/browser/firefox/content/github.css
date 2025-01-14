@@ -43,4 +43,14 @@
   div.search-suggestions {
     background-color: var(--base00) !important;
   }
+
+  /* in pr/issue page, because the comment's background is transparent, the timeline will overlay on comment */
+  .TimelineItem::before {
+    display: none !important;
+  }
+
+  /* fix transparent sticky header */
+  .gh-header-shadow {
+    background: var(--base00) !important;
+  }
 }

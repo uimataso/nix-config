@@ -32,6 +32,7 @@ in
   config = mkIf cfg.enable {
     home.shellAliases = {
       no = "nh os switch ${cfg.flakeDir}";
+      nu = "git -C ${cfg.flakeDir} pull && nh os switch ${cfg.flakeDir}";
       nt = "nh os test ${cfg.flakeDir}";
       nr = "nix repl --expr 'builtins.getFlake \"${cfg.flakeDir}\"'";
       nd = "nix develop path:$(pwd)";

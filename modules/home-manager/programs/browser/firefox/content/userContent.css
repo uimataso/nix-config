@@ -1,6 +1,6 @@
 /* reader mode */
 body.dark {
-  --main-background: transparent !important;
+  --main-background: var(--bg) !important;
   --main-foreground: var(--base05) !important;
   --primary-color: var(--base05) !important;
   --toolbar-border: var(--base02) !important;
@@ -9,7 +9,7 @@ body.dark {
   --visited-link-foreground: var(--base0C) !important;
   --toolbar-button-foreground-hover: var(--base03) !important;
   --toolbar-button-background-hover: var(--base01) !important;
-  --toolbar-box-shadow: transparent !important;
+  --toolbar-box-shadow: var(--bg) !important;
   --tooltip-foreground: var(--base03) !important;
   --tooltip-background: var(--base01) !important;
   --popup-background: var(--base01) !important;
@@ -18,7 +18,7 @@ body.dark {
 
 @-moz-document domain(home.uimataso.com){
   :root {
-    --color-background: transparent !important;
+    --color-background: var(--bg) !important;
     --color-widget-background: var(--base00-trans) !important;
     --color-widget-content-border: var(--base01) !important;
     --color-text-base: var(--base04) !important;

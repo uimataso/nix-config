@@ -149,7 +149,6 @@ in
         userContent = lib.strings.concatLines [
           userCssColor
           (builtins.readFile ./content/userContent.css)
-          (builtins.readFile ./content/github.css)
         ];
 
         settings = {

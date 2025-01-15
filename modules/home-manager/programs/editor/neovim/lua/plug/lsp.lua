@@ -49,7 +49,17 @@ vim.lsp.handlers['textDocument/signatureHelp'] =
 
 -- Server Settings
 local servers = {
-  bashls = {},
+  bashls = {
+    handlers = {
+      -- disable diagnostic on `.env` file
+      ['textDocument/publishDiagnostics'] = function(err, res, ...)
+        local file_name = vim.fn.fnamemodify(vim.uri_to_fname(res.uri), ':t')
+        if string.match(file_name, '^%.env') == nil then
+          return vim.lsp.diagnostic.on_publish_diagnostics(err, res, ...)
+        end
+      end,
+    },
+  },
   clangd = {},
   nil_ls = {},
   nixd = {},

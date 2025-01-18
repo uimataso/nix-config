@@ -40,6 +40,8 @@ vim.keymap.set(
 vim.keymap.set({ 'n', 'x' }, '<Leader>a', function()
   vim.lsp.buf.code_action()
 end, { desc = 'vim.lsp.buf.code_action()' })
+vim.keymap.set('n', '<Leader>gd', '<cmd>vsplit | lua vim.lsp.buf.definition()<cr>')
+vim.keymap.set('n', '<Leader>gD', '<cmd>vsplit | lua vim.lsp.buf.declaration()<cr>')
 
 -- Snippet
 vim.keymap.set('i', '<C-x><C-s>', '<C-]>')

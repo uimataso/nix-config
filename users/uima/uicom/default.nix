@@ -19,10 +19,13 @@
         directory = "src";
         method = "symlink";
       }
+
+      ".config/obsidian"
     ];
   };
 
   home.packages = with pkgs; [
+    obsidian
     qmk
     fd
     extract

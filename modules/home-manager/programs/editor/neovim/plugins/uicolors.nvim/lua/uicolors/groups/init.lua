@@ -9,6 +9,7 @@ M.plugins = {
   ['indent-blankline.nvim'] = 'indent-blankline',
   ['telescope.nvim'] = 'telescope',
   ['visimatch.nvim'] = 'visimatch',
+  ['vim-illuminate'] = 'vim-illuminate',
 }
 
 M.get = function(name, colors)

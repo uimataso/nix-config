@@ -187,7 +187,7 @@ return {
     opts = {},
     keys = {
       {
-        '<Leader>e',
+        '<Leader>df',
         function()
           require('lsp_lines').toggle()
         end,

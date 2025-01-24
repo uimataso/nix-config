@@ -31,8 +31,8 @@ return {
       { '<Leader>gb', '<cmd>Telescope git_bcommits<cr>' },
       { '<Leader>gb', mode = 'x', '<cmd>Telescope git_bcommits_range<cr>' },
 
-      { '<Leader>fhe', '<cmd>Telescope help_tags<cr>' },
-      { '<Leader>fhl', '<cmd>Telescope highlights<cr>' },
+      { '<Leader>he', '<cmd>Telescope help_tags<cr>' },
+      { '<Leader>hl', '<cmd>Telescope highlights<cr>' },
       {
         '<Leader>fp',
         function()

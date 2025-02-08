@@ -30,6 +30,7 @@
             buildInputs = [
               openssl
               pkg-config
+
               (rust-bin.fromRustupToolchainFile ./rust-toolchain.toml)
             ];
 

@@ -133,7 +133,7 @@
         tealdeer.enable = true;
       };
 
-      nixcord.enable = true;
+      # nixcord.enable = true;
 
       calibre.enable = true;
 

@@ -15,6 +15,7 @@ return {
 
     keys = {
       { '=', '<cmd>Telescope find_files<cr>' },
+      { '=', '<cmd>Telescope spell_suggest<cr>' },
 
       { '<Leader>ff', '<cmd>Telescope find_files<cr>' },
       { '<Leader>fb', '<cmd>Telescope buffers<cr>' },
@@ -23,8 +24,10 @@ return {
       -- { '<Leader>fw' },
       { '<Leader>fr', '<cmd>Telescope resume<cr>' },
 
-      { '<Leader>fd', '<cmd>Telescope diagnostics<cr>' },
+      { '<Leader>fd', '<cmd>Telescope diagnostics bufnr=0<cr>' },
+      { '<Leader>fD', '<cmd>Telescope diagnostics<cr>' },
 
+      { '<Leader>fq', '<cmd>Telescope quickfix<cr>' },
       { '<Leader>ft', '<cmd>TodoTelescope<cr>' },
 
       { '<Leader>gc', '<cmd>Telescope git_commits<cr>' },

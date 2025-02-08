@@ -1,21 +1,40 @@
--- vim.keymap.set('n', '<C-n>', '<cmd>cnext<cr>')
--- vim.keymap.set('n', '<C-p>', '<cmd>cprev<cr>')
-vim.keymap.set('n', '<C-n>', '<cmd>lnext<cr>')
-vim.keymap.set('n', '<C-p>', '<cmd>lprev<cr>')
+vim.keymap.set('n', '<C-n>', '<cmd>cnext<cr>')
+vim.keymap.set('n', '<C-p>', '<cmd>cprev<cr>')
 
-vim.keymap.set('n', '<Leader>da', function()
-  local diagnostics = vim.diagnostic.get(nil, {})
+local function diagnostic2qflist(diagnostics)
   local qf_list = vim.diagnostic.toqflist(diagnostics)
   vim.fn.setqflist(qf_list, 'r')
   require('quicker').open()
-end, { desc = 'add diagnostic to quickfix' })
+end
 
-vim.keymap.set('n', '<Leader>dl', function()
+vim.keymap.set('n', '<Leader>da', function()
   local diagnostics = vim.diagnostic.get(0, {})
-  local qf_list = vim.diagnostic.toqflist(diagnostics)
-  vim.fn.setloclist(0, qf_list, 'r')
-  require('quicker').open({ loclist = true })
-end, { desc = 'add diagnostic to quickfix' })
+  diagnostic2qflist(diagnostics)
+end, { desc = 'add local diagnostics to quickfix' })
+
+vim.keymap.set('n', '<Leader>ds', function()
+  local diagnostics = vim.diagnostic.get(0, { severity = { min = vim.diagnostic.severity.WARN } })
+  diagnostic2qflist(diagnostics)
+end, { desc = 'add local warn/error diagnostics to quickfix' })
+
+vim.keymap.set('n', '<Leader>Da', function()
+  local diagnostics = vim.diagnostic.get(nil, {})
+  diagnostic2qflist(diagnostics)
+end, { desc = 'add all diagnostics to quickfix' })
+
+vim.keymap.set('n', '<Leader>Ds', function()
+  local diagnostics = vim.diagnostic.get(nil, { severity = { min = vim.diagnostic.severity.WARN } })
+  diagnostic2qflist(diagnostics)
+end, { desc = 'add all warn/error diagnostics to quickfix' })
+
+local signs = require('config').signs.diagnostic
+local type_icons = {
+  E = signs[vim.diagnostic.severity.ERROR] .. ' ',
+  W = signs[vim.diagnostic.severity.WARN] .. ' ',
+  I = signs[vim.diagnostic.severity.INFO] .. ' ',
+  N = ' ',
+  H = signs[vim.diagnostic.severity.HINT] .. ' ',
+}
 
 return {
   'stevearc/quicker.nvim',
@@ -59,12 +78,6 @@ return {
         desc = 'Collapse quickfix context',
       },
     },
-    type_icons = {
-      E = '󰅚 ',
-      W = '󰀪 ',
-      I = ' ',
-      N = ' ',
-      H = ' ',
-    },
+    type_icons = type_icons,
   },
 }

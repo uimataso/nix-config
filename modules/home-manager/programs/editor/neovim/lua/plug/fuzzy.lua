@@ -15,7 +15,7 @@ return {
 
     keys = {
       { '=', '<cmd>Telescope find_files<cr>' },
-      { '=', '<cmd>Telescope spell_suggest<cr>' },
+      { 'z=', '<cmd>Telescope spell_suggest<cr>' },
 
       { '<Leader>ff', '<cmd>Telescope find_files<cr>' },
       { '<Leader>fb', '<cmd>Telescope buffers<cr>' },

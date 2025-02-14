@@ -51,6 +51,7 @@ in
         # Generic Formatter
         nodePackages.prettier
         typos-lsp
+        nodePackages.cspell
         harper
 
         # Markdown

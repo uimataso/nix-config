@@ -66,24 +66,30 @@ local servers = {
   vacuum = {},
   ts_ls = {},
   marksman = {},
-  typos_lsp = {
-    init_options = {
-      diagnosticSeverity = 'Hint',
-    },
-    on_attach = function(client, _)
-      local diagnostic_ns = vim.lsp.diagnostic.get_namespace(client.id)
-      local hl_ns = vim.api.nvim_create_namespace('uima/TyposLspHighlight')
-      require('utils').overwrite_diagnostic_highlight(diagnostic_ns, hl_ns, 'SpellBad')
-    end,
-  },
+  -- typos_lsp = {
+  --   init_options = {
+  --     diagnosticSeverity = 'Hint',
+  --   },
+  --   on_attach = function(client, _)
+  --     local diagnostic_ns = vim.lsp.diagnostic.get_namespace(client.id)
+  --     require('utils').overwrite_diagnostic_highlight(
+  --       diagnostic_ns,
+  --       'uima/TyposLspHighlight',
+  --       'SpellBad'
+  --     )
+  --   end,
+  -- },
   -- harper_ls = {
   --   settings = {
   --     ['harper-ls'] = {},
   --   },
   --   on_attach = function(client, _)
   --     local diagnostic_ns = vim.lsp.diagnostic.get_namespace(client.id)
-  --     local hl_ns = vim.api.nvim_create_namespace('uima/HarperLspHighlight')
-  --     require('utils').overwrite_diagnostic_highlight(diagnostic_ns, hl_ns, 'SpellBad')
+  --     require('utils').overwrite_diagnostic_highlight(
+  --       diagnostic_ns,
+  --       'uima/HarperLspHighlight',
+  --       'SpellBad'
+  --     )
   --   end,
   -- },
   lua_ls = {

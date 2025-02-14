@@ -1,14 +1,19 @@
 return {
   {
     'mfussenegger/nvim-lint',
-    -- lazy = false,
+    lazy = false,
     config = function()
-      -- vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-      --   callback = function()
-      --     -- run typos on all filetype
-      --     require('lint').try_lint('typos')
-      --   end,
-      -- })
+      require('utils').overwrite_diagnostic_highlight(
+        require('lint').get_namespace('cspell'),
+        'uima/CspellLintHighlight',
+        'SpellBad'
+      )
+
+      vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+        callback = function()
+          require('lint').try_lint('cspell')
+        end,
+      })
     end,
   },
 }

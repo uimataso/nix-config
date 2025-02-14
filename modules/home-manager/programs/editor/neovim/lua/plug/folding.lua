@@ -7,36 +7,14 @@ return {
     'kevinhwang91/promise-async',
   },
 
+  -- stylua: ignore start
   keys = {
-    {
-      'zR',
-      function()
-        require('ufo').openAllFolds()
-      end,
-      desc = 'ufo open all folds',
-    },
-    {
-      'zM',
-      function()
-        require('ufo').closeAllFolds()
-      end,
-      desc = 'ufo close all flods',
-    },
-    {
-      'zr',
-      function()
-        require('ufo').openFoldsExceptKinds()
-      end,
-      desc = '',
-    },
-    {
-      'zm',
-      function()
-        require('ufo').closeFoldsWith()
-      end,
-      desc = '',
-    },
+    { 'zR', function() require('ufo').openAllFolds() end, desc = 'ufo open all folds' },
+    { 'zM', function() require('ufo').closeAllFolds() end, desc = 'ufo close all flods' },
+    { 'zr', function() require('ufo').openFoldsExceptKinds() end, desc = '' },
+    { 'zm', function() require('ufo').closeFoldsWith() end, desc = '' },
   },
+  -- stylua: ignore end
 
   opts = {
     provider_selector = function(bufnr, filetype, buftype)

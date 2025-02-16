@@ -69,7 +69,7 @@
     hardware = {
       pipewire.enable = true;
       bluetooth.enable = true;
-      elecomHugeTrackball.enable = true;
+      logitechM650.enable = true;
       tpLinkUsbWifiAdapter.enable = true;
     };
 

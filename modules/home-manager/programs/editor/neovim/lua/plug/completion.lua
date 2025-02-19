@@ -9,6 +9,7 @@ return {
       { 'xzbdmw/colorful-menu.nvim', opts = {} },
     },
     version = '*',
+    build = 'nix run .#build-plugin',
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config

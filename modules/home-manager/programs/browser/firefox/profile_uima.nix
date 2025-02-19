@@ -116,7 +116,7 @@ in
         };
 
         # $ nix flake show "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
           skip-redirect
           i-dont-care-about-cookies

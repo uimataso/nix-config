@@ -32,6 +32,7 @@ return {
       html = { 'prettier' },
       javascript = { 'prettier' },
       markdown = { 'prettier', 'injected' },
+      json = { 'prettier' },
 
       yaml = { 'yamlfmt' },
       toml = { 'taplo' },

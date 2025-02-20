@@ -7,9 +7,10 @@ M.plugins = {
   ['gitsigns.nvim'] = 'gitsigns',
   ['helpview.nvim'] = 'helpview',
   ['indent-blankline.nvim'] = 'indent-blankline',
+  ['namu.nvim'] = 'namu',
   ['telescope.nvim'] = 'telescope',
-  ['visimatch.nvim'] = 'visimatch',
   ['vim-illuminate'] = 'vim-illuminate',
+  ['visimatch.nvim'] = 'visimatch',
 }
 
 M.get = function(name, colors)

@@ -137,4 +137,23 @@ return {
       require('fzf-lua').register_ui_select()
     end,
   },
+
+  {
+    'bassamsdata/namu.nvim',
+    lazy = false,
+
+    keys = {
+      { '<leader>ss', mode = 'n', ':Namu symbols<cr>', desc = 'Jump to LSP symbol' },
+    },
+
+    opts = {
+      -- Enable the modules you want
+      namu_symbols = {
+        enable = true,
+        options = {}, -- here you can configure namu
+      },
+
+      ui_select = { enable = false }, -- vim.ui.select() wrapper
+    },
+  },
 }

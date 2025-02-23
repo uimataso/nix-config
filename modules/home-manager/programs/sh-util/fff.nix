@@ -39,7 +39,7 @@ in
 
         ls_cmd =
           if shUtil.eza.enable then
-            "${ls} -A1 --group-directories-first"
+            "${ls} -A1 --group-directories-first --dereference"
           else
             "${ls} -A --group-directories-first";
       in

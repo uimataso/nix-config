@@ -26,10 +26,9 @@ writeShellApplication {
         pwd="$(printf '%s' "$pwd" | sed 's#\([^/.]\)[^/]\+/#\1/#g')"
       fi
 
-      # NOTE: eza cant disable showing link with -A, so cut is there
       # TODO: wraping preview with `sh -c` is only for nushell, may need to rewirte this script
       # shellcheck disable=SC2016
-      selected="$($ls_cmd "$PWD" | cut -f1 -d' ' |
+      selected="$($ls_cmd "$PWD" |
         fzf --prompt "$pwd/" \
             --preview 'sh -c "preview $PWD/{}"' \
             --preview-window '70%,border-left' \

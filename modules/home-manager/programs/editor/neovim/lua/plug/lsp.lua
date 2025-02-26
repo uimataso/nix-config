@@ -15,14 +15,18 @@ local get_capabilities = function(override)
 end
 
 -- LSP Settings
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('uima/LspKeymap', { clear = true }),
-  callback = function(args)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'vim.lsp.buf.definition()' })
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'vim.lsp.buf.declaration()' })
-    vim.keymap.set('n', '<leader>dr', vim.diagnostic.reset, { desc = 'vim.diagnostic.reset()' })
-  end,
-})
+local au = require('utils').au
+local ag = require('utils').ag
+ag('uima/LspKeymap', function(g)
+  au({ 'LspAttach' }, {
+    group = g,
+    callback = function()
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'vim.lsp.buf.definition()' })
+      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'vim.lsp.buf.declaration()' })
+      vim.keymap.set('n', '<leader>dr', vim.diagnostic.reset, { desc = 'vim.diagnostic.reset()' })
+    end,
+  })
+end)
 
 vim.diagnostic.config({
   virtual_text = false,

@@ -86,6 +86,9 @@ vim.keymap.set('', 'gp', function()
   return '`[' .. v .. '`]'
 end, { expr = true, desc = 'Selecting the paste' })
 
+-- Search in visual mode
+vim.keymap.set('x', 'g/', '<Esc>/\\%V')
+
 -- Center the screen when search
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
@@ -93,7 +96,7 @@ vim.keymap.set('c', '<CR>', function()
   return vim.fn.getcmdtype() == '/' and '<cr>zzzv' or '<cr>'
 end, { expr = true })
 
--- '*' but not jump to next, eg. just highlight the word under the cursor
+-- '*' but not jump to next, e.g. just highlight the word under the cursor
 -- ref: https://stackoverflow.com/a/49944815
 vim.keymap.set('n', '*', [[<cmd>let @/ = '\<' . expand('<cword>') . '\>' <bar> set hls <cr>]])
 vim.keymap.set('n', 'g*', [[<cmd>let @/ = expand('<cword>') <bar> set hls <cr>]])
@@ -110,7 +113,7 @@ end, { expr = true })
 vim.keymap.set('n', '<M-n>', '.nzzzv')
 
 -- Spell check
-vim.keymap.set('n', '<Leader>sp', '<cmd>setlocal spell! spelllang=en_us<CR>')
+vim.keymap.set('n', '<Leader>sp', '<cmd>setlocal spell!<CR>')
 
 -- Switch conceal
 vim.keymap.set('n', '<Leader>zc', function()

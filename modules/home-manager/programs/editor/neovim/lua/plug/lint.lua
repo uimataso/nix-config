@@ -16,7 +16,7 @@ return {
         au({ 'BufWritePost' }, {
           group = g,
           callback = function()
-            -- require('lint').try_lint('cspell')
+            require('lint').try_lint('cspell')
           end,
         })
       end)

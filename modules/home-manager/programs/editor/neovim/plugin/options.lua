@@ -28,7 +28,7 @@ vim.opt.splitright = true
 vim.opt.inccommand = 'split'
 
 -- Spell --
-vim.opt.spell = true
+vim.opt.spell = false
 vim.opt.spellfile = vim.fn.stdpath('data') .. '/spell/en.utf-8.add'
 vim.opt.spelllang = 'en_us,cjk'
 vim.opt.spelloptions = 'camel'

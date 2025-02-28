@@ -1,7 +1,7 @@
 # encoding: utf-8
 ---
 name: "yustar.quick"
-version: "20240619"
+version: "20241215"
 sort: original
 columns:
   - text
@@ -75,10 +75,11 @@ columns:
 該	bt
 引	bu
 謂	bv
+調	bw
 欢	bx
 言	by
 術	ca
-婴	cc
+须	cc
 電	cd
 同	cf
 很	cg
@@ -98,7 +99,6 @@ columns:
 雨	cv
 媽	cw
 衡	cx
-娜	cy
 較	da
 白	db
 車	dc
@@ -107,7 +107,6 @@ columns:
 话	dl
 由	do
 片	dp
-说	dq
 认	dr
 该	dt
 谓	dv
@@ -149,7 +148,7 @@ columns:
 于	fk
 頭	fl
 指	fn
-正	fp
+捉	fp
 来	fq
 势	fr
 手	fs
@@ -227,7 +226,6 @@ columns:
 炀	iy
 果	ja
 现	jc
-礼	je
 量	jf
 古	jg
 暑	jh
@@ -279,11 +277,12 @@ columns:
 嘴	lp
 虽	lq
 哈	lr
-敌	lt
+政	lt
 忠	lu
 口	lv
 吹	lx
 啊	ly
+正	lz
 痛	mb
 應	me
 病	mf
@@ -362,13 +361,13 @@ columns:
 生	ps
 路	pt
 蹈	pu
-項	pv
+躍	pv
 物	pw
 西	px
 足	pz
 半	qa
 弟	qb
-蠅	qd
+蛐	qd
 断	qe
 师	qf
 義	qg
@@ -392,8 +391,8 @@ columns:
 羊	qy
 命	ra
 快	rb
-體	rc
-怕	rd
+惘	rc
+體	rd
 會	rf
 心	ri
 今	rk
@@ -478,7 +477,7 @@ columns:
 爪	uz
 顾	va
 破	vb
-页	vc
+厕	vc
 原	vd
 雁	ve
 研	vf
@@ -566,9 +565,11 @@ columns:
 书	yy
 ；	fh
 〔	lj
+□	xq
 ×	yh
 〕	lj
 天	fod
+说	dql
 學	dss
 后	dfl
 影	jai
@@ -589,10 +590,12 @@ columns:
 跑	pwo
 存	euk
 境	hkj
+曾	qjj
 座	mrr
 满	nsf
 料	qig
 另	lsl
+万	fwb
 創	rkb
 興	dcf
 睛	jhw
@@ -602,6 +605,7 @@ columns:
 素	hos
 列	fxm
 员	lcb
+幸	hqy
 决	ibr
 识	dlk
 益	qku
@@ -619,7 +623,6 @@ columns:
 絶	oxo
 課	bja
 宣	ifj
-講	bsc
 讓	bas
 级	kgk
 雲	cin
@@ -642,13 +645,11 @@ columns:
 版	ddb
 晶	jjj
 乘	mqn
-頂	jvj
 糊	qjw
 狼	hkg
 幅	ufl
 趕	hjn
 较	xak
-遭	sjj
 零	crk
 换	fxc
 貌	mdw
@@ -656,7 +657,6 @@ columns:
 滚	nak
 暖	jun
 瑞	jus
-顶	jvc
 鎮	tgj
 标	ajs
 憶	rkj
@@ -671,7 +671,6 @@ columns:
 糖	qmb
 晃	jil
 闹	tau
-征	cfp
 垂	msf
 奉	oak
 審	igq
@@ -692,11 +691,13 @@ columns:
 闭	tkg
 督	jib
 玲	jrk
+損	flj
 緩	oun
 胎	wnl
 艺	syi
 紹	oml
 痴	mjl
+丫	qus
 貪	rky
 腾	wqo
 诸	dhj
@@ -714,7 +715,7 @@ columns:
 馨	hbe
 逝	fdo
 諸	bhj
-糟	qsj
+糟	qcj
 暂	xdj
 晕	jxx
 贼	cke
@@ -760,7 +761,6 @@ columns:
 巢	lja
 毯	mii
 竞	klw
-頗	bvj
 磚	vdk
 肆	uba
 穫	mse
@@ -771,7 +771,6 @@ columns:
 紗	oig
 衍	cni
 寨	isk
-頃	nvj
 茅	skg
 驻	bkj
 塌	hjv
@@ -783,8 +782,8 @@ columns:
 谅	dai
 鍊	taw
 餃	kak
+婴	ccc
 暇	jbi
-碩	vvj
 驱	bhs
 荆	sfs
 賦	jfk
@@ -813,6 +812,7 @@ columns:
 峭	uiw
 訣	bbr
 棘	aca
+恕	clr
 驢	wuv
 叠	bbb
 諒	bai
@@ -825,14 +825,12 @@ columns:
 璋	jkj
 苟	swl
 岭	urk
-嚣	llv
 賄	jew
 聆	lrk
 匀	wir
 皓	dpl
 惫	tvr
 緞	oel
-硕	vvc
 俞	rfw
 宪	ipw
 庇	mnn
@@ -851,7 +849,7 @@ columns:
 酌	pwk
 敖	hwt
 晤	jfb
-韌	bmk
+韌	bla
 鹹	ukf
 齋	aqu
 渔	nxv
@@ -871,6 +869,7 @@ columns:
 蠕	qcs
 徨	cdj
 闺	thh
+葦	sbl
 鳞	xqx
 诏	dml
 瓏	jkw
@@ -886,7 +885,6 @@ columns:
 埠	hdg
 胚	wvf
 匾	hhc
-顷	nvc
 槌	ado
 縛	onk
 暄	jif
@@ -906,6 +904,7 @@ columns:
 晟	jky
 軻	djl
 畦	vhh
+蟆	qsj
 馒	xju
 氯	gbn
 甕	akg
@@ -978,9 +977,7 @@ columns:
 诠	drj
 弑	sak
 翕	rvv
-颀	dvc
 醍	pjf
-颦	piv
 辎	xlv
 礴	vsn
 毗	vnn
@@ -1049,6 +1046,7 @@ columns:
 瞵	jqx
 戇	kjt
 淩	nhk
+瑋	jbl
 綣	oqo
 緇	olv
 縊	oqk
@@ -1117,7 +1115,9 @@ columns:
 脲	wbn
 酂	pwp
 赒	cwh
+郪	gbc
 铷	ocl
+灈	njj
 硊	vxv
 磜	vwj
 鳣	xaw
@@ -1125,6 +1125,8 @@ columns:
 腨	wus
 襚	xqt
 婍	coj
+ㄉ	egp
+ㄛ	fyi
 啓	htl
 憖	ahr
 搳	fid
@@ -1140,6 +1142,5 @@ columns:
 銥	tag
 鎳	tqa
 闉	dph
-頎	dvj
 鮚	vhl
 𠳐	ldy

@@ -6,21 +6,31 @@ Author: 朱宇浩 (forFudan) <dr.yuhao.zhu@outlook.com>
 Github: https://github.com/forFudan/
 Purpose: 宇浩輸入法的 RIME lua 提供核心函數
 版權聲明：
-專爲宇浩輸入法製作 <https://yuhao.forfudan.com>
+專爲宇浩輸入法製作 <https://shurufa.app>
 轉載請保留作者名和出處
 Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International
--------------------------------------
+--------------------------------------------------------------------------------
 版本：
-20230418: 寫成 set_from_str, is_subset.
-20240107: 寫成 is_intersected.
-20240512: 重構函數, 寫成 len_of_set, string_is_in_set,
-    char_is_in_unicode_blocks, string_is_in_unicode_blocks
-    string_is_in_charset_or_not_in_cjk
-20240514: 增加 string_starts_with
----------------------------
+20230418: 寫成 `set_from_str`, `is_subset`.
+20240107: 寫成 `is_intersected`.
+20240512: 重構函數, 寫成 `len_of_set`, `string_is_in_set`,
+    `char_is_in_unicode_blocks`, `string_is_in_unicode_blocks`
+    `string_is_in_charset_or_not_in_cjk`
+20240514: 增加 `string_starts_with`.
+20240919: 更新對於 CJK 區塊的定義, 加入西夏文和契丹小字等.
+--------------------------------------------------------------------------------
 ]]
 
 local core = {}
+
+--- 取得字符串首字符
+--- @param text string
+--- @return string
+function core.first_char_of_str(text)
+    for p, c in utf8.codes(text) do
+        return utf8.char(c)
+    end
+end
 
 --- 將字符串轉化爲 set
 ---@param text string
@@ -85,22 +95,38 @@ function core.is_intersected(set1, set2)
 end
 
 core.cjk_blocks = {       -- CJK 區塊(非符號區)
-    { 0x4E00, 0x9FFF },   -- 中日韓統一表意文字
-    { 0x3400, 0x4DBF },   -- 中日韓統一表意文字擴展區A
+    { 0x4E00,  0x9FFF },  -- 中日韓統一表意文字
+    { 0x3400,  0x4DBF },  -- 中日韓統一表意文字擴展區A
     { 0x20000, 0x323AF }, -- 中日韓統一表意文字擴展區B到擴展區H
     { 0x2EBF0, 0x2EE5F }, -- 中日韓統一表意文字擴展區I
-    { 0x2E80, 0x2EFF },   -- 中日韓漢字部首補充
-    { 0x2F00, 0x2FDF },   -- 康熙部首
-    -- 表意文字描述字符 不收
-    -- 中日韓符號和標點 不收
-    { 0x31C0, 0x31EF }, -- 中日韓筆畫
-    -- {0x3200, 0x32FF}, -- 中日韓帶帶圈字符及月份 不收
-    -- 中日韓兼容字符 不收
-    { 0xF900, 0xFAFF }, -- 中日韓兼容表意文字
-    -- 中日韓兼容形式 不收
-    -- 帶圈表意文字補充 不收
+
+    { 0x2E80,  0x2EFF },  -- 中日韓漢字部首補充
+    { 0x2F00,  0x2FDF },  -- 康熙部首
+    { 0x31C0,  0x31EF },  -- 中日韓筆畫
+    { 0x3300,  0x33FF },  -- 中日韓兼容字符
+    { 0xF900,  0xFAFF },  -- 中日韓兼容表意文字
+    { 0xFE30,  0xFE4F },  -- 中日韓兼容形式
     { 0x2F800, 0x2FA1F }, -- 中日韓兼容表意文字補充
-    { 0xE000, 0xF8FF }    -- 私用區 宇浩字根在此區
+    { 0x3190,  0x319F },  -- 漢文訓讀
+
+    { 0x2FF0,  0x2FFF },  -- 表意文字描述字符
+    -- { 0x3000, 0x303F },   -- 中日韓符號和標點
+    { 0x3200,  0x32FF },  -- 中日韓帶圈字符及月份
+    { 0x1F200, 0x1F2FF }, -- 帶圈表意文字補充
+    { 0x1F000, 0x1F02F }, -- 麻將牌
+    { 0x2600,  0x26FF },  -- 雜項符號(太極兩儀四象八卦)
+    { 0x4DC0,  0x4DFF },  -- 易經六十四卦
+    { 0x1D300, 0x1D35F }, -- 太玄經卦爻
+
+    { 0x17000, 0x187FF }, -- 西夏文
+    { 0x18800, 0x18AFF }, -- 西夏文部件
+    { 0x18D00, 0x18D7F }, -- 西夏文補充
+    { 0x18B00, 0x18CFF }, -- 契丹小字
+
+    { 0xE000,  0xF8FF },  -- 私用區 宇浩字根在此區
+
+    { 0x1B000, 0x1B0FF }, -- 補充假名
+    { 0x1B100, 0x1B12F }, -- 假名擴展
 }
 
 --- 判斷一個字符是不是在一組 Unicode 區位中

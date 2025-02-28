@@ -1,7 +1,7 @@
 # encoding: utf-8
 ---
 name: "yustar.quick_words"
-version: "20240619"
+version: "20241215"
 sort: original
 columns:
   - text
@@ -63,8 +63,8 @@ columns:
 説道	bq
 論壇	br
 該死	bt
+調整	bw
 欢迎	bx
-婴儿	cc
 電話	cd
 同意	cf
 很多	cg
@@ -88,7 +88,6 @@ columns:
 话题	dl
 由於	do
 片子	dp
-说道	dq
 认为	dr
 该死	dt
 向上	dx
@@ -118,7 +117,7 @@ columns:
 于是	fk
 頭髮	fl
 指出	fn
-正在	fp
+捉弄	fp
 来说	fq
 势头	fr
 兩國	fu
@@ -163,7 +162,7 @@ columns:
 室内	id
 實現	ie
 少年	ig
-火焰	ih
+火箭	ih
 实现	ii
 寶寶	ij
 进行	ik
@@ -177,7 +176,6 @@ columns:
 察覺	iw
 果然	ja
 现在	jc
-礼物	je
 量化	jf
 古城	jg
 暑假	jh
@@ -216,8 +214,9 @@ columns:
 嘴巴	lp
 虽然	lq
 哈哈	lr
-敌人	lt
+政策	lt
 口袋	lv
+正在	lz
 痛苦	mb
 應該	me
 病毒	mf
@@ -272,7 +271,6 @@ columns:
 配置	po
 酷愛	pp
 蹲點	pq
-項目	pv
 物質	pw
 西安	px
 足球	pz
@@ -293,7 +291,7 @@ columns:
 前面	qw
 将军	qx
 羊肉	qy
-體會	rc
+體會	rd
 會議	rf
 心靈	ri
 今天	rk
@@ -360,6 +358,7 @@ columns:
 受到	ux
 爪牙	uz
 顾客	va
+厕所	vc
 研究	vf
 野心	vk
 里面	vl

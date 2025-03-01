@@ -29,24 +29,24 @@ in
 
     home.sessionVariables =
       let
-        ls =
-          if shUtil.eza.enable then
-            "eza --color=always"
-          else if shUtil.lsd.enable then
-            "lsd --color=always"
-          else
-            "ls --color=always";
-
         ls_cmd =
           if shUtil.eza.enable then
-            "${ls} -A1 --group-directories-first --dereference"
+            "eza --color=always -A1 --group-directories-first --dereference --no-quotes"
           else
-            "${ls} -A --group-directories-first";
+            "ls --color=always -A --group-directories-first";
+
+        preview_ls =
+          if shUtil.eza.enable then
+            "eza --color=always -l"
+          else if shUtil.lsd.enable then
+            "lsd --color=always -l"
+          else
+            "ls --color=always -l";
       in
       {
         FFF_LS_CMD = ls_cmd;
         PREVIEW_LS_CMD = ls_cmd;
-        PREVIEW_LS_L_CMD = "${ls} -l";
+        PREVIEW_LS_L_CMD = preview_ls;
       };
   };
 }

@@ -24,7 +24,10 @@
     ];
   };
 
+  programs.librewolf.enable = true;
+
   home.packages = with pkgs; [
+    ladybird
     obsidian
     qmk
     fd

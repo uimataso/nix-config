@@ -14,7 +14,7 @@ let
 in
 {
   imports = [
-    ./firefox
+    ./librewolf
     ./qutebrowser
   ];
 

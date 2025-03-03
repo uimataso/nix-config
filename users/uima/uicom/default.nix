@@ -24,8 +24,6 @@
     ];
   };
 
-  programs.librewolf.enable = true;
-
   home.packages = with pkgs; [
     ladybird
     obsidian
@@ -105,9 +103,8 @@
       };
 
       browser = {
-        firefox.enable = true;
-        firefox.profile.uima.enable = true;
-        firefox.defaultBrowser = true;
+        librewolf.enable = true;
+        librewolf.defaultBrowser = true;
         qutebrowser.enable = true;
       };
 

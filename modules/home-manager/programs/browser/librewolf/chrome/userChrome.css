@@ -32,3 +32,15 @@ panel {
 .titlebar-button.titlebar-close {
   display: none;
 }
+
+/* Disable firefox-view and alltabs button */
+#firefox-view-button,
+#alltabs-button {
+  display: none !important;
+}
+
+/*  */
+#tabbrowser-tabs {
+  margin-left: 0px !important;
+  border-left: none !important;
+}

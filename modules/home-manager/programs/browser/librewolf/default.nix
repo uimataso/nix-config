@@ -158,6 +158,7 @@ in
             "https://typ.ing"
             "https://www.reddit.com"
             "https://www.printables.com"
+            "https://shurufa.app"
           ];
         };
 
@@ -204,7 +205,6 @@ in
           darkreader
           vimium
 
-          multi-account-containers
           skip-redirect
           istilldontcareaboutcookies
 

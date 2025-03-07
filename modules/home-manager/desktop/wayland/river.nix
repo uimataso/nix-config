@@ -172,6 +172,7 @@ in
           "-app-id" = {
             # Make Firefox have border
             firefox = "ssd";
+            librewolf = "ssd";
             "*discord*" = "tags ${mkTag 9}";
             "*vesktop*" = "tags ${mkTag 9}";
           };

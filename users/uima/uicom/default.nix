@@ -25,7 +25,6 @@
   };
 
   home.packages = with pkgs; [
-    ladybird
     obsidian
     qmk
     fd

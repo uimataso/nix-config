@@ -56,6 +56,9 @@ return {
                 command = 'clippy',
                 extraArgs = { '--no-deps' },
               },
+              cargo = {
+                features = 'all',
+              },
             },
           },
         },

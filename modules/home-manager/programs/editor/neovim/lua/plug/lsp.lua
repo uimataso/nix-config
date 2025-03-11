@@ -64,7 +64,15 @@ local servers = {
       end,
     },
   },
-  clangd = {},
+  clangd = {
+    filetypes = {
+      'c',
+      'cpp',
+      'objc',
+      'objcpp',
+      'cuda',
+    },
+  },
   nil_ls = {},
   nixd = {},
   vacuum = {},

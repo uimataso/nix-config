@@ -24,6 +24,8 @@ in
   ];
 
   config = mkIf cfg.enable {
+    # TODO: move `~/.icons` and `~/.themes` to xdg config
+
     stylix = {
       enable = true;
 

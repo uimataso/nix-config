@@ -38,6 +38,9 @@ in
 
       # wget
       WGETRC = "${config.xdg.configHome}/wgetrc";
+
+      # parallel
+      PARALLEL_HOME = "${config.xdg.configHome}/parallel";
     };
   };
 }

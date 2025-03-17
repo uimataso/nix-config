@@ -118,6 +118,8 @@ in
       desktop = "librewolf.desktop";
     };
 
+    stylix.targets.librewolf.profileNames = [ profileName ];
+
     programs.librewolf = {
       enable = true;
 

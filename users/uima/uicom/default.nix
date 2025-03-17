@@ -115,6 +115,7 @@
         docker.enable = true;
         lazydocker.enable = true;
         # podman.enable = true;
+        aws-cli.enable = true;
       };
 
       menu = {

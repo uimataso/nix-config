@@ -27,5 +27,9 @@ in
       dcl = "docker compose logs";
       dcp = "docker compose pull";
     };
+
+    home.sessionVariables = {
+      DOCKER_CONFIG = "${config.xdg.configHome}/docker";
+    };
   };
 }

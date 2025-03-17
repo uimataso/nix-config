@@ -132,7 +132,7 @@
         tealdeer.enable = true;
       };
 
-      # nixcord.enable = true;
+      discord.enable = true;
 
       calibre.enable = true;
 

@@ -6,16 +6,6 @@
 let
   inherit (lib) mkIf mkEnableOption mkForce;
   cfg = config.uimaConfig.programs.zathura;
-
-  mkRgba =
-    color: opacity:
-    let
-      c = config.lib.stylix.colors;
-      r = c."${color}-rgb-r";
-      g = c."${color}-rgb-g";
-      b = c."${color}-rgb-b";
-    in
-    "rgba(${r},${g},${b},${builtins.toString opacity})";
 in
 {
   options.uimaConfig.programs.zathura = {
@@ -45,7 +35,6 @@ in
 
         recolor = true;
 
-        default-bg = with config.stylix; mkForce (mkRgba "base00" opacity.applications);
         font = with config.stylix.fonts; "${monospace.name} ${builtins.toString sizes.terminal}";
       };
     };

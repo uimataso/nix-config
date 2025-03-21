@@ -75,9 +75,7 @@ return {
       {
         '<Leader>git',
         mode = { 'n' },
-        function()
-          require('neogit').open()
-        end,
+        function() require('neogit').open() end,
         desc = 'Open neogit',
       },
     },

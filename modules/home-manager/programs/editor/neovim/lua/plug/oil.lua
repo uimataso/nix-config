@@ -7,9 +7,7 @@ return {
     {
       '<Leader>o',
       mode = { 'n' },
-      function()
-        require('oil').open_float()
-      end,
+      function() require('oil').open_float() end,
       desc = 'Open Oil browser',
     },
 

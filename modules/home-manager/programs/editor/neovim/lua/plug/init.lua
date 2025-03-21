@@ -8,8 +8,6 @@ return {
     'uimataso/uicolors.nvim',
     lazy = false,
     dir = vim.fn.stdpath('config') .. '/plugins/uicolors.nvim',
-    config = function()
-      vim.cmd.colorscheme('uicolors')
-    end,
+    config = function() vim.cmd.colorscheme('uicolors') end,
   },
 }

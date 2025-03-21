@@ -191,9 +191,7 @@ return {
       {
         'grn',
         mode = { 'n' },
-        function()
-          return ':IncRename ' .. vim.fn.expand('<cword>')
-        end,
+        function() return ':IncRename ' .. vim.fn.expand('<cword>') end,
         expr = true,
       },
     },
@@ -206,9 +204,7 @@ return {
     keys = {
       {
         '<Leader>df',
-        function()
-          require('lsp_lines').toggle()
-        end,
+        function() require('lsp_lines').toggle() end,
         { desc = 'Toggle lsp_lines' },
       },
     },

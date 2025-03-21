@@ -8,11 +8,16 @@ return {
     },
 
     keys = {
-      -- stylua: ignore start
-      { '<leader>db', function() require('dap').toggle_breakpoint() end, desc = 'Toggle Breakpoint' },
-      { '<leader>dB', function()
-        require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
-      end, desc = 'Breakpoint Condition' },
+      {
+        '<leader>db',
+        function() require('dap').toggle_breakpoint() end,
+        desc = 'Toggle Breakpoint',
+      },
+      {
+        '<leader>dB',
+        function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
+        desc = 'Breakpoint Condition',
+      },
       { '<leader>dc', function() require('dap').continue() end, desc = 'Continue' },
       { '<A-o>', function() require('dap').step_over() end, desc = 'Step Over' },
       { '<A-i>', function() require('dap').step_into() end, desc = 'Step Into' },
@@ -28,7 +33,6 @@ return {
       -- { '<leader>dl', function() require('dap').run_last() end,                      desc = 'Run Last' },
       -- { '<leader>dp', function() require('dap').pause() end,                         desc = 'Pause' },
       -- { '<leader>dr', function() require('dap').repl.toggle() end,                   desc = 'Toggle REPL' },
-      -- stylua: ignore end
     },
 
     config = function(_, opts)
@@ -46,17 +50,13 @@ return {
     keys = {
       {
         '<leader>du',
-        function()
-          require('dapui').toggle({})
-        end,
+        function() require('dapui').toggle({}) end,
         desc = 'Dap UI',
       },
       {
         '<leader>de',
         mode = { 'n', 'v' },
-        function()
-          require('dapui').eval()
-        end,
+        function() require('dapui').eval() end,
         desc = 'Eval',
       },
     },
@@ -68,18 +68,10 @@ return {
       dapui.setup(opts)
 
       -- automatically open / close window
-      dap.listeners.before.attach.dapui_config = function()
-        dapui.open()
-      end
-      dap.listeners.before.launch.dapui_config = function()
-        dapui.open()
-      end
-      dap.listeners.before.event_terminated.dapui_config = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited.dapui_config = function()
-        dapui.close()
-      end
+      dap.listeners.before.attach.dapui_config = function() dapui.open() end
+      dap.listeners.before.launch.dapui_config = function() dapui.open() end
+      dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
+      dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
     end,
   },
 }

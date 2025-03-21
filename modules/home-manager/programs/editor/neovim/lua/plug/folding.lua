@@ -10,7 +10,7 @@ return {
   -- stylua: ignore start
   keys = {
     { 'zR', function() require('ufo').openAllFolds() end, desc = 'ufo open all folds' },
-    { 'zM', function() require('ufo').closeAllFolds() end, desc = 'ufo close all flods' },
+    { 'zM', function() require('ufo').closeAllFolds() end, desc = 'ufo close all folds' },
     { 'zr', function() require('ufo').openFoldsExceptKinds() end, desc = '' },
     { 'zm', function() require('ufo').closeFoldsWith() end, desc = '' },
   },
@@ -18,6 +18,7 @@ return {
 
   opts = {
     provider_selector = function(bufnr, filetype, buftype)
+      -- treesitter as a main provider
       return { 'treesitter', 'indent' }
     end,
 

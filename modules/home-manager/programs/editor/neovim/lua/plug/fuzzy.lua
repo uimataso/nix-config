@@ -26,6 +26,8 @@ return {
 
       { '<Leader>fd', '<cmd>Telescope diagnostics bufnr=0<cr>' },
       { '<Leader>fD', '<cmd>Telescope diagnostics<cr>' },
+      { '<Leader>fw', '<cmd>Telescope diagnostics severity_limit=warning bufnr=0<cr>' },
+      { '<Leader>fW', '<cmd>Telescope diagnostics severity_limit=warning<cr>' },
 
       { '<Leader>fq', '<cmd>Telescope quickfix<cr>' },
       { '<Leader>ft', '<cmd>TodoTelescope<cr>' },
@@ -74,9 +76,7 @@ return {
         au('FileType', {
           group = g,
           pattern = 'TelescopePrompt',
-          callback = function()
-            vim.opt.cursorline = false
-          end,
+          callback = function() vim.opt.cursorline = false end,
         })
       end)
     end,

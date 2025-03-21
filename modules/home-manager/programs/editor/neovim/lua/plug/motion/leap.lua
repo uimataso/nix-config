@@ -14,17 +14,13 @@ return {
       {
         'gs',
         mode = { 'n', 'o' },
-        function()
-          require('leap.remote').action()
-        end,
+        function() require('leap.remote').action() end,
         desc = 'Leap remote',
       },
       {
         'ga',
         mode = { 'n', 'x', 'o' },
-        function()
-          require('leap.treesitter').select()
-        end,
+        function() require('leap.treesitter').select() end,
         desc = 'Treesitter node selection',
       },
       {

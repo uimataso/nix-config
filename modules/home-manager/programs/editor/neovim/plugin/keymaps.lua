@@ -37,9 +37,14 @@ vim.keymap.set(
   { silent = true, desc = 'vim.lsp.buf.hover() but more' }
 )
 
+vim.keymap.set('n', '<C-S>', function()
+  vim.lsp.buf.signature_help()
+end, { desc = 'vim.lsp.buf.signature_help()' })
+
 vim.keymap.set({ 'n', 'x' }, '<Leader>a', function()
   vim.lsp.buf.code_action()
 end, { desc = 'vim.lsp.buf.code_action()' })
+
 vim.keymap.set('n', '<Leader>gd', '<cmd>vsplit | lua vim.lsp.buf.definition()<cr>')
 vim.keymap.set('n', '<Leader>gD', '<cmd>vsplit | lua vim.lsp.buf.declaration()<cr>')
 

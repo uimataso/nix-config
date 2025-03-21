@@ -11,7 +11,9 @@ vim.opt.statusline = '%!v:lua.Statusline()'
 -- vim.opt.shortmess:append('S')
 -- vim.opt.shortmess:remove('t')
 
-local hi = function(group) return '%#' .. group .. '#' end
+local hi = function(group)
+  return '%#' .. group .. '#'
+end
 
 local with_hi = function(group, tables)
   return table.concat({

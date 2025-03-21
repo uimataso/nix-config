@@ -76,7 +76,9 @@ return {
         au('FileType', {
           group = g,
           pattern = 'TelescopePrompt',
-          callback = function() vim.opt.cursorline = false end,
+          callback = function()
+            vim.opt.cursorline = false
+          end,
         })
       end)
     end,

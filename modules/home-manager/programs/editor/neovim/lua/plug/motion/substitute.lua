@@ -5,25 +5,33 @@ return {
     {
       's',
       mode = { 'n' },
-      function() require('substitute').operator() end,
+      function()
+        require('substitute').operator()
+      end,
       desc = '',
     },
     {
       'ss',
       mode = { 'n' },
-      function() require('substitute').line() end,
+      function()
+        require('substitute').line()
+      end,
       desc = '',
     },
     {
       'S',
       mode = { 'n' },
-      function() require('substitute').eol() end,
+      function()
+        require('substitute').eol()
+      end,
       desc = '',
     },
     {
       's',
       mode = { 'x' },
-      function() require('substitute').visual() end,
+      function()
+        require('substitute').visual()
+      end,
       desc = '',
     },
   },

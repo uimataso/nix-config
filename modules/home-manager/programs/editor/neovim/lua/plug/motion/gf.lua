@@ -4,17 +4,23 @@ return {
     {
       'gf',
       mode = 'n',
-      function() require('pathfinder').gf() end,
+      function()
+        require('pathfinder').gf()
+      end,
     },
     {
       'gF',
       mode = 'n',
-      function() require('pathfinder').gF() end,
+      function()
+        require('pathfinder').gF()
+      end,
     },
     {
       '<leader>gf',
       mode = 'n',
-      function() require('pathfinder').select_file() end,
+      function()
+        require('pathfinder').select_file()
+      end,
     },
   },
 }

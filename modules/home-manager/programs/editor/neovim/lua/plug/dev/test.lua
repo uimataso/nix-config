@@ -28,7 +28,9 @@ return {
       },
     },
 
-    config = function(_, opts) require('neotest').setup(opts) end,
+    config = function(_, opts)
+      require('neotest').setup(opts)
+    end,
   },
 
   {
@@ -36,7 +38,9 @@ return {
     keys = {
       {
         '<leader>td',
-        function() require('neotest').run.run({ strategy = 'dap' }) end,
+        function()
+          require('neotest').run.run({ strategy = 'dap' })
+        end,
         desc = 'Debug Nearest test',
       },
     },

@@ -44,50 +44,56 @@ let
     '';
 
   searchEngines = {
-    # Search
-    "Searx" = {
+    searx = {
+      name = "Searx";
       aliases = [ "@s" ];
       url = "https://search.uimataso.com/search?q={searchTerms}";
     };
-    "DuckDuckGo" = {
+    ddg = {
+      name = "DuckDuckGo";
       aliases = [ "@d" ];
       url = "https://duckduckgo.com/?q={searchTerms}";
     };
-    "Google" = {
+    google = {
+      name = "Google";
       aliases = [ "@g" ];
       url = "https://www.google.com/search?q={searchTerms}";
     };
 
-    # Nix
-    "Nix Packages" = {
+    nix-packages = {
+      name = "Nix Packages";
       aliases = [ "@np" ];
       url = "https://search.nixos.org/packages?type=packages&query={searchTerms}";
     };
-    "NixOS Wiki" = {
+    nixos-wiki = {
+      name = "NixOS Wiki";
       aliases = [ "@nw" ];
       url = "https://nixos.wiki/index.php?search={searchTerms}";
     };
-    "MyNixOS" = {
+    mynixos = {
+      name = "MyNixOS";
       aliases = [ "@mn" ];
       url = "https://mynixos.com/search?q={searchTerms}";
     };
-    "Home Manager Options" = {
+    home-manager-options = {
+      name = "Home Manager Options";
       aliases = [ "@hmo" ];
       url = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
     };
 
-    # Dev
-    "ArchWiki" = {
+    arch-wiki = {
+      name = "ArchWiki";
       aliases = [ "@aw" ];
       url = "https://wiki.archlinux.org/index.php?search={searchTerms}";
     };
-    "Rust Std" = {
+    rust-std = {
+      name = "Rust Std";
       aliases = [ "@ru" ];
       url = "https://doc.rust-lang.org/std/iter/?search={searchTerms}";
     };
 
-    # Translation
-    "Google Translate" = {
+    google-translate = {
+      name = "Google Translate";
       aliases = [ "@gt" ];
       url = "https://translate.google.com/?text={searchTerms}";
     };
@@ -186,16 +192,17 @@ in
                 );
 
               mapEngine = engine: {
+                name = engine.name;
                 definedAliases = engine.aliases;
                 urls = [ { template = engine.url; } ];
-                iconUpdateURL = getFavicon engine.url;
+                icon = getFavicon engine.url;
                 updateInterval = 24 * 60 * 60 * 1000;
               };
             in
             lib.attrsets.mapAttrs (name: value: mapEngine value) searchEngines
             // {
-              "Bing".metaData.hidden = true;
-              "Wikipedia (en)".metaData.hidden = true;
+              "bing".metaData.hidden = true;
+              "wikipedia".metaData.hidden = true;
             };
         };
 

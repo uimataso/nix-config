@@ -8,6 +8,7 @@ M.plugins = {
   ['helpview.nvim'] = 'helpview',
   ['indent-blankline.nvim'] = 'indent-blankline',
   ['namu.nvim'] = 'namu',
+  ['snacks.nvim'] = 'snacks',
   ['telescope.nvim'] = 'telescope',
   ['vim-illuminate'] = 'vim-illuminate',
   ['visimatch.nvim'] = 'visimatch',
@@ -29,7 +30,7 @@ M.setup = function(colors)
   }
 
   for _, group in pairs(M.plugins) do
-    groups[group] = true
+    groups['plugins.' .. group] = true
   end
 
   -- local plugins = require('lazy.core.config').plugins

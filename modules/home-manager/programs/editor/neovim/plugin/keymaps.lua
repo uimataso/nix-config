@@ -41,10 +41,6 @@ vim.keymap.set('n', '<C-S>', function()
   vim.lsp.buf.signature_help()
 end, { desc = 'vim.lsp.buf.signature_help()' })
 
-vim.keymap.set({ 'n', 'x' }, '<Leader>a', function()
-  vim.lsp.buf.code_action()
-end, { desc = 'vim.lsp.buf.code_action()' })
-
 vim.keymap.set('n', '<Leader>gd', '<cmd>vsplit | lua vim.lsp.buf.definition()<cr>')
 vim.keymap.set('n', '<Leader>gD', '<cmd>vsplit | lua vim.lsp.buf.declaration()<cr>')
 
@@ -75,6 +71,15 @@ vim.keymap.set('', '<Leader>Y', '"+y$')
 vim.keymap.set('', '<Leader>p', '"+p')
 vim.keymap.set('', '<Leader>P', '"+P')
 vim.keymap.set('', '<Leader><Leader>y', "gg\"+yG''")
+
+-- Paste without whitespace
+vim.keymap.set('n', '=p', function()
+  local yanked_text = vim.fn.getreg('0')
+  yanked_text = yanked_text:gsub('\n$', '')
+  yanked_text = yanked_text:gsub('^%s+', '')
+  vim.fn.setreg('p', yanked_text)
+  return '"pp'
+end, { expr = true })
 
 -- Visual paste not overwrite register by default
 vim.keymap.set('x', 'p', 'P')

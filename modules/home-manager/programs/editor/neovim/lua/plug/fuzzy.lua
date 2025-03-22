@@ -1,142 +1,60 @@
 return {
   {
-    'nvim-telescope/telescope.nvim',
-    lazy = false,
-
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons',
-      'nvim-telescope/telescope-ui-select.nvim',
-      -- {
-      --   'nvim-telescope/telescope-fzf-native.nvim',
-      --   build = 'make',
-      -- },
-    },
+    'folke/snacks.nvim',
 
     keys = {
-      { '=', '<cmd>Telescope find_files<cr>' },
-      { 'z=', '<cmd>Telescope spell_suggest<cr>' },
+      -- stylua: ignore start
+      { '=', function() Snacks.picker.smart() end, desc = 'Smart Find Files' },
+      { 'z=', function() Snacks.picker.spelling() end, desc = 'Spell suggest' },
 
-      { '<Leader>ff', '<cmd>Telescope find_files<cr>' },
-      { '<Leader>fb', '<cmd>Telescope buffers<cr>' },
-      { '<Leader>fs', '<cmd>Telescope live_grep<cr>' },
-      -- { '<Leader>fs', mode = 'x' },
-      -- { '<Leader>fw' },
-      { '<Leader>fr', '<cmd>Telescope resume<cr>' },
+      { "<Leader>fs", function() Snacks.picker.grep() end, desc = "Grep" },
+      { "<leader>fw", mode = { "n", "x" }, function()
+        Snacks.picker.grep_word() end, desc = "Visual selection or word" },
+      { "<leader>fr", function() Snacks.picker.resume() end, desc = "Resume" },
 
-      { '<Leader>fd', '<cmd>Telescope diagnostics bufnr=0<cr>' },
-      { '<Leader>fD', '<cmd>Telescope diagnostics<cr>' },
-      { '<Leader>fw', '<cmd>Telescope diagnostics severity_limit=warning bufnr=0<cr>' },
-      { '<Leader>fW', '<cmd>Telescope diagnostics severity_limit=warning<cr>' },
+      { "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
+      { "<leader>fD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
 
-      { '<Leader>fq', '<cmd>Telescope quickfix<cr>' },
-      { '<Leader>ft', '<cmd>TodoTelescope<cr>' },
+      { "<leader>ft", function() Snacks.picker.todo_comments() end, desc = "Todo" },
+      { "<leader>fT", function() Snacks.picker.todo_comments({
+        keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Todo/Fix/Fixme" },
 
-      { '<Leader>gc', '<cmd>Telescope git_commits<cr>' },
-      { '<Leader>gb', '<cmd>Telescope git_bcommits<cr>' },
-      { '<Leader>gb', mode = 'x', '<cmd>Telescope git_bcommits_range<cr>' },
+      { "<leader>he", function() Snacks.picker.help() end, desc = "Help Pages" },
 
-      { '<Leader>he', '<cmd>Telescope help_tags<cr>' },
-      { '<Leader>hl', '<cmd>Telescope highlights<cr>' },
-      {
-        '<Leader>fp',
-        function()
-          require('telescope.builtin').find_files({
-            prompt_title = 'Lazy Package Files',
-            cwd = vim.fs.joinpath(vim.fn.stdpath('data'), 'lazy'),
-          })
-        end,
-        desc = 'Find Package Code',
-      },
-
-      -- { '<C-x><C-p>', mode = 'i', '<cmd>FzfLua complete_path<cr>' },
-      -- { '<C-x><C-f>', mode = 'i', '<cmd>FzfLua complete_file<cr>' },
-      -- { '<C-x><C-l>', mode = 'i', '<cmd>FzfLua complete_line<cr>' },
+      { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
+      { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+      { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
+      { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+      { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
+      { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
+      { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
+      -- stylua: ignore end
     },
 
-    config = function()
-      local actions = require('telescope.actions')
-
-      require('telescope').setup({
-        extensions = {
-          -- fzf = {},
-          ['ui-select'] = {
-            require('telescope.themes').get_dropdown({}),
-          },
-        },
-      })
-
-      -- require('telescope').load_extension('fzf')
-      require('telescope').load_extension('ui-select')
-
-      -- fix the `TelescopePromptNormal` got override by `CursorLine`
-      local au = require('utils').au
-      local ag = require('utils').ag
-      ag('uima/TelescopeCursorLine', function(g)
-        au('FileType', {
-          group = g,
-          pattern = 'TelescopePrompt',
-          callback = function()
-            vim.opt.cursorline = false
-          end,
-        })
-      end)
-    end,
+    ---@type snacks.Config
+    opts = {
+      picker = {},
+    },
   },
 
   {
     'ibhagwan/fzf-lua',
-    enabled = false,
     dependencies = {
       'nvim-tree/nvim-web-devicons',
     },
-    lazy = false,
     command = 'FzfLua',
 
     keys = {
-      { '=', '<cmd>FzfLua files git_icons=false<cr>', desc = 'Find Files' },
-      { 'z=', '<cmd>FzfLua spell_suggest<cr>', desc = 'Fzf spell suggest' },
-
-      { '<Leader>ff', '<cmd>FzfLua files<cr>', desc = 'Find Files' },
-      { '<Leader>fb', '<cmd>FzfLua buffers<cr>', desc = 'Find Buffer' },
-      { '<Leader>fs', '<cmd>FzfLua live_grep<cr>', desc = 'Find by Search' },
-      { '<Leader>fs', mode = 'x', '<cmd>FzfLua grep_visual<cr>', desc = 'Find by Search' },
-      { '<Leader>fw', '<cmd>FzfLua grep_cword<cr>', desc = 'Find Word' },
-      { '<Leader>fW', '<cmd>FzfLua grep_cWORD<cr>', desc = 'Find WORD' },
-      { '<Leader>f"', '<cmd>FzfLua registers<cr>', desc = 'Find register' },
-      { '<leader>fj', '<cmd>FzfLua jumps<cr>', desc = 'Find Jumplist' },
-      { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = 'Find Resume' },
-
-      { '<Leader>fd', '<cmd>FzfLua diagnostics_document<cr>' },
-      { '<Leader>fD', '<cmd>FzfLua diagnostics_workspace<cr>' },
-      { '<Leader>fee', '<cmd>FzfLua diagnostics_workspace severity_limit=1<cr>' },
-      { '<Leader>few', '<cmd>FzfLua diagnostics_workspace severity_limit=2<cr>' },
-
-      { '<Leader>ft', '<cmd>TodoFzfLua<cr>', desc = 'Find Todo' },
-
-      { '<leader>gc', '<cmd>FzfLua git_commits<cr>', desc = 'Git Commits' },
-      { '<leader>gs', '<cmd>FzfLua git_status<cr>', desc = 'Git Status' },
-
-      { '<Leader>fh', '<cmd>FzfLua helptags<cr>', desc = 'Find Help' },
-      { '<Leader>hl', '<cmd>FzfLua highlights<cr>', desc = 'Find HighLight' },
-
+      { 'gra', '<cmd>FzfLua lsp_code_actions<cr>' },
+      { '<Leader>a', '<cmd>FzfLua lsp_code_actions<cr>' },
       { '<C-x><C-p>', mode = 'i', '<cmd>FzfLua complete_path<cr>' },
       { '<C-x><C-f>', mode = 'i', '<cmd>FzfLua complete_file<cr>' },
       { '<C-x><C-l>', mode = 'i', '<cmd>FzfLua complete_line<cr>' },
     },
 
-    opts = {
-      grep = {
-        formatter = 'path.dirname_first',
-      },
-      diagnostics = {
-        formatter = 'path.dirname_first',
-      },
-    },
-
     config = function(_, opts)
       require('fzf-lua').setup(opts)
-      require('fzf-lua').register_ui_select()
+      -- require('fzf-lua').register_ui_select()
     end,
   },
 

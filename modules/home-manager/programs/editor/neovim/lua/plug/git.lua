@@ -3,7 +3,7 @@ return {
     'lewis6991/gitsigns.nvim',
     event = 'VeryLazy',
     opts = {
-      current_line_blame = true,
+      current_line_blame = false,
       current_line_blame_opts = {
         virt_text = true,
         virt_text_pos = 'eol',
@@ -47,7 +47,7 @@ return {
         map('v', '<leader>hr', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end, 'Reset hunk')
 
         map('n', '<leader>hS', gitsigns.stage_buffer, 'Stage buffer')
-        map('n', '<leader>hu', gitsigns.undo_stage_hunk, 'Undo stage hunk')
+        map('n', '<leader>hu', gitsigns.stage_hunk, 'Undo stage hunk')
         map('n', '<leader>hR', gitsigns.reset_buffer, 'Reset buffer')
         map('n', '<leader>hp', gitsigns.preview_hunk, 'Preview hunk')
 
@@ -55,7 +55,7 @@ return {
         map('n', '<leader>tb', gitsigns.toggle_current_line_blame, 'Toggle current line blame')
         map('n', '<leader>hd', gitsigns.diffthis, 'Diffthis')
         map('n', '<leader>hD', function() gitsigns.diffthis('~') end, 'Diffthis')
-        map('n', '<leader>td', gitsigns.toggle_deleted, 'Toggle deleted')
+        map('n', '<leader>td', gitsigns.preview_hunk_inline, 'Toggle deleted')
         -- stylua: ignore end
       end,
     },

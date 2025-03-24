@@ -37,7 +37,7 @@ vim.keymap.set(
   { silent = true, desc = 'vim.lsp.buf.hover() but more' }
 )
 
-vim.keymap.set('n', '<C-S>', function()
+vim.keymap.set('n', 'grs', function()
   vim.lsp.buf.signature_help()
 end, { desc = 'vim.lsp.buf.signature_help()' })
 
@@ -73,7 +73,7 @@ vim.keymap.set('', '<Leader>P', '"+P')
 vim.keymap.set('', '<Leader><Leader>y', "gg\"+yG''")
 
 -- Paste without whitespace
-vim.keymap.set('n', '=p', function()
+vim.keymap.set('n', 'yp', function()
   local yanked_text = vim.fn.getreg('0')
   yanked_text = yanked_text:gsub('\n$', '')
   yanked_text = yanked_text:gsub('^%s+', '')

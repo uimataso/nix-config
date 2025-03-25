@@ -7,6 +7,11 @@ return {
       { '=', function() Snacks.picker.smart() end, desc = 'Smart Find Files' },
       { 'z=', function() Snacks.picker.spelling() end, desc = 'Spell suggest' },
 
+      { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
+      { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
+      { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
+
       { "<Leader>fs", function() Snacks.picker.grep() end, desc = "Grep" },
       { "<leader>fw", mode = { "n", "x" }, function()
         Snacks.picker.grep_word() end, desc = "Visual selection or word" },
@@ -14,6 +19,14 @@ return {
 
       { "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
       { "<leader>fD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
+
+      { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
+      { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
+      { "grr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+      { "gri", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
+      { "gry", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto Type Definition" },
+      { "gro", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+      { "grO", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
 
       { "<leader>ft", function() Snacks.picker.todo_comments() end, desc = "Todo" },
       { "<leader>fT", function() Snacks.picker.todo_comments({
@@ -56,24 +69,5 @@ return {
       require('fzf-lua').setup(opts)
       -- require('fzf-lua').register_ui_select()
     end,
-  },
-
-  {
-    'bassamsdata/namu.nvim',
-    lazy = false,
-
-    keys = {
-      { '<leader>ss', mode = 'n', ':Namu symbols<cr>', desc = 'Jump to LSP symbol' },
-    },
-
-    opts = {
-      -- Enable the modules you want
-      namu_symbols = {
-        enable = true,
-        options = {}, -- here you can configure namu
-      },
-
-      ui_select = { enable = false }, -- vim.ui.select() wrapper
-    },
   },
 }

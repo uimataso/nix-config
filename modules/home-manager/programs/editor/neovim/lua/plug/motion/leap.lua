@@ -1,6 +1,8 @@
 return {
   {
     'ggandor/leap.nvim',
+    enabled = false,
+
     dependencies = {
       'ggandor/leap.nvim',
       'tpope/vim-repeat',
@@ -43,6 +45,8 @@ return {
 
   {
     'ggandor/flit.nvim',
+    enabled = false,
+
     dependencies = {
       'ggandor/leap.nvim',
       'tpope/vim-repeat',

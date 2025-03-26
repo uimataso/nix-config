@@ -3,7 +3,6 @@ return {
     'saghen/blink.cmp',
     lazy = false,
     dependencies = {
-      'L3MON4D3/LuaSnip',
       'nvim-tree/nvim-web-devicons',
       'folke/lazydev.nvim',
       { 'xzbdmw/colorful-menu.nvim', opts = {} },
@@ -19,9 +18,8 @@ return {
       },
 
       sources = {
-        default = { 'lsp', 'path', 'buffer', 'ecolog', 'lazydev' },
+        default = { 'lsp', 'buffer', 'snippets', 'path', 'lazydev' },
         providers = {
-          ecolog = { name = 'ecolog', module = 'ecolog.integrations.cmp.blink_cmp' },
           lazydev = {
             name = 'LazyDev',
             module = 'lazydev.integrations.blink',
@@ -59,6 +57,19 @@ return {
           auto_show = true,
           auto_show_delay_ms = 500,
           window = { border = require('config').border },
+        },
+      },
+
+      cmdline = {
+        completion = {
+          menu = {
+            auto_show = true,
+          },
+          list = {
+            selection = {
+              preselect = false,
+            },
+          },
         },
       },
     },

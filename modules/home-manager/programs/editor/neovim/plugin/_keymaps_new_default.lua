@@ -18,17 +18,17 @@ do
     vim.lsp.buf.code_action()
   end, { desc = 'vim.lsp.buf.code_action()' })
 
-  vim.keymap.set('n', 'grr', function()
-    vim.lsp.buf.references()
-  end, { desc = 'vim.lsp.buf.references()' })
+  -- vim.keymap.set('n', 'grr', function()
+  --   vim.lsp.buf.references()
+  -- end, { desc = 'vim.lsp.buf.references()' })
 
-  vim.keymap.set('n', 'gri', function()
-    vim.lsp.buf.implementation()
-  end, { desc = 'vim.lsp.buf.implementation()' })
+  -- vim.keymap.set('n', 'gri', function()
+  --   vim.lsp.buf.implementation()
+  -- end, { desc = 'vim.lsp.buf.implementation()' })
 
-  vim.keymap.set('n', 'gO', function()
-    vim.lsp.buf.document_symbol()
-  end, { desc = 'vim.lsp.buf.document_symbol()' })
+  -- vim.keymap.set('n', 'gO', function()
+  --   vim.lsp.buf.document_symbol()
+  -- end, { desc = 'vim.lsp.buf.document_symbol()' })
 
   vim.keymap.set({ 'i', 's' }, '<C-S>', function()
     vim.lsp.buf.signature_help()

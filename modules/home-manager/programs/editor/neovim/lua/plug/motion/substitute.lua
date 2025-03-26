@@ -8,7 +8,7 @@ return {
       function()
         require('substitute').operator()
       end,
-      desc = '',
+      desc = 'substitute',
     },
     {
       'ss',
@@ -16,7 +16,7 @@ return {
       function()
         require('substitute').line()
       end,
-      desc = '',
+      desc = 'substitute line',
     },
     {
       'S',
@@ -24,7 +24,7 @@ return {
       function()
         require('substitute').eol()
       end,
-      desc = '',
+      desc = 'substitute to eol',
     },
     {
       's',
@@ -32,7 +32,7 @@ return {
       function()
         require('substitute').visual()
       end,
-      desc = '',
+      desc = 'substitute visual',
     },
   },
   opts = {},

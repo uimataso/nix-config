@@ -1,7 +1,9 @@
 {
-    "allow": {
-        "prefix": "fn",
-        "body": ["fn name() {}"],
-        "description": "fn"
-    }
+  "foo": {
+    "prefix": "foo",
+    "body": [
+      "local ${1:foo} = ${2:bar}",
+      "return ${3:baz}"
+    ]
+  }
 }

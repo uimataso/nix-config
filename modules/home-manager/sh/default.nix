@@ -79,6 +79,13 @@ in
       dl = "curl -OJL";
       fclist = "fc-list : family";
       unitest = "curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt";
+
+      ":w" = "ls";
+      ":q" = "clear";
+      ":wa" = "clear && ll";
+      ":qa" = "clear";
+      ":wq" = "clear && ls";
+      ":wqa" = "clear && ll";
     };
 
     programs.bash.shellAliases = coreutilsAliases;

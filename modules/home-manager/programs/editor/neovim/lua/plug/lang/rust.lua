@@ -18,13 +18,6 @@ return {
 
     config = function()
       vim.g.rustaceanvim = {
-        -- Plugin configuration
-        tools = {
-          float_win_config = {
-            border = require('config').border,
-          },
-        },
-
         -- LSP configuration
         server = {
           on_attach = function(client, bufnr)
@@ -114,11 +107,7 @@ return {
     event = { 'BufRead Cargo.toml' },
     cmd = { 'Crates' },
 
-    opts = {
-      popup = {
-        border = require('config').border,
-      },
-    },
+    opts = {},
 
     config = function(_, opts)
       local crates = require('crates')

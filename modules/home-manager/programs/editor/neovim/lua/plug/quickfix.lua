@@ -27,15 +27,6 @@ vim.keymap.set('n', '<Leader>Ds', function()
   diagnostic2qflist(diagnostics)
 end, { desc = 'add all warn/error diagnostics to quickfix' })
 
-local signs = require('config').signs.diagnostic
-local type_icons = {
-  E = signs[vim.diagnostic.severity.ERROR] .. ' ',
-  W = signs[vim.diagnostic.severity.WARN] .. ' ',
-  I = signs[vim.diagnostic.severity.INFO] .. ' ',
-  N = ' ',
-  H = signs[vim.diagnostic.severity.HINT] .. ' ',
-}
-
 return {
   'stevearc/quicker.nvim',
   event = 'FileType qf',
@@ -78,6 +69,12 @@ return {
         desc = 'Collapse quickfix context',
       },
     },
-    type_icons = type_icons,
+    type_icons = {
+      E = ' ',
+      W = ' ',
+      I = ' ',
+      N = ' ',
+      H = ' ',
+    },
   },
 }

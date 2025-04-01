@@ -46,9 +46,16 @@ local vcs = function()
   })
 end
 
+local diagnostic_sign = {
+  [vim.diagnostic.severity.ERROR] = '',
+  [vim.diagnostic.severity.WARN] = '',
+  [vim.diagnostic.severity.HINT] = '',
+  [vim.diagnostic.severity.INFO] = '',
+}
+
 local diagnostics = function()
   local format_diagnostic_count = function(level)
-    local sign = require('config').signs.diagnostic[level]
+    local sign = diagnostic_sign[level]
     return format_count(' ' .. sign .. '%s', #(vim.diagnostic.get(0, { severity = level })))
   end
 
@@ -93,9 +100,8 @@ function Statusline()
     }),
     '  %{&filetype}', -- Flietype
     '  %{&expandtab?"󱁐 ":"󰌒 "}%{&tabstop}', -- Indent info
-    '  %L', -- Line info
+    -- TODO: show selected lines, chars in visual mode
+    '  %L lines', -- Line info
     '  ',
   })
 end
-
-return {}

@@ -3,10 +3,13 @@ vim.g.no_plugin_maps = true
 
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.signcolumn = 'yes'
+vim.opt.numberwidth = 3
+vim.opt.signcolumn = 'yes:1'
+vim.opt.statuscolumn = '%l%s'
 vim.opt.cursorline = true
 vim.opt.scrolloff = 5
 -- vim.opt.conceallevel = 3
+vim.opt.winborder = 'rounded'
 
 -- Search --
 vim.opt.ignorecase = true

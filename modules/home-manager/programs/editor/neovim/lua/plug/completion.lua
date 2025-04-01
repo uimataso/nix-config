@@ -36,6 +36,7 @@ return {
           },
         },
         menu = {
+          border = 'none',
           -- draw = {
           --   treesitter = { 'lsp' },
           -- },
@@ -56,7 +57,6 @@ return {
         documentation = {
           auto_show = true,
           auto_show_delay_ms = 500,
-          window = { border = require('config').border },
         },
       },
 

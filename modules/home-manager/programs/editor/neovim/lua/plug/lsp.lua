@@ -36,20 +36,25 @@ vim.diagnostic.config({
   float = {
     focusable = false,
     style = 'minimal',
-    border = require('config').border,
     source = true,
     header = '',
     prefix = '',
   },
   signs = {
-    text = require('config').signs.diagnostic,
+    text = {
+      [vim.diagnostic.severity.ERROR] = '',
+      [vim.diagnostic.severity.WARN] = '',
+      [vim.diagnostic.severity.INFO] = '',
+      [vim.diagnostic.severity.HINT] = '',
+    },
+    numhl = {
+      [vim.diagnostic.severity.WARN] = 'WarningMsg',
+      [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+      [vim.diagnostic.severity.INFO] = 'DiagnosticInfo',
+      [vim.diagnostic.severity.HINT] = 'DiagnosticHint',
+    },
   },
 })
-
-vim.lsp.handlers['textDocument/hover'] =
-  vim.lsp.with(vim.lsp.handlers.hover, { border = require('config').border })
-vim.lsp.handlers['textDocument/signatureHelp'] =
-  vim.lsp.with(vim.lsp.handlers.signature_help, { border = require('config').border })
 
 -- Server Settings
 local servers = {

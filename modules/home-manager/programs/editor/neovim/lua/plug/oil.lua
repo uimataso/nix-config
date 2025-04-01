@@ -29,6 +29,9 @@ return {
 
   ---@type oil.SetupOpts
   opts = {
+    win_options = {
+      signcolumn = vim.opt.signcolumn:get(),
+    },
     skip_confirm_for_simple_edits = true,
     view_options = {
       show_hidden = true,

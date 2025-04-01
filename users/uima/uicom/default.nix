@@ -142,7 +142,7 @@
       prusaSlicer.enable = true;
 
       cad = {
-        # kicad.enable = true;
+        kicad.enable = true;
         # freecad.enable = true;
         openscad.enable = true;
       };

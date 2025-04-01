@@ -12,10 +12,6 @@ return {
       },
       current_line_blame_formatter = '     <author>, <author_time:%R> - <summary>',
 
-      preview_config = {
-        border = require('config').border,
-      },
-
       on_attach = function(bufnr)
         local gitsigns = require('gitsigns')
 

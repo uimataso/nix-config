@@ -20,13 +20,12 @@ M.toggleterm = function()
     row = math.floor(vim.o.lines * 0.1),
     width = math.floor(vim.o.columns * 0.8),
     height = math.floor(vim.o.lines * 0.8),
-    border = require('config').border,
     style = 'minimal',
   }
   M.win = vim.api.nvim_open_win(M.buf, true, winopts)
 
   if vim.bo[M.buf].buftype ~= 'terminal' then
-    vim.fn.termopen(vim.o.shell)
+    vim.fn.jobstart(vim.o.shell, { term = true })
   end
 
   vim.cmd.startinsert()

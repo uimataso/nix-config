@@ -1,32 +1,3 @@
-vim.keymap.set('n', '<C-n>', '<cmd>cnext<cr>')
-vim.keymap.set('n', '<C-p>', '<cmd>cprev<cr>')
-
-local function diagnostic2qflist(diagnostics)
-  local qf_list = vim.diagnostic.toqflist(diagnostics)
-  vim.fn.setqflist(qf_list, 'r')
-  require('quicker').open()
-end
-
-vim.keymap.set('n', '<Leader>da', function()
-  local diagnostics = vim.diagnostic.get(0, {})
-  diagnostic2qflist(diagnostics)
-end, { desc = 'add local diagnostics to quickfix' })
-
-vim.keymap.set('n', '<Leader>ds', function()
-  local diagnostics = vim.diagnostic.get(0, { severity = { min = vim.diagnostic.severity.WARN } })
-  diagnostic2qflist(diagnostics)
-end, { desc = 'add local warn/error diagnostics to quickfix' })
-
-vim.keymap.set('n', '<Leader>Da', function()
-  local diagnostics = vim.diagnostic.get(nil, {})
-  diagnostic2qflist(diagnostics)
-end, { desc = 'add all diagnostics to quickfix' })
-
-vim.keymap.set('n', '<Leader>Ds', function()
-  local diagnostics = vim.diagnostic.get(nil, { severity = { min = vim.diagnostic.severity.WARN } })
-  diagnostic2qflist(diagnostics)
-end, { desc = 'add all warn/error diagnostics to quickfix' })
-
 return {
   'stevearc/quicker.nvim',
   event = 'FileType qf',

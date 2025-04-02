@@ -3,6 +3,7 @@ return {
   event = 'VeryLazy',
   opts = {
     delay = 300,
+    under_cursor = false,
   },
 
   config = function(_, opts)

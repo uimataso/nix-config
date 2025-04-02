@@ -8,8 +8,8 @@ vim.opt.signcolumn = 'yes:1'
 vim.opt.statuscolumn = '%l%s'
 vim.opt.cursorline = true
 vim.opt.scrolloff = 5
--- vim.opt.conceallevel = 3
 vim.opt.winborder = 'rounded'
+-- vim.opt.conceallevel = 3
 
 -- Search --
 vim.opt.ignorecase = true
@@ -36,20 +36,23 @@ vim.opt.spellfile = vim.fn.stdpath('data') .. '/spell/en.utf-8.add'
 vim.opt.spelllang = 'en_us,cjk'
 vim.opt.spelloptions = 'camel'
 
+-- Fold --
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldtext = 'v:lua.Foldtext()'
+vim.opt.fillchars:append({ fold = ' ' })
+
 -- Msic --
 vim.opt.shortmess:append('I') -- no intro message
 vim.opt.swapfile = false
 vim.opt.updatetime = 100
 vim.opt.mouse = ''
 
--- vim.opt.foldenable = true
--- vim.opt.foldlevel = 99
--- vim.opt.foldmethod = 'expr'
--- vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
--- vim.opt.foldtext = 'v:lua.Foldtext()'
---
--- function Foldtext()
---   local line = vim.fn.getline(vim.v.foldstart)
---   local line_count = vim.v.foldend - vim.v.foldstart + 1
---   return line .. ('   󰁂 [ %d ] '):format(line_count)
--- end
+function Foldtext()
+  local line = require('utils').get_line_with_highlight(0, vim.v.foldstart - 1)
+  local lines_count = vim.v.foldend - vim.v.foldstart + 1
+  table.insert(line, { ('   󰁂 [ %d ] '):format(lines_count), 'MoreMsg' })
+  return line
+end

@@ -8,6 +8,7 @@ require('keymaps')
 require('autocmd')
 require('plugins')
 
+require('lsp')
 require('snippet')
 require('status')
 require('terminal')

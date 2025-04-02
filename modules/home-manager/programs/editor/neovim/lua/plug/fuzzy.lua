@@ -19,6 +19,12 @@ return {
 
       { "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
       { "<leader>fD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
+      { "<leader>fe", function()
+        Snacks.picker.diagnostics({ severity = { min = vim.diagnostic.severity.WARN }})
+      end, desc = "Warn/Error Diagnostics" },
+      { "<leader>fE", function()
+        Snacks.picker.diagnostics_buffer({ severity = { min = vim.diagnostic.severity.WARN }})
+      end, desc = "Warn/Error Buffer Diagnostics" },
 
       { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
       { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },

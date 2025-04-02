@@ -14,48 +14,6 @@ local get_capabilities = function(override)
   return capabilities
 end
 
--- LSP Settings
-local au = require('utils').au
-local ag = require('utils').ag
-ag('uima/LspKeymap', function(g)
-  au({ 'LspAttach' }, {
-    group = g,
-    callback = function()
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'vim.lsp.buf.definition()' })
-      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'vim.lsp.buf.declaration()' })
-      vim.keymap.set('n', '<leader>dr', vim.diagnostic.reset, { desc = 'vim.diagnostic.reset()' })
-    end,
-  })
-end)
-
-vim.diagnostic.config({
-  virtual_text = false,
-  update_in_insert = true,
-  underline = true,
-  severity_sort = true,
-  float = {
-    focusable = false,
-    style = 'minimal',
-    source = true,
-    header = '',
-    prefix = '',
-  },
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = '',
-      [vim.diagnostic.severity.WARN] = '',
-      [vim.diagnostic.severity.INFO] = '',
-      [vim.diagnostic.severity.HINT] = '',
-    },
-    numhl = {
-      [vim.diagnostic.severity.WARN] = 'WarningMsg',
-      [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
-      [vim.diagnostic.severity.INFO] = 'DiagnosticInfo',
-      [vim.diagnostic.severity.HINT] = 'DiagnosticHint',
-    },
-  },
-})
-
 -- Server Settings
 local servers = {
   bashls = {
@@ -203,19 +161,5 @@ return {
       },
     },
     opts = {},
-  },
-
-  {
-    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
-    opts = {},
-    keys = {
-      {
-        '<Leader>df',
-        function()
-          require('lsp_lines').toggle()
-        end,
-        { desc = 'Toggle lsp_lines' },
-      },
-    },
   },
 }

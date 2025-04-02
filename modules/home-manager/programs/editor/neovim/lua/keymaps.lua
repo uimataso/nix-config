@@ -44,6 +44,15 @@ end, { desc = 'vim.lsp.buf.signature_help()' })
 vim.keymap.set('n', '<Leader>gd', '<cmd>vsplit | lua vim.lsp.buf.definition()<cr>')
 vim.keymap.set('n', '<Leader>gD', '<cmd>vsplit | lua vim.lsp.buf.declaration()<cr>')
 
+-- Diagnostic
+vim.keymap.set('n', '<leader>dr', vim.diagnostic.reset, { desc = 'vim.diagnostic.reset()' })
+
+local diagnostic_virtual_lines = false
+vim.keymap.set('n', '<leader>df', function()
+  diagnostic_virtual_lines = not diagnostic_virtual_lines
+  vim.diagnostic.config({ virtual_lines = diagnostic_virtual_lines })
+end, { desc = 'vim.diagnostic.config({ virtual_lines = .. })' })
+
 -- Snippet
 vim.keymap.set('i', '<C-x><C-s>', '<C-]>')
 

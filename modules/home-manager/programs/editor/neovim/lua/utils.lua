@@ -69,4 +69,32 @@ M.overwrite_diagnostic_highlight = function(diagnostic_ns, highlight_ns, highlig
   }
 end
 
+---@param bufnr integer
+---@param lnum integer
+M.get_line_with_highlight = function(bufnr, lnum)
+  local line = vim.api.nvim_buf_get_lines(0, lnum, lnum + 1, false)[1]
+
+  local ret = {}
+  local cur = { text = '', hl = nil }
+
+  for i = 1, #line do
+    local c = line:sub(i, i)
+
+    local hls = vim.treesitter.get_captures_at_pos(0, lnum, i - 1)
+    local new_hl = hls[#hls]
+    local new_hl = new_hl and '@' .. new_hl.capture or nil
+
+    if new_hl ~= cur.hl then
+      table.insert(ret, { cur.text, cur.hl })
+      cur = { text = c, hl = new_hl }
+    else
+      cur.text = cur.text .. c
+    end
+  end
+
+  table.insert(ret, { cur.text, cur.hl })
+
+  return ret
+end
+
 return M

@@ -30,6 +30,40 @@ local format_count = function(format, count)
   return string.format(format, count)
 end
 
+local format_int = function(num, sep)
+  if not sep then
+    sep = ','
+  end
+  if num < 999 then
+    return tostring(num)
+  else
+    num = tostring(num)
+    return num:reverse():gsub('(%d%d%d)', '%1' .. sep):reverse():gsub('^,', '')
+  end
+end
+
+local file_info = function()
+  local wc_table = vim.fn.wordcount()
+
+  if not wc_table.visual_words or not wc_table.visual_chars then
+    return table.concat({
+      '  %{&filetype}', -- Flietype
+      '  %{&expandtab?"󱁐 ":"󰌒 "}%{&tabstop}', -- Indent info
+      ('  %s lines'):format(format_int(vim.fn.line('$'))),
+      ('  %s words'):format(format_int(wc_table.words)),
+    })
+  else
+    local vis_line = math.abs(vim.fn.line('.') - vim.fn.line('v')) + 1
+
+    return table.concat({
+      '  ‹›',
+      ('  %s lines'):format(format_int(vis_line)),
+      ('  %s words'):format(format_int(wc_table.visual_words)),
+      ('  %s chars'):format(format_int(wc_table.visual_chars)),
+    })
+  end
+end
+
 local vcs = function()
   local git_info = vim.b.gitsigns_status_dict
   if not git_info or git_info.head == '' then
@@ -98,10 +132,7 @@ function Statusline()
       macro_recoding(),
       search_count(),
     }),
-    '  %{&filetype}', -- Flietype
-    '  %{&expandtab?"󱁐 ":"󰌒 "}%{&tabstop}', -- Indent info
-    -- TODO: show selected lines, chars in visual mode
-    '  %L lines', -- Line info
+    file_info(),
     '  ',
   })
 end

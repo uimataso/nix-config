@@ -50,12 +50,8 @@ in
         # LSP / Formatter
         # Generic Formatter
         nodePackages.prettier
-        typos-lsp
         nodePackages.cspell
-        harper
 
-        # Markdown
-        marksman
         # Lua
         lua-language-server
         stylua

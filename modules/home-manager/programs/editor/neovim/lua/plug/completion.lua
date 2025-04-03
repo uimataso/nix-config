@@ -61,6 +61,11 @@ return {
       },
 
       cmdline = {
+        keymap = {
+          preset = 'cmdline',
+          ['<Right>'] = { 'fallback' },
+          ['<Left>'] = { 'fallback' },
+        },
         completion = {
           menu = {
             auto_show = true,

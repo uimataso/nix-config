@@ -4,12 +4,14 @@ vim.opt.laststatus = 3 -- global statusline
 vim.opt.cmdheight = 1
 vim.opt.statusline = '%!v:lua.Statusline()'
 
--- -- Some shortmess work with cmdheight=0
--- vim.opt.shortmess:append('c')
--- vim.opt.shortmess:append('C')
--- vim.opt.shortmess:append('s')
--- vim.opt.shortmess:append('S')
--- vim.opt.shortmess:remove('t')
+-- Some shortmess that will works well with cmdheight=0
+if vim.opt.cmdheight:get() == 0 then
+  vim.opt.shortmess:append('c')
+  vim.opt.shortmess:append('C')
+  vim.opt.shortmess:append('s')
+  vim.opt.shortmess:append('S')
+  vim.opt.shortmess:remove('t')
+end
 
 local hi = function(group)
   return '%#' .. group .. '#'

@@ -1,5 +1,4 @@
 return {
-  { import = 'plug.dev' },
   { import = 'plug.lang' },
   { import = 'plug.misc' },
   { import = 'plug.motion' },

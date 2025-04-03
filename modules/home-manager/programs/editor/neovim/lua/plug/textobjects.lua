@@ -1,8 +1,9 @@
 return {
   {
-    'nvim-treesitter/nvim-treesitter',
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    event = 'VeryLazy',
     dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
+      'nvim-treesitter/nvim-treesitter',
     },
 
     opts = {
@@ -51,6 +52,10 @@ return {
         },
       },
     },
+
+    config = function(_, opts)
+      require('nvim-treesitter.configs').setup(opts)
+    end,
   },
 
   {

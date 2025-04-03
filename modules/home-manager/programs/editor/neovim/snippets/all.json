@@ -1,0 +1,9 @@
+{
+  "all": {
+    "prefix": "all",
+    "body": [
+      "alllll",
+      "return ${1:baz}"
+    ]
+  }
+}

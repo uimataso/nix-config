@@ -55,50 +55,8 @@ return {
             },
           },
         },
-
-        -- DAP configuration
-        dap = {},
       }
     end,
-  },
-
-  { -- Rustaceanvim Neotest integration
-    'nvim-neotest/neotest',
-    opts = function(_, opts)
-      table.insert(opts.adapters, require('rustaceanvim.neotest'))
-    end,
-  },
-
-  {
-    'mfussenegger/nvim-dap',
-    opts = {
-      configurations = {
-        rust = {
-          {
-            name = 'Debug Test',
-            type = 'codelldb',
-            request = 'launch',
-            program = function()
-              return cargo_build('cargo build --tests -q --message-format=json')
-            end,
-            cwd = '${workspaceFolder}',
-            stopOnEntry = false,
-            showDisassembly = 'never',
-          },
-          {
-            name = 'Debug Bin',
-            type = 'codelldb',
-            request = 'launch',
-            program = function()
-              return cargo_build('cargo build -q --message-format=json')
-            end,
-            cwd = '${workspaceFolder}',
-            stopOnEntry = false,
-            showDisassembly = 'never',
-          },
-        },
-      },
-    },
   },
 
   {

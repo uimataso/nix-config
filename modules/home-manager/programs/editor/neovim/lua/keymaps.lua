@@ -1,3 +1,6 @@
+local au = require('utils').au
+local ag = require('utils').ag
+
 -- to see which char map to which mode:
 -- :h map-table
 
@@ -154,3 +157,30 @@ vim.keymap.set(
   ':CopyCodeBlock<cr>',
   { desc = 'Copy text with markdown codeblock style' }
 )
+
+-- Close some filetypes with <q>
+ag('uima/CloseWithQ', function(g)
+  au('FileType', {
+    group = g,
+    pattern = {
+      'PlenaryTestPopup',
+      'help',
+      'lspinfo',
+      'man',
+      'notify',
+      'qf',
+      'query',
+      'spectre_panel',
+      'startuptime',
+      'tsplayground',
+      'neotest-output',
+      'checkhealth',
+      'neotest-summary',
+      'neotest-output-panel',
+    },
+    callback = function(event)
+      vim.bo[event.buf].buflisted = false
+      vim.keymap.set('n', 'q', '<cmd>quit<cr>', { buffer = event.buf, silent = true })
+    end,
+  })
+end)

@@ -69,6 +69,14 @@ M.overwrite_diagnostic_highlight = function(diagnostic_ns, highlight_ns, highlig
   }
 end
 
+M.list_merge = function(...)
+  local ret = {}
+  for _, list in pairs({ ... }) do
+    vim.list_extend(ret, list)
+  end
+  return ret
+end
+
 ---@param bufnr integer
 ---@param lnum integer
 M.get_line_with_highlight = function(bufnr, lnum)

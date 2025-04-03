@@ -42,8 +42,6 @@ ag('uima/TermSettings', function(g)
     group = g,
     callback = function(opts)
       vim.cmd('startinsert')
-      vim.cmd('setlocal nonu')
-      vim.cmd('setlocal signcolumn=no')
 
       vim.keymap.set('n', '<Esc><Esc>', '<cmd>close<cr>', { buffer = 0 })
       vim.keymap.set('n', '<BS>', '<Nop>', { buffer = 0 })

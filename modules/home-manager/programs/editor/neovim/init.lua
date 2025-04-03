@@ -3,12 +3,13 @@ vim.keymap.set('', '<Space>', '<Nop>')
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
-require('options')
+require('config')
 require('keymaps')
-require('autocmd')
 require('plugins')
 
 require('lsp')
+require('treesitter')
 require('snippet')
 require('status')
+require('fold')
 require('terminal')

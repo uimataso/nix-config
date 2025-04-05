@@ -36,7 +36,7 @@ in
 
     programs.nushell = {
       extraConfig = "def fzf-editor [] { fzf | xargs -r $env.EDITOR }";
-      shellAliases.ef = "fzf-editor";
+      shellAliases.ef = mkForce "fzf-editor";
     };
   };
 }

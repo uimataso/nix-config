@@ -9,6 +9,7 @@ let
     mkIf
     mkEnableOption
     mkOption
+    mkDefault
     types
     ;
   cfg = config.uimaConfig.sh.nushell;
@@ -58,9 +59,9 @@ in
         e = "${defaultEditor}";
         "e." = "${defaultEditor} .";
 
-        l = "ls";
-        ls = "ls -a";
-        ll = "ls -al";
+        l = mkDefault "ls";
+        ls = mkDefault "ls -a";
+        ll = mkDefault "ls -al";
 
         cp = "cp -iv";
         mv = "mv -iv";

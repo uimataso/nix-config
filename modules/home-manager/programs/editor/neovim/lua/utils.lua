@@ -69,9 +69,11 @@ M.overwrite_diagnostic_highlight = function(diagnostic_ns, highlight_ns, highlig
   }
 end
 
-M.list_merge = function(...)
+---@param lists any[][]
+---@return any[] merged_list
+M.list_merge = function(lists)
   local ret = {}
-  for _, list in pairs({ ... }) do
+  for _, list in pairs(lists) do
     vim.list_extend(ret, list)
   end
   return ret

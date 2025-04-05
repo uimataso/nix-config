@@ -2,10 +2,6 @@
 -- - <https://github.com/boltlessengineer/NativeVim>
 -- - <https://github.com/DimitrisDimitropoulos/yasp.nvim>
 
--- TODO:
--- - parse package once at beginning
--- - cleanup the code that i don't need
-
 ---Refer to <https://microsoft.github.io/language-server-protocol/specification/#snippet_syntax>
 ---for the specification of valid body.
 ---@param prefix string trigger string for snippet
@@ -28,7 +24,7 @@ end
 ---the read is done with the permissions rrr (read only)
 ---@param path string Path to the file
 ---@return string buffer Contents of file as a string
-function read_file(path)
+local function read_file(path)
   -- permissions: rrr
   local fd = assert(vim.uv.fs_open(path, 'r', tonumber('0444', 8)))
   local stat = assert(vim.uv.fs_fstat(fd))
@@ -38,81 +34,52 @@ function read_file(path)
   return buf
 end
 
----Parse the pkg.json file and return a list of snippet paths
----@param pkg_path string Path to the package.json file
----@param lang string The language to filter the snippets by
----@return string[] file_paths List of absolute paths to the snippet files
-local function parse_pkg(pkg_path, lang)
-  local pkg = read_file(pkg_path)
-  local data = vim.json.decode(pkg)
+---Parse the `package.json` file and return a list of snippet paths
+---@param pkg_path string
+---@return table file_paths
+local function parse_pkg(pkg_path)
+  local data = vim.json.decode(read_file(pkg_path))
   local base_path = vim.fn.fnamemodify(pkg_path, ':h')
+
   local file_paths = {}
-  for _, snippet in ipairs(data.contributes.snippets) do
-    local languages = snippet.language
-    -- Check if it's a list of languages or a single language
-    if type(languages) == 'string' then
-      languages = { languages }
-    end
-    -- If a language is provided, check for a match
-    if not lang or vim.tbl_contains(languages, lang) then
-      -- Prepend the base path to the relative snippet path
-      local abs_path = vim.fn.fnamemodify(base_path .. '/' .. snippet.path, ':p')
-      table.insert(file_paths, abs_path)
-    end
+  for _, snip in ipairs(data.contributes.snippets) do
+    local languages = type(snip.language) == 'table' and snip.language or { snip.language }
+    local abs_path = vim.fn.fnamemodify(base_path .. '/' .. snip.path, ':p')
+    file_paths[abs_path] = languages
   end
   return file_paths
 end
 
----Process only one JSON encoded string
----@param snips string JSON encoded string containing snippets
----@param desc string Description for the snippets (optional)
----@return table completion_results A table containing completion results formatted for LSP
-local function process_snippets(snips, desc)
-  local snippets_table = {}
-  local snippet_descs = {}
-  local completion_results = {
-    isIncomplete = false,
-    items = {},
-  }
-  -- Decode the JSON input
-  for _, v in pairs(vim.json.decode(snips)) do
-    local prefixes = type(v.prefix) == 'table' and v.prefix or { v.prefix }
-    -- Handle v.body as a table or string
-    local body
-    if type(v.body) == 'table' then
-      -- Concatenate the table elements into a single string, separated by newlines
-      body = table.concat(v.body, '\n')
-    else
-      -- If it's already a string, use it directly
-      body = v.body
-    end
-    -- Add each prefix-body pair to the table
-    for _, prefix in ipairs(prefixes) do
-      snippets_table[prefix] = body
-      snippet_descs[prefix] = v.description or '-'
+---@param snip_path string
+---@return table results
+local function parse_snippet(snip_path)
+  local data = vim.json.decode(read_file(snip_path))
+  local snippets = {}
+  for _name, snip in pairs(data) do
+    local prefixes = type(snip.prefix) == 'table' and snip.prefix or { snip.prefix }
+    local body = type(snip.body) == 'table' and table.concat(snip.body, '\n') or snip.body
+    for _, prefix in pairs(prefixes) do
+      snippets[prefix] = body
     end
   end
-  -- Transform the snippets_table into completion_results
-  for label, insertText in pairs(snippets_table) do
-    local long_desc = vim.fn.has 'nvim-0.11' ~= 1
-    table.insert(completion_results.items, {
-      detail = tostring(desc) .. (long_desc and ('|' .. tostring(snippet_descs[label])) or ''),
-      label = label,
-      kind = vim.lsp.protocol.CompletionItemKind['Snippet'],
-      documentation = {
-        value = insertText,
-        kind = vim.lsp.protocol.MarkupKind.Markdown,
-      },
-      insertTextFormat = vim.lsp.protocol.InsertTextFormat.Snippet,
-      insertText = insertText,
-      -- fix for blink.cmp
-      sortText = tostring(1.02), -- Ensure a low score by setting a high sortText value, not sure
-    })
-  end
-  return completion_results
+  return snippets
 end
 
-local snip_pkg = vim.fn.stdpath('config') .. '/snippets/package.json'
+local function parse_snippets(pkg_path)
+  local snip_paths = parse_pkg(pkg_path)
+  local snippets = {}
+  for path, langs in pairs(snip_paths) do
+    local snips = parse_snippet(path)
+    vim.print(snips)
+    for _, lang in pairs(langs) do
+      snippets[lang] = vim.tbl_deep_extend('force', snippets[lang] or {}, snips)
+    end
+  end
+  return snippets
+end
+
+local snip_pkg_path = vim.fn.stdpath('config') .. '/snippets/package.json'
+local snippets = parse_snippets(snip_pkg_path)
 
 local au = require('utils').au
 local ag = require('utils').ag
@@ -121,14 +88,9 @@ ag('uima/Snippet', function(g)
     group = g,
     callback = function()
       local ft = vim.bo.filetype
-      local snip_files =
-        require('utils').list_merge(parse_pkg(snip_pkg, ft), parse_pkg(snip_pkg, 'all'))
-
-      for _, file in pairs(snip_files) do
-        local snips = process_snippets(read_file(file), '')
-        for _, snip in pairs(snips.items) do
-          vim.snippet.add(snip.label, snip.insertText, { buffer = 0 })
-        end
+      local snips = vim.tbl_deep_extend('force', snippets[ft] or {}, snippets['all'] or {})
+      for prefix, body in pairs(snips) do
+        vim.snippet.add(prefix, body, { buffer = 0 })
       end
     end,
   })

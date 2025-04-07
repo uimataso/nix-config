@@ -70,7 +70,6 @@ local function parse_snippets(pkg_path)
   local snippets = {}
   for path, langs in pairs(snip_paths) do
     local snips = parse_snippet(path)
-    vim.print(snips)
     for _, lang in pairs(langs) do
       snippets[lang] = vim.tbl_deep_extend('force', snippets[lang] or {}, snips)
     end

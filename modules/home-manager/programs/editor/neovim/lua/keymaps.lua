@@ -158,6 +158,10 @@ vim.keymap.set(
   { desc = 'Copy text with markdown codeblock style' }
 )
 
+vim.api.nvim_create_user_command('LspInfo', function(opts)
+  vim.cmd [[ checkhealth vim.lsp ]]
+end, {})
+
 -- Close some filetypes with <q>
 ag('uima/CloseWithQ', function(g)
   au('FileType', {

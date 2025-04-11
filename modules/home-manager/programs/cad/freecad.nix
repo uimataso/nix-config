@@ -18,7 +18,7 @@ in
   config = mkIf cfg.enable {
     home.persistence.main = mkIf imper.enable {
       directories = [
-        ".config/freecad"
+        ".config/FreeCAD"
         ".local/share/FreeCAD"
       ];
     };

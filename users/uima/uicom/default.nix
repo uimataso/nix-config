@@ -143,7 +143,7 @@
 
       cad = {
         kicad.enable = true;
-        # freecad.enable = true;
+        freecad.enable = true;
         openscad.enable = true;
       };
     };

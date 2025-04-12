@@ -1,6 +1,4 @@
 {
-  self,
-  config,
   pkgs,
   ...
 }:
@@ -26,31 +24,25 @@
     ];
   };
 
-  home.packages =
-    with pkgs;
-    let
-      scripts = name: (callPackage "${self}/pkgs/scripts/${name}.nix" { });
-    in
-    [
-      obsidian
-      qmk
-      fd
-      nsxiv
+  home.packages = with pkgs; [
+    obsidian
+    qmk
+    fd
+    nsxiv
 
-      (scripts "app-launcher")
-      (scripts "power-menu")
+    scripts.app-launcher
+    scripts.power-menu
+    scripts.screenshot
 
-      (scripts "vl")
-      (scripts "bright")
-      (scripts "ux")
-      (scripts "mkbigfile")
-      (scripts "open")
-      (scripts "pdf-decrypt")
-      (scripts "preview")
-      (scripts "clip")
-
-      (scripts "screenshot")
-    ];
+    scripts.vl
+    scripts.clip
+    scripts.bright
+    scripts.ux
+    scripts.open
+    scripts.preview
+    scripts.pdf-decrypt
+    scripts.mkbigfile
+  ];
 
   programs = {
     htop.enable = true;

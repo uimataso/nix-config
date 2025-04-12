@@ -12,6 +12,7 @@ writeShellApplication {
     help() {
       echo "Usage: $app_name [options]"
       cat <<EOF
+
     Copy data from stdin.
     Output clipboard to stdout.
 

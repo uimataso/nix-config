@@ -37,7 +37,7 @@ in
       nr = "nix repl --expr 'builtins.getFlake \"${cfg.flakeDir}\"'";
       nd = "nix develop path:$(pwd)";
 
-      it = "${pkgs.nix-template-tool}/bin/nix-template-tool";
+      it = "${pkgs.scripts.nix-template-tool}/bin/nix-template-tool";
 
       nvim-test = ''
         rm ${configHome}/nvim && ln -vs ${cfg.flakeDir}/modules/home-manager/programs/editor/neovim ${configHome}/nvim

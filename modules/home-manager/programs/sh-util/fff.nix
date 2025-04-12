@@ -16,7 +16,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.fff ];
+    home.packages = [ pkgs.scripts.fff ];
 
     home.shellAliases = {
       a = ". fff";

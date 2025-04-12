@@ -4,8 +4,8 @@ writeShellApplication {
 
   text = ''
     usage() {
-      cat <<EOF
-    Usage: ''${0##*/} [OPTION] FILE
+      echo "Usage: ''${0##*/} [OPTION] FILENAME"
+      cat <<'EOF'
     Make a random big file.
 
       -h, --help            Show this help.

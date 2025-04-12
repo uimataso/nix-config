@@ -1,3 +1,4 @@
+# TODO: maintenance needed
 { writeShellApplication, pkgs }:
 writeShellApplication {
   name = "fmenu";

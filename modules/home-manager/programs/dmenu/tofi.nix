@@ -11,22 +11,21 @@ let
     mkForce
     types
     ;
-  cfg = config.uimaConfig.programs.menu.tofi;
+  cfg = config.uimaConfig.programs.dmenu.tofi;
 in
 {
-  options.uimaConfig.programs.menu.tofi = {
+  options.uimaConfig.programs.dmenu.tofi = {
     enable = mkEnableOption "tofi";
 
-    # TODO: make a value that can setting default app-luncher AND dmenu
-    defaultMenu = mkOption {
+    defaultDmenu = mkOption {
       type = types.bool;
       default = false;
-      description = "Use tofi as default menu";
+      description = "Use tofi as default dmenu";
     };
   };
 
   config = mkIf cfg.enable {
-    uimaConfig.programs.menu = mkIf cfg.defaultMenu {
+    uimaConfig.programs.dmenu = mkIf cfg.defaultDmenu {
       enable = true;
       executable = "tofi";
     };

@@ -6,6 +6,19 @@ writeShellApplication {
   ];
 
   text = ''
+    help() {
+      cat <<EOF
+    Available option:
+
+      vl get|get-volume
+      vl up STEP
+      vl down STEP
+      vl mute|mute-sink
+      vl mute-source
+      vl switch
+    EOF
+    }
+
     up() {
       [ -n "$1" ] && STEP=$1
       vol="$(get_volume)"
@@ -17,11 +30,11 @@ writeShellApplication {
       pactl set-sink-volume @DEFAULT_SINK@ -"$STEP"%
     }
 
-    sink_mute() {
+    mute_sink() {
       pactl set-sink-mute @DEFAULT_SINK@ toggle
     }
 
-    source_mute() {
+    mute_source() {
       pactl set-source-mute @DEFAULT_SOURCE@ toggle
     }
 
@@ -48,14 +61,12 @@ writeShellApplication {
     case "''${1:-}" in
       u|up) up "''${2:-$STEP}" ;;
       d|down) down "''${2:-$STEP}" ;;
-      mute|sink-mute) sink_mute ;;
-      source-mute) source_mute ;;
+      mute|mute-sink) mute_sink ;;
+      mute-source) mute_source ;;
       switch) switch ;;
-      ""|get-volume) get_volume ;;
-      *) echo "''${0##*/}: option $1 not found." >&2 && exit 1;;
+      get|get-volume) get_volume ;;
+      ''') help ;;
+      *) echo "''${0##*/}: option '$1' not found." >&2 && exit 1;;
     esac
-
-    # update bar
-    # sb-update sb-vol
   '';
 }

@@ -10,7 +10,7 @@ let
     mkOption
     types
     ;
-  cfg = config.uimaConfig.programs.menu;
+  cfg = config.uimaConfig.programs.dmenu;
 in
 {
   imports = [
@@ -18,8 +18,9 @@ in
     ./tofi.nix
   ];
 
-  options.uimaConfig.programs.menu = {
-    enable = mkEnableOption "Menu";
+  # TODO: make a value that can setting default app-luncher AND dmenu
+  options.uimaConfig.programs.dmenu = {
+    enable = mkEnableOption "Dmenu";
 
     executable = mkOption {
       type = types.str;

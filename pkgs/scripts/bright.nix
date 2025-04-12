@@ -1,3 +1,4 @@
+# TODO: maintenance needed
 { writeShellApplication }:
 writeShellApplication {
   name = "bright";
@@ -39,8 +40,5 @@ writeShellApplication {
     }
 
     "$@"
-
-    # update bar
-    #sb-update sb-brightness
   '';
 }

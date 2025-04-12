@@ -1,0 +1,29 @@
+{
+  "check executable exist": {
+    "prefix": "te",
+    "body": "type ${1} >/dev/null 2>&1"
+  },
+  "cat eof": {
+    "prefix": "ce",
+    "body": [
+      "cat <<EOF",
+      "${1}",
+      "EOF"
+    ]
+  },
+  "cat eof": {
+    "prefix": "cq",
+    "body": [
+      "cat <<'EOF'",
+      "${1}",
+      "EOF"
+    ]
+  },
+  "boo": {
+    "prefix": "boo",
+    "body": [
+      "local ${1:foo} = ${2:bar}",
+      "return ${3:baz}"
+    ]
+  }
+}

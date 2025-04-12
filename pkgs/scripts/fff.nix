@@ -20,17 +20,15 @@ writeShellApplication {
       # prepare the prompt to show current directory
       pwd="$(pwd | sed "s#^$HOME#~#")"
 
-      # shellcheck disable=SC2000
-      if [ "$(echo "$pwd" | wc -c)" -gt 25 ]; then
+      if [ "''${#pwd}" -gt 25 ]; then
         # only show first char if PWD too long
         pwd="$(printf '%s' "$pwd" | sed 's#\([^/.]\)[^/]\+/#\1/#g')"
       fi
 
-      # TODO: wraping preview with `sh -c` is only for nushell, may need to rewirte this script
       # shellcheck disable=SC2016
       selected="$($ls_cmd "$PWD" |
         fzf --prompt "$pwd/" \
-            --preview 'sh -c "preview $PWD/{}"' \
+            --preview 'preview $PWD/{}' \
             --preview-window '70%,border-left' \
             --ansi \
             --height 100 \

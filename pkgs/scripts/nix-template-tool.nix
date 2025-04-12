@@ -9,7 +9,7 @@ writeShellApplication {
   text = ''
     flake_home="''${FLAKE_HOME:-$HOME/nix}"
 
-    gray=$(tput setaf 247)
+    gray=$(tput setaf 8)
     reset=$(tput sgr0)
 
     # Select template
@@ -23,34 +23,42 @@ writeShellApplication {
     [ -z "$selected" ] && exit
 
     # Select action
-    declare -a cmds
-    cmds=(new init)
-    cmd="$(printf '%s\n' "''${cmds[@]}" | fzf)"
+    cmds () {
+      printf 'new    %sCreate a new directory%s\n' "''${gray}" "''${reset}"
+      printf 'init   %sApply template at current directory%s\n' "''${gray}" "''${reset}"
+    }
+    cmd="$(cmds | fzf --ansi | cut -f1 -d ' ')"
 
-    [ -z "$cmd" ] && exit 1
+    case "$cmd" in
+      'new') printf 'Selected new\n' ;;
+      'init') printf 'Selected init\n' ;;
+      *) printf 'abort' >&2; exit 1 ;;
+    esac
 
     # Enter project name
     printf 'Please enter project name: '
     read -r project_name
-    [ -z "$project_name" ] && exit 1
+    if [ -z "$project_name" ]; then
+      printf 'abort' >&2
+      exit 1
+    fi
 
     project_code_name="$(printf '%s' "$project_name" | tr '[:upper:]' '[:lower:]' | sed 's/\s\+/-/g' )"
 
     if [ -e "$project_code_name" ]; then
-      printf 'File %s exist' "$project_code_name" >&2
+      printf 'File %s exist\n' "$project_code_name" >&2
       exit 1
     fi
 
-    # Do action
     case "$cmd" in
-      'new') nix flake "$cmd" "$project_code_name" -t "$flake_home#$selected" ;;
-      'init') nix flake "$cmd" -t "$flake_home#$selected" ;;
-    esac
-
-    # Replace template placeholder
-    case "$cmd" in
-      'new') target_dir="$project_code_name" ;;
-      'init') target_dir='.' ;;
+      'new')
+        target_dir="$project_code_name"
+        nix flake "$cmd" "$project_code_name" -t "$flake_home#$selected"
+        ;;
+      'init')
+        target_dir='.'
+        nix flake "$cmd" -t "$flake_home#$selected"
+        ;;
     esac
 
     while IFS= read -r -d "" file; do

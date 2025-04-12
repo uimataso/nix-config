@@ -8,7 +8,6 @@ in
 
   # Utils
   fff = callPackage ./fff.nix { };
-  extract = callPackage ./extract.nix { };
   pdf-decrypt = callPackage ./pdf-decrypt.nix { };
   mkbigfile = callPackage ./mkbigfile.nix { };
 
@@ -21,6 +20,5 @@ in
   open = callPackage ./open.nix { };
   power-menu = callPackage ./power-menu.nix { };
   app-launcher = callPackage ./app-launcher.nix { };
-  swallower = callPackage ./swallower.nix { };
   screenshot = callPackage ./screenshot.nix { };
 }

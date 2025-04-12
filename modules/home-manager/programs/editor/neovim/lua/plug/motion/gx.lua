@@ -16,10 +16,10 @@ return {
     handlers = {
       plugin = true, -- open plugin links in lua (e.g. packer, lazy, ..)
       github = true, -- open github issues
-      rust = { -- custom handler to open rust's cargo packages
-        name = 'rust', -- set name of handler
-        filetype = { 'toml' }, -- you can also set the required filetype for this handler
-        filename = 'Cargo.toml', -- or the necessary filename
+      rust = {
+        name = 'rust',
+        filetype = { 'toml' },
+        filename = 'Cargo.toml',
         handle = function(mode, line, _)
           local crate = require('gx.helper').find(line, mode, '(%w+)%s-=%s')
           if crate then
@@ -27,6 +27,23 @@ return {
           end
         end,
       },
+      shellcheck = {
+        name = 'shellcheck',
+        -- filetype = { 'bash', 'shell' },
+        handle = function(mode, line, _)
+          -- TODO: support for multiple errors: `# shellcheck desable=SC0000,SC0000`
+          local error = require('gx.helper').find(line, mode, '%s*#%s*shellcheck%s+disable=(SC%d+)')
+          if error then
+            return 'https://www.shellcheck.net/wiki/' .. error
+          end
+        end,
+      },
+    },
+
+    handler_options = {
+      -- TODO: config search engine
+      -- search_engine = 'google', -- you can select between google, bing, duckduckgo, ecosia and yandex
+      -- search_engine = 'https://search.brave.com/search?q=', -- or you can pass in a custom search engine
     },
   },
 }

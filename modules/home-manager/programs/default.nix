@@ -5,7 +5,7 @@
     ./cad
     ./dev
     ./editor
-    ./menu
+    ./dmenu
     ./sh-util
     ./terminal
     ./calibre.nix

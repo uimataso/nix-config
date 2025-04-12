@@ -1,4 +1,6 @@
 {
+  self,
+  config,
   pkgs,
   ...
 }:
@@ -24,19 +26,30 @@
     ];
   };
 
-  home.packages = with pkgs; [
-    obsidian
-    qmk
-    fd
-    extract
-    app-launcher
-    open
-    power-menu
-    screenshot
-    swallower
-    vl
-    mkbigfile
-  ];
+  home.packages =
+    with pkgs;
+    let
+      scripts = name: (callPackage "${self}/pkgs/scripts/${name}.nix" { });
+    in
+    [
+      obsidian
+      qmk
+      fd
+      nsxiv
+
+      (scripts "app-launcher")
+      (scripts "power-menu")
+
+      (scripts "vl")
+      (scripts "bright")
+      (scripts "ux")
+      (scripts "mkbigfile")
+      (scripts "open")
+      (scripts "pdf-decrypt")
+      (scripts "preview")
+
+      (scripts "screenshot")
+    ];
 
   programs = {
     htop.enable = true;
@@ -118,11 +131,11 @@
         aws-cli.enable = true;
       };
 
-      menu = {
+      dmenu = {
         fmenu.enable = true;
 
         tofi.enable = true;
-        tofi.defaultMenu = true;
+        tofi.defaultDmenu = true;
       };
 
       sh-util = {

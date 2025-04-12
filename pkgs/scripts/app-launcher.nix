@@ -3,7 +3,6 @@ writeShellApplication {
   name = "app-launcher";
   runtimeInputs = with pkgs; [
     dex
-    (callPackage ./fmenu.nix { })
   ];
 
   text = ''
@@ -12,9 +11,6 @@ writeShellApplication {
 
     declare -A apps
     apps=()
-
-    declare -a not_include
-    not_include=('Htop' 'Remote Viewer' 'XTerm')
 
     for data_dir in $(echo "$XDG_DATA_DIRS" | tr ':' '\n'); do
       apps_dir="$data_dir/applications"
@@ -25,12 +21,12 @@ writeShellApplication {
       # shellcheck disable=SC2044
       for file in $(find "$apps_dir" -name '*.desktop'); do
         name="$(sed -n 's/^Name=\(.*\)/\1/p;/^\[Desktop Action.*/q' "$file")"
-        if [ -z "$name" ]; then
-          continue
-        fi
-        if printf '%s\n' "''${not_include[@]}" | grep -Fqx "$name"; then
-          continue
-        fi
+
+        case "$name" in
+          ''' | '.'* | 'Htop' | 'Remote Viewer' | 'XTerm')
+            continue ;;
+          *) ;;
+        esac
 
         apps["$name"]="$file"
       done

@@ -11,23 +11,23 @@ let
     mkOption
     types
     ;
-  cfg = config.uimaConfig.programs.menu.fmenu;
+  cfg = config.uimaConfig.programs.dmenu.fmenu;
 in
 {
-  options.uimaConfig.programs.menu.fmenu = {
+  options.uimaConfig.programs.dmenu.fmenu = {
     enable = mkEnableOption "fmenu. Self written script that using fzf as dmenu.";
 
-    defaultMenu = mkOption {
+    defaultDmenu = mkOption {
       type = types.bool;
       default = false;
-      description = "Use fmenu as default menu";
+      description = "Use fmenu as default dmenu";
     };
   };
 
   config = mkIf cfg.enable {
     home.packages = [ pkgs.fmenu ];
 
-    uimaConfig.programs.menu = mkIf cfg.defaultMenu {
+    uimaConfig.programs.dmenu = mkIf cfg.defaultDmenu {
       enable = true;
       executable = "fmenu";
     };

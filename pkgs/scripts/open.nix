@@ -1,7 +1,9 @@
 { writeShellApplication, pkgs }:
 writeShellApplication {
   name = "open";
-  runtimeInputs = with pkgs; [ xdg-utils ];
+  runtimeInputs = with pkgs; [
+    xdg-utils
+  ];
 
   text = ''
     if [ -z ''${1:+x} ]; then

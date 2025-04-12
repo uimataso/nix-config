@@ -23,7 +23,7 @@ writeShellApplication {
         name="$(sed -n 's/^Name=\(.*\)/\1/p;/^\[Desktop Action.*/q' "$file")"
 
         case "$name" in
-          ''' | '.'* | 'Htop' | 'Remote Viewer' | 'XTerm')
+          ''' | .* | 'Htop' | 'Remote Viewer' | 'XTerm')
             continue ;;
           *) ;;
         esac

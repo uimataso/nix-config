@@ -8,8 +8,7 @@ writeShellApplication {
   text = ''
     help() {
       cat <<EOF
-    Available option:
-
+    Usage:
       vl get|get-volume
       vl up STEP
       vl down STEP

@@ -5,11 +5,23 @@ writeShellApplication {
     scrot
     slurp
     grim
+    (callPackage ./clip.nix { })
   ];
 
   text = ''
+    app_name=''${0##*/}
+
+    help() {
+        echo "Usage: $app_name sel|cur|full"
+    }
+
     if [ -z "''${1+x}" ]; then
-      echo "Usage: ''${0##*/} sel|cur|full" >&2
+      help >&2
+      exit 1
+    fi
+
+    if [ -z "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ]; then
+      echo "$app_name: No GUI session detected" >&2
       exit 1
     fi
 
@@ -18,27 +30,32 @@ writeShellApplication {
 
     filename="$img_dir/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png";
 
-    case "$XDG_SESSION_TYPE" in
+    session_type="''${XDG_SESSION_TYPE:-unknown}"
+
+    case "$session_type" in
       'x11')
         case "$1" in
           sel)  scrot -s "$filename" ;;
           cur)  scrot -u "$filename" ;;
           full) scrot "$filename"    ;;
         esac
-
-        ${pkgs.xclip}/bin/xclip -selection clipboard -target image/png < "$filename"
       ;;
+
       'wayland')
         case "$1" in
           sel)  grim -g "$(slurp)" "$filename" ;;
           cur)  grim "$filename" ;;
           full) grim "$filename" ;;
         esac
+      ;;
 
-        ${pkgs.wl-clipboard}/bin/wl-copy --type image/png < "$filename"
+      *)
+        echo "$app_name: Not supported session type '$XDG_SESSION_TYPE'" >&2
+        exit 1
       ;;
     esac
 
-    notify-send "Screenshot taked"
+    clip --mime image/png < "$filename"
+    notify-send 'Screenshot taken' "Stored at '$filename'"
   '';
 }

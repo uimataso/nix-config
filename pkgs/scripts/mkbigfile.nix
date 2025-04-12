@@ -3,8 +3,10 @@ writeShellApplication {
   name = "mkbigfile";
 
   text = ''
-    usage() {
-      echo "Usage: ''${0##*/} [OPTION] FILENAME"
+    app_name=''${0##*/}
+
+    help() {
+      echo "Usage: $app_name [OPTION] FILENAME"
       cat <<'EOF'
     Make a random big file.
 
@@ -14,7 +16,6 @@ writeShellApplication {
 
     P.S. This just a dd wrapper
     EOF
-      exit
     }
 
     # Default options
@@ -22,19 +23,22 @@ writeShellApplication {
     bs='4k'
 
     # Parse options
-    TEMP=$(getopt -o 'hs:b:' -l 'help,size:,bs:' -n "$0" -- "$@")
-    # shellcheck disable=SC2181
-    [ $? -ne 0 ] && exit 1
-    eval set -- "$TEMP"
-    unset TEMP
+    if TEMP=$(getopt -o 'hs:b:' -l 'help,size:,bs:' -n "$0" -- "$@"); then
+      eval set -- "$TEMP"
+      unset TEMP
+    else
+      echo "$app_name: Failed to parse options"
+      exit 1
+    fi
+
     while true; do
         case "$1" in
-            '-h'|'--help') usage ;;
+            '-h'|'--help') help; exit ;;
             '-s'|'--size') size="$2"; shift 2 ;;
             '-b'|'--bs')   bs="$2";   shift 2 ;;
             '--')
               if [ $# -ne 2 ]; then
-                usage | head -n 1 >&2
+                help | head -n 1 >&2
                 exit 1
               fi
               filename="$2"; break ;;

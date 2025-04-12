@@ -47,6 +47,7 @@
       (scripts "open")
       (scripts "pdf-decrypt")
       (scripts "preview")
+      (scripts "clip")
 
       (scripts "screenshot")
     ];

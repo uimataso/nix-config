@@ -7,17 +7,16 @@ let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.system.xdgUserDirs;
 
-  rmHomePath = str: lib.removePrefix config.home.homeDirectory str;
-  dirs = with config.xdg.userDirs; [
-    desktop
-    documents
-    download
-    music
-    pictures
-    publicShare
-    templates
-    videos
-  ];
+  xdgDirs = {
+    desktop = null;
+    documents = "doc";
+    download = "dl";
+    music = "mus";
+    pictures = "img";
+    publicShare = null;
+    templates = null;
+    videos = "vid";
+  };
 in
 {
   options.uimaConfig.system.xdgUserDirs = {
@@ -26,29 +25,16 @@ in
 
   config = mkIf cfg.enable {
     uimaConfig.system.impermanence = {
-      # directories = lib.lists.forEach (lib.lists.remove null dirs) rmHomePath;
-      directories = [
-        "doc"
-        "dl"
-        "mus"
-        "img"
-        "vid"
-      ];
+      directories = lib.lists.remove null (builtins.attrValues xdgDirs);
     };
 
-    xdg.userDirs = {
-      enable = true;
-      createDirectories = true;
-
-      desktop = null;
-      documents = "${config.home.homeDirectory}/doc";
-      download = "${config.home.homeDirectory}/dl";
-      music = "${config.home.homeDirectory}/mus";
-      pictures = "${config.home.homeDirectory}/img";
-      publicShare = null;
-      templates = null;
-      videos = "${config.home.homeDirectory}/vid";
-    };
-
+    xdg.userDirs =
+      {
+        enable = true;
+        createDirectories = true;
+      }
+      // lib.attrsets.mapAttrs (
+        key: val: if builtins.isNull val then val else "${config.home.homeDirectory}/${val}"
+      ) xdgDirs;
   };
 }

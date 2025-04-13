@@ -140,7 +140,6 @@
       calibre.enable = true;
 
       zathura.enable = true;
-      wikiman.enable = true;
       prusaSlicer.enable = true;
 
       cad = {

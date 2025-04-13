@@ -19,7 +19,7 @@ in
 {
   options.uimaConfig.programs.sh-util.nix-helper = {
     enable = mkEnableOption ''
-      Yet-another-nix-helper and other nix alias/sceripts that improve QoL.
+      Yet-another-nix-helper and other nix alias/scripts that improve QoL.
     '';
 
     flakeDir = mkOption {
@@ -45,6 +45,6 @@ in
       nvim-clean = "rm ${configHome}/nvim";
     };
 
-    home.packages = with pkgs; [ nh ];
+    programs.nh.enable = true;
   };
 }

@@ -5,12 +5,10 @@
 }:
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.uimaConfig.system.pipewire;
-
-  imper = config.uimaConfig.system.impermanence;
+  cfg = config.uimaConfig.services.pipewire;
 in
 {
-  options.uimaConfig.system.pipewire = {
+  options.uimaConfig.services.pipewire = {
     enable = mkEnableOption "Settings and tool for pipewire";
   };
 

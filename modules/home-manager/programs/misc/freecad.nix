@@ -6,10 +6,10 @@
 }:
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.uimaConfig.programs.cad.freecad;
+  cfg = config.uimaConfig.programs.misc.freecad;
 in
 {
-  options.uimaConfig.programs.cad.freecad = {
+  options.uimaConfig.programs.misc.freecad = {
     enable = mkEnableOption "FreeCad";
   };
 

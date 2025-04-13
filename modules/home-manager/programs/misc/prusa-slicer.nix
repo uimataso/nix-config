@@ -6,10 +6,10 @@
 }:
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.uimaConfig.programs.prusaSlicer;
+  cfg = config.uimaConfig.programs.misc.prusaSlicer;
 in
 {
-  options.uimaConfig.programs.prusaSlicer = {
+  options.uimaConfig.programs.misc.prusaSlicer = {
     enable = mkEnableOption "Prusa Slicer";
   };
 

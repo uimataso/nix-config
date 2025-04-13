@@ -6,10 +6,10 @@
 }:
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.uimaConfig.programs.calibre;
+  cfg = config.uimaConfig.programs.misc.calibre;
 in
 {
-  options.uimaConfig.programs.calibre = {
+  options.uimaConfig.programs.misc.calibre = {
     enable = mkEnableOption "calibre";
   };
 

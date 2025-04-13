@@ -4,11 +4,11 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption mkForce;
-  cfg = config.uimaConfig.programs.zathura;
+  inherit (lib) mkIf mkEnableOption;
+  cfg = config.uimaConfig.programs.misc.zathura;
 in
 {
-  options.uimaConfig.programs.zathura = {
+  options.uimaConfig.programs.misc.zathura = {
     enable = mkEnableOption "zathura";
   };
 

@@ -2,8 +2,6 @@
   pkgs,
   ...
 }:
-# TODO: manage scripts
-# TODO: check easyeffects and discord screen sharing
 {
   home.username = "uima";
 
@@ -68,7 +66,6 @@
       inputMethod.fcitx5.enable = true;
       xdg.enable = true;
       xdgUserDirs.enable = true;
-      pipewire.enable = true;
     };
 
     sh = {
@@ -87,6 +84,8 @@
     };
 
     services = {
+      pipewire.enable = true;
+      # TODO: is easyeffects actually working?
       easyeffects.enable = true;
       udiskie.enable = true;
       syncthing.enable = true;
@@ -135,14 +134,13 @@
         tealdeer.enable = true;
       };
 
-      discord.enable = true;
+      misc = {
+        # TODO: fix screen sharing on wayland
+        discord.enable = true;
+        calibre.enable = true;
+        zathura.enable = true;
 
-      calibre.enable = true;
-
-      zathura.enable = true;
-      prusaSlicer.enable = true;
-
-      cad = {
+        prusaSlicer.enable = true;
         kicad.enable = true;
         freecad.enable = true;
         openscad.enable = true;

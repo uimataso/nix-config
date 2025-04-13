@@ -6,10 +6,10 @@
 }:
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.uimaConfig.programs.cad.kicad;
+  cfg = config.uimaConfig.programs.misc.kicad;
 in
 {
-  options.uimaConfig.programs.cad.kicad = {
+  options.uimaConfig.programs.misc.kicad = {
     enable = mkEnableOption "KiCad";
   };
 

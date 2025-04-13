@@ -6,10 +6,10 @@
 }:
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.uimaConfig.programs.discord;
+  cfg = config.uimaConfig.programs.misc.discord;
 in
 {
-  options.uimaConfig.programs.discord = {
+  options.uimaConfig.programs.misc.discord = {
     enable = mkEnableOption "Discord";
   };
 

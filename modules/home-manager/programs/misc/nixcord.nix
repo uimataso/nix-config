@@ -6,10 +6,10 @@
 }:
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.uimaConfig.programs.nixcord;
+  cfg = config.uimaConfig.programs.misc.nixcord;
 in
 {
-  options.uimaConfig.programs.nixcord = {
+  options.uimaConfig.programs.misc.nixcord = {
     enable = mkEnableOption "Nixcord";
   };
 

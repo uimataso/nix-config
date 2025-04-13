@@ -6,10 +6,10 @@
 }:
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.uimaConfig.programs.cad.openscad;
+  cfg = config.uimaConfig.programs.misc.openscad;
 in
 {
-  options.uimaConfig.programs.cad.openscad = {
+  options.uimaConfig.programs.misc.openscad = {
     enable = mkEnableOption "OpenSCAD";
   };
 

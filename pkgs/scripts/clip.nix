@@ -1,4 +1,8 @@
-{ writeShellApplication, pkgs }:
+{
+  writeShellApplication,
+  pkgs,
+  initScript,
+}:
 writeShellApplication {
   name = "clip";
   runtimeInputs = with pkgs; [
@@ -7,10 +11,10 @@ writeShellApplication {
   ];
 
   text = ''
-    app_name=''${0##*/}
+    ${initScript}
 
     help() {
-      echo "Usage: $app_name [options]"
+      echo "Usage: $APP_NAME [options]"
       cat <<EOF
 
     Copy data from stdin.
@@ -24,7 +28,7 @@ writeShellApplication {
     }
 
     if [ -z "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ]; then
-      echo "$app_name: No GUI session detected" >&2
+      debug "No GUI session detected" >&2
       exit 1
     fi
 
@@ -35,7 +39,7 @@ writeShellApplication {
       eval set -- "$TEMP"
       unset TEMP
     else
-      echo "$app_name: Failed to parse options"
+      debug "Failed to parse options" >&2
       exit 1
     fi
 
@@ -45,7 +49,7 @@ writeShellApplication {
             '-t'|'--type')  type="$2"; shift 2 ;;
             '-m'|'--mime')  mime="$2"; shift 2 ;;
             '--') shift; break ;;
-            *) echo "$app_name: Internal error!" >&2; exit 1 ;;
+            *) debug "Internal error!" >&2; exit 1 ;;
         esac
     done
 
@@ -75,7 +79,7 @@ writeShellApplication {
           'clipboard') ;;
           'primary') opts="$opts --primary" ;;
           *)
-            echo "$app_name: Not supported clipboard type '$type'" >&2
+            debug "Not supported clipboard type '$type'" >&2
             exit 1
           ;;
         esac
@@ -94,7 +98,7 @@ writeShellApplication {
       ;;
 
       *)
-        echo "$app_name: Not supported session type '$XDG_SESSION_TYPE'" >&2
+        debug "Not supported session type '$XDG_SESSION_TYPE'" >&2
         exit 1
       ;;
     esac

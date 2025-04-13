@@ -1,8 +1,19 @@
 { pkgs }:
 let
   inherit (pkgs) callPackage;
+
+  initScript = # sh
+    ''
+      APP_NAME=''${0##*/}
+
+      debug() {
+        echo "$APP_NAME: $*"
+      }
+    '';
 in
 {
+  inherit initScript;
+
   scripts = {
     # Nix utils
     nix-template-tool = callPackage ./nix-template-tool.nix { };

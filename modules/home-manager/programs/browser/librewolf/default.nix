@@ -19,8 +19,6 @@ let
     ;
   cfg = config.uimaConfig.programs.browser.librewolf;
 
-  imper = config.uimaConfig.system.impermanence;
-
   profileName = "uima";
 
   userCssColor =
@@ -111,10 +109,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    # home.persistence.main = mkIf imper.enable {
+    # uimaConfig.system.impermanence = {
     #   directories = [ ".mozilla/firefox/${config.programs.firefox.profiles.${profileName}.path}" ];
     # };
-    home.persistence.main = mkIf imper.enable {
+    uimaConfig.system.impermanence = {
       directories = [ ".librewolf/${config.programs.librewolf.profiles.${profileName}.path}" ];
     };
 

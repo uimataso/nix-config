@@ -2,8 +2,6 @@
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.programs.sh-util.tealdeer;
-
-  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.programs.sh-util.tealdeer = {
@@ -11,7 +9,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.persistence.main = mkIf imper.enable { directories = [ ".cache/tealdeer" ]; };
+    uimaConfig.system.impermanence = {
+      directories = [ ".cache/tealdeer" ];
+    };
 
     programs.tealdeer = {
       enable = true;

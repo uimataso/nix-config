@@ -13,8 +13,6 @@ let
     types
     ;
   cfg = config.uimaConfig.programs.editor.vscode;
-
-  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.programs.editor.vscode = {
@@ -28,10 +26,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    # home.persistence.main = mkIf imper.enable {
-    #   directories = [ ];
-    # };
-
     uimaConfig.programs.editor = mkIf cfg.defaultEditor {
       enable = true;
       executable = "nvim";

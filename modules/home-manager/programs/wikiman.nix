@@ -7,8 +7,6 @@
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.programs.wikiman;
-
-  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.programs.wikiman = {
@@ -17,7 +15,7 @@ in
 
   # TODO:
   config = mkIf cfg.enable {
-    home.persistence.main = mkIf imper.enable {
+    uimaConfig.system.impermanence = {
       directories = [
       ];
     };

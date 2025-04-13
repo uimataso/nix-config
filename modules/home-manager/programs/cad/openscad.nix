@@ -7,8 +7,6 @@
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.programs.cad.openscad;
-
-  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.programs.cad.openscad = {
@@ -16,7 +14,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.persistence.main = mkIf imper.enable {
+    uimaConfig.system.impermanence = {
       directories = [
         ".config/OpenSCAD"
         ".local/share/OpenSCAD/libraries"

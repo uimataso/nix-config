@@ -12,7 +12,6 @@ let
     ;
   cfg = config.uimaConfig.sh.bash;
 
-  imper = config.uimaConfig.system.impermanence;
   rmHomePath = str: lib.removePrefix config.home.homeDirectory str;
 
   # Plugins
@@ -38,7 +37,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.persistence.main = mkIf imper.enable {
+    uimaConfig.system.impermanence = {
       files = [ (rmHomePath config.programs.bash.historyFile) ];
     };
 

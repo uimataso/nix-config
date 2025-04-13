@@ -7,8 +7,6 @@
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.programs.dev.aws-cli;
-
-  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.programs.dev.aws-cli = {
@@ -16,7 +14,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.persistence.main = mkIf imper.enable {
+    uimaConfig.system.impermanence = {
       directories = [
         ".config/aws"
       ];

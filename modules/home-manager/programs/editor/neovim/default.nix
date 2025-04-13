@@ -12,8 +12,6 @@ let
     types
     ;
   cfg = config.uimaConfig.programs.editor.neovim;
-
-  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.programs.editor.neovim = {
@@ -27,7 +25,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.persistence.main = mkIf imper.enable {
+    uimaConfig.system.impermanence = {
       directories = [
         ".cache/nvim"
         ".local/share/nvim"

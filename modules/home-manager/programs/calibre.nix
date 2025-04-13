@@ -5,10 +5,8 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption mkForce;
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.programs.calibre;
-
-  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.programs.calibre = {
@@ -16,7 +14,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.persistence.main = mkIf imper.enable {
+    uimaConfig.system.impermanence = {
       directories = [
         ".local/share/calibre"
         ".config/calibre"

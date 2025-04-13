@@ -37,7 +37,6 @@ in
     # Filesystem modifications needed for impermanence
     fileSystems.${cfg.persist_dir}.neededForBoot = true;
 
-    programs.fuse.userAllowOther = true;
     users.mutableUsers = false;
 
     # Default persistence files
@@ -51,6 +50,19 @@ in
         "/var/log"
       ];
       files = [ "/etc/machine-id" ];
+
+      # TODO: move this to user module?
+      users =
+        let
+          username = "uima";
+          homeImper = config.home-manager.users.${username}.uimaConfig.system.impermanence;
+        in
+        {
+          ${username} = {
+            directories = homeImper.directories;
+            files = homeImper.files;
+          };
+        };
     };
 
     # Create persist home directory

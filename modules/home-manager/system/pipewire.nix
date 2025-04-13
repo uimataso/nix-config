@@ -15,7 +15,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.persistence.main = mkIf imper.enable {
+    uimaConfig.system.impermanence = {
       directories = [ ".local/state/wireplumber" ];
     };
   };

@@ -7,8 +7,6 @@
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.programs.dev.podman;
-
-  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.programs.dev.podman = {
@@ -16,7 +14,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.persistence.main = mkIf imper.enable { directories = [ ".local/share/containers/storage" ]; };
+    uimaConfig.system.impermanence = {
+      directories = [ ".local/share/containers/storage" ];
+    };
 
     home.packages = with pkgs; [ podman-compose ];
 

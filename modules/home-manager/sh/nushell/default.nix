@@ -14,7 +14,6 @@ let
     ;
   cfg = config.uimaConfig.sh.nushell;
 
-  imper = config.uimaConfig.system.impermanence;
   defaultEditor = config.home.sessionVariables.EDITOR;
 in
 {
@@ -29,7 +28,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.persistence.main = mkIf imper.enable { files = [ ".config/nushell/history.txt" ]; };
+    uimaConfig.system.impermanence = {
+      files = [ ".config/nushell/history.txt" ];
+    };
 
     uimaConfig.sh = mkIf cfg.defaultShell {
       enable = true;

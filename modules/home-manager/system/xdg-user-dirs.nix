@@ -7,7 +7,6 @@ let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.system.xdgUserDirs;
 
-  imper = config.uimaConfig.system.impermanence;
   rmHomePath = str: lib.removePrefix config.home.homeDirectory str;
   dirs = with config.xdg.userDirs; [
     desktop
@@ -26,11 +25,18 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.persistence.main = mkIf imper.enable {
-      directories = lib.lists.forEach (lib.lists.remove null dirs) rmHomePath;
+    uimaConfig.system.impermanence = {
+      # directories = lib.lists.forEach (lib.lists.remove null dirs) rmHomePath;
+      directories = [
+        "doc"
+        "dl"
+        "mus"
+        "img"
+        "vid"
+      ];
     };
 
-    xdg.userDirs = mkIf cfg.enable {
+    xdg.userDirs = {
       enable = true;
       createDirectories = true;
 

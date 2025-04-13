@@ -26,7 +26,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    # TODO: nofy when auto upgrade
+    # TODO: notify when auto upgrade
     # (https://www.reddit.com/r/NixOS/comments/15yh0qo/systemautoupgrade_with_email_notifications/)
     system.autoUpgrade = {
       enable = true;

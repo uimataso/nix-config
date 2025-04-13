@@ -9,21 +9,6 @@
 
   home.stateVersion = "23.11";
 
-  home.persistence.main = {
-    directories = [
-      "nix"
-      "notes"
-
-      # "src"
-      {
-        directory = "src";
-        method = "symlink";
-      }
-
-      ".config/obsidian"
-    ];
-  };
-
   home.packages = with pkgs; [
     obsidian
     qmk
@@ -68,7 +53,18 @@
     global.enable = true;
 
     system = {
-      impermanence.enable = true;
+      impermanence = {
+        enable = true;
+        directories = [
+          # Otherwise the cache file will be owned by root
+          ".cache/nix"
+          "nix"
+          "notes"
+          "src"
+          ".config/obsidian"
+        ];
+      };
+
       inputMethod.fcitx5.enable = true;
       xdg.enable = true;
       xdgUserDirs.enable = true;

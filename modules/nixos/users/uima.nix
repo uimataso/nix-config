@@ -1,4 +1,5 @@
 {
+  self,
   config,
   lib,
   pkgs,
@@ -55,7 +56,7 @@ in
     ];
 
     home-manager.users = mkIf cfg.homeManager {
-      ${username} = import ../../../users/${username}/${config.networking.hostName};
+      ${username} = import "${self}/users/${username}/${config.networking.hostName}";
     };
   };
 }

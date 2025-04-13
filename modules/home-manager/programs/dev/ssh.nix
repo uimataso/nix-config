@@ -3,8 +3,6 @@
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.programs.dev.ssh;
-
-  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.programs.dev.ssh = {
@@ -12,7 +10,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.persistence.main = mkIf imper.enable { directories = [ ".ssh" ]; };
+    uimaConfig.system.impermanence = {
+      directories = [ ".ssh" ];
+    };
 
     programs.ssh.enable = true;
   };

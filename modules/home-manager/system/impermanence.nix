@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   inputs,
   ...
 }:
@@ -12,34 +13,36 @@ let
     types
     ;
   cfg = config.uimaConfig.system.impermanence;
+
+  # impermanenceModule = inputs.impermanence.nixosModules.impermanence;
+  # impermanenceEval = impermanenceModule { inherit config lib pkgs; };
+  # impermanenceUserType =
+  #   impermanenceEval.options.environment.persistence.main.users.type.getSubOptions
+  #     [
+  #       "<name>"
+  #     ];
 in
 {
   options.uimaConfig.system.impermanence = {
     enable = mkEnableOption "impermanence";
 
-    persist_dir = mkOption {
-      type = types.str;
-      default = "/persist/${config.home.homeDirectory}";
-      description = "The directory to store persistent data.";
+    files = mkOption {
+      type = types.listOf types.str;
+      # type = impermanenceUserType.files.type;
+      default = [ ];
+    };
+
+    directories = mkOption {
+      type = types.listOf types.str;
+      # type = impermanenceUserType.directories.type;
+      default = [ ];
     };
   };
 
-  imports = [ inputs.impermanence.nixosModules.home-manager.impermanence ];
-
   config = mkIf cfg.enable {
-    home.persistence.main = {
-      persistentStoragePath = cfg.persist_dir;
-      allowOther = true;
-      directories = [
-        # Otherwise the cache file will be owned by root
-        ".cache/nix"
-      ];
-    };
-
     home.activation = {
       rmSomeThing =
         lib.hm.dag.entryAfter [ "writeBoundary" ] # sh
-
           ''
             rm -rf $HOME/.nix-defexpr
             rm -rf $HOME/.nix-profile

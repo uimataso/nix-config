@@ -2,6 +2,7 @@
   config,
   lib,
   inputs,
+  pkgs,
   ...
 }:
 let
@@ -23,11 +24,19 @@ in
       ];
     };
 
+    home.packages = with pkgs; [
+      xdg-desktop-portal-wlr
+    ];
+
     programs.nixcord = {
       enable = true;
       vesktop.enable = true;
-      config.plugins = {
-        # fakeNitro.enable = true;
+      config = {
+        frameless = true;
+
+        plugins = {
+          # fakeNitro.enable = true;
+        };
       };
     };
   };

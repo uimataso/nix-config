@@ -136,7 +136,8 @@
 
       misc = {
         # TODO: fix screen sharing on wayland
-        discord.enable = true;
+        # discord.enable = true;
+        nixcord.enable = true;
         calibre.enable = true;
         zathura.enable = true;
 

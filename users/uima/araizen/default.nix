@@ -6,11 +6,12 @@
 
   home.packages = with pkgs; [
     fd
-    extract
     minikube
     gnumake
     k6
     redis
+
+    scripts.ux
   ];
 
   programs = {

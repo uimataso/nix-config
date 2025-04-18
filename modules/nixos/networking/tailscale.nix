@@ -3,8 +3,6 @@
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.networking.tailscale;
-
-  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.networking.tailscale = {
@@ -12,7 +10,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.persistence.main = mkIf imper.enable { directories = [ "/var/lib/tailscale" ]; };
+    uimaConfig.system.impermanence = {
+      directories = [ "/var/lib/tailscale" ];
+    };
 
     services.tailscale.enable = true;
   };

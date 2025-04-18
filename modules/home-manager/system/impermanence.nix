@@ -16,14 +16,13 @@ in
   options.uimaConfig.system.impermanence = {
     enable = mkEnableOption "impermanence";
 
-    # TODO: use the type from `inputs.impermanence.nixosModules.impermanence`
     files = mkOption {
-      type = types.listOf types.str;
+      type = types.listOf (types.either types.str types.attrs);
       default = [ ];
     };
 
     directories = mkOption {
-      type = types.listOf types.str;
+      type = types.listOf (types.either types.str types.attrs);
       default = [ ];
     };
   };

@@ -2,8 +2,6 @@
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.hardware.bluetooth;
-
-  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.hardware.bluetooth = {
@@ -11,7 +9,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.persistence.main = mkIf imper.enable { directories = [ "/var/lib/bluetooth" ]; };
+    uimaConfig.system.impermanence = {
+      directories = [ "/var/lib/bluetooth" ];
+    };
 
     hardware.bluetooth = {
       enable = true;

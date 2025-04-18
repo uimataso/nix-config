@@ -2,8 +2,6 @@
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.networking.networkmanager;
-
-  imper = config.uimaConfig.system.impermanence;
 in
 {
   options.uimaConfig.networking.networkmanager = {
@@ -11,7 +9,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.persistence.main = mkIf imper.enable {
+    uimaConfig.system.impermanence = {
       directories = [ "/etc/NetworkManager/system-connections" ];
     };
 

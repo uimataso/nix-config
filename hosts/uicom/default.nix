@@ -12,7 +12,12 @@
     nvidiaSettings = true;
   };
 
-  hardware.keyboard.qmk.enable = true;
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+    timeoutStyle = "hidden";
+  };
 
   networking = {
     interfaces.enp7s0 = {
@@ -32,21 +37,24 @@
     ];
   };
 
+  hardware.keyboard.qmk.enable = true;
+
   uimaConfig = {
     global.enable = true;
 
     users.uima.enable = true;
-
-    boot.grub.enable = true;
 
     system = {
       # sops.enable = true;
       sudo.enable = true;
       autoUpgrade.enable = true;
 
-      impermanence.enable = true;
-      impermanence.btrfs.enable = true;
-      impermanence.btrfs.device = "/dev/sda";
+      impermanence = {
+        enable = true;
+        btrfs.enable = true;
+        btrfs.device = "/dev/sda";
+        users = [ "uima" ];
+      };
     };
 
     desktop = {
@@ -55,7 +63,6 @@
       #   sddm.enable = true;
       # };
 
-      # TODO: auto start
       wayland = {
         river.enable = true;
       };

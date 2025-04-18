@@ -26,6 +26,27 @@ in
       example = "/nix/persistent";
       description = "The directory to store persistent data.";
     };
+
+    files = mkOption {
+      type = types.listOf (types.either types.str types.attrs);
+      default = [ ];
+      example = [ "/etc/passwd" ];
+      description = "The files that stored persistently.";
+    };
+
+    directories = mkOption {
+      type = types.listOf (types.either types.str types.attrs);
+      default = [ ];
+      example = [ "/var/log" ];
+      description = "The directories that stored persistently.";
+    };
+
+    users = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      example = [ "uima" ];
+      description = "Enable users impermanence.";
+    };
   };
 
   imports = [
@@ -44,25 +65,23 @@ in
       persistentStoragePath = cfg.persist_dir;
       hideMounts = true;
 
-      directories = [
+      directories = cfg.directories ++ [
         "/var/lib/systemd"
         "/var/lib/nixos"
         "/var/log"
       ];
-      files = [ "/etc/machine-id" ];
+      files = cfg.files ++ [ "/etc/machine-id" ];
 
-      # TODO: move this to user module?
-      users =
+      users = lib.genAttrs cfg.users (
+        username:
         let
-          username = "uima";
           homeImper = config.home-manager.users.${username}.uimaConfig.system.impermanence;
         in
         {
-          ${username} = {
-            directories = homeImper.directories;
-            files = homeImper.files;
-          };
-        };
+          directories = homeImper.directories;
+          files = homeImper.files;
+        }
+      );
     };
 
     # Create persist home directory

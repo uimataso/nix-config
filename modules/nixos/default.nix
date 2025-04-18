@@ -1,7 +1,6 @@
 {
   imports = [
     ./global.nix
-    ./boot
     ./desktop
     ./hardware
     ./networking

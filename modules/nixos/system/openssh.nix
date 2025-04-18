@@ -12,7 +12,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.persistence.main = mkIf imper.enable {
+    uimaConfig.system.impermanence = {
       files = [
         "/etc/ssh/ssh_host_ed25519_key"
         "/etc/ssh/ssh_host_ed25519_key.pub"

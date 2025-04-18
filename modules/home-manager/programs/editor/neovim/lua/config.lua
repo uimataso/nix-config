@@ -54,6 +54,15 @@ ag('uima/Fromatoptions', function(g)
   })
 end)
 
+-- Auto re-read file if changed outside neovim
+ag('uima/CheckTime', function(g)
+  au({ 'BufEnter', 'CursorHold', 'CursorHoldI', 'FocusGained', 'FocusLost' }, {
+    group = g,
+    pattern = { '*' },
+    command = "if mode() != 'c' | checktime | endif",
+  })
+end)
+
 -- Delete trailing spaces and extra line when save file
 -- TODO: command to toggle
 ag('uima/DeleteTrailingSpace', function(g)

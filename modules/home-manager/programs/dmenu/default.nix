@@ -27,10 +27,6 @@ in
       example = "fmenu";
       description = "Executable path";
     };
-
-    # appLuncher = mkOption {
-    #   type =  types.str;
-    # };
   };
 
   config = mkIf cfg.enable {

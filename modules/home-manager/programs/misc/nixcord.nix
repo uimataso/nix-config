@@ -20,7 +20,8 @@ in
     uimaConfig.system.impermanence = {
       directories = [
         ".config/discord"
-        ".config/vesktop"
+        ".config/vesktop/sessionData"
+        ".config/vesktop/settings"
       ];
     };
 

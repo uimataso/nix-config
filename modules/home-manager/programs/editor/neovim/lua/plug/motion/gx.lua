@@ -31,7 +31,6 @@ return {
         name = 'shellcheck',
         -- filetype = { 'bash', 'shell' },
         handle = function(mode, line, _)
-          -- TODO: support for multiple errors: `# shellcheck desable=SC0000,SC0000`
           local error = require('gx.helper').find(line, mode, '%s*#%s*shellcheck%s+disable=(SC%d+)')
           if error then
             return 'https://www.shellcheck.net/wiki/' .. error

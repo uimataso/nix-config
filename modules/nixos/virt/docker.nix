@@ -18,7 +18,9 @@ in
       directories = [ "/var/lib/docker" ];
     };
 
-    environment.systemPackages = with pkgs; [ docker-compose ];
+    environment.systemPackages = with pkgs; [
+      docker-compose
+    ];
 
     virtualisation.docker = {
       enable = true;

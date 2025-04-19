@@ -11,7 +11,7 @@ let
     mkOption
     types
     ;
-  cfg = config.uimaConfig.system.impermanence.btrfs;
+  cfg = config.uimaConfig.system.impermanence.luksBtrfs;
 
   wipeScript =
     # sh
@@ -44,17 +44,15 @@ let
     '';
 in
 {
-  options.uimaConfig.system.impermanence.btrfs = {
-    enable = mkEnableOption "Impermanence on btrfs";
+  options.uimaConfig.system.impermanence.luksBtrfs = {
+    enable = mkEnableOption "Impermanence on luks btrfs";
 
     device = mkOption {
       type = types.str;
       default = "";
       example = "/dev/sda";
-      description = "The device that going to implement ephemeral btrfs.";
+      description = "The device that going to implement ephemeral luks btrfs.";
     };
-
-    # TODO: luks?
   };
 
   imports = [ inputs.disko.nixosModules.disko ];
@@ -75,6 +73,7 @@ in
           requires = [ root-device ];
           after = [
             root-device
+            "systemd-cryptsetup@${config.networking.hostName}.service"
           ];
           before = [ "sysroot.mount" ];
           unitConfig.DefaultDependencies = "no";
@@ -106,33 +105,43 @@ in
             };
           };
 
-          root = {
+          luks = {
             size = "100%";
             content = {
-              type = "btrfs";
-              extraArgs = [ "-f" ]; # Override existing partition
+              type = "luks";
+              name = "crypted";
 
-              subvolumes = {
-                "@" = {
-                  mountpoint = "/";
-                  mountOptions = [
-                    "compress=zstd"
-                    "noatime"
-                  ];
-                };
-                "@nix" = {
-                  mountpoint = "/nix";
-                  mountOptions = [
-                    "compress=zstd"
-                    "noatime"
-                  ];
-                };
-                "@persist" = {
-                  mountpoint = "/persist";
-                  mountOptions = [
-                    "compress=zstd"
-                    "noatime"
-                  ];
+              passwordFile = "/tmp/secret.key"; # Interactive
+              settings = {
+                allowDiscards = true;
+              };
+
+              content = {
+                type = "btrfs";
+                extraArgs = [ "-f" ]; # Override existing partition
+
+                subvolumes = {
+                  "@" = {
+                    mountpoint = "/";
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
+                  };
+                  "@nix" = {
+                    mountpoint = "/nix";
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
+                  };
+                  "@persist" = {
+                    mountpoint = "/persist";
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
+                  };
                 };
               };
             };

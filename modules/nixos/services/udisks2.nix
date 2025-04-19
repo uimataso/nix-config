@@ -9,5 +9,7 @@ in
     enable = mkEnableOption "udisks2";
   };
 
-  config = mkIf cfg.enable { services.udisks2.enable = true; };
+  config = mkIf cfg.enable {
+    services.udisks2.enable = true;
+  };
 }

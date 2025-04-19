@@ -52,6 +52,7 @@ in
   imports = [
     inputs.impermanence.nixosModules.impermanence
     ./ephemeral-btrfs.nix
+    ./ephemeral-luks-btrfs.nix
   ];
 
   config = mkIf cfg.enable {
@@ -77,7 +78,7 @@ in
         let
           homeImper = config.home-manager.users.${username}.uimaConfig.system.impermanence;
         in
-        {
+        mkIf homeImper.enable {
           directories = homeImper.directories;
           files = homeImper.files;
         }

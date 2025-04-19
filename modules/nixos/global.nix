@@ -38,8 +38,9 @@ in
     # Needed by home-manager and other
     programs.dconf.enable = true;
 
-    # Make bash read `$XDG_CONFIG_HOME/bash/{profile, bashrc}`
-    # Note, while running init, `$XDG_CONFIG_HOME` not available yet, so `$HOME/.config` is used instead of `$XDG_CONFIG_HOME`
+    # Make bash read `$XDG_CONFIG_HOME/bash/{profile, bashrc}`.
+    # Note, while running init, `$XDG_CONFIG_HOME` is not available
+    # yet, so `$HOME/.config` is used instead of `$XDG_CONFIG_HOME`.
     environment.shellInit = # sh
       ''
         if [[ -r "$HOME/.config/bash/profile" ]]; then . "$HOME/.config/bash/profile"; fi

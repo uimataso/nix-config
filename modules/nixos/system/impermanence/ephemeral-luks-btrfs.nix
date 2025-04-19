@@ -70,7 +70,7 @@ in
         requires = [ systemdRootDevice ];
         after = [
           systemdRootDevice
-          "systemd-cryptsetup@${config.networking.hostName}.service"
+          "systemd-cryptsetup@crypted.service"
         ];
         before = [ "sysroot.mount" ];
         unitConfig.DefaultDependencies = "no";

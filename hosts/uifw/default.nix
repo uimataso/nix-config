@@ -1,14 +1,26 @@
 { inputs, ... }:
 
-# sudo -i
-# flake_url='github:uimataso/nix-config#uifw'
-# vim /tmp/secret.key
-# nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko -f "$flake_url"
-# nixos-install --flake "$flake_url" --no-root-passwd
-# chown uima:users /mnt/persist/passwords/uima
+# How to install:
+#
+# $ sudo -i
+# $ flake_url='github:uimataso/nix-config#uifw'
+#
+# $ vim /tmp/secret.key  # for luks password
+# $ nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko -f "$flake_url"
+#
+# $ nixos-install --flake "$flake_url" --no-root-passwd
+#
+# Setup password for user (important!)
+# $ mkdir /mnt/persist/passwords
+# $ mkpasswd > /mnt/persist/passwords/uima
+#
+# After reboot:
+#
+# sudo chown uima:users /persist/passwords/uima
 
 {
   imports = [
+    ./hardware-configuration.nix
     inputs.nixos-hardware.nixosModules.framework-13-7040-amd
   ];
 

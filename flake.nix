@@ -116,16 +116,13 @@
           system = "x86_64-linux";
         };
 
-        araizen = nixosConfig {
-          modules = [ ./hosts/araizen ];
+        uifw = nixosConfig {
+          modules = [ ./hosts/uifw ];
           system = "x86_64-linux";
         };
-      };
 
-      # TODO: not tested yet
-      homeConfigurations = {
-        "uima@uicom" = homeConfig {
-          modules = [ ./users/uima/uicom ];
+        araizen = nixosConfig {
+          modules = [ ./hosts/araizen ];
           system = "x86_64-linux";
         };
       };

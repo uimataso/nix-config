@@ -2,6 +2,7 @@
 
 # sudo -i
 # flake_url='github:uimataso/nix-config#uifw'
+# vim /tmp/secret.key
 # nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko -f "$flake_url"
 # nixos-install --flake "$flake_url" --no-root-passwd
 # chown uima:users /mnt/persist/passwords/uima

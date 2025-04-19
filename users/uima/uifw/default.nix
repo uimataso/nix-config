@@ -15,20 +15,20 @@
     scripts.vl
     scripts.clip
     scripts.bright
-    scripts.ux
+    # scripts.ux
     scripts.open
-    scripts.preview
-    scripts.pdf-decrypt
-    scripts.mkbigfile
+    # scripts.preview
+    # scripts.pdf-decrypt
+    # scripts.mkbigfile
   ];
 
-  programs = {
-    htop.enable = true;
-    btop.enable = true;
-    ripgrep.enable = true;
-    jq.enable = true;
-    bat.enable = true;
-  };
+  # programs = {
+  #   htop.enable = true;
+  #   btop.enable = true;
+  #   ripgrep.enable = true;
+  #   jq.enable = true;
+  #   bat.enable = true;
+  # };
 
   uimaConfig = {
     global.enable = true;
@@ -66,10 +66,10 @@
 
     services = {
       pipewire.enable = true;
-      # TODO: is easyeffects actually working?
-      easyeffects.enable = true;
+      # # TODO: is easyeffects actually working?
+      # easyeffects.enable = true;
       udiskie.enable = true;
-      syncthing.enable = true;
+      # syncthing.enable = true;
     };
 
     programs = {
@@ -92,9 +92,9 @@
         ssh.enable = true;
         direnv.enable = true;
         git.enable = true;
-        lazygit.enable = true;
-        docker.enable = true;
-        lazydocker.enable = true;
+        # lazygit.enable = true;
+        # docker.enable = true;
+        # lazydocker.enable = true;
         # podman.enable = true;
         # aws-cli.enable = true;
       };
@@ -106,7 +106,7 @@
 
       sh-util = {
         fzf.enable = true;
-        fff.enable = true;
+        # fff.enable = true;
         eza.enable = true;
         tmux.enable = true;
         tealdeer.enable = true;

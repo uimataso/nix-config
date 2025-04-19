@@ -7,7 +7,6 @@
 #
 # $ vim /tmp/secret.key  # for luks password
 # $ nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko -f "$flake_url"
-#
 # $ nixos-install --flake "$flake_url" --no-root-passwd
 #
 # Setup password for user (important!)
@@ -16,7 +15,7 @@
 #
 # After reboot:
 #
-# sudo chown uima:users /persist/passwords/uima
+# $ sudo chown uima:users /persist/passwords/uima
 
 {
   imports = [

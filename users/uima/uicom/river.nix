@@ -33,7 +33,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       wl-clipboard
-      wlr-randr
+      xdg-desktop-portal-wlr
     ];
 
     # NOTE: try to hide the title bar
@@ -55,6 +55,10 @@ in
 
       extraConfig = # sh
         ''
+          systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+          dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
+          systemctl --user restart xdg-desktop-portal
+
           rivertile -view-padding 3 -outer-padding 3 &
         '';
 

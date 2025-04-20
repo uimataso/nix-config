@@ -25,10 +25,6 @@ in
       ];
     };
 
-    home.packages = with pkgs; [
-      xdg-desktop-portal-wlr
-    ];
-
     programs.nixcord = {
       enable = true;
       vesktop.enable = true;

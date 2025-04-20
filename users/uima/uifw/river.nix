@@ -27,7 +27,7 @@ in
 {
   home.packages = with pkgs; [
     wl-clipboard
-    wlr-randr
+    xdg-desktop-portal-wlr
   ];
 
   # NOTE: try to hide the title bar
@@ -49,12 +49,11 @@ in
 
     extraConfig = # sh
       ''
-        rivertile -view-padding 3 -outer-padding 3 &
+        systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+        dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
+        systemctl --user restart xdg-desktop-portal
 
-        # Set monitor
-        # TODO: Better way to manage monitor
-        # see: https://github.com/Misterio77/nix-config/blob/main/modules/home-manager/monitors.nix
-        wlr-randr --output HDMI-A-1 --mode 2880x1920@120Hz
+        rivertile -view-padding 3 -outer-padding 3 &
       '';
 
     settings = with config.lib.stylix.colors; {

@@ -4,28 +4,37 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkOption
+    types
+    ;
   cfg = config.uimaConfig.system.xdgUserDirs;
-
-  xdgDirs = {
-    desktop = null;
-    documents = "doc";
-    download = "dl";
-    music = "mus";
-    pictures = "img";
-    publicShare = null;
-    templates = null;
-    videos = "vid";
-  };
 in
 {
   options.uimaConfig.system.xdgUserDirs = {
     enable = mkEnableOption "XDG User Dirs";
+
+    xdgDirs = mkOption {
+      type = types.attrs;
+      default = {
+        desktop = null;
+        documents = "doc";
+        download = "dl";
+        music = "mus";
+        pictures = "img";
+        publicShare = null;
+        templates = null;
+        videos = "vid";
+      };
+      description = "XDG dirs to used";
+    };
   };
 
   config = mkIf cfg.enable {
     uimaConfig.system.impermanence = {
-      directories = lib.lists.remove null (builtins.attrValues xdgDirs);
+      directories = lib.lists.remove null (builtins.attrValues cfg.xdgDirs);
     };
 
     xdg.userDirs =
@@ -35,6 +44,6 @@ in
       }
       // lib.attrsets.mapAttrs (
         key: val: if builtins.isNull val then val else "${config.home.homeDirectory}/${val}"
-      ) xdgDirs;
+      ) cfg.xdgDirs;
   };
 }

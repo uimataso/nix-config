@@ -35,6 +35,10 @@
     # timeoutStyle = "hidden";
   };
 
+  # TODO:
+  # console.font
+  # boot.loader.grub.font
+
   uimaConfig = {
     global.enable = true;
 

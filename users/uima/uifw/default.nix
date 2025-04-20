@@ -3,6 +3,11 @@
   ...
 }:
 {
+  imports = [
+    ./river.nix
+    ./waybar.nix
+  ];
+
   home.username = "uima";
 
   home.stateVersion = "23.11";
@@ -37,8 +42,6 @@
       impermanence = {
         enable = true;
         directories = [
-          # Otherwise the cache file will be owned by root
-          ".cache/nix"
           "nix"
           "notes"
           "src"
@@ -46,7 +49,6 @@
       };
 
       # inputMethod.fcitx5.enable = true;
-      xdg.enable = true;
       xdgUserDirs.enable = true;
     };
 
@@ -57,17 +59,27 @@
 
     desktop = {
       wayland = {
-        river.enable = true;
-        waybar.enable = true;
+        # river.enable = true;
+        # waybar.enable = true;
         swww.enable = true;
         dunst.enable = true;
+        monitor.enable = true;
       };
+
+      monitors = [
+        {
+          name = "eDP-1";
+          primary = true;
+          width = 2880;
+          height = 1920;
+          refreshRate = 120;
+          scale = 2;
+        }
+      ];
     };
 
     services = {
       pipewire.enable = true;
-      # # TODO: is easyeffects actually working?
-      # easyeffects.enable = true;
       udiskie.enable = true;
       # syncthing.enable = true;
     };
@@ -83,10 +95,10 @@
         neovim.defaultEditor = true;
       };
 
-      # browser = {
-      #   librewolf.enable = true;
-      #   librewolf.defaultBrowser = true;
-      # };
+      browser = {
+        librewolf.enable = true;
+        librewolf.defaultBrowser = true;
+      };
 
       dev = {
         ssh.enable = true;

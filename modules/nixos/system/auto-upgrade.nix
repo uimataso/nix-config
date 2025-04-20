@@ -11,8 +11,6 @@ let
     types
     ;
   cfg = config.uimaConfig.system.autoUpgrade;
-
-  flakeUri = "github:luck07051/nix-config";
 in
 {
   options.uimaConfig.system.autoUpgrade = {
@@ -23,6 +21,12 @@ in
       default = false;
       description = "Allow auto reboot when upgrade";
     };
+
+    flake = mkOption {
+      type = types.str;
+      default = "github:uimataso/nix-config";
+      description = "The Flake URI of the NixOS configuration to build";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -31,7 +35,7 @@ in
     system.autoUpgrade = {
       enable = true;
       dates = "*-*-* 00/2:00:00"; # Every two hours
-      flake = flakeUri;
+      flake = cfg.flake;
       allowReboot = cfg.allowReboot;
     };
 

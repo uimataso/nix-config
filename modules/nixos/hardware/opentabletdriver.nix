@@ -1,5 +1,5 @@
+# FIXME: No tablets are detected
 { config, lib, ... }:
-# TODO: no tablets are detected
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.hardware.otd;

@@ -35,5 +35,11 @@ in
     news.display = "silent";
 
     uimaConfig.programs.sh-util.nix-helper.enable = mkDefault true;
+    uimaConfig.system.xdg.enable = mkDefault true;
+
+    uimaConfig.system.impermanence.directories = [
+      # Otherwise the cache file will be owned by root
+      ".cache/nix"
+    ];
   };
 }

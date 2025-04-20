@@ -56,11 +56,6 @@ in
       extraConfig = # sh
         ''
           rivertile -view-padding 3 -outer-padding 3 &
-
-          # Set monitor
-          # TODO: Better way to manage monitor
-          # see: https://github.com/Misterio77/nix-config/blob/main/modules/home-manager/monitors.nix
-          wlr-randr --output HDMI-A-1 --mode 1920x1080@144Hz
         '';
 
       settings = with config.lib.stylix.colors; {

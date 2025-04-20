@@ -2,8 +2,7 @@
 {
   imports = [
     ./dunst.nix
-    ./river.nix
+    ./monitor.nix
     ./swww.nix
-    ./waybar.nix
   ];
 }

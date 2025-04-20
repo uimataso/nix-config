@@ -1,5 +1,5 @@
-{ config, lib, ... }:
 # TODO: secrets
+{ config, lib, ... }:
 let
   inherit (lib) mkIf mkEnableOption mkForce;
   cfg = config.uimaConfig.system.openssh;
@@ -27,6 +27,7 @@ in
         PermitRootLogin = "no";
       };
 
+      # Auto generate host keys
       hostKeys = mkForce [
         {
           path = "${lib.optionalString imper.enable imper.persist_dir}/etc/ssh/ssh_host_ed25519_key";

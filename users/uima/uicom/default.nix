@@ -3,6 +3,11 @@
   ...
 }:
 {
+  imports = [
+    ./river.nix
+    ./waybar.nix
+  ];
+
   home.username = "uima";
 
   home.stateVersion = "23.11";
@@ -54,8 +59,6 @@
       impermanence = {
         enable = true;
         directories = [
-          # Otherwise the cache file will be owned by root
-          ".cache/nix"
           "nix"
           "notes"
           "src"
@@ -64,7 +67,6 @@
       };
 
       inputMethod.fcitx5.enable = true;
-      xdg.enable = true;
       xdgUserDirs.enable = true;
     };
 
@@ -80,12 +82,20 @@
         waybar.enable = true;
         swww.enable = true;
         dunst.enable = true;
+        monitor.enable = true;
       };
+
+      monitors = [
+        {
+          name = "HDMI-A-1";
+          primary = true;
+          refreshRate = 144;
+        }
+      ];
     };
 
     services = {
       pipewire.enable = true;
-      # TODO: is easyeffects actually working?
       easyeffects.enable = true;
       udiskie.enable = true;
       syncthing.enable = true;

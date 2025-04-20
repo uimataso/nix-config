@@ -58,11 +58,6 @@
     };
 
     desktop = {
-      # xserver = {
-      #   dwm.enable = true;
-      #   sddm.enable = true;
-      # };
-
       wayland = {
         river.enable = true;
       };

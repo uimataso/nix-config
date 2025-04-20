@@ -1,5 +1,5 @@
-{ config, lib, ... }:
 # TODO: secrets
+{ config, lib, ... }:
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.programs.dev.ssh;

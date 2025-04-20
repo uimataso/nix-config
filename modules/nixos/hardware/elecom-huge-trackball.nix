@@ -1,3 +1,5 @@
+# Deprecated: I don't use the trackball anymore. Be aware that this config may be very outdated.
+
 {
   config,
   lib,
@@ -16,11 +18,11 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ libinput ];
 
-    # NOTE: Commands `udevadm`, `systemd-hwdb` and `libinput` is main commands you can look at.
+    # note: Commands `udevadm`, `systemd-hwdb` and `libinput` is main commands you can look at.
     # - Use `udevadm test /sys/class/input/eventX` to see options value
     # - Use `evtest` to monitor key press and possible key values
 
-    # TODO: How the fuck can I get all the property possible???
+    # todo: How the fuck can I get all the property possible???
 
     # Key positions:
     # 1 -> L
@@ -33,7 +35,7 @@ in
     # 8 -> Fn3
 
     # I don't know how to set `EmulateWheel`, so I use difference mapping as below
-    # TODO: bind key to `key_blue` or whatever, then set that key code as scroll button, maybe in river,
+    # todo: bind key to `key_blue` or whatever, then set that key code as scroll button, maybe in river,
     # see: https://github.com/WaffleLapkin/nixos/blob/e869afe5d0563015d1fde92ca8d1c32751bce3f4/configuration.nix#L308
     services.udev.extraHwdb = ''
       *HUGE*TrackBall*

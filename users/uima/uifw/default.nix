@@ -13,8 +13,8 @@
   home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
-    scripts.app-launcher
     scripts.power-menu
+    scripts.app-launcher
     scripts.screenshot
 
     scripts.vl
@@ -59,7 +59,7 @@
 
     desktop = {
       wayland = {
-        # river.enable = true;
+        river.enable = true;
         # waybar.enable = true;
         swww.enable = true;
         dunst.enable = true;

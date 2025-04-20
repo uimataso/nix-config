@@ -73,7 +73,7 @@
           width = 2880;
           height = 1920;
           refreshRate = 120;
-          scale = 2;
+          scale = 2.0;
         }
       ];
     };

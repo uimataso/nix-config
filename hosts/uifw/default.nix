@@ -32,12 +32,10 @@
     enable = true;
     efiSupport = true;
     efiInstallAsRemovable = true;
-    # timeoutStyle = "hidden";
   };
+  boot.loader.timeout = 0;
 
-  # TODO:
-  # console.font
-  # boot.loader.grub.font
+  hardware.framework.laptop13.audioEnhancement.enable = true;
 
   uimaConfig = {
     global.enable = true;

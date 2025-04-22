@@ -38,18 +38,14 @@
     ripgrep.enable = true;
     jq.enable = true;
     bat.enable = true;
+  };
 
-    ssh.extraConfig = ''
-      Host github.com
-        HostName github.com
-        IdentityFile ~/.ssh/id_ed25519
-        IdentitiesOnly yes
-
-      Host github-araizen
-        HostName github.com
-        IdentityFile ~/.ssh/id_ed25519_araizen
-        IdentitiesOnly yes
-    '';
+  programs.ssh.matchBlocks = {
+    "araizen.github.com" = {
+      hostname = "github.com";
+      identityFile = [ "~/.ssh/id_ed25519_araizen" ];
+      identitiesOnly = true;
+    };
   };
 
   uimaConfig = {

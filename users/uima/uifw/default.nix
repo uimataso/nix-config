@@ -35,6 +35,20 @@
   #   bat.enable = true;
   # };
 
+  programs.ssh = {
+    extraConfig = ''
+      IdentityFile ~/.ssh/id_ed25519.uima
+    '';
+
+    matchBlocks = {
+      "araizen.github.com" = {
+        hostname = "github.com";
+        identityFile = [ "~/.ssh/id_ed25519.araizen" ];
+        identitiesOnly = true;
+      };
+    };
+  };
+
   uimaConfig = {
     global.enable = true;
 
@@ -104,9 +118,9 @@
         ssh.enable = true;
         direnv.enable = true;
         git.enable = true;
-        # lazygit.enable = true;
-        # docker.enable = true;
-        # lazydocker.enable = true;
+        lazygit.enable = true;
+        docker.enable = true;
+        lazydocker.enable = true;
         # podman.enable = true;
         # aws-cli.enable = true;
       };
@@ -118,7 +132,7 @@
 
       sh-util = {
         fzf.enable = true;
-        # fff.enable = true;
+        fff.enable = true;
         eza.enable = true;
         tmux.enable = true;
         tealdeer.enable = true;

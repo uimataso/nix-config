@@ -1,10 +1,13 @@
 keys:
-  - &uicom age1pqewa560qjhshxyqzk2metejc59vd3rj87hxln44vf98jgmm73jsvfruuk
+  # Users
   - &uima age1tqjk89zjajqr98qxx64vmg5z9ckm8vf0wylh23uzqpjplwk30plqnj9grz
+  # Hosts
+  - &uicom age1pqewa560qjhshxyqzk2metejc59vd3rj87hxln44vf98jgmm73jsvfruuk
+  - &uifw age136jl02447dgjewdqsa687ysu7w7vyzmml5s3lnah6gxjwmtyf40sn6xff0
 
 creation_rules:
-  - path_regex: secrets.yaml$
+  - path_regex: hosts/uifw/secrets.yaml$
     key_groups:
-    - age:
-      - *uicom
-      - *uima
+      - age:
+          - *uima
+          - *uifw

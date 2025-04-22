@@ -3,6 +3,8 @@
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.networking.tailscale;
+
+  secrets = config.sops.secrets;
 in
 {
   options.uimaConfig.networking.tailscale = {
@@ -14,6 +16,9 @@ in
       directories = [ "/var/lib/tailscale" ];
     };
 
-    services.tailscale.enable = true;
+    services.tailscale = {
+      enable = true;
+      authKeyFile = mkIf (secrets ? "tailscale-auth-key") secrets.tailscale-auth-key.path;
+    };
   };
 }

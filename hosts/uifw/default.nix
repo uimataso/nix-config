@@ -79,4 +79,14 @@
       docker.enable = true;
     };
   };
+
+  sops.secrets =
+    let
+      hostSecrets = {
+        sopsFile = "./secrets.yaml";
+      };
+    in
+    {
+      tailscale-auth-key = hostSecrets;
+    };
 }

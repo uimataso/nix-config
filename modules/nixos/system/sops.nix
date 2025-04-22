@@ -1,4 +1,5 @@
 {
+  self,
   config,
   lib,
   pkgs,
@@ -22,17 +23,10 @@ in
 
   config = mkIf cfg.enable {
     sops = {
-      age.sshKeyPaths = keyPaths;
-
-      secrets.hello = {
-        sopsFile = ../../../secrets.yaml;
-        owner = "uima";
+      age = {
+        sshKeyPaths = keyPaths;
       };
     };
-
-    # environment.interactiveShellInit = ''
-    #   cat ${config.sops.secrets.hello.path}
-    # '';
 
     environment.systemPackages = with pkgs; [
       sops

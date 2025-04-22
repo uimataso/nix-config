@@ -45,7 +45,7 @@
     users.uima.enable = true;
 
     system = {
-      # sops.enable = true;
+      sops.enable = true;
       sudo.enable = true;
       autoUpgrade.enable = true;
 

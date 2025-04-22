@@ -44,6 +44,7 @@ vim.keymap.set('n', 'grs', function()
   vim.lsp.buf.signature_help()
 end, { desc = 'vim.lsp.buf.signature_help()' })
 
+-- Open in split
 vim.keymap.set('n', '<Leader>gd', '<cmd>vsplit | lua vim.lsp.buf.definition()<cr>')
 vim.keymap.set('n', '<Leader>gD', '<cmd>vsplit | lua vim.lsp.buf.declaration()<cr>')
 
@@ -122,7 +123,7 @@ vim.keymap.set('c', '<CR>', function()
   return vim.fn.getcmdtype() == '/' and '<cr>zzzv' or '<cr>'
 end, { expr = true })
 
--- Keep cursor pos when join line
+-- Keep cursor position when join line
 vim.keymap.set('n', 'J', 'mzJ`z:delmarks z<cr>')
 vim.keymap.set('n', 'gJ', 'mzgJ`z:delmarks z<cr>')
 
@@ -150,6 +151,7 @@ vim.keymap.set('n', '<Leader>zc', function()
   vim.o.conceallevel = vim.o.conceallevel > 0 and 0 or 3
 end, { silent = true, desc = 'Toggle conceal' })
 
+-- Treesitter inspect
 vim.keymap.set('n', '<Leader>hi', '<cmd>Inspect<cr>')
 
 -- Copy text to clipboard with markdown codeblock format: ```{ft}{content}```
@@ -166,6 +168,7 @@ vim.keymap.set(
   { desc = 'Copy text with markdown codeblock style' }
 )
 
+-- LspInfo
 vim.api.nvim_create_user_command('LspInfo', function(opts)
   vim.cmd [[ checkhealth vim.lsp ]]
 end, {})

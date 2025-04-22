@@ -93,6 +93,11 @@ vim.keymap.set('n', 'yp', function()
   return '"pp'
 end, { expr = true })
 
+-- Comment and duplicate lines
+vim.keymap.set('n', 'ycc', function()
+  return 'yy' .. vim.v.count1 .. "gcc']p"
+end, { remap = true, expr = true })
+
 -- Visual paste not overwrite register by default
 vim.keymap.set('x', 'p', 'P')
 vim.keymap.set('x', 'P', 'p')
@@ -109,7 +114,7 @@ vim.keymap.set('', 'gp', function()
 end, { expr = true, desc = 'Selecting the paste' })
 
 -- Search in visual mode
-vim.keymap.set('x', 'g/', '<Esc>/\\%V')
+vim.keymap.set('x', '/', '<Esc>/\\%V')
 
 -- Center the screen when search
 vim.keymap.set('n', 'n', 'nzzzv')
@@ -117,6 +122,10 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('c', '<CR>', function()
   return vim.fn.getcmdtype() == '/' and '<cr>zzzv' or '<cr>'
 end, { expr = true })
+
+-- Keep cursor pos when join line
+vim.keymap.set('n', 'J', 'mzJ`z:delmarks z<cr>')
+vim.keymap.set('n', 'gJ', 'mzgJ`z:delmarks z<cr>')
 
 -- '*' but not jump to next, e.g. just highlight the word under the cursor
 -- ref: https://stackoverflow.com/a/49944815

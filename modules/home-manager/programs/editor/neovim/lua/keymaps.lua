@@ -94,9 +94,8 @@ vim.keymap.set('n', 'yp', function()
 end, { expr = true })
 
 -- Comment and duplicate lines
-vim.keymap.set('n', 'ycc', function()
-  return 'yy' .. vim.v.count1 .. "gcc']p"
-end, { remap = true, expr = true })
+vim.keymap.set('n', 'ycc', 'mzyyPgcc`z', { remap = true })
+vim.keymap.set('x', 'gyc', "mzy'<Pgpgc`z", { remap = true })
 
 -- Visual paste not overwrite register by default
 vim.keymap.set('x', 'p', 'P')

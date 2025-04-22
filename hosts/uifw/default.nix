@@ -83,7 +83,7 @@
   sops.secrets =
     let
       hostSecrets = {
-        sopsFile = "./secrets.yaml";
+        sopsFile = ./secrets.yaml;
       };
     in
     {

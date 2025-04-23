@@ -1,4 +1,22 @@
 { ... }:
+let
+  # cal power
+  pow =
+    base: exp:
+    let
+      pow' =
+        base: exp:
+        if exp == 0 then
+          1
+        else if exp <= 1 then
+          base
+        else
+          (pow' base (exp - 1)) * base;
+    in
+    pow' base exp;
+
+  mkTag = tag: builtins.toString (pow 2 (tag - 1));
+in
 {
   # NOTE: try to hide the title bar
   gtk = {
@@ -24,15 +42,16 @@
         };
       };
 
-      # rule-add = {
-      #   "-app-id" = {
-      #     # Make Firefox have border
-      #     firefox = "ssd";
-      #     librewolf = "ssd";
-      #     "*discord*" = "tags ${mkTag 9}";
-      #     "*vesktop*" = "tags ${mkTag 9}";
-      #   };
-      # };
+      rule-add = {
+        "-app-id" = {
+          # Make Firefox have border
+          firefox = "ssd";
+          librewolf = "ssd";
+          "*Slack*" = "tags ${mkTag 8}";
+          "*discord*" = "tags ${mkTag 9}";
+          "*vesktop*" = "tags ${mkTag 9}";
+        };
+      };
 
       input = {
         "pointer-2362-628-PIXA3854:00_093A:0274_Touchpad" = {

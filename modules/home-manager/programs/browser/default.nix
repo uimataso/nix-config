@@ -16,6 +16,7 @@ in
   imports = [
     ./librewolf
     ./qutebrowser
+    ./brave.nix
   ];
 
   options.uimaConfig.programs.browser = {

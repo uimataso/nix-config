@@ -47,6 +47,7 @@ in
           # Make Firefox have border
           firefox = "ssd";
           librewolf = "ssd";
+          "*Notion*" = "tags ${mkTag 7}";
           "*Slack*" = "tags ${mkTag 8}";
           "*discord*" = "tags ${mkTag 9}";
           "*vesktop*" = "tags ${mkTag 9}";

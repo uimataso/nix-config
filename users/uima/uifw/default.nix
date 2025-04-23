@@ -27,6 +27,10 @@
     scripts.mkbigfile
   ];
 
+  home.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
   programs = {
     htop.enable = true;
     btop.enable = true;
@@ -112,6 +116,7 @@
       browser = {
         librewolf.enable = true;
         librewolf.defaultBrowser = true;
+        brave.enable = true;
       };
 
       dev = {

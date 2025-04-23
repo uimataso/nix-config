@@ -68,7 +68,6 @@
     hardware = {
       pipewire.enable = true;
       bluetooth.enable = true;
-      touchpad.enable = true;
     };
 
     services = {

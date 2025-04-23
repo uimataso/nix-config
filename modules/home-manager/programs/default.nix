@@ -8,5 +8,6 @@
     ./misc
     ./sh-util
     ./terminal
+    ./unfree
   ];
 }

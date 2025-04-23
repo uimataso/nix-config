@@ -138,6 +138,13 @@
         tealdeer.enable = true;
       };
 
+      unfree = {
+        google-chrome.enable = true;
+        postman.enable = true;
+        slack.enable = true;
+        notion.enable = true;
+      };
+
       misc = {
         # # TODO: fix screen sharing on wayland
         # # discord.enable = true;

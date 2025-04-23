@@ -41,8 +41,21 @@
             };
           };
 
-          # TODO: when I need this
-          battery = { };
+          battery = {
+            format = "{icon}{capacity}%";
+            format-icons = [
+              "󰁺"
+              "󰁻"
+              "󰁼"
+              "󰁽"
+              "󰁾"
+              "󰁿"
+              "󰂀"
+              "󰂁"
+              "󰂂"
+              "󰁹"
+            ];
+          };
 
           network =
             let
@@ -138,7 +151,7 @@
 
           cpu = {
             interval = 10;
-            format = " {usage:2}%";
+            format = "{usage:2}%";
             tooltip = false;
           };
 
@@ -149,9 +162,8 @@
             tooltip-format = "{used:0.1f}GiB of {total:0.1f}GiB used";
           };
 
-          # TODO: when i need this
           backlight = {
-            format = "{icon} ";
+            format = "{icon}";
             format-icons = [
               ""
               ""

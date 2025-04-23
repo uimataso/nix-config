@@ -20,20 +20,20 @@
     scripts.vl
     scripts.clip
     scripts.bright
-    # scripts.ux
+    scripts.ux
     scripts.open
-    # scripts.preview
-    # scripts.pdf-decrypt
-    # scripts.mkbigfile
+    scripts.preview
+    scripts.pdf-decrypt
+    scripts.mkbigfile
   ];
 
-  # programs = {
-  #   htop.enable = true;
-  #   btop.enable = true;
-  #   ripgrep.enable = true;
-  #   jq.enable = true;
-  #   bat.enable = true;
-  # };
+  programs = {
+    htop.enable = true;
+    btop.enable = true;
+    ripgrep.enable = true;
+    jq.enable = true;
+    bat.enable = true;
+  };
 
   programs.ssh = {
     extraConfig = ''
@@ -146,12 +146,12 @@
       };
 
       misc = {
-        # # TODO: fix screen sharing on wayland
-        # # discord.enable = true;
-        # nixcord.enable = true;
+        # TODO: fix screen sharing on wayland
+        # discord.enable = true;
+        nixcord.enable = true;
         # calibre.enable = true;
-        # zathura.enable = true;
-        #
+        zathura.enable = true;
+
         # prusaSlicer.enable = true;
         # kicad.enable = true;
         # freecad.enable = true;

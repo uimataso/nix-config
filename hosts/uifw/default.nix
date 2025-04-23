@@ -35,7 +35,7 @@
   };
   boot.loader.timeout = 0;
 
-  hardware.framework.laptop13.audioEnhancement.enable = true;
+  # hardware.framework.laptop13.audioEnhancement.enable = true;
 
   uimaConfig = {
     global.enable = true;

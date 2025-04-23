@@ -151,7 +151,7 @@
 
           cpu = {
             interval = 10;
-            format = "{usage:2}%";
+            format = " {usage}%";
             tooltip = false;
           };
 

@@ -217,10 +217,10 @@
             "tray"
             "systemd-failed-units"
           ];
-          modules-center = [
-            "river/window"
-            "sway/window"
-          ];
+          # modules-center = [
+          #   "river/window"
+          #   "sway/window"
+          # ];
           modules-right = [
             "privacy"
             "network#bandwidth"

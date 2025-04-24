@@ -16,7 +16,7 @@ in
   config = mkIf cfg.enable {
     uimaConfig.system.impermanence = {
       directories = [
-        # ".config/google-chrome"
+        ".config/BraveSoftware/Brave-Browser"
       ];
     };
 

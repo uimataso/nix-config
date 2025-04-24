@@ -13,7 +13,7 @@ in
     enable = mkEnableOption "Nixcord";
   };
 
-  imports = [ inputs.nixcord.homeManagerModules.nixcord ];
+  imports = [ inputs.nixcord.homeModules.nixcord ];
 
   config = mkIf cfg.enable {
     uimaConfig.system.impermanence = {

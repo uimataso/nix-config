@@ -127,7 +127,7 @@
         docker.enable = true;
         lazydocker.enable = true;
         # podman.enable = true;
-        # aws-cli.enable = true;
+        aws-cli.enable = true;
       };
 
       dmenu = {
@@ -153,9 +153,11 @@
       misc = {
         # TODO: fix screen sharing on wayland
         # discord.enable = true;
-        nixcord.enable = true;
+        # nixcord.enable = true;
         # calibre.enable = true;
         zathura.enable = true;
+        protonmail.enable = true;
+        thunderbird.enable = true;
 
         # prusaSlicer.enable = true;
         # kicad.enable = true;

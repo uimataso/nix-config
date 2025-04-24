@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 let
   # cal power
   pow =
@@ -30,6 +30,14 @@ in
     }
   '';
 
+  home.packages = with pkgs; [
+    scripts.power-menu
+    scripts.app-launcher
+    scripts.screenshot
+    scripts.vl
+    scripts.bright
+  ];
+
   wayland.windowManager.river = {
     settings = {
       map = {
@@ -39,6 +47,19 @@ in
           "Super B" = "spawn $BROWSER";
           "Super O" = "spawn 'app-launcher'";
           "Super Escape" = "spawn power-menu";
+
+          "None Print" = "spawn 'screenshot full'";
+          "Shift Print" = "spawn 'screenshot cur'";
+          "Control Print" = "spawn 'screenshot sel'";
+
+          "None XF86AudioMute" = "spawn 'vl mute'";
+          "None XF86AudioLowerVolume" = "spawn 'vl down 3'";
+          "None XF86AudioRaiseVolume" = "spawn 'vl up 3'";
+          "None XF86AudioPrev" = "spawn 'notify-send prev'";
+          "None XF86AudioPlay" = "spawn 'notify-send play'";
+          "None XF86AudioNext" = "spawn 'notify-send next'";
+          "None XF86MonBrightnessDown" = "spawn 'notify-send bri down'";
+          "None XF86MonBrightnessUp" = "spawn 'notify-send bri up'";
         };
       };
 

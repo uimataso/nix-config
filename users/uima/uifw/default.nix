@@ -13,13 +13,7 @@
   home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
-    scripts.power-menu
-    scripts.app-launcher
-    scripts.screenshot
-
-    scripts.vl
     scripts.clip
-    scripts.bright
     scripts.ux
     scripts.open
     scripts.preview

@@ -16,7 +16,18 @@ in
   config = mkIf cfg.enable {
     i18n.inputMethod = {
       enabled = "fcitx5";
-      fcitx5.addons = with pkgs; [ fcitx5-rime ];
+      fcitx5.addons = with pkgs; [
+        fcitx5-rime
+      ];
+    };
+
+    home.sessionVariables = {
+      "INPUT_METHOD" = "fcitx";
+      "GTK_IM_MODULE" = "fcitx";
+      "QT_IM_MODULE" = "fcitx";
+      "XMODIFIERS" = "@im=fcitx";
+      "GLFW_IM_MODULE" = "ibus";
+      "SDL_IM_MODULE" = "fcitx";
     };
 
     # TODO: theme

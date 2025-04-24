@@ -21,6 +21,14 @@
     scripts.mkbigfile
   ];
 
+  # FIXME: open slack/google-chrome with these flag to make input method work
+  # slack
+  #  --enable-features=UseOzonePlatform,WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation
+  #  --ozone-platform=wayland
+  #  --enable-wayland-ime
+  #  --wayland-per-window-scaling
+  #  --wayland-text-input-version=3`
+
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
@@ -60,7 +68,7 @@
         ];
       };
 
-      # inputMethod.fcitx5.enable = true;
+      inputMethod.fcitx5.enable = true;
       xdgUserDirs.enable = true;
     };
 

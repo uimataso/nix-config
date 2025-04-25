@@ -30,26 +30,46 @@ in
       executable = "tofi";
     };
 
+    stylix.targets.tofi.enable = false;
+
     programs.tofi = {
       enable = true;
 
-      # main tofi.5
-      settings = with config.lib.stylix.colors.withHashtag; {
-        font-size = mkForce 20;
-        selection-color = mkForce base0A;
+      # man tofi.5
+      settings =
+        with config.lib.stylix.colors.withHashtag;
+        let
+          opacity = lib.toHexString (((builtins.ceil (config.stylix.opacity.popups * 100)) * 255) / 100);
 
-        width = "100%";
-        height = "100%";
+        in
+        {
+          font = config.stylix.fonts.monospace.name;
+          font-size = 15;
 
-        border-width = 0;
-        outline-width = 0;
+          text-color = base04;
+          input-color = base05;
+          prompt-color = base05;
+          background-color = base00 + opacity;
 
-        padding-left = "35%";
-        padding-top = "35%";
+          selection-color = base00;
+          selection-background = base05;
+          selection-background-padding = "2, 8";
+          selection-background-corner-radius = 5;
 
-        result-spacing = 15;
-        num-results = 10;
-      };
+          width = "100%";
+          height = "100%";
+
+          border-width = 0;
+          outline-width = 0;
+
+          padding-left = "35%";
+          padding-top = "35%";
+
+          result-spacing = 15;
+
+          fuzzy-match = true;
+          num-results = 10;
+        };
     };
   };
 }

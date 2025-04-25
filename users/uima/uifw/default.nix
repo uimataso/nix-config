@@ -82,7 +82,7 @@
       wayland = {
         river.enable = true;
         # waybar.enable = true;
-        swww.enable = true;
+        # swww.enable = true;
         dunst.enable = true;
         monitor.enable = true;
       };

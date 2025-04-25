@@ -228,6 +228,7 @@
             "sway/workspaces"
             "sway/mode"
             "sway/scratchpad"
+            "hyprland/workspaces"
             "tray"
             "systemd-failed-units"
           ];

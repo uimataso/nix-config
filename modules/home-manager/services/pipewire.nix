@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -16,5 +17,9 @@ in
     uimaConfig.system.impermanence = {
       directories = [ ".local/state/wireplumber" ];
     };
+
+    home.packages = with pkgs; [
+      pulseaudio # bin/pactl
+    ];
   };
 }

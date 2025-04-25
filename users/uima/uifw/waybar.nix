@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }:
@@ -9,7 +8,10 @@
 
   programs.waybar = with config.lib.stylix.colors.withHashtag; {
     enable = true;
-    systemd.enable = true;
+    systemd = {
+      enable = true;
+      target = "river-session.target";
+    };
 
     settings =
       let

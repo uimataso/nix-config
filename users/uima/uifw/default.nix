@@ -4,6 +4,7 @@
 }:
 {
   imports = [
+    ./hyprland.nix
     ./river.nix
     ./waybar.nix
   ];

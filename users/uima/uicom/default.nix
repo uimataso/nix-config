@@ -74,7 +74,6 @@
 
     desktop = {
       wayland = {
-        river.enable = true;
         swww.enable = true;
         dunst.enable = true;
         wlrRandr.enable = true;

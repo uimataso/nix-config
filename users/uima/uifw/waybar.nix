@@ -217,6 +217,21 @@
           };
 
           "hyprland/workspaces" = {
+            move-to-monitor = true;
+            all-outputs = false;
+
+            # format = "<sub>{icon}</sub>\n{windows}";
+            format = "{icon} {windows}";
+            window-rewrite-default = "";
+            window-rewrite = {
+              "class<firefox>" = "";
+              "class<librewolf>" = "";
+              "title<.*youtube.*>" = "";
+              "title<.*github.*>" = "";
+              "foot" = "";
+              "alacritty" = "";
+            };
+
             persistent-workspaces = {
               "*" = [
                 1
@@ -286,7 +301,7 @@
           font-family: "${fonts.monospace.name}";
           font-size: ${builtins.toString fonts.sizes.desktop}pt;
           border: none;
-          border-radius: 0;
+          border-radius: 5;
           min-height: 0;
         }
 
@@ -314,12 +329,19 @@
           color: @base08;
         }
 
-        #workspaces button.active {
+        #workspaces button.empty {
+          color: @base03;
+        }
+        #workspaces button.hosting-monitor.visible {
           color: @base00;
           background: @base05;
         }
-        #workspaces button.empty {
-          color: @base03;
+        /* #workspaces button.active { */
+        /*   color: @base00; */
+        /*   background: @base05; */
+        /* } */
+        #workspaces button.urgent {
+          color: @base08;
         }
       '';
   };

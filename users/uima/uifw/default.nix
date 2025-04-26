@@ -5,7 +5,6 @@
 {
   imports = [
     ./hyprland.nix
-    ./river.nix
     ./waybar.nix
   ];
 
@@ -72,11 +71,7 @@
 
     desktop = {
       wayland = {
-        river.enable = true;
-        # waybar.enable = true;
-        # swww.enable = true;
         dunst.enable = true;
-        wlrRandr.enable = true;
       };
 
       monitors = [
@@ -146,8 +141,6 @@
       };
 
       misc = {
-        # TODO: fix screen sharing on wayland
-        # discord.enable = true;
         nixcord.enable = true;
         # calibre.enable = true;
         zathura.enable = true;

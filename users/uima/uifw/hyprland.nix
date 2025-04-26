@@ -35,8 +35,8 @@
         group."col.border_active" = lib.mkForce (rgb colors.base05);
         group.groupbar."col.active" = lib.mkForce (rgb colors.base05);
 
-        env = [
-          "HYPRCURSOR_SIZE, 16"
+        exec = [
+          "hyprctl setcursor HYPRCURSOR_SIZE 16"
         ];
 
         general = {

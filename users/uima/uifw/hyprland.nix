@@ -18,6 +18,10 @@
     hl = "Hyprland";
   };
 
+  services.dunst.settings.global = {
+    corner_radius = 5;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
 
@@ -63,11 +67,11 @@
             "easeOutCubic,   0.33, 1, 0.68, 1"
           ];
           animation = [
-            "windows,     1, 3, easeOutCubic, slide"
-            "layers,      1, 3, easeOutCubic, slide"
-            "fade,        1, 3, easeOutCubic"
-            "border,      1, 3, easeOutCubic"
-            "workspaces,  1, 3, easeOutCubic, slide"
+            "windows,    1, 3, easeOutCubic, slide"
+            "layers,     1, 3, easeOutCubic, slide"
+            "fade,       1, 3, easeOutCubic"
+            "border,     1, 3, easeOutCubic"
+            "workspaces, 1, 3, easeOutCubic, slide"
           ];
         };
 
@@ -89,9 +93,9 @@
             "SUPER, comma, focusmonitor, -1"
             "SUPER, period, focusmonitor, +1"
 
-            "SUPER, Return, exec, $TERMINAL"
-            "SUPER, o, exec, app-launcher"
+            "SUPER, return, exec, $TERMINAL"
             "SUPER, escape, exec, power-menu"
+            "SUPER, o, exec, app-launcher"
             "SUPER, b, exec, $BROWSER"
           ]
           ++ (

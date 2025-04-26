@@ -8,7 +8,6 @@ let
     mkIf
     mkEnableOption
     mkOption
-    mkForce
     types
     ;
   cfg = config.uimaConfig.programs.dmenu.tofi;

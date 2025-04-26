@@ -4,9 +4,6 @@
   lib,
   ...
 }:
-let
-  inherit (lib) mkForce;
-in
 {
 
   home.packages = with pkgs; [
@@ -16,6 +13,10 @@ in
     scripts.vl
     scripts.bright
   ];
+
+  home.shellAliases = {
+    hl = "Hyprland";
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -46,18 +47,37 @@ in
           "SUPER ALT, mouse:272, resizewindow"
         ];
 
-        bind = [
-          "SUPER, q, killactive"
+        bind =
+          [
+            "SUPER, q, killactive"
 
-          "SUPER, j, layoutmsg, cyclenext"
-          "SUPER, k, layoutmsg, cycleprev"
-          "SUPER, h, layoutmsg, mfact -0.05"
-          "SUPER, l, layoutmsg, mfact +0.05"
+            "SUPER, j, layoutmsg, cyclenext"
+            "SUPER, k, layoutmsg, cycleprev"
+            "SUPER, h, layoutmsg, mfact -0.05"
+            "SUPER, l, layoutmsg, mfact +0.05"
 
-          "SUPER, Return, exec, $TERMINAL"
-          "SUPER, o, exec, app-launcher"
-          "SUPER, escape, exec, power-menu"
-        ];
+            "SUPER, Return, exec, $TERMINAL"
+            "SUPER, o, exec, app-launcher"
+            "SUPER, escape, exec, power-menu"
+            "SUPER, b, exec, $BROWSER"
+          ]
+          ++ (
+            let
+              bindWin = key: ws: [
+                "SUPER, ${key}, workspace, ${ws}"
+                "SUPER SHIFT, ${key}, movetoworkspace, ${ws}"
+              ];
+            in
+            (bindWin "1" "1")
+            ++ (bindWin "2" "2")
+            ++ (bindWin "3" "3")
+            ++ (bindWin "4" "4")
+            ++ (bindWin "5" "5")
+            ++ (bindWin "6" "6")
+            ++ (bindWin "7" "7")
+            ++ (bindWin "8" "8")
+            ++ (bindWin "9" "9")
+          );
       };
   };
 }

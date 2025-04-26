@@ -77,7 +77,7 @@
         river.enable = true;
         swww.enable = true;
         dunst.enable = true;
-        monitor.enable = true;
+        wlrRandr.enable = true;
       };
 
       monitors = [

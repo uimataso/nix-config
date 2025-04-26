@@ -215,6 +215,22 @@
             max-length = 80;
             tooltip = false;
           };
+
+          "hyprland/workspaces" = {
+            persistent-workspaces = {
+              "*" = [
+                1
+                2
+                3
+                4
+                5
+                6
+                7
+                8
+                9
+              ];
+            };
+          };
         };
       in
       {
@@ -296,6 +312,14 @@
         }
         #tags button.urgent {
           color: @base08;
+        }
+
+        #workspaces button.active {
+          color: @base00;
+          background: @base05;
+        }
+        #workspaces button.empty {
+          color: @base03;
         }
       '';
   };

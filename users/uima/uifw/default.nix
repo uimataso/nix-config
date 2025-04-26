@@ -22,14 +22,6 @@
     scripts.mkbigfile
   ];
 
-  # FIXME: open slack/google-chrome with these flag to make input method work
-  # slack
-  #  --enable-features=UseOzonePlatform,WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation
-  #  --ozone-platform=wayland
-  #  --enable-wayland-ime
-  #  --wayland-per-window-scaling
-  #  --wayland-text-input-version=3`
-
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
@@ -84,7 +76,7 @@
         # waybar.enable = true;
         # swww.enable = true;
         dunst.enable = true;
-        monitor.enable = true;
+        wlrRandr.enable = true;
       };
 
       monitors = [
@@ -156,7 +148,7 @@
       misc = {
         # TODO: fix screen sharing on wayland
         # discord.enable = true;
-        # nixcord.enable = true;
+        nixcord.enable = true;
         # calibre.enable = true;
         zathura.enable = true;
         protonmail.enable = true;

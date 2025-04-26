@@ -6,7 +6,7 @@
 }:
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.uimaConfig.desktop.wayland.monitor;
+  cfg = config.uimaConfig.desktop.wayland.wlrRandr;
 
   setupMonitorWaylandPkg = pkgs.writeShellApplication {
     name = "setup-monitor-for-wayland";
@@ -29,8 +29,8 @@ let
   setupMonitorWayland = "${setupMonitorWaylandPkg}/bin/setup-monitor-for-wayland";
 in
 {
-  options.uimaConfig.desktop.wayland.monitor = {
-    enable = mkEnableOption "Setup monitor for Wayland";
+  options.uimaConfig.desktop.wayland.wlrRandr = {
+    enable = mkEnableOption "Setup monitor for Wayland with wlr-randr";
   };
 
   config = mkIf cfg.enable {

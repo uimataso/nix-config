@@ -2,8 +2,8 @@
 {
   imports = [
     ./dunst.nix
-    ./monitor.nix
     ./river.nix
     ./swww.nix
+    ./wlr-randr.nix
   ];
 }

@@ -37,6 +37,8 @@
 
   # hardware.framework.laptop13.audioEnhancement.enable = true;
 
+  services.preload.enable = true;
+
   uimaConfig = {
     global.enable = true;
 
@@ -51,6 +53,8 @@
         luksBtrfs.enable = true;
         luksBtrfs.device = "/dev/nvme0n1";
         users = [ "uima" ];
+
+        files = [ "/var/lib/preload/preload.state" ];
       };
     };
 

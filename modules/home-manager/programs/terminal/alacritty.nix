@@ -33,6 +33,7 @@ in
       enable = true;
       settings = {
         window = {
+          dynamic_title = true;
           padding = {
             x = 5;
             y = 5;

@@ -90,6 +90,8 @@
             "SUPER, h, layoutmsg, mfact -0.05"
             "SUPER, l, layoutmsg, mfact +0.05"
 
+            "SUPER, space, layoutmsg, swapwithmaster"
+
             "SUPER, comma, focusmonitor, -1"
             "SUPER, period, focusmonitor, +1"
 

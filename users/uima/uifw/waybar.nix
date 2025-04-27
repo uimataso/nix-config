@@ -220,16 +220,30 @@
             move-to-monitor = true;
             all-outputs = false;
 
-            # format = "<sub>{icon}</sub>\n{windows}";
-            format = "{icon} {windows}";
-            window-rewrite-default = "";
+            format = "{icon}{windows}";
+            window-rewrite-default = " ";
             window-rewrite = {
-              "class<firefox>" = "";
-              "class<librewolf>" = "";
-              "title<.*youtube.*>" = "";
-              "title<.*github.*>" = "";
-              "foot" = "";
-              "alacritty" = "";
+              "class<firefox>" = " ";
+              "class<librewolf>" = " ";
+              "class<google-chrome>" = " ";
+              "class<brave-browser>" = " 󰩃";
+              "title<.*youtube.*>" = " ";
+              "title<.*github.*>" = " ";
+
+              "class<foot>" = " ";
+              "class<Alacritty>" = " ";
+
+              "class<thunderbird>" = " ";
+              "class<Proton Mail>" = " 󰇮";
+              "class<vesktop>" = " ";
+              "class<discord>" = " ";
+              "class<Notion>" = " ";
+              "class<Slack>" = " ";
+              "class<Postman>" = " ";
+              "class<org.pwmt.zathura>" = " 󰈙";
+              # prusa slicer " "
+              # freecad " "
+              # openscad " "
             };
 
             persistent-workspaces = {
@@ -254,33 +268,21 @@
           spacing = 16;
 
           modules-left = [
-            "river/tags"
-            # "river/mode"
-            "sway/workspaces"
-            "sway/mode"
-            "sway/scratchpad"
-            "hyprland/workspaces"
-            "tray"
-            "systemd-failed-units"
-          ];
-          # modules-center = [
-          #   "river/window"
-          #   "sway/window"
-          # ];
-          modules-right = [
-            "privacy"
             "network#bandwidth"
-
             "cpu"
             "memory"
-            "backlight"
-
+          ];
+          modules-center = [
+            "hyprland/workspaces"
+          ];
+          modules-right = [
+            "privacy"
+            "tray"
             "bluetooth"
+            "backlight"
             "pulseaudio"
-
-            "network"
             "battery"
-
+            "network"
             "clock"
           ];
         };

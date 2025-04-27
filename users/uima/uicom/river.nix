@@ -7,7 +7,6 @@
 }:
 let
   inherit (lib) mkIf mkForce;
-  cfg = config.uimaConfig.desktop.wayland.river;
 
   # cal power
   pow =
@@ -73,7 +72,7 @@ in
         };
       };
 
-      map-pointer = mkIf cfg.defaultMapPointer {
+      map-pointer = {
         normal = {
           # Super + Mouse Button to move/resize views or toggle float
           "super BTN_LEFT" = "move-view";

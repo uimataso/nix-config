@@ -10,9 +10,20 @@ let
   noteScratchpad = scratchpad {
     inherit pkgs;
     name = "note";
-    spawnCmd = # sh
-      ''"$TERMINAL" --class note --working-directory ~/notes/ -e $EDITOR index.md'';
-    className = "note";
+    spawnCmd = ''"$TERMINAL" --class scratchpad-note --working-directory ~/notes/ -e $EDITOR index.md'';
+    className = "scratchpad-note";
+  };
+  tempScratchpad = scratchpad {
+    inherit pkgs;
+    name = "temp";
+    spawnCmd = ''"$TERMINAL" --class scratchpad-temp -e $EDITOR /tmp/scratchpad'';
+    className = "scratchpad-temp";
+  };
+  termScratchpad = scratchpad {
+    inherit pkgs;
+    name = "term";
+    spawnCmd = ''"$TERMINAL" --class scratchpad-term'';
+    className = "scratchpad-term";
   };
 in
 {
@@ -27,6 +38,8 @@ in
     scripts.bright
 
     noteScratchpad
+    termScratchpad
+    tempScratchpad
   ];
 
   home.shellAliases = {
@@ -117,6 +130,10 @@ in
 
             "SUPER, n, exec, ${noteScratchpad}/bin/open-ws-note"
             "SUPER SHIFT, n, exec, ${noteScratchpad}/bin/open-note"
+            "SUPER, t, exec, ${termScratchpad}/bin/open-ws-term"
+            "SUPER SHIFT, t, exec, ${termScratchpad}/bin/open-term"
+            "SUPER, s, exec, ${tempScratchpad}/bin/open-ws-temp"
+            "SUPER SHIFT, s, exec, ${tempScratchpad}/bin/open-temp"
           ]
           ++ (
             let

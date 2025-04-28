@@ -11,10 +11,14 @@ let
     runtimeInputs = with pkgs; [ jq ];
     text = ''
       app_ws="$(hyprctl clients -j | jq -r '.[] | select(.class=="${className}") | .workspace.name')"
+      cur_ws="$(hyprctl activeworkspace -j | jq -r '.name')"
       if [ -z "$app_ws" ]; then
         # If the app is not opened yet.
         # shellcheck disable=SC2016
         hyprctl dispatch exec '[workspace special:${name}]' '${spawnCmd}'
+      elif [ "$app_ws" = "$cur_ws" ]; then
+        # If the app is in the current workspace.
+        hyprctl dispatch movetoworkspacesilent special:${name},class:${className}
       elif [ "$app_ws" = 'special:${name}' ]; then
         # If the app is in the special workspace.
         hyprctl dispatch togglespecialworkspace '${name}'

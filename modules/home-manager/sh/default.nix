@@ -79,6 +79,7 @@ in
       dl = "curl -OJL";
       fclist = "fc-list : family";
       unitest = "curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt";
+      save = ''history 2 | head -n1 | sed 's/^\s*[0-9]*\s*//' | clip | xargs -I {} notify-send 'Command saved' "{}"'';
 
       ":w" = "ls";
       ":q" = "clear";

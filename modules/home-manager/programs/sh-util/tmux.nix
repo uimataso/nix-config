@@ -20,17 +20,21 @@ let
       ];
       text = ''
         sessions_list() {
-          # Get tmux sessions that sort by created time (i actually want last visit time...)
+          # Get tmux sessions that sort by created time
           ( tmux list-sessions 2>/dev/null || true ) | sort -t' ' -k3 | cut -d: -f1
 
           # Get tmux sessions
-
           tmp="$(mktemp)"
           ( tmux list-sessions -F '#{session_name}' 2>/dev/null || true ) | sort > "$tmp"
 
           # Get tmuxinator project that are not created
           printf '\e[38;5;242m'
           tmuxinator list -n | tail -n+2 | sort | comm "$tmp" - -13
+          printf '\e[0m'
+
+          # Get dir in src/* that are not created
+          printf '\e[38;5;242m'
+          find "$HOME/src/" -mindepth 1 -maxdepth 1 -type d -printf 'src/%P\n' | comm "$tmp" - -13
           printf '\e[0m'
 
           rm "$tmp"
@@ -48,6 +52,13 @@ let
           fi
         elif tmuxinator list -n | tail -n+2 | grep -x "$selected" >/dev/null ;then
           tmuxinator start "$selected"
+        elif [ -d "$HOME/$selected" ]; then
+          if [ -z "''${TMUX+x}" ]; then
+            tmux new-session -s "$selected" -c "$HOME/$selected"
+          else
+            tmux new-session -d -s "$selected" -c "$HOME/$selected"
+            tmux switch-client -t "$selected"
+          fi
         else
           if [ -z "''${TMUX+x}" ]; then
             tmux new-session -s "$selected"

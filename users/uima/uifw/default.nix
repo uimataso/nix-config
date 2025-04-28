@@ -13,6 +13,8 @@
   home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
+    lm_sensors
+
     scripts.clip
     scripts.ux
     scripts.open

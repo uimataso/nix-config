@@ -25,6 +25,7 @@ in
     mkbigfile = callPackage ./mkbigfile.nix { };
     open = callPackage ./open.nix { };
     preview = callPackage ./preview.nix { };
+    fetch-title = callPackage ./fetch-title.nix { };
 
     # System
     vl = callPackage ./vl.nix { };

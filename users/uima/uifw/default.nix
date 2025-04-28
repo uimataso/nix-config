@@ -14,6 +14,8 @@
 
   home.packages = with pkgs; [
     lm_sensors
+    ffmpeg
+    mpv
 
     scripts.clip
     scripts.ux
@@ -21,6 +23,7 @@
     scripts.preview
     scripts.pdf-decrypt
     scripts.mkbigfile
+    scripts.fetch-title
   ];
 
   home.sessionVariables = {
@@ -116,6 +119,7 @@
         direnv.enable = true;
         git.enable = true;
         lazygit.enable = true;
+        gh.enable = true;
         docker.enable = true;
         lazydocker.enable = true;
         # podman.enable = true;

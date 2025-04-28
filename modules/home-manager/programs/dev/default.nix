@@ -4,6 +4,7 @@
     ./aws-cli.nix
     ./direnv.nix
     ./docker.nix
+    ./gh.nix
     ./git.nix
     ./k8s.nix
     ./lazydocker.nix

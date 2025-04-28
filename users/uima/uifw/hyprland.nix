@@ -4,6 +4,54 @@
   lib,
   ...
 }:
+let
+  noteClass = "note";
+  spawnNote = # sh
+    ''"$TERMINAL" --class ${noteClass} --working-directory ~/notes/ -e $EDITOR index.md'';
+
+  openNoteWsSrc =
+    { writeShellApplication, pkgs }:
+    writeShellApplication {
+      name = "open-note-ws";
+      runtimeInputs = with pkgs; [ jq ];
+      text = ''
+        note_ws="$(hyprctl clients -j | jq -r '.[] | select(.class=="${noteClass}") | .workspace.name')"
+        if [ -z "$note_ws" ]; then
+          # If the note app is not opened yet.
+          # shellcheck disable=SC2016
+          hyprctl dispatch exec '[workspace special:note]' '${spawnNote}'
+        elif [ "$note_ws" = 'special:note' ]; then
+          # If the note app is in the special workspace.
+          hyprctl dispatch togglespecialworkspace 'note'
+        else
+          # If the note app is not in the special workspace.
+          hyprctl dispatch movetoworkspace special:note,class:${noteClass}
+        fi
+      '';
+    };
+
+  openNoteSrc =
+    { writeShellApplication, pkgs }:
+    writeShellApplication {
+      name = "open-note";
+      runtimeInputs = with pkgs; [ jq ];
+      text = ''
+        note_ws="$(hyprctl clients -j | jq -r '.[] | select(.class=="${noteClass}") | .workspace.name')"
+        cur_ws="$(hyprctl activeworkspace -j | jq -r '.name')"
+        if [ -z "$note_ws" ]; then
+          # If the note app is not opened yet.
+          # shellcheck disable=SC2016
+          hyprctl dispatch exec '${spawnNote}'
+        elif [ "$note_ws" = "$cur_ws" ]; then
+          # If the note app is in the current workspace.
+          hyprctl dispatch movetoworkspacesilent special:note,class:${noteClass}
+        else
+          # If the note app is not in the current workspace.
+          hyprctl dispatch movetoworkspace "$cur_ws",class:${noteClass}
+        fi
+      '';
+    };
+in
 {
 
   home.packages = with pkgs; [
@@ -14,6 +62,9 @@
     scripts.screenshot
     scripts.vl
     scripts.bright
+
+    (pkgs.callPackage openNoteWsSrc { })
+    (pkgs.callPackage openNoteSrc { })
   ];
 
   home.shellAliases = {
@@ -101,6 +152,9 @@
             "SUPER, escape, exec, power-menu"
             "SUPER, o, exec, app-launcher"
             "SUPER, b, exec, $BROWSER"
+
+            "SUPER, n, exec, open-note-ws"
+            "SUPER SHIFT, n, exec, open-note"
           ]
           ++ (
             let

@@ -7,6 +7,8 @@
 {
 
   home.packages = with pkgs; [
+    wl-clipboard
+
     scripts.power-menu
     scripts.app-launcher
     scripts.screenshot

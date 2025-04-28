@@ -271,13 +271,13 @@
             "network#bandwidth"
             "cpu"
             "memory"
+            "tray"
           ];
           modules-center = [
             "hyprland/workspaces"
           ];
           modules-right = [
             "privacy"
-            "tray"
             "bluetooth"
             "backlight"
             "pulseaudio"

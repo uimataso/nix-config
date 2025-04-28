@@ -55,6 +55,7 @@
         users = [ "uima" ];
 
         files = [ "/var/lib/preload/preload.state" ];
+        directories = [ "/var/lib/fprint" ];
       };
     };
 

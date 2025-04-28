@@ -147,6 +147,7 @@
       };
 
       misc = {
+        bitwarden.enable = true;
         nixcord.enable = true;
         # calibre.enable = true;
         zathura.enable = true;

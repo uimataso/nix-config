@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./bitwarden.nix
     ./calibre.nix
     ./discord.nix
     ./freecad.nix

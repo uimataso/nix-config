@@ -76,7 +76,7 @@ in
         };
 
         cursor = {
-          inactive_timeout = 30;
+          inactive_timeout = 15;
         };
 
         input = {
@@ -186,33 +186,35 @@ in
 
   # TODO:
   # - no idle when music is playing
-  # - stop idle service
-  # - fprint from screen off (will unlock but scrren didnt light)
-  # - fprint or press key from suspend
+  # - toggle idle service
+  # - fprint from screen off (will unlock but screen didn't light)
   services.hypridle = {
     enable = true;
 
     settings = {
       general = {
         lock_cmd = "pidof hyprlock || hyprlock"; # avoid starting multiple hyprlock instances.
+        # unlock_cmd = "notify-send unlock_cmd && hyprctl dispatch dpms on";
+        # on_unlock_cmd = "notify-send on_unlock_cmd && hyprctl dispatch dpms on";
         before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
         after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
       };
 
       listener = [
         {
-          timeout = 240; # 4min.
+          timeout = 180; # 3min.
           on-timeout = "brightnessctl -s set 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
           on-resume = "brightnessctl -r"; # monitor backlight restore.
         }
         {
           timeout = 300; # 5min
           on-timeout = "loginctl lock-session"; # lock screen when timeout has passed
+          on-resume = "loginctl unlock-session";
         }
         {
           timeout = 330; # 5.5min
           on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
-          on-resume = "hyprctl dispatch dpms on && brightnessctl -r"; # screen on when activity is detected after timeout has fired.
+          on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
         }
         {
           timeout = 1800; # 30min

@@ -123,8 +123,9 @@ in
             "SUPER, comma, focusmonitor, -1"
             "SUPER, period, focusmonitor, +1"
 
+            "SUPER, escape, exec, hyprlock"
+            "SUPER SHIFT, escape, exec, power-menu"
             "SUPER, return, exec, $TERMINAL"
-            "SUPER, escape, exec, power-menu"
             "SUPER, o, exec, app-launcher"
             "SUPER, b, exec, $BROWSER"
 
@@ -134,6 +135,18 @@ in
             "SUPER SHIFT, t, exec, ${termScratchpad}/bin/open-term"
             "SUPER, s, exec, ${tempScratchpad}/bin/open-ws-temp"
             "SUPER SHIFT, s, exec, ${tempScratchpad}/bin/open-temp"
+
+            ",        Print, exec, screenshot full"
+            "Shift,   Print, exec, screenshot cur"
+            "Control, Print, exec, screenshot sel"
+            ", XF86AudioMute,        exec, vl mute"
+            ", XF86AudioLowerVolume, exec, vl down 3"
+            ", XF86AudioRaiseVolume, exec, vl up 3"
+            ", XF86AudioPrev, exec, notify-send prev"
+            ", XF86AudioPlay, exec, notify-send play"
+            ", XF86AudioNext, exec, notify-send next"
+            ", XF86MonBrightnessDown, exec, notify-send bri down"
+            ", XF86MonBrightnessUp,   exec, notify-send bri up"
           ]
           ++ (
             let
@@ -166,6 +179,50 @@ in
               "${name}, ${resolution}, ${position}, ${scale}";
           in
           builtins.map mkMonitor config.uimaConfig.desktop.monitors;
+      };
+  };
+
+  # services.hypridle = {
+  #   enable = true;
+  # };
+
+  programs.hyprlock = {
+    enable = true;
+
+    settings =
+      let
+        inherit (config.lib.stylix) colors;
+        rgb = color: "rgb(${color})";
+      in
+      {
+        auth = {
+          "fingerprint:enabled" = true;
+        };
+
+        general = {
+          hide_cursor = true;
+        };
+
+        background = {
+          blur_passes = 2;
+          brightness = 0.4;
+        };
+
+        label = [
+          {
+            text = ''cmd[update:1000] date +"%a %b %d"'';
+            font_size = 80;
+            color = rgb colors.base05;
+            font_family = config.stylix.fonts.monospace.name;
+            position = "0, 200";
+          }
+          {
+            text = ''cmd[update:1000] date +"%H:%M"'';
+            font_size = 175;
+            color = rgb colors.base05;
+            font_family = config.stylix.fonts.monospace.name;
+          }
+        ];
       };
   };
 }

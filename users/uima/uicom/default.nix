@@ -24,7 +24,6 @@
 
     scripts.vl
     scripts.clip
-    scripts.bright
     scripts.ux
     scripts.open
     scripts.preview

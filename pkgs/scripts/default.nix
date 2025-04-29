@@ -29,7 +29,6 @@ in
 
     # System
     vl = callPackage ./vl.nix { };
-    bright = callPackage ./bright.nix { };
     clip = callPackage ./clip.nix { };
 
     # Desktop

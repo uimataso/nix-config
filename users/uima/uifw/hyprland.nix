@@ -35,7 +35,6 @@ in
     scripts.app-launcher
     scripts.screenshot
     scripts.vl
-    scripts.bright
 
     noteScratchpad
     termScratchpad

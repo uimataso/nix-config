@@ -49,6 +49,8 @@ in
     corner_radius = 5;
   };
 
+  services.hyprpolkitagent.enable = true;
+
   wayland.windowManager.hyprland = {
     enable = true;
 

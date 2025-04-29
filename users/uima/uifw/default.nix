@@ -14,6 +14,7 @@
 
   home.packages = with pkgs; [
     lm_sensors
+    brightnessctl
     ffmpeg
     mpv
 

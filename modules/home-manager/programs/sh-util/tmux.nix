@@ -174,7 +174,7 @@ in
           # status
           set -g status-justify left
           set -g status-left " #{?client_prefix,#[fg=black bg=white bright] [#S] #[fg=default bg=default],#[bright] [#S] #[]} "
-          set -g status-left-length 20
+          set -g status-left-length 40
           set -g status-right "#[bright]#(whoami):#h  "
           setw -g window-status-current-format '-#I:#W- '
           setw -g window-status-format '#[fg=${base04}]#I:#W #[fg=default]'

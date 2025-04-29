@@ -96,7 +96,7 @@ in
           ];
           animation = [
             "windows,    1, 3, easeOutCubic, slide"
-            "layers,     1, 5, easeOutCubic, fade"
+            "layers,     1, 1, easeOutCubic, fade"
             "fade,       1, 3, easeOutCubic"
             "border,     1, 3, easeOutCubic"
             "workspaces, 1, 3, easeOutCubic, slide"

@@ -208,6 +208,10 @@ in
           brightness = 0.4;
         };
 
+        animation = [
+          "fade, 1, 1, linear"
+        ];
+
         label = [
           {
             text = ''cmd[update:1000] date +"%a %b %d"'';

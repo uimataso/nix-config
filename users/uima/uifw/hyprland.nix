@@ -250,6 +250,10 @@ in
           "fade, 1, 1, linear"
         ];
 
+        input-field = {
+          position = "0, -200";
+        };
+
         label = [
           {
             text = ''cmd[update:1000] date +"%a %b %d"'';

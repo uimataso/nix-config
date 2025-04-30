@@ -53,15 +53,8 @@ in
 
     executable = mkOption {
       type = types.str;
-      example = "bash";
-      description = "Executable path";
-    };
-
-    tmuxShell = mkOption {
-      type = types.nullOr types.str;
-      default = null;
       example = "\${pkgs.bashInteractive}/bin/bash";
-      description = "Default shell for Tmux";
+      description = "Executable path";
     };
   };
 

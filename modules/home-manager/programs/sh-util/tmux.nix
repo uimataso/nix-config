@@ -104,7 +104,7 @@ in
       baseIndex = 1;
       mouse = true;
       # disableConfirmationPrompt = true;
-      shell = config.uimaConfig.sh.tmuxShell;
+      shell = config.uimaConfig.sh.executable;
 
       extraConfig =
         with config.lib.stylix.colors.withHashtag;

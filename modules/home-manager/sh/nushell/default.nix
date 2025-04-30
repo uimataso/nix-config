@@ -34,8 +34,7 @@ in
 
     uimaConfig.sh = mkIf cfg.defaultShell {
       enable = true;
-      executable = "nu";
-      tmuxShell = "${config.programs.nushell.package}/bin/nu";
+      executable = "${config.programs.nushell.package}/bin/nu";
     };
 
     # TODO:

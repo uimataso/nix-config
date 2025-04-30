@@ -18,6 +18,8 @@
     ffmpeg
     mpv
 
+    argocd
+
     scripts.clip
     scripts.ux
     scripts.open
@@ -125,6 +127,7 @@
         lazydocker.enable = true;
         # podman.enable = true;
         aws-cli.enable = true;
+        k8s.enable = true;
       };
 
       dmenu = {

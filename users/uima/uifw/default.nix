@@ -18,7 +18,6 @@
     ffmpeg
     mpv
 
-    terraform
     argocd
 
     scripts.clip
@@ -129,6 +128,7 @@
         # podman.enable = true;
         aws-cli.enable = true;
         k8s.enable = true;
+        terraform.enable = true;
       };
 
       dmenu = {

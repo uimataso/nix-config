@@ -11,5 +11,6 @@
     ./lazygit.nix
     ./podman.nix
     ./ssh.nix
+    ./terraform.nix
   ];
 }

@@ -44,3 +44,11 @@ panel {
   margin-left: 0px !important;
   border-left: none !important;
 }
+
+/* Tab group */
+.tab-group-label {
+  tab-group[collapsed] > .tab-group-label-container > & {
+    color: var(--base00) !important;
+    outline: var(--base00) !important;
+  }
+}

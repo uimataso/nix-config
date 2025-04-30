@@ -73,6 +73,8 @@ in
         clang-tools
         # Typescript
         typescript-language-server
+        # TerraForm
+        terraform-ls
       ];
     };
 

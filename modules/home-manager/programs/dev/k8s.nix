@@ -14,9 +14,20 @@ in
   };
 
   config = mkIf cfg.enable {
+    uimaConfig.system.impermanence = {
+      directories = [
+        ".config/kube"
+      ];
+    };
+
     home.packages = with pkgs; [
       kubectl
     ];
+
+    home.sessionVariables = {
+      KUBECONFIG = "${config.xdg.configHome}/kube";
+      KUBECACHEDIR = "${config.xdg.cacheHome}/kube";
+    };
 
     home.shellAliases = {
       k = "kubectl";

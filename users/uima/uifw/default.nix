@@ -18,6 +18,7 @@
     ffmpeg
     mpv
 
+    terraform
     argocd
 
     scripts.clip

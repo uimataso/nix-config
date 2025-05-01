@@ -44,19 +44,34 @@
           };
 
           battery = {
-            format = "{icon}{capacity}%";
-            format-icons = [
-              "󰁺"
-              "󰁻"
-              "󰁼"
-              "󰁽"
-              "󰁾"
-              "󰁿"
-              "󰂀"
-              "󰂁"
-              "󰂂"
-              "󰁹"
-            ];
+            interval = 1;
+            format = "{icon} {capacity}%";
+            format-icons = {
+              default = [
+                "󰁺"
+                "󰁻"
+                "󰁼"
+                "󰁽"
+                "󰁾"
+                "󰁿"
+                "󰂀"
+                "󰂁"
+                "󰂂"
+                "󰁹"
+              ];
+              charging = [
+                "󰢜"
+                "󰂆"
+                "󰂇"
+                "󰂇"
+                "󰢝"
+                "󰂉"
+                "󰢞"
+                "󰂊"
+                "󰂋"
+                "󰂅"
+              ];
+            };
           };
 
           network =

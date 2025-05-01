@@ -36,14 +36,15 @@ in
     # - https://github.com/search?q=nix+fcitx5&type=code
     # - https://github.com/ryan4yin/nix-config/blob/82dccbdecaf73835153a6470c1792d397d2881fa/home/linux/gui/base/fcitx5/default.nix
     # - https://github.com/ryan4yin/nix-config/blob/82dccbdecaf73835153a6470c1792d397d2881fa/overlays/fcitx5/README.md
-    xdg.configFile = {
-      "fcitx5/config".source = ./fcitx5-config;
-      "fcitx5/conf/classicui.conf".source = ./fcitx5-conf-classicui.conf;
-      "fcitx5/profile" = {
-        source = ./fcitx5-profile;
-        force = true;
-      };
-    };
+    # FIXME:
+    # xdg.configFile = {
+    #   "fcitx5/config".source = ./fcitx5-config;
+    #   "fcitx5/conf/classicui.conf".source = ./fcitx5-conf-classicui.conf;
+    #   "fcitx5/profile" = {
+    #     source = ./fcitx5-profile;
+    #     force = true;
+    #   };
+    # };
 
     # Rime
     home.file.".local/share/fcitx5/rime" = {

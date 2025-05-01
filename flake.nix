@@ -6,6 +6,8 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
     # nixpkgs-local.url = "git+file:///home/uima/src/nixpkgs";
 
+    vimium-options.url = "git+file:///home/uima/src/vimium-nixos";
+
     # Misc
     systems.url = "github:nix-systems/default-linux";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";

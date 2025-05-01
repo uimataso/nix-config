@@ -704,7 +704,8 @@
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "systems": "systems_3",
-        "treefmt-nix": "treefmt-nix_4"
+        "treefmt-nix": "treefmt-nix_4",
+        "vimium-options": "vimium-options"
       }
     },
     "sops-nix": {
@@ -970,6 +971,21 @@
         "owner": "numtide",
         "repo": "treefmt-nix",
         "type": "github"
+      }
+    },
+    "vimium-options": {
+      "locked": {
+        "lastModified": 1746038200,
+        "narHash": "sha256-98T2Dp+XnMMcsnhsenr508ikSZ/WdwX8p3QUxGHptnQ=",
+        "ref": "refs/heads/master",
+        "rev": "a80a0708428285e81743f02bca8454581d1742d0",
+        "revCount": 1,
+        "type": "git",
+        "url": "file:///home/uima/src/vimium-nixos"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/uima/src/vimium-nixos"
       }
     }
   },

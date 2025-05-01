@@ -17,6 +17,7 @@ in
     ./librewolf
     ./qutebrowser
     ./brave.nix
+    ./vimium-options.nix
   ];
 
   options.uimaConfig.programs.browser = {

@@ -89,23 +89,77 @@ in
         d = "https://duckduckgo.com/?q=%s DuckDuckGo";
       };
 
-      userDefinedLinkHintCss = # css
+      userDefinedLinkHintCss =
+        let
+          colors = config.lib.stylix.colors.withHashtag;
+        in
+        # css
         ''
           div > .vimiumHintMarker {
-          /* linkhint boxes */
-          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFF785),
-            color-stop(100%,#FFC542));
-          border: 1px solid #E3BE23;
+            /* linkhint boxes */
+            background: ${colors.base0A};
+            border: 1px solid ${colors.base0A};
           }
 
           div > .vimiumHintMarker span {
-          /* linkhint text */
-          color: black;
-          font-weight: bold;
-          font-size: 12px;
+            /* linkhint text */
+            color: ${colors.base00};
+            font-weight: bold;
+            font-size: 12px;
+            text-shadow: none !important;
           }
 
           div > .vimiumHintMarker > .matchingCharacter {
+          }
+
+          #vomnibar,
+          #vomnibar input,
+          #vomnibar .vomnibarSearchArea,
+          #vomnibar ul,
+          #vomnibar li,
+          #vomnibarInput {
+            color: ${colors.base05} !important;
+            background-color: ${colors.base00} !important;
+            border: 0px !important;
+          }
+
+          #vomnibar {
+            padding: 1px !important;
+
+            .vomnibarSearchArea {
+              padding: 5px !important;
+              border-bottom: 2px solid ${colors.base05} !important;
+            }
+
+            li.vomnibarSelected {
+              background-color: ${colors.base01} !important;
+            }
+
+            li {
+              em,
+              .vomnibarTitle,
+              .vomnibarRelevancy {
+                color: ${colors.base05} !important;
+              }
+
+              .vomnibarSource,
+              em .vomnibarMatch {
+                color: ${colors.base04} !important;
+              }
+
+              .vomnibarMatch,
+              .vomnibarTitle .vomnibarMatch {
+                color: ${colors.base06} !important;
+              }
+
+              .vomnibarUrl {
+                color: ${colors.base0D} !important;
+              }
+            }
+          }
+
+          #vomnibarInput::selection {
+            background-color: ${colors.base01} !important;
           }
         '';
     };

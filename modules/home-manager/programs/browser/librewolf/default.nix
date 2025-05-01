@@ -19,6 +19,8 @@ let
     ;
   cfg = config.uimaConfig.programs.browser.librewolf;
 
+  searchEngines = import ../search-engines.nix;
+
   profileName = "uima";
 
   userCssColor =
@@ -40,62 +42,6 @@ let
         --t: #00ff00;
       }
     '';
-
-  searchEngines = {
-    searx = {
-      name = "Searx";
-      aliases = [ "@s" ];
-      url = "https://search.uimataso.com/search?q={searchTerms}";
-    };
-    ddg = {
-      name = "DuckDuckGo";
-      aliases = [ "@d" ];
-      url = "https://duckduckgo.com/?q={searchTerms}";
-    };
-    google = {
-      name = "Google";
-      aliases = [ "@g" ];
-      url = "https://www.google.com/search?q={searchTerms}";
-    };
-
-    nix-packages = {
-      name = "Nix Packages";
-      aliases = [ "@np" ];
-      url = "https://search.nixos.org/packages?type=packages&query={searchTerms}";
-    };
-    nixos-wiki = {
-      name = "NixOS Wiki";
-      aliases = [ "@nw" ];
-      url = "https://nixos.wiki/index.php?search={searchTerms}";
-    };
-    mynixos = {
-      name = "MyNixOS";
-      aliases = [ "@mn" ];
-      url = "https://mynixos.com/search?q={searchTerms}";
-    };
-    home-manager-options = {
-      name = "Home Manager Options";
-      aliases = [ "@hmo" ];
-      url = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
-    };
-
-    arch-wiki = {
-      name = "ArchWiki";
-      aliases = [ "@aw" ];
-      url = "https://wiki.archlinux.org/index.php?search={searchTerms}";
-    };
-    rust-std = {
-      name = "Rust Std";
-      aliases = [ "@ru" ];
-      url = "https://doc.rust-lang.org/std/iter/?search={searchTerms}";
-    };
-
-    google-translate = {
-      name = "Google Translate";
-      aliases = [ "@gt" ];
-      url = "https://translate.google.com/?text={searchTerms}";
-    };
-  };
 in
 {
   options.uimaConfig.programs.browser.librewolf = {
@@ -189,18 +135,19 @@ in
                   (builtins.elemAt (builtins.split "(https://[^/]*/).*" url) 1) ++ [ "favicon.ico" ]
                 );
 
-              mapEngine = engine: {
-                name = engine.name;
-                definedAliases = engine.aliases;
-                urls = [ { template = engine.url; } ];
-                icon = getFavicon engine.url;
+              mapEngine = key: val: {
+                name = val.name;
+                definedAliases = [ "@${key}" ];
+                urls = [ { template = builtins.replaceStrings [ "{}" ] [ "{searchTerms}" ] val.url; } ];
+                icon = getFavicon val.url;
                 updateInterval = 24 * 60 * 60 * 1000;
               };
             in
-            lib.attrsets.mapAttrs (name: value: mapEngine value) searchEngines
+            lib.attrsets.mapAttrs mapEngine searchEngines
             // {
-              "bing".metaData.hidden = true;
-              "wikipedia".metaData.hidden = true;
+              # FIXME: disable default engines
+              bing.metaData.hidden = true;
+              wikipedia.metaData.hidden = true;
             };
         };
 

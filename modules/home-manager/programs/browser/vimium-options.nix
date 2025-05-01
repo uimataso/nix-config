@@ -7,6 +7,8 @@
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.programs.browser.vimiumOptions;
+
+  searchEngines = import ./search-engines.nix;
 in
 {
   options.uimaConfig.programs.browser.vimiumOptions = {
@@ -71,23 +73,9 @@ in
         };
       };
 
-      searchEngines = {
-        s = "https://search.uimataso.com/search?q=%s Searx";
-        np = "https://search.nixos.org/packages?type=packages&query=%s NixOS Search - Packages";
-        nm = "https://mynixos.com/search?q=%s MyNixOS";
-
-        nw = "https://nixos.wiki/index.php?search=%s NixOS Wiki";
-        aw = "https://wiki.archlinux.org/index.php?search=%s Arch Wiki";
-        gw = "https://wiki.gentoo.org/index.php?title=Special%3ASearch&search=%s&go=Go Gentoo Wiki";
-
-        ru = "https://doc.rust-lang.org/std/iter/?search=%s Rust Std";
-
-        w = "https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia";
-        g = "https://www.google.com/search?q=%s Google";
-        y = "https://www.youtube.com/results?search_query=%s Youtube";
-        gm = "https://www.google.com/maps?q=%s Google maps";
-        d = "https://duckduckgo.com/?q=%s DuckDuckGo";
-      };
+      searchEngines = lib.attrsets.mapAttrs (
+        key: val: "${builtins.replaceStrings [ "{}" ] [ "%s" ] val.url} ${val.name}"
+      ) searchEngines;
 
       userDefinedLinkHintCss =
         let

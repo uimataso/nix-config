@@ -87,6 +87,7 @@ in
 
       input = {
         touchpad = {
+          scroll_factor = 0.5;
           natural_scroll = true;
         };
       };

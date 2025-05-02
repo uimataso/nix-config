@@ -30,7 +30,6 @@ let
   rgb = color: "rgb(${color})";
 in
 {
-
   home.packages = with pkgs; [
     wl-clipboard
     brightnessctl
@@ -49,6 +48,8 @@ in
   home.shellAliases = {
     hl = "Hyprland";
   };
+
+  uimaConfig.sh.bash.execOnTty1 = "Hyprland";
 
   services.dunst.settings.global = {
     corner_radius = 5;

@@ -34,6 +34,12 @@ in
       default = false;
       description = "Use bash as default shell";
     };
+
+    execOnTty1 = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "A program that executed after log into tty1";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -113,6 +119,10 @@ in
             cd ''$(dirname ''$(readlink ''$(which ''$1)))
           }
         '';
+
+      profileExtra = mkIf (cfg.execOnTty1 != null) ''
+        [ "$(tty)" = "/dev/tty1" ] && exec ${cfg.execOnTty1}
+      '';
     };
 
     home.file = {

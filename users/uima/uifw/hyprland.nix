@@ -98,6 +98,9 @@ in
         rounding = 5;
         dim_inactive = true;
         dim_strength = 0.2;
+        shadow = {
+          enabled = false;
+        };
       };
 
       animations = {
@@ -134,8 +137,7 @@ in
           "SUPER, comma, focusmonitor, -1"
           "SUPER, period, focusmonitor, +1"
 
-          "SUPER, escape, exec, hyprlock"
-          "SUPER SHIFT, escape, exec, power-menu"
+          "SUPER, escape, exec, power-menu"
           "SUPER, return, exec, ${config.uimaConfig.programs.terminal.executable}"
           "SUPER, o, exec, app-launcher"
           "SUPER, b, exec, ${config.uimaConfig.programs.browser.executable}"

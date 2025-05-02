@@ -5,20 +5,20 @@ writeShellApplication {
   text = ''
     dmenu="''${DMENU:-dmenu -i}"
 
-    declare -A actions
-    actions=( #
-      # ["Lock"]="slock"
-      ["Shut Down"]="poweroff"
-      ["Reboot"]="reboot"
-      ["Logout"]="loginctl terminate-session ''${XDG_SESSION_ID-}"
-    )
+    selected="$(cat <<EOF | $dmenu
+    Lock
+    Logout
+    Reboot
+    Shut Down
+    EOF
+    )"
 
-    selected="$(printf '%s\n' "''${!actions[@]}" | $dmenu)"
+    case "$selected" in
+      'Lock') loginctl lock-session ;;
+      'Logout') loginctl terminate-session ;;
+      'Reboot') reboot ;;
+      'Shut Down') poweroff ;;
+    esac
 
-    if [ -z "$selected" ]; then
-      exit
-    fi
-
-    eval "''${actions["$selected"]}"
   '';
 }

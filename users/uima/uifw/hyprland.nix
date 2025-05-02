@@ -90,6 +90,8 @@ in
           scroll_factor = 0.5;
           natural_scroll = true;
         };
+
+        kb_options = "ctrl:nocaps";
       };
 
       decoration = {

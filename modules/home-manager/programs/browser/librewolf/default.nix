@@ -55,10 +55,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    # uimaConfig.system.impermanence = {
-    #   directories = [ ".mozilla/firefox/${config.programs.firefox.profiles.${profileName}.path}" ];
-    # };
     uimaConfig.system.impermanence = {
+      # directories = [ ".mozilla/firefox/${config.programs.firefox.profiles.${profileName}.path}" ];
       directories = [ ".librewolf/${config.programs.librewolf.profiles.${profileName}.path}" ];
     };
 

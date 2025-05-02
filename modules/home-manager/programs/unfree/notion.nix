@@ -32,7 +32,7 @@ let
       extraInstallCommands = ''
         install -m 444 -D ${appimageContents}/${pname}.desktop -t $out/share/applications
         substituteInPlace $out/share/applications/${pname}.desktop \
-          --replace 'Exec=AppRun' 'Exec=${pname}'
+          --replace 'Exec=AppRun' 'Exec=${pname} --enable-features=UseOzonePlatform --ozone-platform=wayland'
         mkdir -p $out/share/icons
         cp -r ${appimageContents}/usr/share/icons/hicolor/0x0/apps/notion-app.png $out/share/icons/notion-app.png
       '';
@@ -46,7 +46,6 @@ let
         mainProgram = "notion-app";
       };
     };
-
 in
 {
   options.uimaConfig.programs.unfree.notion = {

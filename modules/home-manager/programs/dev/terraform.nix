@@ -14,12 +14,13 @@ in
   };
 
   config = mkIf cfg.enable {
-    uimaConfig.system.impermanence = {
-      # TODO: install plugin with `pkgs.tflint-plugins.tflint-ruleset-aws`
-      directories = [
-        ".cache/tflint/plugins"
-      ];
-    };
+    # FIXME: with tflint config, tflint can install/read plugins properly
+    # uimaConfig.system.impermanence = {
+    #   # TODO: install plugin with `pkgs.tflint-plugins.tflint-ruleset-aws`
+    #   directories = [
+    #     ".cache/tflint/plugins"
+    #   ];
+    # };
 
     home.packages = with pkgs; [
       terraform
@@ -27,18 +28,18 @@ in
       tflint
     ];
 
-    home.sessionVariables = {
-      TFLINT_CONFIG_FILE = "${config.xdg.configHome}/tflint/config.hcl";
-    };
-
-    xdg.configFile = {
-      "tflint/config.hcl".text = # hcl
-        ''
-          config {
-            plugin_dir = "${config.xdg.cacheHome}/tflint/plugins"
-          }
-        '';
-    };
+    # home.sessionVariables = {
+    #   TFLINT_CONFIG_FILE = "${config.xdg.configHome}/tflint/config.hcl";
+    # };
+    #
+    # xdg.configFile = {
+    #   "tflint/config.hcl".text = # hcl
+    #     ''
+    #       config {
+    #         plugin_dir = "${config.xdg.cacheHome}/tflint/plugins"
+    #       }
+    #     '';
+    # };
 
     home.shellAliases = {
       tf = "terraform";

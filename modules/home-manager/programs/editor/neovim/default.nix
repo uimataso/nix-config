@@ -35,7 +35,7 @@ in
 
     uimaConfig.programs.editor = mkIf cfg.defaultEditor {
       enable = true;
-      executable = "${config.programs.neovim.package}/bin/nvim";
+      executable = "${config.xdg.stateHome}/nix/profile/bin/nvim";
     };
 
     programs.neovim = {

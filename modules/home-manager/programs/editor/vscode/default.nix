@@ -28,7 +28,7 @@ in
   config = mkIf cfg.enable {
     uimaConfig.programs.editor = mkIf cfg.defaultEditor {
       enable = true;
-      executable = "${config.programs.vscode.package}/bin/codium";
+      executable = "${config.xdg.stateHome}/nix/profile/bin/codium";
     };
 
     programs.vscode = {

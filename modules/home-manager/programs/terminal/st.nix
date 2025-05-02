@@ -40,7 +40,7 @@ in
 
     uimaConfig.programs.terminal = mkIf cfg.defaultTerminal {
       enable = true;
-      executable = "${stPkg}/bin/st";
+      executable = "${config.xdg.stateHome}/nix/profile/bin/st";
     };
 
     xresources.properties =

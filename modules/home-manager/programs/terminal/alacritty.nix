@@ -26,7 +26,7 @@ in
   config = mkIf cfg.enable {
     uimaConfig.programs.terminal = mkIf cfg.defaultTerminal {
       enable = true;
-      executable = "${config.programs.alacritty.package}/bin/alacritty";
+      executable = "${config.xdg.stateHome}/nix/profile/bin/alacritty";
     };
 
     programs.alacritty = {

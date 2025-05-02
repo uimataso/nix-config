@@ -29,7 +29,7 @@ in
 
     uimaConfig.programs.dmenu = mkIf cfg.defaultDmenu {
       enable = true;
-      executable = "${pkgs.scripts.fmenu}/bin/fmenu";
+      executable = "${config.xdg.stateHome}/nix/profile/bin/fmenu";
     };
   };
 }

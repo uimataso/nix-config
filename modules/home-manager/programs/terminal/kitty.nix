@@ -26,7 +26,7 @@ in
   config = mkIf cfg.enable {
     uimaConfig.programs.terminal = mkIf cfg.defaultTerminal {
       enable = true;
-      executable = "kitty";
+      executable = "${config.programs.kitty.package}/bin/kitty";
     };
 
     programs.kitty = {

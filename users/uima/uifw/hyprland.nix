@@ -33,6 +33,8 @@ in
 
   home.packages = with pkgs; [
     wl-clipboard
+    brightnessctl
+    playerctl
 
     scripts.power-menu
     scripts.app-launcher
@@ -131,9 +133,9 @@ in
 
           "SUPER, escape, exec, hyprlock"
           "SUPER SHIFT, escape, exec, power-menu"
-          "SUPER, return, exec, $TERMINAL"
+          "SUPER, return, exec, ${config.uimaConfig.programs.terminal.executable}"
           "SUPER, o, exec, app-launcher"
-          "SUPER, b, exec, $BROWSER"
+          "SUPER, b, exec, ${config.uimaConfig.programs.browser.executable}"
 
           "SUPER, n, exec, ${noteScratchpad}/bin/open-ws-note"
           "SUPER SHIFT, n, exec, ${noteScratchpad}/bin/open-note"
@@ -145,12 +147,12 @@ in
           ",        Print, exec, screenshot full"
           "Shift,   Print, exec, screenshot cur"
           "Control, Print, exec, screenshot sel"
-          ", XF86AudioMute,        exec, vl mute"
-          ", XF86AudioLowerVolume, exec, vl down 3"
-          ", XF86AudioRaiseVolume, exec, vl up 3"
-          ", XF86AudioPrev, exec, notify-send prev"
-          ", XF86AudioPlay, exec, notify-send play"
-          ", XF86AudioNext, exec, notify-send next"
+          ", XF86AudioMute,        exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-"
+          ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+"
+          ", XF86AudioPrev, exec, playerctl previous"
+          ", XF86AudioPlay, exec, playerctl play-pause"
+          ", XF86AudioNext, exec, playerctl next"
           ", XF86MonBrightnessDown, exec, brightnessctl set 3%-"
           ", XF86MonBrightnessUp,   exec, brightnessctl set +3%"
         ]

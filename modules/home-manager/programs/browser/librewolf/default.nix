@@ -64,7 +64,7 @@ in
 
     uimaConfig.programs.browser = mkIf cfg.defaultBrowser {
       enable = true;
-      executable = "librewolf";
+      executable = "${config.programs.librewolf.package}/bin/librewolf";
       desktop = "librewolf.desktop";
     };
 

@@ -23,7 +23,7 @@ in
 
     executable = mkOption {
       type = types.str;
-      example = "nvim";
+      example = "\${pkgs.neovim}/bin/nvim";
       description = "Executable path";
     };
   };

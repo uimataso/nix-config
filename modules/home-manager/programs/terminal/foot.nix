@@ -26,7 +26,7 @@ in
   config = mkIf cfg.enable {
     uimaConfig.programs.terminal = mkIf cfg.defaultTerminal {
       enable = true;
-      executable = "foot";
+      executable = "${config.programs.foot.package}/bin/foot";
     };
 
     programs.foot = {

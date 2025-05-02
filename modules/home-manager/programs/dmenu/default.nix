@@ -24,7 +24,7 @@ in
 
     executable = mkOption {
       type = types.str;
-      example = "fmenu";
+      example = "\${pkgs.tofi}/bin/tofi";
       description = "Executable path";
     };
   };

@@ -26,7 +26,7 @@ in
   config = mkIf cfg.enable {
     uimaConfig.programs.dmenu = mkIf cfg.defaultDmenu {
       enable = true;
-      executable = "tofi";
+      executable = "${config.programs.tofi.package}/bin/tofi";
     };
 
     stylix.targets.tofi.enable = false;

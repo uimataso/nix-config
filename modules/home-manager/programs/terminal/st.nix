@@ -12,6 +12,15 @@ let
     types
     ;
   cfg = config.uimaConfig.programs.terminal.st;
+
+  stPkg = pkgs.st.overrideAttrs {
+    src = pkgs.fetchFromGitHub {
+      owner = "uimataso";
+      repo = "st";
+      rev = "7cf4187e0b931a906770b4fa5f00d4d884473e4b";
+      sha256 = "sha256-N5TRSVfBHm6B3PfeR6PR7nPF2dL4ad9LJaQGIPRQ3cA=";
+    };
+  };
 in
 {
   options.uimaConfig.programs.terminal.st = {
@@ -25,20 +34,13 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      (st.overrideAttrs {
-        src = fetchFromGitHub {
-          owner = "uimataso";
-          repo = "st";
-          rev = "7cf4187e0b931a906770b4fa5f00d4d884473e4b";
-          sha256 = "sha256-N5TRSVfBHm6B3PfeR6PR7nPF2dL4ad9LJaQGIPRQ3cA=";
-        };
-      })
+    home.packages = [
+      stPkg
     ];
 
     uimaConfig.programs.terminal = mkIf cfg.defaultTerminal {
       enable = true;
-      executable = "st";
+      executable = "${stPkg}/bin/st";
     };
 
     xresources.properties =

@@ -25,7 +25,7 @@ in
 
     executable = mkOption {
       type = types.str;
-      example = "foot";
+      example = "\${pkgs.foot}/bin/foot";
       description = "Executable path";
     };
   };

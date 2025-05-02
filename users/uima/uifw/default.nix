@@ -14,7 +14,6 @@
 
   home.packages = with pkgs; [
     lm_sensors
-    brightnessctl
     ffmpeg
     mpv
 
@@ -37,6 +36,7 @@
     htop.enable = true;
     btop.enable = true;
     ripgrep.enable = true;
+    fd.enable = true;
     jq.enable = true;
     bat.enable = true;
   };

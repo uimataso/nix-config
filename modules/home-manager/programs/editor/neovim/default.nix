@@ -75,6 +75,7 @@ in
         typescript-language-server
         # TerraForm
         terraform-ls
+        tflint
       ];
     };
 

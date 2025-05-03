@@ -152,6 +152,10 @@
         notion.enable = true;
       };
 
+      game = {
+        osu.enable = true;
+      };
+
       misc = {
         bitwarden.enable = true;
         nixcord.enable = true;

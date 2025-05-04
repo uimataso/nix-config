@@ -443,7 +443,7 @@ toolbarspring,
 		/* window controls on the right */
 		@media not (-moz-gtk-csd-reversed-placement) {
 			#nav-bar {
-				padding-right: calc(var(--uc-navbar-padding, 0) + var(--uc-win-ctrl-padding)) !important;
+				/* padding-right: calc(var(--uc-navbar-padding, 0) + var(--uc-win-ctrl-padding)) !important; */
 			}
 			.titlebar-buttonbox-container {
 				right: 0;

@@ -603,6 +603,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_5": {
+      "locked": {
+        "lastModified": 1746232882,
+        "narHash": "sha256-MHmBH2rS8KkRRdoU/feC/dKbdlMkcNkB5mwkuipVHeQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "7a2622e2c0dbad5c4493cb268aba12896e28b008",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -974,18 +990,21 @@
       }
     },
     "vimium-options": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_5"
+      },
       "locked": {
-        "lastModified": 1746038200,
-        "narHash": "sha256-98T2Dp+XnMMcsnhsenr508ikSZ/WdwX8p3QUxGHptnQ=",
-        "ref": "refs/heads/master",
-        "rev": "a80a0708428285e81743f02bca8454581d1742d0",
-        "revCount": 1,
-        "type": "git",
-        "url": "file:///home/uima/src/vimium-nixos"
+        "lastModified": 1746118178,
+        "narHash": "sha256-MtIuTMLMF/Cl3MEJwO56rVhtXUtRhZ/i2hG49jcosEE=",
+        "owner": "uimataso",
+        "repo": "vimium-nixos",
+        "rev": "a9e4b051cf944718fd3fbb638bc1c08057507c31",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/uima/src/vimium-nixos"
+        "owner": "uimataso",
+        "repo": "vimium-nixos",
+        "type": "github"
       }
     }
   },

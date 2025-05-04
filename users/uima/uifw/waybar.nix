@@ -325,6 +325,7 @@
         window#waybar, tooltip {
           background: alpha(@base00, ${builtins.toString opacity.desktop});
           color: @base05;
+          border-radius: 0;
         }
 
         tooltip {

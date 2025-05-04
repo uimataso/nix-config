@@ -8,6 +8,15 @@ let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.programs.unfree.notion;
 
+  waylandFlags =
+    let
+      desktop = config.uimaConfig.desktop;
+    in
+    if desktop.enable && desktop.type == "wayland" then
+      "--enable-features=UseOzonePlatform --ozone-platform=wayland"
+    else
+      "";
+
   # https://discourse.nixos.org/t/overrideattributes-for-a-new-notion-version/50334/3
   notionPkg =
     {
@@ -32,7 +41,7 @@ let
       extraInstallCommands = ''
         install -m 444 -D ${appimageContents}/${pname}.desktop -t $out/share/applications
         substituteInPlace $out/share/applications/${pname}.desktop \
-          --replace 'Exec=AppRun' 'Exec=${pname} --enable-features=UseOzonePlatform --ozone-platform=wayland'
+          --replace 'Exec=AppRun' 'Exec=${pname} ${waylandFlags}'
         mkdir -p $out/share/icons
         cp -r ${appimageContents}/usr/share/icons/hicolor/0x0/apps/notion-app.png $out/share/icons/notion-app.png
       '';

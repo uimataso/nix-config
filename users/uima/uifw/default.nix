@@ -78,6 +78,9 @@
     };
 
     desktop = {
+      enable = true;
+      type = "wayland";
+
       wayland = {
         dunst.enable = true;
       };

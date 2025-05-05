@@ -53,8 +53,6 @@ in
       example = "/dev/sda";
       description = "The device that going to implement ephemeral btrfs.";
     };
-
-    # TODO: luks?
   };
 
   imports = [ inputs.disko.nixosModules.disko ];

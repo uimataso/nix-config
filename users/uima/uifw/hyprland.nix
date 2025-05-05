@@ -66,7 +66,7 @@ in
       group.groupbar."col.active" = lib.mkForce (rgb colors.base05);
 
       exec = [
-        "hyprctl setcursor HYPRCURSOR_SIZE 16"
+        "hyprctl setcursor HYPRCURSOR_SIZE 22"
       ];
       exec-once = [
         "hypridle"

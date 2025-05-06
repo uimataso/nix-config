@@ -100,7 +100,6 @@
     services = {
       pipewire.enable = true;
       udiskie.enable = true;
-      # syncthing.enable = true;
     };
 
     programs = {
@@ -129,7 +128,6 @@
         gh.enable = true;
         docker.enable = true;
         lazydocker.enable = true;
-        # podman.enable = true;
         aws-cli.enable = true;
         k8s.enable = true;
         terraform.enable = true;
@@ -149,7 +147,6 @@
       };
 
       unfree = {
-        google-chrome.enable = true;
         postman.enable = true;
         slack.enable = true;
         notion.enable = true;
@@ -162,11 +159,9 @@
       misc = {
         bitwarden.enable = true;
         nixcord.enable = true;
-        # calibre.enable = true;
         zathura.enable = true;
         protonmail.enable = true;
         thunderbird.enable = true;
-        hoppscotch.enable = true;
 
         # prusaSlicer.enable = true;
         # kicad.enable = true;

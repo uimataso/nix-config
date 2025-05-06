@@ -39,6 +39,8 @@
 
   services.preload.enable = true;
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   uimaConfig = {
     global.enable = true;
 

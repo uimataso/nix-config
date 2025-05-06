@@ -166,6 +166,7 @@
         zathura.enable = true;
         protonmail.enable = true;
         thunderbird.enable = true;
+        hoppscotch.enable = true;
 
         # prusaSlicer.enable = true;
         # kicad.enable = true;

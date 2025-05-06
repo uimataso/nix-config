@@ -5,6 +5,7 @@
     ./calibre.nix
     ./discord.nix
     ./freecad.nix
+    ./hoppscotch.nix
     ./kicad.nix
     ./nixcord.nix
     ./openscad.nix

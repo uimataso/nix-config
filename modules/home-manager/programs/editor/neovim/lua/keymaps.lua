@@ -65,6 +65,9 @@ vim.keymap.set('n', '<Leader><Leader>x', '<cmd>source %<CR>')
 vim.keymap.set('n', '<Leader>xx', ':.lua<CR>')
 vim.keymap.set('v', '<Leader>x', ':lua<CR>')
 
+-- Quick shell command
+vim.keymap.set('n', '!', ':terminal ')
+
 -- Buffer movement
 vim.keymap.set('n', '<BS>', '<C-^>')
 vim.keymap.set('n', '<Tab>', '<cmd>bn<cr>')

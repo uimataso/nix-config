@@ -29,7 +29,7 @@ in
     home.shellAliases =
       {
         g = "git";
-        gsl = "git status; echo; git log --oneline --all --pretty=logoneline -5; echo";
+        gsl = "git status; echo; git log --oneline --pretty=logoneline -5; echo";
       }
       // lib.attrsets.mapAttrs' (
         key: val: lib.attrsets.nameValuePair "g${key}" "git ${val}"
@@ -67,7 +67,7 @@ in
       extraConfig = {
         url = {
           "git@github.com:" = {
-            insteadOf = "gh:";
+            insteadOf = "https://github.com/";
           };
           "git@github.com:uimataso/" = {
             insteadOf = "my:";
@@ -113,7 +113,7 @@ in
         };
 
         rebase = {
-          autoStash = true;
+          # autoStash = true;
           missingCommitsCheck = "warn";
         };
 

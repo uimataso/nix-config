@@ -29,6 +29,7 @@ in
     home.shellAliases =
       {
         g = "git";
+        gsl = "git status; echo; git log --oneline --all --pretty=logoneline -5; echo";
       }
       // lib.attrsets.mapAttrs' (
         key: val: lib.attrsets.nameValuePair "g${key}" "git ${val}"
@@ -125,7 +126,7 @@ in
         };
 
         pretty = {
-          logoneline = "format:'%C(yellow)%h%Creset %C(blue)%an%Creset %s  %C(cyan)%as '";
+          logoneline = "format:%C(yellow)%h%Creset %C(blue)%an%Creset %s  %C(cyan)%as";
         };
       };
     };

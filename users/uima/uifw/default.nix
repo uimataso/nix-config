@@ -16,6 +16,7 @@
     lm_sensors
     ffmpeg
     mpv
+    qmk
 
     argocd
 
@@ -65,6 +66,8 @@
           "nix"
           "notes"
           "src"
+
+          ".config/qmk"
         ];
       };
 

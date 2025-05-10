@@ -46,9 +46,7 @@ end, { desc = 'vim.lsp.buf.signature_help()' })
 
 -- Open in split
 vim.keymap.set('n', '<Leader>gd', '<cmd>vsplit | lua vim.lsp.buf.definition()<cr>')
-vim.keymap.set('n', '<Leader>gD', '<cmd>vsplit | lua vim.lsp.buf.declaration()<cr>')
-
--- Diagnostic
+vim.keymap.set('n', '<Leader>gD', '<cmd>vsplit | lua vim.lsp.buf.declaration()<cr>') -- Diagnostic
 vim.keymap.set('n', '<leader>dr', vim.diagnostic.reset, { desc = 'vim.diagnostic.reset()' })
 
 local diagnostic_virtual_lines = false
@@ -67,6 +65,10 @@ vim.keymap.set('v', '<Leader>x', ':lua<CR>')
 
 -- Quick shell command
 vim.keymap.set('n', '!', ':terminal ')
+
+-- Soft warping
+vim.keymap.set('n', 'j', 'gj')
+vim.keymap.set('n', 'k', 'gk')
 
 -- Buffer movement
 vim.keymap.set('n', '<BS>', '<C-^>')

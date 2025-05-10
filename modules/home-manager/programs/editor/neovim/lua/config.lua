@@ -11,6 +11,7 @@ vim.opt.list = true
 vim.opt.listchars = { tab = '▸ ', trail = '·' }
 vim.opt.fillchars:append { eob = ' ' }
 vim.opt.fillchars:append { diff = '╱' }
+vim.opt.smoothscroll = true
 -- vim.opt.conceallevel = 3
 
 -- Column --

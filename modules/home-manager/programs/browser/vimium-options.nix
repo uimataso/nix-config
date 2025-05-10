@@ -32,7 +32,10 @@ in
           l = "scrollRight";
           gg = "scrollToTop";
           G = "scrollToBottom";
+          "<c-u>" = "scrollPageUp";
           "<c-d>" = "scrollPageDown";
+          "<c-b>" = "scrollPageUp";
+          "<c-f>" = "scrollPageDown";
           "<PageUp>" = "scrollPageUp";
           "<PageDown>" = "scrollPageDown";
 

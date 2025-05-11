@@ -136,7 +136,7 @@ in
 
               mapEngine = key: val: {
                 name = val.name;
-                definedAliases = [ "@${key}" ];
+                definedAliases = [ "${key}" ];
                 urls = [ { template = builtins.replaceStrings [ "{}" ] [ "{searchTerms}" ] val.url; } ];
                 icon = getFavicon val.url;
                 updateInterval = 24 * 60 * 60 * 1000;

@@ -1,3 +1,5 @@
 patch:
   schema_list:
-    - schema: yustar_tw # 以臺灣傳統漢字爲主設置簡碼
+    - schema: bopomofo_tw
+    - schema: luna_pinyin
+  # - schema: yustar_tw

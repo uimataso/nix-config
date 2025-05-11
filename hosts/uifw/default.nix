@@ -37,8 +37,6 @@
 
   # hardware.framework.laptop13.audioEnhancement.enable = true;
 
-  services.preload.enable = true;
-
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   hardware.keyboard.qmk.enable = true;
@@ -58,7 +56,6 @@
         luksBtrfs.device = "/dev/nvme0n1";
         users = [ "uima" ];
 
-        files = [ "/var/lib/preload/preload.state" ];
         directories = [ "/var/lib/fprint" ];
       };
     };

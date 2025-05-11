@@ -87,12 +87,8 @@ in
 
     # Rime
     home.file.".local/share/fcitx5/rime" = {
-      source = ../rime/yuhao-schema;
+      source = ../rime;
       recursive = true;
-    };
-
-    home.file.".local/share/fcitx5/rime/default.custom.yaml" = {
-      source = ../rime/default.custom.yaml;
     };
   };
 }

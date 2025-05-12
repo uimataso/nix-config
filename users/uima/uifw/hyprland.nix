@@ -134,6 +134,7 @@ in
           "SUPER, l, layoutmsg, mfact +0.05"
 
           "SUPER, space, layoutmsg, swapwithmaster"
+          "SUPER, f, togglefloating"
 
           "SUPER, comma, focusmonitor, -1"
           "SUPER, period, focusmonitor, +1"
@@ -263,6 +264,7 @@ in
 
       label = [
         {
+          monitor = [ "eDP-1" ];
           text = ''cmd[update:1000] date +"%a %b %d"'';
           font_size = 80;
           color = rgb colors.base05;
@@ -270,6 +272,7 @@ in
           position = "0, 200";
         }
         {
+          monitor = [ "eDP-1" ];
           text = ''cmd[update:1000] date +"%H:%M"'';
           font_size = 175;
           color = rgb colors.base05;

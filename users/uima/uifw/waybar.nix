@@ -323,7 +323,7 @@
         }
 
         window#waybar, tooltip {
-          background: alpha(@base00, ${builtins.toString opacity.desktop});
+          background: alpha(@base00, ${builtins.toString opacity.terminal});
           color: @base05;
           border-radius: 0;
         }

@@ -20,6 +20,11 @@ writeShellApplication {
 
       # shellcheck disable=SC2044
       for file in $(find "$apps_dir" -name '*.desktop'); do
+        # Skip the app that no display
+        if grep '^NoDisplay=true' "$file" >/dev/null; then
+          continue
+        fi
+
         name="$(sed -n 's/^Name=\(.*\)/\1/p;/^\[Desktop Action.*/q' "$file")"
 
         case "$name" in

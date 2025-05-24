@@ -65,6 +65,11 @@ in
       group."col.border_active" = lib.mkForce (rgb colors.base05);
       group.groupbar."col.active" = lib.mkForce (rgb colors.base05);
 
+      ecosystem = {
+        no_update_news = true;
+        no_donation_nag = true;
+      };
+
       exec = [
         "hyprctl setcursor HYPRCURSOR_SIZE 22"
       ];

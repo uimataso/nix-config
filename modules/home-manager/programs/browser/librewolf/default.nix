@@ -93,23 +93,30 @@ in
 
             "https://proton.me"
             "https://simplelogin.io"
+            "https://porkbun.com"
 
             "https://accounts.google.com"
-            "https://www.google.com"
-            "https://www.youtube.com"
+            "https://google.com"
+            "https://youtube.com"
 
-            "https://tailscale.com"
-            "https://porkbun.com"
             "https://github.com"
+            "https://tailscale.com"
             "https://mynixos.com"
-            "https://chatgpt.com"
+
             "https://leetcode.com"
             "https://codeforces.com"
+            "https://reddit.com"
+            "https://printables.com"
+
             "https://monkeytype.com"
             "https://typ.ing"
-            "https://www.reddit.com"
-            "https://www.printables.com"
             "https://shurufa.app"
+
+            "https://aws.amazon.com"
+            "https://chatgpt.com"
+            "https://figma.com"
+            "https://cloudflare.com"
+            "https://www.notion.so"
           ];
         };
 
@@ -157,6 +164,7 @@ in
           ublock-origin
           darkreader
           vimium
+          sidebery
 
           skip-redirect
           istilldontcareaboutcookies
@@ -176,8 +184,13 @@ in
             color = "blue";
             icon = "circle";
           };
-          work = {
+          google = {
             id = 2;
+            color = "yellow";
+            icon = "fence";
+          };
+          araizen = {
+            id = 3;
             color = "orange";
             icon = "briefcase";
           };
@@ -186,7 +199,8 @@ in
         userChrome = lib.strings.concatLines [
           userCssColor
           (builtins.readFile ./chrome/userChrome.css)
-          (builtins.readFile ./chrome/onebar.css)
+          # (builtins.readFile ./chrome/onebar.css)
+          (builtins.readFile ./chrome/sidebery.css)
         ];
 
         userContent = lib.strings.concatLines [

@@ -28,6 +28,10 @@ panel {
   background-color: var(--base00-trans) !important;
 }
 
+#nav-bar {
+  background-color: var(--base00-trans) !important;
+}
+
 /* Disable close button */
 .titlebar-button.titlebar-close {
   display: none;

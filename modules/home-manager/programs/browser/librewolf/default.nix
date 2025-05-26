@@ -131,7 +131,7 @@ in
       profiles.${profileName} = {
         search = {
           force = true;
-          default = "Searx";
+          default = "s";
 
           engines =
             let

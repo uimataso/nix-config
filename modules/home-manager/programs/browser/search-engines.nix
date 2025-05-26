@@ -50,6 +50,10 @@
     url = "https://doc.rust-lang.org/std/iter/?search={}";
     name = "Rust Std";
   };
+  gh = {
+    url = "https://github.com/search?q={}";
+    name = "GitHub";
+  };
 
   # Misc
   w = {
@@ -62,10 +66,26 @@
   };
   gm = {
     url = "https://www.google.com/maps?q={}";
-    name = "Google maps";
+    name = "Google Maps";
   };
   gt = {
     url = "https://translate.google.com/?sl=auto&text={}&op=translate";
     name = "Google Translate";
+  };
+  gi = {
+    url = "https://www.google.com/search?tbm=isch&q={}";
+    name = "Google Image";
+  };
+  cb = {
+    url = "https://dictionary.cambridge.org/spellcheck/english/?q={}";
+    name = "Cambridge Dictionary";
+  };
+  cbc = {
+    url = "https://dictionary.cambridge.org/spellcheck/english-chinese-traditional/?q={}";
+    name = "Cambridge Dictionary - En to Ch";
+  };
+  rd = {
+    url = "https://www.reddit.com/search/?q={}";
+    name = "Reddit";
   };
 }

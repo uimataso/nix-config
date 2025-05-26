@@ -35,7 +35,6 @@ in
           "<c-u>" = "scrollPageUp";
           "<c-d>" = "scrollPageDown";
           "<c-b>" = "scrollPageUp";
-          "<c-f>" = "scrollPageDown";
           "<PageUp>" = "scrollPageUp";
           "<PageDown>" = "scrollPageDown";
 

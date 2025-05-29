@@ -127,6 +127,7 @@ in
             set -as terminal-overrides ',*:Setulc=\E[58::2::::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'
           }
 
+          set -g history-limit 10000
           set -g mode-keys vi
           set -g status-keys emacs
           set -g set-clipboard external

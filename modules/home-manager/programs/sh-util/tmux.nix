@@ -141,6 +141,10 @@ in
           # TODO: control flow: if has lazygit
           bind g new-window -S -n "lazygit" -c "#{pane_current_path}" "lazygit"
 
+          # disable mouse scroll on statusbar
+          unbind -T root WheelUpStatus
+          unbind -T root WheelDownStatus
+
           # hjkl to switch
           bind -r h previous-window
           bind -r j select-pane -t :.+

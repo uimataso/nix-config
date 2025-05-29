@@ -34,7 +34,6 @@
   };
 
   programs = {
-    htop.enable = true;
     btop.enable = true;
     ripgrep.enable = true;
     fd.enable = true;
@@ -142,6 +141,7 @@
       };
 
       sh-util = {
+        htop.enable = true;
         fzf.enable = true;
         fff.enable = true;
         eza.enable = true;

@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -14,9 +13,16 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      lazydocker
-    ];
+    programs.lazydocker = {
+      enable = true;
+      settings = {
+        gui = {
+          showBottomLine = false;
+          expandFocusedSidePanel = true;
+          containerStatusHealthStyle = "icon";
+        };
+      };
+    };
 
     home.shellAliases = {
       lzd = "lazydocker";

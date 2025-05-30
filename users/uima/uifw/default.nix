@@ -166,10 +166,10 @@
         protonmail.enable = true;
         thunderbird.enable = true;
 
-        # prusaSlicer.enable = true;
-        # kicad.enable = true;
-        # freecad.enable = true;
-        # openscad.enable = true;
+        prusaSlicer.enable = true;
+        kicad.enable = true;
+        freecad.enable = true;
+        openscad.enable = true;
       };
     };
   };

@@ -66,7 +66,8 @@ in
 
           result-spacing = 15;
 
-          fuzzy-match = true;
+          hide-cursor = true;
+          matching-algorithm = "fuzzy";
           num-results = 10;
         };
     };

@@ -140,6 +140,7 @@ in
 
           "SUPER, space, layoutmsg, swapwithmaster"
           "SUPER, f, togglefloating"
+          "SUPER SHIFT, f, fullscreen, 1"
 
           "SUPER, comma, focusmonitor, -1"
           "SUPER, period, focusmonitor, +1"

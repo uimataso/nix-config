@@ -77,6 +77,9 @@ in
           # Readline
           bind 'set completion-ignore-case on'  # Completion case-insensitive
           bind 'set completion-map-case on'     # Treat hyphen and underscores as equivalent
+          # Disable Esc key as keyseq prefix
+          bind 'set  keyseq-timeout 1'
+          bind '"\e": ""'
 
           # Prompt
           prompt(){

@@ -41,6 +41,12 @@
     bat.enable = true;
   };
 
+  # services.mpd.enable = true;
+  # programs.rmpc = {
+  #   enable = true;
+  #   config = "";
+  # };
+
   programs.ssh = {
     extraConfig = ''
       IdentityFile ~/.ssh/id_ed25519.uima
@@ -107,7 +113,9 @@
     programs = {
       terminal = {
         alacritty.enable = true;
-        alacritty.defaultTerminal = true;
+        # alacritty.defaultTerminal = true;
+        foot.enable = true;
+        foot.defaultTerminal = true;
       };
 
       editor = {

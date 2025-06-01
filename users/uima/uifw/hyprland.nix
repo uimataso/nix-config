@@ -10,19 +10,19 @@ let
   noteScratchpad = scratchpad {
     inherit pkgs;
     name = "note";
-    spawnCmd = ''"$TERMINAL" --class scratchpad-note --working-directory ~/notes/ -e $EDITOR index.md'';
+    spawnCmd = ''"$TERMINAL" --app-id scratchpad-note --working-directory ~/notes/ -e $EDITOR index.md'';
     className = "scratchpad-note";
   };
   tempScratchpad = scratchpad {
     inherit pkgs;
     name = "temp";
-    spawnCmd = ''"$TERMINAL" --class scratchpad-temp -e $EDITOR /tmp/scratchpad'';
+    spawnCmd = ''"$TERMINAL" --app-id scratchpad-temp -e $EDITOR /tmp/scratchpad'';
     className = "scratchpad-temp";
   };
   termScratchpad = scratchpad {
     inherit pkgs;
     name = "term";
-    spawnCmd = ''"$TERMINAL" --class scratchpad-term'';
+    spawnCmd = ''"$TERMINAL" --app-id scratchpad-term'';
     className = "scratchpad-term";
   };
 

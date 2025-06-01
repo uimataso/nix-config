@@ -69,7 +69,7 @@ writeShellApplication {
 
       *.[1-8]) man "$file" | col -b ;;
 
-      *.png|*.jpg|*.jpeg|*.webp|*.gif) ${pkgs.chafa}/bin/chafa --animate=off "$file" ;;
+      *.png|*.jpg|*.jpeg|*.webp|*.gif) ${pkgs.chafa}/bin/chafa --animate=off --view-size=x"$(( LINES - 2 ))" "$file" ;;
 
       # *.pdf) ;;
 

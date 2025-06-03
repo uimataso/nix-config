@@ -132,11 +132,6 @@
       homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
-        uicom = nixosConfig {
-          modules = [ ./hosts/uicom ];
-          system = "x86_64-linux";
-        };
-
         uifw = nixosConfig {
           modules = [ ./hosts/uifw ];
           system = "x86_64-linux";

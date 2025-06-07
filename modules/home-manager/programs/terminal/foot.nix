@@ -33,7 +33,6 @@ in
       enable = true;
       settings = with config.lib.stylix.colors; {
         main = {
-          term = "xterm-256color";
           pad = "5x3";
         };
         cursor = {

@@ -113,7 +113,6 @@ in
           set -g default-terminal 'tmux-256color'
 
           # true colors
-          set -as terminal-overrides ",alacritty*:Tc"
           set -as terminal-overrides ",xterm-256color:Tc"
 
           # color on underline and undercurl

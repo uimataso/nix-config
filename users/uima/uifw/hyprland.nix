@@ -35,8 +35,9 @@ in
     brightnessctl
     playerctl
 
-    scripts.power-menu
-    scripts.app-launcher
+    dmenu-scripts.power-menu
+    dmenu-scripts.app-launcher
+
     scripts.screenshot
     scripts.vl
 

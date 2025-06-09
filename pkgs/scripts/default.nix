@@ -33,8 +33,6 @@ in
 
     # Desktop
     fmenu = callPackage ./fmenu.nix { };
-    power-menu = callPackage ./power-menu.nix { };
-    app-launcher = callPackage ./app-launcher.nix { };
     screenshot = callPackage ./screenshot.nix { };
   };
 }

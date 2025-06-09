@@ -32,7 +32,9 @@ writeShellApplication {
             --preview-window '70%,border-left' \
             --ansi \
             --height 100 \
+            --reverse \
             --info inline \
+            --no-separator \
             --color prompt:245 \
             --cycle \
             --bind left:"execute(touch $_fff_up_dir_temp)+abort",right:accept \

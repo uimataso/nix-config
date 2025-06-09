@@ -40,7 +40,7 @@ let
           rm "$tmp"
         }
 
-        selected=$(sessions_list | fzf --bind=enter:replace-query+print-query --ansi || true)
+        selected=$(sessions_list | fzf --height 100% --bind=enter:replace-query+print-query --ansi || true)
 
         [ -z "$selected" ] && exit
 

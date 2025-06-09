@@ -32,6 +32,7 @@ in
 
     home.shellAliases = {
       ef = "fzf | xargs -r $EDITOR";
+      cf = ''cd "$(fd --type directory | fzf)"'';
     };
 
     programs.nushell = {

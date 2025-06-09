@@ -139,8 +139,9 @@ in
           "SUPER, l, layoutmsg, mfact +0.05"
 
           "SUPER, space, layoutmsg, swapwithmaster"
-          "SUPER, f, togglefloating"
-          "SUPER SHIFT, f, fullscreen, 1"
+          "SUPER, a, togglefloating"
+          "SUPER SHIFT, a, fullscreen, 1"
+          "SUPER CTRL, a, fullscreen, 0"
 
           "SUPER, comma, focusmonitor, -1"
           "SUPER, period, focusmonitor, +1"
@@ -154,8 +155,8 @@ in
           "SUPER SHIFT, n, exec, ${noteScratchpad}/bin/open-note"
           "SUPER, t, exec, ${termScratchpad}/bin/open-ws-term"
           "SUPER SHIFT, t, exec, ${termScratchpad}/bin/open-term"
-          "SUPER, s, exec, ${tempScratchpad}/bin/open-ws-temp"
-          "SUPER SHIFT, s, exec, ${tempScratchpad}/bin/open-temp"
+          "SUPER, p, exec, ${tempScratchpad}/bin/open-ws-temp"
+          "SUPER SHIFT, p, exec, ${tempScratchpad}/bin/open-temp"
 
           ",        Print, exec, screenshot full"
           "Shift,   Print, exec, screenshot cur"
@@ -185,6 +186,15 @@ in
           ++ (bindWin "7" "7")
           ++ (bindWin "8" "8")
           ++ (bindWin "9" "9")
+          ++ (bindWin "x" "1")
+          ++ (bindWin "c" "2")
+          ++ (bindWin "v" "3")
+          ++ (bindWin "s" "4")
+          ++ (bindWin "d" "5")
+          ++ (bindWin "f" "6")
+          ++ (bindWin "w" "7")
+          ++ (bindWin "e" "8")
+          ++ (bindWin "r" "9")
         );
 
       monitor =

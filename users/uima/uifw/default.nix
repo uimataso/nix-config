@@ -27,6 +27,12 @@
     scripts.pdf-decrypt
     scripts.mkbigfile
     scripts.fetch-title
+
+    dust
+    xh
+    gitui
+    presenterm
+    mermaid-cli
   ];
 
   home.sessionVariables = {

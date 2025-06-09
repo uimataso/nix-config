@@ -34,6 +34,7 @@
     presenterm
     mermaid-cli
     bc
+    hyperfine
   ];
 
   home.sessionVariables = {

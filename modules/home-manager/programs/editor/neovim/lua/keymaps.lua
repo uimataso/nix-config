@@ -66,10 +66,6 @@ vim.keymap.set('v', '<Leader>x', ':lua<CR>')
 -- Quick shell command
 vim.keymap.set('n', '!', ':terminal ')
 
--- Soft warping
-vim.keymap.set('n', 'j', 'gj')
-vim.keymap.set('n', 'k', 'gk')
-
 -- Buffer movement
 vim.keymap.set('n', '<BS>', '<C-^>')
 vim.keymap.set('n', '<Tab>', '<cmd>bn<cr>')

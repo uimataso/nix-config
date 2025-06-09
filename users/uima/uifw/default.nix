@@ -33,6 +33,7 @@
     gitui
     presenterm
     mermaid-cli
+    bc
   ];
 
   home.sessionVariables = {

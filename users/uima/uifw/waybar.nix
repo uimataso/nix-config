@@ -242,8 +242,8 @@
               "class<librewolf>" = " ";
               "class<google-chrome>" = " ";
               "class<brave-browser>" = " 󰩃";
-              "title<.*youtube.*>" = " ";
-              "title<.*github.*>" = " ";
+              # "title<.*youtube.*>" = " ";
+              # "title<.*github.*>" = " ";
 
               "class<foot>" = " ";
               "class<Alacritty>" = " ";

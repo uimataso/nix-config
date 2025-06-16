@@ -34,7 +34,7 @@ in
       no = "nh os switch ${cfg.flakeDir}";
       nu = "git -C ${cfg.flakeDir} pull && nh os switch ${cfg.flakeDir}";
       nt = "nh os test ${cfg.flakeDir}";
-      nr = "nix repl --expr 'builtins.getFlake \"${cfg.flakeDir}\"'";
+      nre = "nix repl --expr 'builtins.getFlake \"${cfg.flakeDir}\"'";
       nd = "nix develop path:$(pwd)";
 
       it = "${pkgs.scripts.nix-template-tool}/bin/nix-template-tool";

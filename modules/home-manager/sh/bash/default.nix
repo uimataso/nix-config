@@ -121,6 +121,14 @@ in
           ng() {
             cd ''$(dirname ''$(readlink ''$(which ''$1)))
           }
+          # nix run nixpkgs#...
+          nr() {
+            nix run nixpkgs#$@
+          }
+          # nix shell nixpkgs#...
+          ns() {
+            nix shell nixpkgs#$@
+          }
         '';
 
       profileExtra = mkIf (cfg.execOnTty1 != null) ''

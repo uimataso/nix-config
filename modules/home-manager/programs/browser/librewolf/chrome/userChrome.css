@@ -18,6 +18,7 @@
 
 menupopup,
 panel {
+  --panel-color: var(--base05) !important;
   --panel-background: var(--base00-trans) !important;
   --panel-border-color: var(--base01) !important;
   --arrowpanel-background: var(--base00-trans) !important;

@@ -29,6 +29,10 @@ in
       executable = "${config.xdg.stateHome}/nix/profile/bin/foot";
     };
 
+    home.shellAliases = {
+      ssh = "env TERM=xterm-256color ssh";
+    };
+
     programs.foot = {
       enable = true;
       settings = with config.lib.stylix.colors; {

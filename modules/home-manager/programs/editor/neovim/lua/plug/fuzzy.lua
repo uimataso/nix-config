@@ -4,13 +4,14 @@ return {
 
     keys = {
       -- stylua: ignore start
-      { '=', function() Snacks.picker.smart() end, desc = 'Smart Find Files' },
+      { '=', function() Snacks.picker.files() end, desc = 'Find Files' },
       { 'z=', function() Snacks.picker.spelling() end, desc = 'Spell suggest' },
 
       { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
       { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
       { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
       { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
+      { "<leader>fl", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
 
       { "<Leader>fs", function() Snacks.picker.grep() end, desc = "Grep" },
       { "<leader>fw", mode = { "n", "x" }, function()

@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-stable,
   ...
 }:
 {
@@ -8,6 +9,9 @@
 
   programs.waybar = with config.lib.stylix.colors.withHashtag; {
     enable = true;
+    # FIXME: wait for 0.13.1 to fix tray issue
+    package = pkgs-stable.waybar;
+
     systemd = {
       enable = true;
       target = "river-session.target";

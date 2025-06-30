@@ -201,6 +201,7 @@ in
           (builtins.readFile ./chrome/userChrome.css)
           # (builtins.readFile ./chrome/onebar.css)
           (builtins.readFile ./chrome/sidebery.css)
+          (builtins.readFile ./chrome/navbar_below_content.css)
         ];
 
         userContent = lib.strings.concatLines [

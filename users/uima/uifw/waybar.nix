@@ -285,6 +285,7 @@
         mainBar = modules // {
           height = 18;
           spacing = 16;
+          position = "bottom";
 
           modules-left = [
             "network#bandwidth"

@@ -104,7 +104,7 @@ in
       decoration = {
         rounding = 5;
         dim_inactive = true;
-        dim_strength = 0.2;
+        dim_strength = 0.15;
         shadow = {
           enabled = false;
         };

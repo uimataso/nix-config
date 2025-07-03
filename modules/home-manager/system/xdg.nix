@@ -29,6 +29,13 @@ in
     xdg.configFile = {
       # wget
       "wgetrc".text = "hsts-file = ${config.xdg.cacheHome}/wget-hsts";
+      # npm
+      "npmrc".text = ''
+        prefix=$${XDG_DATA_HOME}/npm
+        cache=$${XDG_CACHE_HOME}/npm
+        init-module=$${XDG_CONFIG_HOME}/npm/config/npm-init.js
+        logs-dir=$${XDG_STATE_HOME}/npm/logs
+      '';
     };
 
     home.sessionVariables = {
@@ -41,6 +48,9 @@ in
 
       # wget
       WGETRC = "${config.xdg.configHome}/wgetrc";
+
+      # npm
+      NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
 
       # parallel
       PARALLEL_HOME = "${config.xdg.configHome}/parallel";

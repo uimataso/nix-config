@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -30,8 +31,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    # TODO: notify when auto upgrade
-    # (https://www.reddit.com/r/NixOS/comments/15yh0qo/systemautoupgrade_with_email_notifications/)
     system.autoUpgrade = {
       enable = true;
       dates = "*-*-* 00/2:00:00"; # Every two hours
@@ -45,5 +44,40 @@ in
       randomizedDelaySec = "30min";
       options = "--delete-older-than 30d";
     };
+
+    systemd.services.nixos-upgrade = {
+      preStart = ''
+        DISPLAY=:0 \
+        DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
+          ${pkgs.libnotify}/bin/notify-send 'Nixos Upgrade' 'Start upgrading system...'
+      '';
+      onSuccess = [ "notify-success@nixos-upgrade.service" ];
+      onFailure = [ "notify-failure@nixos-upgrade.service" ];
+    };
+
+    systemd.services."notify-success@" = {
+      enable = true;
+      description = "Success notification for %i";
+      scriptArgs = ''"%i" "Hostname: %H" "Machine ID: %m" "Boot ID: %b"'';
+      script = ''
+        unit="$1"
+        DISPLAY=:0 \
+        DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
+          ${pkgs.libnotify}/bin/notify-send "Service '$unit' executed successfully"
+      '';
+    };
+
+    systemd.services."notify-failure@" = {
+      enable = true;
+      description = "Failure notification for %i";
+      scriptArgs = ''"%i" "Hostname: %H" "Machine ID: %m" "Boot ID: %b"'';
+      script = ''
+        unit="$1"
+        DISPLAY=:0 \
+        DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
+          ${pkgs.libnotify}/bin/notify-send "Service '$unit' failed"
+      '';
+    };
+
   };
 }

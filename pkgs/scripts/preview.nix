@@ -7,6 +7,19 @@ writeShellApplication {
     ls_cmd="''${PREVIEW_LS_CMD:-ls -A --group-directories-first --color=always}"
     ls_l_cmd="''${PREVIEW_LS_L_CMD:-ls -l --color=always}"
 
+    should_i_show_this() {
+      perm="$(stat -c '%a' "$1")"
+      # owner="$(echo "$perm" | cut -c1)"
+      # group="$(echo "$perm" | cut -c2)"
+      other="$(echo "$perm" | cut -c3)"
+
+      if [ $((other & 4)) -ne 0 ]; then
+        return 0
+      else
+        return 1
+      fi
+    }
+
     dir_info() { #{{{
       normal=$(tput sgr0)
       green=$(tput setaf 2 bold)
@@ -32,10 +45,18 @@ writeShellApplication {
       printf '\n'
     } #}}}
     view_dir(){ #{{{
-      $ls_cmd "$1"
+      if should_i_show_this "$1"; then
+        $ls_cmd "$1"
+      else
+        echo "This directory's permission is somewhat strict, so we are not showing the content for you."
+      fi
     } #}}}
     view_text(){ #{{{
-      ${pkgs.bat}/bin/bat -n --style=plain --pager=never --color=always "$1"
+      if should_i_show_this "$1"; then
+        ${pkgs.bat}/bin/bat -n --style=plain --pager=never --color=always "$1"
+      else
+        echo "This file's permission is somewhat strict, so we are not showing the content for you."
+      fi
     } #}}}
 
     if [ -z "''${1+x}" ]; then

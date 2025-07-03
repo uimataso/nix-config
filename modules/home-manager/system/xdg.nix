@@ -44,6 +44,11 @@ in
 
       # parallel
       PARALLEL_HOME = "${config.xdg.configHome}/parallel";
+
+      # python
+      PYTHON_HISTORY = "${config.xdg.stateHome}/python_history";
+      PYTHONPYCACHEPREFIX = "${config.xdg.cacheHome}/python";
+      PYTHONUSERBASE = "${config.xdg.dataHome}/python";
     };
   };
 }

@@ -28,7 +28,7 @@ writeShellApplication {
       # shellcheck disable=SC2016
       selected="$($ls_cmd "$PWD" |
         fzf --prompt "$pwd/" \
-            --preview 'preview $PWD/{}' \
+            --preview 'preview "$PWD"/{}' \
             --preview-window '70%,border-left' \
             --ansi \
             --height 100 \

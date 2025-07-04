@@ -2,7 +2,7 @@
 name = "{{CODENAME}}"
 version = "0.1.0"
 license = "MIT"
-edition = "2021"
+edition = "2024"
 
 [lints.clippy]
 pedantic = { level = "warn", priority = -1 }

@@ -24,6 +24,7 @@ in
 
     home.packages = with pkgs; [
       terraform
+      terraform-local
 
       tflint
     ];
@@ -43,6 +44,7 @@ in
 
     home.shellAliases = {
       tf = "terraform";
+      tfl = "tflocal";
     };
   };
 }

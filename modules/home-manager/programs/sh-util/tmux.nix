@@ -20,11 +20,13 @@ let
       ];
       text = ''
         sessions_list() {
-          # Get tmux sessions that sort by created time
-          ( tmux list-sessions 2>/dev/null || true ) | sort -t' ' -k3 | cut -d: -f1
+          current_session="$([ -n "''${TMUX+x}" ] && tmux display-message -p -F'#{client_session}' 2>/dev/null)"
+
+          # Get tmux sessions that sort by last attached time
+          ( tmux list-sessions -F'#{session_name}:#{session_last_attached}' 2>/dev/null || true ) | sort -r -t':' -k2 | cut -d: -f1 | grep -v "^$current_session$"
 
           # Get tmux sessions
-          tmp="$(mktemp)"
+          tmp="$(mktemp -t tmux-select-sessions.XXXXXXXX)"
           ( tmux list-sessions -F '#{session_name}' 2>/dev/null || true ) | sort > "$tmp"
 
           # Get tmuxinator project that are not created

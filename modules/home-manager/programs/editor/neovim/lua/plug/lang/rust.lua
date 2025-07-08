@@ -44,13 +44,13 @@ return {
           default_settings = {
             -- rust-analyzer language server configuration
             ['rust-analyzer'] = {
-              checkOnSave = {
-                allFeatures = true,
+              cargo = {
+                -- TODO: config features in runtime
+                features = 'all',
+              },
+              check = {
                 command = 'clippy',
                 extraArgs = { '--no-deps' },
-              },
-              cargo = {
-                features = 'all',
               },
             },
           },

@@ -87,6 +87,7 @@ in
       t = "tmux";
       ta = "tmux attach-session || tmux new-session -s default";
       ts = "${tmux-select-sessions}/bin/tmux-select-sessions";
+      tn = ''name="$(tmux list-sessions -F'#{session_name}:#{session_last_attached}' | sort -r -t':' -k2 | cut -d: -f1 | fzf)"; test -n "$name" && tmux new -t $name'';
       td = "tmuxinator start default";
     };
 

@@ -44,6 +44,7 @@ in
         ll = "log";
         b = "branch";
         ta = "tag";
+        rb = "rebase";
 
         d = "diff";
         a = "add";

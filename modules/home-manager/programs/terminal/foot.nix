@@ -39,8 +39,8 @@ in
         main = {
           pad = "5x3";
         };
-        cursor = {
-          color = "${base00}  ${base05}";
+        colors = {
+          cursor = "${base00}  ${base05}";
         };
       };
     };

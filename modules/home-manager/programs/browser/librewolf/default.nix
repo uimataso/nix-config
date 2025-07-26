@@ -175,6 +175,7 @@ in
 
           new-tab-override # set new tab to custom url and focus to page instead of address bar
           furiganaize # add Furigana (振り仮名) on Japanese kanji.
+          yomitan
         ];
 
         containersForce = true;

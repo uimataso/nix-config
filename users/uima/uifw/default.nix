@@ -176,6 +176,7 @@
       };
 
       misc = {
+        anki.enable = true;
         bitwarden.enable = true;
         nixcord.enable = true;
         zathura.enable = true;

@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./anki.nix
     ./bitwarden.nix
     ./calibre.nix
     ./discord.nix

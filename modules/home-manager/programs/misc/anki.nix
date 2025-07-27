@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -32,6 +33,10 @@ in
       };
 
       theme = config.stylix.polarity;
+
+      addons = [
+        pkgs.ankiAddons.anki-connect
+      ];
 
       answerKeys = [
         {

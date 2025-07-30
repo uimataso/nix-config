@@ -95,8 +95,8 @@ return {
     command = 'FzfLua',
 
     keys = {
-      { 'gra', '<cmd>FzfLua lsp_code_actions<cr>' },
-      { '<Leader>a', '<cmd>FzfLua lsp_code_actions<cr>' },
+      { 'gra', '<cmd>FzfLua lsp_code_actions silent=true<cr>' },
+      { '<Leader>a', '<cmd>FzfLua lsp_code_actions silent=true<cr>' },
       { '<C-x><C-p>', mode = 'i', '<cmd>FzfLua complete_path<cr>' },
       { '<C-x><C-f>', mode = 'i', '<cmd>FzfLua complete_file<cr>' },
       { '<C-x><C-l>', mode = 'i', '<cmd>FzfLua complete_line<cr>' },

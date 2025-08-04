@@ -4,6 +4,7 @@ M.plugins = {
   ['blink.cmp'] = 'blink-cmp',
   ['diffview.nvim'] = 'diffview',
   ['eyeliner.nvim'] = 'eyeliner',
+  ['fff.nvim'] = 'fff',
   ['flash.nvim'] = 'flash',
   ['fzf-lua'] = 'fzf-lua',
   ['gitsigns.nvim'] = 'gitsigns',

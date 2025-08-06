@@ -35,6 +35,7 @@
     mermaid-cli
     bc
     hyperfine
+    nsxiv
   ];
 
   home.sessionVariables = {

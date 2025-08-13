@@ -36,6 +36,8 @@
     bc
     hyperfine
     nsxiv
+
+    ngrok
   ];
 
   home.sessionVariables = {

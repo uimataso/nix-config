@@ -28,6 +28,11 @@
   networking.hostName = "uifw";
   time.timeZone = "Asia/Taipei";
 
+  services.avahi = {
+    enable = true;
+    nssmdns = true; # Allow .local hostnames to resolve
+  };
+
   boot.loader.grub = {
     enable = true;
     efiSupport = true;

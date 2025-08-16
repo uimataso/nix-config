@@ -8,7 +8,39 @@ edition = "2024"
 pedantic = { level = "warn", priority = -1 }
 nursery = { level = "warn", priority = -1 }
 
-missing_panics_doc = "allow"
 missing_errors_doc = "allow"
-must_use_candidate = "allow"
-redundant_closure_for_method_call = "allow"
+missing_panics_doc = "allow"
+
+# Adding `const` may overpromise the function's capabilities, so we allow skipping it.
+missing_const_for_fn = "allow"
+# If we need to replace the inlined format with a method call, we have to
+# refactor the line, which is annoying, so we allow uninlined format arguments.
+uninlined_format_args = "allow"
+# In most cases, `|x| x.try_into()` is more readable than using the fully
+# qualified `super::long::Type::try_from`.
+redundant_closure_for_method_calls = "allow"
+# `if-let-else` is much more readable then `Option::map_or_else` in most cases.
+option_if_let_else = "allow"
+# Logging calls often contribute significantly to complexity scores, which can
+# be misleading, so we ignored cognitive complexity.
+cognitive_complexity = "allow"
+
+# Naming related
+module_name_repetitions = "allow"
+struct_field_names = "allow"
+enum_variant_names = "allow"
+similar_names = "allow"
+unreadable_literal = "allow"
+
+[dependencies]
+anyhow = "1.0"
+thiserror = "2.0"
+
+tokio = { version = "1", features = ["full"] }
+axum = "0.8"
+
+tracing = "0.1"
+tracing-subscriber = { version = "0.3.19", features = ["env-filter", "json"] }
+
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"

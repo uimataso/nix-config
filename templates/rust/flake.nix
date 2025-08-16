@@ -10,10 +10,10 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       rust-overlay,
       flake-utils,
-      ...
     }:
     flake-utils.lib.eachDefaultSystem (
       system:
@@ -24,21 +24,32 @@
         };
       in
       {
-        devShells.default =
-          with pkgs;
-          mkShell {
-            buildInputs = [
-              (rust-bin.fromRustupToolchainFile ./rust-toolchain.toml)
+        devShells.default = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            (rust-bin.fromRustupToolchainFile ./rust-toolchain.toml)
 
-              openssl
-              pkg-config
-            ];
+            openssl
+            pkg-config
+          ];
 
-            shellHook = ''
-              export OPENSSL_DEV=${openssl.dev};
-              export PKG_CONFIG_PATH="${openssl.dev}/lib/pkgconfig";
-            '';
+          shellHook = ''
+            export OPENSSL_DEV=${pkgs.openssl.dev};
+            export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig";
+          '';
+        };
+
+        packages.default = pkgs.rustPlatform.buildRustPackage {
+          pname = "{{CODENAME}}";
+          version = "0";
+          src = ./.;
+          cargoLock = {
+            lockFile = ./Cargo.lock;
           };
+        };
+
+        apps.default = flake-utils.lib.mkApp {
+          drv = self.packages.${system}.default;
+        };
       }
     );
 }

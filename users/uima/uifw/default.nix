@@ -15,9 +15,12 @@
   home.packages = with pkgs; [
     lm_sensors
     ffmpeg
-    mpv
     qmk
 
+    nsxiv
+    mpv
+
+    gpt4all
     argocd
 
     scripts.clip
@@ -35,7 +38,6 @@
     mermaid-cli
     bc
     hyperfine
-    nsxiv
   ];
 
   home.sessionVariables = {

@@ -3,8 +3,8 @@
     path = ./rust;
     description = "Basic Rust Project";
   };
-  python = {
-    path = ./python;
-    description = "Basic Python Project";
+  python-venv = {
+    path = ./python-venv;
+    description = "Basic Python Project via venv";
   };
 }

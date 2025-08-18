@@ -57,15 +57,6 @@ vim.diagnostic.config({
 
 local au = require('utils').au
 local ag = require('utils').ag
-ag('uima/LspKeymap', function(g)
-  au({ 'LspAttach' }, {
-    group = g,
-    callback = function()
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'vim.lsp.buf.definition()' })
-      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'vim.lsp.buf.declaration()' })
-    end,
-  })
-end)
 
 ag('uima/LspFold', function(g)
   au({ 'LspAttach' }, {

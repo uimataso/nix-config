@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 
 # How to install:
 #
@@ -30,7 +30,22 @@
 
   services.avahi = {
     enable = true;
-    nssmdns = true; # Allow .local hostnames to resolve
+    nssmdns4 = true; # Allow .local hostnames to resolve
+  };
+
+  services = {
+    ollama = {
+      enable = true;
+      loadModels = [
+        "deepseek-r1:1.5b"
+      ];
+    };
+    open-webui = {
+      enable = true;
+      environment = {
+        WEBUI_AUTH = "False";
+      };
+    };
   };
 
   boot.loader.grub = {
@@ -61,7 +76,11 @@
         luksBtrfs.device = "/dev/nvme0n1";
         users = [ "uima" ];
 
-        directories = [ "/var/lib/fprint" ];
+        directories = [
+          "/var/lib/fprint"
+          "/var/lib/private/ollama"
+          "/var/lib/private/open-webui"
+        ];
       };
     };
 

@@ -20,7 +20,6 @@
     nsxiv
     mpv
 
-    gpt4all
     argocd
 
     scripts.clip

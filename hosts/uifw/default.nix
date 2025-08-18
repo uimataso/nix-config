@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ inputs, ... }:
 
 # How to install:
 #
@@ -36,9 +36,6 @@
   services = {
     ollama = {
       enable = true;
-      loadModels = [
-        "deepseek-r1:1.5b"
-      ];
     };
     open-webui = {
       enable = true;

@@ -24,6 +24,18 @@
         };
       in
       {
+        # https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/rust.section.md#cargo-features-cargo-features
+        packages.default = pkgs.rustPlatform.buildRustPackage {
+          pname = "{{CODENAME}}";
+          version = "0.1.0";
+          src = ./.;
+          cargoLock.lockFile = ./Cargo.lock;
+        };
+
+        apps.default = flake-utils.lib.mkApp {
+          drv = self.packages.${system}.default;
+        };
+
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             (rust-bin.fromRustupToolchainFile ./rust-toolchain.toml)
@@ -36,19 +48,6 @@
             export OPENSSL_DEV=${pkgs.openssl.dev};
             export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig";
           '';
-        };
-
-        packages.default = pkgs.rustPlatform.buildRustPackage {
-          pname = "{{CODENAME}}";
-          version = "0";
-          src = ./.;
-          cargoLock = {
-            lockFile = ./Cargo.lock;
-          };
-        };
-
-        apps.default = flake-utils.lib.mkApp {
-          drv = self.packages.${system}.default;
         };
       }
     );

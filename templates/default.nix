@@ -1,10 +1,12 @@
+# https://github.com/MordragT/nix-templates
+
 {
   rust = {
     path = ./rust;
     description = "Basic Rust Project";
   };
-  python-venv = {
-    path = ./python-venv;
-    description = "Basic Python Project via venv";
+  python = {
+    path = ./python;
+    description = "Basic Python Project";
   };
 }

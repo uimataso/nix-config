@@ -3,17 +3,19 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+    naersk.url = "github:nix-community/naersk";
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs =
     {
       self,
       nixpkgs,
-      rust-overlay,
       flake-utils,
+      naersk,
+      rust-overlay,
     }:
     flake-utils.lib.eachDefaultSystem (
       system:
@@ -22,22 +24,18 @@
         pkgs = import nixpkgs {
           inherit system overlays;
         };
+        naersk' = pkgs.callPackage naersk { };
       in
       {
-        # https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/rust.section.md#cargo-features-cargo-features
-        packages.default = pkgs.rustPlatform.buildRustPackage {
-          pname = "{{CODENAME}}";
-          version = "0.1.0";
+        defaultPackage = naersk'.buildPackage {
           src = ./.;
-          cargoLock.lockFile = ./Cargo.lock;
-        };
 
-        apps.default = flake-utils.lib.mkApp {
-          drv = self.packages.${system}.default;
+          nativeBuildInputs = with pkgs; [ pkg-config ];
+          buildInputs = with pkgs; [ openssl ];
         };
 
         devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
+          nativeBuildInputs = with pkgs; [
             (rust-bin.fromRustupToolchainFile ./rust-toolchain.toml)
 
             openssl

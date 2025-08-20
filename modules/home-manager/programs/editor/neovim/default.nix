@@ -60,6 +60,9 @@ in
         nil
         nixd
         nixfmt-rfc-style
+        # HTML, css, etc
+        superhtml
+        vscode-langservers-extracted
 
         # Yaml
         yaml-language-server

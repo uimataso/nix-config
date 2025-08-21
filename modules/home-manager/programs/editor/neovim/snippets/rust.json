@@ -1,16 +1,77 @@
 {
-  "foo": {
-    "prefix": "foo",
+  "t": {
+    "prefix": "t",
+    "body": "todo!()"
+  },
+  "tm": {
+    "prefix": "tm",
     "body": [
-      "local ${1:foo} = ${2:bar}",
-      "return ${3:baz}"
+      "#[cfg(test)]",
+      "mod tests {",
+      "\tuse super::*;",
+      "",
+      "\t#[test]",
+      "\tfn basic_test() {",
+      "\t\t${1:assert_eq!(1 + 1, 2);}",
+      "\t}",
+      "}"
     ]
   },
-  "boo": {
-    "prefix": "boo",
+  "tf": {
+    "prefix": "tf",
     "body": [
-      "local ${1:foo} = ${2:bar}",
-      "return ${3:baz}"
+      "#[test]",
+      "fn basic_test() {",
+      "\t${1:assert_eq!(1 + 1, 2);}",
+      "}"
     ]
+  },
+  "cf": {
+    "prefix": "cf",
+    "body": "#[cfg(${1:feature = \"xxx\"})]"
+  },
+  "cff": {
+    "prefix": "cff",
+    "body": "#[cfg(feature = \"${1:xxx}\")]"
+  },
+  "fo": {
+    "prefix": "fo",
+    "body": "format!(\"{:?}\", ${1});"
+  },
+  "de": {
+    "prefix": "de",
+    "body": "#[derive(Debug, Clone)]"
+  },
+  "ds": {
+    "prefix": "ds",
+    "body": "#[derive(Debug, Clone, Serialize, Deserialize)]"
+  },
+  "are": {
+    "prefix": "are",
+    "body": "anyhow::Result<${1:()}>"
+  },
+  "cx": {
+    "prefix": "cx",
+    "body": "context(\"${1}\")"
+  },
+  "wcx": {
+    "prefix": "wcx",
+    "body": "with_context(|| format!(\"${1}\", ${2}))"
+  },
+  "td": {
+    "prefix": "td",
+    "body": "tracing::debug!(${1});"
+  },
+  "ti": {
+    "prefix": "ti",
+    "body": "tracing::info!(${1});"
+  },
+  "tw": {
+    "prefix": "tw",
+    "body": "tracing::warn!(${1});"
+  },
+  "te": {
+    "prefix": "te",
+    "body": "tracing::error!(${1});"
   }
 }

@@ -64,6 +64,8 @@ in
         superhtml
         vscode-langservers-extracted
 
+        # Json
+        fixjson
         # Yaml
         yaml-language-server
         yamlfmt

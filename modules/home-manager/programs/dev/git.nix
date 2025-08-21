@@ -26,14 +26,13 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.shellAliases =
-      {
-        g = "git";
-        gsl = "git status; echo; git log --oneline --pretty=logoneline -5; echo";
-      }
-      // lib.attrsets.mapAttrs' (
-        key: val: lib.attrsets.nameValuePair "g${key}" "git ${val}"
-      ) config.programs.git.aliases;
+    home.shellAliases = {
+      g = "git";
+      gsl = "git status; echo; git log --oneline --pretty=logoneline -5; echo";
+    }
+    // lib.attrsets.mapAttrs' (
+      key: val: lib.attrsets.nameValuePair "g${key}" "git ${val}"
+    ) config.programs.git.aliases;
 
     programs.git = {
       enable = true;

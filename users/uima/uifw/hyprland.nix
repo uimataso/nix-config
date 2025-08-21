@@ -130,73 +130,72 @@ in
         "SUPER ALT, mouse:272, resizewindow"
       ];
 
-      bind =
-        [
-          "SUPER, q, killactive"
+      bind = [
+        "SUPER, q, killactive"
 
-          "SUPER, j, layoutmsg, cyclenext"
-          "SUPER, k, layoutmsg, cycleprev"
-          "SUPER, h, layoutmsg, mfact -0.05"
-          "SUPER, l, layoutmsg, mfact +0.05"
+        "SUPER, j, layoutmsg, cyclenext"
+        "SUPER, k, layoutmsg, cycleprev"
+        "SUPER, h, layoutmsg, mfact -0.05"
+        "SUPER, l, layoutmsg, mfact +0.05"
 
-          "SUPER, space, layoutmsg, swapwithmaster"
-          "SUPER, a, togglefloating"
-          "SUPER SHIFT, a, fullscreen, 1"
-          "SUPER CTRL, a, fullscreen, 0"
+        "SUPER, space, layoutmsg, swapwithmaster"
+        "SUPER, a, togglefloating"
+        "SUPER SHIFT, a, fullscreen, 1"
+        "SUPER CTRL, a, fullscreen, 0"
 
-          "SUPER, comma, focusmonitor, -1"
-          "SUPER, period, focusmonitor, +1"
+        "SUPER, comma, focusmonitor, -1"
+        "SUPER, period, focusmonitor, +1"
 
-          "SUPER, escape, exec, power-menu"
-          "SUPER, return, exec, ${config.uimaConfig.programs.terminal.executable}"
-          "SUPER, o, exec, app-launcher"
-          "SUPER, b, exec, ${config.uimaConfig.programs.browser.executable}"
+        "SUPER, escape, exec, power-menu"
+        "SUPER, return, exec, ${config.uimaConfig.programs.terminal.executable}"
+        "SUPER, o, exec, app-launcher"
+        "SUPER, b, exec, ${config.uimaConfig.programs.browser.executable}"
 
-          "SUPER, n, exec, ${noteScratchpad}/bin/open-ws-note"
-          "SUPER SHIFT, n, exec, ${noteScratchpad}/bin/open-note"
-          "SUPER, t, exec, ${termScratchpad}/bin/open-ws-term"
-          "SUPER SHIFT, t, exec, ${termScratchpad}/bin/open-term"
-          "SUPER, p, exec, ${tempScratchpad}/bin/open-ws-temp"
-          "SUPER SHIFT, p, exec, ${tempScratchpad}/bin/open-temp"
+        "SUPER, n, exec, ${noteScratchpad}/bin/open-ws-note"
+        "SUPER SHIFT, n, exec, ${noteScratchpad}/bin/open-note"
+        "SUPER, t, exec, ${termScratchpad}/bin/open-ws-term"
+        "SUPER SHIFT, t, exec, ${termScratchpad}/bin/open-term"
+        "SUPER, p, exec, ${tempScratchpad}/bin/open-ws-temp"
+        "SUPER SHIFT, p, exec, ${tempScratchpad}/bin/open-temp"
 
-          ",        Print, exec, screenshot full"
-          "Shift,   Print, exec, screenshot cur"
-          "Control, Print, exec, screenshot sel"
-          ", XF86AudioMute,        exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-"
-          ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+"
-          ", XF86AudioPrev, exec, playerctl previous"
-          ", XF86AudioPlay, exec, playerctl play-pause"
-          ", XF86AudioNext, exec, playerctl next"
-          ", XF86MonBrightnessDown, exec, brightnessctl set 3%-"
-          ", XF86MonBrightnessUp,   exec, brightnessctl set +3%"
-        ]
-        ++ (
-          let
-            bindWin = key: ws: [
-              "SUPER, ${key}, focusworkspaceoncurrentmonitor, ${ws}"
-              "SUPER SHIFT, ${key}, movetoworkspace, ${ws}"
-            ];
-          in
-          (bindWin "1" "1")
-          ++ (bindWin "2" "2")
-          ++ (bindWin "3" "3")
-          ++ (bindWin "4" "4")
-          ++ (bindWin "5" "5")
-          ++ (bindWin "6" "6")
-          ++ (bindWin "7" "7")
-          ++ (bindWin "8" "8")
-          ++ (bindWin "9" "9")
-          ++ (bindWin "x" "1")
-          ++ (bindWin "c" "2")
-          ++ (bindWin "v" "3")
-          ++ (bindWin "s" "4")
-          ++ (bindWin "d" "5")
-          ++ (bindWin "f" "6")
-          ++ (bindWin "w" "7")
-          ++ (bindWin "e" "8")
-          ++ (bindWin "r" "9")
-        );
+        ",        Print, exec, screenshot full"
+        "Shift,   Print, exec, screenshot cur"
+        "Control, Print, exec, screenshot sel"
+        ", XF86AudioMute,        exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+"
+        ", XF86AudioPrev, exec, playerctl previous"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86MonBrightnessDown, exec, brightnessctl set 3%-"
+        ", XF86MonBrightnessUp,   exec, brightnessctl set +3%"
+      ]
+      ++ (
+        let
+          bindWin = key: ws: [
+            "SUPER, ${key}, focusworkspaceoncurrentmonitor, ${ws}"
+            "SUPER SHIFT, ${key}, movetoworkspace, ${ws}"
+          ];
+        in
+        (bindWin "1" "1")
+        ++ (bindWin "2" "2")
+        ++ (bindWin "3" "3")
+        ++ (bindWin "4" "4")
+        ++ (bindWin "5" "5")
+        ++ (bindWin "6" "6")
+        ++ (bindWin "7" "7")
+        ++ (bindWin "8" "8")
+        ++ (bindWin "9" "9")
+        ++ (bindWin "x" "1")
+        ++ (bindWin "c" "2")
+        ++ (bindWin "v" "3")
+        ++ (bindWin "s" "4")
+        ++ (bindWin "d" "5")
+        ++ (bindWin "f" "6")
+        ++ (bindWin "w" "7")
+        ++ (bindWin "e" "8")
+        ++ (bindWin "r" "9")
+      );
 
       monitor =
         let

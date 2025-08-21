@@ -37,13 +37,12 @@ in
       directories = lib.lists.remove null (builtins.attrValues cfg.xdgDirs);
     };
 
-    xdg.userDirs =
-      {
-        enable = true;
-        createDirectories = true;
-      }
-      // lib.attrsets.mapAttrs (
-        key: val: if builtins.isNull val then val else "${config.home.homeDirectory}/${val}"
-      ) cfg.xdgDirs;
+    xdg.userDirs = {
+      enable = true;
+      createDirectories = true;
+    }
+    // lib.attrsets.mapAttrs (
+      key: val: if builtins.isNull val then val else "${config.home.homeDirectory}/${val}"
+    ) cfg.xdgDirs;
   };
 }

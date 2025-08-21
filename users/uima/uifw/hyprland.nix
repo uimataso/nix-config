@@ -16,7 +16,7 @@ let
   tempScratchpad = scratchpad {
     inherit pkgs;
     name = "temp";
-    spawnCmd = ''"$TERMINAL" --app-id scratchpad-temp -e $EDITOR /tmp/scratchpad'';
+    spawnCmd = ''"$TERMINAL" --app-id scratchpad-temp -e $EDITOR /tmp/scratchpad.md'';
     className = "scratchpad-temp";
   };
   termScratchpad = scratchpad {

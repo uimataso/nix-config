@@ -12,6 +12,10 @@ vim.keymap.set('i', '<Home>', '<C-o>^')
 vim.keymap.set('i', '<End>', '<C-o>$')
 vim.keymap.set('i', '<PageDown>', '<Nop>')
 vim.keymap.set('i', '<PageUp>', '<Nop>')
+vim.keymap.set('i', '<C-l>', '<C-o><cmd>nohlsearch<cr>')
+
+-- Snippet
+vim.keymap.set('i', '<C-x><C-s>', '<C-]>')
 
 -- Hover
 local function show_documentation()
@@ -55,9 +59,6 @@ vim.keymap.set('n', '<leader>df', function()
   vim.diagnostic.config({ virtual_lines = diagnostic_virtual_lines })
 end, { desc = 'vim.diagnostic.config({ virtual_lines = .. })' })
 
--- Snippet
-vim.keymap.set('i', '<C-x><C-s>', '<C-]>')
-
 -- Execute lua
 vim.keymap.set('n', '<Leader><Leader>x', '<cmd>source %<CR>')
 vim.keymap.set('n', '<Leader>xx', ':.lua<CR>')
@@ -88,12 +89,13 @@ vim.keymap.set('', '<Leader><Leader>y', "gg\"+yG''")
 
 -- Paste without whitespace
 vim.keymap.set('n', 'yp', function()
-  local yanked_text = vim.fn.getreg('0')
+  local yanked_text = vim.fn.getreg(vim.v.register)
   yanked_text = yanked_text:gsub('\n$', '')
   yanked_text = yanked_text:gsub('^%s+', '')
   vim.fn.setreg('p', yanked_text)
   return '"pp'
 end, { expr = true })
+vim.keymap.set('n', '<Leader>yp', '"+yp', { remap = true })
 
 -- Comment and duplicate lines
 vim.keymap.set('n', 'ycc', 'mzyyPgcc`z', { remap = true })

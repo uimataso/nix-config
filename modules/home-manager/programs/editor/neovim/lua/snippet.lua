@@ -7,7 +7,7 @@
 ---@param prefix string trigger string for snippet
 ---@param body string snippet text that will be expanded
 ---@param opts? vim.keymap.set.Opts
-function vim.snippet.add(prefix, body, opts)
+function add_snippet(prefix, body, opts)
   vim.keymap.set('ia', prefix, function()
     -- If abbrev is expanded with keys like "(", ")", "<cr>", "<space>",
     -- don't expand the snippet. Only accept "<c-]>" as trigger key.
@@ -89,7 +89,7 @@ ag('uima/Snippet', function(g)
       local ft = vim.bo.filetype
       local snips = vim.tbl_deep_extend('force', snippets[ft] or {}, snippets['all'] or {})
       for prefix, body in pairs(snips) do
-        vim.snippet.add(prefix, body, { buffer = 0 })
+        add_snippet(prefix, body, { buffer = 0 })
       end
     end,
   })

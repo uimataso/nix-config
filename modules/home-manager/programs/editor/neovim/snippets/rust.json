@@ -38,6 +38,10 @@
     "prefix": "fo",
     "body": "format!(\"{:?}\", ${1});"
   },
+  "pr": {
+    "prefix": "pr",
+    "body": "println!(\"{:?}\", ${1});"
+  },
   "de": {
     "prefix": "de",
     "body": "#[derive(Debug, Clone)]"

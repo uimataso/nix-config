@@ -29,7 +29,7 @@ return {
     },
 
     formatters_by_ft = {
-      html = { 'prettier' },
+      html = { 'superhtml' },
       javascript = { 'prettier' },
       markdown = { 'prettier', 'injected' },
       json = { 'fixjson' },

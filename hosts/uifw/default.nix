@@ -33,18 +33,6 @@
     nssmdns4 = true; # Allow .local hostnames to resolve
   };
 
-  services = {
-    ollama = {
-      enable = true;
-    };
-    open-webui = {
-      enable = true;
-      environment = {
-        WEBUI_AUTH = "False";
-      };
-    };
-  };
-
   boot.loader.grub = {
     enable = true;
     efiSupport = true;
@@ -75,8 +63,6 @@
 
         directories = [
           "/var/lib/fprint"
-          "/var/lib/private/ollama"
-          "/var/lib/private/open-webui"
         ];
       };
     };

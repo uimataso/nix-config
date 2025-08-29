@@ -246,17 +246,18 @@
               # "title<.*youtube.*>" = " ";
               # "title<.*github.*>" = " ";
 
-              "class<foot>" = " ";
               "class<Alacritty>" = " ";
+              "class<foot>" = " ";
 
-              "class<thunderbird>" = " ";
-              "class<Proton Mail>" = " 󰇮";
-              "class<vesktop>" = " ";
+              "class<anki>" = " 󰭸";
               "class<discord>" = " ";
               "class<Notion>" = " ";
-              "class<Slack>" = " ";
-              "class<Postman>" = " ";
               "class<org.pwmt.zathura>" = " 󰈙";
+              "class<Postman>" = " ";
+              "class<Proton Mail>" = " 󰇮";
+              "class<Slack>" = " ";
+              "class<thunderbird>" = " ";
+              "class<vesktop>" = " ";
               # prusa slicer " "
               # freecad " "
               # openscad " "

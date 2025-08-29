@@ -22,6 +22,7 @@ in
       d = "docker";
       dp = "docker ps";
       dc = "docker compose";
+      dcb = "docker compose build";
       dcu = "docker compose up -d";
       dcd = "docker compose down";
       dcl = "docker compose logs";

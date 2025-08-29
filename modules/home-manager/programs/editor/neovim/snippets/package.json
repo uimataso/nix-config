@@ -7,6 +7,10 @@
         "path": "./all.json"
       },
       {
+        "language": "markdown",
+        "path": "./markdown.json"
+      },
+      {
         "language": "rust",
         "path": "./rust.json"
       },

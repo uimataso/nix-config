@@ -133,6 +133,9 @@ M.get = function(c)
 
     -- ['@spell'] = {},
     -- ['@nospell'] = {},
+
+    -- TODO: make injected rust code in document less highlighted
+    ['@lsp.mod.intraDocLink.rust'] = { fg = c.base04 },
   }
 end
 

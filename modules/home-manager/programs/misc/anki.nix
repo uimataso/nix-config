@@ -22,15 +22,23 @@ in
       ];
     };
 
+    home.packages = [
+      pkgs.anki
+      # installed add-on:
+      # - 2055492159: Anki-Connect
+      # - 1788670778: CrowdAnki (for https://github.com/anki-geo/ultimate-geography)
+    ];
+
     stylix.targets.anki.enable = false;
 
     programs.anki = {
-      enable = true;
+      enable = false;
       language = "en_US";
 
       sync = {
         autoSync = true;
         autoSyncMediaMinutes = 15;
+        # FIXME: https://github.com/nix-community/home-manager/issues/7562
         usernameFile = "${config.home.homeDirectory}/${dataDir}/nix/username";
         passwordFile = "${config.home.homeDirectory}/${dataDir}/nix/password";
         # TODO: sops secret?

@@ -25,6 +25,12 @@ let
     spawnCmd = ''"$TERMINAL" --app-id scratchpad-term'';
     className = "scratchpad-term";
   };
+  ankiScratchpad = scratchpad {
+    inherit pkgs;
+    name = "anki";
+    spawnCmd = "anki";
+    className = "anki";
+  };
 
   inherit (config.lib.stylix) colors;
   rgb = color: "rgb(${color})";
@@ -44,6 +50,7 @@ in
     noteScratchpad
     termScratchpad
     tempScratchpad
+    ankiScratchpad
   ];
 
   home.shellAliases = {
@@ -116,11 +123,11 @@ in
           "easeOutCubic,   0.33, 1, 0.68, 1"
         ];
         animation = [
-          "windows,    1, 3, easeOutCubic, slide"
+          "windows,    1, 1, easeOutCubic, slide"
           "layers,     1, 1, easeOutCubic, fade"
-          "fade,       1, 3, easeOutCubic"
-          "border,     1, 3, easeOutCubic"
-          "workspaces, 1, 3, easeOutCubic, slide"
+          "fade,       1, 2, easeOutCubic"
+          "border,     1, 2, easeOutCubic"
+          "workspaces, 1, 2, easeOutCubic, slide"
         ];
       };
 
@@ -151,12 +158,14 @@ in
         "SUPER, o, exec, app-launcher"
         "SUPER, b, exec, ${config.uimaConfig.programs.browser.executable}"
 
-        "SUPER, n, exec, ${noteScratchpad}/bin/open-ws-note"
-        "SUPER SHIFT, n, exec, ${noteScratchpad}/bin/open-note"
-        "SUPER, t, exec, ${termScratchpad}/bin/open-ws-term"
-        "SUPER SHIFT, t, exec, ${termScratchpad}/bin/open-term"
-        "SUPER, p, exec, ${tempScratchpad}/bin/open-ws-temp"
-        "SUPER SHIFT, p, exec, ${tempScratchpad}/bin/open-temp"
+        "SUPER, n,        exec, ${noteScratchpad}/bin/open-ws-note"
+        "SUPER SHIFT, n,  exec, ${noteScratchpad}/bin/open-note"
+        "SUPER, t,        exec, ${termScratchpad}/bin/open-ws-term"
+        "SUPER SHIFT, t,  exec, ${termScratchpad}/bin/open-term"
+        "SUPER, p,        exec, ${tempScratchpad}/bin/open-ws-temp"
+        "SUPER SHIFT, p,  exec, ${tempScratchpad}/bin/open-temp"
+        "SUPER, m,        exec, ${ankiScratchpad}/bin/open-ws-anki"
+        "SUPER SHIFT, m,  exec, ${ankiScratchpad}/bin/open-anki"
 
         ",        Print, exec, screenshot full"
         "Shift,   Print, exec, screenshot cur"
@@ -174,7 +183,13 @@ in
         let
           bindWin = key: ws: [
             "SUPER, ${key}, focusworkspaceoncurrentmonitor, ${ws}"
-            "SUPER SHIFT, ${key}, movetoworkspace, ${ws}"
+            # move window to a workspace and bring that workspace into the focused monitor.
+            # note: with just `movetoworkspace`, if the window is moved to a
+            # workspace on a different monitor, the focus also switches to that
+            # monitor, I don't want that, I want my focus to stay on the
+            # current monitor and current window.
+            "SUPER SHIFT, ${key}, movetoworkspacesilent, ${ws}"
+            "SUPER SHIFT, ${key}, focusworkspaceoncurrentmonitor, ${ws}"
           ];
         in
         (bindWin "1" "1")

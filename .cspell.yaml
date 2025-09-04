@@ -1,6 +1,14 @@
 version: '0.2'
 words:
   - elif
-  - shellcheck
   - hyprctl
+  - hyprland
+  - nixos
+  - nixpkgs
+  - nvim
   - pkgs
+  - shellcheck
+  - uima
+
+ignorePaths:
+  - "**/rime/yuhao-schema/**"

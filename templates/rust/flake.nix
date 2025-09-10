@@ -36,7 +36,13 @@
 
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [
-            (rust-bin.fromRustupToolchainFile ./rust-toolchain.toml)
+            (rust-bin.stable.latest.default.override {
+              extensions = [
+                "rust-analyzer"
+                "rust-std"
+                "rust-src"
+              ];
+            })
 
             openssl
             pkg-config

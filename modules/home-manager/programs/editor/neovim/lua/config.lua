@@ -27,6 +27,7 @@ vim.opt.smartcase = true
 vim.opt.pumheight = 10
 vim.opt.wildignorecase = true
 vim.opt.wildignore = { '*.git/*', '*.tags', 'tags', '*.o', '*.class', '*models/*.pt' }
+-- vim.opt.path:append('**')
 -- vim.opt.suffixesadd = '.md'
 
 -- Spell --

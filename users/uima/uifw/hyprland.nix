@@ -118,16 +118,16 @@ in
       };
 
       animations = {
-        first_launch_animation = false;
         bezier = [
           "easeOutCubic,   0.33, 1, 0.68, 1"
         ];
         animation = [
-          "windows,    1, 1, easeOutCubic, slide"
-          "layers,     1, 1, easeOutCubic, fade"
-          "fade,       1, 2, easeOutCubic"
-          "border,     1, 2, easeOutCubic"
-          "workspaces, 1, 2, easeOutCubic, slide"
+          "windows,      1, 1, easeOutCubic, slide"
+          "layers,       1, 1, easeOutCubic, fade"
+          "fade,         1, 2, easeOutCubic"
+          "border,       1, 2, easeOutCubic"
+          "workspaces,   1, 2, easeOutCubic, slide"
+          "monitorAdded, 0"
         ];
       };
 

@@ -27,6 +27,7 @@ in
       # installed add-on:
       # - 2055492159: Anki-Connect
       # - 1788670778: CrowdAnki (for https://github.com/anki-geo/ultimate-geography)
+      # - 2123044452: Adjust Sound Volume
     ];
 
     stylix.targets.anki.enable = false;

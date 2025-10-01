@@ -13,7 +13,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.river = {
+    programs.river-classic = {
       enable = true;
       extraPackages = [ ];
     };

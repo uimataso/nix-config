@@ -38,6 +38,7 @@
     bc
     hyperfine
     gimp
+    drawing
   ];
 
   home.sessionVariables = {

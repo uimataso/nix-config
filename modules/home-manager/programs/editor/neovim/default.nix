@@ -100,7 +100,7 @@ in
       # PAGER = lib.mkDefault "nvim +Man!";
       # MANPAGER = "nvim -c Man! -c 'set signcolumn=no'";
       MANPAGER = "nvim -c Man!";
-      MANWIDTH = 1000000;
+      MANWIDTH = 80;
     };
 
     # Git pager

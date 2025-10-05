@@ -235,7 +235,7 @@ in
   # - toggle idle service
   # - fprint from screen off (will unlock but screen didn't light)
   services.hypridle = {
-    enable = true;
+    enable = false;
 
     settings = {
       general = {

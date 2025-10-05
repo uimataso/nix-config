@@ -49,7 +49,7 @@
   services.restic.backups = {
     localbackup = {
       initialize = true;
-      repository = "/tmp/restic-backup";
+      repository = "/persist/test/restic-backup";
       paths = [
         "/persist/home/uima/dl"
       ];
@@ -70,7 +70,6 @@
         "--keep-monthly 12"
         "--keep-yearly 75"
       ];
-      inhibitsSleep = true;
     };
   };
 

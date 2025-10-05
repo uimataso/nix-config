@@ -52,6 +52,11 @@
       paths = [
         "/persist"
       ];
+      exclude = [
+        "/persist/home/*/src/*/target"
+        "/persist/home/*/src/*/.direnv"
+        "/persist/var/log"
+      ];
       environmentFile = "/persist/secrets/restic-remote-env";
       passwordFile = "/persist/secrets/restic-password";
       timerConfig = {

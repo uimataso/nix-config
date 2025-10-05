@@ -77,6 +77,7 @@
         "--keep-monthly 12"
         "--keep-yearly unlimited"
       ];
+      inhibitsSleep = true;
     };
   };
 

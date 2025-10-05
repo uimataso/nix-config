@@ -39,6 +39,8 @@
     hyperfine
     gimp
     drawing
+
+    restic
   ];
 
   home.sessionVariables = {

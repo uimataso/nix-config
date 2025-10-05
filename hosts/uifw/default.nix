@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 
 # How to install:
 #
@@ -28,11 +28,6 @@
   networking.hostName = "uifw";
   time.timeZone = "Asia/Taipei";
 
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true; # Allow .local hostnames to resolve
-  };
-
   boot.loader.grub = {
     enable = true;
     efiSupport = true;
@@ -45,6 +40,39 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   hardware.keyboard.qmk.enable = true;
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true; # Allow .local hostnames to resolve
+  };
+
+  services.restic.backups = {
+    localbackup = {
+      initialize = true;
+      repository = "/tmp/restic-backup";
+      paths = [
+        "/persist/home/uima/dl"
+      ];
+      passwordFile = "/persist/secrets/restic-password";
+      timerConfig = {
+        OnCalendar = "*-*-* *:0/5:00"; # every 5 mins
+        Persistent = true;
+      };
+      extraBackupArgs = [
+        "--tag auto"
+      ];
+      pruneOpts = [
+        "--tag auto"
+        "--host=${config.networking.hostName}"
+        "--group-by=host,paths"
+        "--keep-daily 7"
+        "--keep-weekly 5"
+        "--keep-monthly 12"
+        "--keep-yearly 75"
+      ];
+      inhibitsSleep = true;
+    };
+  };
 
   uimaConfig = {
     global.enable = true;

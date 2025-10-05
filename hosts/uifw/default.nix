@@ -47,15 +47,15 @@
   };
 
   services.restic.backups = {
-    localbackup = {
-      initialize = true;
-      repository = "/persist/test/restic-backup";
+    remote = {
+      # repository is in the env file
       paths = [
-        "/persist/home/uima/dl"
+        "/persist"
       ];
+      environmentFile = "/persist/secrets/restic-remote-env";
       passwordFile = "/persist/secrets/restic-password";
       timerConfig = {
-        OnCalendar = "*-*-* *:0/5:00"; # every 5 mins
+        OnCalendar = "hourly";
         Persistent = true;
       };
       extraBackupArgs = [
@@ -65,10 +65,11 @@
         "--tag auto"
         "--host=${config.networking.hostName}"
         "--group-by=host,paths"
+        "--keep-last 10"
         "--keep-daily 7"
         "--keep-weekly 5"
         "--keep-monthly 12"
-        "--keep-yearly 75"
+        "--keep-yearly unlimited"
       ];
     };
   };

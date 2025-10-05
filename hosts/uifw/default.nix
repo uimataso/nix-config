@@ -60,7 +60,8 @@
       environmentFile = "/persist/secrets/restic-remote-env";
       passwordFile = "/persist/secrets/restic-password";
       timerConfig = {
-        OnCalendar = "hourly";
+        OnBootSec = "15min";
+        OnUnitActiveSec = "3hour";
         Persistent = true;
       };
       extraBackupArgs = [

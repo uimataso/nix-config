@@ -73,9 +73,7 @@
         "--group-by=host,paths"
         "--keep-last 10"
         "--keep-daily 7"
-        "--keep-weekly 5"
-        "--keep-monthly 12"
-        "--keep-yearly unlimited"
+        "--keep-weekly 4"
       ];
       inhibitsSleep = true;
     };

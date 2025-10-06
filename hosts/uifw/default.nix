@@ -53,9 +53,9 @@
         "/persist"
       ];
       exclude = [
-        "/persist/home/*/src/*/target"
-        "/persist/home/*/src/*/.direnv"
-        "/persist/var/log"
+        "src/*/target"
+        "src/*/.direnv"
+        "/persist/var"
       ];
       environmentFile = "/persist/secrets/restic-remote-env";
       passwordFile = "/persist/secrets/restic-password";

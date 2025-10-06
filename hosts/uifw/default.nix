@@ -53,8 +53,10 @@
         "/persist"
       ];
       exclude = [
-        "src/*/target"
-        "src/*/.direnv"
+        "/persist/home/uima/src/*/target"
+        "/persist/home/uima/src/*/.direnv"
+
+        "/persist/home/uima/dl"
         "/persist/var"
       ];
       environmentFile = "/persist/secrets/restic-remote-env";

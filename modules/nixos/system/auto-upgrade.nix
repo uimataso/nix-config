@@ -12,6 +12,15 @@ let
     types
     ;
   cfg = config.uimaConfig.system.autoUpgrade;
+
+  notifyScript =
+    username: notifySendArgs:
+    # sh
+    ''
+      ${pkgs.sudo}/bin/sudo -u '${username}' \
+        DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u '${username}')/bus" \
+        ${pkgs.libnotify}/bin/notify-send ${notifySendArgs}
+    '';
 in
 {
   options.uimaConfig.system.autoUpgrade = {
@@ -46,14 +55,7 @@ in
     };
 
     systemd.services.nixos-upgrade = {
-      preStart = ''
-        USER_NAME="uima"
-
-        USER_ID="$(id -u "$USER_NAME")"
-        ${pkgs.sudo}/bin/sudo -u "$USER_NAME" \
-          DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/"$USER_ID"/bus \
-          ${pkgs.libnotify}/bin/notify-send "Nixos Upgrade" "Start upgrading system..."
-      '';
+      preStart = notifyScript "uima" ''"NixOS Upgrade" "Start upgrading system..."'';
       onSuccess = [ "notify-success@nixos-upgrade.service" ];
       onFailure = [ "notify-failure@nixos-upgrade.service" ];
     };
@@ -64,12 +66,7 @@ in
       scriptArgs = ''"%i" "Hostname: %H" "Machine ID: %m" "Boot ID: %b"'';
       script = ''
         UNIT="$1"
-        USER_NAME="uima"
-
-        USER_ID="$(id -u "$USER_NAME")"
-        ${pkgs.sudo}/bin/sudo -u "$USER_NAME" \
-          DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/"$USER_ID"/bus \
-          ${pkgs.libnotify}/bin/notify-send "Service '$UNIT' succeed"
+        ${notifyScript "uima" ''"Service '$UNIT' succeed"''}
       '';
     };
 
@@ -79,12 +76,7 @@ in
       scriptArgs = ''"%i" "Hostname: %H" "Machine ID: %m" "Boot ID: %b"'';
       script = ''
         UNIT="$1"
-        USER_NAME="uima"
-
-        USER_ID="$(id -u "$USER_NAME")"
-        ${pkgs.sudo}/bin/sudo -u "$USER_NAME" \
-          DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/"$USER_ID"/bus \
-          ${pkgs.libnotify}/bin/notify-send "Service '$UNIT' failed"
+        ${notifyScript "uima" ''"Service '$UNIT' failed"''}
       '';
     };
 

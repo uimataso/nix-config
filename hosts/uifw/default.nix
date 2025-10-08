@@ -96,6 +96,7 @@
       };
 
       araizen = {
+        homeManager = true;
         extraGroups = [
           "wheel"
           "networkmanager"

@@ -174,7 +174,6 @@
       unfree = {
         postman.enable = true;
         slack.enable = true;
-        notion.enable = true;
       };
 
       game = {

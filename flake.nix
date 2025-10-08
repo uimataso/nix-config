@@ -136,11 +136,6 @@
           modules = [ ./hosts/uifw ];
           system = "x86_64-linux";
         };
-
-        araizen = nixosConfig {
-          modules = [ ./hosts/araizen ];
-          system = "x86_64-linux";
-        };
       };
 
       overlays = import ./overlays { inherit inputs outputs; };

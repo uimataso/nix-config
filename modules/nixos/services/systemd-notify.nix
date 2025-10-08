@@ -12,6 +12,19 @@ let
     ;
   cfg = config.uimaConfig.services.systemdNotify;
 
+  notifyAllScript =
+    notifySendArgs:
+    # sh
+    ''
+      for bus in /run/user/*/bus; do
+        user_id="$(basename "$(dirname "$bus")")"
+
+        ${pkgs.sudo}/bin/sudo -u "$(id -n -u "$user_id")" \
+          DBUS_SESSION_BUS_ADDRESS="unix:path=$bus" \
+          ${pkgs.libnotify}/bin/notify-send ${notifySendArgs}
+      done
+    '';
+
   notifyScript =
     username: notifySendArgs:
     # sh
@@ -36,8 +49,9 @@ in
               };
 
               username = mkOption {
-                type = types.str;
-                description = "The user who received the notification";
+                type = types.nullOr types.str;
+                default = null;
+                description = "Who to send the notification. Set to `null` to send to all users";
               };
 
               onStart = mkOption {
@@ -68,7 +82,9 @@ in
     systemd.services = lib.concatMapAttrs (
       name: serviceCfg:
       let
-        mkNotify = args: notifyScript serviceCfg.username args;
+        mkNotify =
+          args:
+          if serviceCfg.username == null then notifyAllScript args else notifyScript serviceCfg.username args;
       in
       {
         "${name}" = lib.mkMerge [

@@ -54,31 +54,38 @@ in
       options = "--delete-older-than 30d";
     };
 
-    systemd.services.nixos-upgrade = {
-      preStart = notifyScript "uima" ''"NixOS Upgrade" "Start upgrading system..."'';
-      onSuccess = [ "notify-success@nixos-upgrade.service" ];
-      onFailure = [ "notify-failure@nixos-upgrade.service" ];
+    uimaConfig.services.systemdNotify.services."nixos-upgrade" = {
+      username = "uima";
+      onStart = "--urgency=low 'Starting NixOS Upgrade...'";
+      onSuccess = "--urgency=low 'NixOS Upgrade Success!'";
+      onFailure = "--urgency=normal 'NixOS Upgrade Failed!'";
     };
 
-    systemd.services."notify-success@" = {
-      enable = true;
-      description = "Success notification for %i";
-      scriptArgs = ''"%i" "Hostname: %H" "Machine ID: %m" "Boot ID: %b"'';
-      script = ''
-        UNIT="$1"
-        ${notifyScript "uima" ''"Service '$UNIT' succeed"''}
-      '';
-    };
-
-    systemd.services."notify-failure@" = {
-      enable = true;
-      description = "Failure notification for %i";
-      scriptArgs = ''"%i" "Hostname: %H" "Machine ID: %m" "Boot ID: %b"'';
-      script = ''
-        UNIT="$1"
-        ${notifyScript "uima" ''"Service '$UNIT' failed"''}
-      '';
-    };
+    # systemd.services.nixos-upgrade = {
+    #   preStart = notifyScript "uima" ''"NixOS Upgrade" "Start upgrading system..."'';
+    #   onSuccess = [ "notify-success@nixos-upgrade.service" ];
+    #   onFailure = [ "notify-failure@nixos-upgrade.service" ];
+    # };
+    #
+    # systemd.services."notify-success@" = {
+    #   enable = true;
+    #   description = "Success notification for %i";
+    #   scriptArgs = ''"%i" "Hostname: %H" "Machine ID: %m" "Boot ID: %b"'';
+    #   script = ''
+    #     UNIT="$1"
+    #     ${notifyScript "uima" ''"Service '$UNIT' succeed"''}
+    #   '';
+    # };
+    #
+    # systemd.services."notify-failure@" = {
+    #   enable = true;
+    #   description = "Failure notification for %i";
+    #   scriptArgs = ''"%i" "Hostname: %H" "Machine ID: %m" "Boot ID: %b"'';
+    #   script = ''
+    #     UNIT="$1"
+    #     ${notifyScript "uima" ''"Service '$UNIT' failed"''}
+    #   '';
+    # };
 
   };
 }

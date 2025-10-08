@@ -121,6 +121,14 @@
 
     services = {
       udisks2.enable = true;
+
+      systemdNotify.services."restic-backups-remote" = {
+        username = "uima";
+        onStart = "--urgency=low 'Starting Backup to B2...'";
+        onSuccess = "--urgency=low 'Backup Success!'";
+        onFailure = "--urgency=normal 'Backup Failed!'";
+      };
+
     };
 
     virt = {

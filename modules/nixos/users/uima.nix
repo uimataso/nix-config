@@ -30,6 +30,12 @@ in
       default = true;
       description = "Enable home-manager for this user.";
     };
+
+    extraGroups = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      description = "The user's auxiliary groups if exist.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -40,14 +46,7 @@ in
         home = mkDefault "/home/${username}";
         isNormalUser = true;
         shell = pkgs.bashInteractive;
-
-        extraGroups = ifGroupExist [
-          "wheel"
-          "networkmanager"
-          "docker"
-          "podman"
-          "libvirtd"
-        ];
+        extraGroups = ifGroupExist cfg.extraGroups;
       }
 
       (mkIf imper.enable {

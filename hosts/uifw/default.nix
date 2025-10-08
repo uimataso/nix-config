@@ -84,7 +84,18 @@
   uimaConfig = {
     global.enable = true;
 
-    users.uima.enable = true;
+    users = {
+      uima = {
+        enable = true;
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+          "docker"
+          "podman"
+          "libvirtd"
+        ];
+      };
+    };
 
     system = {
       sudo.enable = true;

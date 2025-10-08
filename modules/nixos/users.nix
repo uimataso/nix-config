@@ -88,5 +88,11 @@ in
         mkHm = name: opt: import "${self}/users/${opt.name}/${config.networking.hostName}";
       in
       lib.attrsets.mapAttrs mkHm users;
+
+    uimaConfig.system.impermanence.users =
+      let
+        users = lib.attrsets.filterAttrs (name: opt: opt.homeManager) enabledUsersCfg;
+      in
+      lib.attrsets.mapAttrsToList (name: opt: opt.name) users;
   };
 }

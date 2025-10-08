@@ -114,7 +114,6 @@
         enable = true;
         luksBtrfs.enable = true;
         luksBtrfs.device = "/dev/nvme0n1";
-        users = [ "uima" ];
 
         directories = [
           "/var/lib/fprint"

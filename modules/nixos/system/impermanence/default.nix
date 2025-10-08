@@ -13,8 +13,17 @@ let
     ;
   cfg = config.uimaConfig.system.impermanence;
 
-  isUser = user: user.group == "users";
-  users = builtins.filter isUser (builtins.attrValues config.users.users);
+  # isUser = user: user.group == "users";
+  # users = builtins.filter isUser (builtins.attrValues config.users.users);
+
+  users =
+    let
+      allUsers = config.uimaConfig.users;
+      imperUsers = lib.attrsets.filterAttrs (name: opt: opt.enable && opt.homeManager) allUsers;
+      usernames = lib.attrsets.mapAttrsToList (name: opt: opt.name) imperUsers;
+    in
+    map (username: config.users.users.${username}) usernames;
+
 in
 {
   options.uimaConfig.system.impermanence = {
@@ -43,7 +52,7 @@ in
 
     users = mkOption {
       type = types.listOf types.str;
-      default = [ ];
+      default = map (user: user.name) users;
       example = [ "uima" ];
       description = "Enable users impermanence.";
     };

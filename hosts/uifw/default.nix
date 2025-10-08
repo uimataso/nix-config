@@ -95,16 +95,15 @@
         ];
       };
 
-      # araizen = {
-      #   homeManager = true;
-      #   extraGroups = [
-      #     "wheel"
-      #     "networkmanager"
-      #     "docker"
-      #     "podman"
-      #     "libvirtd"
-      #   ];
-      # };
+      araizen = {
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+          "docker"
+          "podman"
+          "libvirtd"
+        ];
+      };
     };
 
     system = {

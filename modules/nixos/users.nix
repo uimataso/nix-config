@@ -75,6 +75,7 @@ in
             }
 
             (mkIf imper.enable {
+              # use `mkpasswd` to generate hashed password
               hashedPasswordFile = "${imper.persist_dir}/passwords/${opt.name}";
             })
           ];

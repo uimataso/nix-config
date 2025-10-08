@@ -1,4 +1,5 @@
 {
+  self,
   pkgs,
   ...
 }:
@@ -54,6 +55,15 @@
   #   enable = true;
   #   config = "";
   # };
+
+  stylix =
+    let
+      themePath = "${self}/modules/nixos/theme";
+    in
+    {
+      image = "${themePath}/wallpapers/looking-for.png";
+      base16Scheme = "${themePath}/gruvbox-dark-moded.yaml";
+    };
 
   uimaConfig = {
     global.enable = true;

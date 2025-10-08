@@ -1,4 +1,5 @@
 {
+  self,
   pkgs,
   ...
 }:
@@ -48,11 +49,14 @@
     bat.enable = true;
   };
 
-  # services.mpd.enable = true;
-  # programs.rmpc = {
-  #   enable = true;
-  #   config = "";
-  # };
+  stylix =
+    let
+      themePath = "${self}/modules/nixos/theme";
+    in
+    {
+      image = "${themePath}/wallpapers/rainy_sadness_alone_again.png";
+      base16Scheme = "${themePath}/gruvbox-dark-moded.yaml";
+    };
 
   uimaConfig = {
     global.enable = true;

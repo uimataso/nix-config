@@ -22,12 +22,12 @@ in
   ];
 
   config = mkIf cfg.enable {
-    # TODO: tyr to move `~/.icons` and `~/.themes` to xdg config
+    # TODO: try to move `~/.icons` and `~/.themes` to xdg config
+    # TODO: theme module for home-manager?
 
     stylix = {
       enable = true;
 
-      # TODO: config this for each user
       image = ./wallpapers/looking-for.png;
       base16Scheme = ./gruvbox-dark-moded.yaml;
       polarity = "dark";

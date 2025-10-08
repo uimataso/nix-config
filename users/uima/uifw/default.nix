@@ -20,8 +20,6 @@
     nsxiv
     mpv
 
-    argocd
-
     scripts.clip
     scripts.ux
     scripts.open
@@ -43,10 +41,6 @@
     restic
   ];
 
-  home.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-  };
-
   programs = {
     btop.enable = true;
     ripgrep.enable = true;
@@ -60,20 +54,6 @@
   #   enable = true;
   #   config = "";
   # };
-
-  programs.ssh = {
-    extraConfig = ''
-      IdentityFile ~/.ssh/id_ed25519.uima
-    '';
-
-    matchBlocks = {
-      "araizen.github.com" = {
-        hostname = "github.com";
-        identityFile = [ "~/.ssh/id_ed25519.araizen" ];
-        identitiesOnly = true;
-      };
-    };
-  };
 
   uimaConfig = {
     global.enable = true;
@@ -152,9 +132,6 @@
         gh.enable = true;
         docker.enable = true;
         lazydocker.enable = true;
-        aws-cli.enable = true;
-        k8s.enable = true;
-        terraform.enable = true;
       };
 
       dmenu = {
@@ -169,11 +146,6 @@
         eza.enable = true;
         tmux.enable = true;
         tealdeer.enable = true;
-      };
-
-      unfree = {
-        postman.enable = true;
-        slack.enable = true;
       };
 
       game = {

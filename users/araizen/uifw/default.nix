@@ -40,10 +40,6 @@
     drawing
   ];
 
-  home.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-  };
-
   programs = {
     btop.enable = true;
     ripgrep.enable = true;
@@ -57,12 +53,6 @@
   #   enable = true;
   #   config = "";
   # };
-
-  programs.ssh = {
-    extraConfig = ''
-      IdentityFile ~/.ssh/id_ed25519.araizen
-    '';
-  };
 
   uimaConfig = {
     global.enable = true;

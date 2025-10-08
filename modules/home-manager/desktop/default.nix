@@ -6,6 +6,8 @@ let
     mkOption
     types
     ;
+
+  cfg = config.uimaConfig.desktop;
 in
 {
   imports = [
@@ -24,6 +26,12 @@ in
       ];
       example = "wayland";
       description = "Which protocol";
+    };
+  };
+
+  config = mkIf cfg.enable {
+    home.sessionVariables = mkIf (cfg.type == "wayland") {
+      NIXOS_OZONE_WL = "1";
     };
   };
 }

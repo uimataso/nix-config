@@ -27,6 +27,7 @@ in
     stylix = {
       enable = true;
 
+      # TODO: config this for each user
       image = ./wallpapers/looking-for.png;
       base16Scheme = ./gruvbox-dark-moded.yaml;
       polarity = "dark";

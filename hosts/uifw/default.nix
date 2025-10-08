@@ -53,10 +53,9 @@
         "/persist"
       ];
       exclude = [
-        "/persist/home/uima/src/*/target"
-        "/persist/home/uima/src/*/.direnv"
-
-        "/persist/home/uima/dl"
+        "/persist/home/*/src/*/target"
+        "/persist/home/*/src/*/.direnv"
+        "/persist/home/*/dl"
         "/persist/var"
       ];
       environmentFile = "/persist/secrets/restic-remote-env";
@@ -86,7 +85,7 @@
 
     users = {
       uima = {
-        enable = true;
+        homeManager = true;
         extraGroups = [
           "wheel"
           "networkmanager"
@@ -95,6 +94,17 @@
           "libvirtd"
         ];
       };
+
+      # araizen = {
+      #   homeManager = true;
+      #   extraGroups = [
+      #     "wheel"
+      #     "networkmanager"
+      #     "docker"
+      #     "podman"
+      #     "libvirtd"
+      #   ];
+      # };
     };
 
     system = {

@@ -1,4 +1,0 @@
-{ ... }:
-{
-  imports = [ ./uima.nix ];
-}

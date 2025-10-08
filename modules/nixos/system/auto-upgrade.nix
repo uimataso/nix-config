@@ -55,9 +55,9 @@ in
     };
 
     uimaConfig.services.systemdNotify.services."nixos-upgrade" = {
-      onStart = "--urgency=low 'Starting NixOS Upgrade...'";
-      onSuccess = "--urgency=low 'NixOS Upgrade Success!'";
-      onFailure = "--urgency=normal 'NixOS Upgrade Failed!'";
+      onStart = ''--urgency=low 'Start NisOS Upgrade...' '';
+      onSuccess = ''--urgency=low 'NixOS Upgrade Success!' "Upgrade toke $duration seconds"'';
+      onFailure = ''--urgency=normal 'NixOS Upgrade Failed!' "Upgrade failed at $duration seconds"'';
     };
 
   };

@@ -85,11 +85,19 @@ in
         mkNotify =
           args:
           if serviceCfg.username == null then notifyAllScript args else notifyScript serviceCfg.username args;
+
+        durationTrackerFile = "/tmp/${name}.notify-duration.tmp";
       in
       {
         "${name}" = lib.mkMerge [
           { }
-          (mkIf (serviceCfg.onStart != null) { preStart = mkNotify serviceCfg.onStart; })
+          (mkIf (serviceCfg.onStart != null) {
+            preStart = ''
+              date +%s > ${durationTrackerFile}
+
+              ${mkNotify serviceCfg.onStart}
+            '';
+          })
           (mkIf (serviceCfg.onSuccess != null) { onSuccess = [ "${name}-success-notify.service" ]; })
           (mkIf (serviceCfg.onFailure != null) { onFailure = [ "${name}-failure-notify.service" ]; })
         ];
@@ -97,13 +105,27 @@ in
         "${name}-success-notify" = mkIf (serviceCfg.onSuccess != null) {
           enable = config.systemd.services.${name}.enable;
           description = "Success notification for ${name} service";
-          script = mkNotify serviceCfg.onSuccess;
+          script = # sh
+            ''
+              start_time="$(cat '${durationTrackerFile}')"
+              end_time="$(date +%s)"
+              duration=$((end_time - start_time))
+
+              ${mkNotify serviceCfg.onSuccess}
+            '';
         };
 
         "${name}-failure-notify" = mkIf (serviceCfg.onFailure != null) {
           enable = config.systemd.services.${name}.enable;
           description = "Failure notification for ${name} service";
-          script = mkNotify serviceCfg.onFailure;
+          script = # sh
+            ''
+              start_time="$(cat '${durationTrackerFile}')"
+              end_time="$(date +%s)"
+              duration=$((end_time - start_time))
+
+              ${mkNotify serviceCfg.onFailure}
+            '';
         };
       }
     ) cfg.services;

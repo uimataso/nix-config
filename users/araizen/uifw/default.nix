@@ -49,6 +49,10 @@
     bat.enable = true;
   };
 
+  programs.git.extraConfig = {
+    safe.directory = "/share/nix";
+  };
+
   stylix =
     let
       themePath = "${self}/modules/nixos/theme";
@@ -125,7 +129,11 @@
       dev = {
         ssh.enable = true;
         direnv.enable = true;
-        git.enable = true;
+        git = {
+          enable = true;
+          name = "uima-chen";
+          email = "uima.chen@araizen.com";
+        };
         lazygit.enable = true;
         gh.enable = true;
         docker.enable = true;

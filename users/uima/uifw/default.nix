@@ -72,7 +72,6 @@
       impermanence = {
         enable = true;
         directories = [
-          "nix"
           "notes"
           "src"
 

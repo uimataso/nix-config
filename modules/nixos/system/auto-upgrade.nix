@@ -54,11 +54,15 @@ in
       options = "--delete-older-than 30d";
     };
 
-    uimaConfig.services.systemdNotify.services."nixos-upgrade" = {
-      onStart = ''--urgency=low 'Start NisOS Upgrade...' '';
-      onSuccess = ''--urgency=low 'NixOS Upgrade Success!' "Upgrade toke $duration seconds"'';
-      onFailure = ''--urgency=normal 'NixOS Upgrade Failed!' "Upgrade failed at $duration seconds"'';
-    };
+    uimaConfig.services.systemdNotify.services."nixos-upgrade" =
+      let
+        icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+      in
+      {
+        onStart = ''--icon ${icon} --urgency=low 'Start NisOS Upgrade...' '';
+        onSuccess = ''--icon ${icon} --urgency=low 'NixOS Upgrade Success!' "Upgrade toke $duration seconds"'';
+        onFailure = ''--icon ${icon} --urgency=normal 'NixOS Upgrade Failed!' "Upgrade failed at $duration seconds"'';
+      };
 
   };
 }

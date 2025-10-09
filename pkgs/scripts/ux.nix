@@ -25,6 +25,7 @@ writeShellApplication {
       *.xz
       *.Z
       *.zip
+      *.zst
     EOF
     }
 
@@ -51,6 +52,7 @@ writeShellApplication {
         *.bz2)        ${pkgs.toybox}/bin/bunzip2 "$n"    ;;
         *.lzma)       ${pkgs.xz}/bin/unlzma "$n"         ;;
         *.Z)          ${pkgs.gzip}/bin/uncompress "$n"   ;;
+        *.zst)       ${pkgs.zstd}/bin/unzstd -d "$n"    ;;
 
         *.zip)        ${pkgs.unzip}/bin/unzip "$n"       ;;
         *.rar)        ${pkgs.unrar}/bin/unrar x "$n"     ;;

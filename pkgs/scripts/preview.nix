@@ -10,13 +10,13 @@ writeShellApplication {
     should_i_show_this() {
       perm="$(stat -c '%a' "$1")"
       # owner="$(echo "$perm" | cut -c1)"
-      # group="$(echo "$perm" | cut -c2)"
+      group="$(echo "$perm" | cut -c2)"
       other="$(echo "$perm" | cut -c3)"
 
-      if [ $((other & 4)) -ne 0 ]; then
-        return 0
-      else
+      if [ $((group & 4)) -eq 0 ] && [ $((other & 4)) -eq 0 ]; then
         return 1
+      else
+        return 0
       fi
     }
 

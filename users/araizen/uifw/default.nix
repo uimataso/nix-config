@@ -29,6 +29,7 @@
     scripts.pdf-decrypt
     scripts.mkbigfile
     scripts.fetch-title
+    scripts.notify-send-all
 
     dust
     xh

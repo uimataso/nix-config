@@ -26,6 +26,7 @@ in
     open = callPackage ./open.nix { };
     preview = callPackage ./preview.nix { };
     fetch-title = callPackage ./fetch-title.nix { };
+    notify-send-all = callPackage ./notify-send-all.nix { };
 
     # System
     vl = callPackage ./vl.nix { };

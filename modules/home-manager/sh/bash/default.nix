@@ -85,10 +85,11 @@ in
           prompt(){
             _exit_code=$?
             env="$([ -n "''${DIRENV_FILE//}" ] && printf '\[\e[1;37m\]env|')"
+            user='\[\e[32m\e[1m\]\u\[\e[0m\]'
             host='\[\e[32m\e[1m\]\h\[\e[0m\]'
             path='\[\e[36m\e[1m\]\w\[\e[0m\]'
             prom="$([ $_exit_code -ne 0 ] && printf '\[\e[31m\]')$\[\e[0m\]"
-            PS1="$env$host:$path$prom "
+            PS1="$env$user@$host:$path$prom "
           }
           PROMPT_COMMAND=prompt
           PS2='> '

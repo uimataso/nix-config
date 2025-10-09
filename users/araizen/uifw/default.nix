@@ -54,7 +54,7 @@
       themePath = "${self}/modules/nixos/theme";
     in
     {
-      image = "${themePath}/wallpapers/rainy_sadness_alone_again.png";
+      image = "${themePath}/wallpapers/coding-3.png";
       base16Scheme = "${themePath}/gruvbox-dark-moded.yaml";
     };
 

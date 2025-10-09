@@ -16,7 +16,7 @@ in
       type = types.attrs;
       default = {
         prefix = [ "~/src" ];
-        exact = [ "~/nix" ];
+        exact = [ "/share/nix" ];
       };
     };
   };

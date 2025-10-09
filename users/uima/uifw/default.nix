@@ -150,6 +150,8 @@
       };
 
       sh-util = {
+        nix-helper.flakeDir = "/share/nix";
+
         htop.enable = true;
         fzf.enable = true;
         fff.enable = true;

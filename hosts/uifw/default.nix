@@ -80,6 +80,12 @@
     };
   };
 
+  # make a share dir
+  # $ mkdir /share
+  # $ chmod 2770 /share
+  # $ setfacl -d -m g::rwx /share
+  users.groups."share" = { };
+
   uimaConfig = {
     global.enable = true;
 
@@ -87,6 +93,7 @@
       uima = {
         homeManager = true;
         extraGroups = [
+          "share"
           "wheel"
           "networkmanager"
           "docker"
@@ -98,6 +105,7 @@
       araizen = {
         homeManager = true;
         extraGroups = [
+          "share"
           "wheel"
           "networkmanager"
           "docker"
@@ -117,6 +125,7 @@
         luksBtrfs.device = "/dev/nvme0n1";
 
         directories = [
+          "/share"
           "/var/lib/fprint"
         ];
       };

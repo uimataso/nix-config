@@ -147,10 +147,11 @@
 
       misc = {
         anki.enable = true;
-        bitwarden.enable = true;
         nixcord.enable = true;
         zathura.enable = true;
-        protonmail.enable = true;
+
+        # bitwarden.enable = true;
+        # protonmail.enable = true;
         thunderbird.enable = true;
 
         prusaSlicer.enable = true;

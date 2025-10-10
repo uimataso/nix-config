@@ -8,23 +8,13 @@ let
   inherit (lib)
     mkIf
     mkEnableOption
-    mkOption
-    types
     ;
   cfg = config.uimaConfig.desktop.wayland.swww;
 in
 {
   options.uimaConfig.desktop.wayland.swww = {
     enable = mkEnableOption "swww";
-
-    package = mkOption {
-      type = types.package;
-      default = pkgs.swww;
-      defaultText = lib.literalExpression "pkgs.swww";
-      description = ''
-        Swww package to use. Set to `null` to use the default package.
-      '';
-    };
+    package = lib.mkPackageOption pkgs "swww" { };
   };
 
   config = mkIf cfg.enable {

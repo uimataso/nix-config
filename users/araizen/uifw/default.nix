@@ -15,40 +15,24 @@
 
   home.packages = with pkgs; [
     lm_sensors
-    ffmpeg
 
     nsxiv
     mpv
 
     argocd
 
-    scripts.clip
-    scripts.ux
-    scripts.open
-    scripts.preview
     scripts.pdf-decrypt
-    scripts.mkbigfile
     scripts.fetch-title
     scripts.notify-send-all
 
-    dust
     xh
     gitui
     presenterm
     mermaid-cli
     bc
     hyperfine
-    gimp
     drawing
   ];
-
-  programs = {
-    btop.enable = true;
-    ripgrep.enable = true;
-    fd.enable = true;
-    jq.enable = true;
-    bat.enable = true;
-  };
 
   programs.git.extraConfig = {
     safe.directory = "/share/nix";
@@ -150,14 +134,11 @@
       };
 
       sh-util = {
+        default = true;
         nix-helper.flakeDir = "/share/nix";
 
-        htop.enable = true;
-        fzf.enable = true;
-        fff.enable = true;
         eza.enable = true;
         tmux.enable = true;
-        tealdeer.enable = true;
       };
 
       unfree = {

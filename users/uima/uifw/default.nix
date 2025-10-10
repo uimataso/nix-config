@@ -14,22 +14,16 @@
   home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
-    lm_sensors
-    ffmpeg
     qmk
+    restic
 
     nsxiv
     mpv
 
-    scripts.clip
-    scripts.ux
-    scripts.open
-    scripts.preview
     scripts.pdf-decrypt
     scripts.mkbigfile
     scripts.fetch-title
 
-    dust
     xh
     gitui
     presenterm
@@ -38,17 +32,7 @@
     hyperfine
     gimp
     drawing
-
-    restic
   ];
-
-  programs = {
-    btop.enable = true;
-    ripgrep.enable = true;
-    fd.enable = true;
-    jq.enable = true;
-    bat.enable = true;
-  };
 
   # services.mpd.enable = true;
   # programs.rmpc = {
@@ -149,14 +133,11 @@
       };
 
       sh-util = {
+        default = true;
         nix-helper.flakeDir = "/share/nix";
 
-        htop.enable = true;
-        fzf.enable = true;
-        fff.enable = true;
         eza.enable = true;
         tmux.enable = true;
-        tealdeer.enable = true;
       };
 
       game = {

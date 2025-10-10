@@ -124,6 +124,7 @@
         lazygit.enable = true;
         gh.enable = true;
         docker.enable = true;
+        podman.enable = true;
         lazydocker.enable = true;
       };
 

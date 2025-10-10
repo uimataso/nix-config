@@ -24,7 +24,7 @@ in
 
     virtualisation.docker = {
       enable = true;
-      # rootless.enable = true;
+      rootless.enable = true;
     };
   };
 }

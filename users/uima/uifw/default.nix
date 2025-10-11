@@ -137,6 +137,8 @@
         default = true;
         nix-helper.flakeDir = "/share/nix";
 
+        aerc.enable = true;
+
         eza.enable = true;
         tmux.enable = true;
       };

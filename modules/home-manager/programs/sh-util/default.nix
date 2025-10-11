@@ -10,6 +10,7 @@ let
 in
 {
   imports = [
+    ./aerc.nix
     ./eza.nix
     ./fff.nix
     ./fzf.nix

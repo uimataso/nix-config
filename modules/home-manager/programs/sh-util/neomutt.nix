@@ -13,9 +13,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    # uimaConfig.system.impermanence = {
-    #   directories = [ ".config/aerc" ];
-    # };
+    uimaConfig.system.impermanence = {
+      directories = [ ".config/neomutt" ];
+    };
 
     programs.neomutt = {
       enable = true;

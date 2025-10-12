@@ -138,6 +138,7 @@
         nix-helper.flakeDir = "/share/nix";
 
         aerc.enable = true;
+        neomutt.enable = true;
 
         eza.enable = true;
         tmux.enable = true;

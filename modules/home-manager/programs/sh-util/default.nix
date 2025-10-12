@@ -16,6 +16,7 @@ in
     ./fzf.nix
     ./htop.nix
     ./lsd.nix
+    ./neomutt.nix
     ./nix-helper.nix
     ./tealdeer.nix
     ./tmux.nix

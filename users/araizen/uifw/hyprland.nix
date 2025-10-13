@@ -76,6 +76,10 @@ in
       ];
       exec-once = [
         "hypridle"
+
+        "[workspace 1 silent] $BROWSER"
+        "[workspace 8 silent] thunderbird"
+        "[workspace 9 silent] slack"
       ];
 
       general = {

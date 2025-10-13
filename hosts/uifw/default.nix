@@ -35,6 +35,9 @@
   };
   boot.loader.timeout = 0;
 
+  # for cross compiling aarch64-linux image
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # hardware.framework.laptop13.audioEnhancement.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

@@ -104,10 +104,9 @@ in
 
           #vomnibar,
           #vomnibar input,
-          #vomnibar .vomnibarSearchArea,
+          #vomnibar #vomnibar-search-area,
           #vomnibar ul,
-          #vomnibar li,
-          #vomnibarInput {
+          #vomnibar li {
             color: ${colors.base05} !important;
             background-color: ${colors.base00} !important;
             border: 0px !important;
@@ -116,40 +115,36 @@ in
           #vomnibar {
             padding: 1px !important;
 
-            .vomnibarSearchArea {
+            #vomnibar-search-area {
               padding: 5px !important;
               border-bottom: 2px solid ${colors.base05} !important;
             }
 
-            li.vomnibarSelected {
+            li.selected {
               background-color: ${colors.base01} !important;
             }
 
             li {
               em,
-              .vomnibarTitle,
-              .vomnibarRelevancy {
+              .title,
+              .relevancy {
                 color: ${colors.base05} !important;
               }
 
-              .vomnibarSource,
-              em .vomnibarMatch {
+              .source,
+              em .match {
                 color: ${colors.base04} !important;
               }
 
-              .vomnibarMatch,
-              .vomnibarTitle .vomnibarMatch {
+              .match,
+              .title .match {
                 color: ${colors.base06} !important;
               }
 
-              .vomnibarUrl {
+              .url {
                 color: ${colors.base0D} !important;
               }
             }
-          }
-
-          #vomnibarInput::selection {
-            background-color: ${colors.base01} !important;
           }
         '';
     };

@@ -174,7 +174,7 @@ vim.api.nvim_create_user_command('CopyCodeBlock', function(opts)
 end, { range = true })
 vim.keymap.set(
   '',
-  '<Leader>yc',
+  '<Leader>cy',
   ':CopyCodeBlock<cr>',
   { desc = 'Copy text with markdown codeblock style' }
 )

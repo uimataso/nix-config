@@ -15,7 +15,7 @@ writeShellApplication {
 
     case "$selected" in
       'Lock') loginctl lock-session ;;
-      'Logout') loginctl terminate-session ;;
+      'Logout') loginctl terminate-user "$(whoami)";;
       'Reboot') reboot ;;
       'Shut Down') poweroff ;;
     esac

@@ -93,8 +93,7 @@
 
       # SpecialArgs that share between nixosConfig and homeConfig
       specialArgs = forAllSystems (system: {
-        inherit inputs outputs;
-        self = self;
+        inherit self inputs outputs;
         pkgs-stable = (inputPkgsFor inputs.nixpkgs-stable).${system};
         # pkgs-local = (inputPkgsFor inputs.nixpkgs-local).${system};
       });

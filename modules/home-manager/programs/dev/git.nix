@@ -15,12 +15,10 @@ in
 
     name = mkOption {
       type = types.str;
-      default = "uima";
       description = "Username to use in git.";
     };
     email = mkOption {
       type = types.str;
-      default = "git.m5svm@uimataso.com";
       description = "User email to use in git.";
     };
   };

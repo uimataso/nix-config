@@ -120,7 +120,11 @@
       dev = {
         ssh.enable = true;
         direnv.enable = true;
-        git.enable = true;
+        git = {
+          enable = true;
+          name = "uima";
+          email = "git.m5svm@uimataso.com";
+        };
         lazygit.enable = true;
         gh.enable = true;
         docker.enable = true;

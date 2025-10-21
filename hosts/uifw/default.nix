@@ -57,7 +57,10 @@
       workstation = true;
     };
   };
-  networking.firewall.allowedTCPPorts = [ 3000 ];
+  networking.firewall.allowedTCPPorts = [
+    3000
+    6379
+  ];
 
   services.restic.backups = {
     remote = {

@@ -151,7 +151,7 @@ vim.keymap.set('n', '<Leader>sp', '<cmd>setlocal spell!<CR>')
 
 -- Switch conceal
 vim.keymap.set('n', '<Leader>zc', function()
-  vim.o.conceallevel = vim.o.conceallevel > 0 and 0 or 3
+  vim.o.conceallevel = vim.o.conceallevel > 0 and 0 or 2
 end, { silent = true, desc = 'Toggle conceal' })
 
 -- Treesitter inspect

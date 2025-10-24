@@ -32,6 +32,9 @@
     hyperfine
     gimp
     drawing
+
+    yt-dlp
+    openssl
   ];
 
   # services.mpd.enable = true;

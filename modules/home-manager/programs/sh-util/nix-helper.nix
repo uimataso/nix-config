@@ -46,5 +46,9 @@ in
     };
 
     programs.nh.enable = true;
+
+    home.sessionVariables = {
+      FLAKE_HOME = cfg.flakeDir;
+    };
   };
 }

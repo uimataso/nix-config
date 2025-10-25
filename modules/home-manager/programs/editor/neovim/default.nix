@@ -73,7 +73,13 @@ in
         taplo
 
         # Rust
+        cargo
+        rust-analyzer
+        rustfmt
         cargo-nextest
+        # Python
+        python313Packages.python-lsp-server
+        black
         # C/Cpp
         clang-tools
         # Typescript

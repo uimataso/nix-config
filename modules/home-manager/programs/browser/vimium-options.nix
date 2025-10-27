@@ -23,6 +23,17 @@ in
     home.vimiumOptions = {
       enable = true;
 
+      exclusionRules = [
+        {
+          passKeys = "";
+          pattern = "https?://mail.google.com/*";
+        }
+        {
+          passKeys = "";
+          pattern = "https?://monkeytype.com/*";
+        }
+      ];
+
       keyMappings = {
         unmapAll = true;
         map = {
@@ -40,6 +51,7 @@ in
 
           r = "reload";
           yy = "copyCurrentUrl";
+          yf = "LinkHints.activateMode action=copy-text";
           p = "openCopiedUrlInCurrentTab";
           P = "openCopiedUrlInNewTab";
           o = "Vomnibar.activate";

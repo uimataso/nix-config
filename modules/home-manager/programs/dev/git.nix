@@ -28,41 +28,45 @@ in
       g = "git";
       gsl = "git status; echo; git log --oneline --pretty=logoneline -5; echo";
     }
-    // lib.attrsets.mapAttrs' (
-      key: val: lib.attrsets.nameValuePair "g${key}" "git ${val}"
-    ) config.programs.git.aliases;
+    // (
+      # making shell alias from `git.settings.alias` by adding prefix `g`
+      let
+        mkAlias = key: val: lib.attrsets.nameValuePair "g${key}" "git ${val}";
+      in
+      lib.attrsets.mapAttrs' mkAlias config.programs.git.settings.alias
+    );
 
     programs.git = {
       enable = true;
 
-      aliases = {
-        s = "status";
-        l = "log --oneline --graph --all --pretty=logoneline -20";
-        ll = "log";
-        b = "branch";
-        ta = "tag";
-        rb = "rebase";
+      settings = {
+        user.name = cfg.name;
+        user.email = cfg.email;
 
-        d = "diff";
-        a = "add";
-        ap = "add --patch";
-        c = "commit";
-        co = "checkout";
-        r = "reset";
-        t = "stash";
-        tl = "stash list";
+        alias = {
+          s = "status";
+          l = "log --oneline --graph --all --pretty=logoneline -20";
+          ll = "log";
+          b = "branch";
+          ta = "tag";
+          rb = "rebase";
 
-        p = "pull";
-        P = "push";
+          d = "diff";
+          a = "add";
+          ap = "add --patch";
+          c = "commit";
+          co = "checkout";
+          r = "reset";
+          t = "stash";
+          tl = "stash list";
 
-        cl = "clone";
-        cld = "clone --depth=1";
-      };
+          p = "pull";
+          P = "push";
 
-      userName = cfg.name;
-      userEmail = cfg.email;
+          cl = "clone";
+          cld = "clone --depth=1";
+        };
 
-      extraConfig = {
         url = {
           "git@github.com:" = {
             insteadOf = "https://github.com/";

@@ -110,7 +110,7 @@ in
     };
 
     # Git pager
-    programs.git.extraConfig = {
+    programs.git.settings = {
       core.pager = "nvim -R";
       color.pager = false;
     };

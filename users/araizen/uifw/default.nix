@@ -34,7 +34,7 @@
     drawing
   ];
 
-  programs.git.extraConfig = {
+  programs.git.settings = {
     safe.directory = "/share/nix";
   };
 

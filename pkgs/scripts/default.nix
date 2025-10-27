@@ -32,6 +32,9 @@ in
     vl = callPackage ./vl.nix { };
     clip = callPackage ./clip.nix { };
 
+    # Tmux
+    tmux-select-sessions = callPackage ./tmux-select-sessions.nix { };
+
     # Desktop
     fmenu = callPackage ./fmenu.nix { };
     screenshot = callPackage ./screenshot.nix { };

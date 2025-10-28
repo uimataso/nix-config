@@ -53,5 +53,10 @@ in
       fff.enable = true;
       tealdeer.enable = true;
     };
+
+    home.shellAliases = {
+      o = "open";
+      y = "clip";
+    };
   };
 }

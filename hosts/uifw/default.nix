@@ -102,6 +102,12 @@
   # $ setfacl -d -m g::rwx /share
   users.groups."share" = { };
 
+  hardware.bluetooth.settings = {
+    General = {
+      ControllerMode = "le";
+    };
+  };
+
   uimaConfig = {
     global.enable = true;
 

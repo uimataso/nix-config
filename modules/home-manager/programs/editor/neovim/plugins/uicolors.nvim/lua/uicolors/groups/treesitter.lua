@@ -136,6 +136,8 @@ M.get = function(c)
 
     -- TODO: make injected rust code in document less highlighted
     ['@lsp.mod.intraDocLink.rust'] = { fg = c.base04 },
+
+    rustModPath = '@module', -- somehow this got links to '@keyword'
   }
 end
 

@@ -40,9 +40,8 @@ return {
     },
 
     handler_options = {
-      -- TODO: config search engine
-      -- search_engine = 'google', -- you can select between google, bing, duckduckgo, ecosia and yandex
-      -- search_engine = 'https://search.brave.com/search?q=', -- or you can pass in a custom search engine
+      -- search_engine = 'duckduckgo', -- google, bing, duckduckgo, ecosia, yandex
+      search_engine = 'https://search.uimataso.com/search?q=',
     },
   },
 }

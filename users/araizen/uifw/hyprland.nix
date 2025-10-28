@@ -92,6 +92,13 @@ in
         "s[true], gapsout:15"
       ];
 
+      misc = {
+        enable_swallow = true;
+        swallow_regex = [
+          "^(foot)$"
+        ];
+      };
+
       cursor = {
         inactive_timeout = 15;
       };

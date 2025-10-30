@@ -1,4 +1,9 @@
-{ inputs, config, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  ...
+}:
 
 # How to install:
 #
@@ -35,14 +40,16 @@
   };
   boot.loader.timeout = 0;
 
-  # for cross compiling aarch64-linux image
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
   # hardware.framework.laptop13.audioEnhancement.enable = true;
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
   hardware.keyboard.qmk.enable = true;
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+  environment.systemPackages = [
+    pkgs.cifs-utils
+  ];
 
   services.restic.backups = {
     remote = {
@@ -173,6 +180,25 @@
     };
 
   # for work:
+  # Ref: https://nixos.wiki/wiki/Samba#Samba_Client
+  fileSystems."/mnt/araizen-nas" = {
+    device = "//NAS_Araizen.local/公共槽";
+    fsType = "cifs";
+    options =
+      let
+        # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+        uid = toString config.users.users.araizen.uid;
+        gid = toString config.users.groups.users.gid;
+      in
+      [
+        "${automount_opts},credentials=/persist/secrets/araizen-smb-secrets,uid=${uid},gid=${gid}"
+      ];
+  };
+
+  # for cross compiling aarch64-linux image
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   services.avahi = {
     enable = true;
     nssmdns4 = true; # Allow .local hostnames to resolve
@@ -186,10 +212,12 @@
       workstation = true;
     };
   };
+
   networking.firewall.allowedTCPPorts = [
     3000
     6379
   ];
+
   hardware.bluetooth.settings = {
     General = {
       ControllerMode = "le";

@@ -44,24 +44,6 @@
 
   hardware.keyboard.qmk.enable = true;
 
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true; # Allow .local hostnames to resolve
-
-    publish = {
-      enable = true;
-      addresses = true;
-      domain = true;
-      hinfo = true;
-      userServices = true;
-      workstation = true;
-    };
-  };
-  networking.firewall.allowedTCPPorts = [
-    3000
-    6379
-  ];
-
   services.restic.backups = {
     remote = {
       # repository is in the env file
@@ -101,12 +83,6 @@
   # $ chmod 2770 /share
   # $ setfacl -d -m g::rwx /share
   users.groups."share" = { };
-
-  hardware.bluetooth.settings = {
-    General = {
-      ControllerMode = "le";
-    };
-  };
 
   uimaConfig = {
     global.enable = true;
@@ -195,4 +171,28 @@
     {
       tailscale-auth-key = hostSecrets;
     };
+
+  # for work:
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true; # Allow .local hostnames to resolve
+
+    publish = {
+      enable = true;
+      addresses = true;
+      domain = true;
+      hinfo = true;
+      userServices = true;
+      workstation = true;
+    };
+  };
+  networking.firewall.allowedTCPPorts = [
+    3000
+    6379
+  ];
+  hardware.bluetooth.settings = {
+    General = {
+      ControllerMode = "le";
+    };
+  };
 }

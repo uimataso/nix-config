@@ -7,14 +7,45 @@ writeShellApplication {
 
   text = ''
     help() {
-      echo 'Usage: fetch-title <url>'
+      echo 'Usage: fetch-title [-m|--markdown] <url>'
+      cat <<EOF
+
+    Options:
+      -h, --help            Display this message.
+      -m, --markdown        Output as markdown link, e.g. [<title>](<url>).
+    EOF
     }
 
-    if [ -z "$1" ]; then
-      help >&2
+    if TEMP=$(getopt -o 'hm' -l 'help,markdown' -n "$0" -- "$@"); then
+      eval set -- "$TEMP"
+      unset TEMP
+    else
+      echo "Failed to parse options" >&2
       exit 1
     fi
 
-    curl -sL "$1" | grep -oP '(?<=<title>).*?(?=</title>)'
+    while true; do
+        case "$1" in
+            '-h'|'--help')      help; exit ;;
+            '-m'|'--markdown')  markdown='true'; shift ;;
+            '--')
+              shift
+              if [ $# -ne 1 ] || [ -z "$1" ]; then
+                help | head -n 1 >&2
+                exit 1
+              fi
+              url="$1"
+              break ;;
+            *) echo "Internal error!" >&2; exit 1 ;;
+        esac
+    done
+
+    title="$(curl -sL "$url" | grep -oP '(?<=<title>).*?(?=</title>)')"
+
+    if ! [ -n "''${markdown:+x}" ]; then
+      echo "$title"
+    else
+      echo "[$title]($url)"
+    fi
   '';
 }

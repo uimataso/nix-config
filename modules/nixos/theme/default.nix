@@ -48,7 +48,7 @@ in
         monospace.package = pkgs.nerd-fonts.meslo-lg;
         monospace.name = "MesloLGM Nerd Font";
 
-        emoji.package = pkgs.noto-fonts-emoji;
+        emoji.package = pkgs.noto-fonts-color-emoji;
         emoji.name = "Noto Color Emoji";
 
         sizes = {

@@ -157,7 +157,7 @@
 
       misc = {
         anki.enable = true;
-        # nixcord.enable = true;
+        discord.enable = true;
         zathura.enable = true;
 
         # bitwarden.enable = true;

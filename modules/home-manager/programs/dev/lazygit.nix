@@ -34,10 +34,12 @@ in
           showBottomLine = false;
         };
         git = {
-          paging = {
-            colorArg = "always";
-            pager = "delta --dark --paging=never";
-          };
+          pagers = [
+            {
+              pager = "delta --dark --paging=never";
+              colorArg = "always";
+            }
+          ];
         };
       };
     };

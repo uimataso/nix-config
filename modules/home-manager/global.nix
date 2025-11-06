@@ -7,12 +7,23 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption mkDefault;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkOption
+    mkDefault
+    types
+    ;
   cfg = config.uimaConfig.global;
 in
 {
   options.uimaConfig.global = {
     enable = mkEnableOption "Global settings";
+
+    flakeDir = mkOption {
+      type = types.str;
+      description = "Root of your flake directory";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -41,5 +52,9 @@ in
       # Otherwise the cache file will be owned by root
       ".cache/nix"
     ];
+
+    home.sessionVariables = {
+      FLAKE_HOME = cfg.flakeDir;
+    };
   };
 }

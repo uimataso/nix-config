@@ -49,6 +49,7 @@
 
   uimaConfig = {
     global.enable = true;
+    global.flakeDir = "/share/nix";
 
     system = {
       impermanence = {
@@ -135,7 +136,6 @@
 
       sh-util = {
         default = true;
-        nix-helper.flakeDir = "/share/nix";
 
         eza.enable = true;
         tmux.enable = true;

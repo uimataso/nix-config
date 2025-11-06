@@ -180,9 +180,7 @@ vim.keymap.set(
 )
 
 -- LspInfo
-vim.api.nvim_create_user_command('LspInfo', function(opts)
-  vim.cmd [[ checkhealth vim.lsp ]]
-end, {})
+vim.api.nvim_create_user_command('LspInfo', 'checkhealth vim.lsp', {})
 
 -- Run cmd and open the output in split
 vim.api.nvim_create_user_command('RunCmd', function(opts)
@@ -196,20 +194,23 @@ vim.api.nvim_create_user_command('RunCmd', function(opts)
     return
   end
 
-  local start_time = vim.loop.hrtime()
+  local start_time = vim.uv.now()
 
   local output = vim.fn.systemlist(cmd, content)
 
-  local ms = math.floor((vim.loop.hrtime() - start_time) / 1e6)
-  vim.notify(string.format('Done in %d ms', ms), vim.log.levels.INFO)
+  local elapsed = vim.uv.now() - start_time
+  vim.notify(string.format('done in %d ms', elapsed), vim.log.levels.INFO)
 
-  -- open in a new split
-  vim.cmd('vsplit')
-  vim.cmd('enew')
-  vim.api.nvim_buf_set_lines(0, 0, -1, false, output)
-end, { range = true, nargs = '*' })
+  -- open in a new scratch split buffer
+  local split_cmd = opts.bang and 'split' or 'vsplit'
+  vim.cmd(split_cmd .. ' | enew')
+  local out_buf = vim.api.nvim_get_current_buf()
+  vim.bo[out_buf].buftype = 'nofile'
+
+  vim.api.nvim_buf_set_lines(out_buf, 0, -1, false, output)
+end, { range = true, nargs = '*', bang = true })
 vim.keymap.set('', '<Leader>r', ':RunCmd ', { desc = 'Run command in split' })
-vim.keymap.set('', '<Leader><Leader>r', ':%RunCmd ', { desc = 'Run command in split' })
+vim.keymap.set('n', '<Leader><Leader>r', ':%RunCmd ', { desc = 'Run command in split' })
 
 -- Close some filetypes with <q>
 ag('uima/CloseWithQ', function(g)

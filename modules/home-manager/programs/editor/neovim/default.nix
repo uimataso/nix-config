@@ -12,6 +12,7 @@ let
     types
     ;
   cfg = config.uimaConfig.programs.editor.neovim;
+  flakeDir = config.uimaConfig.global.flakeDir;
 in
 {
   options.uimaConfig.programs.editor.neovim = {
@@ -32,6 +33,8 @@ in
         ".local/state/nvim"
       ];
     };
+
+    stylix.targets.neovim.enable = false;
 
     uimaConfig.programs.editor = mkIf cfg.defaultEditor {
       enable = true;
@@ -90,8 +93,8 @@ in
       ];
     };
 
-    xdg.configFile = {
-      "nvim".source = ./.;
+    xdg.configFile."nvim" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/modules/home-manager/programs/editor/neovim";
     };
 
     home.file."./.local/share/nvim/nvim-treesitter" = {

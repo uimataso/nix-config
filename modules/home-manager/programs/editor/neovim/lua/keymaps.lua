@@ -184,6 +184,33 @@ vim.api.nvim_create_user_command('LspInfo', function(opts)
   vim.cmd [[ checkhealth vim.lsp ]]
 end, {})
 
+-- Run cmd and open the output in split
+vim.api.nvim_create_user_command('RunCmd', function(opts)
+  local lines = vim.api.nvim_buf_get_lines(0, opts.line1 - 1, opts.line2, true)
+  local content = table.concat(lines, '\n')
+
+  local cmd = opts.args
+
+  if vim.trim(opts.args) == '' then
+    vim.notify('command is empty', vim.log.levels.WARN)
+    return
+  end
+
+  local start_time = vim.loop.hrtime()
+
+  local output = vim.fn.systemlist(cmd, content)
+
+  local ms = math.floor((vim.loop.hrtime() - start_time) / 1e6)
+  vim.notify(string.format('Done in %d ms', ms), vim.log.levels.INFO)
+
+  -- open in a new split
+  vim.cmd('vsplit')
+  vim.cmd('enew')
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, output)
+end, { range = true, nargs = '*' })
+vim.keymap.set('', '<Leader>r', ':RunCmd ', { desc = 'Run command in split' })
+vim.keymap.set('', '<Leader><Leader>r', ':%RunCmd ', { desc = 'Run command in split' })
+
 -- Close some filetypes with <q>
 ag('uima/CloseWithQ', function(g)
   au('FileType', {

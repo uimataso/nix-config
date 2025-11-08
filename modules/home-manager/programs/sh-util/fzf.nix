@@ -16,6 +16,7 @@ in
         "--height 50%"
         "--no-separator"
         "--info=inline"
+        "--cycle"
         "--reverse"
         "--bind=tab:down"
         "--bind=pgup:preview-up"

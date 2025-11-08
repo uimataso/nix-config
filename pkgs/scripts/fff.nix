@@ -1,10 +1,17 @@
-{ writeShellApplication, pkgs, ... }:
+{
+  writeShellApplication,
+  pkgs,
+  preview,
+  open,
+  ...
+}:
 writeShellApplication {
   name = "fff";
   runtimeInputs = with pkgs; [
     fzf
-    (callPackage ./preview.nix { })
-    (callPackage ./open.nix { })
+
+    preview
+    open
   ];
 
   # Disable options `errexit`, `nounset` and `pipefail`
@@ -14,7 +21,7 @@ writeShellApplication {
     ls_cmd="''${FFF_LS_CMD:-ls -A --group-directories-first --color=always}"
 
     # Temp file
-    _fff_up_dir_temp='/tmp/fff-up-dir'
+    _fff_up_dir_temp="/tmp/$!-fff-up-dir"
 
     while :; do
       # prepare the prompt to show current directory
@@ -55,11 +62,10 @@ writeShellApplication {
       fi
 
       # Open the selected
-      file="$selected"
-      if [ -d "$file" ]; then
-        cd "$file" || return
+      if [ -d "$selected" ]; then
+        cd "$selected" || return
       else
-        open "$file"
+        open "$selected"
       fi
     done
   '';

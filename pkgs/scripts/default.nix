@@ -18,7 +18,7 @@ in
     nix-template-tool = mkScript ./nix-template-tool.nix;
 
     # Utils
-    fff = mkScript ./fff.nix;
+    fff = mkScriptWith ./fff.nix { inherit preview open; };
     ux = mkScript ./ux.nix;
     pdf-decrypt = mkScript ./pdf-decrypt.nix;
     mkbigfile = mkScript ./mkbigfile.nix;

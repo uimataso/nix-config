@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }:
@@ -106,7 +107,7 @@
 
           pulseaudio =
             let
-              pactl = "${pkgs.pulseaudio}/bin/pactl";
+              pactl = lib.getExe' pkgs.pulseaudio "pactl";
 
               pulseaudioSwitchSink =
                 pkgs.writeShellScript "pulseaudio-switch-sink" # sh

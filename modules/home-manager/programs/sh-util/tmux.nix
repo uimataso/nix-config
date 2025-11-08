@@ -6,7 +6,12 @@
 }:
 # https://man.archlinux.org/man/tmux.1
 let
-  inherit (lib) mkIf mkEnableOption mkForce;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkForce
+    getExe
+    ;
   cfg = config.uimaConfig.programs.sh-util.tmux;
 in
 {
@@ -22,7 +27,7 @@ in
     home.shellAliases = {
       t = "tmux";
       ta = "tmux attach-session || tmux new-session -s default";
-      ts = "${pkgs.scripts.tmux-select-sessions}/bin/tmux-select-sessions";
+      ts = "${getExe pkgs.scripts.tmux-select-sessions}";
       tn = ''name="$(tmux list-sessions -F'#{session_name}:#{session_last_attached}' | sort -r -t':' -k2 | cut -d: -f1 | fzf)"; test -n "$name" && tmux new -t $name'';
       td = "tmuxinator start default";
     };
@@ -73,11 +78,11 @@ in
           # keybind to reload config
           bind r source-file ${config.xdg.configHome}/tmux/tmux.conf
 
-          bind f run-shell 'tmux popup -E "${pkgs.scripts.tmux-select-sessions}/bin/tmux-select-sessions"'
+          bind f run-shell 'tmux popup -E "${getExe pkgs.scripts.tmux-select-sessions}"'
           bind BSpace last-window
 
           bind g new-window -S -n "lazygit" -c "#{pane_current_path}" "lazygit"
-          bind G run-shell "${pkgs.scripts.open-git-remote}/bin/open-git-remote"
+          bind G run-shell "${getExe pkgs.scripts.open-git-remote}"
 
           # disable mouse scroll on statusbar
           unbind -T root WheelUpStatus
@@ -158,7 +163,7 @@ in
           extraConfig =
             let
               myFzf = pkgs.writeShellScriptBin "myFzf" ''
-                ${pkgs.fzf}/bin/fzf --color=pointer:5,gutter:-1 "$@"
+                ${getExe pkgs.fzf} --color=pointer:5,gutter:-1 "$@"
               '';
             in
             # tmux

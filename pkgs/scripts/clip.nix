@@ -118,15 +118,11 @@ writeShellApplication {
     }
 
     if [ ! -t 0 ]; then
-      # trim newline at the end
-      cat | sed -z 's/\n$//' | copy
+      cat | copy
     fi
 
     if [ -z "$quiet" ]; then
       paste
-
-      # print a newline if stdout is not pipe
-      [ -t 1 ] && printf '\n'
     fi
   '';
 }

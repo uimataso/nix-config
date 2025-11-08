@@ -83,13 +83,29 @@ in
 
           # Prompt
           prompt(){
+            reset='\[\e[0m\]'
+            red='\[\e[31m\]'
+            b_green='\[\e[1;32m\]'
+            b_cyan='\[\e[1;36m\]'
+            b_white='\[\e[1;37m\]'
+            dim_white='\[\e[2;37m\]'
+
             _exit_code=$?
-            env="$([ -n "''${DIRENV_FILE//}" ] && printf '\[\e[1;37m\]env|')"
-            user='\[\e[32m\e[1m\]\u\[\e[0m\]'
-            host='\[\e[32m\e[1m\]\h\[\e[0m\]'
-            path='\[\e[36m\e[1m\]\w\[\e[0m\]'
-            prom="$([ $_exit_code -ne 0 ] && printf '\[\e[31m\]')$\[\e[0m\]"
+            env="$([ -n "''${DIRENV_FILE//}" ] && printf '%s' "''${b_white}env|")"
+            user="$b_green\u$reset"
+            host="$b_green\h$reset"
+            path="$b_cyan\w$reset"
+            prom="$([ $_exit_code -ne 0 ] && printf '%s' "$red")\$''${reset}"
+
             PS1="$env$user@$host:$path$prom "
+
+            # Check last output's newline
+            # https://github.com/dylanaraps/pure-bash-bible#get-the-current-cursor-position
+            IFS='[;' read -p $'\e[6n' -d R -rs _ y x _
+            if [ "$x" != '1' ]; then
+              PS1="\n$dim_white-$reset$PS1"
+            fi
+
           }
           PROMPT_COMMAND=prompt
           PS2='> '

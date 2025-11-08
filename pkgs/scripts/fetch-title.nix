@@ -47,8 +47,5 @@ writeShellApplication {
     else
       printf '%s' "[$title]($url)"
     fi
-
-    # print newline if stdout is not pipe
-    [ -t 1 ] && printf '\n'
   '';
 }

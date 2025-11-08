@@ -23,6 +23,7 @@
     scripts.pdf-decrypt
     scripts.mkbigfile
     scripts.fetch-title
+    scripts.open-git-remote
 
     xh
     gitui

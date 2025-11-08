@@ -26,6 +26,7 @@ in
     preview = mkScript ./preview.nix;
     fetch-title = mkScript ./fetch-title.nix;
     notify-send-all = mkScript ./notify-send-all.nix;
+    open-git-remote = mkScript ./open-git-remote.nix;
 
     # Dmenu
     app-launcher = mkScript ./app-launcher.nix;

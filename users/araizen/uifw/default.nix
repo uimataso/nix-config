@@ -24,6 +24,7 @@
     scripts.pdf-decrypt
     scripts.fetch-title
     scripts.notify-send-all
+    scripts.open-git-remote
 
     xh
     gitui

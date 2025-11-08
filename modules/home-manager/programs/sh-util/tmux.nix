@@ -76,8 +76,8 @@ in
           bind f run-shell 'tmux popup -E "${pkgs.scripts.tmux-select-sessions}/bin/tmux-select-sessions"'
           bind BSpace last-window
 
-          # TODO: control flow: if has lazygit
           bind g new-window -S -n "lazygit" -c "#{pane_current_path}" "lazygit"
+          bind G run-shell "${pkgs.scripts.open-git-remote}/bin/open-git-remote"
 
           # disable mouse scroll on statusbar
           unbind -T root WheelUpStatus

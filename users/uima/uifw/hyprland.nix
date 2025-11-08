@@ -164,6 +164,7 @@ in
         "SUPER, return, exec, ${config.uimaConfig.programs.terminal.executable}"
         "SUPER, o, exec, app-launcher"
         "SUPER, b, exec, ${config.uimaConfig.programs.browser.executable}"
+        "SUPER SHIFT, u, exec, notify-send 'Title copied' \"$(clip | xargs fetch-title -m | clip)\""
 
         "SUPER, n,        exec, ${lib.getExe' noteScratchpad "open-ws-note"}"
         "SUPER SHIFT, n,  exec, ${lib.getExe' noteScratchpad "open-note"}"

@@ -40,12 +40,15 @@ writeShellApplication {
         esac
     done
 
-    title="$(curl -sL "$url" | grep -oP '(?<=<title>).*?(?=</title>)')"
+    title="$(curl -sL "$url" | sed -n 's/.*<title[^<]*>\(.*\)<\/title>.*/\1/p')"
 
     if ! [ -n "''${markdown:+x}" ]; then
-      echo "$title"
+      printf '%s' "$title"
     else
-      echo "[$title]($url)"
+      printf '%s' "[$title]($url)"
     fi
+
+    # print newline if stdout is not pipe
+    [ -t 1 ] && printf '\n'
   '';
 }

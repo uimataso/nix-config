@@ -1,7 +1,7 @@
 {
   writeShellApplication,
-  pkgs,
   initScript,
+  ...
 }:
 writeShellApplication {
   name = "menu";

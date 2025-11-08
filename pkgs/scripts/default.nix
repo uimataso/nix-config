@@ -1,7 +1,5 @@
 { pkgs }:
 let
-  inherit (pkgs) callPackage;
-
   initScript = # sh
     ''
       APP_NAME=''${0##*/}
@@ -10,33 +8,38 @@ let
         echo "$APP_NAME: $*"
       }
     '';
+
+  mkScriptWith = fn: args: pkgs.callPackage fn ({ inherit initScript; } // args);
+  mkScript = fn: mkScriptWith fn { };
 in
 {
-  inherit initScript;
-
-  scripts = {
+  scripts = rec {
     # Nix utils
-    nix-template-tool = callPackage ./nix-template-tool.nix { };
+    nix-template-tool = mkScript ./nix-template-tool.nix;
 
     # Utils
-    fff = callPackage ./fff.nix { };
-    ux = callPackage ./ux.nix { };
-    pdf-decrypt = callPackage ./pdf-decrypt.nix { };
-    mkbigfile = callPackage ./mkbigfile.nix { };
-    open = callPackage ./open.nix { };
-    preview = callPackage ./preview.nix { };
-    fetch-title = callPackage ./fetch-title.nix { };
-    notify-send-all = callPackage ./notify-send-all.nix { };
+    fff = mkScript ./fff.nix;
+    ux = mkScript ./ux.nix;
+    pdf-decrypt = mkScript ./pdf-decrypt.nix;
+    mkbigfile = mkScript ./mkbigfile.nix;
+    open = mkScript ./open.nix;
+    preview = mkScript ./preview.nix;
+    fetch-title = mkScript ./fetch-title.nix;
+    notify-send-all = mkScript ./notify-send-all.nix;
+
+    # Dmenu
+    app-launcher = mkScript ./app-launcher.nix;
+    power-menu = mkScript ./power-menu.nix;
 
     # System
-    vl = callPackage ./vl.nix { };
-    clip = callPackage ./clip.nix { };
+    vl = mkScript ./vl.nix;
+    clip = mkScript ./clip.nix;
 
     # Tmux
-    tmux-select-sessions = callPackage ./tmux-select-sessions.nix { };
+    tmux-select-sessions = mkScript ./tmux-select-sessions.nix;
 
     # Desktop
-    fmenu = callPackage ./fmenu.nix { };
-    screenshot = callPackage ./screenshot.nix { };
+    fmenu = mkScript ./fmenu.nix;
+    screenshot = mkScriptWith ./screenshot.nix { inherit clip; };
   };
 }

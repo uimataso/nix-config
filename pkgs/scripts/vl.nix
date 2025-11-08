@@ -1,4 +1,4 @@
-{ writeShellApplication, pkgs }:
+{ writeShellApplication, pkgs, ... }:
 writeShellApplication {
   name = "vl";
   runtimeInputs = with pkgs; [

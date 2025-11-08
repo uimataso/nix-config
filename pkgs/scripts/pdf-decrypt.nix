@@ -1,4 +1,4 @@
-{ writeShellApplication, pkgs }:
+{ writeShellApplication, pkgs, ... }:
 writeShellApplication {
   name = "pdf-decrypt";
   runtimeInputs = with pkgs; [ qpdf ];

@@ -1,5 +1,5 @@
 # TODO: maintenance needed
-{ writeShellApplication, pkgs }:
+{ writeShellApplication, pkgs, ... }:
 writeShellApplication {
   name = "fmenu";
   runtimeInputs = with pkgs; [ xdotool ];

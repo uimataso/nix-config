@@ -1,4 +1,4 @@
-{ writeShellApplication, pkgs }:
+{ writeShellApplication, pkgs, ... }:
 writeShellApplication {
   name = "fetch-title";
   runtimeInputs = with pkgs; [

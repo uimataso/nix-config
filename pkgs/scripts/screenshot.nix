@@ -1,11 +1,16 @@
-{ writeShellApplication, pkgs }:
+{
+  writeShellApplication,
+  pkgs,
+  clip,
+  ...
+}:
 writeShellApplication {
   name = "screenshot";
   runtimeInputs = with pkgs; [
     scrot
     slurp
     grim
-    (callPackage ./clip.nix { })
+    clip
   ];
 
   text = ''

@@ -2,6 +2,7 @@
   writeShellApplication,
   pkgs,
   initScript,
+  ...
 }:
 writeShellApplication {
   name = "clip";

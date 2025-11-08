@@ -1,4 +1,4 @@
-{ writeShellApplication, pkgs }:
+{ writeShellApplication, pkgs, ... }:
 writeShellApplication {
   name = "tmux-select-sessions";
   runtimeInputs = with pkgs; [

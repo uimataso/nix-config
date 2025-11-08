@@ -1,6 +1,7 @@
 {
   writeShellApplication,
   pkgs,
+  ...
 }:
 writeShellApplication {
   name = "notify-send-all";

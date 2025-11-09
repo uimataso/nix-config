@@ -61,9 +61,7 @@
       impermanence = {
         enable = true;
         directories = [
-          "notes"
           "src"
-
           ".config/qmk"
         ];
       };

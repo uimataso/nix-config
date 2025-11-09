@@ -105,7 +105,6 @@ in
             if [ "$x" != '1' ]; then
               PS1="\n$dim_white-$reset$PS1"
             fi
-
           }
           PROMPT_COMMAND=prompt
           PS2='> '

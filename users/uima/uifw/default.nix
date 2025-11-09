@@ -1,6 +1,7 @@
 {
   self,
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -12,6 +13,8 @@
   home.username = "uima";
 
   home.stateVersion = "23.11";
+
+  nixpkgs.overlays = [ inputs.rust-overlay.overlays.default ];
 
   home.packages = with pkgs; [
     qmk
@@ -36,6 +39,15 @@
 
     yt-dlp
     openssl
+
+    gcc
+    (rust-bin.stable.latest.default.override {
+      extensions = [
+        "rust-analyzer"
+        "rust-std"
+        "rust-src"
+      ];
+    })
   ];
 
   # services.mpd.enable = true;

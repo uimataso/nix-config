@@ -75,6 +75,8 @@
         directories = [
           "src"
           ".config/qmk"
+
+          ".local/share/cargo"
         ];
       };
 

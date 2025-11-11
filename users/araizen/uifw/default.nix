@@ -58,6 +58,7 @@
         directories = [
           "notes"
           "src"
+          ".local/share/cargo"
         ];
       };
 

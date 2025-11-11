@@ -12,15 +12,6 @@ let
     types
     ;
   cfg = config.uimaConfig.system.autoUpgrade;
-
-  notifyScript =
-    username: notifySendArgs:
-    # sh
-    ''
-      ${pkgs.sudo}/bin/sudo -u '${username}' \
-        DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u '${username}')/bus" \
-        ${pkgs.libnotify}/bin/notify-send ${notifySendArgs}
-    '';
 in
 {
   options.uimaConfig.system.autoUpgrade = {

@@ -46,7 +46,7 @@ return {
             ['rust-analyzer'] = {
               cargo = {
                 -- TODO: config features in runtime
-                -- features = 'all',
+                features = { 'default', 'test' },
               },
               check = {
                 command = 'clippy',

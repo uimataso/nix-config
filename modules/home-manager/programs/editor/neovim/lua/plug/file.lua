@@ -6,15 +6,6 @@ return {
 
     keys = {
       {
-        '<Leader>o',
-        mode = { 'n' },
-        function()
-          require('oil').open_float()
-        end,
-        desc = 'Open Oil browser',
-      },
-
-      {
         '-',
         mode = { 'n' },
         function()

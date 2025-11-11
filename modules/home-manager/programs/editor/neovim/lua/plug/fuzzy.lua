@@ -51,7 +51,7 @@ return {
       { "grr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
       { "gri", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
       { "gry", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto Type Definition" },
-      { "gro", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+      -- { "gro", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
       { "grO", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
 
       { "<leader>ft", function() Snacks.picker.todo_comments() end, desc = "Todo" },

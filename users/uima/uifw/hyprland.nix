@@ -32,6 +32,8 @@ let
     className = "anki";
   };
 
+  toggleWaybar = "if systemctl --user is-active --quiet waybar.service; then systemctl --user stop waybar.service; else systemctl --user start waybar.service; fi";
+
   inherit (config.lib.stylix) colors;
   rgb = color: "rgb(${color})";
 in
@@ -156,6 +158,8 @@ in
         "SUPER, a, togglefloating"
         "SUPER SHIFT, a, fullscreen, 1"
         "SUPER CTRL, a, fullscreen, 0"
+
+        "SUPER SHIFT, b, exec, ${toggleWaybar}"
 
         "SUPER, comma, focusmonitor, -1"
         "SUPER, period, focusmonitor, +1"

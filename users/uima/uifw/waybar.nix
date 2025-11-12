@@ -10,10 +10,7 @@
   programs.waybar = with config.lib.stylix.colors.withHashtag; {
     enable = true;
 
-    systemd = {
-      enable = true;
-      target = "river-session.target";
-    };
+    systemd.enable = true;
 
     settings =
       let

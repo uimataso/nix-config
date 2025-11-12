@@ -28,6 +28,8 @@
     scripts.fetch-title
     scripts.open-git-remote
 
+    obsidian
+
     xh
     gitui
     presenterm
@@ -76,6 +78,7 @@
           "src"
           ".config/qmk"
 
+          ".config/obsidian"
           ".local/share/cargo"
         ];
       };

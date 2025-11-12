@@ -13,7 +13,7 @@ end
 return {
   {
     'mrcjkb/rustaceanvim',
-    version = '^5', -- Recommended
+    version = '^6', -- Recommended
     ft = 'rust',
 
     config = function()
@@ -44,10 +44,8 @@ return {
           default_settings = {
             -- rust-analyzer language server configuration
             ['rust-analyzer'] = {
-              cargo = {
-                -- TODO: config features in runtime
-                features = { 'default', 'test' },
-              },
+              -- use this to select features on the fly: `:RustAnalyzer config { cargo = { features = { "test_with_database", } } }`
+              -- TODO: autocomplete with `cargo read-manifest | jq .features`?
               check = {
                 command = 'clippy',
                 extraArgs = { '--no-deps' },

@@ -194,7 +194,10 @@ in
       ++ (
         let
           bindWin = key: ws: [
-            # TODO: focus workspace close any activated special workspace
+            # focus workspace will also close any activated special workspace
+            # ref: https://github.com/hyprwm/Hyprland/issues/7662#issuecomment-2502280786
+            "SUPER, ${key}, togglespecialworkspace, __TEMP"
+            "SUPER, ${key}, togglespecialworkspace, __TEMP"
             "SUPER, ${key}, focusworkspaceoncurrentmonitor, ${ws}"
 
             # move window to a workspace and bring that workspace into the focused monitor.

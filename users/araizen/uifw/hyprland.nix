@@ -184,7 +184,8 @@ in
       ++ (
         let
           bindWin = key: ws: [
-            # TODO: focus workspace close any activated special workspace
+            "SUPER, ${key}, togglespecialworkspace, __TEMP"
+            "SUPER, ${key}, togglespecialworkspace, __TEMP"
             "SUPER, ${key}, focusworkspaceoncurrentmonitor, ${ws}"
 
             # move window to a workspace and bring that workspace into the focused monitor.

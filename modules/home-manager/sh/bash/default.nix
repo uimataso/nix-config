@@ -101,6 +101,7 @@ in
 
             # Check last output's newline
             # https://github.com/dylanaraps/pure-bash-bible#get-the-current-cursor-position
+            # FIXME: this broken some stuffs that start a shell, like tmuxinator
             IFS='[;' read -p $'\e[6n' -d R -rs _ y x _
             if [ "$x" != '1' ]; then
               PS1="\n$dim_white-$reset$PS1"

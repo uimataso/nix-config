@@ -80,6 +80,12 @@ vim.keymap.set('', '<End>', '$', { remap = true })
 vim.keymap.set('', '+', 'j', { remap = true })
 -- vim.keymap.set('', '-', 'k', { remap = true }) -- remap in `oil.nvim`
 
+-- Resize window
+vim.keymap.set('n', '<C-Right>', '<C-w>>')
+vim.keymap.set('n', '<C-Left>', '<C-w><')
+vim.keymap.set('n', '<C-Up>', '<C-w>+')
+vim.keymap.set('n', '<C-Down>', '<C-w>-')
+
 -- Copy paste with clipboard
 vim.keymap.set('', '<Leader>y', '"+y')
 vim.keymap.set('', '<Leader>Y', '"+y$')

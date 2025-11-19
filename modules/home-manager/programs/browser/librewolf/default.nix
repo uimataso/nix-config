@@ -180,11 +180,6 @@ in
 
         containersForce = true;
         containers = {
-          self = {
-            id = 1;
-            color = "blue";
-            icon = "circle";
-          };
           google = {
             id = 2;
             color = "yellow";

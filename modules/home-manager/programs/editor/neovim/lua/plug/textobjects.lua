@@ -19,19 +19,24 @@ return {
         select = {
           enable = true,
           lookahead = true,
+          -- TODO: capture a expression
           keymaps = {
+            ['as'] = '@statement.outer',
+            ['is'] = '@call.outer',
+
+            ['il'] = '@assignment.lhs',
+            ['ir'] = '@assignment.rhs',
+            ['al'] = '@assignment.outer',
+
+            ['io'] = '@frame.inner',
+            ['ao'] = '@frame.outer',
+
             ['af'] = '@function.outer',
             ['if'] = '@function.inner',
-            ['ac'] = '@class.outer',
-            ['ic'] = '@class.inner',
             ['aa'] = '@parameter.outer',
             ['ia'] = '@parameter.inner',
             ['ab'] = '@block.outer',
             ['ib'] = '@block.inner',
-            ['al'] = '@loop.outer',
-            ['il'] = '@loop.inner',
-            ['ai'] = '@conditional.outer',
-            ['ii'] = '@conditional.inner',
           },
           selection_modes = {
             ['@parameter.outer'] = 'v', -- charwise
@@ -60,6 +65,7 @@ return {
 
   {
     'echasnovski/mini.ai',
+    enabled = false,
     version = '*',
     event = { 'InsertEnter', 'CmdlineEnter' },
 

@@ -14,6 +14,15 @@ vim.opt.fillchars:append { diff = '╱' }
 vim.opt.smoothscroll = true
 vim.opt.conceallevel = 2
 
+-- 4 spaces as default indent
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.shiftround = true
+
 -- Column --
 vim.opt.number = true
 vim.opt.relativenumber = true

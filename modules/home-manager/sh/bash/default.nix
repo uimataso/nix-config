@@ -82,6 +82,7 @@ in
           bind '"\e": ""'
 
           # Prompt
+          first=true
           prompt(){
             reset='\[\e[0m\]'
             red='\[\e[31m\]'
@@ -99,13 +100,18 @@ in
 
             PS1="$env$user@$host:$path$prom "
 
-            # Check last output's newline
-            # https://github.com/dylanaraps/pure-bash-bible#get-the-current-cursor-position
-            # FIXME: this broken some stuffs that start a shell, like tmuxinator
-            IFS='[;' read -p $'\e[6n' -d R -rs _ y x _
-            if [ "$x" != '1' ]; then
-              PS1="\n$dim_white-$reset$PS1"
+            # I guess the `read` command will break some thing like tmuxinator
+            # that exec some thing for me at the start, so skip this part for
+            # the first time
+            if [ "$first" = 'false' ]; then
+              # Check last output's newline
+              # https://github.com/dylanaraps/pure-bash-bible#get-the-current-cursor-position
+              IFS='[;' read -p $'\e[6n' -d R -rs _ y x _
+              if [ "$x" != '1' ]; then
+                PS1="\n$dim_white-$reset$PS1"
+              fi
             fi
+            first=false
           }
           PROMPT_COMMAND=prompt
           PS2='> '

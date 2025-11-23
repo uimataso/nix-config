@@ -25,11 +25,11 @@ let
     spawnCmd = ''"$TERMINAL" --app-id scratchpad-term'';
     className = "scratchpad-term";
   };
-  ankiScratchpad = scratchpad {
+  musicScratchpad = scratchpad {
     inherit pkgs;
-    name = "anki";
-    spawnCmd = "anki";
-    className = "anki";
+    name = "music";
+    spawnCmd = ''"$TERMINAL" --app-id scratchpad-music -e rmpc'';
+    className = "scratchpad-music";
   };
 
   toggleWaybar = "if systemctl --user is-active --quiet waybar.service; then systemctl --user stop waybar.service; else systemctl --user start waybar.service; fi";
@@ -52,7 +52,7 @@ in
     noteScratchpad
     termScratchpad
     tempScratchpad
-    ankiScratchpad
+    musicScratchpad
   ];
 
   home.shellAliases = {
@@ -176,8 +176,8 @@ in
         "SUPER SHIFT, t,  exec, ${lib.getExe' termScratchpad "open-term"}"
         "SUPER, p,        exec, ${lib.getExe' tempScratchpad "open-ws-temp"}"
         "SUPER SHIFT, p,  exec, ${lib.getExe' tempScratchpad "open-temp"}"
-        "SUPER, m,        exec, ${lib.getExe' ankiScratchpad "open-ws-anki"}"
-        "SUPER SHIFT, m,  exec, ${lib.getExe' ankiScratchpad "open-anki"}"
+        "SUPER, m,        exec, ${lib.getExe' musicScratchpad "open-ws-music"}"
+        "SUPER SHIFT, m,  exec, ${lib.getExe' musicScratchpad "open-music"}"
 
         ",        Print, exec, screenshot full"
         "Shift,   Print, exec, screenshot cur"

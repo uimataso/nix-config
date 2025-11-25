@@ -52,7 +52,7 @@ in
           r = "reload";
           yy = "copyCurrentUrl";
           yf = "LinkHints.activateMode action=copy-text";
-          p = "openCopiedUrlInCurrentTab";
+          pp = "openCopiedUrlInCurrentTab";
           P = "openCopiedUrlInNewTab";
           o = "Vomnibar.activate";
           O = "Vomnibar.activateInNewTab";

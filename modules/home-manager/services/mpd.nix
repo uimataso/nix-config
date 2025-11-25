@@ -11,7 +11,6 @@ in
 {
   options.uimaConfig.services.mpd = {
     enable = mkEnableOption "mpd";
-
   };
 
   config = mkIf cfg.enable {

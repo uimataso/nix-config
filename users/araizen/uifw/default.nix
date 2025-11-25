@@ -48,6 +48,13 @@
       base16Scheme = "${themePath}/gruvbox-dark-moded.yaml";
     };
 
+  services.mpd.network.port = 6601;
+  programs.rmpc.config = ''
+    (
+      address: "127.0.0.1:6601",
+    )
+  '';
+
   uimaConfig = {
     global.enable = true;
     global.flakeDir = "/share/nix";

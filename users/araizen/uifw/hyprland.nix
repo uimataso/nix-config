@@ -25,6 +25,12 @@ let
     spawnCmd = ''"$TERMINAL" --app-id scratchpad-term'';
     className = "scratchpad-term";
   };
+  musicScratchpad = scratchpad {
+    inherit pkgs;
+    name = "music";
+    spawnCmd = ''"$TERMINAL" --app-id scratchpad-music -e rmpc'';
+    className = "scratchpad-music";
+  };
 
   inherit (config.lib.stylix) colors;
   rgb = color: "rgb(${color})";
@@ -44,6 +50,7 @@ in
     noteScratchpad
     termScratchpad
     tempScratchpad
+    musicScratchpad
   ];
 
   home.shellAliases = {
@@ -168,6 +175,8 @@ in
         "SUPER SHIFT, t,  exec, ${lib.getExe' termScratchpad "open-term"}"
         "SUPER, p,        exec, ${lib.getExe' tempScratchpad "open-ws-temp"}"
         "SUPER SHIFT, p,  exec, ${lib.getExe' tempScratchpad "open-temp"}"
+        "SUPER, m,        exec, ${lib.getExe' musicScratchpad "open-ws-music"}"
+        "SUPER SHIFT, m,  exec, ${lib.getExe' musicScratchpad "open-music"}"
 
         ",        Print, exec, screenshot full"
         "Shift,   Print, exec, screenshot cur"

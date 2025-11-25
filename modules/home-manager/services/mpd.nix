@@ -15,6 +15,13 @@ in
   };
 
   config = mkIf cfg.enable {
+    uimaConfig.system.impermanence = {
+      directories = [
+        # services.mpd.dataDir = "$XDG_DATA_HOME/mpd";
+        ".local/share/mpd"
+      ];
+    };
+
     home.packages = with pkgs; [
       mpc
     ];

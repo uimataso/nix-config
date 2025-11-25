@@ -94,6 +94,7 @@
     services = {
       pipewire.enable = true;
       udiskie.enable = true;
+      mpd.enable = true;
     };
 
     programs = {
@@ -151,6 +152,8 @@
       misc = {
         zathura.enable = true;
         thunderbird.enable = true;
+
+        rmpc.enable = true;
       };
     };
   };

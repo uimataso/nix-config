@@ -12,6 +12,7 @@
     ./openscad.nix
     ./protonmail.nix
     ./prusa-slicer.nix
+    ./rmpc.nix
     ./thunderbird.nix
     ./zathura.nix
   ];

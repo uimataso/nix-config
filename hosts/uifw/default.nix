@@ -62,6 +62,8 @@
         "/persist/home/*/src/*/.direnv"
         "/persist/home/*/dl"
         "/persist/var"
+        "/persist/no-backup"
+        "/persist/share/no-backup"
       ];
       environmentFile = "/persist/secrets/restic-remote-env";
       passwordFile = "/persist/secrets/restic-password";

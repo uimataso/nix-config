@@ -43,8 +43,6 @@
     yt-dlp
     openssl
 
-    mpc
-
     gcc
     (rust-bin.stable.latest.default.override {
       extensions = [
@@ -55,12 +53,6 @@
     })
   ];
 
-  # services.mpd.enable = true;
-  # programs.rmpc = {
-  #   enable = true;
-  #   config = "";
-  # };
-
   stylix =
     let
       themePath = "${self}/modules/nixos/theme";
@@ -69,24 +61,6 @@
       image = "${themePath}/wallpapers/looking-for.png";
       base16Scheme = "${themePath}/gruvbox-dark-moded.yaml";
     };
-
-  services.mpd = {
-    enable = true;
-    musicDirectory = "${config.home.homeDirectory}/dl/yt-dlp";
-    extraConfig = ''
-      auto_update "yes"
-      restore_paused "yes"
-
-      audio_output {
-        type "pipewire"
-        name "PipeWire"
-      }
-    '';
-  };
-
-  programs.rmpc = {
-    enable = true;
-  };
 
   uimaConfig = {
     global.enable = true;
@@ -136,6 +110,7 @@
     services = {
       pipewire.enable = true;
       udiskie.enable = true;
+      mpd.enable = true;
     };
 
     programs = {
@@ -196,6 +171,8 @@
         anki.enable = true;
         discord.enable = true;
         zathura.enable = true;
+
+        rmpc.enable = true;
 
         # bitwarden.enable = true;
         # protonmail.enable = true;

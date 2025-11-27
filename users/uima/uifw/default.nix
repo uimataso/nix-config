@@ -37,6 +37,7 @@
     mermaid-cli
     bc
     hyperfine
+    bandwhich
     gimp
     drawing
 

@@ -42,6 +42,7 @@ in
     programs = {
       btop.enable = true;
       ripgrep.enable = true;
+      ripgrep-all.enable = true;
       fd.enable = true;
       jq.enable = true;
       bat.enable = true;

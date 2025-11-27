@@ -1,7 +1,6 @@
 {
   self,
   pkgs,
-  config,
   inputs,
   ...
 }:
@@ -45,6 +44,7 @@
     openssl
 
     gcc
+    python3
     (rust-bin.stable.latest.default.override {
       extensions = [
         "rust-analyzer"

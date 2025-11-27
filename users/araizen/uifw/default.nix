@@ -1,6 +1,7 @@
 {
   self,
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -12,6 +13,8 @@
   home.username = "araizen";
 
   home.stateVersion = "23.11";
+
+  nixpkgs.overlays = [ inputs.rust-overlay.overlays.default ];
 
   home.packages = with pkgs; [
     lm_sensors
@@ -33,6 +36,16 @@
     bc
     hyperfine
     drawing
+
+    gcc
+    python3
+    (rust-bin.stable.latest.default.override {
+      extensions = [
+        "rust-analyzer"
+        "rust-std"
+        "rust-src"
+      ];
+    })
   ];
 
   programs.git.settings = {

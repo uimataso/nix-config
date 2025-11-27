@@ -83,6 +83,7 @@ in
         # Python
         python313Packages.python-lsp-server
         black
+        isort
         # C/Cpp
         clang-tools
         # Typescript

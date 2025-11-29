@@ -41,6 +41,7 @@
     drawing
 
     yt-dlp
+    puddletag
     openssl
 
     gcc
@@ -75,6 +76,7 @@
           ".config/qmk"
 
           ".config/obsidian"
+          ".config/puddletag"
           ".local/share/cargo"
         ];
       };

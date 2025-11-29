@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  pkgs-stable,
   ...
 }:
 # https://man.archlinux.org/man/tmux.1
@@ -41,6 +42,9 @@ in
 
     programs.tmux = {
       enable = true;
+
+      # TODO: stable used because ttmuxinator not supported newer version
+      package = pkgs-stable.tmux;
 
       prefix = "M-b";
 

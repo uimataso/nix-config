@@ -140,6 +140,8 @@ in
           # window title colors
           set -g window-status-current-style fg=white,bg=default,bold
           set -g window-status-style         fg=brightwhite,bg=default
+
+          set -g pane-scrollbars modal
         '';
 
       plugins = with pkgs; [

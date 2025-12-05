@@ -53,6 +53,7 @@ in
 
           d = "diff";
           a = "add";
+          ai = "add --interactive";
           ap = "add --patch";
           c = "commit";
           co = "checkout";

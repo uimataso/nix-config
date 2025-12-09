@@ -84,6 +84,8 @@ in
           # Prompt
           first=true
           prompt(){
+            _exit_code=$?
+
             reset='\[\e[0m\]'
             red='\[\e[31m\]'
             b_green='\[\e[1;32m\]'
@@ -91,7 +93,6 @@ in
             b_white='\[\e[1;37m\]'
             dim_white='\[\e[2;37m\]'
 
-            _exit_code=$?
             env="$([ -n "''${DIRENV_FILE//}" ] && printf '%s' "''${b_white}env|")"
             user="$b_green\u$reset"
             host="$b_green\h$reset"

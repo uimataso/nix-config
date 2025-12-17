@@ -19,6 +19,7 @@ in
     services.tailscale = {
       enable = true;
       authKeyFile = mkIf (secrets ? "tailscale-auth-key") secrets.tailscale-auth-key.path;
+      useRoutingFeatures = "client";
     };
   };
 }

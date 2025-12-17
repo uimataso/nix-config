@@ -38,12 +38,13 @@ in
       allowReboot = cfg.allowReboot;
     };
 
-    nix.gc = {
-      automatic = true;
-      dates = "weekly";
-      randomizedDelaySec = "30min";
-      options = "--delete-older-than 30d";
-    };
+    # FIXME: gc keep cleaning pkgs for nix develop
+    # nix.gc = {
+    #   automatic = true;
+    #   dates = "weekly";
+    #   randomizedDelaySec = "30min";
+    #   options = "--delete-older-than 30d";
+    # };
 
     uimaConfig.services.systemdNotify.services."nixos-upgrade" =
       let

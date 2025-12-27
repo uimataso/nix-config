@@ -142,7 +142,7 @@
         git = {
           enable = true;
           name = "uima";
-          email = "git.m5svm@uimataso.com";
+          email = "git@uimataso.com";
         };
         lazygit.enable = true;
         gh.enable = true;

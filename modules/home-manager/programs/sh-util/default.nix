@@ -32,6 +32,11 @@ in
 
       ffmpeg
       dust
+      pstree
+
+      wget
+      nmap
+      dig
 
       scripts.clip
       scripts.ux

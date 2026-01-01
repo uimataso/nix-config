@@ -60,6 +60,7 @@ function M.setup(base16_palette, opts)
     title6 = c.title,
 
     link = c.base04,
+    link_sp = c.base02,
     quote = c.white,
     bullet = c.base04,
   }

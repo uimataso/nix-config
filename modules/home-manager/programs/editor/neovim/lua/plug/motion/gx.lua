@@ -16,7 +16,6 @@ return {
     handlers = {
       plugin = true, -- open plugin links in lua (e.g. packer, lazy, ..)
       github = true, -- open github issues
-      markdown = true,
       rust = {
         name = 'rust',
         filetype = { 'toml' },
@@ -36,6 +35,13 @@ return {
           if error then
             return 'https://www.shellcheck.net/wiki/' .. error
           end
+        end,
+      },
+      markdown_link = {
+        name = 'markdown-link',
+        handle = function(mode, line, _)
+          local pattern = '%[[^%]]*%]%(([^%)]+)%)'
+          return require('gx.helper').find(line, mode, pattern)
         end,
       },
     },

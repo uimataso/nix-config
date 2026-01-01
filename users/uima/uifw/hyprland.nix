@@ -10,7 +10,7 @@ let
   noteScratchpad = scratchpad {
     inherit pkgs;
     name = "note";
-    spawnCmd = ''"$TERMINAL" --app-id scratchpad-note -e tmux new-session -A -s notes -c /share/notes $EDITOR index.md'';
+    spawnCmd = ''"$TERMINAL" --app-id scratchpad-note -e tmux new-session -A -s notes -c /share/notes $EDITOR inbox.md'';
     className = "scratchpad-note";
   };
   tempScratchpad = scratchpad {

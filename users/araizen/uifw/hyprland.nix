@@ -10,8 +10,14 @@ let
   noteScratchpad = scratchpad {
     inherit pkgs;
     name = "note";
-    spawnCmd = ''"$TERMINAL" --app-id scratchpad-note --working-directory ~/notes/ -e $EDITOR index.md'';
+    spawnCmd = ''"$TERMINAL" --app-id scratchpad-note -e tmux new-session -A -s notes -c /share/notes $EDITOR inbox.md'';
     className = "scratchpad-note";
+  };
+  workNoteScratchpad = scratchpad {
+    inherit pkgs;
+    name = "work-note";
+    spawnCmd = ''"$TERMINAL" --app-id scratchpad-work-note --working-directory ~/notes/ -e $EDITOR inbox.md'';
+    className = "scratchpad-work-note";
   };
   tempScratchpad = scratchpad {
     inherit pkgs;
@@ -48,6 +54,7 @@ in
     scripts.vl
 
     noteScratchpad
+    workNoteScratchpad
     termScratchpad
     tempScratchpad
     musicScratchpad
@@ -175,6 +182,8 @@ in
 
         "SUPER, n,        exec, ${lib.getExe' noteScratchpad "open-ws-note"}"
         "SUPER SHIFT, n,  exec, ${lib.getExe' noteScratchpad "open-note"}"
+        "SUPER, m,        exec, ${lib.getExe' workNoteScratchpad "open-ws-note"}"
+        "SUPER SHIFT, m,  exec, ${lib.getExe' workNoteScratchpad "open-note"}"
         "SUPER, t,        exec, ${lib.getExe' termScratchpad "open-ws-term"}"
         "SUPER SHIFT, t,  exec, ${lib.getExe' termScratchpad "open-term"}"
         "SUPER, p,        exec, ${lib.getExe' tempScratchpad "open-ws-temp"}"

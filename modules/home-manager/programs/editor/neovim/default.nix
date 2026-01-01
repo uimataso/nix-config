@@ -66,6 +66,8 @@ in
         # HTML, css, etc
         superhtml
         vscode-langservers-extracted
+        # Markdown
+        marksman
 
         # Json
         fixjson

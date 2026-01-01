@@ -16,6 +16,7 @@ return {
     handlers = {
       plugin = true, -- open plugin links in lua (e.g. packer, lazy, ..)
       github = true, -- open github issues
+      markdown = true,
       rust = {
         name = 'rust',
         filetype = { 'toml' },

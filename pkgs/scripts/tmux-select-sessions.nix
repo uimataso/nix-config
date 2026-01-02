@@ -24,7 +24,9 @@ writeShellApplication {
 
       # Get dir in src/* that are not created
       printf '\e[38;5;242m'
-      find "$HOME/src/" -mindepth 1 -maxdepth 1 -type d -printf 'src/%P\n' | sort | comm "$tmp" - -13
+      find "$HOME/src/self/"  -mindepth 1 -maxdepth 1 -type d -printf 'src/self/%P\n'  | sort | comm "$tmp" - -13
+      find "$HOME/src/other/" -mindepth 1 -maxdepth 1 -type d -printf 'src/other/%P\n' | sort | comm "$tmp" - -13
+      find "$HOME/src/test/"  -mindepth 1 -maxdepth 1 -type d -printf 'src/test/%P\n'  | sort | comm "$tmp" - -13
       printf '\e[0m'
 
       rm "$tmp"

@@ -26,6 +26,7 @@ in
       nu = "git -C ${flakeDir} pull && nh os switch ${flakeDir}";
       nt = "nh os test ${flakeDir}";
       nre = "nix repl --expr 'builtins.getFlake \"${flakeDir}\"'";
+      nrr = "nixos-rebuild repl --flake ${flakeDir}";
       nd = "nix develop path:$(pwd)";
 
       it = "${pkgs.scripts.nix-template-tool}/bin/nix-template-tool";

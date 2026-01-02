@@ -87,6 +87,8 @@
     };
   };
 
+  programs.mosh.enable = true;
+
   # make a share dir
   # $ mkdir /share
   # $ chmod 2770 /share

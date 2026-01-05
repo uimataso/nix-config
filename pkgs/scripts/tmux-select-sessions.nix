@@ -30,7 +30,7 @@ writeShellApplication {
         fi
         find "$HOME/$1/"  -mindepth 1 -maxdepth 1 -type d -printf "$1/%P\n" | sort
       }
-      find_proj 'src' | grep -v -e 'src/self' -e 'src/other' -e 'src/test' | comm "$tmp" - -13
+      find_proj 'src' | grep -x -v -e 'src/self' -e 'src/other' -e 'src/test' | comm "$tmp" - -13
       find_proj 'src/self' | comm "$tmp" - -13
       find_proj 'src/other' | comm "$tmp" - -13
       find_proj 'src/test' | comm "$tmp" - -13

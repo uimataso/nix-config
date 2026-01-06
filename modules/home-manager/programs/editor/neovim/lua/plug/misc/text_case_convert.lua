@@ -3,6 +3,12 @@ return {
   lazy = false,
 
   keys = {
+    -- keymap example: <https://github.com/johmsalas/text-case.nvim?tab=readme-ov-file#example-in-vimscript-using-plug-with-custom-keybindings>
+    -- - `gas`: to_snake_case
+    -- - `gad`: to-dash-case
+    -- - `gan`: TO_CONSTANT_CASE
+    -- - `gac`: toCamelCase
+    -- - `gap`: ToPascalCase
     'ga',
   },
 

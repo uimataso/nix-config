@@ -19,7 +19,8 @@ writeShellApplication {
 
       # Get tmuxinator project that are not created
       printf '\e[38;5;242m'
-      tmuxinator list -n | tail -n+2 | sort | comm "$tmp" - -13
+      # tmuxinator list -n | tail -n+2 | sort | comm "$tmp" - -13
+      find "$HOME/.config/tmuxinator" -type f -name '*.yml' -exec grep -oP '^name: \K\w+$' {} \; | sort | comm "$tmp" - -13
       printf '\e[0m'
 
       # Get dir in src/* that are not created

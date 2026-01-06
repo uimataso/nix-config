@@ -1,6 +1,7 @@
 {
   self,
   pkgs,
+  pkgs-stable,
   inputs,
   ...
 }:
@@ -20,7 +21,7 @@
     lm_sensors
 
     nsxiv
-    mpv
+    pkgs-stable.mpv
 
     argocd
 

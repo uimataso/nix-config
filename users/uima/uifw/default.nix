@@ -1,6 +1,7 @@
 {
   self,
   pkgs,
+  pkgs-stable,
   inputs,
   ...
 }:
@@ -21,7 +22,7 @@
     restic
 
     nsxiv
-    mpv
+    pkgs-stable.mpv
 
     scripts.pdf-decrypt
     scripts.mkbigfile

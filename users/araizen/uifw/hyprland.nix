@@ -61,10 +61,10 @@ in
   ];
 
   home.shellAliases = {
-    hl = "Hyprland";
+    hl = "start-hyprland";
   };
 
-  uimaConfig.sh.bash.execOnTty1 = "Hyprland";
+  uimaConfig.sh.bash.execOnTty1 = "start-hyprland";
 
   services.dunst.settings.global = {
     corner_radius = 5;

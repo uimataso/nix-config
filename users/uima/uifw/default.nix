@@ -28,6 +28,7 @@
     scripts.mkbigfile
     scripts.fetch-title
     scripts.open-git-remote
+    scripts._0x0
 
     obsidian
 

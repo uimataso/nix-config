@@ -27,6 +27,7 @@ in
     fetch-title = mkScript ./fetch-title.nix;
     notify-send-all = mkScript ./notify-send-all.nix;
     open-git-remote = mkScript ./open-git-remote.nix;
+    _0x0 = mkScriptWith ./0x0.nix { inherit clip; };
 
     # Dmenu
     app-launcher = mkScript ./app-launcher.nix;

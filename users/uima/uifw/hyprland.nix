@@ -239,13 +239,13 @@ in
             m:
             let
               name = m.name;
-              resolution = "${builtins.toString m.width}x${builtins.toString m.height}@${builtins.toString m.refreshRate}";
+              resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
               position = "auto";
-              scale = "${builtins.toString m.scale}";
+              scale = "${toString m.scale}";
             in
             "${name}, ${resolution}, ${position}, ${scale}";
         in
-        builtins.map mkMonitor config.uimaConfig.desktop.monitors;
+        map mkMonitor config.uimaConfig.desktop.monitors;
     };
   };
 

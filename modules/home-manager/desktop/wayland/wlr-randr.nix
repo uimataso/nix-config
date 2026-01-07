@@ -19,12 +19,12 @@ let
           m:
           let
             output = "--output ${m.name}";
-            mode = "--mode ${builtins.toString m.width}x${builtins.toString m.height}@${builtins.toString m.refreshRate}Hz";
-            scale = "--scale ${builtins.toString m.scale}";
+            mode = "--mode ${toString m.width}x${toString m.height}@${toString m.refreshRate}Hz";
+            scale = "--scale ${toString m.scale}";
           in
           "wlr-randr ${output} ${mode} ${scale}";
       in
-      builtins.concatStringsSep "\n" (builtins.map toWlrRandr config.uimaConfig.desktop.monitors);
+      builtins.concatStringsSep "\n" (map toWlrRandr config.uimaConfig.desktop.monitors);
   };
   setupMonitorWayland = "${setupMonitorWaylandPkg}/bin/setup-monitor-for-wayland";
 in

@@ -317,14 +317,14 @@
 
         * {
           font-family: "${fonts.monospace.name}";
-          font-size: ${builtins.toString fonts.sizes.desktop}pt;
+          font-size: ${toString fonts.sizes.desktop}pt;
           border: none;
           border-radius: 5;
           min-height: 0;
         }
 
         window#waybar, tooltip {
-          background: alpha(@base00, ${builtins.toString opacity.terminal});
+          background: alpha(@base00, ${toString opacity.terminal});
           color: @base05;
           border-radius: 0;
         }

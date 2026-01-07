@@ -35,7 +35,7 @@ in
 
         recolor = true;
 
-        font = with config.stylix.fonts; "${monospace.name} ${builtins.toString sizes.terminal}";
+        font = with config.stylix.fonts; "${monospace.name} ${toString sizes.terminal}";
       };
     };
   };

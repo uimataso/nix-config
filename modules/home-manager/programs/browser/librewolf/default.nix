@@ -28,7 +28,7 @@ let
     with config.lib.stylix.colors.withHashtag;
     with config.stylix;
     let
-      trans = builtins.toString (builtins.floor (opacity.applications * 100));
+      trans = toString (builtins.floor (opacity.applications * 100));
     in
     # css
     ''

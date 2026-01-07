@@ -42,7 +42,7 @@ in
       createDirectories = true;
     }
     // lib.attrsets.mapAttrs (
-      key: val: if builtins.isNull val then val else "${config.home.homeDirectory}/${val}"
+      key: val: if isNull val then val else "${config.home.homeDirectory}/${val}"
     ) cfg.xdgDirs;
   };
 }

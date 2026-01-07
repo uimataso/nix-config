@@ -2,6 +2,7 @@
   writeShellApplication,
   pkgs,
   clip,
+  initScript,
   ...
 }:
 writeShellApplication {
@@ -13,18 +14,14 @@ writeShellApplication {
   ];
 
   text = ''
-    help() {
-      echo "Usage:"
-      echo "    $APP_NAME <filename>      upload file"
-      echo "    $APP_NAME                 upload clipboard"
-    }
+    ${initScript}
 
     if [ ! -t 0 ]; then
         curl -sS -F "file=@-" https://0x0.st | clip
     elif [ -f "''${1:-}" ]; then
         curl -sS -F "file=@$1" https://0x0.st | clip
     else
-        help >&2
+        echo "Usage: $APP_NAME [filename]" >&2
         exit 1
     fi
   '';

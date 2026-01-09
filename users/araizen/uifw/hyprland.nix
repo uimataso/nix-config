@@ -255,6 +255,12 @@ in
     };
   };
 
+  services.hyprpaper = {
+    settings = {
+      splash = false;
+    };
+  };
+
   # TODO:
   # - no idle when music is playing
   # - toggle idle service

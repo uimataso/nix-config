@@ -289,6 +289,12 @@ in
     };
   };
 
+  services.hyprpaper = {
+    settings = {
+      splash = false;
+    };
+  };
+
   programs.hyprlock = {
     enable = true;
 

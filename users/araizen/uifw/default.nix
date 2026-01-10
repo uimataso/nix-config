@@ -163,6 +163,8 @@
 
         eza.enable = true;
         tmux.enable = true;
+
+        qrencode.enable = true;
       };
 
       unfree = {

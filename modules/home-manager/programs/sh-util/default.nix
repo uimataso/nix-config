@@ -18,6 +18,7 @@ in
     ./lsd.nix
     ./neomutt.nix
     ./nix-helper.nix
+    ./qrencode.nix
     ./tealdeer.nix
     ./tmux.nix
   ];

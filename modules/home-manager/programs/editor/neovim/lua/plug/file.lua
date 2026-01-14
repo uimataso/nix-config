@@ -24,6 +24,7 @@ return {
       views = {
         finder = {
           mappings = {
+            ['<Esc><Esc>'] = 'CloseView',
             ['-'] = function(self)
               vim.api.nvim_feedkeys(vim.v.count .. 'k', 'n', false)
             end,

@@ -28,6 +28,12 @@ return {
               vim.api.nvim_feedkeys(vim.v.count .. 'k', 'n', false)
             end,
           },
+          win = {
+            win_opts = {
+              number = true,
+              relativenumber = true,
+            },
+          },
         },
       },
       integrations = {

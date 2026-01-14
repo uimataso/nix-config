@@ -161,17 +161,12 @@
       sh-util = {
         default = true;
 
-        aerc.enable = true;
-        neomutt.enable = true;
-
         eza.enable = true;
         tmux.enable = true;
-
         qrencode.enable = true;
-      };
 
-      game = {
-        osu.enable = true;
+        aerc.enable = true;
+        neomutt.enable = true;
       };
 
       misc = {
@@ -181,8 +176,6 @@
 
         rmpc.enable = true;
 
-        # bitwarden.enable = true;
-        # protonmail.enable = true;
         thunderbird.enable = true;
 
         # prusaSlicer.enable = true;

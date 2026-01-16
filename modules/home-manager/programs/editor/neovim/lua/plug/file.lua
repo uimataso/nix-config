@@ -23,6 +23,7 @@ return {
     opts = {
       views = {
         finder = {
+          default_explorer = true,
           mappings = {
             ['<Esc><Esc>'] = 'CloseView',
             ['-'] = function(self)

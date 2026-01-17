@@ -200,10 +200,10 @@ in
           (builtins.readFile ./chrome/navbar_below_content.css)
         ];
 
-        userContent = lib.strings.concatLines [
-          userCssColor
-          (builtins.readFile ./content/userContent.css)
-        ];
+        # userContent = lib.strings.concatLines [
+        #   userCssColor
+        #   (builtins.readFile ./content/userContent.css)
+        # ];
 
         settings = {
           # Auto enable extensions

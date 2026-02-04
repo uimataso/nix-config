@@ -97,10 +97,6 @@ in
         "s[true], gapsout:15"
       ];
 
-      windowrulev2 = [
-        "tile, class:^(Nsxiv)$" # fix nsxiv opened as float
-      ];
-
       misc = {
         enable_swallow = true;
         swallow_regex = [

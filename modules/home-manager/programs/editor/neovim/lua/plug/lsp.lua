@@ -34,7 +34,7 @@ return {
     cmd = 'Outline',
     keys = {
       {
-        '<Leader>o',
+        '<Leader>j',
         mode = { 'n' },
         function()
           require('outline').toggle()
@@ -62,7 +62,7 @@ return {
 
     keys = {
       {
-        '<Leader>o',
+        '<Leader>j',
         mode = { 'n' },
         function()
           require('aerial').toggle({ direction = 'left' })

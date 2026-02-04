@@ -17,6 +17,14 @@ return {
         end,
         desc = 'Open Oil browser',
       },
+      {
+        '<Leader>o',
+        mode = { 'n' },
+        function()
+          require('oil').open()
+        end,
+        desc = 'Open Oil in current buffer',
+      },
     },
 
     ---@type oil.SetupOpts

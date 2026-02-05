@@ -62,7 +62,7 @@ in
         # Nix
         nil
         nixd
-        nixfmt-rfc-style
+        nixfmt
         # HTML, css, etc
         superhtml
         vscode-langservers-extracted

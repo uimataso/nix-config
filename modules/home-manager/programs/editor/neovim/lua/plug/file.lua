@@ -12,7 +12,7 @@ return {
           if vim.v.count > 0 then
             vim.api.nvim_feedkeys(vim.v.count .. 'k', 'n', false)
           else
-            require('oil').open_float()
+            require('oil').open_float(nil, { preview = {} })
           end
         end,
         desc = 'Open Oil browser',
@@ -21,7 +21,7 @@ return {
         '<Leader>o',
         mode = { 'n' },
         function()
-          require('oil').open()
+          require('oil').open(nil, { preview = {} })
         end,
         desc = 'Open Oil in current buffer',
       },
@@ -44,7 +44,7 @@ return {
       },
       float = {
         padding = 5,
-        max_width = 80,
+        max_width = 160,
         max_height = 0,
         win_options = {
           winblend = 0,

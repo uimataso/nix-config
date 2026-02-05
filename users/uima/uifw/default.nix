@@ -82,7 +82,7 @@
           ".local/share/cargo"
 
           ".local/share/Steam"
-          # ".steam"
+          ".local/share/Terraria"
         ];
       };
 

@@ -171,6 +171,10 @@
       vm.enable = true;
       docker.enable = true;
     };
+
+    programs = {
+      steam.enable = true;
+    };
   };
 
   sops.secrets =

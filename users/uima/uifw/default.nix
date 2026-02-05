@@ -80,6 +80,9 @@
           ".config/obsidian"
           ".config/puddletag"
           ".local/share/cargo"
+
+          ".local/share/Steam"
+          # ".steam"
         ];
       };
 

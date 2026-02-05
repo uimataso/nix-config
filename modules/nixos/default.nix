@@ -5,6 +5,7 @@
     ./desktop
     ./hardware
     ./networking
+    ./programs
     ./services
     ./system
     ./theme

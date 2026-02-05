@@ -221,10 +221,4 @@
     3000
     6379
   ];
-
-  hardware.bluetooth.settings = {
-    General = {
-      ControllerMode = "le";
-    };
-  };
 }

@@ -161,7 +161,7 @@
       udisks2.enable = true;
 
       systemdNotify.services."restic-backups-remote" = {
-        onStart = ''--urgency=low 'Start Backup to B2...' '';
+        onStart = "--urgency=low 'Start Backup to B2...' ";
         onSuccess = ''--urgency=low 'Backup Success!' "Backup toke $duration seconds"'';
         onFailure = ''--urgency=normal 'Backup Failed!' "Backup filed at $duration seconds"'';
       };

@@ -256,6 +256,7 @@
               "class<Slack>" = " ";
               "class<thunderbird>" = " ";
               "class<vesktop>" = " ";
+              "class<steam>" = " ";
               # prusa slicer " "
               # freecad " "
               # openscad " "

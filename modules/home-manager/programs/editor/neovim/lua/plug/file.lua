@@ -29,6 +29,11 @@ return {
 
     ---@type oil.SetupOpts
     opts = {
+      columns = {
+        'permissions',
+        { 'size', align = 'right', highlight = 'Comment' },
+        { 'mtime', format = '<%Y-%m-%d %H:%M>', highlight = 'Comment' },
+      },
       win_options = {
         signcolumn = vim.opt.signcolumn:get(),
       },
@@ -43,7 +48,7 @@ return {
         ['_'] = false,
       },
       float = {
-        padding = 5,
+        padding = 3,
         max_width = 160,
         max_height = 0,
         win_options = {

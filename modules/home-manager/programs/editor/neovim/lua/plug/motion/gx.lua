@@ -21,7 +21,7 @@ return {
         filetype = { 'toml' },
         filename = 'Cargo.toml',
         handle = function(mode, line, _)
-          local crate = require('gx.helper').find(line, mode, '(%w+)%s-=%s')
+          local crate = require('gx.helper').find(line, mode, '([%w_-]+)%s-=%s')
           if crate then
             return 'https://crates.io/crates/' .. crate
           end

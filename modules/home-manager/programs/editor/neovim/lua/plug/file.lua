@@ -1,3 +1,5 @@
+local show_column = false
+
 return {
   {
     'stevearc/oil.nvim',
@@ -29,11 +31,7 @@ return {
 
     ---@type oil.SetupOpts
     opts = {
-      columns = {
-        'permissions',
-        { 'size', align = 'right', highlight = 'Comment' },
-        { 'mtime', format = '<%Y-%m-%d %H:%M>', highlight = 'Comment' },
-      },
+      columns = {},
       win_options = {
         signcolumn = vim.opt.signcolumn:get(),
       },
@@ -46,6 +44,19 @@ return {
         ['q'] = 'actions.close',
         ['-'] = false,
         ['_'] = false,
+
+        ['gd'] = function()
+          show_column = not show_column
+          if show_column then
+            require('oil').set_columns({
+              'permissions',
+              { 'size', align = 'right', highlight = 'Comment' },
+              { 'mtime', format = '<%Y-%m-%d %H:%M>', highlight = 'Comment' },
+            })
+          else
+            require('oil').set_columns({})
+          end
+        end,
       },
       float = {
         padding = 3,

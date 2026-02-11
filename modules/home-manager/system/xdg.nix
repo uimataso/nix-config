@@ -16,29 +16,31 @@ in
   };
 
   # TODO: unsolved:
-  # ~/.librewolf: upstream supported(?)
-  # ~/.mozilla/native-messaging-hosts/.keep: not supported
-  #   see: https://github.com/nix-community/home-manager/issues/8200
-  #   see: https://codeberg.org/librewolf/issues/issues/2682#issuecomment-9768230
-  # ~/.theme: have bug
-  #   created by stylix, see: https://github.com/nix-community/stylix/pull/1142
+  # ~/librewolf: wait for home-manager support
+  # ~/.mozilla: wait for home-manager support
+  #
+  # ~/.theme: created by stylix, have bug with flatpak
+  #   see: https://github.com/nix-community/stylix/pull/1142
+  #
   # ~/.thunderbird: not supported
+  # ~/Thunderbird: created at runtime
   #   see: https://bugzilla.mozilla.org/show_bug.cgi?id=735285
+  #
+  # ~/.pki: not supported
 
   config = mkIf cfg.enable {
     xdg.enable = true;
     xdg.mimeApps.enable = true;
 
     home.preferXdgDirectories = true;
+    nix.settings.use-xdg-base-directories = true;
 
     xresources.path = "${config.xdg.configHome}/x11/xresources";
 
     # gtkrc-2.0
     gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-    # disable generate `~/.icons`
+    # disable generate .icons
     home.pointerCursor.dotIcons.enable = false;
-
-    nix.settings.use-xdg-base-directories = true;
 
     xdg.configFile = {
       # wget

@@ -69,6 +69,9 @@ in
 
     stylix.targets.librewolf.profileNames = [ profileName ];
 
+    # no .mozilla
+    home.file.".mozilla/native-messaging-hosts".enable = false;
+
     programs.librewolf = {
       enable = true;
 

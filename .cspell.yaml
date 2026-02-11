@@ -3,11 +3,13 @@ words:
   - elif
   - hyprctl
   - hyprland
+  - librewolf
   - nixos
   - nixpkgs
   - nvim
   - pkgs
   - shellcheck
+  - stylix
   - uima
 
 ignorePaths:

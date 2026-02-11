@@ -179,7 +179,7 @@
 
         rmpc.enable = true;
 
-        thunderbird.enable = true;
+        # thunderbird.enable = true;
 
         # prusaSlicer.enable = true;
         # kicad.enable = true;

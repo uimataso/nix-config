@@ -16,7 +16,7 @@ in
   };
 
   # TODO: unsolved:
-  # ~/librewolf: wait for home-manager support
+  # ~/.librewolf: wait for home-manager support
   # ~/.mozilla: wait for home-manager support
   #
   # ~/.theme: created by stylix, have bug with flatpak

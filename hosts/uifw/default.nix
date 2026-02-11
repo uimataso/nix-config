@@ -143,7 +143,6 @@
     desktop = {
       wayland = {
         hyprland.enable = true;
-        river.enable = true;
       };
     };
 

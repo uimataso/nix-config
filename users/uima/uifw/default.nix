@@ -55,6 +55,8 @@
         "rust-src"
       ];
     })
+    cargo-nextest
+    cargo-expand
   ];
 
   stylix =

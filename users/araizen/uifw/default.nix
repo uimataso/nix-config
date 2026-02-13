@@ -47,6 +47,8 @@
         "rust-src"
       ];
     })
+    cargo-nextest
+    cargo-expand
   ];
 
   programs.git.settings = {

@@ -168,7 +168,6 @@
       };
 
       unfree = {
-        postman.enable = true;
         slack.enable = true;
       };
 

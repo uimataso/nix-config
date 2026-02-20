@@ -15,6 +15,7 @@ in
 {
   imports = [
     ./fmenu.nix
+    ./otter-launcher.nix
     ./tofi.nix
   ];
 

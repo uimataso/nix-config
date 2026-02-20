@@ -35,7 +35,7 @@
       url = "github:nix-community/impermanence";
     };
 
-    # System
+    # System Module
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL/main";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,7 +44,7 @@
       url = "github:NixOS/nixos-hardware/master";
     };
 
-    # User Space
+    # User Space Module
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,6 +59,12 @@
     };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Packages
+    otter-launcher = {
+      url = "github:kuokuo123/otter-launcher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

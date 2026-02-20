@@ -3,6 +3,7 @@
   pkgs,
   pkgs-stable,
   inputs,
+  lib,
   ...
 }:
 {
@@ -161,6 +162,7 @@
       dmenu = {
         tofi.enable = true;
         tofi.defaultDmenu = true;
+        otter-launcher.enable = true;
       };
 
       sh-util = {

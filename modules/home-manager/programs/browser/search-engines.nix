@@ -1,14 +1,14 @@
 {
   # Search Engine
-  s = {
+  se = {
     url = "https://search.uimataso.com/search?q={}";
     name = "Searx";
   };
-  g = {
+  gg = {
     url = "https://www.google.com/search?q={}";
     name = "Google";
   };
-  d = {
+  ddg = {
     url = "https://duckduckgo.com/?q={}";
     name = "DuckDuckGo";
   };
@@ -56,11 +56,11 @@
   };
 
   # Misc
-  w = {
+  wi = {
     url = "https://www.wikipedia.org/w/index.php?title=Special:Search&search={}";
     name = "Wikipedia";
   };
-  y = {
+  yt = {
     url = "https://www.youtube.com/results?search_query={}";
     name = "Youtube";
   };

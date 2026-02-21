@@ -13,7 +13,6 @@ in
       enable = true;
 
       defaultOptions = [
-        "--height 50%"
         "--no-separator"
         "--info=inline"
         "--cycle"

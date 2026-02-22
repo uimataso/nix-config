@@ -157,6 +157,7 @@
         docker.enable = true;
         podman.enable = true;
         lazydocker.enable = true;
+        opencode.enable = true;
       };
 
       dmenu = {

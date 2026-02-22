@@ -9,6 +9,7 @@
     ./k8s.nix
     ./lazydocker.nix
     ./lazygit.nix
+    ./opencode.nix
     ./podman.nix
     ./ssh.nix
     ./terraform.nix

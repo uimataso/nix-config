@@ -25,30 +25,30 @@ function M.setup(base16_palette, opts)
   c.fg = c.white
   c.bg = c.black
 
-  c.bg_popup = util.blend(c.base01, c.base00, 0.25)
-  c.bg_quote = util.blend(c.base01, c.base00, 0.25)
-  c.bg_cursor_line = util.blend(c.base01, c.base00, 0.5)
-  c.bg_selection = util.blend(c.base01, c.base00, 0.75)
-  c.bg_fold = c.base01
+  c.bg_popup = c.base01
+  c.bg_quote = c.base01
+  c.bg_cursor_line = util.blend(c.base02, c.base01, 0.5)
+  c.bg_selection = c.base02
+  c.bg_fold = c.base03
   c.bg_visual = c.base02
-  c.border = c.base01
-  c.non_text = c.base03
-  c.status_line = c.base04
+  c.border = c.base02
+  c.non_text = c.base04
+  c.status_line = util.blend(c.base05, c.base04, 0.5)
   c.selection = c.white
 
   c.syntax = {
-    comment = c.base03,
+    comment = c.base04,
     literal = c.orange,
     variable = c.white,
     fn = c.white,
     type = c.white,
     keyword = c.white,
 
-    punctuation = c.base03,
+    punctuation = c.base04,
     operator = c.white,
     module = c.white,
     label = c.white,
-    tag = c.base04,
+    tag = util.blend(c.base05, c.base04, 0.5),
   }
 
   c.markup = {
@@ -75,13 +75,13 @@ function M.setup(base16_palette, opts)
   c.ok = c.green
   c.guide = c.green
   c.todo = c:dim(c.green, 0.8)
-  c.unused = c.base04
+  c.unused = util.blend(c.base05, c.base04, 0.5)
 
   c.diff = {
     add = c.green,
     change = c.blue,
     delete = c.red,
-    text = c.base03,
+    text = c.base04,
   }
 
   return c

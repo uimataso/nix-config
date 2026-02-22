@@ -30,8 +30,6 @@ in
       # - 2123044452: Adjust Sound Volume
     ];
 
-    stylix.targets.anki.enable = false;
-
     # since i don't use anki option now, i just commented this out
 
     # programs.anki = {

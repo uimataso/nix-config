@@ -35,11 +35,11 @@ in
 
     programs.foot = {
       enable = true;
-      settings = with config.lib.stylix.colors; {
+      settings = {
         main = {
           pad = "5x3";
         };
-        colors = {
+        colors = with config.lib.stylix.colors; {
           cursor = "${base00}  ${base05}";
         };
       };

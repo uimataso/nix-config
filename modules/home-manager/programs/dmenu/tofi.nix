@@ -8,6 +8,7 @@ let
     mkIf
     mkEnableOption
     mkOption
+    mkForce
     types
     ;
   cfg = config.uimaConfig.programs.dmenu.tofi;
@@ -29,47 +30,33 @@ in
       executable = "${config.xdg.stateHome}/nix/profile/bin/tofi";
     };
 
-    stylix.targets.tofi.enable = false;
-
     programs.tofi = {
       enable = true;
 
       # man tofi.5
-      settings =
-        with config.lib.stylix.colors.withHashtag;
-        let
-          opacity = lib.toHexString (((builtins.ceil (config.stylix.opacity.popups * 100)) * 255) / 100);
+      settings = with config.lib.stylix.colors.withHashtag; {
+        font-size = mkForce 15;
 
-        in
-        {
-          font = config.stylix.fonts.monospace.name;
-          font-size = 15;
+        selection-color = mkForce base00;
+        selection-background = mkForce base05;
+        selection-background-padding = "2, 8";
+        selection-background-corner-radius = 5;
 
-          text-color = base04;
-          input-color = base05;
-          prompt-color = base05;
-          background-color = base00 + opacity;
+        width = "100%";
+        height = "100%";
 
-          selection-color = base00;
-          selection-background = base05;
-          selection-background-padding = "2, 8";
-          selection-background-corner-radius = 5;
+        border-width = 0;
+        outline-width = 0;
 
-          width = "100%";
-          height = "100%";
+        padding-left = "35%";
+        padding-top = "35%";
 
-          border-width = 0;
-          outline-width = 0;
+        result-spacing = 15;
 
-          padding-left = "35%";
-          padding-top = "35%";
-
-          result-spacing = 15;
-
-          hide-cursor = true;
-          matching-algorithm = "fuzzy";
-          num-results = 10;
-        };
+        hide-cursor = true;
+        matching-algorithm = "fuzzy";
+        num-results = 10;
+      };
     };
   };
 }

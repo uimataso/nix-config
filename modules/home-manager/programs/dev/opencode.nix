@@ -21,10 +21,6 @@ in
           dark = mkForce "none";
           light = mkForce "none";
         };
-        backgroundPanel = {
-          dark = mkForce "none";
-          light = mkForce "none";
-        };
       };
     };
   };

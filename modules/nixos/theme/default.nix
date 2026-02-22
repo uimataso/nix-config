@@ -22,9 +22,6 @@ in
   ];
 
   config = mkIf cfg.enable {
-    # TODO: try to move `~/.icons` and `~/.themes` to xdg config
-    # TODO: theme module for home-manager?
-
     stylix = {
       enable = true;
 

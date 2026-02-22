@@ -1,7 +1,9 @@
 return {
   {
     'dmtrKovalenko/fff.nvim',
-    build = 'nix run .#release',
+    build = function()
+      require('fff.download').download_or_build_binary()
+    end,
 
     opts = {
       prompt = ' ',

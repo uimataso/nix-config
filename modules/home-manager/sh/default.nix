@@ -47,7 +47,6 @@ in
 {
   imports = [
     ./bash
-    ./nushell
   ];
 
   options.uimaConfig.sh = {

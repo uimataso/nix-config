@@ -28,7 +28,7 @@ function M.setup(base16_palette, opts)
   c.bg_popup = c.base01
   c.bg_quote = c.base01
   c.bg_cursor_line = util.blend(c.base02, c.base01, 0.5)
-  c.bg_selection = c.base02
+  c.bg_selection = c.base03
   c.bg_fold = c.base03
   c.bg_visual = c.base02
   c.border = c.base02

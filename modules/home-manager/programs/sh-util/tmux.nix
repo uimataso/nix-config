@@ -133,9 +133,9 @@ in
           set -g mode-style            fg=black,bg=green
 
           # pane border colors
-          set -g pane-border-style        fg='${base01}'
+          set -g pane-border-style        fg='${base02}'
           set -g pane-active-border-style fg=white
-          set -g popup-border-style       fg='${base01}'
+          set -g popup-border-style       fg='${base02}'
 
           # window title colors
           set -g window-status-current-style fg=white,bg=default,bold

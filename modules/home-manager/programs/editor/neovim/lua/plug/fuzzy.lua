@@ -1,31 +1,10 @@
 return {
   {
-    'dmtrKovalenko/fff.nvim',
-    build = function()
-      require('fff.download').download_or_build_binary()
-    end,
-
-    opts = {
-      prompt = ' ',
-    },
-
-    keys = {
-      {
-        'ff', -- try it if you didn't it is a banger keybinding for a picker
-        function()
-          require('fff').find_files() -- or find_in_git_root() if you only want git files
-        end,
-        desc = 'Open file picker',
-      },
-    },
-  },
-
-  {
     'folke/snacks.nvim',
 
     keys = {
       -- stylua: ignore start
-      { '=', function() Snacks.picker.files() end, desc = 'Find Files' },
+      { '=', function() Snacks.picker.files({ hidden = true }) end, desc = 'Find Files' },
       { 'z=', function() Snacks.picker.spelling() end, desc = 'Spell suggest' },
 
       { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },

@@ -176,6 +176,7 @@
       misc = {
         zathura.enable = true;
         thunderbird.enable = true;
+        hoppscotch.enable = true;
 
         rmpc.enable = true;
       };

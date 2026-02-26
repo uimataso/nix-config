@@ -171,6 +171,7 @@
 
       unfree = {
         slack.enable = true;
+        figma.enable = true;
       };
 
       misc = {

@@ -179,7 +179,8 @@ in
 
         "SUPER, escape, exec, power-menu"
         "SUPER, return, exec, ${config.uimaConfig.programs.terminal.executable}"
-        ''SUPER, o, exec, sh -c '[ "$(pgrep -c otter-launcher)" = "0" ] && foot --app-id otter-launcher -T foot otter-launcher' ''
+        "SUPER, o, exec, app-launcher"
+        # ''SUPER, o, exec, sh -c '[ "$(pgrep -c otter-launcher)" = "0" ] && foot --app-id otter-launcher -T foot otter-launcher' ''
         "SUPER, b, exec, ${config.uimaConfig.programs.browser.executable}"
         "SUPER SHIFT, u, exec, notify-send 'Title copied' \"$(clip | xargs fetch-title -m | clip)\""
 

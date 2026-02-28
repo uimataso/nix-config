@@ -21,6 +21,7 @@ let
   cfg = config.uimaConfig.programs.browser.librewolf;
 
   searchEngines = import ../search-engines.nix;
+  trustedSites = import ../trusted-sites.nix;
 
   profileName = "uima";
 
@@ -91,36 +92,7 @@ in
         # TODO: clean cookies for each container?
         Cookies = {
           Behavior = "reject";
-          Allow = [
-            "https://uimataso.com"
-
-            "https://proton.me"
-            "https://simplelogin.io"
-            "https://porkbun.com"
-
-            "https://accounts.google.com"
-            "https://google.com"
-            "https://youtube.com"
-
-            "https://github.com"
-            "https://tailscale.com"
-            "https://mynixos.com"
-
-            "https://leetcode.com"
-            "https://codeforces.com"
-            "https://reddit.com"
-            "https://printables.com"
-
-            "https://monkeytype.com"
-            "https://typ.ing"
-            "https://shurufa.app"
-
-            "https://aws.amazon.com"
-            "https://chatgpt.com"
-            "https://figma.com"
-            "https://cloudflare.com"
-            "https://www.notion.so"
-          ];
+          Allow = map (domain: "https://${domain}") trustedSites.allowCookie;
         };
 
         # TODO: try setting extension with this

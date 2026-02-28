@@ -246,6 +246,7 @@
               "class<brave-browser>" = " 󰩃";
               # "title<.*youtube.*>" = " ";
               # "title<.*github.*>" = " ";
+              "class<org.qutebrowser.qutebrowser>" = " 󰖟";
 
               "class<Alacritty>" = " ";
               "class<foot>" = " ";

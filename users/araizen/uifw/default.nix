@@ -135,6 +135,7 @@
         librewolf.enable = true;
         librewolf.defaultBrowser = true;
         brave.enable = true;
+        qutebrowser.enable = true;
         vimiumOptions.enable = true;
       };
 

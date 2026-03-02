@@ -42,6 +42,11 @@ in
         colors = with config.lib.stylix.colors; {
           cursor = "${base00}  ${base05}";
         };
+
+        key-bindings = {
+          # unbind <C-S-n>
+          spawn-terminal = "none";
+        };
       };
     };
   };

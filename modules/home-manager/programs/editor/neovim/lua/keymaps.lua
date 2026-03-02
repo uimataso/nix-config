@@ -93,6 +93,14 @@ vim.keymap.set('', '<Leader>p', '"+p')
 vim.keymap.set('', '<Leader>P', '"+P')
 vim.keymap.set('', '<Leader><Leader>y', "gg\"+yG''")
 
+-- Quickfix
+vim.keymap.set('n', ']q', '<cmd>try | cnext | catch | cfirst | catch | endtry<cr>')
+vim.keymap.set('n', '[q', '<cmd>try | cprevious | catch | clast | catch | endtry<cr>')
+vim.keymap.set('n', '<C-j>', ']q', { remap = true })
+vim.keymap.set('n', '<C-k>', '[q', { remap = true })
+vim.keymap.set('n', '<C-n>', '<cmd>try | cnewer | catch | endtry<cr>')
+vim.keymap.set('n', '<C-p>', '<cmd>try | colder | catch | endtry<cr>')
+
 -- Paste without whitespace
 vim.keymap.set('n', 'yp', function()
   local yanked_text = vim.fn.getreg(vim.v.register)
@@ -138,6 +146,7 @@ vim.keymap.set('n', 'gJ', 'mzgJ`z:delmarks z<cr>')
 
 -- '*' but not jump to next, e.g. just highlight the word under the cursor
 -- ref: https://stackoverflow.com/a/49944815
+-- TODO: make this work in visual mode
 vim.keymap.set('n', '*', [[<cmd>let @/ = '\<' . expand('<cword>') . '\>' <bar> set hls <cr>]])
 vim.keymap.set('n', 'g*', [[<cmd>let @/ = expand('<cword>') <bar> set hls <cr>]])
 
@@ -148,9 +157,6 @@ end, { expr = true })
 vim.keymap.set('x', 'A', function()
   return vim.fn.mode() == 'V' and '$<C-v>A' or 'A'
 end, { expr = true })
-
--- Repeat and search next
-vim.keymap.set('n', '<M-n>', '.nzzzv')
 
 -- Spell check
 vim.keymap.set('n', '<Leader>sp', '<cmd>setlocal spell!<CR>')
@@ -217,6 +223,20 @@ vim.api.nvim_create_user_command('RunCmd', function(opts)
 end, { range = true, nargs = '*', bang = true })
 vim.keymap.set('', '<Leader>r', ':RunCmd ', { desc = 'Run command in split' })
 vim.keymap.set('n', '<Leader><Leader>r', ':%RunCmd ', { desc = 'Run command in split' })
+
+local keymap_dia_to_qf = function(lhs, buf, get_opts)
+  vim.keymap.set('n', lhs, function()
+    require('utils').get_diagnostic_to_qf(buf, get_opts)
+    require('quicker').open()
+  end, { desc = 'Add Diagnostics to QuickFix' })
+end
+
+keymap_dia_to_qf('<Leader>dwn', nil, {})
+keymap_dia_to_qf('<Leader>dln', 0, {})
+keymap_dia_to_qf('<Leader>dwe', nil, { severity = { min = vim.diagnostic.severity.ERROR } })
+keymap_dia_to_qf('<Leader>dle', 0, { severity = { min = vim.diagnostic.severity.ERROR } })
+keymap_dia_to_qf('<Leader>dww', nil, { severity = { min = vim.diagnostic.severity.WARN } })
+keymap_dia_to_qf('<Leader>dlw', 0, { severity = { min = vim.diagnostic.severity.WARN } })
 
 -- Close some filetypes with <q>
 ag('uima/CloseWithQ', function(g)

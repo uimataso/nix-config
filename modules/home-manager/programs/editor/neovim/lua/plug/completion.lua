@@ -62,8 +62,8 @@ return {
       cmdline = {
         keymap = {
           preset = 'cmdline',
-          ['<Right>'] = { 'fallback' },
-          ['<Left>'] = { 'fallback' },
+          ['<Right>'] = {},
+          ['<Left>'] = {},
         },
         completion = {
           menu = {

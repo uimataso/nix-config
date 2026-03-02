@@ -10,6 +10,26 @@ local function cargo_build(cmd)
   return filename
 end
 
+vim.api.nvim_create_user_command('CargoFeatures', function(opts)
+  local features = opts.fargs
+
+  local quoted = {}
+  for _, f in ipairs(features) do
+    table.insert(quoted, string.format('"%s"', f))
+  end
+
+  local cmd = string.format(
+    'RustAnalyzer config { cargo = { features = { %s } } }',
+    table.concat(quoted, ', ')
+  )
+
+  vim.cmd(cmd)
+
+  print('rust-analyzer features set to: ' .. table.concat(features, ', '))
+end, {
+  nargs = '*',
+})
+
 return {
   {
     'mrcjkb/rustaceanvim',

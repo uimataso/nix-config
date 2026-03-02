@@ -1,4 +1,4 @@
-vim.opt.runtimepath:append(vim.fn.stdpath('data') .. '/nvim-treesitter')
+vim.opt.runtimepath:prepend(vim.fn.stdpath('data') .. '/nvim-treesitter')
 
 local au = require('utils').au
 local ag = require('utils').ag

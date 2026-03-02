@@ -14,7 +14,7 @@ return {
           if vim.v.count > 0 then
             vim.api.nvim_feedkeys(vim.v.count .. 'k', 'n', false)
           else
-            require('oil').open_float(nil, { preview = {} })
+            require('oil').open_float()
           end
         end,
         desc = 'Open Oil browser',
@@ -23,7 +23,7 @@ return {
         '<Leader>o',
         mode = { 'n' },
         function()
-          require('oil').open(nil, { preview = {} })
+          require('oil').open()
         end,
         desc = 'Open Oil in current buffer',
       },
@@ -62,9 +62,6 @@ return {
         padding = 3,
         max_width = 160,
         max_height = 0,
-        win_options = {
-          winblend = 0,
-        },
       },
     },
 
@@ -81,18 +78,6 @@ return {
           callback = function()
             vim.keymap.set('n', '<BS>', '<Nop>', { buffer = 0 })
             vim.keymap.set('n', '-', 'k', { buffer = 0 })
-          end,
-        })
-      end)
-
-      ag('uima/OilSnacksRename', function(g)
-        au('User', {
-          group = g,
-          pattern = 'OilActionsPost',
-          callback = function(event)
-            if event.data.actions.type == 'move' then
-              Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
-            end
           end,
         })
       end)

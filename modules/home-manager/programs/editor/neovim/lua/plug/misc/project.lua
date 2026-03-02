@@ -1,6 +1,5 @@
-return { -- Only used for setting working directory
-  'ahmedkhalf/project.nvim',
+return { -- Just used for setting working directory
+  'DrKJeff16/project.nvim',
   event = 'BufReadPre',
-  main = 'project_nvim',
   opts = {},
 }

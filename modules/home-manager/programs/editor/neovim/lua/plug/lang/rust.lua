@@ -1,15 +1,3 @@
-local function cargo_build(cmd)
-  local lines = vim.fn.systemlist(cmd)
-  local output = table.concat(lines, 'n')
-  local filename = output:match('^.*"executable":"(.*)",.*n.*,"success":true}$')
-
-  if filename == nil then
-    return error('failed to build cargo project')
-  end
-
-  return filename
-end
-
 vim.api.nvim_create_user_command('CargoFeatures', function(opts)
   local features = opts.fargs
 
@@ -25,7 +13,7 @@ vim.api.nvim_create_user_command('CargoFeatures', function(opts)
 
   vim.cmd(cmd)
 
-  print('rust-analyzer features set to: ' .. table.concat(features, ', '))
+  vim.print('rust-analyzer features set to: ' .. table.concat(features, ', '))
 end, {
   nargs = '*',
 })
@@ -33,7 +21,7 @@ end, {
 return {
   {
     'mrcjkb/rustaceanvim',
-    version = '^6', -- Recommended
+    version = '^8',
     ft = 'rust',
 
     config = function()
@@ -43,28 +31,18 @@ return {
           on_attach = function(client, bufnr)
             -- vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
 
-            vim.keymap.set('n', '<Leader>rr', function()
-              local diagnostics =
-                vim.diagnostic.get(0, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 })
-              if diagnostics[1] == nil then
-                vim.print('not diagnostic found')
-                return
-              end
-
-              local source = diagnostics[1].source
-              if source == 'rustc' or source == 'rust-analyzer' then
-                vim.cmd.RustLsp({ 'renderDiagnostic', 'current' })
-              else
-                vim.diagnostic.open_float()
-              end
-            end)
+            vim.keymap.set('n', '<Leader>rt', '<cmd>RustLsp testables<cr>') -- TODO: Neotest
+            vim.keymap.set('n', '<Leader>rd', '<cmd>RustLsp renderDiagnostic current<cr>')
             vim.keymap.set('n', '<Leader>re', '<cmd>RustLsp explainError<cr>')
+            vim.keymap.set('n', '<Leader>rrd', '<cmd>RustLsp relatedDiagnostics<cr>')
+            vim.keymap.set('n', '<Leader>rrt', '<cmd>RustLsp relatedTests<cr>')
+            vim.keymap.set('n', '<Leader>rod', '<cmd>RustLsp openDocs<cr>')
+            vim.keymap.set('n', '<Leader>roc', '<cmd>RustLsp openCargo<cr>')
           end,
 
           default_settings = {
             -- rust-analyzer language server configuration
             ['rust-analyzer'] = {
-              -- use this to select features on the fly: `:RustAnalyzer config { cargo = { features = { "test_with_database", } } }`
               -- TODO: autocomplete with `cargo read-manifest | jq .features`?
               check = {
                 command = 'clippy',

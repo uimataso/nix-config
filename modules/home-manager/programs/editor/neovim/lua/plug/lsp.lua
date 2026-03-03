@@ -62,7 +62,7 @@ return {
 
     keys = {
       {
-        '<Leader>j',
+        'gO',
         mode = { 'n' },
         function()
           require('aerial').toggle({ direction = 'left' })

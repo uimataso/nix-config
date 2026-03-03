@@ -79,7 +79,6 @@
       impermanence = {
         enable = true;
         directories = [
-          "notes"
           "src"
           ".local/share/cargo"
         ];

@@ -40,9 +40,7 @@ vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>')
 ag('uima/TermSettings', function(g)
   au('TermOpen', {
     group = g,
-    callback = function(opts)
-      vim.cmd('startinsert')
-
+    callback = function()
       vim.keymap.set('n', '<Esc><Esc>', '<cmd>close<cr>', { buffer = 0 })
       vim.keymap.set('n', '<BS>', '<Nop>', { buffer = 0 })
     end,

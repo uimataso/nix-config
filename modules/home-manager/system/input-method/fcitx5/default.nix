@@ -7,6 +7,7 @@
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.system.inputMethod.fcitx5;
+  flakeDir = config.uimaConfig.global.flakeDir;
 in
 {
   options.uimaConfig.system.inputMethod.fcitx5 = {
@@ -86,9 +87,8 @@ in
     };
 
     # Rime
-    home.file.".local/share/fcitx5/rime" = {
-      source = ../rime;
-      recursive = true;
+    xdg.dataFile."fcitx5/rime" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/modules/home-manager/system/input-method/rime";
     };
   };
 }

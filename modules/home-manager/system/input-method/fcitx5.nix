@@ -8,6 +8,9 @@ let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.system.inputMethod.fcitx5;
   flakeDir = config.uimaConfig.global.flakeDir;
+  mkSymlink =
+    path:
+    config.lib.file.mkOutOfStoreSymlink "${flakeDir}/modules/home-manager/system/input-method/${path}";
 in
 {
   options.uimaConfig.system.inputMethod.fcitx5 = {
@@ -87,8 +90,11 @@ in
     };
 
     # Rime
-    xdg.dataFile."fcitx5/rime" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/modules/home-manager/system/input-method/rime";
+    xdg.dataFile."fcitx5/rime/default.custom.yaml" = {
+      source = mkSymlink "rime/default.custom.yaml";
+    };
+    xdg.dataFile."fcitx5/rime/yuhao-schema" = {
+      source = mkSymlink "rime/yuhao-schema";
     };
   };
 }

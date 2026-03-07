@@ -167,7 +167,7 @@
     };
 
     virt = {
-      vm.enable = true;
+      # vm.enable = true;
       docker.enable = true;
     };
 

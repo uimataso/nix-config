@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     # nixpkgs-local.url = "git+file:///home/uima/src/nixpkgs";
 
     # vimium-options.url = "git+file:///home/uima/src/vimium-nixos";
@@ -46,7 +46,7 @@
 
     # User Space Module
     stylix = {
-      url = "github:danth/stylix";
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     arkenfox = {

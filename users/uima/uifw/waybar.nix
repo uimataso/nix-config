@@ -337,21 +337,9 @@
           border-color: @base0D;
         }
 
-        #tags button {
-          color: @base03;
-        }
-        #tags button.occupied {
+        #workspaces button {
           color: @base05;
-          background: @base00;
         }
-        #tags button.focused {
-          color: @base00;
-          background: @base05;
-        }
-        #tags button.urgent {
-          color: @base08;
-        }
-
         #workspaces button.empty {
           color: @base03;
         }
@@ -359,12 +347,11 @@
           color: @base00;
           background: @base05;
         }
-        /* #workspaces button.active { */
-        /*   color: @base00; */
-        /*   background: @base05; */
-        /* } */
         #workspaces button.urgent {
           color: @base08;
+        }
+        #workspaces button:hover {
+          background: @base02;
         }
       '';
   };

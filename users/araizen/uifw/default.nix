@@ -8,7 +8,6 @@
 {
   imports = [
     ./hyprland.nix
-    ./waybar.nix
   ];
 
   home.username = "araizen";
@@ -99,6 +98,7 @@
 
       wayland = {
         dunst.enable = true;
+        waybar.enable = true;
       };
 
       monitors = [

@@ -3,13 +3,11 @@
   pkgs,
   pkgs-stable,
   inputs,
-  lib,
   ...
 }:
 {
   imports = [
     ./hyprland.nix
-    ./waybar.nix
   ];
 
   home.username = "uima";
@@ -104,6 +102,7 @@
 
       wayland = {
         dunst.enable = true;
+        waybar.enable = true;
       };
 
       monitors = [

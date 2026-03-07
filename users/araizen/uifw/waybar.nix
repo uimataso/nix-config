@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  pkgs-stable,
   ...
 }:
 {
@@ -14,6 +15,7 @@
       enable = true;
       target = "river-session.target";
     };
+    package = pkgs-stable.waybar;
 
     settings =
       let

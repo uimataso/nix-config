@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  pkgs-stable,
   ...
 }:
 {
@@ -11,6 +12,7 @@
     enable = true;
 
     systemd.enable = true;
+    package = pkgs-stable.waybar;
 
     settings =
       let

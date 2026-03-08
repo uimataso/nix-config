@@ -108,6 +108,7 @@
           "docker"
           "podman"
           "libvirtd"
+          "dialout"
         ];
       };
 

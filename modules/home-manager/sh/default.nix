@@ -76,6 +76,9 @@ in
       # save = ''history 2 | head -n1 | sed 's/^\s*[0-9]*\s*//' | clip | xargs -I {} notify-send 'Command saved' "{}"'';
       save = ''fc -ln -1 | sed -z 's/^\s*//' | clip'';
 
+      # bc impermanence will create alot of mount points
+      lsb = ''lsblk | grep -v '^\s\+/home/[^/]\+/.*$' '';
+
       ":w" = "ls";
       ":q" = "clear";
       ":wa" = "clear && ll";

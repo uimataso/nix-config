@@ -1,0 +1,12 @@
+[package]
+name = "{{CODENAME}}"
+version = "0.1.0"
+license = "MIT"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0"
+thiserror = "2.0"
+
+log = "0.4"
+env_logger = "0.11"

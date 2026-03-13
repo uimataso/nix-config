@@ -10,7 +10,6 @@
     vimium-options.url = "github:uimataso/vimium-nixos";
 
     # Misc
-    systems.url = "github:nix-systems/default-linux";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
@@ -74,7 +73,6 @@
       self,
       nixpkgs,
       home-manager,
-      systems,
       treefmt-nix,
       ...
     }@inputs:
@@ -82,8 +80,13 @@
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
 
+      systems = [
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
+
       # Generate attrset for each system
-      forAllSystems = lib.genAttrs (import systems);
+      forAllSystems = lib.genAttrs systems;
 
       inputPkgsFor =
         pkgs:

@@ -2,4 +2,4 @@ patch:
   schema_list:
     - schema: bopomofo_tw
     - schema: luna_pinyin
-  # - schema: yustar_tw
+    - schema: yustar_tw

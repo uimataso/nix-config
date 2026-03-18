@@ -45,11 +45,7 @@ writeShellApplication {
       printf '\n'
     } #}}}
     view_dir(){ #{{{
-      if should_i_show_this "$1"; then
-        $ls_cmd "$1"
-      else
-        echo "This directory's permission is somewhat strict, so we are not showing the content for you."
-      fi
+      $ls_cmd "$1"
     } #}}}
     view_text(){ #{{{
       if should_i_show_this "$1"; then

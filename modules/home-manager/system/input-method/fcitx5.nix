@@ -18,6 +18,21 @@ in
   };
 
   config = mkIf cfg.enable {
+    uimaConfig.system.impermanence = {
+      directories = [
+        ".local/share/fcitx5/rime"
+      ];
+    };
+    xdg.dataFile."fcitx5/rime/default.custom.yaml" = {
+      source = mkSymlink "rime/default.custom.yaml";
+    };
+    # NOTE: when update, remember to delete the `default.custom.yaml` that
+    # come with package
+    xdg.dataFile."fcitx5/rime" = {
+      recursive = true;
+      source = ./rime/yustar-schema;
+    };
+
     i18n.inputMethod = {
       enable = true;
       type = "fcitx5";
@@ -87,14 +102,6 @@ in
 
       addons = {
       };
-    };
-
-    # Rime
-    xdg.dataFile."fcitx5/rime/default.custom.yaml" = {
-      source = mkSymlink "rime/default.custom.yaml";
-    };
-    xdg.dataFile."fcitx5/rime/yuhao-schema" = {
-      source = mkSymlink "rime/yuhao-schema";
     };
   };
 }

@@ -14,6 +14,11 @@ vim.keymap.set('i', '<PageDown>', '<Nop>')
 vim.keymap.set('i', '<PageUp>', '<Nop>')
 vim.keymap.set('i', '<C-l>', '<C-o><cmd>nohlsearch<cr>')
 
+vim.keymap.set('i', '<M-d><M-d>', '<C-R>=system("date --iso-8601=seconds")<C-M>')
+vim.keymap.set('i', '<M-d>d', '<M-d><M-d>', { remap = true })
+vim.keymap.set('i', '<M-d><M-u>', '<C-R>=system("date --utc --iso-8601=seconds")<C-M>')
+vim.keymap.set('i', '<M-d>u', '<M-d><M-u>', { remap = true })
+
 -- Snippet
 vim.keymap.set('i', '<C-x><C-s>', '<C-]>')
 

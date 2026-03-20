@@ -51,7 +51,7 @@
   ];
 
   programs.git.settings = {
-    safe.directory = "/share/nix";
+    safe.directory = [ "/share/*" ];
   };
 
   stylix =

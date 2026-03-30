@@ -28,6 +28,7 @@
     scripts.fetch-title
     scripts.notify-send-all
     scripts.open-git-remote
+    scripts._0x0
 
     xh
     gitui
@@ -36,6 +37,8 @@
     bc
     hyperfine
     drawing
+
+    anydesk
 
     gcc
     python3

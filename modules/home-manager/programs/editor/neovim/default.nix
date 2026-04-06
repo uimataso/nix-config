@@ -50,8 +50,8 @@ in
 
         # LSP / Formatter
         # Generic Formatter
-        nodePackages.prettier
-        nodePackages.cspell
+        prettier
+        cspell
 
         # Lua
         lua-language-server

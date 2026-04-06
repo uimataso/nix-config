@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs-stable,
   ...
 }:
 let
@@ -37,14 +36,11 @@ in
     programs.foot = {
       enable = true;
 
-      # FIXME: https://github.com/nix-community/stylix/pull/2235
-      package = pkgs-stable.foot;
-
       settings = {
         main = {
           pad = "5x3";
         };
-        colors = with config.lib.stylix.colors; {
+        colors-dark = with config.lib.stylix.colors; {
           cursor = "${base00}  ${base05}";
         };
 

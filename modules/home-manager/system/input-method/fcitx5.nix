@@ -63,7 +63,6 @@ in
       gtk-im-module = "fcitx";
     };
 
-    # FIXME: theme is different on firefox and other apps
     i18n.inputMethod.fcitx5.settings = {
       globalOptions = {
         Behavior = {

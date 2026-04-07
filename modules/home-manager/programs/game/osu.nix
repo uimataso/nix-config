@@ -20,7 +20,7 @@ in
       ];
     };
 
-    # FIXME: wayland flag
+    # FIXME: add wayland flag
     home.packages = with pkgs; [
       osu-lazer-bin
     ];

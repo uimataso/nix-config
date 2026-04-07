@@ -75,7 +75,7 @@ ag('uima/CheckTime', function(g)
 end)
 
 -- Delete trailing spaces and extra line when save file
--- TODO: command to toggle
+-- TODO: command to disable this
 ag('uima/DeleteTrailingSpace', function(g)
   au('BufWrite', {
     group = g,

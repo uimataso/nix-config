@@ -13,8 +13,4 @@
     path = ./python;
     description = "Basic Python Project";
   };
-  python-uv = {
-    path = ./python-uv;
-    description = "Basic Python Project via UV";
-  };
 }

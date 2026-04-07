@@ -1,9 +1,7 @@
-# TODO: check is this actually working
 { config, lib, ... }:
 let
-  inherit (lib) mkIf mkEnableOption mkForce;
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.services.easyeffects;
-  settings = config.services.easyeffects;
 in
 {
   options.uimaConfig.services.easyeffects = {
@@ -19,23 +17,6 @@ in
 
     services.easyeffects = {
       enable = true;
-      # preset = "masc_voice_noise_reduction";
     };
-
-    # xdg.configFile = {
-    #   # Use [this](https://gist.github.com/jtrv/47542c8be6345951802eebcf9dc7da31) input preset. Change this values:
-    #   #   "rnnoise#0": {
-    #   #       "enable-vad": true,
-    #   #       "output-gain": 20.0,
-    #   #   },
-    #   "easyeffects/input/${settings.preset}.json".source = ./${settings.preset}.json;
-    # };
-    #
-    # # Original command has --load-preset and --gapplication-service in one line,
-    # # and that whill make --load-preset has not effect in my test.
-    # systemd.user.services.easyeffects.Service = {
-    #   ExecStartPre = "${settings.package}/bin/easyeffects --load-preset ${settings.preset}";
-    #   ExecStart = mkForce "${settings.package}/bin/easyeffects --gapplication-service";
-    # };
   };
 }

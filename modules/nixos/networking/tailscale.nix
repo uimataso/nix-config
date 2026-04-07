@@ -1,4 +1,3 @@
-# TODO: secrets
 { config, lib, ... }:
 let
   inherit (lib) mkIf mkEnableOption;

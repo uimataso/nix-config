@@ -22,9 +22,6 @@ in
 
     home.packages = with pkgs; [ delta ];
 
-    # FIXME: lazygit/config.yml content didn't generated
-    stylix.targets.lazygit.enable = false;
-
     programs.lazygit = {
       enable = true;
 

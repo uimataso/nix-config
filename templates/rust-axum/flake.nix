@@ -77,6 +77,9 @@
       devShells = forAllSystems (pkgs: {
         default = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [
+            openssl
+            pkg-config
+
             (rust-bin.stable.latest.default.override {
               extensions = [
                 "rust-analyzer"
@@ -84,14 +87,11 @@
                 "rust-src"
               ];
             })
-
-            openssl
-            pkg-config
           ];
 
           shellHook = ''
             export OPENSSL_DEV=${pkgs.openssl.dev};
-            export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig";
+            export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:${pkgs.openssl.dev}/lib/pkgconfig";
           '';
         };
       });

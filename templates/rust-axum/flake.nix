@@ -39,14 +39,38 @@
         pkgs:
         let
           naersk' = pkgs.callPackage naersk { };
-        in
-        {
-          default = naersk'.buildPackage {
+          server = naersk'.buildPackage {
             src = ./.;
-
             nativeBuildInputs = with pkgs; [ pkg-config ];
             buildInputs = with pkgs; [ openssl ];
           };
+        in
+        {
+          server = server;
+
+          server-image = pkgs.dockerTools.buildImage {
+            name = "{{CODENAME}}";
+            tag = "latest";
+
+            copyToRoot = pkgs.buildEnv {
+              name = "image-root";
+              pathsToLink = [ "/bin" ];
+              paths = [
+                server
+                pkgs.curl
+                pkgs.bashInteractive
+                pkgs.coreutils
+              ];
+            };
+
+            config = {
+              Cmd = [ "/bin/{{CODENAME}}" ];
+              ExposedPorts = {
+                "8080/tcp" = { };
+              };
+            };
+          };
+
         }
       );
 

@@ -82,28 +82,6 @@ local vcs = function()
   })
 end
 
-local diagnostic_sign = {
-  [vim.diagnostic.severity.ERROR] = '',
-  [vim.diagnostic.severity.WARN] = '',
-  [vim.diagnostic.severity.HINT] = '',
-  [vim.diagnostic.severity.INFO] = '',
-}
-
-local diagnostics = function()
-  local format_diagnostic_count = function(level)
-    local sign = diagnostic_sign[level]
-    return format_count(' ' .. sign .. '%s', #(vim.diagnostic.get(0, { severity = level })))
-  end
-
-  local severity = vim.diagnostic.severity
-  return table.concat({
-    format_diagnostic_count(severity.ERROR),
-    format_diagnostic_count(severity.WARN),
-    format_diagnostic_count(severity.INFO),
-    format_diagnostic_count(severity.HINT),
-  })
-end
-
 local macro_recoding = function()
   if vim.fn.reg_recording() == '' then
     return ''
@@ -128,7 +106,8 @@ function Statusline()
   return table.concat({
     '  %t %h%m%r%w', -- File info
     vcs(),
-    diagnostics(),
+    ' ',
+    vim.diagnostic.status(),
     '%=', -- Separation
     with_hi('MatchParen', {
       macro_recoding(),

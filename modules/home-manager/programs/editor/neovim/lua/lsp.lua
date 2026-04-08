@@ -32,6 +32,8 @@ vim.keymap.set('n', '<C-W>d', function()
   vim.diagnostic.open_float(nil, { close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' } })
 end, { desc = 'Show diagnostics under the cursor' })
 
+local sev = vim.diagnostic.severity
+
 vim.diagnostic.config({
   virtual_text = false,
   update_in_insert = true,
@@ -46,16 +48,16 @@ vim.diagnostic.config({
   },
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = '',
-      [vim.diagnostic.severity.WARN] = '',
-      [vim.diagnostic.severity.INFO] = '',
-      [vim.diagnostic.severity.HINT] = '',
+      [sev.ERROR] = '',
+      [sev.WARN] = '',
+      [sev.INFO] = '',
+      [sev.HINT] = '',
     },
     numhl = {
-      [vim.diagnostic.severity.ERROR] = 'DiagnosticError',
-      [vim.diagnostic.severity.WARN] = 'DiagnosticWarn',
-      [vim.diagnostic.severity.INFO] = 'DiagnosticInfo',
-      [vim.diagnostic.severity.HINT] = 'DiagnosticHint',
+      [sev.ERROR] = 'DiagnosticError',
+      [sev.WARN] = 'DiagnosticWarn',
+      [sev.INFO] = 'DiagnosticInfo',
+      [sev.HINT] = 'DiagnosticHint',
     },
   },
 })

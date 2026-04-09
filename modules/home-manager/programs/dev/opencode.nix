@@ -13,6 +13,10 @@ in
   };
 
   config = mkIf cfg.enable {
+    uimaConfig.system.impermanence = {
+      directories = [ ".local/share/opencode" ];
+    };
+
     programs.opencode = {
       enable = true;
 

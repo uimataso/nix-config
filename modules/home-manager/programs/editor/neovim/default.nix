@@ -47,6 +47,7 @@ in
         fd
         ripgrep
         delta
+        lsof # for opencode
 
         # LSP / Formatter
         # Generic Formatter

@@ -159,6 +159,7 @@
         aws-cli.enable = true;
         k8s.enable = true;
         terraform.enable = true;
+        opencode.enable = true;
       };
 
       dmenu = {

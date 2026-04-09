@@ -81,7 +81,7 @@ in
           bind f run-shell 'tmux popup -E "${getExe pkgs.scripts.tmux-select-sessions}"'
           bind BSpace last-window
 
-          bind g new-window -S -n "lazygit" -c "#{pane_current_path}" "lazygit"
+          bind g if-shell -F '#{m:*lazygit*,#{window_name}}' 'last-window' 'new-window -S -n "lazygit" -c "#{pane_current_path}" "lazygit"'
           bind G run-shell "${getExe pkgs.scripts.open-git-remote}"
 
           # disable mouse scroll on statusbar

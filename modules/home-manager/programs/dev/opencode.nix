@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs-stable,
   ...
 }:
 let
@@ -19,6 +20,8 @@ in
 
     programs.opencode = {
       enable = true;
+
+      package = pkgs-stable.opencode;
 
       themes.stylix.theme = {
         background = {

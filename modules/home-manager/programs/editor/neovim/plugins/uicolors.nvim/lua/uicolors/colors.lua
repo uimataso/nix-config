@@ -66,7 +66,7 @@ function M.setup(base16_palette, opts)
   }
 
   c.footer = c.base04
-  c.title = c.magenta
+  c.title = c.base06
   c.search = c.yellow
   c.error = c.red
   c.warning = c.yellow

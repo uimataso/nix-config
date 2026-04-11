@@ -1,54 +1,58 @@
 local M = {}
 
--- see :h group-name
+-- :h group-name
 
 M.get = function(c)
   return {
-    Comment = '@comment',
+    -- helper groups
+    Literal = { fg = c.syntax.constant },
+    Punctuation = { fg = c.syntax.punctuation },
 
-    Constant = '@constant',
-    String = '@string',
-    Character = '@character',
-    Number = '@number',
-    Boolean = '@boolean',
-    Float = '@number.float',
+    Comment = { fg = c.syntax.comment },
 
-    Identifier = '@variable',
-    Function = '@function',
+    Constant = { fg = c.syntax.constant },
+    String = 'Literal',
+    Character = 'Literal',
+    Number = 'Literal',
+    Boolean = 'Literal',
+    Float = 'Literal',
 
-    Statement = '@keyword',
-    Conditional = '@keyword.conditional',
-    Repeat = '@keyword.repeat',
-    Label = '@label',
-    Operator = '@keyword.operator',
-    Keyword = '@keyword',
-    Exception = '@keyword.exception',
+    Identifier = { fg = c.syntax.variable },
+    Function = { fg = c.syntax.fn },
 
-    PreProc = '@keyword.directive',
-    Include = '@keyword.import',
-    Define = '@keyword.directive.define',
-    Macro = '@keyword.directive.define',
-    PreCondit = '@keyword.directive',
+    Statement = 'Keyword',
+    Conditional = 'Keyword',
+    Repeat = 'Keyword',
+    Label = 'Keyword',
+    Operator = 'Keyword',
+    Keyword = { fg = c.syntax.keyword },
+    Exception = 'Keyword',
 
-    Type = '@type',
-    StorageClass = '@keyword.modifier',
-    Structure = '@keyword.type',
-    Typedef = '@type.definition',
+    PreProc = 'Keyword',
+    Include = 'Keyword',
+    Define = 'Keyword',
+    Macro = 'Keyword',
+    PreCondit = 'Keyword',
 
-    Special = '@punctuation.special',
-    SpecialChar = '@character.special',
-    Tag = '@markup.link.label',
-    Delimiter = '@punctuation.delimiter',
-    SpecialComment = '@comment.note',
-    Debug = '@keyword.debug',
+    Type = { fg = c.syntax.type },
+    StorageClass = 'Keyword',
+    Structure = 'Keyword',
+    Typedef = 'Keyword',
+
+    Special = 'Punctuation',
+    SpecialChar = 'Punctuation',
+    Tag = { fg = c.markup.link },
+    Delimiter = 'Punctuation',
+    SpecialComment = 'Comment',
+    Debug = 'Keyword',
 
     Underlined = { underline = true },
 
     Ignore = {},
 
-    Error = { fg = c.error },
+    Error = { fg = c.diag.error },
 
-    Todo = '@comment.todo',
+    Todo = { fg = c.diag.todo, bold = true },
 
     Added = 'DiffAdd',
     Changed = 'DiffChange',

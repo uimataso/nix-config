@@ -5,7 +5,7 @@ M.get = function(c)
     -- test highlight
     Test = { bg = '#00ff00' },
     -- highlight.on_yank
-    Yank = { bg = c.guide, fg = c.black },
+    Yank = { bg = c.ui_text.guide, fg = c.bg },
   }
 end
 

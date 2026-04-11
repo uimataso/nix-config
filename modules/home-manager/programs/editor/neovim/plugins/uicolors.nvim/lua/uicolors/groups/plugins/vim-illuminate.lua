@@ -4,7 +4,7 @@ M.url = 'https://github.com/RRethy/vim-illuminate'
 
 M.get = function(c)
   return {
-    IlluminatedWordText = { bg = c.bg_cursor_line },
+    IlluminatedWordText = { bg = c.ui.cursor_line },
     IlluminatedWordRead = 'IlluminatedWordText',
     IlluminatedWordWrite = 'IlluminatedWordText',
   }

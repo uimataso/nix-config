@@ -7,8 +7,8 @@ M.get = function(c)
     FzfLuaBorder = 'FloatBorder',
     FzfLuaHeaderBind = { fg = c.syntax.comment },
     FzfLuaHeaderText = { fg = c.syntax.comment },
-    FzfLuaPathLineNr = { fg = c.nontext },
-    FzfLuaPathColNr = { fg = c.nontext },
+    FzfLuaPathLineNr = { fg = c.non_text },
+    FzfLuaPathColNr = { fg = c.non_text },
   }
 end
 

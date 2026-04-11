@@ -9,7 +9,6 @@ function M.setup(base16_palette, opts)
     return util.blend(color, self.base00, level)
   end
 
-  -- Color name for human :)
   c.black = c.base00
   c.white = c.base05
   c.red = c.base08
@@ -25,63 +24,70 @@ function M.setup(base16_palette, opts)
   c.fg = c.white
   c.bg = c.black
 
-  c.bg_popup = c.base01
-  c.bg_quote = c.base01
-  c.bg_cursor_line = util.blend(c.base02, c.base01, 0.5)
-  c.bg_selection = c.base02
-  c.bg_fold = c.base03
-  c.bg_visual = c.base02
-  c.border = c.base02
-  c.non_text = c.base04
-  c.status_line = util.blend(c.base05, c.base04, 0.5)
-  c.selection = c.white
-
-  c.syntax = {
-    comment = c.base04,
-    literal = c.orange,
-    variable = c.white,
-    fn = c.white,
-    type = c.white,
-    keyword = c.white,
-
-    punctuation = c.base04,
-    operator = c.white,
-    module = c.white,
-    label = c.white,
-    tag = util.blend(c.base05, c.base04, 0.5),
+  c.ui = {
+    cursor_line = util.blend(c.base02, c.base01, 0.5),
+    border = c.base02,
+    fold_line = c.base03,
+    popup = c.base01,
+    selection = c.base02,
+    search = c.yellow,
   }
 
-  c.markup = {
-    title1 = c.title,
-    title2 = c.title,
-    title3 = c.title,
-    title4 = c.title,
-    title5 = c.title,
-    title6 = c.title,
-
-    link = c.base04,
-    link_sp = c.base02,
-    quote = c.white,
-    bullet = c.base04,
+  c.ui_text = {
+    line_number = c.base04,
+    status_line = util.blend(c.base05, c.base04, 0.5),
+    non_text = c.base04,
+    guide = c.green,
   }
 
-  c.footer = c.base04
-  c.title = c.base06
-  c.search = c.yellow
-  c.error = c.red
-  c.warning = c.yellow
-  c.info = c.blue
-  c.hint = c.base04
-  c.ok = c.green
-  c.guide = c.green
-  c.todo = c:dim(c.green, 0.8)
-  c.unused = util.blend(c.base05, c.base04, 0.5)
+  c.diag = {
+    error = c.red,
+    warn = c.yellow,
+    info = c.blue,
+    hint = c.cyan,
+    ok = c.green,
+
+    todo = c:dim(c.green, 0.8),
+    note = c:dim(c.white, 0.8),
+    unused = util.blend(c.base05, c.base04, 0.5),
+  }
 
   c.diff = {
     add = c.green,
     change = c.blue,
     delete = c.red,
     text = c.base04,
+  }
+
+  c.markup = {
+    title = c.base06,
+    footer = c.base04,
+    link = c.base04,
+    link_sp = c.base02,
+    quote = c.white,
+    raw = c.white,
+    raw_bg = c.base01,
+    bullet = c.base04,
+  }
+
+  c.syntax = {
+    variable = c.white,
+    constant = c.white,
+    literal = c.orange,
+    fn = c.white,
+    type = c.white,
+
+    keyword = c.white,
+    module = c.white,
+    label = c.white,
+    punctuation = c.base04,
+    operator = c.white,
+    comment = c.base04,
+    tag = util.blend(c.base05, c.base04, 0.5),
+  }
+
+  c.misc = {
+    directory = c.blue,
   }
 
   return c

@@ -6,18 +6,18 @@ local M = {}
 
 M.get = function(c)
   return {
-    DiagnosticError = { fg = c.error },
-    DiagnosticWarn = { fg = c.warning },
-    DiagnosticInfo = { fg = c.info },
-    DiagnosticHint = { fg = c.hint },
-    DiagnosticOk = { fg = c.ok },
+    DiagnosticError = { fg = c.diag.error },
+    DiagnosticWarn = { fg = c.diag.warn },
+    DiagnosticInfo = { fg = c.diag.info },
+    DiagnosticHint = { fg = c.diag.hint },
+    DiagnosticOk = { fg = c.diag.ok },
     -- DiagnosticVirtualTextError,
     -- DiagnosticVirtualTextWarn,
     -- DiagnosticVirtualTextInfo,
     -- DiagnosticVirtualTextHint,
     -- DiagnosticVirtualTextOk,
-    DiagnosticUnderlineError = { bg = c:dim(c.error, 0.3) },
-    DiagnosticUnderlineWarn = { bg = c:dim(c.warning, 0.3) },
+    DiagnosticUnderlineError = { bg = c:dim(c.diag.error, 0.3) },
+    DiagnosticUnderlineWarn = { bg = c:dim(c.diag.warn, 0.3) },
     DiagnosticUnderlineInfo = {},
     DiagnosticUnderlineHint = {},
     DiagnosticUnderlineOk = {},
@@ -36,8 +36,8 @@ M.get = function(c)
     -- DiagnosticSignInfo,
     -- DiagnosticSignHint,
     -- DiagnosticSignOk,
-    DiagnosticDeprecated = { sp = c.unused, strikethrough = true },
-    DiagnosticUnnecessary = { fg = c.unused },
+    DiagnosticDeprecated = { sp = c.diag.unused, strikethrough = true },
+    DiagnosticUnnecessary = { fg = c.diag.unused },
   }
 end
 

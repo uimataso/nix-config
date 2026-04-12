@@ -16,7 +16,6 @@ let
 
   exe-select-sessions = getExe pkgs.scripts.tmux-select-sessions;
   exe-toggle-popup = getExe pkgs.scripts.tmux-toggle-popup;
-  exe-toggle-window = getExe pkgs.scripts.tmux-toggle-window;
 in
 {
   options.uimaConfig.programs.sh-util.tmux = {
@@ -31,13 +30,14 @@ in
     programs.tmux.tmuxinator.enable = true;
 
     home.packages = with pkgs; [
+      scripts.tmux-select-sessions
       scripts.tmux-toggle-popup
     ];
 
     home.shellAliases = {
       t = "tmux";
       ta = "tmux attach-session || tmux new-session -s default";
-      ts = exe-select-sessions;
+      ts = "tmux-select-sessions";
       tn = ''name="$(tmux list-sessions -F'#{session_name}:#{session_last_attached}' | sort -r -t':' -k2 | cut -d: -f1 | fzf)"; test -n "$name" && tmux new -t $name'';
       td = "tmuxinator start default";
     };
@@ -88,8 +88,7 @@ in
           # keybind to reload config
           bind r source-file ${config.xdg.configHome}/tmux/tmux.conf
 
-          bind f run-shell 'tmux popup -E "${exe-select-sessions}"'
-          bind BSpace last-window
+          bind f popup -E '${exe-select-sessions}'
 
           bind -n M-t run-shell '${exe-toggle-popup}'
           bind -n M-g run-shell '${exe-toggle-popup} -n lazygit lazygit'
@@ -124,6 +123,8 @@ in
           # create window in same dir
           bind c new-window -c "#{pane_current_path}"
 
+          bind BSpace last-window
+
           # better keybind in copy mode
           bind -T copy-mode-vi v   send-keys -X begin-selection
           bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
@@ -156,16 +157,21 @@ in
 
       plugins = with pkgs; [
         {
+          plugin = tmuxPlugins.tmux-smooth-scroll;
+          extraConfig = /* tmux */ ''
+            set -g @smooth-scroll-speed "50"
+            set -g @smooth-scroll-easing "linear"
+          '';
+        }
+        {
           plugin = tmuxPlugins.tmux-nvim;
-          extraConfig =
-            # tmux
-            ''
-              set -g @tmux-nvim-navigation false
-              set -g @tmux-nvim-resize false
+          extraConfig = /* tmux */ ''
+            set -g @tmux-nvim-navigation false
+            set -g @tmux-nvim-resize false
 
-              set -g @tmux-nvim-resize-step-x 3
-              set -g @tmux-nvim-resize-step-y 3
-            '';
+            set -g @tmux-nvim-resize-step-x 3
+            set -g @tmux-nvim-resize-step-y 3
+          '';
         }
         tmuxPlugins.tmux-fzf
         tmuxPlugins.fzf-tmux-url
@@ -178,8 +184,7 @@ in
                 ${getExe pkgs.fzf} --color=pointer:5,gutter:-1 "$@"
               '';
             in
-            # tmux
-            ''
+            /* tmux */ ''
               set -g @extrakto_key enter
               set -g @extrakto_fzf_tool "${myFzf}/bin/myFzf"
               set -g @extrakto_fzf_layout reverse

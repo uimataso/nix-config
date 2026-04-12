@@ -39,6 +39,8 @@ in
 
     # Tmux
     tmux-select-sessions = mkScript ./tmux-select-sessions.nix;
+    tmux-toggle-popup = mkScript ./tmux-toggle-popup.nix;
+    tmux-toggle-window = mkScript ./tmux-toggle-window.nix;
 
     # Desktop
     fmenu = mkScript ./fmenu.nix;

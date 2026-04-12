@@ -13,6 +13,10 @@ let
     getExe
     ;
   cfg = config.uimaConfig.programs.sh-util.tmux;
+
+  exe-select-sessions = getExe pkgs.scripts.tmux-select-sessions;
+  exe-toggle-popup = getExe pkgs.scripts.tmux-toggle-popup;
+  exe-toggle-window = getExe pkgs.scripts.tmux-toggle-window;
 in
 {
   options.uimaConfig.programs.sh-util.tmux = {
@@ -24,10 +28,16 @@ in
       directories = [ ".config/tmuxinator" ];
     };
 
+    programs.tmux.tmuxinator.enable = true;
+
+    home.packages = with pkgs; [
+      scripts.tmux-toggle-popup
+    ];
+
     home.shellAliases = {
       t = "tmux";
       ta = "tmux attach-session || tmux new-session -s default";
-      ts = "${getExe pkgs.scripts.tmux-select-sessions}";
+      ts = exe-select-sessions;
       tn = ''name="$(tmux list-sessions -F'#{session_name}:#{session_last_attached}' | sort -r -t':' -k2 | cut -d: -f1 | fzf)"; test -n "$name" && tmux new -t $name'';
       td = "tmuxinator start default";
     };
@@ -78,10 +88,12 @@ in
           # keybind to reload config
           bind r source-file ${config.xdg.configHome}/tmux/tmux.conf
 
-          bind f run-shell 'tmux popup -E "${getExe pkgs.scripts.tmux-select-sessions}"'
+          bind f run-shell 'tmux popup -E "${exe-select-sessions}"'
           bind BSpace last-window
 
-          bind g if-shell -F '#{m:*lazygit*,#{window_name}}' 'last-window' 'new-window -S -n "lazygit" -c "#{pane_current_path}" "lazygit"'
+          bind -n M-t run-shell '${exe-toggle-popup}'
+          bind -n M-g run-shell '${exe-toggle-popup} -n lazygit lazygit'
+
           bind G run-shell "${getExe pkgs.scripts.open-git-remote}"
 
           # disable mouse scroll on statusbar
@@ -178,7 +190,5 @@ in
         }
       ];
     };
-
-    programs.tmux.tmuxinator.enable = true;
   };
 }

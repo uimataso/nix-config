@@ -19,6 +19,21 @@ vim.keymap.set('i', '<M-d>d', '<M-d><M-d>', { remap = true })
 vim.keymap.set('i', '<M-d><M-u>', '<C-R>=system("date --utc --iso-8601=seconds")<C-M>')
 vim.keymap.set('i', '<M-d>u', '<M-d><M-u>', { remap = true })
 
+-- Terminal mode
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>')
+vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>')
+
+-- Settings for terminal mode
+ag('uima/TermSettings', function(g)
+  au('TermOpen', {
+    group = g,
+    callback = function()
+      vim.keymap.set('n', '<Esc><Esc>', '<cmd>close<cr>', { buffer = 0 })
+      vim.keymap.set('n', '<BS>', '<Nop>', { buffer = 0 })
+    end,
+  })
+end)
+
 -- Snippet
 vim.keymap.set('i', '<C-x><C-s>', '<C-]>')
 

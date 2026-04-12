@@ -75,8 +75,12 @@ return {
       },
 
       keymap = {
+        editor = {
+          ['<leader>if'] = { 'toggle_focus' },
+        },
         input_window = {
           ['<esc>'] = false,
+          ['<S-cr>'] = { 'submit_input_prompt', mode = { 'n', 'i' } },
         },
         output_window = {
           ['<esc>'] = false,

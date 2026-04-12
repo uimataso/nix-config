@@ -95,8 +95,7 @@ in
         let
           colors = config.lib.stylix.colors.withHashtag;
         in
-        # css
-        ''
+        /* css */ ''
           div > .vimiumHintMarker {
             /* linkhint boxes */
             background: ${colors.base0A};

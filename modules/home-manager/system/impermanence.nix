@@ -31,12 +31,10 @@ in
 
   config = mkIf cfg.enable {
     home.activation = {
-      rmSomeThing =
-        lib.hm.dag.entryAfter [ "writeBoundary" ] # sh
-          ''
-            rm -rf "$HOME/.nix-defexpr"
-            rm -rf "$HOME/.nix-profile"
-          '';
+      rmSomeThing = lib.hm.dag.entryAfter [ "writeBoundary" ] /* sh */ ''
+        rm -rf "$HOME/.nix-defexpr"
+        rm -rf "$HOME/.nix-profile"
+      '';
     };
   };
 }

@@ -65,95 +65,93 @@ in
       ];
       historyIgnore = [ "exit" ];
 
-      bashrcExtra =
-        # sh
-        ''
-          # Common Config
-          set -o ignoreeof            # Prevent <C-D> to close window
-          stty -ixon                  # Disable <C-S> and <C-Q> to stop shell
-          shopt -s globstar           # ** support
-          shopt -s nocaseglob         # Case-insensitive globbing
+      bashrcExtra = /* sh */ ''
+        # Common Config
+        set -o ignoreeof            # Prevent <C-D> to close window
+        stty -ixon                  # Disable <C-S> and <C-Q> to stop shell
+        shopt -s globstar           # ** support
+        shopt -s nocaseglob         # Case-insensitive globbing
 
-          # Readline
-          bind 'set completion-ignore-case on'  # Completion case-insensitive
-          bind 'set completion-map-case on'     # Treat hyphen and underscores as equivalent
-          # Disable Esc key as keyseq prefix
-          bind 'set  keyseq-timeout 1'
-          bind '"\e": ""'
+        # Readline
+        bind 'set completion-ignore-case on'  # Completion case-insensitive
+        bind 'set completion-map-case on'     # Treat hyphen and underscores as equivalent
+        # Disable Esc key as keyseq prefix
+        bind 'set  keyseq-timeout 1'
+        bind '"\e": ""'
 
-          # Prompt
-          first=true
-          prompt(){
-            _exit_code=$?
+        # Prompt
+        first=true
+        prompt(){
+          _exit_code=$?
 
-            reset='\[\e[0m\]'
-            red='\[\e[31m\]'
-            b_green='\[\e[1;32m\]'
-            b_cyan='\[\e[1;36m\]'
-            b_white='\[\e[1;37m\]'
-            dim_white='\[\e[2;37m\]'
+          reset='\[\e[0m\]'
+          red='\[\e[31m\]'
+          b_green='\[\e[1;32m\]'
+          b_cyan='\[\e[1;36m\]'
+          b_white='\[\e[1;37m\]'
+          dim_white='\[\e[2;37m\]'
 
-            env="$([ -n "''${DIRENV_FILE//}" ] && printf '%s' "''${b_white}env|")"
-            user="$b_green\u$reset"
-            host="$b_green\h$reset"
-            path="$b_cyan\w$reset"
-            prom="$([ $_exit_code -ne 0 ] && printf '%s' "$red")\$''${reset}"
+          env="$([ -n "''${DIRENV_FILE//}" ] && printf '%s' "''${b_white}env|")"
+          user="$b_green\u$reset"
+          host="$b_green\h$reset"
+          path="$b_cyan\w$reset"
+          prom="$([ $_exit_code -ne 0 ] && printf '%s' "$red")\$''${reset}"
 
-            PS1="$env$user@$host:$path$prom "
+          PS1="$env$user@$host:$path$prom "
 
-            # I guess the `read` command will break some thing like tmuxinator
-            # that exec some thing for me at the start, so skip this part for
-            # the first time
-            if [ "$first" = 'false' ]; then
-              # Check last output's newline
-              # https://github.com/dylanaraps/pure-bash-bible#get-the-current-cursor-position
-              IFS='[;' read -p $'\e[6n' -d R -rs _ y x _
-              if [ "$x" != '1' ]; then
-                PS1="\n$dim_white-$reset$PS1"
-              fi
+          # I guess the `read` command will break some thing like tmuxinator
+          # that exec some thing for me at the start, so skip this part for
+          # the first time
+          if [ "$first" = 'false' ]; then
+            # Check last output's newline
+            # https://github.com/dylanaraps/pure-bash-bible#get-the-current-cursor-position
+            IFS='[;' read -p $'\e[6n' -d R -rs _ y x _
+            if [ "$x" != '1' ]; then
+              PS1="\n$dim_white-$reset$PS1"
             fi
-            first=false
-          }
-          PROMPT_COMMAND=prompt
-          PS2='> '
+          fi
+          first=false
+        }
+        PROMPT_COMMAND=prompt
+        PS2='> '
 
 
-          # Fzf Shell Integration
-          ## C-R: Search history
-          ## **<Tab>: Fzf's completion
-          FZF_CTRL_T_COMMAND='''
-          FZF_ALT_C_COMMAND='''
-          source ${fzf-key-bindings}
-          bind -x '"\C-r": __fzf_history__'
+        # Fzf Shell Integration
+        ## C-R: Search history
+        ## **<Tab>: Fzf's completion
+        FZF_CTRL_T_COMMAND='''
+        FZF_ALT_C_COMMAND='''
+        source ${fzf-key-bindings}
+        bind -x '"\C-r": __fzf_history__'
 
 
-          # Fzf Compltion
-          ## Better fzf compltion, just press <Tab>
-          source ${fzf-completion}
-          bind -x '"\t": fzf_bash_completion'
+        # Fzf Compltion
+        ## Better fzf compltion, just press <Tab>
+        source ${fzf-completion}
+        bind -x '"\t": fzf_bash_completion'
 
-          # Replace the loading msg and fzf prompt with ''${PS1@P} so the experience is better
-          _fzf_bash_completion_loading_msg() { echo "''${PS1@P}''${READLINE_LINE}" | tail -n1; }
-          _fzf_bash_completion_selector() {
-            FZF_DEFAULT_OPTS="--height ''${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_COMPLETION_OPTS" \
-              $(__fzfcmd 2>/dev/null || echo fzf) -1 -0 --prompt "''${PS1@P}$line" --nth 2 -d "$_FZF_COMPLETION_SEP" --ansi \
-              | tr -d "$_FZF_COMPLETION_SEP"
-          }
+        # Replace the loading msg and fzf prompt with ''${PS1@P} so the experience is better
+        _fzf_bash_completion_loading_msg() { echo "''${PS1@P}''${READLINE_LINE}" | tail -n1; }
+        _fzf_bash_completion_selector() {
+          FZF_DEFAULT_OPTS="--height ''${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_COMPLETION_OPTS" \
+            $(__fzfcmd 2>/dev/null || echo fzf) -1 -0 --prompt "''${PS1@P}$line" --nth 2 -d "$_FZF_COMPLETION_SEP" --ansi \
+            | tr -d "$_FZF_COMPLETION_SEP"
+        }
 
 
-          # goto the nixstore of a executable
-          ng() {
-            cd ''$(dirname ''$(readlink ''$(which ''$1)))
-          }
-          # nix run nixpkgs#...
-          nr() {
-            nix run nixpkgs#$@
-          }
-          # nix shell nixpkgs#...
-          ns() {
-            nix shell nixpkgs#$@
-          }
-        '';
+        # goto the nixstore of a executable
+        ng() {
+          cd ''$(dirname ''$(readlink ''$(which ''$1)))
+        }
+        # nix run nixpkgs#...
+        nr() {
+          nix run nixpkgs#$@
+        }
+        # nix shell nixpkgs#...
+        ns() {
+          nix shell nixpkgs#$@
+        }
+      '';
 
       profileExtra = mkIf (cfg.execOnTty1 != null) ''
         [ "$(tty)" = "/dev/tty1" ] && exec ${cfg.execOnTty1}

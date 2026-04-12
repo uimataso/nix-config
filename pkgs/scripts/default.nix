@@ -1,13 +1,12 @@
 { pkgs }:
 let
-  initScript = # sh
-    ''
-      APP_NAME=''${0##*/}
+  initScript = /* sh */ ''
+    APP_NAME=''${0##*/}
 
-      debug() {
-        echo "$APP_NAME: $*"
-      }
-    '';
+    debug() {
+      echo "$APP_NAME: $*"
+    }
+  '';
 
   mkScriptWith = fn: args: pkgs.callPackage fn ({ inherit initScript; } // args);
   mkScript = fn: mkScriptWith fn { };

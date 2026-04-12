@@ -12,27 +12,21 @@ let
     ;
   cfg = config.uimaConfig.services.systemdNotify;
 
-  notifyAllScript =
-    notifySendArgs:
-    # sh
-    ''
-      for bus in /run/user/*/bus; do
-        user_id="$(basename "$(dirname "$bus")")"
+  notifyAllScript = notifySendArgs: /* sh */ ''
+    for bus in /run/user/*/bus; do
+      user_id="$(basename "$(dirname "$bus")")"
 
-        ${pkgs.sudo}/bin/sudo -u "$(id -n -u "$user_id")" \
-          DBUS_SESSION_BUS_ADDRESS="unix:path=$bus" \
-          ${pkgs.libnotify}/bin/notify-send ${notifySendArgs}
-      done
-    '';
-
-  notifyScript =
-    username: notifySendArgs:
-    # sh
-    ''
-      ${pkgs.sudo}/bin/sudo -u '${username}' \
-        DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u '${username}')/bus" \
+      ${pkgs.sudo}/bin/sudo -u "$(id -n -u "$user_id")" \
+        DBUS_SESSION_BUS_ADDRESS="unix:path=$bus" \
         ${pkgs.libnotify}/bin/notify-send ${notifySendArgs}
-    '';
+    done
+  '';
+
+  notifyScript = username: notifySendArgs: /* sh */ ''
+    ${pkgs.sudo}/bin/sudo -u '${username}' \
+      DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u '${username}')/bus" \
+      ${pkgs.libnotify}/bin/notify-send ${notifySendArgs}
+  '';
 in
 {
   options.uimaConfig.services.systemdNotify = {
@@ -105,27 +99,25 @@ in
         "${name}-success-notify" = mkIf (serviceCfg.onSuccess != null) {
           enable = config.systemd.services.${name}.enable;
           description = "Success notification for ${name} service";
-          script = # sh
-            ''
-              start_time="$(cat '${durationTrackerFile}')"
-              end_time="$(date +%s)"
-              duration=$((end_time - start_time))
+          script = /* sh */ ''
+            start_time="$(cat '${durationTrackerFile}')"
+            end_time="$(date +%s)"
+            duration=$((end_time - start_time))
 
-              ${mkNotify serviceCfg.onSuccess}
-            '';
+            ${mkNotify serviceCfg.onSuccess}
+          '';
         };
 
         "${name}-failure-notify" = mkIf (serviceCfg.onFailure != null) {
           enable = config.systemd.services.${name}.enable;
           description = "Failure notification for ${name} service";
-          script = # sh
-            ''
-              start_time="$(cat '${durationTrackerFile}')"
-              end_time="$(date +%s)"
-              duration=$((end_time - start_time))
+          script = /* sh */ ''
+            start_time="$(cat '${durationTrackerFile}')"
+            end_time="$(date +%s)"
+            duration=$((end_time - start_time))
 
-              ${mkNotify serviceCfg.onFailure}
-            '';
+            ${mkNotify serviceCfg.onFailure}
+          '';
         };
       }
     ) cfg.services;

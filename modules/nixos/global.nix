@@ -41,14 +41,12 @@ in
     # Make bash read `$XDG_CONFIG_HOME/bash/{profile, bashrc}`.
     # Note, while running init, `$XDG_CONFIG_HOME` is not available
     # yet, so `$HOME/.config` is used instead of `$XDG_CONFIG_HOME`.
-    environment.shellInit = # sh
-      ''
-        if [[ -r "$HOME/.config/bash/profile" ]]; then . "$HOME/.config/bash/profile"; fi
-      '';
-    environment.interactiveShellInit = # sh
-      ''
-        if [[ -r "$HOME/.config/bash/bashrc" ]]; then . "$HOME/.config/bash/bashrc"; fi
-      '';
+    environment.shellInit = /* sh */ ''
+      if [[ -r "$HOME/.config/bash/profile" ]]; then . "$HOME/.config/bash/profile"; fi
+    '';
+    environment.interactiveShellInit = /* sh */ ''
+      if [[ -r "$HOME/.config/bash/bashrc" ]]; then . "$HOME/.config/bash/bashrc"; fi
+    '';
 
     # Enable theme
     uimaConfig.theme.enable = true;

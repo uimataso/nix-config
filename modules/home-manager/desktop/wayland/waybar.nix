@@ -118,20 +118,18 @@ in
               let
                 pactl = lib.getExe' pkgs.pulseaudio "pactl";
 
-                pulseaudioSwitchSink =
-                  pkgs.writeShellScript "pulseaudio-switch-sink" # sh
-                    ''
-                      PATH="${pkgs.coreutils}/bin:${pkgs.gnugrep}/bin:${pkgs.gnused}/bin/:${pkgs.findutils}/bin"
+                pulseaudioSwitchSink = pkgs.writeShellScript "pulseaudio-switch-sink" /* sh */ ''
+                  PATH="${pkgs.coreutils}/bin:${pkgs.gnugrep}/bin:${pkgs.gnused}/bin/:${pkgs.findutils}/bin"
 
-                      def=$(${pactl} get-default-sink)
-                      ${pactl} list short sinks |
-                        cut -f2 |
-                        grep -v easyeffects_sink |
-                        tr '\n' ' ' |
-                        sed "s/^.*$def \(\S*\) .*/\1/" | # look for next sink
-                        sed "s/^\(\S*\) .*/\1/" | # if $def is last, look for first
-                        xargs ${pactl} set-default-sink
-                    '';
+                  def=$(${pactl} get-default-sink)
+                  ${pactl} list short sinks |
+                    cut -f2 |
+                    grep -v easyeffects_sink |
+                    tr '\n' ' ' |
+                    sed "s/^.*$def \(\S*\) .*/\1/" | # look for next sink
+                    sed "s/^\(\S*\) .*/\1/" | # if $def is last, look for first
+                    xargs ${pactl} set-default-sink
+                '';
               in
               {
                 scroll-step = 1.0;
@@ -321,8 +319,7 @@ in
       style =
         with config.lib.stylix.colors.withHashtag;
         with config.stylix;
-        # css
-        ''
+        /* css */ ''
           @define-color base00 ${base00}; @define-color base01 ${base01}; @define-color base02 ${base02}; @define-color base03 ${base03};
           @define-color base04 ${base04}; @define-color base05 ${base05}; @define-color base06 ${base06}; @define-color base07 ${base07};
 

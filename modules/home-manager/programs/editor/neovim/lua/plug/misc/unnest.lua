@@ -1,4 +1,4 @@
-return { -- Only used for setting working directory
+return {
   'brianhuster/unnest.nvim',
   lazy = false,
 }

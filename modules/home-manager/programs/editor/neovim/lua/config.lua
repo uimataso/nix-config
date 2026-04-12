@@ -13,6 +13,7 @@ vim.opt.fillchars:append { eob = ' ' }
 vim.opt.fillchars:append { diff = '╱' }
 vim.opt.smoothscroll = true
 vim.opt.conceallevel = 2
+vim.opt.nrformats = 'unsigned' -- ref: https://pawelgrzybek.com/vim-tip-more-intuitive-ctrl-a-adding-and-ctrl-x-subtracting/
 
 -- 4 spaces as default indent
 vim.opt.expandtab = true
@@ -45,7 +46,7 @@ vim.opt.spellfile = vim.fn.stdpath('data') .. '/spell/en.utf-8.add'
 vim.opt.spelllang = 'en_us,cjk'
 vim.opt.spelloptions = 'camel'
 
--- Msic --
+-- Misc --
 vim.opt.shortmess:append('I') -- no intro message
 vim.opt.swapfile = false
 vim.opt.updatetime = 100
@@ -65,7 +66,7 @@ ag('uima/Fromatoptions', function(g)
   })
 end)
 
--- Auto re-read file if changed outside neovim
+-- Auto re-read file if it has changed outside the neovim
 ag('uima/CheckTime', function(g)
   au({ 'BufEnter', 'CursorHold', 'CursorHoldI', 'FocusGained', 'FocusLost' }, {
     group = g,

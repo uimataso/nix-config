@@ -37,6 +37,13 @@ end)
 -- Snippet
 vim.keymap.set('i', '<C-x><C-s>', '<C-]>')
 
+-- restart
+vim.keymap.set('n', '<leader>R', function()
+  local session = vim.fn.stdpath('state') .. '/restart_session.vim'
+  vim.cmd('mksession! ' .. vim.fn.fnameescape(session))
+  vim.cmd('restart source ' .. vim.fn.fnameescape(session))
+end, { desc = 'Restart Neovim' })
+
 -- Hover
 local function show_documentation()
   local has_ufo, ufo = pcall(require, 'ufo')
@@ -166,9 +173,22 @@ vim.keymap.set('n', 'gJ', 'mzgJ`z:delmarks z<cr>')
 
 -- '*' but not jump to next, e.g. just highlight the word under the cursor
 -- ref: https://stackoverflow.com/a/49944815
--- TODO: make this work in visual mode
-vim.keymap.set('n', '*', [[<cmd>let @/ = '\<' . expand('<cword>') . '\>' <bar> set hls <cr>]])
-vim.keymap.set('n', 'g*', [[<cmd>let @/ = expand('<cword>') <bar> set hls <cr>]])
+vim.keymap.set('n', '*', function()
+  vim.fn.setreg('/', '\\<' .. vim.fn.expand('<cword>') .. '\\>')
+  vim.opt.hlsearch = true
+end)
+vim.keymap.set('n', 'g*', function()
+  vim.fn.setreg('/', vim.fn.expand('<cword>'))
+  vim.opt.hlsearch = true
+end)
+vim.keymap.set('x', '*', function()
+  local lines = require('utils').get_selected_lines()
+  local text = table.concat(lines, '\n')
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<esc>', true, false, true), 'x', true)
+  vim.fn.setreg('/', vim.fn.escape(text, '\\'))
+  vim.opt.hlsearch = true
+end)
+vim.keymap.set('x', 'g*', '*', { remap = true })
 
 -- Block insert in line visual mode
 vim.keymap.set('x', 'I', function()

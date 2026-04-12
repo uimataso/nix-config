@@ -28,32 +28,6 @@ return {
   },
 
   {
-    'hedyhli/outline.nvim',
-    enabled = false,
-    dependencies = { 'onsails/lspkind.nvim' },
-    cmd = 'Outline',
-    keys = {
-      {
-        '<Leader>j',
-        mode = { 'n' },
-        function()
-          require('outline').toggle()
-        end,
-        desc = 'Toggle Outline',
-      },
-    },
-
-    opts = {
-      outline_window = {
-        position = 'left',
-      },
-      symbols = {
-        icon_source = 'lspkind',
-      },
-    },
-  },
-
-  {
     'stevearc/aerial.nvim',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',

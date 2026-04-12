@@ -116,4 +116,12 @@ M.get_diagnostic_to_qf = function(buf, get_opts)
   vim.fn.setqflist(qf_list, 'r')
 end
 
+M.get_selected_lines = function()
+  -- does not handle rectangular selection
+  local s_start = vim.fn.getpos '.'
+  local s_end = vim.fn.getpos 'v'
+  local lines = vim.fn.getregion(s_start, s_end)
+  return lines
+end
+
 return M

@@ -62,13 +62,4 @@ return {
       require('nvim-treesitter.configs').setup(opts)
     end,
   },
-
-  {
-    'echasnovski/mini.ai',
-    enabled = false,
-    version = '*',
-    event = { 'InsertEnter', 'CmdlineEnter' },
-
-    opts = {},
-  },
 }

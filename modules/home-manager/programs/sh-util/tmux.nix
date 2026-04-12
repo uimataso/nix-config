@@ -158,6 +158,7 @@ in
           extraConfig = /* tmux */ ''
             set -g @smooth-scroll-speed "50"
             set -g @smooth-scroll-easing "linear"
+            set -g @smooth-scroll-mouse "false"
           '';
         }
         {

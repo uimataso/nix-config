@@ -39,6 +39,7 @@
     drawing
 
     anydesk
+    libreoffice
 
     gcc
     python3

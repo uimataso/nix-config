@@ -7,10 +7,18 @@ local function toggle_diffview(cmd)
 end
 
 return {
-  'sindrets/diffview.nvim',
+  'dlyongemallo/diffview.nvim',
   cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
 
   keys = {
+    {
+      '<M-d>',
+      mode = { 'n' },
+      function()
+        toggle_diffview('DiffviewOpen')
+      end,
+      desc = 'diff',
+    },
     {
       '<Leader>gd',
       mode = { 'n' },

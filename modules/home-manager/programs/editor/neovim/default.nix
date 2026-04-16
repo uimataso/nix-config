@@ -109,6 +109,12 @@ in
       };
     };
 
+    programs.bash.bashrcExtra = /* sh */ ''
+      dvdiff() {
+        nvim -c "DiffviewDiffFiles ''${1// /\\ } ''${2// /\\ }"
+      }
+    '';
+
     home.sessionVariables = {
       # PAGER = lib.mkDefault "nvim +Man!";
       # MANPAGER = "nvim -c Man! -c 'set signcolumn=no'";

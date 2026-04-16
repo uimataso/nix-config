@@ -65,6 +65,9 @@ in
 
           cl = "clone";
           cld = "clone --depth=1";
+
+          diffview = "!nvim -c DiffviewOpen";
+          dv = "!nvim -c DiffviewOpen";
         };
 
         url = {

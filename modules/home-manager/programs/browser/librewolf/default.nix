@@ -89,10 +89,11 @@ in
         PasswordManagerEnabled = false;
 
         # TODO: clean cookies for each container?
-        Cookies = {
-          Behavior = "reject";
-          Allow = map (domain: "https://${domain}") trustedSites.allowCookie;
-        };
+        # FIXME: it don't keep the cookies anymore
+        # Cookies = {
+        #   Behavior = "reject";
+        #   Allow = map (domain: "https://${domain}") trustedSites.allowCookie;
+        # };
 
         # TODO: try setting extension with this
         # "3rdparty" = {

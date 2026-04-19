@@ -118,7 +118,9 @@ in
         bind  |  split-window -h -c "#{pane_current_path}"
 
         bind c new-window -c "#{pane_current_path}"
-        bind space copy-mode
+        bind y copy-mode
+        bind p paste-buffer
+        bind space  copy-mode
         bind BSpace last-window
 
         # better keybind in copy mode

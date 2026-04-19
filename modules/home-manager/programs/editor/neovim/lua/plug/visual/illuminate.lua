@@ -4,6 +4,8 @@ return {
   opts = {
     delay = 300,
     under_cursor = false,
+
+    disable_keymaps = true,
   },
 
   config = function(_, opts)

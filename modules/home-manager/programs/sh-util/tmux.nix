@@ -117,15 +117,21 @@ in
         bind  %  split-window -h -c "#{pane_current_path}"
         bind  |  split-window -h -c "#{pane_current_path}"
 
-        # create window in same dir
         bind c new-window -c "#{pane_current_path}"
-
+        bind space copy-mode
         bind BSpace last-window
 
         # better keybind in copy mode
         bind -T copy-mode-vi v   send-keys -X begin-selection
         bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
         bind -T copy-mode-vi y   send-keys -X copy-selection-and-cancel
+
+        # ref: https://jyn.dev/how-i-use-my-terminal/
+        bind -T copy-mode-vi o   send-keys -X copy-pipe \
+          'cd #{pane_current_path}; xargs -I {} echo "echo {}" | bash | xargs open' \; \
+          if -F "#{alternate_on}" { send-keys -X cancel }
+        bind -T copy-mode-vi O   send-keys -X copy-pipe-and-cancel \
+          'tmux send-keys "C-q"; xargs -I {} tmux send-keys "''${EDITOR:-vi} {}"; tmux send-keys "C-m"'
 
         set -g repeat-time 200
 

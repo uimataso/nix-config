@@ -159,6 +159,10 @@ in
             set -g @smooth-scroll-speed "50"
             set -g @smooth-scroll-easing "linear"
             set -g @smooth-scroll-mouse "false"
+
+            set -g @smooth-scroll-fullpage "#{pane_height} / 2"
+
+            set -g @smooth-scroll-exit-copy-mode-at-bottom "false"
           '';
         }
         {

@@ -31,7 +31,7 @@ return {
     formatters_by_ft = {
       html = { 'superhtml' },
       javascript = { 'prettier' },
-      markdown = { 'prettier', 'injected' },
+      markdown = { 'injected' },
       json = { 'fixjson' },
 
       yaml = { 'yamlfmt' },

@@ -135,6 +135,9 @@ in
         bind -T copy-mode-vi O   send-keys -X copy-pipe-and-cancel \
           'tmux send-keys "C-q"; xargs -I {} tmux send-keys "''${EDITOR:-vi} {}"; tmux send-keys "C-m"'
 
+        bind-key -T copy-mode-vi PageUp   send-keys C-u
+        bind-key -T copy-mode-vi PageDown send-keys C-d
+
         set -g repeat-time 200
 
         # status
@@ -167,8 +170,6 @@ in
             set -g @smooth-scroll-speed "50"
             set -g @smooth-scroll-easing "linear"
             set -g @smooth-scroll-mouse "false"
-
-            set -g @smooth-scroll-fullpage "#{pane_height} / 2"
 
             set -g @smooth-scroll-exit-copy-mode-at-bottom "false"
           '';

@@ -93,15 +93,6 @@ in
         gaps_out = 5;
       };
 
-      # FIXME: make xwayland scale properly
-      xwayland = {
-        force_zero_scaling = true;
-      };
-      env = [
-        "GDK_SCALE,2"
-        "XCURSOR_SIZE,32"
-      ];
-
       workspace = [
         "s[true], gapsout:15"
       ];

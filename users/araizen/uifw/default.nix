@@ -37,6 +37,7 @@
     bc
     hyperfine
     drawing
+    natscli
 
     anydesk
     libreoffice

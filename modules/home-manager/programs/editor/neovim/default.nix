@@ -44,6 +44,10 @@ in
     programs.neovim = {
       enable = true;
       sideloadInitLua = true;
+
+      withRuby = true; # for stateVersion
+      withPython3 = true; # for stateVersion
+
       extraPackages = with pkgs; [
         fd
         ripgrep

@@ -27,6 +27,9 @@ in
   };
 
   config = mkIf cfg.enable {
+    # TODO: find a better place to set this option :(
+    gtk.gtk4.theme = null; # for stateVersion
+
     nixpkgs.overlays = [ inputs.nur.overlays.default ] ++ builtins.attrValues outputs.overlays;
 
     home.homeDirectory = mkDefault "/home/${config.home.username}";

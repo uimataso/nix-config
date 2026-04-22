@@ -40,6 +40,7 @@ in
     xdg.userDirs = {
       enable = true;
       createDirectories = true;
+      setSessionVariables = true; # for stateVersion
     }
     // lib.attrsets.mapAttrs (
       key: val: if isNull val then val else "${config.home.homeDirectory}/${val}"

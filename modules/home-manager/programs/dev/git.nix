@@ -38,6 +38,8 @@ in
     programs.git = {
       enable = true;
 
+      signing.format = null; # for stateVersion
+
       settings = {
         user.name = cfg.name;
         user.email = cfg.email;

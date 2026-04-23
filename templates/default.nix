@@ -1,8 +1,8 @@
 # https://github.com/MordragT/nix-templates
 
 {
-  rust-simple = {
-    path = ./rust-simple;
+  rust = {
+    path = ./rust;
     description = "Basic Rust Project";
   };
   rust-axum = {

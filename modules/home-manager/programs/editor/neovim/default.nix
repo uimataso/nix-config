@@ -92,6 +92,8 @@ in
         python313Packages.python-lsp-server
         black
         isort
+        # Go
+        gopls
         # C/Cpp
         clang-tools
         # Typescript

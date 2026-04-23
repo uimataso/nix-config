@@ -56,6 +56,7 @@
     })
     cargo-nextest
     cargo-expand
+    go
   ];
 
   stylix =

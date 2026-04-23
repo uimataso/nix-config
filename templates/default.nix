@@ -13,4 +13,8 @@
     path = ./python;
     description = "Basic Python Project";
   };
+  go = {
+    path = ./go;
+    description = "Basic Go Project";
+  };
 }

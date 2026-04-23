@@ -126,7 +126,9 @@ in
         # better keybind in copy mode
         bind -T copy-mode-vi v   send-keys -X begin-selection
         bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
-        bind -T copy-mode-vi y   send-keys -X copy-selection-and-cancel
+        # not use `copy-selection-and-cancel` to workaround that
+        # copy in popup window didn't copy into system clipboard
+        bind -T copy-mode-vi y   send-keys -X copy-pipe-and-cancel clip
 
         # ref: https://jyn.dev/how-i-use-my-terminal/
         bind -T copy-mode-vi o   send-keys -X copy-pipe \
@@ -174,16 +176,16 @@ in
             set -g @smooth-scroll-exit-copy-mode-at-bottom "false"
           '';
         }
-        {
-          plugin = tmuxPlugins.tmux-nvim;
-          extraConfig = /* tmux */ ''
-            set -g @tmux-nvim-navigation false
-            set -g @tmux-nvim-resize false
-
-            set -g @tmux-nvim-resize-step-x 3
-            set -g @tmux-nvim-resize-step-y 3
-          '';
-        }
+        # {
+        #   plugin = tmuxPlugins.tmux-nvim;
+        #   extraConfig = /* tmux */ ''
+        #     set -g @tmux-nvim-navigation false
+        #     set -g @tmux-nvim-resize false
+        #
+        #     set -g @tmux-nvim-resize-step-x 3
+        #     set -g @tmux-nvim-resize-step-y 3
+        #   '';
+        # }
         tmuxPlugins.tmux-fzf
         tmuxPlugins.fzf-tmux-url
         {

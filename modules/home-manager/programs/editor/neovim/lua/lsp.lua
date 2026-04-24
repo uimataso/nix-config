@@ -27,11 +27,6 @@ for _, file in pairs(lsp_files) do
   vim.lsp.enable(lsp_name)
 end
 
--- https://github.com/neovim/neovim/issues/35401
-vim.keymap.set('n', '<C-W>d', function()
-  vim.diagnostic.open_float(nil, { close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' } })
-end, { desc = 'Show diagnostics under the cursor' })
-
 local sev = vim.diagnostic.severity
 
 vim.diagnostic.config({

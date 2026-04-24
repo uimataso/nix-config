@@ -4,38 +4,53 @@ local ag = require('utils').ag
 -- to see which char map to which mode:
 -- :h map-table
 
--- Insert mode mapping
+-- Keyboard specific
+vim.keymap.set('', '+', 'j', { remap = true })
+-- vim.keymap.set('', '-', 'k', { remap = true }) -- remap in `oil.nvim`
+vim.keymap.set('i', '<PageDown>', '<Nop>')
+vim.keymap.set('i', '<PageUp>', '<Nop>')
+vim.keymap.set('n', '<BS>', '<C-^>')
+
+-------------------
+-- [INSERT MODE] --
+-------------------
+
 vim.keymap.set('i', '<C-h>', '<C-w>') -- map <C-BS> to <C-w>
 vim.keymap.set('i', '<C-Left>', '<C-o>b')
 vim.keymap.set('i', '<C-Right>', '<C-o>w')
 vim.keymap.set('i', '<Home>', '<C-o>^')
 vim.keymap.set('i', '<End>', '<C-o>$')
-vim.keymap.set('i', '<PageDown>', '<Nop>')
-vim.keymap.set('i', '<PageUp>', '<Nop>')
 vim.keymap.set('i', '<C-l>', '<C-o><cmd>nohlsearch<cr>')
 
+-- Quick insert
 vim.keymap.set('i', '<M-d><M-d>', '<C-R>=system("date --iso-8601=seconds")<C-M>')
 vim.keymap.set('i', '<M-d>d', '<M-d><M-d>', { remap = true })
 vim.keymap.set('i', '<M-d><M-u>', '<C-R>=system("date --utc --iso-8601=seconds")<C-M>')
 vim.keymap.set('i', '<M-d>u', '<M-d><M-u>', { remap = true })
 
--- Terminal mode
+-- Snippet
+vim.keymap.set('i', '<C-x><C-s>', '<C-]>')
+
+----------------
+-- [TERMINAL] --
+----------------
+
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>')
 vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>')
 
--- Settings for terminal mode
+-- Settings for terminal buffer
 ag('uima/TermSettings', function(g)
   au('TermOpen', {
     group = g,
     callback = function()
-      vim.keymap.set('n', '<Esc><Esc>', '<cmd>close<cr>', { buffer = 0 })
-      vim.keymap.set('n', '<BS>', '<Nop>', { buffer = 0 })
+      vim.keymap.set('n', '<BS>', '<Nop>', { buffer = 0 }) -- disable switch alt file
     end,
   })
 end)
 
--- Snippet
-vim.keymap.set('i', '<C-x><C-s>', '<C-]>')
+---------------
+-- [FEATURE] --
+---------------
 
 -- restart
 vim.keymap.set('n', '<leader>R', function()
@@ -44,81 +59,22 @@ vim.keymap.set('n', '<leader>R', function()
   vim.cmd('restart source ' .. vim.fn.fnameescape(session))
 end, { desc = 'Restart Neovim' })
 
--- Hover
-local function show_documentation()
-  local has_ufo, ufo = pcall(require, 'ufo')
-  if has_ufo and ufo.peekFoldedLinesUnderCursor() then
-    return
-  end
-
-  local filetype = vim.bo.filetype
-  if filetype == 'vim' or filetype == 'help' then
-    vim.cmd('h ' .. vim.fn.expand('<cword>'))
-  elseif filetype == 'man' then
-    vim.cmd('Man ' .. vim.fn.expand('<cword>'))
-  elseif vim.fn.expand('%:t') == 'Cargo.toml' and require('crates').popup_available() then
-    require('crates').show_popup()
-  elseif filetype == 'rust' then
-    vim.cmd.RustLsp { 'hover', 'actions' }
-  else
-    vim.lsp.buf.hover()
-  end
-end
-vim.keymap.set(
-  'n',
-  'K',
-  show_documentation,
-  { silent = true, desc = 'vim.lsp.buf.hover() but more' }
-)
-
-vim.keymap.set('n', 'grs', function()
-  vim.lsp.buf.signature_help()
-end, { desc = 'vim.lsp.buf.signature_help()' })
-
--- Open in split
-vim.keymap.set('n', '<Leader>gd', '<cmd>vsplit | lua vim.lsp.buf.definition()<cr>')
-vim.keymap.set('n', '<Leader>gD', '<cmd>vsplit | lua vim.lsp.buf.declaration()<cr>') -- Diagnostic
-vim.keymap.set('n', '<leader>dr', vim.diagnostic.reset, { desc = 'vim.diagnostic.reset()' })
-
-local diagnostic_virtual_lines = false
-vim.keymap.set('n', '<leader>df', function()
-  diagnostic_virtual_lines = not diagnostic_virtual_lines
-  vim.diagnostic.config({ virtual_lines = diagnostic_virtual_lines })
-end, { desc = 'vim.diagnostic.config({ virtual_lines = .. })' })
-
 -- Execute lua
 vim.keymap.set('n', '<Leader><Leader>x', '<cmd>source %<CR>')
 vim.keymap.set('n', '<Leader>xx', ':.lua<CR>')
 vim.keymap.set('v', '<Leader>x', ':lua<CR>')
 
--- Quick shell command
-vim.keymap.set('n', '!', ':terminal ')
-
--- Buffer movement
-vim.keymap.set('n', '<BS>', '<C-^>')
-vim.keymap.set('n', '<Tab>', '<cmd>bn<cr>')
-vim.keymap.set('n', '<S-Tab>', '<cmd>bp<cr>')
-
--- Remapping navigation keys (for my split keyboard)
+-- Remapping navigation keys
 vim.keymap.set('', '<PageUp>', '<C-u>', { remap = true })
 vim.keymap.set('', '<PageDown>', '<C-d>', { remap = true })
 vim.keymap.set('', '<Home>', '^', { remap = true })
 vim.keymap.set('', '<End>', '$', { remap = true })
-vim.keymap.set('', '+', 'j', { remap = true })
--- vim.keymap.set('', '-', 'k', { remap = true }) -- remap in `oil.nvim`
 
 -- Resize window
 vim.keymap.set('n', '<C-Right>', '<C-w>>')
 vim.keymap.set('n', '<C-Left>', '<C-w><')
 vim.keymap.set('n', '<C-Up>', '<C-w>+')
 vim.keymap.set('n', '<C-Down>', '<C-w>-')
-
--- Copy paste with clipboard
-vim.keymap.set('', '<Leader>y', '"+y')
-vim.keymap.set('', '<Leader>Y', '"+y$')
-vim.keymap.set('', '<Leader>p', '"+p')
-vim.keymap.set('', '<Leader>P', '"+P')
-vim.keymap.set('', '<Leader><Leader>y', "gg\"+yG''")
 
 -- Quickfix
 vim.keymap.set('n', ']q', '<cmd>try | cnext | catch | cfirst | catch | endtry<cr>')
@@ -127,76 +83,6 @@ vim.keymap.set('n', '<C-j>', ']q', { remap = true })
 vim.keymap.set('n', '<C-k>', '[q', { remap = true })
 -- vim.keymap.set('n', '<C-n>', '<cmd>try | cnewer | catch | endtry<cr>')
 -- vim.keymap.set('n', '<C-p>', '<cmd>try | colder | catch | endtry<cr>')
-
--- Paste without whitespace
-vim.keymap.set('n', 'yp', function()
-  local yanked_text = vim.fn.getreg(vim.v.register)
-  yanked_text = yanked_text:gsub('\n$', '')
-  yanked_text = yanked_text:gsub('^%s+', '')
-  vim.fn.setreg('p', yanked_text)
-  return '"pp'
-end, { expr = true })
-vim.keymap.set('n', '<Leader>yp', '"+yp', { remap = true })
-
--- Comment and duplicate lines
-vim.keymap.set('n', 'ycc', 'mzyyPgcc`z', { remap = true })
-vim.keymap.set('x', 'gyc', "mzy'<Pgpgc`z", { remap = true })
-
--- Visual paste not overwrite register by default
-vim.keymap.set('x', 'p', 'P')
-vim.keymap.set('x', 'P', 'p')
-
--- Select the context just pasted
-vim.keymap.set('', 'gp', function()
-  local v = vim.fn.getregtype():sub(1, 1)
-  if v == '' then
-    return ''
-  end
-  -- `:h getregtype`: <C-V> is one character with value 0x16
-  v = v:byte() == 0x16 and '<C-V>' or v
-  return '`[' .. v .. '`]'
-end, { expr = true, desc = 'Selecting the paste' })
-
--- Search in visual mode
-vim.keymap.set('x', '/', '<Esc>/\\%V')
-
--- Center the screen when search
-vim.keymap.set('n', 'n', 'nzzzv')
-vim.keymap.set('n', 'N', 'Nzzzv')
-vim.keymap.set('c', '<CR>', function()
-  return vim.fn.getcmdtype() == '/' and '<cr>zzzv' or '<cr>'
-end, { expr = true })
-
--- Keep cursor position when join line
-vim.keymap.set('n', 'J', 'mzJ`z:delmarks z<cr>')
-vim.keymap.set('n', 'gJ', 'mzgJ`z:delmarks z<cr>')
-
--- '*' but not jump to next, e.g. just highlight the word under the cursor
--- ref: https://stackoverflow.com/a/49944815
-vim.keymap.set('n', '*', function()
-  vim.fn.setreg('/', '\\<' .. vim.fn.expand('<cword>') .. '\\>')
-  vim.opt.hlsearch = true
-end)
-vim.keymap.set('n', 'g*', function()
-  vim.fn.setreg('/', vim.fn.expand('<cword>'))
-  vim.opt.hlsearch = true
-end)
-vim.keymap.set('x', '*', function()
-  local lines = require('utils').get_selected_lines()
-  local text = table.concat(lines, '\n')
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<esc>', true, false, true), 'x', true)
-  vim.fn.setreg('/', vim.fn.escape(text, '\\'))
-  vim.opt.hlsearch = true
-end)
-vim.keymap.set('x', 'g*', '*', { remap = true })
-
--- Block insert in line visual mode
-vim.keymap.set('x', 'I', function()
-  return vim.fn.mode() == 'V' and '^<C-v>I' or 'I'
-end, { expr = true })
-vim.keymap.set('x', 'A', function()
-  return vim.fn.mode() == 'V' and '$<C-v>A' or 'A'
-end, { expr = true })
 
 -- Spell check
 vim.keymap.set('n', '<Leader>sp', '<cmd>setlocal spell!<CR>')
@@ -209,30 +95,11 @@ end, { silent = true, desc = 'Toggle conceal' })
 -- Treesitter inspect
 vim.keymap.set('n', '<Leader>hi', '<cmd>Inspect<cr>')
 
--- Copy Full File-Path
-vim.keymap.set('n', '<leader>yf', function()
-  local path = vim.fn.expand('%:p')
-  vim.fn.setreg('+', path)
-  print('yank file path:', path)
-end)
-
--- Copy text to clipboard with markdown codeblock format: ```{ft}{content}```
-vim.api.nvim_create_user_command('CopyCodeBlock', function(opts)
-  local lines = vim.api.nvim_buf_get_lines(0, opts.line1 - 1, opts.line2, true)
-  local content = table.concat(lines, '\n')
-  local result = string.format('```%s\n%s\n```', vim.bo.filetype, content)
-  vim.fn.setreg('+', result)
-  print('yank code block:', vim.bo.filetype)
-end, { range = true })
-vim.keymap.set(
-  '',
-  '<Leader>cy',
-  ':CopyCodeBlock<cr>',
-  { desc = 'Copy text with markdown codeblock style' }
-)
-
 -- LspInfo
 vim.api.nvim_create_user_command('LspInfo', 'checkhealth vim.lsp', {})
+
+-- Quick shell command
+vim.keymap.set('n', '!', ':terminal ')
 
 -- Run cmd and open the output in split
 vim.api.nvim_create_user_command('RunCmd', function(opts)
@@ -264,6 +131,105 @@ end, { range = true, nargs = '*', bang = true })
 vim.keymap.set('', '<Leader>r', ':RunCmd ', { desc = 'Run command in split' })
 vim.keymap.set('n', '<Leader><Leader>r', ':%RunCmd ', { desc = 'Run command in split' })
 
+------------------
+-- [YANK PASTE] --
+------------------
+
+-- Copy paste with clipboard
+vim.keymap.set('', '<Leader>y', '"+y')
+vim.keymap.set('', '<Leader>Y', '"+y$')
+vim.keymap.set('', '<Leader>p', '"+p')
+vim.keymap.set('', '<Leader>P', '"+P')
+vim.keymap.set('', '<Leader><Leader>y', "gg\"+yG''")
+
+-- Paste without whitespace
+vim.keymap.set('n', 'yp', function()
+  local yanked_text = vim.fn.getreg(vim.v.register)
+  yanked_text = yanked_text:gsub('\n$', '')
+  yanked_text = yanked_text:gsub('^%s+', '')
+  vim.fn.setreg('p', yanked_text)
+  return '"pp'
+end, { expr = true })
+vim.keymap.set('n', '<Leader>yp', '"+yp', { remap = true })
+
+-- Comment and duplicate lines
+vim.keymap.set('n', 'gyc', 'mzyyPgcc`z', { remap = true })
+vim.keymap.set('x', 'gyc', "mzy'<Pgpgc`z", { remap = true })
+
+-- Visual paste not overwrite register by default
+vim.keymap.set('x', 'p', 'P')
+vim.keymap.set('x', 'P', 'p')
+
+-- Select the context just pasted
+vim.keymap.set('', 'gp', function()
+  local v = vim.fn.getregtype():sub(1, 1)
+  if v == '' then
+    return ''
+  end
+  -- `:h getregtype`: <C-V> is one character with value 0x16
+  v = v:byte() == 0x16 and '<C-V>' or v
+  return '`[' .. v .. '`]'
+end, { expr = true, desc = 'Selecting the paste' })
+
+-- Copy Full File-Path
+vim.keymap.set('n', '<leader>yf', function()
+  local path = vim.fn.expand('%:p')
+  vim.fn.setreg('+', path)
+  print('yank file path:', path)
+end)
+
+-- Copy text to clipboard with markdown codeblock format: ```{ft}{content}```
+vim.api.nvim_create_user_command('CopyCodeBlock', function(opts)
+  local lines = vim.api.nvim_buf_get_lines(0, opts.line1 - 1, opts.line2, true)
+  local content = table.concat(lines, '\n')
+  local result = string.format('```%s\n%s\n```', vim.bo.filetype, content)
+  vim.fn.setreg('+', result)
+  print('yank code block:', vim.bo.filetype)
+end, { range = true })
+vim.keymap.set(
+  '',
+  '<Leader>cy',
+  ':CopyCodeBlock<cr>',
+  { desc = 'Copy text with markdown codeblock style' }
+)
+
+-----------
+-- [LSP] --
+-----------
+
+-- Hover
+local function show_documentation()
+  local has_ufo, ufo = pcall(require, 'ufo')
+  if has_ufo and ufo.peekFoldedLinesUnderCursor() then
+    return
+  end
+
+  local filetype = vim.bo.filetype
+  if filetype == 'vim' or filetype == 'help' then
+    vim.cmd('h ' .. vim.fn.expand('<cword>'))
+  elseif filetype == 'man' then
+    vim.cmd('Man ' .. vim.fn.expand('<cword>'))
+  elseif vim.fn.expand('%:t') == 'Cargo.toml' and require('crates').popup_available() then
+    require('crates').show_popup()
+  elseif filetype == 'rust' then
+    vim.cmd.RustLsp { 'hover', 'actions' }
+  else
+    vim.lsp.buf.hover()
+  end
+end
+vim.keymap.set(
+  'n',
+  'K',
+  show_documentation,
+  { silent = true, desc = 'vim.lsp.buf.hover() but more' }
+)
+
+local diagnostic_virtual_lines = false
+vim.keymap.set('n', '<leader>df', function()
+  diagnostic_virtual_lines = not diagnostic_virtual_lines
+  vim.diagnostic.config({ virtual_lines = diagnostic_virtual_lines })
+end, { desc = 'vim.diagnostic.config({ virtual_lines = .. })' })
+
 local keymap_dia_to_qf = function(lhs, buf, get_opts)
   vim.keymap.set('n', lhs, function()
     require('utils').get_diagnostic_to_qf(buf, get_opts)
@@ -278,7 +244,52 @@ keymap_dia_to_qf('<Leader>dle', 0, { severity = { min = vim.diagnostic.severity.
 keymap_dia_to_qf('<Leader>dww', nil, { severity = { min = vim.diagnostic.severity.WARN } })
 keymap_dia_to_qf('<Leader>dlw', 0, { severity = { min = vim.diagnostic.severity.WARN } })
 
--- Close some filetypes with <q>
+-------------------
+-- [ENHANCEMENT] --
+-------------------
+
+-- Search in visual mode
+vim.keymap.set('x', '/', '<Esc>/\\%V')
+
+-- Center the screen when search
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
+vim.keymap.set('c', '<CR>', function()
+  return vim.fn.getcmdtype() == '/' and '<cr>zzzv' or '<cr>'
+end, { expr = true })
+
+-- Block insert in line visual mode
+vim.keymap.set('x', 'I', function()
+  return vim.fn.mode() == 'V' and '^<C-v>I' or 'I'
+end, { expr = true })
+vim.keymap.set('x', 'A', function()
+  return vim.fn.mode() == 'V' and '$<C-v>A' or 'A'
+end, { expr = true })
+
+-- Keep cursor position when join line
+vim.keymap.set('n', 'J', 'mzJ`z:delmarks z<cr>')
+vim.keymap.set('n', 'gJ', 'mzgJ`z:delmarks z<cr>')
+
+-- '*' but not jump to next, e.g. just highlight the word under the cursor
+-- ref: https://stackoverflow.com/a/49944815
+vim.keymap.set('n', '*', function()
+  vim.fn.setreg('/', '\\<' .. vim.fn.expand('<cword>') .. '\\>')
+  vim.opt.hlsearch = true
+end)
+vim.keymap.set('n', 'g*', function()
+  vim.fn.setreg('/', vim.fn.expand('<cword>'))
+  vim.opt.hlsearch = true
+end)
+vim.keymap.set('x', '*', function()
+  local lines = require('utils').get_selected_lines()
+  local text = table.concat(lines, '\n')
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<esc>', true, false, true), 'x', true)
+  vim.fn.setreg('/', vim.fn.escape(text, '\\'))
+  vim.opt.hlsearch = true
+end)
+vim.keymap.set('x', 'g*', '*', { remap = true })
+
+-- Close file with <q>
 ag('uima/CloseWithQ', function(g)
   au('FileType', {
     group = g,

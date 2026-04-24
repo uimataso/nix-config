@@ -1,3 +1,5 @@
+vim.api.nvim_create_user_command('LspInfo', 'checkhealth vim.lsp', {})
+
 local get_capabilities = function(override)
   local has_cmp, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
   local has_blink, blink = pcall(require, 'blink.cmp')

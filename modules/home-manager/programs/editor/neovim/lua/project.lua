@@ -40,7 +40,7 @@ ag('uima/SetProjectRoot', function(g)
     callback = function()
       local root = find_project_root()
       if root and root ~= vim.loop.cwd() then
-        vim.print('project root: ' .. root)
+        -- vim.print('project root: ' .. root)
         vim.cmd('lcd ' .. vim.fn.fnameescape(root))
       end
     end,

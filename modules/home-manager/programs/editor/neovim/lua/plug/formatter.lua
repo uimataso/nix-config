@@ -40,6 +40,8 @@ return {
       lua = { 'stylua' },
       python = { 'isort', 'black' },
       nix = { 'nixfmt' },
+
+      ['*'] = { 'trim_whitespace', 'trim_newlines' },
     },
 
     format_on_save = function(bufnr)

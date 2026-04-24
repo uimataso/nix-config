@@ -95,9 +95,6 @@ end, { silent = true, desc = 'Toggle conceal' })
 -- Treesitter inspect
 vim.keymap.set('n', '<Leader>hi', '<cmd>Inspect<cr>')
 
--- LspInfo
-vim.api.nvim_create_user_command('LspInfo', 'checkhealth vim.lsp', {})
-
 -- Quick shell command
 vim.keymap.set('n', '!', ':terminal ')
 

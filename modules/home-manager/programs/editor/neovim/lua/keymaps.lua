@@ -125,8 +125,8 @@ vim.keymap.set('n', ']q', '<cmd>try | cnext | catch | cfirst | catch | endtry<cr
 vim.keymap.set('n', '[q', '<cmd>try | cprevious | catch | clast | catch | endtry<cr>')
 vim.keymap.set('n', '<C-j>', ']q', { remap = true })
 vim.keymap.set('n', '<C-k>', '[q', { remap = true })
-vim.keymap.set('n', '<C-n>', '<cmd>try | cnewer | catch | endtry<cr>')
-vim.keymap.set('n', '<C-p>', '<cmd>try | colder | catch | endtry<cr>')
+-- vim.keymap.set('n', '<C-n>', '<cmd>try | cnewer | catch | endtry<cr>')
+-- vim.keymap.set('n', '<C-p>', '<cmd>try | colder | catch | endtry<cr>')
 
 -- Paste without whitespace
 vim.keymap.set('n', 'yp', function()

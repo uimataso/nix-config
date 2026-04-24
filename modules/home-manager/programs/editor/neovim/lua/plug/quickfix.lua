@@ -11,14 +11,14 @@ return {
       end,
       desc = 'Toggle quickfik',
     },
-    {
-      '<Leader>l',
-      mode = { 'n' },
-      function()
-        require('quicker').toggle({ loclist = true })
-      end,
-      desc = 'Toggle loclist',
-    },
+    -- {
+    --   '<Leader>l',
+    --   mode = { 'n' },
+    --   function()
+    --     require('quicker').toggle({ loclist = true })
+    --   end,
+    --   desc = 'Toggle loclist',
+    -- },
   },
 
   ---@module "quicker"

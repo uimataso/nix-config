@@ -32,7 +32,8 @@ return {
             -- vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
 
             vim.keymap.set('n', '<Leader>rt', '<cmd>RustLsp testables<cr>') -- TODO: Neotest
-            vim.keymap.set('n', '<Leader>rd', '<cmd>RustLsp renderDiagnostic current<cr>')
+            -- vim.keymap.set('n', '<Leader>rd', '<cmd>RustLsp renderDiagnostic current<cr>')
+            vim.keymap.set('n', '<C-w><C-d>', '<cmd>RustLsp renderDiagnostic current<cr>')
             vim.keymap.set('n', '<Leader>re', '<cmd>RustLsp explainError<cr>')
             vim.keymap.set('n', '<Leader>rrd', '<cmd>RustLsp relatedDiagnostics<cr>')
             vim.keymap.set('n', '<Leader>rrt', '<cmd>RustLsp relatedTests<cr>')

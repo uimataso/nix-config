@@ -40,6 +40,7 @@
     bandwhich
     gimp
     drawing
+    bruno
 
     yt-dlp
     puddletag

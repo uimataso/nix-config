@@ -26,6 +26,10 @@ in
           light = mkForce "none";
         };
       };
+
+      commands = {
+        commit = ./opencode/commands/commit.md;
+      };
     };
   };
 }

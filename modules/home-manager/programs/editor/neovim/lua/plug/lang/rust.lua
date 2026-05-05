@@ -26,13 +26,12 @@ return {
 
     config = function()
       vim.g.rustaceanvim = {
-        -- LSP configuration
         server = {
           on_attach = function(client, bufnr)
             -- vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
 
-            vim.keymap.set('n', '<Leader>rt', '<cmd>RustLsp testables<cr>') -- TODO: Neotest
-            -- vim.keymap.set('n', '<Leader>rd', '<cmd>RustLsp renderDiagnostic current<cr>')
+            vim.keymap.set('n', '<Leader>tr', '<cmd>RustLsp testables<cr>')
+
             vim.keymap.set('n', '<C-w><C-d>', '<cmd>RustLsp renderDiagnostic current<cr>')
             vim.keymap.set('n', '<Leader>re', '<cmd>RustLsp explainError<cr>')
             vim.keymap.set('n', '<Leader>rrd', '<cmd>RustLsp relatedDiagnostics<cr>')

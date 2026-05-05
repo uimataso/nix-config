@@ -19,6 +19,7 @@ M.plugins = {
   ['telescope.nvim'] = 'telescope',
   ['vim-illuminate'] = 'vim-illuminate',
   ['visimatch.nvim'] = 'visimatch',
+  ['wayfinder.nvim'] = 'wayfinder',
 }
 
 M.get = function(name, colors)

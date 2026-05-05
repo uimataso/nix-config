@@ -2,7 +2,7 @@ local show_column = false
 
 return {
   {
-    'stevearc/oil.nvim',
+    'barrettruth/canola.nvim',
     lazy = false,
     cmd = 'Oil',
 
@@ -50,7 +50,7 @@ return {
           if show_column then
             require('oil').set_columns({
               'permissions',
-              { 'size', align = 'right', highlight = 'Comment' },
+              { 'size',  align = 'right',             highlight = 'Comment' },
               { 'mtime', format = '<%Y-%m-%d %H:%M>', highlight = 'Comment' },
             })
           else

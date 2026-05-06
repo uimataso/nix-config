@@ -1,12 +1,22 @@
 ---
 agent: build
-description: Commit staged changes with a conventional commit message
+description: Generate and optionally apply a conventional commit
 ---
 
-Generate a Git commit message from the **staged diff only**.
+Goal:
+Generate a commit message from the staged diff, then wait for user confirmation before committing.
+
+Steps:
+1. Read staged diff only.
+2. If no staged changes exist → output nothing and exit.
+3. Generate commit message following rules below.
+4. Show the message.
+5. Ask: "Commit with this message? (y/n)"
+6. Only if user replies "y" or "yes":
+   - run: git commit -m "<summary>" -m "<body>"
+7. Otherwise: do nothing.
 
 Rules:
-- If no staged changes exist, output nothing.
 - Use Conventional Commits v1.0.0 only:
   <type>(optional scope): <summary>
 
@@ -15,9 +25,11 @@ feat, fix, docs, style, refactor, perf, test, build, chore, ci, revert
 (use `chore` as fallback)
 
 Format:
-- Summary: imperative, lowercase, max 50 chars, no period
-- Body: optional bullets (max 8), each:
-  - start with "- "
+- Summary:
+  - imperative, lowercase, max 50 chars, no period
+- Body:
+  - optional bullets (max 8)
+  - each starts with "- "
   - sentence case
   - max 72 chars per line
 - Blank line between summary and body
@@ -29,13 +41,13 @@ Scope:
 Rules:
 - Only describe actual staged changes (no guessing)
 - Group related changes
-- For deps: build(deps): update <pkg> A→B
-- For version bump: chore: bump version to vX.Y.Z
-- For config: chore(config): update <thing>
+
+Special cases:
+- Deps: build(deps): update <pkg> A→B
+- Version: chore: bump version to vX.Y.Z
+- Config: chore(config): update <thing>
 
 Breaking changes:
-- If any, add at end after blank line:
-  BREAKING CHANGE: <description>
+- Append at end:
 
-Output ONLY the commit message text.
-No extra commentary.
+  BREAKING CHANGE: <description>

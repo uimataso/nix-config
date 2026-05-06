@@ -35,7 +35,7 @@ return {
       json = { 'fixjson' },
 
       yaml = { 'yamlfmt' },
-      toml = { 'taplo' },
+      -- toml = { 'taplo' },
 
       lua = { 'stylua' },
       python = { 'isort', 'black' },

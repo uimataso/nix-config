@@ -4,7 +4,7 @@ M.submit_prompt = function(url)
     vim.fn.system(string.format('curl -X POST %s/tui/submit-prompt', url))
 end
 
-M.send_prompt = function(url, text)
+M.append_prompt = function(url, text)
     local json_body = vim.json.encode({ text = text })
     vim
         .system({

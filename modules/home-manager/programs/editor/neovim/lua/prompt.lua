@@ -70,7 +70,7 @@ M.send = function()
   end
 
   local url = oc.url_in_tmux()
-  oc.send_prompt(url, content)
+  oc.append_prompt(url, content)
   oc.submit_prompt(url)
 
   vim.api.nvim_buf_set_lines(M.buf, 0, -1, false, { '' })
@@ -80,7 +80,9 @@ end
 vim.keymap.set('n', '<M-p>', M.toggle)
 vim.keymap.set('n', '<leader>i<cr>', M.send)
 vim.keymap.set('n', '<leader>if', function()
-  M.append_text('@' .. vim.fn.expand('%') .. ':' .. vim.fn.line('.'))
+  local cwd = vim.loop.cwd() .. '/'
+  local filename = vim.fn.expand('%:p'):gsub('^' .. vim.pesc(cwd), '')
+  M.append_text('@' .. filename .. ':' .. vim.fn.line('.'))
 end)
 vim.keymap.set('x', '<leader>if', function()
   local a, b = vim.fn.line('v'), vim.fn.line('.')
@@ -88,7 +90,9 @@ vim.keymap.set('x', '<leader>if', function()
     a, b = b, a
   end
   local range = a == b and tostring(a) or (a .. '-' .. b)
-  M.append_text('@' .. vim.fn.expand('%') .. ':' .. range)
+  local cwd = vim.loop.cwd() .. '/'
+  local filename = vim.fn.expand('%:p'):gsub('^' .. vim.pesc(cwd), '')
+  M.append_text('@' .. filename .. ':' .. range)
 end)
 
 return M

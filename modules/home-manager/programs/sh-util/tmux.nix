@@ -34,6 +34,7 @@ in
       scripts.tmux-select-sessions
       scripts.tmux-toggle-popup
       scripts.tmux-toggle-split
+      scripts.rand-port
     ];
 
     home.shellAliases = {
@@ -92,7 +93,7 @@ in
         bind -n M-t run-shell '${exe-toggle-popup}'
         bind -n M-g run-shell '${exe-toggle-popup} -n lazygit lazygit'
         # open opencode with random port
-        bind -n M-i run-shell '${exe-toggle-split} -n opencode "opencode --port $(python -c "import socket; s=socket.socket(); s.bind((''',0)); print(s.getsockname()[1]); s.close()")"'
+        bind -n M-i run-shell '${exe-toggle-split} -n opencode "opencode --port \"$(rand-port)\""'
 
         bind G run-shell "${getExe pkgs.scripts.open-git-remote}"
 

@@ -27,6 +27,7 @@ in
     notify-send-all = mkScript ./notify-send-all.nix;
     open-git-remote = mkScript ./open-git-remote.nix;
     _0x0 = mkScript ./0x0.nix;
+    rand-port = mkScriptWith ./rand-port.nix { writePython3Bin = pkgs.writers.writePython3Bin; };
 
     # Dmenu
     app-launcher = mkScript ./app-launcher.nix;

@@ -83,8 +83,11 @@ vim.keymap.set('n', '<leader>if', function()
   M.append_text('@' .. vim.fn.expand('%') .. ':' .. vim.fn.line('.'))
 end)
 vim.keymap.set('x', '<leader>if', function()
-  local a, b = vim.fn.line("'<"), vim.fn.line("'>")
-  local range = a == b and a or (a .. '-' .. b)
+  local a, b = vim.fn.line('v'), vim.fn.line('.')
+  if a > b then
+    a, b = b, a
+  end
+  local range = a == b and tostring(a) or (a .. '-' .. b)
   M.append_text('@' .. vim.fn.expand('%') .. ':' .. range)
 end)
 

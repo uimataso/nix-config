@@ -5,18 +5,23 @@ M.submit_prompt = function(url)
 end
 
 M.send_prompt = function(url, text)
-    local cmd = string.format(
-        'curl -X POST %s/tui/append-prompt'
-        .. ' -H "Content-Type: application/json"'
-        .. ' -d \'{"text": "%s"}\'',
-        url,
-        text:gsub('"', '\\"')
-    )
-    vim.fn.system(cmd)
+    local json_body = vim.json.encode({ text = text })
+    vim
+        .system({
+            'curl',
+            '-X',
+            'POST',
+            url .. '/tui/append-prompt',
+            '-H',
+            'Content-Type: application/json',
+            '-d',
+            json_body,
+        })
+        :wait()
 end
 
 M.find_port_in_tmux = function()
-    local ppid_cmd = "tmux list-panes -a -F '#{pane_pid} #{pane_current_command}'"
+    local ppid_cmd = "tmux list-panes -s -F '#{pane_pid} #{pane_current_command}'"
         .. ' | grep opencode'
         .. " | cut -d' ' -f1"
     local ppid = vim.trim(vim.fn.system(ppid_cmd))

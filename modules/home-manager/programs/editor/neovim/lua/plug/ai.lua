@@ -1,6 +1,7 @@
 return {
   {
     'sudo-tee/opencode.nvim',
+    enabled = false,
     lazy = false,
 
     dependencies = {

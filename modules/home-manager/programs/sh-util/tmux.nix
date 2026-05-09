@@ -80,6 +80,14 @@ in
           set -as terminal-overrides ',*:Setulc=\E[58::2::::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'
         }
 
+        # make ctrl+enter working
+        # https://github.com/tmux/tmux/issues/4493
+        # https://medium.com/@andrejkurocenko/why-ctrl-stopped-working-when-i-switched-to-tmux-72b6345a1301
+        set -g extended-keys always
+        set -s extended-keys always
+        set -as terminal-features 'xterm*:extkeys'
+        set -g extended-keys-format csi-u
+
         set -g history-limit 10000
         set -g mode-keys vi
         set -g status-keys emacs

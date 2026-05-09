@@ -220,4 +220,10 @@
       workstation = true;
     };
   };
+
+  hardware.bluetooth.settings = {
+    General = {
+      ControllerMode = "le";
+    };
+  };
 }

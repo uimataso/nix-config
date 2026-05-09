@@ -16,9 +16,10 @@ writeShellApplication {
     fi
 
     name='default'
+    size=50%
     cmd="$SHELL"
 
-    if TEMP=$(getopt -o 'n:' -l 'name:' -n "$0" -- "$@"); then
+    if TEMP=$(getopt -o 'n:s:' -l 'name:size:' -n "$0" -- "$@"); then
       eval set -- "$TEMP"
       unset TEMP
     else
@@ -29,6 +30,7 @@ writeShellApplication {
     while true; do
         case "$1" in
             '-n'|'--name')    name="$2";  shift 2 ;;
+            '-s'|'--size')    size="$2";  shift 2 ;;
             '--')
               shift
               [ -n "$*" ] && cmd="$*"
@@ -50,7 +52,7 @@ writeShellApplication {
         if [ "$pane_win" = "$current_win" ]; then
           tmux break-pane -s "$pane_id" -n "$tmp_window" -d
         else
-          tmux join-pane -h -s "$pane_id"
+          tmux join-pane -h -s "$pane_id" -l "$size"
         fi
       else
         tmux set-option -u "$mark"
@@ -60,7 +62,7 @@ writeShellApplication {
 
     if [ -z "$pane_id" ]; then
       cwd="$(tmux display-message -p '#{pane_current_path}')"
-      new_pane="$(tmux split-window -h -c "$cwd" -P -F '#{pane_id}' "$cmd")"
+      new_pane="$(tmux split-window -l "$size" -h -c "$cwd" -P -F '#{pane_id}' "$cmd")"
 
       tmux set-option "$mark" "$new_pane"
     fi

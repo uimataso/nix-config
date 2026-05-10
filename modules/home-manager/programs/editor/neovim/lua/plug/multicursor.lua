@@ -11,10 +11,6 @@ return {
 
     -- Add or skip cursor above/below the main cursor.
     -- stylua: ignore start
-    -- set({ 'n', 'x' }, '<leader>j',         function() mc.lineAddCursor(1) end)
-    -- set({ 'n', 'x' }, '<leader>k',         function() mc.lineAddCursor(-1) end)
-    -- set({ 'n', 'x' }, '<leader><leader>j', function() mc.lineSkipCursor(1) end)
-    -- set({ 'n', 'x' }, '<leader><leader>k', function() mc.lineSkipCursor(-1) end)
     set({ 'n', 'x' }, '<c-.>', function() mc.lineAddCursor(1) end)
     set({ 'n', 'x' }, '<c-,>', function() mc.lineAddCursor(-1) end)
     set({ 'n', 'x' }, '<c-s->>', function() mc.lineSkipCursor(1) end)

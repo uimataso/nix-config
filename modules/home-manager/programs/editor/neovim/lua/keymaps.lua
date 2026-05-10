@@ -98,6 +98,10 @@ vim.keymap.set('n', '<Leader>hi', '<cmd>Inspect<cr>')
 -- Quick shell command
 vim.keymap.set('n', '!', ':terminal ')
 
+-- Fast substitute
+vim.keymap.set('n', '<leader>sw', 'viw"-y:%s/<C-r>-/<C-r>-/g<left><left>')
+vim.keymap.set('v', '<leader>sw', '"-y:%s/<C-r>-/<C-r>-/g<left><left>')
+
 -- Run cmd and open the output in split
 vim.api.nvim_create_user_command('RunCmd', function(opts)
   local lines = vim.api.nvim_buf_get_lines(0, opts.line1 - 1, opts.line2, true)
@@ -317,7 +321,7 @@ end)
 local function cabbrev(lhs, rhs)
   -- only working on ':' mode
   local command =
-  "cnoreabbrev <expr> %s ((getcmdtype() is# ':' && getcmdline() is# '%s')?('%s'):('%s'))"
+    "cnoreabbrev <expr> %s ((getcmdtype() is# ':' && getcmdline() is# '%s')?('%s'):('%s'))"
   vim.cmd(command:format(lhs, lhs, rhs, lhs))
 end
 

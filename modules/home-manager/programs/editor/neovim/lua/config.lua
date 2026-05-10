@@ -124,8 +124,26 @@ end)
 
 -- Only focused window has cursorline
 ag('uima/FocusedOnlyCursorline', function(g)
-  au('WinEnter', { group = g, command = 'setlocal cursorline' })
-  au('WinLeave', { group = g, command = 'setlocal nocursorline' })
+  local should_hide_cursor_line = function(e)
+    local ft = vim.bo[e.buf].filetype
+    return ft ~= 'DiffviewFiles'
+  end
+  au('WinEnter', {
+    group = g,
+    callback = function(event)
+      if should_hide_cursor_line(event) then
+        vim.o.cursorline = true
+      end
+    end,
+  })
+  au('WinLeave', {
+    group = g,
+    callback = function(event)
+      if should_hide_cursor_line(event) then
+        vim.o.cursorline = false
+      end
+    end,
+  })
 end)
 
 -- Resize splits if window got resized

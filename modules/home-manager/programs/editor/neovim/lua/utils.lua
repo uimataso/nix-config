@@ -172,9 +172,10 @@ M.unindent = function(lines)
 
   for _, line in ipairs(lines) do
     local indent = line:match('^%s*')
-    local indent_len = #indent
-    if indent_len > 0 and (min_indent == nil or indent_len < min_indent) then
-      min_indent = indent_len
+    if #indent ~= #line then
+      if min_indent == nil or #indent < min_indent then
+        min_indent = #indent
+      end
     end
   end
 

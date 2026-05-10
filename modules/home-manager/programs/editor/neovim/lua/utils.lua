@@ -116,12 +116,81 @@ M.get_diagnostic_to_qf = function(buf, get_opts)
   vim.fn.setqflist(qf_list, 'r')
 end
 
+--- Return the visually selected text as an array with an entry for each line
+--- from: https://www.reddit.com/r/neovim/comments/1b1sv3a/function_to_get_visually_selected_text
+--- @return string[]|nil lines The selected text as an array of lines.
 M.get_selected_lines = function()
-  -- does not handle rectangular selection
-  local s_start = vim.fn.getpos '.'
-  local s_end = vim.fn.getpos 'v'
-  local lines = vim.fn.getregion(s_start, s_end)
-  return lines
+  local _, srow, scol = unpack(vim.fn.getpos('v'))
+  local _, erow, ecol = unpack(vim.fn.getpos('.'))
+
+  -- visual line mode
+  if vim.fn.mode() == 'V' then
+    if srow > erow then
+      return vim.api.nvim_buf_get_lines(0, erow - 1, srow, true)
+    else
+      return vim.api.nvim_buf_get_lines(0, srow - 1, erow, true)
+    end
+  end
+
+  -- regular visual mode
+  if vim.fn.mode() == 'v' then
+    if srow < erow or (srow == erow and scol <= ecol) then
+      return vim.api.nvim_buf_get_text(0, srow - 1, scol - 1, erow - 1, ecol, {})
+    else
+      return vim.api.nvim_buf_get_text(0, erow - 1, ecol - 1, srow - 1, scol, {})
+    end
+  end
+
+  -- visual block mode
+  if vim.fn.mode() == '\22' then
+    local lines = {}
+    if srow > erow then
+      srow, erow = erow, srow
+    end
+    if scol > ecol then
+      scol, ecol = ecol, scol
+    end
+    for i = srow, erow do
+      table.insert(
+        lines,
+        vim.api.nvim_buf_get_text(
+          0,
+          i - 1,
+          math.min(scol - 1, ecol),
+          i - 1,
+          math.max(scol - 1, ecol),
+          {}
+        )[1]
+      )
+    end
+    return lines
+  end
+end
+
+M.unindent = function(lines)
+  local min_indent = nil
+
+  for _, line in ipairs(lines) do
+    local indent = line:match('^%s*')
+    local indent_len = #indent
+    if indent_len > 0 and (min_indent == nil or indent_len < min_indent) then
+      min_indent = indent_len
+    end
+  end
+
+  if not min_indent then
+    return lines
+  end
+
+  local result = {}
+  for _, line in ipairs(lines) do
+    if #line >= min_indent then
+      table.insert(result, line:sub(min_indent + 1))
+    else
+      table.insert(result, line)
+    end
+  end
+  return result
 end
 
 return M

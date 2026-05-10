@@ -54,9 +54,8 @@ M.append_text = function(text)
 
   if not vim.api.nvim_win_is_valid(M.win or -1) then
     M.toggle()
-  else
-    vim.api.nvim_win_set_cursor(M.win, { vim.api.nvim_buf_line_count(M.buf), 0 })
   end
+  vim.api.nvim_win_set_cursor(M.win, { vim.api.nvim_buf_line_count(M.buf), 0 })
 end
 
 M.send = function()
@@ -96,7 +95,15 @@ vim.keymap.set('x', '<leader>if', function()
 end)
 vim.keymap.set('x', '<leader>iy', function()
   local lines = require('utils').get_selected_lines()
-  local text = table.concat(lines, '\n')
+  local lines = require('utils').unindent(lines)
+  local text = table.concat(lines or {}, '\n')
+  M.append_text(text)
+end)
+vim.keymap.set('x', '<leader>ib', function()
+  local lines = require('utils').get_selected_lines()
+  local lines = require('utils').unindent(lines)
+  local content = table.concat(lines, '\n')
+  local text = string.format('```%s\n%s\n```', vim.bo.filetype, content)
   M.append_text(text)
 end)
 

@@ -31,6 +31,29 @@ in
         commit = ./opencode/commands/commit.md;
       };
 
+      settings = {
+        model = "z-ai/glm-5.1";
+
+        provider = {
+          openrouter = {
+            models = {
+              "z-ai/glm-5.1" = {
+                limit = {
+                  context = 128000 + 32000; # compact when 128000?
+                  output = 16000;
+                };
+              };
+            };
+          };
+        };
+
+        compaction = {
+          auto = true;
+          prune = true;
+          reserved = 32000;
+        };
+      };
+
       tui = {
         # TODO: keymap don't works in current version somehow, use deprecated keybinds
         # keymap = {

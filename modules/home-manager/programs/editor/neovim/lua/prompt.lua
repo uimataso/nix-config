@@ -94,5 +94,10 @@ vim.keymap.set('x', '<leader>if', function()
   local filename = vim.fn.expand('%:p'):gsub('^' .. vim.pesc(cwd), '')
   M.append_text('@' .. filename .. ':' .. range)
 end)
+vim.keymap.set('x', '<leader>iy', function()
+  local lines = require('utils').get_selected_lines()
+  local text = table.concat(lines, '\n')
+  M.append_text(text)
+end)
 
 return M

@@ -59,11 +59,6 @@ vim.keymap.set('n', '<leader>R', function()
   vim.cmd('restart source ' .. vim.fn.fnameescape(session))
 end, { desc = 'Restart Neovim' })
 
--- Execute lua
-vim.keymap.set('n', '<Leader><Leader>x', '<cmd>source %<CR>')
-vim.keymap.set('n', '<Leader>xx', ':.lua<CR>')
-vim.keymap.set('v', '<Leader>x', ':lua<CR>')
-
 -- Remapping navigation keys
 vim.keymap.set('', '<PageUp>', '<C-u>', { remap = true })
 vim.keymap.set('', '<PageDown>', '<C-d>', { remap = true })
@@ -189,7 +184,7 @@ vim.api.nvim_create_user_command('CopyCodeBlock', function(opts)
 end, { range = true })
 vim.keymap.set(
   '',
-  '<Leader>cy',
+  'gyb',
   ':CopyCodeBlock<cr>',
   { desc = 'Copy text with markdown codeblock style' }
 )

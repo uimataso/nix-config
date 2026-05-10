@@ -13,7 +13,8 @@ vim.opt.fillchars:append { eob = ' ' }
 vim.opt.fillchars:append { diff = '╱' }
 vim.opt.smoothscroll = true
 vim.opt.conceallevel = 2
-vim.opt.nrformats = 'unsigned' -- ref: https://pawelgrzybek.com/vim-tip-more-intuitive-ctrl-a-adding-and-ctrl-x-subtracting/
+-- ref: https://pawelgrzybek.com/vim-tip-more-intuitive-ctrl-a-adding-and-ctrl-x-subtracting/
+vim.opt.nrformats = 'unsigned'
 
 -- 4 spaces as default indent
 vim.opt.expandtab = true
@@ -35,10 +36,6 @@ vim.opt.statuscolumn = '%l%s'
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.pumheight = 10
-vim.opt.wildignorecase = true
-vim.opt.wildignore = { '*.git/*', '*.tags', 'tags', '*.o', '*.class', '*models/*.pt' }
--- vim.opt.path:append('**')
--- vim.opt.suffixesadd = '.md'
 
 -- Spell --
 vim.opt.spell = false

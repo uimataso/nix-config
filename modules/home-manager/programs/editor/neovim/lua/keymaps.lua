@@ -312,3 +312,13 @@ ag('uima/CloseWithQ', function(g)
     end,
   })
 end)
+
+-- Abbr for command mode
+local function cabbrev(lhs, rhs)
+  -- only working on ':' mode
+  local command =
+  "cnoreabbrev <expr> %s ((getcmdtype() is# ':' && getcmdline() is# '%s')?('%s'):('%s'))"
+  vim.cmd(command:format(lhs, lhs, rhs, lhs))
+end
+
+cabbrev('f', 'find')

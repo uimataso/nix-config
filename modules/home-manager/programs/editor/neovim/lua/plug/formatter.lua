@@ -25,7 +25,7 @@ return {
   ---@type conform.setupOpts
   opts = {
     default_format_opts = {
-      lsp_format = 'last', -- use last instead of fallback bc we now have trim formatter run on all file
+      lsp_format = 'fallback',
     },
 
     formatters_by_ft = {
@@ -41,7 +41,7 @@ return {
       python = { 'isort', 'black' },
       nix = { 'nixfmt' },
 
-      ['*'] = { 'trim_whitespace', 'trim_newlines' },
+      -- ['*'] = { 'trim_whitespace', 'trim_newlines' },
     },
 
     format_on_save = function(bufnr)
@@ -49,7 +49,7 @@ return {
       if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
         return
       end
-      return { timeout_ms = 500, lsp_format = 'last' }
+      return { timeout_ms = 500, lsp_format = 'fallback' }
     end,
 
     formatters = {

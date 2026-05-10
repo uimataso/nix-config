@@ -72,20 +72,19 @@ ag('uima/CheckTime', function(g)
   })
 end)
 
--- note, now we use conform to do this.
--- -- Delete trailing spaces and extra line when save file
--- ag('uima/DeleteTrailingSpace', function(g)
---   au('BufWrite', {
---     group = g,
---     desc = 'Delete trailing spaces and extra line',
---     callback = function()
---       local pos = vim.fn.getpos('.')
---       vim.cmd([[ %s/\s\+$//e ]])
---       vim.cmd([[ %s/\n\+\%$//e ]])
---       vim.fn.setpos('.', pos)
---     end,
---   })
--- end)
+-- Delete trailing spaces and extra line when save file
+ag('uima/DeleteTrailingSpace', function(g)
+  au('BufWrite', {
+    group = g,
+    desc = 'Delete trailing spaces and extra line',
+    callback = function()
+      local pos = vim.fn.getpos('.')
+      vim.cmd([[ %s/\s\+$//e ]])
+      vim.cmd([[ %s/\n\+\%$//e ]])
+      vim.fn.setpos('.', pos)
+    end,
+  })
+end)
 
 -- Yank highlighting
 ag('uima/YankHighlight', function(g)

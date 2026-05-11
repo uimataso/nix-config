@@ -46,6 +46,7 @@ return {
   },
 
   opts = {
+    show_help_hints = false,
     enhanced_diff_hl = true,
   },
 }

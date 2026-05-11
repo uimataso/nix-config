@@ -27,7 +27,8 @@ function M.setup(base16_palette, opts)
   c.ui = {
     cursor_line = util.blend(c.base02, c.base01, 0.5),
     border = c.base02,
-    fold_line = c.base03,
+    fold_line = c.base01,
+    fold_fill = c.base03,
     popup = c.base01,
     selection = c.base02,
     search = c.yellow,

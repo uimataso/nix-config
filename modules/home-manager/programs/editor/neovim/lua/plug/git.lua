@@ -13,4 +13,24 @@ return {
       current_line_blame_formatter = '     <author>, <author_time:%R> - <summary>',
     },
   },
+
+  {
+    'NeogitOrg/neogit',
+    dependencies = {
+      'sindrets/diffview.nvim',
+      'm00qek/baleia.nvim',
+      'folke/snacks.nvim',
+    },
+    cmd = 'Neogit',
+
+    keys = {
+      { '<leader>gg', '<cmd>Neogit<cr>', desc = 'Show Neogit UI' },
+    },
+
+    opts = {
+      commit_editor = {
+        staged_diff_split_kind = 'auto',
+      },
+    },
+  },
 }

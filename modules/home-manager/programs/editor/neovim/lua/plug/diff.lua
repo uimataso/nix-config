@@ -6,6 +6,13 @@ local function toggle_diffview(cmd)
   end
 end
 
+local select_next_entry = function()
+  require('diffview.actions').select_next_entry()
+end
+local select_prev_entry = function()
+  require('diffview.actions').select_prev_entry()
+end
+
 return {
   'dlyongemallo/diffview.nvim',
   cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
@@ -22,6 +29,7 @@ return {
   opts = {
     show_help_hints = false,
     enhanced_diff_hl = true,
+    diffopt = { algorithm = 'histogram' },
 
     view = {
       cycle_layouts = {
@@ -30,11 +38,26 @@ return {
     },
 
     keymaps = {
+      view = {
+        { 'n', 'q', '<Cmd>DiffviewClose<CR>' },
+        { 'n', '<c-j>', select_next_entry, { desc = 'Next entry' } },
+        { 'n', '<c-k>', select_prev_entry, { desc = 'Prev entry' } },
+        ['<tab>'] = false,
+        ['<s-tab>'] = false,
+      },
       file_panel = {
-        -- stylua: ignore start
-        { 'n', 'J', function() require('diffview.actions').select_next_entry() end, { desc = 'Next entry' } },
-        { 'n', 'K', function() require('diffview.actions').select_prev_entry() end, { desc = 'Prev entry' } },
-        -- stylua: ignore end
+        { 'n', 'q', '<Cmd>DiffviewClose<CR>' },
+        { 'n', '<c-j>', select_next_entry, { desc = 'Next entry' } },
+        { 'n', '<c-k>', select_prev_entry, { desc = 'Prev entry' } },
+        ['<tab>'] = false,
+        ['<s-tab>'] = false,
+      },
+      file_history_panel = {
+        { 'n', 'q', '<Cmd>DiffviewClose<CR>' },
+        { 'n', '<c-j>', select_next_entry, { desc = 'Next entry' } },
+        { 'n', '<c-k>', select_prev_entry, { desc = 'Prev entry' } },
+        ['<tab>'] = false,
+        ['<s-tab>'] = false,
       },
     },
 
@@ -51,14 +74,14 @@ return {
             vim.opt_local.winhl = table.concat({
               'DiffAdd:DiffDelete',
               'DiffDelete:DiffviewDiffDeleteDim',
-              'DiffChange:DiffChange',
+              'DiffChange:DiffDelete',
               'DiffText:DiffTextDelete',
               'DiffTextAdd:DiffTextDelete',
             }, ',')
           elseif ctx.symbol == 'b' then
             vim.opt_local.winhl = table.concat({
               'DiffDelete:DiffviewDiffDeleteDim',
-              'DiffChange:DiffChange',
+              'DiffChange:DiffAdd',
               'DiffText:DiffTextAdd',
             }, ',')
           end

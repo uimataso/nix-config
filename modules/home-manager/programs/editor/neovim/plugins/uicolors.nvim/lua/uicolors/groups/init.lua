@@ -16,6 +16,7 @@ M.plugins = {
   ['indent-blankline.nvim'] = 'indent-blankline',
   ['multicursor.nvim'] = 'multicursor',
   ['namu.nvim'] = 'namu',
+  ['neogit'] = 'neogit',
   ['snacks.nvim'] = 'snacks',
   ['telescope.nvim'] = 'telescope',
   ['vim-illuminate'] = 'vim-illuminate',

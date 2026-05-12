@@ -79,10 +79,6 @@ vim.keymap.set('n', '<C-k>', '[q', { remap = true })
 -- vim.keymap.set('n', '<C-n>', '<cmd>try | cnewer | catch | endtry<cr>')
 -- vim.keymap.set('n', '<C-p>', '<cmd>try | colder | catch | endtry<cr>')
 
--- Tabs
-vim.keymap.set('n', '<tab>', ':tabnext<cr>')
-vim.keymap.set('n', '<s-tab>', ':tabprev<cr>')
-
 -- Spell check
 vim.keymap.set('n', '<Leader>sp', '<cmd>setlocal spell!<CR>')
 

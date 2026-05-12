@@ -77,6 +77,7 @@ M.send = function()
 end
 
 vim.keymap.set('n', '<M-p>', M.toggle)
+vim.keymap.set('n', '<leader>ip', M.toggle)
 vim.keymap.set('n', '<leader>i<cr>', M.send)
 vim.keymap.set('n', '<leader>if', function()
   local cwd = vim.loop.cwd() .. '/'

@@ -40,24 +40,12 @@ return {
     keymaps = {
       view = {
         { 'n', 'q', '<Cmd>DiffviewClose<CR>' },
-        { 'n', '<c-j>', select_next_entry, { desc = 'Next entry' } },
-        { 'n', '<c-k>', select_prev_entry, { desc = 'Prev entry' } },
-        ['<tab>'] = false,
-        ['<s-tab>'] = false,
       },
       file_panel = {
         { 'n', 'q', '<Cmd>DiffviewClose<CR>' },
-        { 'n', '<c-j>', select_next_entry, { desc = 'Next entry' } },
-        { 'n', '<c-k>', select_prev_entry, { desc = 'Prev entry' } },
-        ['<tab>'] = false,
-        ['<s-tab>'] = false,
       },
       file_history_panel = {
         { 'n', 'q', '<Cmd>DiffviewClose<CR>' },
-        { 'n', '<c-j>', select_next_entry, { desc = 'Next entry' } },
-        { 'n', '<c-k>', select_prev_entry, { desc = 'Prev entry' } },
-        ['<tab>'] = false,
-        ['<s-tab>'] = false,
       },
     },
 

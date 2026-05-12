@@ -31,6 +31,9 @@ return {
       commit_editor = {
         staged_diff_split_kind = 'auto',
       },
+      integrations = {
+        fzf_lua = false, -- use snacks.picker
+      },
     },
   },
 }

@@ -37,6 +37,7 @@ function M.setup(base16_palette, opts)
   c.ui_text = {
     line_number = c.base04,
     status_line = util.blend(c.base05, c.base04, 0.5),
+    tab_line = c.base04,
     non_text = c.base04,
     guide = c.green,
   }

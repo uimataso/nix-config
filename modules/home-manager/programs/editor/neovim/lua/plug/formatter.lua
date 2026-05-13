@@ -1,3 +1,6 @@
+local au = require('utils').au
+local ag = require('utils').ag
+
 vim.api.nvim_create_user_command('FormatDisable', function(args)
   if args.bang then
     -- FormatDisable! will disable formatting just for this buffer
@@ -15,6 +18,20 @@ vim.api.nvim_create_user_command('FormatEnable', function()
 end, {
   desc = 'Re-enable autoformat-on-save',
 })
+
+ag('uima/CargoSort', function(g)
+  au({ 'BufWritePost' }, {
+    group = g,
+    pattern = '*.rs',
+    callback = function(event)
+      local root = vim.fs.root(event.buf, { 'Cargo.toml' })
+      if not root then
+        return
+      end
+      vim.system({ 'cargo', 'sort', '--grouped', '--workspace' })
+    end,
+  })
+end)
 
 return {
   'stevearc/conform.nvim',

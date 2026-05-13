@@ -88,6 +88,7 @@ in
         rust-analyzer
         rustfmt
         cargo-nextest
+        cargo-sort
         # Python
         python313Packages.python-lsp-server
         black

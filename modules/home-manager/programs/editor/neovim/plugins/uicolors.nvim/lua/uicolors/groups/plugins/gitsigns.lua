@@ -7,6 +7,9 @@ M.get = function(c)
     GitSignsAdd = { fg = c.diff.add },
     GitSignsChange = { fg = c.diff.change },
     GitSignsDelete = { fg = c.diff.delete },
+
+    GitSignsAddInline = 'DiffTextAdd',
+    GitSignsDeleteInline = 'DiffTextDelete',
   }
 end
 

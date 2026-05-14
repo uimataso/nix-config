@@ -6,13 +6,6 @@ local function toggle_diffview(cmd)
   end
 end
 
-local select_next_entry = function()
-  require('diffview.actions').select_next_entry()
-end
-local select_prev_entry = function()
-  require('diffview.actions').select_prev_entry()
-end
-
 return {
   'dlyongemallo/diffview.nvim',
   cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },

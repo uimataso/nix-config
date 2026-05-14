@@ -2,6 +2,12 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     event = 'VeryLazy',
+    keys = {
+      { '<leader>vw', mode = { 'n' }, ':Gitsigns toggle_word_diff<cr>' },
+      { '<leader>vl', mode = { 'n' }, ':Gitsigns toggle_linehl<cr>' },
+      { '<leader>vd', mode = { 'n' }, ':Gitsigns toggle_deleted<cr>' },
+    },
+
     opts = {
       current_line_blame = false,
       current_line_blame_opts = {

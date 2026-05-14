@@ -12,7 +12,9 @@ M.init_buf_setting = function()
 end
 
 M.hide = function()
-  vim.api.nvim_win_hide(M.win)
+  if vim.api.nvim_win_is_valid(M.win or -1) then
+    vim.api.nvim_win_hide(M.win)
+  end
 end
 
 M.toggle = function()
@@ -81,6 +83,7 @@ vim.keymap.set('n', '<leader>ip', M.toggle)
 vim.keymap.set('n', '<leader>i<cr>', M.send)
 vim.keymap.set('n', '<leader>if', function()
   local cwd = vim.loop.cwd() .. '/'
+  -- TODO: trim the filename with `opencode tmux`'s cwd, not neovim's cwd
   local filename = vim.fn.expand('%:p'):gsub('^' .. vim.pesc(cwd), '')
   M.append_text('@' .. filename .. ':' .. vim.fn.line('.'))
 end)

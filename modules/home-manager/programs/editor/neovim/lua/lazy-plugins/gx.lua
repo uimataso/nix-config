@@ -1,0 +1,46 @@
+vim.pack.add({
+  'https://github.com/chrishrb/gx.nvim',
+})
+
+require('gx').setup({
+  open_browser_app = 'xdg-open',
+  handlers = {
+    plugin = true, -- open plugin links in lua (e.g. packer, lazy, ..)
+    github = true, -- open github issues
+    rust = {
+      name = 'rust',
+      filetype = { 'toml' },
+      filename = 'Cargo.toml',
+      handle = function(mode, line, _)
+        local crate = require('gx.helper').find(line, mode, '([%w_-]+)%s-=%s')
+        if crate then
+          return 'https://crates.io/crates/' .. crate
+        end
+      end,
+    },
+    shellcheck = {
+      name = 'shellcheck',
+      -- filetype = { 'bash', 'shell' },
+      handle = function(mode, line, _)
+        local error = require('gx.helper').find(line, mode, '%s*#%s*shellcheck%s+disable=(SC%d+)')
+        if error then
+          return 'https://www.shellcheck.net/wiki/' .. error
+        end
+      end,
+    },
+    markdown_link = {
+      name = 'markdown-link',
+      handle = function(mode, line, _)
+        local pattern = '%[[^%]]*%]%(([^%)]+)%)'
+        return require('gx.helper').find(line, mode, pattern)
+      end,
+    },
+  },
+
+  handler_options = {
+    -- search_engine = 'duckduckgo', -- google, bing, duckduckgo, ecosia, yandex
+    search_engine = 'https://search.uimataso.com/search?q=',
+  },
+})
+
+vim.keymap.set({ 'n', 'x' }, 'gx', '<cmd>Browse<cr>')

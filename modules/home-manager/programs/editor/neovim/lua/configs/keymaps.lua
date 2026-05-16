@@ -80,15 +80,15 @@ vim.keymap.set('n', '<C-k>', '[q', { remap = true })
 -- vim.keymap.set('n', '<C-p>', '<cmd>try | colder | catch | endtry<cr>')
 
 -- Spell check
-vim.keymap.set('n', '<Leader>zs', '<cmd>setlocal spell!<CR>')
+vim.keymap.set('n', '<Leader>ts', '<cmd>setlocal spell!<CR>')
 
 -- Switch conceal
-vim.keymap.set('n', '<Leader>zc', function()
+vim.keymap.set('n', '<Leader>tc', function()
   vim.o.conceallevel = vim.o.conceallevel > 0 and 0 or 2
 end, { silent = true, desc = 'Toggle conceal' })
 
 -- Treesitter inspect
-vim.keymap.set('n', '<Leader>zi', '<cmd>Inspect<cr>')
+vim.keymap.set('n', '<Leader>hi', '<cmd>Inspect<cr>')
 
 -- Fast substitute
 vim.keymap.set('n', '<leader>sw', 'viw"-y:%s/<C-r>-/<C-r>-/g<left><left>')

@@ -30,7 +30,7 @@ in
     // (
       # making shell alias from `git.settings.alias` by adding prefix `g`
       let
-        mkAlias = key: val: lib.attrsets.nameValuePair "g${key}" "git ${val}";
+        mkAlias = key: val: lib.attrsets.nameValuePair "g${key}" "git ${key}";
       in
       lib.attrsets.mapAttrs' mkAlias config.programs.git.settings.alias
     );
@@ -46,8 +46,9 @@ in
 
         alias = {
           s = "status";
-          l = "log --oneline --graph --all --pretty=logoneline -20";
-          ll = "log";
+          # l = "log --oneline --graph --all --pretty=logoneline -20";
+          l = "log --reverse --pretty=logoneline -20";
+          ll = "log --reverse";
           b = "branch";
           ta = "tag";
           rb = "rebase";
@@ -133,7 +134,7 @@ in
         };
 
         pretty = {
-          logoneline = "format:%C(yellow)%h%Creset %C(blue)%an%Creset %s  %C(cyan)%as";
+          logoneline = "format:%C(yellow)%h %C(cyan)%as %C(green)%d %C(blue)%an%Creset %s  ";
         };
       };
     };

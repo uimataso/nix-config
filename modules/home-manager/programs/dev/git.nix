@@ -54,6 +54,8 @@ in
           rb = "rebase";
 
           d = "diff";
+          ds = "diff --staged";
+          dw = "diff HEAD"; # diff workingtree
           a = "add";
           ai = "add --interactive";
           ap = "add --patch";
@@ -131,6 +133,10 @@ in
 
         tag = {
           sort = "-taggerdate";
+        };
+
+        interactive = {
+          singleKey = true;
         };
 
         pretty = {

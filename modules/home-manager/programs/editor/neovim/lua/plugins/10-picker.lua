@@ -42,6 +42,6 @@ vim.keymap.set('n', 'gro', '<cmd>FzfLua lsp_document_symbols<cr>')
 vim.keymap.set('n', 'grO', '<cmd>FzfLua lsp_workspace_symbols<cr>')
 
 vim.keymap.set('n', '<leader>fd', '<cmd>FzfLua diagnostics_workspace<cr>')
-vim.keymap.set('n', '<leader>fD', '<cmd>FzfLua diagnostics_document<cr>')
 vim.keymap.set('n', '<leader>fe', '<cmd>FzfLua diagnostics_workspace severity_limit=2<cr>')
+vim.keymap.set('n', '<leader>fD', '<cmd>FzfLua diagnostics_document<cr>')
 vim.keymap.set('n', '<leader>fE', '<cmd>FzfLua diagnostics_document severity_limit=2<cr>')

@@ -6,6 +6,7 @@ local M = {}
 
 M.plugins = {
   ['blink.cmp'] = 'blink-cmp',
+  ['difft.nvim'] = 'difft',
   ['diffview.nvim'] = 'diffview',
   ['eyeliner.nvim'] = 'eyeliner',
   ['fff.nvim'] = 'fff',

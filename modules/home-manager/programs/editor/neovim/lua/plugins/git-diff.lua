@@ -107,10 +107,8 @@ vim.keymap.set('n', '<leader>tl', '<cmd>Gitsigns toggle_linehl<cr>')
 vim.keymap.set('n', '<leader>td', '<cmd>Gitsigns toggle_deleted<cr>')
 
 -- diff view
-vim.keymap.set('n', '<M-d>', toggle_dv('DiffviewOpen'), { desc = 'diff' })
-vim.keymap.set('n', '<Leader>gd', toggle_dv('DiffviewOpen'), { desc = 'diff' })
-vim.keymap.set('n', '<Leader>gD', toggle_dv('DiffviewOpen master..HEAD'), { desc = 'diff master' })
-vim.keymap.set('n', '<Leader>gf', toggle_dv('DiffviewFileHistory %'), { desc = 'diff cur file' })
+vim.keymap.set('n', '<Leader>dw', toggle_dv('DiffviewOpen'), { desc = 'diff working tree' })
+vim.keymap.set('n', '<Leader>df', toggle_dv('DiffviewFileHistory %'), { desc = 'diff cur file' })
 
 -- fuzzy
 vim.keymap.set('n', '<leader>gs', '<cmd>FzfLua git_status<cr>')

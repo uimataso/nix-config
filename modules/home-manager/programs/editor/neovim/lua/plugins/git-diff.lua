@@ -108,6 +108,9 @@ vim.keymap.set('n', '<leader>td', '<cmd>Gitsigns toggle_deleted<cr>')
 
 -- diff view
 vim.keymap.set('n', '<Leader>dw', toggle_dv('DiffviewOpen'), { desc = 'diff working tree' })
+-- this diff the whole working tree tho
+vim.keymap.set('n', '<Leader>du', toggle_dv('DiffviewOpen'), { desc = 'diff unstaged' })
+vim.keymap.set('n', '<Leader>ds', toggle_dv('DiffviewOpen --staged'), { desc = 'diff staged' })
 vim.keymap.set('n', '<Leader>df', toggle_dv('DiffviewFileHistory %'), { desc = 'diff cur file' })
 
 -- fuzzy

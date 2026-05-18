@@ -50,7 +50,7 @@
       "src": "https://github.com/ahkohd/difft.nvim"
     },
     "diffview.nvim": {
-      "rev": "85a57e33b8cde8666741f734ed046e41ac19d156",
+      "rev": "58558f0fb84c474f714fb8bf72f71a56cce0f46b",
       "src": "https://github.com/dlyongemallo/diffview.nvim"
     },
     "fidget.nvim": {
@@ -58,7 +58,7 @@
       "src": "https://github.com/j-hui/fidget.nvim"
     },
     "fzf-lua": {
-      "rev": "311a630292310ea3bfe46dd616e17f283e975801",
+      "rev": "ca139b8fec043057038c69ce2b34cf4b8b83746e",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
@@ -140,7 +140,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
     },
     "nvim-web-devicons": {
-      "rev": "2795c26c916bb3c57dde308b82be51971fa92747",
+      "rev": "7d8dad2c837fcdf2e65997e68657c1a21c568074",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "pathfinder.nvim": {
@@ -156,7 +156,7 @@
       "src": "https://github.com/stevearc/quicker.nvim"
     },
     "rustaceanvim": {
-      "rev": "c01bec32bfb3b917debd380eb114234b3c4c96c7",
+      "rev": "b7200d0c17e8a7613c8e0301368765549518e7f4",
       "src": "https://github.com/mrcjkb/rustaceanvim"
     },
     "sentiment.nvim": {

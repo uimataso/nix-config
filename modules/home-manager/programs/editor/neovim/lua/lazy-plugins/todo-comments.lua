@@ -1,10 +1,9 @@
--- TODO: write this myself
-
 vim.pack.add({
   'https://github.com/folke/todo-comments.nvim',
 }, { load = true })
 
 require('todo-comments').setup({
+  signs = false,
   keywords = {
     FIX = {
       icon = ' ',
@@ -30,7 +29,10 @@ require('todo-comments').setup({
   -- match author also: KEYWORD(author):
   -- https://github.com/folke/todo-comments.nvim/issues/10#issuecomment-2446101986
   search = { pattern = [[\b(KEYWORDS)(\([^\)]*\))?:]] },
-  highlight = { pattern = [[.*<((KEYWORDS)%(\(.{-1,}\))?):]] },
+  highlight = {
+    multiline = false,
+    pattern = [[.*<((KEYWORDS)%(\(.{-1,}\))?):]],
+  },
 })
 
 vim.keymap.set('n', '<leader>ft', '<cmd>TodoFzfLua<cr>', { desc = 'Todo' })

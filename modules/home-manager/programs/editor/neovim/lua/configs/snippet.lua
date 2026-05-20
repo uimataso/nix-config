@@ -1,3 +1,6 @@
+-- TODO: just use a plugin
+-- TODO: use <tab> to trigger
+
 local ag = require('uima').ag
 
 -- From:

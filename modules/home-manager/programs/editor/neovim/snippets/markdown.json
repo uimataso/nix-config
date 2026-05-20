@@ -1,33 +1,8 @@
 {
-  "code_block": {
+  "Code block": {
     "prefix": "`",
     "body": [
-      "```",
-      "${1}",
-      "```"
-    ]
-  },
-  "rust_code_block": {
-    "prefix": "rust",
-    "body": [
-      "```rust",
-      "${1}",
-      "```"
-    ]
-  },
-  "sh_code_block": {
-    "prefix": "sh",
-    "body": [
-      "```sh",
-      "${1}",
-      "```"
-    ]
-  },
-  "json_code_block": {
-    "prefix": "json",
-    "body": [
-      "```json",
-      "${1}",
+      "```${1}",
       "```"
     ]
   }

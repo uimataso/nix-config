@@ -1,9 +1,5 @@
 {
-  "t": {
-    "prefix": "t",
-    "body": "todo!()"
-  },
-  "tm": {
+  "Test module": {
     "prefix": "tm",
     "body": [
       "#[cfg(test)]",
@@ -11,71 +7,47 @@
       "\tuse super::*;",
       "",
       "\t#[test]",
-      "\tfn basic_test() {",
+      "\tfn test_nothing() {",
       "\t\t${1:assert_eq!(1 + 1, 2);}",
       "\t}",
       "}"
     ]
   },
-  "tf": {
+  "Test function": {
     "prefix": "tf",
     "body": [
       "#[test]",
-      "fn basic_test() {",
+      "fn test_nothing() {",
       "\t${1:assert_eq!(1 + 1, 2);}",
       "}"
     ]
   },
-  "cf": {
+  "#[cfg(...)]": {
     "prefix": "cf",
     "body": "#[cfg(${1:feature = \"xxx\"})]"
   },
-  "cff": {
+  "#[cfg(feature = \"...\")]": {
     "prefix": "cff",
     "body": "#[cfg(feature = \"${1:xxx}\")]"
   },
-  "fo": {
+  "format!(...)": {
     "prefix": "fo",
     "body": "format!(\"{:?}\", ${1});"
   },
-  "pr": {
+  "println!(...)": {
     "prefix": "pr",
     "body": "println!(\"{:?}\", ${1});"
   },
-  "de": {
+  "Derive basic": {
     "prefix": "de",
     "body": "#[derive(Debug, Clone)]"
   },
-  "ds": {
+  "Derive serde": {
     "prefix": "ds",
     "body": "#[derive(Debug, Clone, Serialize, Deserialize)]"
   },
-  "are": {
+  "anyhow::Result<...>": {
     "prefix": "are",
     "body": "anyhow::Result<${1:()}>"
-  },
-  "cx": {
-    "prefix": "cx",
-    "body": "context(\"${1}\")"
-  },
-  "wcx": {
-    "prefix": "wcx",
-    "body": "with_context(|| format!(\"${1}\", ${2}))"
-  },
-  "td": {
-    "prefix": "td",
-    "body": "tracing::debug!(${1});"
-  },
-  "ti": {
-    "prefix": "ti",
-    "body": "tracing::info!(${1});"
-  },
-  "tw": {
-    "prefix": "tw",
-    "body": "tracing::warn!(${1});"
-  },
-  "te": {
-    "prefix": "te",
-    "body": "tracing::error!(${1});"
   }
 }

@@ -221,9 +221,9 @@
     };
   };
 
-  hardware.bluetooth.settings = {
-    General = {
-      ControllerMode = "le";
-    };
-  };
+  # hardware.bluetooth.settings = {
+  #   General = {
+  #     ControllerMode = "le";
+  #   };
+  # };
 }

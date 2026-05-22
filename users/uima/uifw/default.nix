@@ -123,7 +123,6 @@
       pipewire.enable = true;
       udiskie.enable = true;
       mpd.enable = true;
-      easyeffects.enable = true;
     };
 
     programs = {

@@ -32,6 +32,7 @@
     obsidian
 
     xh
+    hurl
     gitui
     presenterm
     mermaid-cli

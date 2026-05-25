@@ -31,6 +31,7 @@
     scripts._0x0
 
     xh
+    hurl
     gitui
     presenterm
     mermaid-cli

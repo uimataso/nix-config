@@ -54,6 +54,11 @@
     pkgs.cifs-utils
   ];
 
+  nix.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
+
   services.restic.backups = {
     remote = {
       # repository is in the env file

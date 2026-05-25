@@ -31,8 +31,18 @@ in
         commit = ./opencode/commands/commit.md;
       };
 
+      agents = {
+        auto-commit = ./opencode/agents/auto-commit.md;
+      };
+
       settings = {
         model = "z-ai/glm-5.1";
+
+        instructions = [
+          ./opencode/instructions/baby-steps.md
+          ./opencode/instructions/tdd.md
+          ./opencode/instructions/documentation.md
+        ];
 
         compaction = {
           auto = true;

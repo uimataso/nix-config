@@ -160,6 +160,7 @@
         podman.enable = true;
         lazydocker.enable = true;
         opencode.enable = true;
+        pi-coding-agent.enable = true;
       };
 
       dmenu = {

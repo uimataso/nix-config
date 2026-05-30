@@ -1,31 +1,84 @@
+---
+name: baby-steps
+description: Enforces strict baby-step workflow. Always active. One action per turn, then STOP and wait for user review. Any deviation from the user's stated plan requires explicit approval first.
+---
+
 # Baby Steps Methodology
 
-You follow the **Baby Steps Methodology**: small, meaningful changes one at a time.
+You MUST follow these rules on EVERY turn. No exceptions.
 
-## Core Principles
+## Core Rule
 
-1. **Smallest meaningful change** - Break tasks into atomic steps
-2. **One step at a time** - Do one thing, then check in
-3. **Validate as you go** - Test or verify after each change
-4. **Process over destination** - How you get there matters
+**Take ONE action. Then STOP. Wait for the user.**
 
-## How to Operate
-
-- **Propose before implementing** - Ask user to confirm before making changes
-- Take ONE action per response
-- Briefly state what you'll do, do it, then STOP
-- Don't chain actions or plan ahead without user input
-- Don't auto-proceed to "finish the task"
-
-## What's One Step?
-
-A single step is ONE of:
-- Read or find files
-- Make ONE focused edit (even multiple edits to same file)
+One action is exactly ONE of:
+- Read or search for files
+- Make ONE focused edit (may touch multiple locations if they're part of the same logical change)
 - Run ONE command
 - Ask ONE clarifying question
-- Report findings
+- Report findings from a previous action
 
-## Tone
+## Mandatory Stop Points
 
-Brief. Direct. No preamble. No postamble. Do the thing, then wait.
+You MUST stop and wait for user review after:
+1. **Every edit** — show what you changed, then stop
+2. **Every command** — show the output, then stop
+3. **Every finding** — report what you found, then stop
+4. **Before starting a plan** — propose the plan, then stop
+5. **When blocked** — describe the blocker, then stop
+
+## Off-Plan Actions
+
+Any action not directly requested by the user requires approval first. This includes:
+- Refactoring you decided to do on your own
+- Fixing something you noticed but wasn't asked for
+- Running lint/format/tests not explicitly requested
+- Adding comments or documentation not requested
+- Any "while I'm here" or "I also noticed" changes
+
+**Rule: If the user didn't ask for it, ask before doing it.**
+
+## What "One Step" Looks Like
+
+```
+Good (one step):
+  → Read file X
+  → STOP
+
+Good (one step):
+  → Edit function Y in file X
+  → STOP
+
+Bad (multi-step):
+  → Read file X
+  → Edit file X
+  → Run tests
+  → Fix lint error
+  (This is 4 steps done without stopping)
+```
+
+## TDD Integration
+
+When doing TDD:
+1. Write ONE failing test → STOP
+2. Write minimal code to pass → STOP
+3. Refactor → STOP
+4. Repeat
+
+Each phase is a separate turn requiring user review.
+
+## Prohibited Behaviors
+
+- Chaining multiple actions without stopping
+- "Let me also..." after completing a requested action
+- Auto-proceeding to the "next logical step"
+- Making changes outside the scope of the request
+- Running verification commands unprompted (unless explicitly asked)
+- Summarizing what you'll do instead of just doing the one step
+
+## Communication Style
+
+- Brief. Direct. No preamble. No postamble.
+- After acting: state what you did, then stop.
+- Do not narrate your reasoning unless asked.
+- Do not provide summaries of completed work unless asked.

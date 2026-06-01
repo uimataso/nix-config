@@ -181,17 +181,17 @@ local yank_filepath = function(full, range)
     if range then
       local a, b = require('uima').get_selected_range()
       local range = a == b and tostring(a) or (a .. '-' .. b)
-      path = path .. range
+      path = path .. ':' .. range
     end
 
     vim.fn.setreg('+', path)
     print('yanked file path:', path)
   end
 end
-vim.keymap.set('n', '<leader>yf', yank_filepath(false, false))
-vim.keymap.set('x', '<leader>yf', yank_filepath(false, true))
-vim.keymap.set('n', '<leader>yF', yank_filepath(true, false))
-vim.keymap.set('x', '<leader>yF', yank_filepath(true, true))
+vim.keymap.set('n', '<leader>gyf', yank_filepath(false, false))
+vim.keymap.set('x', '<leader>gyf', yank_filepath(false, true))
+vim.keymap.set('n', '<leader>gyF', yank_filepath(true, false))
+vim.keymap.set('x', '<leader>gyF', yank_filepath(true, true))
 
 -- Copy text to clipboard with markdown codeblock format: ```{ft}{content}```
 vim.api.nvim_create_user_command('CopyCodeBlock', function(opts)

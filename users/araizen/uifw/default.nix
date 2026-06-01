@@ -163,6 +163,7 @@
         k8s.enable = true;
         terraform.enable = true;
         opencode.enable = true;
+        pi-coding-agent.enable = true;
       };
 
       dmenu = {

@@ -14,12 +14,17 @@ in
   };
 
   config = mkIf cfg.enable {
-    # uimaConfig.system.impermanence = {
-    #   directories = [ ".local/share/opencode" ];
-    # };
+    uimaConfig.system.impermanence = {
+      directories = [ ".config/pi" ];
+    };
 
     home.packages = with pkgs; [
       pi-coding-agent
     ];
+
+    home.sessionVariables = {
+      PI_CODING_AGENT_DIR = "$HOME/.config/pi";
+      PI_SKIP_VERSION_CHECK = "1";
+    };
   };
 }

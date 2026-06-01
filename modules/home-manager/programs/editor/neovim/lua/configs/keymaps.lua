@@ -169,11 +169,29 @@ vim.keymap.set('', 'gp', function()
 end, { expr = true, desc = 'Selecting the paste' })
 
 -- Copy Full File-Path
-vim.keymap.set('n', '<leader>yf', function()
-  local path = vim.fn.expand('%:p')
-  vim.fn.setreg('+', path)
-  print('yanked file path:', path)
-end)
+local yank_filepath = function(full, range)
+  return function()
+    local path = vim.fn.expand('%:p')
+
+    if not full then
+      local cwd = vim.loop.cwd() .. '/'
+      path = path:gsub('^' .. vim.pesc(cwd), '')
+    end
+
+    if range then
+      local a, b = require('uima').get_selected_range()
+      local range = a == b and tostring(a) or (a .. '-' .. b)
+      path = path .. range
+    end
+
+    vim.fn.setreg('+', path)
+    print('yanked file path:', path)
+  end
+end
+vim.keymap.set('n', '<leader>yf', yank_filepath(false, false))
+vim.keymap.set('x', '<leader>yf', yank_filepath(false, true))
+vim.keymap.set('n', '<leader>yF', yank_filepath(true, false))
+vim.keymap.set('x', '<leader>yF', yank_filepath(true, true))
 
 -- Copy text to clipboard with markdown codeblock format: ```{ft}{content}```
 vim.api.nvim_create_user_command('CopyCodeBlock', function(opts)

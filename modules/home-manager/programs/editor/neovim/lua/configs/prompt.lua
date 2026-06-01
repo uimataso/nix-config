@@ -88,10 +88,7 @@ vim.keymap.set('n', '<leader>if', function()
   M.append_text('@' .. filename .. ':' .. vim.fn.line('.'))
 end)
 vim.keymap.set('x', '<leader>if', function()
-  local a, b = vim.fn.line('v'), vim.fn.line('.')
-  if a > b then
-    a, b = b, a
-  end
+  local a, b = require('uima').get_selected_range()
   local range = a == b and tostring(a) or (a .. '-' .. b)
   local cwd = vim.loop.cwd() .. '/'
   local filename = vim.fn.expand('%:p'):gsub('^' .. vim.pesc(cwd), '')

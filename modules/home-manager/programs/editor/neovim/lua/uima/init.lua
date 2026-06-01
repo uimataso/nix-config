@@ -89,6 +89,14 @@ M.get_selected_lines = function()
   end
 end
 
+M.get_selected_range = function()
+  local a, b = vim.fn.line('v'), vim.fn.line('.')
+  if a > b then
+    a, b = b, a
+  end
+  return a, b
+end
+
 --- Un-indent given lines
 ---@param lines string[]
 --- @return string[] lines

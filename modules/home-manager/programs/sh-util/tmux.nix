@@ -101,7 +101,8 @@ in
         bind -n M-t run-shell '${exe-toggle-popup}'
         bind -n M-g run-shell '${exe-toggle-popup} -n lazygit lazygit'
         # open opencode with random port
-        bind -n M-i run-shell '${exe-toggle-split} -n opencode -s 40% "opencode --port \"$(rand-port)\""'
+        # bind -n M-i run-shell '${exe-toggle-split} -n opencode -s 40% "opencode --port \"$(rand-port)\""'
+        bind -n M-i run-shell '${exe-toggle-split} -n pi -s 40% pi'
 
         bind G run-shell "${getExe pkgs.scripts.open-git-remote}"
 

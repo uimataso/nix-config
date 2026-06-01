@@ -38,12 +38,6 @@ in
       settings = {
         model = "z-ai/glm-5.1";
 
-        instructions = [
-          ./opencode/instructions/baby-steps.md
-          ./opencode/instructions/tdd.md
-          ./opencode/instructions/documentation.md
-        ];
-
         compaction = {
           auto = true;
           prune = true;

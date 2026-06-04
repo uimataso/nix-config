@@ -6,10 +6,6 @@
   ...
 }:
 {
-  imports = [
-    ./hyprland.nix
-  ];
-
   home.username = "araizen";
 
   home.stateVersion = "23.11";
@@ -106,6 +102,7 @@
       type = "wayland";
 
       wayland = {
+        hyprland.enable = true;
         dunst.enable = true;
         waybar.enable = true;
       };

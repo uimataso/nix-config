@@ -6,10 +6,6 @@
   ...
 }:
 {
-  imports = [
-    ./hyprland.nix
-  ];
-
   home.username = "uima";
 
   home.stateVersion = "23.11";
@@ -97,6 +93,9 @@
     sh = {
       bash.enable = true;
       bash.defaultShell = true;
+
+      # auto enable hyprland
+      bash.execOnTty1 = "start-hyprland";
     };
 
     desktop = {
@@ -104,6 +103,7 @@
       type = "wayland";
 
       wayland = {
+        hyprland.enable = true;
         dunst.enable = true;
         waybar.enable = true;
       };

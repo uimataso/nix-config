@@ -16,19 +16,22 @@ in
     programs.ssh = {
       enable = true;
 
-      # since `enableDefaultConfig` is deprecated, I just copy pasted the following values
+      # `enableDefaultConfig` is deprecated
       enableDefaultConfig = false;
-      matchBlocks."*" = {
-        forwardAgent = false;
-        addKeysToAgent = "no";
-        compression = false;
-        serverAliveInterval = 0;
-        serverAliveCountMax = 3;
-        hashKnownHosts = false;
-        userKnownHostsFile = "~/.ssh/known_hosts";
-        controlMaster = "no";
-        controlPath = "~/.ssh/master-%r@%n:%p";
-        controlPersist = "no";
+
+      settings = {
+        "*" = {
+          forwardAgent = false;
+          addKeysToAgent = "no";
+          compression = false;
+          serverAliveInterval = 0;
+          serverAliveCountMax = 3;
+          hashKnownHosts = false;
+          userKnownHostsFile = "~/.ssh/known_hosts";
+          controlMaster = "no";
+          controlPath = "~/.ssh/master-%r@%n:%p";
+          controlPersist = "no";
+        };
       };
     };
   };

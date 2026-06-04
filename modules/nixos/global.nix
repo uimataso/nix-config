@@ -15,6 +15,9 @@ in
   };
 
   config = mkIf cfg.enable {
+    # FIXME: https://github.com/nix-community/stylix/pull/2337
+    stylix.targets.kmscon.enable = false;
+
     nixpkgs = {
       overlays = builtins.attrValues outputs.overlays;
     };

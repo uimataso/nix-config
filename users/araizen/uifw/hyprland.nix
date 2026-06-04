@@ -74,6 +74,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang";
 
     settings = {
       general."col.active_border" = lib.mkForce (rgb colors.base05);

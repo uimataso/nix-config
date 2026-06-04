@@ -14,35 +14,6 @@ let
   cfg = config.uimaConfig.sh;
 
   mkEverythingDefault = attr: lib.attrsets.mapAttrs (name: value: mkDefault value) attr;
-
-  # Core Utils alias
-  coreutilsAliases = mkEverythingDefault {
-    c = "cd";
-    c- = "cd -";
-    c_ = "cd $_";
-    "c." = "cd ..";
-    "c.." = "cd ../..";
-    "c..." = "cd ../../..";
-    "c...." = "cd ../../../..";
-    "c....." = "cd ../../../../..";
-
-    te = "tee /dev/tty";
-
-    e = "$EDITOR";
-    "e." = "$EDITOR .";
-
-    l = "ls --color";
-    ls = "ls -A --color";
-    ll = "ls -Al --color";
-
-    cp = "cp -iv";
-    mv = "mv -iv";
-    rm = "rm -iv";
-    md = "mkdir -pv";
-
-    df = "df -h";
-    du = "du -h";
-  };
 in
 {
   imports = [
@@ -64,8 +35,33 @@ in
       SHELL = cfg.executable;
     };
 
-    # TODO: manage aliases
-    home.shellAliases = {
+    home.shellAliases = mkEverythingDefault {
+      c = "cd";
+      c- = "cd -";
+      c_ = "cd $_";
+      "c." = "cd ..";
+      "c.." = "cd ../..";
+      "c..." = "cd ../../..";
+      "c...." = "cd ../../../..";
+      "c....." = "cd ../../../../..";
+
+      te = "tee /dev/tty";
+
+      e = "$EDITOR";
+      "e." = "$EDITOR .";
+
+      l = "ls --color";
+      ls = "ls -A --color";
+      ll = "ls -Al --color";
+
+      cp = "cp -iv";
+      mv = "mv -iv";
+      rm = "rm -iv";
+      md = "mkdir -pv";
+
+      df = "df -h";
+      du = "du -h";
+
       free = "free -h";
       ip = "ip -c";
       ipa = "ip -c -br a";
@@ -86,8 +82,6 @@ in
       ":wq" = "clear && ls";
       ":wqa" = "clear && ll";
     };
-
-    programs.bash.shellAliases = coreutilsAliases;
 
     # Nushell uses its own coreutils
     programs.nushell.shellAliases = mkEverythingDefault config.home.shellAliases;

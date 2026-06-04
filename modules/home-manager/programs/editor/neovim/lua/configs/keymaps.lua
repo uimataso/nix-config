@@ -186,6 +186,9 @@ local yank_filepath = function(full, range)
 
     vim.fn.setreg('+', path)
     print('yanked file path:', path)
+
+    -- exit visual mode
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', false)
   end
 end
 vim.keymap.set('n', '<leader>gyf', yank_filepath(false, false))

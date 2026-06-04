@@ -48,11 +48,6 @@ writeShellApplication {
       *\;) $term "''${selected%\;}" ;;
       \;*) $term "''${selected#\;}" ;;
 
-      # search if query start or end with '/'
-      # TODO: search-query not implement/import yet
-      # */) xdg-open "$(search-query "''${selected%/}")" ;;
-      # /*) xdg-open "$(search-query "''${selected#/}")" ;;
-
       # exec selected
       *) dex "''${apps["$selected"]}"
     esac

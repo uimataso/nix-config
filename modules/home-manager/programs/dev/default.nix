@@ -6,6 +6,7 @@
     ./docker.nix
     ./gh.nix
     ./git.nix
+    ./jujutsu.nix
     ./k8s.nix
     ./lazydocker.nix
     ./lazygit.nix

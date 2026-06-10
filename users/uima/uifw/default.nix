@@ -154,6 +154,11 @@
           name = "uima";
           email = "git@uimataso.com";
         };
+        jujutsu = {
+          enable = true;
+          name = "uima";
+          email = "git@uimataso.com";
+        };
         lazygit.enable = true;
         gh.enable = true;
         docker.enable = true;

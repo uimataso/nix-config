@@ -17,7 +17,8 @@ let
 in
 {
   imports = [
-    ./bash
+    ./bash.nix
+    ./nushell.nix
   ];
 
   options.uimaConfig.sh = {
@@ -82,8 +83,5 @@ in
       ":wq" = "clear && ls";
       ":wqa" = "clear && ll";
     };
-
-    # Nushell uses its own coreutils
-    programs.nushell.shellAliases = mkEverythingDefault config.home.shellAliases;
   };
 }

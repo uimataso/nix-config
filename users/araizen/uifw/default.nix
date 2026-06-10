@@ -92,6 +92,7 @@
     sh = {
       bash.enable = true;
       bash.defaultShell = true;
+      nushell.enable = true;
     };
 
     desktop = {

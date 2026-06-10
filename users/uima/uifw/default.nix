@@ -18,29 +18,28 @@
 
     nsxiv
     pkgs-stable.mpv
+    gimp
+    drawing
 
     scripts.pdf-decrypt
     scripts.mkbigfile
     scripts.fetch-title
     scripts.open-git-remote
     scripts._0x0
+    scripts.py
 
     obsidian
 
     xh
     hurl
-    gitui
-    presenterm
-    mermaid-cli
-    bc
-    hyperfine
-    bandwhich
-    gimp
-    drawing
     bruno
 
+    presenterm
+    mermaid-cli
+    hyperfine
+    bandwhich
+
     yt-dlp
-    puddletag
     openssl
 
     gcc

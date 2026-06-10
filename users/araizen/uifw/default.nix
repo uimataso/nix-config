@@ -17,23 +17,20 @@
 
     nsxiv
     pkgs-stable.mpv
-
-    argocd
+    drawing
 
     scripts.pdf-decrypt
     scripts.fetch-title
     scripts.notify-send-all
     scripts.open-git-remote
     scripts._0x0
+    scripts.py
 
     xh
     hurl
-    gitui
     presenterm
     mermaid-cli
-    bc
     hyperfine
-    drawing
     natscli
 
     anydesk

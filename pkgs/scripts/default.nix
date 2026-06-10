@@ -28,6 +28,7 @@ in
     open-git-remote = mkScript ./open-git-remote.nix;
     _0x0 = mkScript ./0x0.nix;
     rand-port = mkScriptWith ./rand-port.nix { writePython3Bin = pkgs.writers.writePython3Bin; };
+    py = mkScriptWith ./py.nix { };
 
     # Dmenu
     app-launcher = mkScript ./app-launcher.nix;

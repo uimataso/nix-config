@@ -101,8 +101,7 @@ in
         bind -n M-t run-shell '${exe-toggle-popup}'
         bind -n M-g run-shell '${exe-toggle-popup} -n lazygit lazygit'
         # open opencode with random port
-        # bind -n M-i run-shell '${exe-toggle-split} -n opencode -s 40% "opencode --port \"$(rand-port)\""'
-        bind -n M-i run-shell '${exe-toggle-split} -n pi -s 40% pi'
+        bind -n M-i run-shell '${exe-toggle-split} -n opencode -s 40% "opencode --port \"$(rand-port)\""'
 
         bind G run-shell "${getExe pkgs.scripts.open-git-remote}"
 
@@ -142,7 +141,12 @@ in
         bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
         # not use `copy-selection-and-cancel` to workaround that
         # copy in popup window didn't copy into system clipboard
-        bind -T copy-mode-vi y   send-keys -X copy-pipe-and-cancel clip
+        bind -T copy-mode-vi y   send-keys -X copy-pipe clip
+
+        # don't leave copy mode after selection
+        # ref: https://www.reddit.com/r/tmux/comments/v73005/comment/kp8fexc/
+        bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-selection 'pbcopy'
+        # bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-selection-no-clear 'pbcopy'
 
         # ref: https://jyn.dev/how-i-use-my-terminal/
         bind -T copy-mode-vi o   send-keys -X copy-pipe \

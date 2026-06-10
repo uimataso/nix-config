@@ -30,8 +30,7 @@
 
   system.stateVersion = "23.11";
 
-  # fix my bluetooth
-  boot.kernelPackages = pkgs.linuxPackages_6_6;
+  boot.kernelPackages = pkgs.linuxPackages_7_0;
 
   networking.hostName = "uifw";
   time.timeZone = "Asia/Taipei";
@@ -228,10 +227,4 @@
       workstation = true;
     };
   };
-
-  # hardware.bluetooth.settings = {
-  #   General = {
-  #     ControllerMode = "le";
-  #   };
-  # };
 }

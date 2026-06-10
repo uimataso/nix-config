@@ -133,10 +133,12 @@ vim.keymap.set('n', '<Leader><Leader>rs', ':%RunCmd ', { desc = 'Run command in 
 ------------------
 
 -- Copy paste with clipboard
-vim.keymap.set('', '<Leader>y', '"+y')
-vim.keymap.set('', '<Leader>Y', '"+y$')
-vim.keymap.set('', '<Leader>p', '"+p')
-vim.keymap.set('', '<Leader>P', '"+P')
+vim.keymap.set('n', '<Leader>y', '"+y')
+vim.keymap.set('n', '<Leader>Y', '"+y$')
+vim.keymap.set('x', '<Leader>yy', '"+y')
+vim.keymap.set('n', '<Leader>p', '"+p')
+vim.keymap.set('n', '<Leader>P', '"+P')
+vim.keymap.set('x', '<Leader>pp', '"+p')
 vim.keymap.set('', '<Leader><Leader>y', "gg\"+yG''")
 
 -- Paste without whitespace
@@ -191,10 +193,10 @@ local yank_filepath = function(full, range)
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', false)
   end
 end
-vim.keymap.set('n', '<leader>gyf', yank_filepath(false, false))
-vim.keymap.set('x', '<leader>gyf', yank_filepath(false, true))
-vim.keymap.set('n', '<leader>gyF', yank_filepath(true, false))
-vim.keymap.set('x', '<leader>gyF', yank_filepath(true, true))
+vim.keymap.set('n', '<leader>yf', yank_filepath(false, false))
+vim.keymap.set('x', '<leader>yf', yank_filepath(false, true))
+vim.keymap.set('n', '<leader>yF', yank_filepath(true, false))
+vim.keymap.set('x', '<leader>yF', yank_filepath(true, true))
 
 -- Copy text to clipboard with markdown codeblock format: ```{ft}{content}```
 vim.api.nvim_create_user_command('CopyCodeBlock', function(opts)
@@ -205,7 +207,7 @@ vim.api.nvim_create_user_command('CopyCodeBlock', function(opts)
   vim.fn.setreg('+', result)
   print('yank code block:', vim.bo.filetype)
 end, { range = true })
-vim.keymap.set('x', '<leader>gyb', ':CopyCodeBlock<cr>')
+vim.keymap.set('x', '<leader>yb', ':CopyCodeBlock<cr>')
 
 -------------------
 -- [ENHANCEMENT] --

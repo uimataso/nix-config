@@ -39,8 +39,27 @@ vim.keymap.set('x', 'M', mc.matchCursors)
 
 -- Append/insert for each line of visual selections.
 -- Similar to block selection insertion.
-vim.keymap.set('x', 'I', mc.insertVisual)
-vim.keymap.set('x', 'A', mc.appendVisual)
+vim.keymap.set('v', 'I', function()
+  -- ref: https://github.com/jake-stewart/multicursor.nvim/blob/704b99f10a72cc05d370cfeb294ff83412a8ab55/lua/multicursor-nvim/examples.lua#L472
+  local TERM_CODES = require('multicursor-nvim.term-codes')
+  local mode = vim.fn.mode()
+  mc.action(function(ctx)
+    ctx:forEachCursor(function(cursor)
+      cursor:splitVisualLines()
+    end)
+    ctx:forEachCursor(function(cursor)
+      cursor:feedkeys(
+        (cursor:atVisualStart() and '' or 'o')
+          .. '<esc>'
+          .. (mode == TERM_CODES.CTRL_V and '' or '<home>'), -- patch: from ^ to <home>
+        { keycodes = true }
+      )
+    end)
+  end)
+  mc.feedkeys('i') -- patch: not use 'I' on ctrl-v mode
+end)
+
+vim.keymap.set('v', 'A', mc.appendVisual)
 
 -- Increment/decrement sequences, treating all cursors as one sequence.
 vim.keymap.set({ 'n', 'x' }, 'g<c-a>', mc.sequenceIncrement)

@@ -125,8 +125,8 @@ vim.api.nvim_create_user_command('RunCmd', function(opts)
   vim.api.nvim_buf_set_lines(out_buf, 0, -1, false, output)
 end, { range = true, nargs = '*', bang = true })
 
-vim.keymap.set('', '<Leader>r', ':RunCmd ', { desc = 'Run command in split' })
-vim.keymap.set('n', '<Leader><Leader>r', ':%RunCmd ', { desc = 'Run command in split' })
+vim.keymap.set('', '<Leader>rs', ':RunCmd ', { desc = 'Run command in split' })
+vim.keymap.set('n', '<Leader><Leader>rs', ':%RunCmd ', { desc = 'Run command in split' })
 
 ------------------
 -- [YANK PASTE] --

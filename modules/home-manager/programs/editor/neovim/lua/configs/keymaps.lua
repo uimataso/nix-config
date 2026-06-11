@@ -14,7 +14,7 @@ vim.keymap.set('i', '<PageUp>', '<Nop>')
 
 vim.keymap.set('', '<PageUp>', '<C-u>', { remap = true })
 vim.keymap.set('', '<PageDown>', '<C-d>', { remap = true })
-vim.keymap.set('', '<Home>', '^', { remap = true })
+vim.keymap.set('', '<Home>', '0', { remap = true }) -- frist char included space
 vim.keymap.set('', '<End>', '$', { remap = true })
 
 -------------------
@@ -24,12 +24,9 @@ vim.keymap.set('', '<End>', '$', { remap = true })
 vim.keymap.set('i', '<C-h>', '<C-w>') -- map <C-BS> to <C-w>
 vim.keymap.set('i', '<C-Left>', '<C-o>b')
 vim.keymap.set('i', '<C-Right>', '<C-o>w')
-vim.keymap.set('i', '<Home>', '<C-o>^')
+vim.keymap.set('i', '<Home>', '<C-o>0')
 vim.keymap.set('i', '<End>', '<C-o>$')
 vim.keymap.set('i', '<C-l>', '<C-o><cmd>nohlsearch<cr>')
-
--- Snippet
-vim.keymap.set('i', '<C-x><C-s>', '<C-]>')
 
 ----------------
 -- [TERMINAL] --

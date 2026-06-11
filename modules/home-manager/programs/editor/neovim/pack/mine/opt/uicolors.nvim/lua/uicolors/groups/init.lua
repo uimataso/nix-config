@@ -15,6 +15,7 @@ M.plugins = {
   ['gitsigns.nvim'] = 'gitsigns',
   ['helpview.nvim'] = 'helpview',
   ['indent-blankline.nvim'] = 'indent-blankline',
+  ['mini.snippets'] = 'mini-snippets',
   ['multicursor.nvim'] = 'multicursor',
   ['namu.nvim'] = 'namu',
   ['neogit'] = 'neogit',

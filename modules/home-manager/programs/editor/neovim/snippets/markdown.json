@@ -1,6 +1,6 @@
 {
   "Code block": {
-    "prefix": "`",
+    "prefix": "```",
     "body": [
       "```${1}",
       "```"

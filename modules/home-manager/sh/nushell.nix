@@ -29,7 +29,7 @@ in
       settings = {
         show_banner = false;
         buffer_editor = "nvim";
-        table.mode = "frameless"; # also nice: light, markdown
+        # table.mode = "frameless"; # also nice: light, markdown
       };
 
       envFile.text = /* nu */ ''

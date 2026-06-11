@@ -98,6 +98,10 @@
       "rev": "975e398570dd15696575c5374f94e78fd29a7a69",
       "src": "https://github.com/nvim-mini/mini.pick"
     },
+    "mini.snippets": {
+      "rev": "9a08aa14e02abb790c823a622d7d6c736cbbe65a",
+      "src": "https://github.com/nvim-mini/mini.snippets"
+    },
     "multicursor.nvim": {
       "rev": "704b99f10a72cc05d370cfeb294ff83412a8ab55",
       "src": "https://github.com/jake-stewart/multicursor.nvim"

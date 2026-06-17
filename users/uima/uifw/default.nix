@@ -95,7 +95,7 @@
       nushell.enable = true;
 
       # auto enable hyprland
-      bash.execOnTty1 = "start-hyprland";
+      # bash.execOnTty1 = "start-hyprland";
     };
 
     desktop = {
@@ -104,6 +104,7 @@
 
       wayland = {
         hyprland.enable = true;
+        niri.enable = true;
         dunst.enable = true;
         waybar.enable = true;
       };

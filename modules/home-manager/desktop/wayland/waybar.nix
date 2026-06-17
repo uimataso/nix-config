@@ -295,6 +295,8 @@ in
             spacing = 16;
             position = "bottom";
 
+            layer = "top";
+
             modules-left = [
               "network#bandwidth"
               "cpu"

@@ -103,9 +103,10 @@
       type = "wayland";
 
       wayland = {
-        hyprland.enable = true;
+        # hyprland.enable = true;
         niri.enable = true;
         dunst.enable = true;
+        awww.enable = true;
         waybar.enable = true;
       };
 

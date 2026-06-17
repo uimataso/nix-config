@@ -19,6 +19,10 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.shellAliases = {
+      ni = "niri-session";
+    };
+
     home.packages = with pkgs; [
       wl-clipboard
       brightnessctl
@@ -40,6 +44,12 @@ in
       input {
         workspace-auto-back-and-forth
         focus-follows-mouse
+
+        keyboard {
+          xkb {
+            options "compose:ralt,ctrl:nocaps"
+          }
+        }
       }
 
       layout {
@@ -54,6 +64,8 @@ in
             proportion 0.5
             proportion 0.66667
         }
+
+        background-color "transparent"
 
         focus-ring { off; }
         border {
@@ -77,16 +89,21 @@ in
         slowdown 0.5
       }
 
-      workspace "notes" {
-        layout {
-          default-column-width { proportion 1.0; }
-        }
+      layer-rule {
+        match namespace="^awww-daemon$"
+        place-within-backdrop true
       }
 
-      window-rule {
-        match app-id="notes"
-        open-on-workspace "notes"
-      }
+      // workspace "notes" {
+      //   layout {
+      //     default-column-width { proportion 1.0; }
+      //   }
+      // }
+      //
+      // window-rule {
+      //   match app-id="notes"
+      //   open-on-workspace "notes"
+      // }
 
       binds {
         Mod+Shift+Slash { show-hotkey-overlay; }
@@ -105,7 +122,7 @@ in
         // TODO: scratchpad
         // TODO: move workspace to focus monitor
         // TODO: when workspace only have one col, make it max widtth
-        Mod+N { focus-workspace "notes"; }
+        // Mod+N { focus-workspace "notes"; }
 
         Mod+Left  { focus-column-left; }
         Mod+Down  { focus-window-or-workspace-down; }

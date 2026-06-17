@@ -34,7 +34,7 @@
             numpy
           ];
 
-          buidInputs = with pkgs; [
+          buildInputs = with pkgs; [
             # Non Python dependencies
           ];
         };

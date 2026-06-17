@@ -151,6 +151,7 @@
     desktop = {
       wayland = {
         hyprland.enable = true;
+        niri.enable = true;
       };
     };
 

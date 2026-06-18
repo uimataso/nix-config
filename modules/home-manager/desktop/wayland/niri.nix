@@ -43,11 +43,10 @@ in
 
       input {
         workspace-auto-back-and-forth
-        focus-follows-mouse
 
         keyboard {
           xkb {
-            options "compose:ralt,ctrl:nocaps"
+            options "ctrl:nocaps"
           }
         }
       }
@@ -74,14 +73,13 @@ in
           active-color "${colors.base05}"
           inactive-color "${colors.base03}"
           urgent-color "${colors.base08}"
-          // active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
-          // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view" in="srgb-linear"
-          // urgent-gradient from="#800" to="#a33" angle=45
         }
 
         struts {
           left 32
           right 32
+          top 8
+          bottom 8
         }
       }
 
@@ -92,6 +90,12 @@ in
       layer-rule {
         match namespace="^awww-daemon$"
         place-within-backdrop true
+      }
+
+      window-rule {
+        background-effect {
+          blur true
+        }
       }
 
       // workspace "notes" {

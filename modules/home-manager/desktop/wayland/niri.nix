@@ -33,6 +33,8 @@ in
     ];
 
     xdg.configFile."niri/config.kdl".text = /* kdl */ ''
+      spawn-at-startup "noctalia-shell"
+
       screenshot-path "~/img/screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png";
 
       prefer-no-csd

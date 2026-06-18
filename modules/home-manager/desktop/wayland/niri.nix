@@ -78,8 +78,8 @@ in
         }
 
         struts {
-          left 32
-          right 32
+          left 48
+          right 48
           top 8
           bottom 8
         }
@@ -91,6 +91,7 @@ in
 
       layer-rule {
         match namespace="^awww-daemon$"
+        match namespace="^noctalia-wallpaper-"
         place-within-backdrop true
       }
 

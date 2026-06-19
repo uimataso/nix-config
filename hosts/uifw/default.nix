@@ -143,7 +143,7 @@
 
         directories = [
           "/share"
-          "/var/lib/fprint"
+          # "/var/lib/fprint"
         ];
       };
     };

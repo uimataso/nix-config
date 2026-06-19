@@ -23,6 +23,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [ upower ];
+
     programs.noctalia-shell = {
       enable = true;
 

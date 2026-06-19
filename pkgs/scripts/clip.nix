@@ -29,7 +29,7 @@ writeShellApplication {
     EOF
     }
 
-    if [ -z "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ]; then
+    if [ -z "''${DISPLAY+x}" ] && [ -z "''${WAYLAND_DISPLAY+x}" ]; then
       debug "No GUI session detected" >&2
       exit 1
     fi

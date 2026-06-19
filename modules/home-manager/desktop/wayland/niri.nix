@@ -49,6 +49,11 @@ in
             options "ctrl:nocaps"
           }
         }
+
+        touchpad {
+          tap
+          natural-scroll
+        }
       }
 
       layout {
@@ -74,13 +79,6 @@ in
           inactive-color "${colors.base03}"
           urgent-color "${colors.base08}"
         }
-
-        struts {
-          left 48
-          right 48
-          top 8
-          bottom 8
-        }
       }
 
       animations {
@@ -97,7 +95,7 @@ in
         background-effect {
           blur true
         }
-        geometry-corner-radius 8
+        geometry-corner-radius 4
         clip-to-geometry true
       }
 
@@ -132,12 +130,12 @@ in
         // Mod+N { focus-workspace "notes"; }
 
         Mod+Left  { focus-column-left; }
-        Mod+Down  { focus-window-or-workspace-down; }
-        Mod+Up    { focus-window-or-workspace-up; }
+        Mod+Down  { focus-window-down; }
+        Mod+Up    { focus-window-up; }
         Mod+Right { focus-column-right; }
         Mod+H     { focus-column-left; }
-        Mod+J     { focus-window-or-workspace-down; }
-        Mod+K     { focus-window-or-workspace-up; }
+        Mod+J     { focus-window-down; }
+        Mod+K     { focus-window-up; }
         Mod+L     { focus-column-right; }
 
         Mod+Shift+Left  { move-column-left; }

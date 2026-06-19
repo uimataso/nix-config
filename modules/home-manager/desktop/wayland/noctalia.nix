@@ -25,11 +25,15 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.sessionVariables = {
-      # QT_QPA_PLATFORMTHEME = "gtk3";
+    uimaConfig.system.impermanence = {
+      directories = [ ".config/noctalia/plugins" ];
     };
 
-    # nix shell nixpkgs#json-diff -c bash -c "json-diff <(jq -S . ~/.config/noctalia/settings.json) <(noctalia-shell ipc call state all | jq -S .settings)"
+    home.sessionVariables = {
+      QS_ICON_THEME = "Papirus-Dark";
+    };
+
+    home.packages = with pkgs; [ papirus-icon-theme ];
 
     xdg.configFile."noctalia/settings.json" = mkForce {
       source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/modules/home-manager/desktop/wayland/noctalia-settings.json";
@@ -37,7 +41,29 @@ in
 
     programs.noctalia-shell = {
       enable = true;
-      settings = { };
+
+      # TODO: fcitx (ime) on bar
+      plugins = {
+        version = 2;
+        sources = [
+          {
+            enabled = true;
+            name = "Official Noctalia Plugins";
+            url = "https://github.com/noctalia-dev/noctalia-plugins";
+          }
+        ];
+        states = {
+          privacy-indicator = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+          # TODO: perm, switch account
+          tailscale = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+        };
+      };
     };
   };
 }

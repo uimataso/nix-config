@@ -12,6 +12,7 @@ let
   # spawnCmd = ''"$TERMINAL" --app-id scratchpad -e $EDITOR /share/scratchpad.md'';
 
   colors = config.lib.stylix.colors.withHashtag;
+  shell-cmd = ''"noctalia-shell" "ipc" "call"'';
 in
 {
   options.uimaConfig.desktop.wayland.niri = {
@@ -27,9 +28,6 @@ in
       wl-clipboard
       brightnessctl
       playerctl
-
-      scripts.power-menu
-      scripts.app-launcher
     ];
 
     xdg.configFile."niri/config.kdl".text = /* kdl */ ''
@@ -99,6 +97,8 @@ in
         background-effect {
           blur true
         }
+        geometry-corner-radius 8
+        clip-to-geometry true
       }
 
       // workspace "notes" {
@@ -117,8 +117,8 @@ in
 
         Mod+Return hotkey-overlay-title="Open Terminal" { spawn "${config.uimaConfig.programs.terminal.executable}"; }
         Mod+B hotkey-overlay-title="Open Browser" { spawn "${config.uimaConfig.programs.browser.executable}"; }
-        Mod+Shift+O hotkey-overlay-title="Open App Launcher" { spawn "app-launcher"; }
-        Mod+Escape hotkey-overlay-title="Open Power Menu" { spawn "power-menu"; }
+        Mod+Shift+O hotkey-overlay-title="Open App Launcher" { spawn ${shell-cmd} "launcher" "toggle"; }
+        Mod+Escape hotkey-overlay-title="Open Power Menu" { spawn ${shell-cmd} "sessionMenu" "toggle"; }
 
         Mod+Q repeat=false { close-window; }
         Mod+O repeat=false { toggle-overview; }
@@ -204,18 +204,18 @@ in
         Ctrl+Print { screenshot-screen; }
         Alt+Print { screenshot-window; }
 
-        XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+"; }
-        XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-"; }
-        XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
-        XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+        XF86AudioRaiseVolume allow-when-locked=true { spawn ${shell-cmd} "volume" "increase"; }
+        XF86AudioLowerVolume allow-when-locked=true { spawn ${shell-cmd} "volume" "decrease"; }
+        XF86AudioMute        allow-when-locked=true { spawn ${shell-cmd} "volume" "muteOutput"; }
+        XF86AudioMicMute     allow-when-locked=true { spawn ${shell-cmd} "volume" "muteInput"; }
 
-        XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
-        XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
-        XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
-        XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+        XF86AudioPlay        allow-when-locked=true { spawn ${shell-cmd} "media" "play"; }
+        XF86AudioStop        allow-when-locked=true { spawn ${shell-cmd} "media" "pause"; }
+        XF86AudioPrev        allow-when-locked=true { spawn ${shell-cmd} "media" "previous"; }
+        XF86AudioNext        allow-when-locked=true { spawn ${shell-cmd} "media" "next"; }
 
-        XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+3%"; }
-        XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "3%-"; }
+        XF86MonBrightnessUp   allow-when-locked=true { spawn ${shell-cmd} "brightness" "increase"; }
+        XF86MonBrightnessDown allow-when-locked=true { spawn ${shell-cmd} "brightness" "decrease"; }
       }
     '';
   };

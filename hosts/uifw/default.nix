@@ -96,6 +96,8 @@
 
   programs.mosh.enable = true;
 
+  services.upower.enable = true;
+
   # make a share dir
   # $ mkdir /share
   # $ chmod 2770 /share

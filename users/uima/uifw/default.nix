@@ -103,12 +103,8 @@
       type = "wayland";
 
       wayland = {
-        # hyprland.enable = true;
         niri.enable = true;
         noctalia.enable = true;
-        # dunst.enable = true;
-        # awww.enable = true;
-        # waybar.enable = true;
       };
 
       monitors = [
@@ -169,12 +165,6 @@
         lazydocker.enable = true;
         opencode.enable = true;
         pi-coding-agent.enable = true;
-      };
-
-      dmenu = {
-        tofi.enable = true;
-        tofi.defaultDmenu = true;
-        # otter-launcher.enable = true;
       };
 
       sh-util = {

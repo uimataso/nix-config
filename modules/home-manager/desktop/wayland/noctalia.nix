@@ -25,9 +25,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    uimaConfig.system.impermanence = {
-      directories = [ ".config/noctalia/plugins" ];
-    };
+    # uimaConfig.system.impermanence = {
+    #   directories = [ ".config/noctalia/plugins" ];
+    # };
 
     home.sessionVariables = {
       QS_ICON_THEME = "Papirus-Dark";
@@ -35,34 +35,14 @@ in
 
     home.packages = with pkgs; [ papirus-icon-theme ];
 
-    xdg.configFile."noctalia/settings.json" = mkForce {
-      source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/modules/home-manager/desktop/wayland/noctalia-settings.json";
+    home.file.".local/state/noctalia/settings.toml" = mkForce {
+      source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/modules/home-manager/desktop/wayland/noctalia-settings.toml";
     };
 
-    programs.noctalia-shell = {
+    programs.noctalia = {
       enable = true;
 
-      # TODO: fcitx (ime) on bar
-      plugins = {
-        version = 2;
-        sources = [
-          {
-            enabled = true;
-            name = "Official Noctalia Plugins";
-            url = "https://github.com/noctalia-dev/noctalia-plugins";
-          }
-        ];
-        states = {
-          privacy-indicator = {
-            enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-          };
-          # TODO: perm, switch account
-          tailscale = {
-            enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-          };
-        };
+      customPalettes = {
       };
     };
   };

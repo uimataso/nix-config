@@ -1,0 +1,146 @@
+[bar.default]
+capsule_padding = 7.0
+capsule_radius = 2
+end = [
+    "privacy",
+    "tray",
+    "cpu",
+    "ram",
+    "temp",
+    "notifications",
+    "volume",
+    "bluetooth",
+    "network",
+    "battery",
+    "control-center"
+]
+margin_edge = 0
+position = "bottom"
+radius = 4
+start = [ "workspaces", "taskbar", "media" ]
+
+[desktop_widgets]
+enabled = false
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[location]
+auto_locate = true
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@winit", "lockscreen-login-box@eDP-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 720.0
+    cy = 841.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        input_opacity = 1.0
+        input_radius = 6.0
+        show_login_button = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@winit"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 708.0
+    cy = 1685.0
+    output = "winit"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@winit".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        input_opacity = 1.0
+        input_radius = 6.0
+        show_login_button = true
+
+[shell]
+corner_radius_scale = 0.30000000447034836
+font_family = "MesloLGM Nerd Font Mono"
+niri_overview_type_to_launch_enabled = true
+settings_show_advanced = true
+
+    [shell.panel]
+    borders = false
+    launcher_categories = false
+    open_near_click_control_center = true
+    session_placement = "centered"
+
+[theme]
+builtin = "Gruvbox"
+
+    [theme.templates]
+    enable_builtin_templates = false
+    enable_community_templates = false
+
+[wallpaper]
+directory = "/share/nix/modules/nixos/theme/wallpapers"
+
+    [wallpaper.default]
+    path = "/share/nix/modules/nixos/theme/wallpapers/looking-for.png"
+
+    [wallpaper.last]
+    path = "/share/nix/modules/nixos/theme/wallpapers/looking-for.png"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/share/nix/modules/nixos/theme/wallpapers/looking-for.png"
+
+[weather]
+effects = false
+
+[widget.cpu]
+show_label = false
+
+[widget.media]
+hide_when_no_media = true
+
+[widget.network]
+show_label = false
+
+[widget.privacy]
+hide_inactive = true
+
+[widget.ram]
+show_label = false
+
+[widget.taskbar]
+inactive_opacity = 0.69999999999999996
+only_active_workspace = true
+show_active_indicator = false
+
+[widget.temp]
+show_label = false
+
+[widget.tray]
+drawer = true
+
+[widget.volume]
+show_label = false
+
+[widget.workspaces]
+display = "name"
+minimal = true

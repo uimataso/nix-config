@@ -12,7 +12,6 @@ let
   # spawnCmd = ''"$TERMINAL" --app-id scratchpad -e $EDITOR /share/scratchpad.md'';
 
   colors = config.lib.stylix.colors.withHashtag;
-  shell-cmd = ''"noctalia-shell" "ipc" "call"'';
 in
 {
   options.uimaConfig.desktop.wayland.niri = {
@@ -31,7 +30,7 @@ in
     ];
 
     xdg.configFile."niri/config.kdl".text = /* kdl */ ''
-      spawn-at-startup "noctalia-shell"
+      spawn-at-startup "noctalia"
 
       screenshot-path "~/img/screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png";
 
@@ -88,6 +87,7 @@ in
       layer-rule {
         match namespace="^awww-daemon$"
         match namespace="^noctalia-wallpaper-"
+        match namespace="^noctalia-wallpaper$"
         place-within-backdrop true
       }
 
@@ -115,8 +115,8 @@ in
 
         Mod+Return hotkey-overlay-title="Open Terminal" { spawn "${config.uimaConfig.programs.terminal.executable}"; }
         Mod+B hotkey-overlay-title="Open Browser" { spawn "${config.uimaConfig.programs.browser.executable}"; }
-        Mod+Shift+O hotkey-overlay-title="Open App Launcher" { spawn ${shell-cmd} "launcher" "toggle"; }
-        Mod+Escape hotkey-overlay-title="Open Power Menu" { spawn ${shell-cmd} "sessionMenu" "toggle"; }
+        Mod+Shift+O hotkey-overlay-title="Open App Launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
+        Mod+Escape hotkey-overlay-title="Open Power Menu" { spawn-sh "noctalia msg panel-toggle session"; }
 
         Mod+Q repeat=false { close-window; }
         Mod+O repeat=false { toggle-overview; }
@@ -202,18 +202,18 @@ in
         Ctrl+Print { screenshot-screen; }
         Alt+Print { screenshot-window; }
 
-        XF86AudioRaiseVolume allow-when-locked=true { spawn ${shell-cmd} "volume" "increase"; }
-        XF86AudioLowerVolume allow-when-locked=true { spawn ${shell-cmd} "volume" "decrease"; }
-        XF86AudioMute        allow-when-locked=true { spawn ${shell-cmd} "volume" "muteOutput"; }
-        XF86AudioMicMute     allow-when-locked=true { spawn ${shell-cmd} "volume" "muteInput"; }
+        XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "noctalia msg volume-up"; }
+        XF86AudioLowerVolume allow-when-locked=true { spawn-sh "noctalia msg volume-down"; }
+        XF86AudioMute        allow-when-locked=true { spawn-sh "noctalia msg volume-mute"; }
+        XF86AudioMicMute     allow-when-locked=true { spawn-sh "noctalia msg mic-mute"; }
 
-        XF86AudioPlay        allow-when-locked=true { spawn ${shell-cmd} "media" "play"; }
-        XF86AudioStop        allow-when-locked=true { spawn ${shell-cmd} "media" "pause"; }
-        XF86AudioPrev        allow-when-locked=true { spawn ${shell-cmd} "media" "previous"; }
-        XF86AudioNext        allow-when-locked=true { spawn ${shell-cmd} "media" "next"; }
+        XF86AudioPlay        allow-when-locked=true { spawn-sh "noctalia msg media toggle"; }
+        XF86AudioStop        allow-when-locked=true { spawn-sh "noctalia msg media stop"; }
+        XF86AudioPrev        allow-when-locked=true { spawn-sh "noctalia msg media previous"; }
+        XF86AudioNext        allow-when-locked=true { spawn-sh "noctalia msg media next"; }
 
-        XF86MonBrightnessUp   allow-when-locked=true { spawn ${shell-cmd} "brightness" "increase"; }
-        XF86MonBrightnessDown allow-when-locked=true { spawn ${shell-cmd} "brightness" "decrease"; }
+        XF86MonBrightnessUp   allow-when-locked=true { spawn-sh "noctalia msg brightness-up"; }
+        XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia msg brightness-down"; }
       }
     '';
   };

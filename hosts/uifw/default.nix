@@ -46,8 +46,6 @@
 
   hardware.keyboard.qmk.enable = true;
 
-  security.polkit.enable = true;
-
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
@@ -99,6 +97,8 @@
   programs.mosh.enable = true;
 
   services.upower.enable = true;
+  security.polkit.enable = true;
+  xdg.portal.enable = true;
 
   # make a share dir
   # $ mkdir /share

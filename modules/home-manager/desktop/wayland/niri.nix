@@ -84,6 +84,15 @@ in
         slowdown 0.5
       }
 
+      window-rule {
+        background-effect {
+          blur true
+          xray false
+        }
+        geometry-corner-radius 4
+        clip-to-geometry true
+      }
+
       layer-rule {
         match namespace="^awww-daemon$"
         match namespace="^noctalia-wallpaper-"
@@ -91,12 +100,12 @@ in
         place-within-backdrop true
       }
 
-      window-rule {
+      layer-rule {
+        match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
         background-effect {
-          blur true
+          xray false
+          // blur false
         }
-        geometry-corner-radius 4
-        clip-to-geometry true
       }
 
       // workspace "notes" {

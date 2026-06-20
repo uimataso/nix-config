@@ -41,6 +41,9 @@ widget_order = []
 [location]
 auto_locate = true
 
+[lockscreen]
+fingerprint = false
+
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
@@ -85,10 +88,14 @@ widget_order = [ "lockscreen-login-box@winit", "lockscreen-login-box@eDP-1" ]
         input_radius = 6.0
         show_login_button = true
 
+[osd]
+background_opacity = 0.79999998211860657
+
 [shell]
 corner_radius_scale = 0.30000000447034836
 font_family = "MesloLGM Nerd Font Mono"
 niri_overview_type_to_launch_enabled = true
+polkit_agent = true
 settings_show_advanced = true
 
     [shell.panel]

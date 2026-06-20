@@ -17,7 +17,7 @@ end = [
 margin_edge = 0
 position = "bottom"
 radius = 4
-start = [ "workspaces", "taskbar", "media" ]
+start = [ "workspaces", "taskbar", "spacer_2", "media" ]
 
 [desktop_widgets]
 enabled = false
@@ -92,6 +92,8 @@ settings_show_advanced = true
 
 [theme]
 builtin = "Gruvbox"
+custom_palette = "stylix"
+source = "custom"
 
     [theme.templates]
     enable_builtin_templates = false
@@ -126,6 +128,9 @@ hide_inactive = true
 
 [widget.ram]
 show_label = false
+
+[widget.spacer_2]
+type = "spacer"
 
 [widget.taskbar]
 inactive_opacity = 0.69999999999999996

@@ -1,5 +1,8 @@
 [bar.default]
-capsule_padding = 7.0
+background_opacity = 0.90000000000000002
+capsule = true
+capsule_opacity = 0.0
+capsule_padding = 3.0
 capsule_radius = 2
 end = [
     "privacy",
@@ -15,9 +18,13 @@ end = [
     "control-center"
 ]
 margin_edge = 0
+margin_ends = 0
+padding = 20
 position = "bottom"
-radius = 4
+radius = 0
+shadow = false
 start = [ "workspaces", "taskbar", "spacer_2", "media" ]
+thickness = 28
 
 [desktop_widgets]
 enabled = false
@@ -113,6 +120,9 @@ directory = "/share/nix/modules/nixos/theme/wallpapers"
 
 [weather]
 effects = false
+
+[widget.clock]
+font_weight = 700
 
 [widget.cpu]
 show_label = false

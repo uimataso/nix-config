@@ -57,7 +57,7 @@ in
               mOnTertiary = colors.base05;
               mError = colors.base08;
               mOnError = colors.base00;
-              mSurface = "${colors.base00}80";
+              mSurface = colors.base00;
               mOnSurface = colors.base05;
               mSurfaceVariant = colors.base01;
               mOnSurfaceVariant = colors.base05;

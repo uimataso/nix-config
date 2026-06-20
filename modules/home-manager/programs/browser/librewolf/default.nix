@@ -72,6 +72,11 @@ in
     # no .mozilla
     home.file.".mozilla/native-messaging-hosts".enable = false;
 
+    nixpkgs.config.permittedInsecurePackages = [
+      "librewolf-151.0.2-1"
+      "librewolf-unwrapped-151.0.2-1"
+    ];
+
     programs.librewolf = {
       enable = true;
 

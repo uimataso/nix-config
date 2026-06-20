@@ -157,5 +157,5 @@ drawer = true
 show_label = false
 
 [widget.workspaces]
-display = "name"
-minimal = true
+display = "none"
+empty_color = "tertiary"

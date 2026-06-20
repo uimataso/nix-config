@@ -25,6 +25,10 @@ in
   };
 
   config = mkIf cfg.enable {
+    uimaConfig.system.impermanence = {
+      files = [ ".local/state/noctalia/.setup-complete" ];
+    };
+
     home.sessionVariables = {
       QS_ICON_THEME = "Papirus-Dark";
     };

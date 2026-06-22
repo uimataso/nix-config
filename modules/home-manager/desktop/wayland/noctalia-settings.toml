@@ -91,6 +91,9 @@ widget_order = [ "lockscreen-login-box@winit", "lockscreen-login-box@eDP-1" ]
 [osd]
 background_opacity = 0.79999998211860657
 
+    [osd.kinds]
+    media = false
+
 [shell]
 corner_radius_scale = 0.30000000447034836
 font_family = "MesloLGM Nerd Font Mono"

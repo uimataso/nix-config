@@ -24,6 +24,7 @@ in
         download = "dl";
         music = "mus";
         pictures = "img";
+        projects = null;
         publicShare = null;
         templates = null;
         videos = "vid";

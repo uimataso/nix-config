@@ -58,7 +58,10 @@ in
   config = mkIf cfg.enable {
     uimaConfig.system.impermanence = {
       # directories = [ ".mozilla/firefox/${config.programs.firefox.profiles.${profileName}.path}" ];
-      directories = [ ".librewolf/${config.programs.librewolf.profiles.${profileName}.path}" ];
+      directories = [
+        ".librewolf/${config.programs.librewolf.profiles.${profileName}.path}"
+        ".local/share/pki"
+      ];
     };
 
     uimaConfig.programs.browser = mkIf cfg.defaultBrowser {

@@ -25,8 +25,6 @@ in
   # ~/.thunderbird: not supported
   # ~/Thunderbird: created at runtime
   #   see: https://bugzilla.mozilla.org/show_bug.cgi?id=735285
-  #
-  # ~/.pki: not supported
 
   config = mkIf cfg.enable {
     xdg.enable = true;

@@ -22,7 +22,7 @@ in
 
   config = mkIf cfg.enable {
     home.shellAliases = {
-      no = "nh os switch ${flakeDir}";
+      no = "nh os switch ${flakeDir} --accept-flake-config";
       nt = "nh os test ${flakeDir}";
       nre = "nix repl --expr 'builtins.getFlake \"${flakeDir}\"'";
       nrr = "nixos-rebuild repl --flake ${flakeDir}";

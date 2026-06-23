@@ -44,7 +44,7 @@ in
 
         shell = {
           corner_radius_scale = 0.3;
-          font_family = "MesloLGM Nerd Font Mono";
+          font_family = config.stylix.fonts.monospace.name;
           polkit_agent = true;
           settings_show_advanced = true;
 
@@ -69,7 +69,7 @@ in
           radius = 0;
 
           shadow = false;
-          background_opacity = 0.80;
+          background_opacity = config.stylix.opacity.desktop;
 
           capsule = true;
           capsule_opacity = 0.0; # i just want the padding
@@ -131,7 +131,7 @@ in
         weather.effects = false;
 
         osd = {
-          background_opacity = 0.8;
+          background_opacity = config.stylix.opacity.popups;
           kinds = {
             media = false;
           };

@@ -9,10 +9,8 @@ let
   inherit (lib)
     mkIf
     mkEnableOption
-    mkForce
     ;
   cfg = config.uimaConfig.desktop.wayland.noctalia;
-  flakeDir = config.uimaConfig.global.flakeDir;
 in
 {
   imports = [
@@ -26,7 +24,7 @@ in
 
   config = mkIf cfg.enable {
     uimaConfig.system.impermanence = {
-      files = [ ".local/state/noctalia/.setup-complete" ];
+      directories = [ ".local/state/noctalia" ];
     };
 
     home.sessionVariables = {
@@ -35,12 +33,110 @@ in
 
     home.packages = with pkgs; [ papirus-icon-theme ];
 
-    home.file.".local/state/noctalia/settings.toml" = mkForce {
-      source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/modules/home-manager/desktop/wayland/noctalia-settings.toml";
-    };
-
     programs.noctalia = {
       enable = true;
+
+      settings = {
+        theme = {
+          custom_palette = "stylix";
+          source = "custom";
+        };
+
+        shell = {
+          corner_radius_scale = 0.3;
+          font_family = "MesloLGM Nerd Font Mono";
+          polkit_agent = true;
+          settings_show_advanced = true;
+
+          panel = {
+            borders = false;
+            launcher_categories = false;
+            open_near_click_control_center = true;
+            session_placement = "centered";
+          };
+        };
+
+        wallpaper = {
+          directory = "/share/nix/modules/nixos/theme/wallpapers";
+        };
+
+        bar.default = {
+          position = "bottom";
+          thickness = 28;
+          margin_edge = 0;
+          margin_ends = 0;
+          padding = 20;
+          radius = 0;
+
+          shadow = false;
+          background_opacity = 0.80;
+
+          capsule = true;
+          capsule_opacity = 0.0; # i just want the padding
+          capsule_padding = 3.0;
+          capsule_radius = 2;
+
+          end = [
+            "privacy"
+            "tray"
+            "cpu"
+            "ram"
+            "temp"
+            "notifications"
+            "volume"
+            "bluetooth"
+            "network"
+            "battery"
+            "control-center"
+          ];
+          center = [ "clock" ];
+          start = [
+            "workspaces"
+            "taskbar"
+            "spacer_2"
+            "media"
+          ];
+        };
+
+        widget = {
+          clock.font_weight = 700;
+
+          cpu.show_label = false;
+          ram.show_label = false;
+          temp.show_label = false;
+          network.show_label = false;
+          volume.show_label = false;
+
+          tray.drawer = true;
+          media.hide_when_no_media = true;
+          privacy.hide_inactive = true;
+
+          spacer_2.type = "spacer";
+
+          workspaces = {
+            display = "none";
+            empty_color = "tertiary";
+          };
+          taskbar = {
+            inactive_opacity = 0.7;
+            only_active_workspace = true;
+            show_active_indicator = false;
+          };
+        };
+
+        desktop_widgets.enabled = false;
+        lockscreen.fingerprint = false;
+        lockscreen_widgets.enabled = false;
+        location.auto_locate = true;
+        weather.effects = false;
+
+        osd = {
+          background_opacity = 0.8;
+          kinds = {
+            media = false;
+          };
+        };
+      };
 
       customPalettes = {
         stylix =

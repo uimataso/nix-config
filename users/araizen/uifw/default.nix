@@ -164,6 +164,7 @@
         terraform.enable = true;
         opencode.enable = true;
         pi-coding-agent.enable = true;
+        claude-code.enable = true;
       };
 
       dmenu = {

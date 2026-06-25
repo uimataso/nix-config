@@ -2,6 +2,7 @@
 {
   imports = [
     ./aws-cli.nix
+    ./claude-code.nix
     ./direnv.nix
     ./docker.nix
     ./gh.nix

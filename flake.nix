@@ -68,7 +68,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia";
+      url = "github:noctalia-dev/noctalia/cachix";
       # note, when using binary cache, don't add follows
       # inputs.nixpkgs.follows = "nixpkgs";
     };

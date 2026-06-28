@@ -119,6 +119,12 @@ in
       //   open-on-workspace "notes"
       // }
 
+      gestures {
+        hot-corners {
+          off
+        }
+      }
+
       binds {
         Mod+Shift+Slash { show-hotkey-overlay; }
 

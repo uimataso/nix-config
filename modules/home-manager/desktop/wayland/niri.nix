@@ -8,8 +8,18 @@ let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.desktop.wayland.niri;
 
-  # spawnCmd = ''"$TERMINAL" --app-id notes -e tmux new-session -A -s notes -c /share/notes $EDITOR inbox.md'';
-  # spawnCmd = ''"$TERMINAL" --app-id scratchpad -e $EDITOR /share/scratchpad.md'';
+  scratchNotes = pkgs.writeShellApplication {
+    name = "scratch-notes";
+    text = ''
+      "$TERMINAL" --app-id notes -e tmux new-session -A -s notes -c /share/notes "$EDITOR" inbox.md
+    '';
+  };
+  scratchPad = pkgs.writeShellApplication {
+    name = "scratch-pad";
+    text = ''
+      "$TERMINAL" --app-id scratchpad -e "$EDITOR" /share/scratchpad.md
+    '';
+  };
 
   colors = config.lib.stylix.colors.withHashtag;
 in
@@ -27,10 +37,17 @@ in
       wl-clipboard
       brightnessctl
       playerctl
+
+      scratchNotes
+      scratchPad
     ];
 
     xdg.configFile."niri/config.kdl".text = /* kdl */ ''
       spawn-at-startup "noctalia"
+
+      spawn-at-startup "scratch-notes"
+      spawn-at-startup "scratch-pad"
+      spawn-at-startup "sh" "-c" "niri msg action focus-workspace 2"
 
       screenshot-path "~/img/screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png";
 
@@ -59,7 +76,6 @@ in
         gaps 5
 
         always-center-single-column
-        empty-workspace-above-first
 
         default-column-width { proportion 0.5; }
         preset-column-widths {
@@ -108,16 +124,14 @@ in
         }
       }
 
-      // workspace "notes" {
-      //   layout {
-      //     default-column-width { proportion 1.0; }
-      //   }
-      // }
-      //
-      // window-rule {
-      //   match app-id="notes"
-      //   open-on-workspace "notes"
-      // }
+      workspace "scratch"
+
+      window-rule {
+        match app-id="notes"
+        match app-id="scratchpad"
+        open-on-workspace "scratch"
+        default-column-width { proportion 0.8; }
+      }
 
       gestures {
         hot-corners {
@@ -138,11 +152,7 @@ in
 
         Mod+Shift+E { quit; }
 
-        // TODO: spawn notes app for first time call this
-        // TODO: scratchpad
-        // TODO: move workspace to focus monitor
-        // TODO: when workspace only have one col, make it max widtth
-        // Mod+N { focus-workspace "notes"; }
+        Mod+N { focus-workspace "scratch"; }
 
         Mod+Left  { focus-column-left; }
         Mod+Down  { focus-window-down; }

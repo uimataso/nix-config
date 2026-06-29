@@ -20,7 +20,8 @@ in
     programs.claude-code = {
       enable = true;
 
-      configDir = "${config.xdg.configHome}/claude";
+      # note: they don't follow xdg at all anyway :(
+      # configDir = "${config.xdg.configHome}/claude";
     };
   };
 }

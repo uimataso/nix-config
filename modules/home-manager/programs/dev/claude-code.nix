@@ -15,6 +15,7 @@ in
   config = mkIf cfg.enable {
     uimaConfig.system.impermanence = {
       directories = [ ".claude" ];
+      files = [ ".claude.json" ];
     };
 
     programs.claude-code = {

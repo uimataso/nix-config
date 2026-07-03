@@ -13,19 +13,6 @@ ag('uima/DeleteTrailingSpace', function(au)
   })
 end)
 
-ag('uima/CargoSort', function(au)
-  au({ 'BufWritePost' }, {
-    pattern = '*.rs',
-    callback = function(event)
-      local root = vim.fs.root(event.buf, { 'Cargo.toml' })
-      if not root then
-        return
-      end
-      vim.system({ 'cargo', 'sort', '--grouped', '--workspace' })
-    end,
-  })
-end)
-
 vim.pack.add({
   'https://github.com/stevearc/conform.nvim',
 }, { load = true })

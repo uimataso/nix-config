@@ -14,6 +14,7 @@ in
     ./eza.nix
     ./fff.nix
     ./fzf.nix
+    ./herdr.nix
     ./htop.nix
     ./lsd.nix
     ./neomutt.nix

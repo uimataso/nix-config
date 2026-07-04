@@ -1,1 +1,29 @@
 onboarding = false
+
+[theme]
+name = "terminal"
+
+[theme.custom]
+panel_bg = "reset"
+accent = "#ddc7a1"
+overlay0 = "#7a6f5c"
+
+[keys]
+previous_tab = [ "prefix+h", "alt+h" ]
+next_tab = [ "prefix+l", "alt+l" ]
+cycle_pane_next = [ "prefix+j", "alt+j"]
+cycle_pane_previous = [ "prefix+k", "alt+k" ]
+
+split_vertical = "prefix+|"
+split_horizontal = "prefix+\""
+
+[ui]
+prompt_new_tab_name = false
+pane_gaps = false
+show_agent_labels_on_pane_borders = true
+
+[ui.toast]
+delivery = "system"
+
+[ui.sound]
+enabled = false

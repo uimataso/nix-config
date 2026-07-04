@@ -8,37 +8,13 @@ let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.desktop.wayland.hyprland;
 
-  scratchpad = import ./scratchpad.nix;
-
-  noteScratchpad = scratchpad {
-    inherit pkgs;
-    name = "note";
-    spawnCmd = ''"$TERMINAL" --app-id scratchpad-note -e tmux new-session -A -s notes -c /share/notes $EDITOR inbox.md'';
-    className = "scratchpad-note";
-  };
-  tempScratchpad = scratchpad {
-    inherit pkgs;
-    name = "temp";
-    spawnCmd = ''"$TERMINAL" --app-id scratchpad-temp -e $EDITOR /share/scratchpad.md'';
-    className = "scratchpad-temp";
-  };
-  termScratchpad = scratchpad {
-    inherit pkgs;
-    name = "term";
-    spawnCmd = ''"$TERMINAL" --app-id scratchpad-term'';
-    className = "scratchpad-term";
-  };
-  musicScratchpad = scratchpad {
-    inherit pkgs;
-    name = "music";
-    spawnCmd = ''"$TERMINAL" --app-id scratchpad-music -e rmpc'';
-    className = "scratchpad-music";
-  };
-
   toggleWaybar = "if systemctl --user is-active --quiet waybar.service; then systemctl --user stop waybar.service; else systemctl --user start waybar.service; fi";
 
   inherit (config.lib.stylix) colors;
   rgb = color: "rgb(${color})";
+
+  termExec = config.uimaConfig.programs.terminal.executable;
+  browserExec = config.uimaConfig.programs.browser.executable;
 in
 {
   options.uimaConfig.desktop.wayland.hyprland = {
@@ -56,11 +32,6 @@ in
 
       scripts.screenshot
       scripts.vl
-
-      noteScratchpad
-      termScratchpad
-      tempScratchpad
-      musicScratchpad
     ];
 
     home.shellAliases = {
@@ -81,186 +52,240 @@ in
 
     wayland.windowManager.hyprland = {
       enable = true;
-      configType = "hyprlang";
+      configType = "lua";
 
       settings = {
-        general."col.active_border" = lib.mkForce (rgb colors.base05);
-        group."col.border_active" = lib.mkForce (rgb colors.base05);
-        group.groupbar."col.active" = lib.mkForce (rgb colors.base05);
-
-        ecosystem = {
-          no_update_news = true;
-          no_donation_nag = true;
-        };
-
-        exec = [
-          "hyprctl setcursor HYPRCURSOR_SIZE 22"
-        ];
-        exec-once = [
-          "hypridle"
-        ];
-
-        general = {
-          layout = "master";
-          gaps_in = 5;
-          gaps_out = 5;
-        };
-
-        workspace = [
-          "s[true], gapsout:15"
-        ];
-
-        misc = {
-          enable_swallow = true;
-          swallow_regex = [
-            "^(foot)$"
-          ];
-        };
-
-        windowrule = [
-          "match:class otter-launcher, float on"
-        ];
-
-        cursor = {
-          inactive_timeout = 15;
-        };
-
-        input = {
-          touchpad = {
-            scroll_factor = 0.5;
-            natural_scroll = true;
+        # `hl.config({...})` holds all the variable-style categories. Nested
+        # tables (and dotted string keys) are joined with `.` by Hyprland, so
+        # both `col.active_border` and `col = { active_border = ... }` resolve
+        # to the same variable.
+        config = {
+          general = {
+            layout = "master";
+            gaps_in = 5;
+            gaps_out = 5;
+            "col.active_border" = lib.mkForce (rgb colors.base05);
+          };
+          group = {
+            "col.border_active" = lib.mkForce (rgb colors.base05);
+            groupbar."col.active" = lib.mkForce (rgb colors.base05);
           };
 
-          kb_options = "ctrl:nocaps";
-        };
+          ecosystem = {
+            no_update_news = true;
+            no_donation_nag = true;
+          };
 
-        decoration = {
-          rounding = 5;
-          dim_inactive = true;
-          dim_strength = 0.15;
-          shadow = {
-            enabled = false;
+          misc = {
+            enable_swallow = true;
+            swallow_regex = "^(foot)$";
+          };
+
+          cursor = {
+            inactive_timeout = 15;
+          };
+
+          input = {
+            touchpad = {
+              scroll_factor = 0.5;
+              natural_scroll = true;
+            };
+            kb_options = "ctrl:nocaps";
+          };
+
+          decoration = {
+            rounding = 5;
+            dim_inactive = true;
+            dim_strength = 0.15;
+            shadow = {
+              enabled = false;
+            };
           };
         };
-
-        animations = {
-          bezier = [
-            "easeOutCubic,   0.33, 1, 0.68, 1"
-          ];
-          animation = [
-            "windows,      1, 1, easeOutCubic, slide"
-            "layers,       1, 1, easeOutCubic, fade"
-            "fade,         1, 2, easeOutCubic"
-            "border,       1, 2, easeOutCubic"
-            "workspaces,   1, 2, easeOutCubic, slide"
-            "monitorAdded, 0"
-          ];
-        };
-
-        bindm = [
-          "SUPER, mouse:272, movewindow"
-          "SUPER, mouse:273, resizewindow"
-          "SUPER ALT, mouse:272, resizewindow"
-        ];
-
-        bind = [
-          "SUPER, q, killactive"
-
-          "SUPER, j, layoutmsg, cyclenext"
-          "SUPER, k, layoutmsg, cycleprev"
-          "SUPER, h, layoutmsg, mfact -0.05"
-          "SUPER, l, layoutmsg, mfact +0.05"
-
-          "SUPER, space, layoutmsg, swapwithmaster"
-          "SUPER, a, togglefloating"
-          "SUPER SHIFT, a, fullscreen, 1"
-          "SUPER CTRL, a, fullscreen, 0"
-
-          "SUPER SHIFT, b, exec, ${toggleWaybar}"
-
-          "SUPER, comma, focusmonitor, -1"
-          "SUPER, period, focusmonitor, +1"
-
-          "SUPER, escape, exec, power-menu"
-          "SUPER, return, exec, ${config.uimaConfig.programs.terminal.executable}"
-          "SUPER, o, exec, app-launcher"
-          # ''SUPER, o, exec, sh -c '[ "$(pgrep -c otter-launcher)" = "0" ] && foot --app-id otter-launcher -T foot otter-launcher' ''
-          "SUPER, b, exec, ${config.uimaConfig.programs.browser.executable}"
-          "SUPER SHIFT, u, exec, notify-send 'Title copied' \"$(clip | xargs fetch-title -m | clip)\""
-
-          "SUPER, n,        exec, ${lib.getExe' noteScratchpad "open-ws-note"}"
-          "SUPER SHIFT, n,  exec, ${lib.getExe' noteScratchpad "open-note"}"
-          "SUPER, t,        exec, ${lib.getExe' termScratchpad "open-ws-term"}"
-          "SUPER SHIFT, t,  exec, ${lib.getExe' termScratchpad "open-term"}"
-          "SUPER, p,        exec, ${lib.getExe' tempScratchpad "open-ws-temp"}"
-          "SUPER SHIFT, p,  exec, ${lib.getExe' tempScratchpad "open-temp"}"
-          "SUPER, m,        exec, ${lib.getExe' musicScratchpad "open-ws-music"}"
-          "SUPER SHIFT, m,  exec, ${lib.getExe' musicScratchpad "open-music"}"
-
-          ",        Print, exec, screenshot full"
-          "Shift,   Print, exec, screenshot cur"
-          "Control, Print, exec, screenshot sel"
-          ", XF86AudioMute,        exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-"
-          ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+"
-          ", XF86AudioPrev, exec, playerctl previous"
-          ", XF86AudioPlay, exec, playerctl play-pause"
-          ", XF86AudioNext, exec, playerctl next"
-          ", XF86MonBrightnessDown, exec, brightnessctl set 3%-"
-          ", XF86MonBrightnessUp,   exec, brightnessctl set +3%"
-        ]
-        ++ (
-          let
-            bindWin = key: ws: [
-              # focus workspace will also close any activated special workspace
-              # ref: https://github.com/hyprwm/Hyprland/issues/7662#issuecomment-2502280786
-              "SUPER, ${key}, togglespecialworkspace, __TEMP"
-              "SUPER, ${key}, togglespecialworkspace, __TEMP"
-              "SUPER, ${key}, focusworkspaceoncurrentmonitor, ${ws}"
-
-              # move window to a workspace and bring that workspace into the focused monitor.
-              # note: with just `movetoworkspace`, if the window is moved to a
-              # workspace on a different monitor, the focus also switches to that
-              # monitor, I don't want that, I want my focus to stay on the
-              # current monitor and current window.
-              "SUPER SHIFT, ${key}, movetoworkspacesilent, ${ws}"
-              "SUPER SHIFT, ${key}, focusworkspaceoncurrentmonitor, ${ws}"
-            ];
-          in
-          (bindWin "1" "1")
-          ++ (bindWin "2" "2")
-          ++ (bindWin "3" "3")
-          ++ (bindWin "4" "4")
-          ++ (bindWin "5" "5")
-          ++ (bindWin "6" "6")
-          ++ (bindWin "7" "7")
-          ++ (bindWin "8" "8")
-          ++ (bindWin "9" "9")
-          ++ (bindWin "x" "1")
-          ++ (bindWin "c" "2")
-          ++ (bindWin "v" "3")
-          ++ (bindWin "s" "4")
-          ++ (bindWin "d" "5")
-          ++ (bindWin "f" "6")
-          ++ (bindWin "w" "7")
-          ++ (bindWin "e" "8")
-          ++ (bindWin "r" "9")
-        );
 
         monitor =
           let
-            mkMonitor =
-              m:
-              let
-                name = m.name;
-                resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
-                position = "auto";
-                scale = "${toString m.scale}";
-              in
-              "${name}, ${resolution}, ${position}, ${scale}";
+            mkMonitor = m: {
+              output = m.name;
+              mode = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
+              position = "auto";
+              scale = m.scale;
+            };
           in
           map mkMonitor config.uimaConfig.desktop.monitors;
       };
+
+      extraConfig = /* lua */ ''
+        -- curves must be defined before animations reference them
+        hl.curve("easeOutCubic", { type = "bezier", points = { { 0.33, 1 }, { 0.68, 1 } } })
+
+        hl.animation({ leaf = "windows", enabled = true, speed = 1, bezier = "easeOutCubic", style = "slide" })
+        hl.animation({ leaf = "layers", enabled = true, speed = 1, bezier = "easeOutCubic", style = "fade" })
+        hl.animation({ leaf = "fade", enabled = true, speed = 2, bezier = "easeOutCubic" })
+        hl.animation({ leaf = "border", enabled = true, speed = 2, bezier = "easeOutCubic" })
+        hl.animation({ leaf = "workspaces", enabled = true, speed = 2, bezier = "easeOutCubic", style = "slide" })
+        hl.animation({ leaf = "monitorAdded", enabled = false })
+
+        -- exec on every reload
+        hl.exec_cmd("hyprctl setcursor HYPRCURSOR_SIZE 22")
+
+        -- exec-once on Hyprland start
+        hl.on("hyprland.start", function() hl.exec_cmd("hypridle") end)
+
+        -- rules
+        hl.workspace_rule({ workspace = "s[true]", gaps_out = 15 })
+        hl.window_rule({ match = { class = "otter-launcher" }, float = true })
+
+        local function scratchpad(opts)
+          local name      = opts.name
+          local spawnCmd  = opts.spawnCmd
+          local className = opts.className
+          local special   = "special:" .. name
+          local winSel    = "class:" .. className
+
+          -- Name of the workspace the scratchpad window currently lives on,
+          -- or nil when it isn't open yet.
+          local function appWsName()
+            local wins = hl.get_windows({ class = className })
+            if wins and wins[1] and wins[1].workspace then
+              return wins[1].workspace.name
+            end
+            return nil
+          end
+
+          -- Toggle as a special workspace.
+          local function openWs()
+            local appWs = appWsName()
+            local curWs = hl.get_active_workspace().name
+            if appWs == nil then
+              -- not opened yet: spawn on the special workspace
+              hl.dispatch(hl.dsp.exec_cmd(spawnCmd, { workspace = special }))
+            elseif appWs == curWs then
+              -- visible on the current workspace: hide it back to special
+              hl.dispatch(hl.dsp.window.move({ workspace = special, follow = false, window = winSel }))
+            elseif appWs == special then
+              -- sitting in the special workspace: toggle its visibility
+              hl.dispatch(hl.dsp.workspace.toggle_special(name))
+            else
+              -- on some other workspace: pull it into the special workspace
+              hl.dispatch(hl.dsp.window.move({ workspace = special, follow = true, window = winSel }))
+            end
+          end
+
+          -- Toggle as a regular window on the current workspace.
+          local function open()
+            local appWs = appWsName()
+            local curWs = hl.get_active_workspace().name
+            if appWs == nil then
+              -- not opened yet: spawn normally
+              hl.dispatch(hl.dsp.exec_cmd(spawnCmd))
+            elseif appWs == curWs then
+              -- visible on the current workspace: hide it to special
+              hl.dispatch(hl.dsp.window.move({ workspace = special, follow = false, window = winSel }))
+            else
+              -- on another workspace: bring it to the current one
+              hl.dispatch(hl.dsp.window.move({ workspace = curWs, follow = true, window = winSel }))
+            end
+          end
+
+          return { openWs = openWs, open = open }
+        end
+
+        local note  = scratchpad({ name = "note",  className = "scratchpad-note",  spawnCmd = [["$TERMINAL" --app-id scratchpad-note -e tmux new-session -A -s notes -c /share/notes $EDITOR inbox.md]] })
+        local temp  = scratchpad({ name = "temp",  className = "scratchpad-temp",  spawnCmd = [["$TERMINAL" --app-id scratchpad-temp -e $EDITOR /share/scratchpad.md]] })
+        local term  = scratchpad({ name = "term",  className = "scratchpad-term",  spawnCmd = [["$TERMINAL" --app-id scratchpad-term]] })
+        local music = scratchpad({ name = "music", className = "scratchpad-music", spawnCmd = [["$TERMINAL" --app-id scratchpad-music -e rmpc]] })
+
+        -- mouse
+        hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
+        hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
+        hl.bind("SUPER + ALT + mouse:272", hl.dsp.window.resize(), { mouse = true })
+
+        hl.bind("SUPER + Q", hl.dsp.window.close())
+
+        hl.bind("SUPER + J", hl.dsp.layout("cyclenext"))
+        hl.bind("SUPER + K", hl.dsp.layout("cycleprev"))
+        hl.bind("SUPER + H", hl.dsp.layout("mfact -0.05"))
+        hl.bind("SUPER + L", hl.dsp.layout("mfact +0.05"))
+
+        hl.bind("SUPER + Space", hl.dsp.layout("swapwithmaster"))
+        hl.bind("SUPER + A", hl.dsp.window.float({ action = "toggle" }))
+        hl.bind("SUPER + SHIFT + A", hl.dsp.window.fullscreen({ mode = "maximized" }))
+        hl.bind("SUPER + CTRL + A", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
+
+        hl.bind("SUPER + SHIFT + B", hl.dsp.exec_cmd("${toggleWaybar}"))
+
+        hl.bind("SUPER + comma", hl.dsp.focus({ monitor = "-1" }))
+        hl.bind("SUPER + period", hl.dsp.focus({ monitor = "+1" }))
+
+        hl.bind("SUPER + Escape", hl.dsp.exec_cmd("power-menu"))
+        hl.bind("SUPER + Return", hl.dsp.exec_cmd("${termExec}"))
+        hl.bind("SUPER + O", hl.dsp.exec_cmd("app-launcher"))
+        -- hl.bind("SUPER + O", hl.dsp.exec_cmd("sh -c '[ $(pgrep -c otter-launcher) = 0 ] && foot --app-id otter-launcher -T foot otter-launcher'"))
+        hl.bind("SUPER + B", hl.dsp.exec_cmd("${browserExec}"))
+        hl.bind("SUPER + SHIFT + U", hl.dsp.exec_cmd("notify-send 'Title copied' \"$(clip | xargs fetch-title -m | clip)\""))
+
+        hl.bind("SUPER + N", note.openWs)
+        hl.bind("SUPER + SHIFT + N", note.open)
+        hl.bind("SUPER + T", term.openWs)
+        hl.bind("SUPER + SHIFT + T", term.open)
+        hl.bind("SUPER + P", temp.openWs)
+        hl.bind("SUPER + SHIFT + P", temp.open)
+        hl.bind("SUPER + M", music.openWs)
+        hl.bind("SUPER + SHIFT + M", music.open)
+
+        hl.bind("Print", hl.dsp.exec_cmd("screenshot full"))
+        hl.bind("SHIFT + Print", hl.dsp.exec_cmd("screenshot cur"))
+        hl.bind("CTRL + Print", hl.dsp.exec_cmd("screenshot sel"))
+
+        hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
+        hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-"))
+        hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+"))
+        hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
+        hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
+        hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"))
+        hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 3%-"))
+        hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set +3%"))
+
+        -- Per-workspace binds.
+        -- Focusing a workspace also closes any activated special workspace:
+        -- https://github.com/hyprwm/Hyprland/issues/7662#issuecomment-2502280786
+        -- Toggling `__TEMP` twice closes any open special workspace, then we
+        -- focus the target workspace on the current monitor.
+        --
+        -- Moving a window to a workspace uses `follow = false` (silent) so focus
+        -- stays on the current monitor/window; we then pull that workspace into
+        -- the current monitor. (With a plain `movetoworkspace`, moving to a
+        -- workspace on another monitor would also move focus there.)
+        for _, entry in ipairs({
+          { key = "1", ws = "1" },
+          { key = "2", ws = "2" },
+          { key = "3", ws = "3" },
+          { key = "4", ws = "4" },
+          { key = "5", ws = "5" },
+          { key = "6", ws = "6" },
+          { key = "7", ws = "7" },
+          { key = "8", ws = "8" },
+          { key = "9", ws = "9" },
+          { key = "x", ws = "1" },
+          { key = "c", ws = "2" },
+          { key = "v", ws = "3" },
+          { key = "s", ws = "4" },
+          { key = "d", ws = "5" },
+          { key = "f", ws = "6" },
+          { key = "w", ws = "7" },
+          { key = "e", ws = "8" },
+          { key = "r", ws = "9" },
+        }) do
+          local key, ws = entry.key, entry.ws
+          hl.bind("SUPER + " .. key, hl.dsp.workspace.toggle_special("__TEMP"))
+          hl.bind("SUPER + " .. key, hl.dsp.workspace.toggle_special("__TEMP"))
+          hl.bind("SUPER + " .. key, hl.dsp.focus({ workspace = ws, on_current_monitor = true }))
+
+          hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = ws, follow = false }))
+          hl.bind("SUPER + SHIFT + " .. key, hl.dsp.focus({ workspace = ws, on_current_monitor = true }))
+        end
+      '';
     };
   };
 }

@@ -174,7 +174,7 @@
         tmux.enable = true;
         qrencode.enable = true;
 
-        aerc.enable = true;
+        # aerc.enable = true;
         neomutt.enable = true;
       };
 

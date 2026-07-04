@@ -27,6 +27,8 @@ in
       directories = [ ".local/state/noctalia" ];
     };
 
+    stylix.targets.noctalia.enable = false;
+
     home.sessionVariables = {
       QS_ICON_THEME = "Papirus-Dark";
     };

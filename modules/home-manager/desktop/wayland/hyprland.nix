@@ -8,13 +8,8 @@ let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.uimaConfig.desktop.wayland.hyprland;
 
-  toggleWaybar = "if systemctl --user is-active --quiet waybar.service; then systemctl --user stop waybar.service; else systemctl --user start waybar.service; fi";
-
   inherit (config.lib.stylix) colors;
   rgb = color: "rgb(${color})";
-
-  termExec = config.uimaConfig.programs.terminal.executable;
-  browserExec = config.uimaConfig.programs.browser.executable;
 in
 {
   options.uimaConfig.desktop.wayland.hyprland = {
@@ -27,11 +22,7 @@ in
       brightnessctl
       playerctl
 
-      scripts.power-menu
-      scripts.app-launcher
-
       scripts.screenshot
-      scripts.vl
     ];
 
     home.shellAliases = {
@@ -126,11 +117,8 @@ in
         hl.animation({ leaf = "workspaces", enabled = true, speed = 2, bezier = "easeOutCubic", style = "slide" })
         hl.animation({ leaf = "monitorAdded", enabled = false })
 
-        -- exec on every reload
-        hl.exec_cmd("hyprctl setcursor HYPRCURSOR_SIZE 22")
-
         -- exec-once on Hyprland start
-        hl.on("hyprland.start", function() hl.exec_cmd("hypridle") end)
+        hl.on("hyprland.start", function() hl.exec_cmd("noctalia") end)
 
         -- rules
         hl.workspace_rule({ workspace = "s[true]", gaps_out = 15 })
@@ -196,11 +184,6 @@ in
         local term  = scratchpad({ name = "term",  className = "scratchpad-term",  spawnCmd = [["$TERMINAL" --app-id scratchpad-term]] })
         local music = scratchpad({ name = "music", className = "scratchpad-music", spawnCmd = [["$TERMINAL" --app-id scratchpad-music -e rmpc]] })
 
-        -- mouse
-        hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
-        hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
-        hl.bind("SUPER + ALT + mouse:272", hl.dsp.window.resize(), { mouse = true })
-
         hl.bind("SUPER + Q", hl.dsp.window.close())
 
         hl.bind("SUPER + J", hl.dsp.layout("cyclenext"))
@@ -213,16 +196,14 @@ in
         hl.bind("SUPER + SHIFT + A", hl.dsp.window.fullscreen({ mode = "maximized" }))
         hl.bind("SUPER + CTRL + A", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
 
-        hl.bind("SUPER + SHIFT + B", hl.dsp.exec_cmd("${toggleWaybar}"))
-
         hl.bind("SUPER + comma", hl.dsp.focus({ monitor = "-1" }))
         hl.bind("SUPER + period", hl.dsp.focus({ monitor = "+1" }))
 
-        hl.bind("SUPER + Escape", hl.dsp.exec_cmd("power-menu"))
-        hl.bind("SUPER + Return", hl.dsp.exec_cmd("${termExec}"))
-        hl.bind("SUPER + O", hl.dsp.exec_cmd("app-launcher"))
-        -- hl.bind("SUPER + O", hl.dsp.exec_cmd("sh -c '[ $(pgrep -c otter-launcher) = 0 ] && foot --app-id otter-launcher -T foot otter-launcher'"))
-        hl.bind("SUPER + B", hl.dsp.exec_cmd("${browserExec}"))
+        hl.bind("SUPER + Return", hl.dsp.exec_cmd("${config.uimaConfig.programs.terminal.executable}"))
+        hl.bind("SUPER + B", hl.dsp.exec_cmd("${config.uimaConfig.programs.browser.executable}"))
+        hl.bind("SUPER + O", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
+        hl.bind("SUPER + Escape", hl.dsp.exec_cmd("noctalia msg panel-toggle session"))
+
         hl.bind("SUPER + SHIFT + U", hl.dsp.exec_cmd("notify-send 'Title copied' \"$(clip | xargs fetch-title -m | clip)\""))
 
         hl.bind("SUPER + N", note.openWs)
@@ -238,14 +219,23 @@ in
         hl.bind("SHIFT + Print", hl.dsp.exec_cmd("screenshot cur"))
         hl.bind("CTRL + Print", hl.dsp.exec_cmd("screenshot sel"))
 
-        hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
-        hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-"))
-        hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+"))
-        hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
-        hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
-        hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"))
-        hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 3%-"))
-        hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set +3%"))
+        hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("noctalia msg volume-up"))
+        hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("noctalia msg volume-down"))
+        hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("noctalia msg volume-mute"))
+        hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("noctalia msg mic-mute"))
+
+        hl.bind("XF86AudioPlay",        hl.dsp.exec_cmd("noctalia msg media toggle"))
+        hl.bind("XF86AudioStop",        hl.dsp.exec_cmd("noctalia msg media stop"))
+        hl.bind("XF86AudioPrev",        hl.dsp.exec_cmd("noctalia msg media previous"))
+        hl.bind("XF86AudioNext",        hl.dsp.exec_cmd("noctalia msg media next"))
+
+        hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("noctalia msg brightness-up"))
+        hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("noctalia msg brightness-down"))
+
+        -- mouse
+        hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
+        hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
+        hl.bind("SUPER + ALT + mouse:272", hl.dsp.window.resize(), { mouse = true })
 
         -- Per-workspace binds.
         -- Focusing a workspace also closes any activated special workspace:
@@ -284,6 +274,10 @@ in
 
           hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = ws, follow = false }))
           hl.bind("SUPER + SHIFT + " .. key, hl.dsp.focus({ workspace = ws, on_current_monitor = true }))
+        end
+
+        for i = 1, 9 do
+          hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1", persistent = true })
         end
       '';
     };

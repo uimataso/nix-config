@@ -101,8 +101,7 @@
 
       wayland = {
         hyprland.enable = true;
-        dunst.enable = true;
-        waybar.enable = true;
+        noctalia.enable = true;
       };
 
       monitors = [

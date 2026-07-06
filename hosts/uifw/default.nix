@@ -30,7 +30,7 @@
 
   system.stateVersion = "23.11";
 
-  boot.kernelPackages = pkgs.linuxPackages_7_0;
+  boot.kernelPackages = pkgs.linuxPackages_7_1;
 
   networking.hostName = "uifw";
   time.timeZone = "Asia/Taipei";

@@ -116,9 +116,6 @@ in
       };
 
       extraConfig = /* lua */ ''
-        hl.env("HYPRCURSOR_THEME", "${config.stylix.cursor.name}")
-        hl.env("HYPRCURSOR_SIZE", "32")
-
         -- curves must be defined before animations reference them
         hl.curve("easeOutCubic", { type = "bezier", points = { { 0.33, 1 }, { 0.68, 1 } } })
 
@@ -130,10 +127,7 @@ in
         hl.animation({ leaf = "monitorAdded", enabled = false })
 
         -- exec on every reload
-        hl.exec_cmd("hyprctl setcursor HYPRCURSOR_SIZE 22")
-
-        -- exec-once on Hyprland start
-        hl.on("hyprland.start", function() hl.exec_cmd("hypridle") end)
+        hl.exec_cmd("hyprctl setcursor ${config.stylix.cursor.name} 22")
 
         -- rules
         hl.workspace_rule({ workspace = "s[true]", gaps_out = 15 })

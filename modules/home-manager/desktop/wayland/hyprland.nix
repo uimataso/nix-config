@@ -126,8 +126,9 @@ in
         hl.animation({ leaf = "workspaces", enabled = true, speed = 2, bezier = "easeOutCubic", style = "slide" })
         hl.animation({ leaf = "monitorAdded", enabled = false })
 
-        -- exec on every reload
-        hl.exec_cmd("hyprctl setcursor ${config.stylix.cursor.name} 22")
+        hl.on("hyprland.start", function()
+          hl.exec_cmd("hyprctl setcursor ${config.stylix.cursor.name} 22")
+        end)
 
         -- rules
         hl.workspace_rule({ workspace = "s[true]", gaps_out = 15 })

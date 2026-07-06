@@ -107,6 +107,9 @@ in
       };
 
       extraConfig = /* lua */ ''
+        hl.env("HYPRCURSOR_THEME", "${config.stylix.cursor.name}")
+        hl.env("HYPRCURSOR_SIZE", "32")
+
         -- curves must be defined before animations reference them
         hl.curve("easeOutCubic", { type = "bezier", points = { { 0.33, 1 }, { 0.68, 1 } } })
 
@@ -274,10 +277,6 @@ in
 
           hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = ws, follow = false }))
           hl.bind("SUPER + SHIFT + " .. key, hl.dsp.focus({ workspace = ws, on_current_monitor = true }))
-        end
-
-        for i = 1, 9 do
-          hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1", persistent = true })
         end
       '';
     };

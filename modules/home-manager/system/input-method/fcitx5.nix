@@ -78,7 +78,7 @@ in
         };
 
         "Hotkey/TriggerKeys"."0" = "Control+Alt+Shift+I";
-        "Hotkey/TriggerKeys"."1" = "Super+P";
+        "Hotkey/TriggerKeys"."1" = "Super+I";
         "Hotkey/PrevPage"."0" = "Up";
         "Hotkey/NextPage"."0" = "Down";
         "Hotkey/PrevCandidate"."0" = "Shift+Tab";

@@ -55,6 +55,8 @@ in
     programs.tmux = {
       enable = true;
 
+      prefix = "M-b";
+
       escapeTime = 10;
       baseIndex = 1;
       mouse = true;

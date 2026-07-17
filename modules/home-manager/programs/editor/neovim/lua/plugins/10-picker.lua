@@ -8,6 +8,11 @@ require('fzf-lua').setup({
   },
   -- TODO: tweak color
   fzf_colors = {},
+  keymap = {
+    fzf = {
+      ['ctrl-q'] = 'select-all+accept',
+    },
+  },
 })
 
 vim.keymap.set('n', '=', '<leader>ff', { remap = true })

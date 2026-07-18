@@ -186,6 +186,8 @@
 
         rmpc.enable = true;
 
+        qbittorrent.enable = true;
+
         # thunderbird.enable = true;
 
         # prusaSlicer.enable = true;

@@ -82,6 +82,8 @@
 
           ".local/share/Steam"
           ".local/share/Terraria"
+
+          ".local/share/wineprefixes/nsui"
         ];
       };
 

@@ -29,6 +29,23 @@ require('gitsigns').setup({
   current_line_blame_formatter = '     <author>, <author_time:%R> - <summary>',
 })
 
+-- Remember the file that was open so the next `DiffviewOpen` can jump
+-- straight back to it, then close for real (no tab left lingering around).
+local dv_last_file = nil
+
+local function hide_dv()
+  local view = require('diffview.lib').get_current_view()
+  if not view then
+    return
+  end
+
+  if view.cur_entry then
+    dv_last_file = view.cur_entry.absolute_path or view.cur_entry.path
+  end
+
+  vim.cmd('DiffviewClose')
+end
+
 require('diffview').setup({
   show_help_hints = false,
   enhanced_diff_hl = true,
@@ -42,13 +59,13 @@ require('diffview').setup({
 
   keymaps = {
     view = {
-      { 'n', 'q', '<Cmd>DiffviewClose<CR>' },
+      { 'n', 'q', hide_dv },
     },
     file_panel = {
-      { 'n', 'q', '<Cmd>DiffviewClose<CR>' },
+      { 'n', 'q', hide_dv },
     },
     file_history_panel = {
-      { 'n', 'q', '<Cmd>DiffviewClose<CR>' },
+      { 'n', 'q', hide_dv },
     },
   },
 
@@ -83,10 +100,16 @@ require('diffview').setup({
 
 local function toggle_dv(cmd)
   return function()
-    if next(require('diffview.lib').views) == nil then
-      vim.cmd(cmd)
+    if require('diffview.lib').get_current_view() then
+      hide_dv()
     else
-      vim.cmd('DiffviewClose')
+      local open_cmd = cmd
+      -- `--selected-file` is only recognized by `DiffviewOpen`; harmless
+      -- no-op if the remembered path isn't part of this view's file list.
+      if dv_last_file and cmd:match('^DiffviewOpen') then
+        open_cmd = cmd .. ' --selected-file=' .. vim.fn.fnameescape(dv_last_file)
+      end
+      vim.cmd(open_cmd)
     end
   end
 end

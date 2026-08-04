@@ -182,7 +182,7 @@
       };
 
       misc = {
-        anki.enable = true;
+        # anki.enable = true;
         discord.enable = true;
         zathura.enable = true;
 

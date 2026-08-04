@@ -52,9 +52,7 @@ in
 
           panel = {
             borders = false;
-            launcher_categories = false;
             open_near_click_control_center = true;
-            session_placement = "centered";
           };
         };
 
@@ -103,9 +101,9 @@ in
         widget = {
           clock.font_weight = 700;
 
-          cpu.show_label = false;
-          ram.show_label = false;
-          temp.show_label = false;
+          cpu.show_value = false;
+          ram.show_value = false;
+          temp.show_value = false;
           network.show_label = false;
           volume.show_label = false;
 
@@ -116,7 +114,7 @@ in
           spacer_2.type = "spacer";
 
           workspaces = {
-            display = "none";
+            show_labels = false;
             empty_color = "tertiary";
           };
           taskbar = {

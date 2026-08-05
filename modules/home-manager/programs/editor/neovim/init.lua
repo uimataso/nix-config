@@ -21,7 +21,6 @@ require('configs.find')
 require('configs.project')
 require('configs.treesitter')
 require('configs.lsp')
-require('configs.prompt')
 
 -- only works for .config/nvim/lua
 local require_dir = function(dir)

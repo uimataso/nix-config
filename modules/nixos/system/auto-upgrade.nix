@@ -33,7 +33,7 @@ in
   config = mkIf cfg.enable {
     system.autoUpgrade = {
       enable = true;
-      dates = "*-*-* 00/2:00:00"; # Every two hours
+      dates = "*-*-* 00/4:00:00"; # Every 4 hours
       flake = cfg.flake;
       allowReboot = cfg.allowReboot;
     };

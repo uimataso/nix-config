@@ -278,15 +278,6 @@ in
           hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = ws, follow = false }))
           hl.bind("SUPER + SHIFT + " .. key, hl.dsp.focus({ workspace = ws, on_current_monitor = true }))
         end
-
-        local monitors = { "eDP-1" }
-        local workspaces = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
-
-        for _, mon in ipairs(monitors) do
-          for _, ws in ipairs(workspaces) do
-            hl.workspace_rule({ workspace = ws, monitor = mon, persistent = true })
-          end
-        end
       '';
     };
   };

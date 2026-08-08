@@ -31,9 +31,9 @@ in
           showBottomLine = false;
         };
         git = {
-          pagers = [
+          diffRenderers = [
             {
-              pager = "delta --dark --paging=never";
+              command = "delta --dark --paging=never";
               colorArg = "always";
             }
           ];

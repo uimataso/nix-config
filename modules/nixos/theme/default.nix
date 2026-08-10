@@ -52,7 +52,7 @@ in
           applications = 11;
           desktop = 10;
           popups = 10;
-          terminal = 10.5;
+          terminal = 11;
         };
       };
 

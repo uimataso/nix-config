@@ -32,6 +32,7 @@
     mermaid-cli
     hyperfine
     natscli
+    wireshark
 
     anydesk
     libreoffice

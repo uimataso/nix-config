@@ -198,6 +198,10 @@
     "wayfinder.nvim": {
       "rev": "33841c6f4aa47297e5629456c42f5cf036257d01",
       "src": "https://github.com/error311/wayfinder.nvim"
+    },
+    "which-key.nvim": {
+      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
+      "src": "https://github.com/folke/which-key.nvim"
     }
   }
 }

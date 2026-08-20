@@ -8,9 +8,11 @@ require('which-key').setup({
     { '<leader>c', mode = { 'n', 'x' } },
     { '<leader>a', mode = 'x' },
     { '<C-d>', mode = 'i' },
+    { '<C-g>', mode = 'i' },
   },
   spec = {
     { '<C-d>', mode = 'i', group = 'insert date/time' },
+    { '<C-g>', mode = 'i', group = 'insert misc' },
     { '<leader>a', mode = 'x', group = 'align' },
     { '<leader>c', mode = { 'n', 'x' }, group = 'text-case' },
     { '<leader>co', mode = 'n', group = 'operator' },

@@ -28,7 +28,36 @@ vim.keymap.set('i', '<Home>', '<C-o>0')
 vim.keymap.set('i', '<End>', '<C-o>$')
 vim.keymap.set('i', '<C-l>', '<C-o><cmd>nohlsearch<cr>')
 
--- Insert current date/time
+-- Quick insert value in insert mode
+local function register_insert_value_keymaps(prefix, entries)
+  local label_width = 0
+  for _, e in ipairs(entries) do
+    label_width = math.max(label_width, #e.label)
+  end
+
+  local example_width = 30
+
+  return function()
+    for _, e in ipairs(entries) do
+      local padded_label = e.label .. string.rep(' ', label_width - #e.label)
+      local example = e.value()
+      if #example > example_width then
+        example = example:sub(1, example_width - 1) .. '…'
+      end
+      local desc = padded_label .. ' ' .. example
+      vim.keymap.set('i', prefix .. e.key, e.value, { expr = true, desc = desc })
+      -- hidden from which-key: same action as the plain-letter mapping above
+      vim.keymap.set(
+        'i',
+        prefix .. '<c-' .. e.key .. '>',
+        e.value,
+        { expr = true, desc = 'which_key_ignore' }
+      )
+    end
+  end
+end
+
+-- Date/time, prefix: <C-d> ("date")
 local function iso_offset()
   local date = os.date('%Y-%m-%dT%H:%M:%S')
   local sign, hh, mm = os.date('%z'):match('([%+%-])(%d%d)(%d%d)')
@@ -50,27 +79,48 @@ local datetime_keys = {
 }
 -- stylua: ignore end
 
-local datetime_label_width = 0
-for _, d in ipairs(datetime_keys) do
-  datetime_label_width = math.max(datetime_label_width, #d.label)
+-- Misc values, prefix: <C-g> ("generate")
+local function uuid4()
+  local bit = require('bit')
+  local bytes = { vim.uv.random(16):byte(1, 16) }
+  bytes[7] = bit.bor(bit.band(bytes[7], 0x0f), 0x40) -- version 4
+  bytes[9] = bit.bor(bit.band(bytes[9], 0x3f), 0x80) -- variant 10xx
+  return string.format(
+    '%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x',
+    unpack(bytes)
+  )
 end
 
--- desc is "<label> <live example>", labels padded to the same width so the
--- example values line up; refreshed on InsertEnter to stay close to "now"
-local function set_datetime_keymaps()
-  for _, d in ipairs(datetime_keys) do
-    local padded_label = d.label .. string.rep(' ', datetime_label_width - #d.label)
-    local desc = padded_label .. ' ' .. d.value()
-    local ctrl_key = '<c-' .. d.key .. '>'
-    vim.keymap.set('i', '<C-d>' .. d.key, d.value, { expr = true, desc = desc })
-    -- hidden from which-key: same action as the plain-letter mapping above
-    vim.keymap.set('i', '<C-d>' .. ctrl_key, d.value, { expr = true, desc = 'which_key_ignore' })
+local function random_hex(nbytes)
+  return function()
+    local bytes = vim.uv.random(nbytes)
+    local hex = {}
+    for i = 1, #bytes do
+      hex[i] = string.format('%02x', bytes:byte(i))
+    end
+    return table.concat(hex)
   end
 end
 
-set_datetime_keymaps()
-ag('uima/DatetimeKeymapDesc', function(au)
-  au('InsertEnter', { callback = set_datetime_keymaps })
+-- stylua: ignore start
+local misc_insert_keys = {
+  { key = 'g', label = 'uuid', value = uuid4 }, -- g for "guid"
+  { key = 'r', label = 'hex32', value = random_hex(32) }, -- r for "rand", like `openssl rand -hex 32`
+}
+-- stylua: ignore end
+
+local refresh_datetime_keymaps = register_insert_value_keymaps('<C-d>', datetime_keys)
+local refresh_misc_insert_keymaps = register_insert_value_keymaps('<C-g>', misc_insert_keys)
+
+refresh_datetime_keymaps()
+refresh_misc_insert_keymaps()
+ag('uima/InsertValueKeymapDesc', function(au)
+  au('InsertEnter', {
+    callback = function()
+      refresh_datetime_keymaps()
+      refresh_misc_insert_keymaps()
+    end,
+  })
 end)
 
 ----------------

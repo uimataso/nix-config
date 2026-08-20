@@ -28,6 +28,51 @@ vim.keymap.set('i', '<Home>', '<C-o>0')
 vim.keymap.set('i', '<End>', '<C-o>$')
 vim.keymap.set('i', '<C-l>', '<C-o><cmd>nohlsearch<cr>')
 
+-- Insert current date/time
+local function iso_offset()
+  local date = os.date('%Y-%m-%dT%H:%M:%S')
+  local sign, hh, mm = os.date('%z'):match('([%+%-])(%d%d)(%d%d)')
+  return date .. sign .. hh .. ':' .. mm
+end
+
+-- stylua: ignore start
+local datetime_keys = {
+  { key = 't', label = 'datetime', value = function() return os.date('%Y-%m-%d %H:%M:%S') end },
+  { key = 'd', label = 'date', value = function() return os.date('%Y-%m-%d') end },
+  { key = 'c', label = 'time', value = function() return os.date('%H:%M:%S') end },
+  { key = 'f', label = 'filename', value = function() return os.date('%Y-%m-%d_%H-%M-%S') end },
+  { key = 'z', label = 'ISO utc', value = function() return os.date('!%Y-%m-%dT%H:%M:%SZ') end }, -- ISO 8601 UTC ("Zulu")
+  { key = 'o', label = 'ISO offset', value = iso_offset }, -- RFC 3339 with UTC offset
+  { key = 'u', label = 'unix', value = function() return tostring(os.time()) end }, -- unix timestamp
+  { key = 'x', label = 'compact', value = function() return os.date('%Y%m%d') end }, -- compact date
+  { key = 'e', label = 'rfc2822', value = function() return os.date('%a, %d %b %Y %H:%M:%S %z') end }, -- RFC 2822
+  { key = 's', label = 'slash', value = function() return os.date('%Y/%m/%d') end }, -- slash date, ISO order
+}
+-- stylua: ignore end
+
+local datetime_label_width = 0
+for _, d in ipairs(datetime_keys) do
+  datetime_label_width = math.max(datetime_label_width, #d.label)
+end
+
+-- desc is "<label> <live example>", labels padded to the same width so the
+-- example values line up; refreshed on InsertEnter to stay close to "now"
+local function set_datetime_keymaps()
+  for _, d in ipairs(datetime_keys) do
+    local padded_label = d.label .. string.rep(' ', datetime_label_width - #d.label)
+    local desc = padded_label .. ' ' .. d.value()
+    local ctrl_key = '<c-' .. d.key .. '>'
+    vim.keymap.set('i', '<C-d>' .. d.key, d.value, { expr = true, desc = desc })
+    -- hidden from which-key: same action as the plain-letter mapping above
+    vim.keymap.set('i', '<C-d>' .. ctrl_key, d.value, { expr = true, desc = 'which_key_ignore' })
+  end
+end
+
+set_datetime_keymaps()
+ag('uima/DatetimeKeymapDesc', function(au)
+  au('InsertEnter', { callback = set_datetime_keymaps })
+end)
+
 ----------------
 -- [TERMINAL] --
 ----------------

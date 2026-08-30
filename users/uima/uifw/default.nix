@@ -30,12 +30,7 @@
 
     obsidian
 
-    xh
-    hurl
-    bruno
-
     presenterm
-    mermaid-cli
     hyperfine
     bandwhich
 
@@ -178,19 +173,14 @@
         qrencode.enable = true;
 
         # aerc.enable = true;
-        neomutt.enable = true;
+        # neomutt.enable = true;
       };
 
       misc = {
         # anki.enable = true;
-        discord.enable = true;
         zathura.enable = true;
-
         rmpc.enable = true;
-
         qbittorrent.enable = true;
-
-        # thunderbird.enable = true;
 
         # prusaSlicer.enable = true;
         # kicad.enable = true;

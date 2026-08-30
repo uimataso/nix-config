@@ -26,10 +26,7 @@
     scripts._0x0
     scripts.py
 
-    xh
-    hurl
     presenterm
-    mermaid-cli
     hyperfine
     natscli
     wireshark

@@ -10,9 +10,9 @@ writePython3Bin "tmux-popup"
     TMUX_BIN = "${tmux}/bin/tmux"
 
 
-    def tmux(*args):
+    def tmux(*args, timeout=10):
         return subprocess.run(
-            [TMUX_BIN, *args], capture_output=True, text=True, timeout=10
+            [TMUX_BIN, *args], capture_output=True, text=True, timeout=timeout
         )
 
 
@@ -95,7 +95,8 @@ writePython3Bin "tmux-popup"
             tmux_set("@popup-root-client", cur_client)
             tmux_set("@popup-target", target_id)
             tmux("display-popup", "-t", cur_client, "-xC", "-yC",
-                 f"-w{args.width}%", f"-h{args.height}%", "-E", attach_inner)
+                 f"-w{args.width}%", f"-h{args.height}%", "-E", attach_inner,
+                 timeout=None)
         elif cur_target == target_id:
             # Toggle off: clear state before detach, which may kill this run-shell.
             tmux_unset("@popup-root-client")

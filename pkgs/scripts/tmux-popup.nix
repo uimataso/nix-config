@@ -20,17 +20,44 @@ writePython3Bin "tmux-popup"
         return tmux(*args).stdout.strip()
 
 
-    def tmux_opt(name):
-        r = tmux("show-options", "-g", "-v", name)
+    def has_session(name):
+        return tmux("has-session", "-t", name).returncode == 0
+
+
+    def session_of(client):
+        for line in tmux_out(
+            "list-clients", "-F", "#{client_name}\t#{client_session}"
+        ).splitlines():
+            if "\t" in line:
+                n, s = line.split("\t", 1)
+                if n == client:
+                    return s
+        return ""
+
+
+    def active_window(sess):
+        for line in tmux_out(
+            "list-windows", "-t", sess, "-F", "#{window_active}#{window_name}"
+        ).splitlines():
+            if line.startswith("1"):
+                return line[1:]
+        return ""
+
+
+    def attached_client(sess):
+        out = tmux_out(
+            "list-clients", "-t", sess, "-F", "#{client_name}"
+        ).splitlines()
+        return out[0] if out else None
+
+
+    def sess_opt(sess, name):
+        r = tmux("show-options", "-t", sess, "-v", name)
         return r.stdout.strip() if r.returncode == 0 and r.stdout.strip() else None
 
 
-    def tmux_set(name, value):
-        tmux("set-option", "-g", name, value)
-
-
-    def tmux_unset(name):
-        tmux("set-option", "-g", "-u", name)
+    def set_sess_opt(sess, name, value):
+        tmux("set-option", "-t", sess, name, value)
 
 
     def main():
@@ -38,10 +65,13 @@ writePython3Bin "tmux-popup"
             print("not in the tmux", file=sys.stderr)
             sys.exit(1)
 
-        # One popup, one state. A key for a different target repoints the single
-        # popup client to it; the same target toggles it off.
+        # Per-terminal popups, no global state. Each terminal's popup lives in a
+        # session named "<root_session>_popup"; global scratchpads (session
+        # subcommand) carry an @popup-kind marker so they are recognised as
+        # popup targets too. Detection is purely by the current client's
+        # session, so multiple terminals each get their own popup.
         #   session <name> [-c workdir] [cmd...]   persistent global session
-        #   window  <name> [-c workdir] [cmd...]   window in this session's popup
+        #   window  <name> [-c workdir] [cmd...]   window in <base>_popup
         parser = argparse.ArgumentParser(prog="tmux-popup", add_help=False)
         sub = parser.add_subparsers(dest="kind", required=True)
         for kind in ("session", "window"):
@@ -56,59 +86,93 @@ writePython3Bin "tmux-popup"
         args = parser.parse_args()
 
         cmd = args.cmd or [os.environ.get("SHELL", "bash")]
-        cur_client = tmux_out("display-message", "-p", "-F#{client_name}")
-        root_client = tmux_opt("@popup-root-client")
-        cur_target = tmux_opt("@popup-target")
-        popup_open = bool(root_client) and cur_client != root_client
-        target_id = f"{args.kind}:{args.name}"
+        cur = tmux_out("display-message", "-p", "-F#{client_name}")
+        cur_sess = session_of(cur)
+        base = cur_sess[:-6] if cur_sess.endswith("_popup") else ""
+        in_window = bool(base)
+        in_global = bool(
+            has_session(cur_sess) and sess_opt(cur_sess, "@popup-kind")
+        )
 
-        if args.kind == "session":
-            workdir = args.workdir or os.path.expanduser("~")
-            if tmux("has-session", "-t", args.name).returncode != 0:
-                tmux("new-session", "-d", "-s", args.name, "-c", workdir, *cmd)
-            attach_inner = f"tmux attach-session -t {args.name}"
-        else:
-            workdir = args.workdir
-            root_for = root_client if popup_open else cur_client
-            root_session = tmux_out(
-                "display-message", "-p", "-t", root_for, "-F#{session_name}"
+        def workdir_of(root_client):
+            w = args.workdir
+            if w is not None:
+                return w
+            c = root_client if root_client else cur
+            p = tmux_out(
+                "display-message", "-p", "-t", c, "-F#{pane_current_path}"
             )
-            ps = args.popup_session or f"{root_session}_popup"
-            if workdir is None:
-                workdir = tmux_out(
-                    "display-message", "-p", "-t", root_for,
-                    "-F#{pane_current_path}"
-                )
-            wins = []
-            if tmux("has-session", "-t", ps).returncode == 0:
-                wins = tmux_out("list-windows", "-t", ps,
-                                "-F", "#{window_name}").splitlines()
-            if not wins:
-                tmux("new-session", "-d", "-s", ps, "-n",
-                     args.name, "-c", workdir, *cmd)
-            elif args.name not in wins:
-                tmux("new-window", "-t", ps, "-n", args.name, "-c", workdir, *cmd)
-            tmux("select-window", "-t", f"{ps}:{args.name}")
-            attach_inner = f"tmux attach-session -t {ps}"
+            return p or os.path.expanduser("~")
 
-        if not popup_open:
-            tmux_set("@popup-root-client", cur_client)
-            tmux_set("@popup-target", target_id)
-            tmux("display-popup", "-t", cur_client, "-xC", "-yC",
-                 f"-w{args.width}%", f"-h{args.height}%", "-E", attach_inner,
-                 timeout=None)
-        elif cur_target == target_id:
-            # Toggle off: clear state before detach, which may kill this run-shell.
-            tmux_unset("@popup-root-client")
-            tmux_unset("@popup-target")
-            tmux("detach-client", "-t", cur_client)
-        else:
-            if args.kind == "session":
-                tmux("switch-client", "-c", cur_client, "-t", args.name)
+        def ensure_window(ps, root_client):
+            wd = workdir_of(root_client)
+            if has_session(ps):
+                wins = tmux_out(
+                    "list-windows", "-t", ps, "-F", "#{window_name}"
+                ).splitlines()
+                if args.name not in wins:
+                    tmux("new-window", "-t", ps, "-n", args.name,
+                         "-c", wd, *cmd)
             else:
-                tmux("switch-client", "-c", cur_client, "-t", ps)
+                tmux("new-session", "-d", "-s", ps, "-n",
+                     args.name, "-c", wd, *cmd)
+            tmux("select-window", "-t", f"{ps}:{args.name}")
+
+        def ensure_session(name, root_base):
+            if not has_session(name):
+                wd = args.workdir or os.path.expanduser("~")
+                tmux("new-session", "-d", "-s", name, "-c", wd, *cmd)
+            set_sess_opt(name, "@popup-kind", "session")
+            if root_base:
+                set_sess_opt(name, "@popup-base", root_base)
+
+        def popup(cmd_str):
+            tmux("display-popup", "-t", cur, "-xC", "-yC",
+                 f"-w{args.width}%", f"-h{args.height}%", "-E", cmd_str,
+                 timeout=None)
+
+        # --- inside a window popup (<base>_popup) ---
+        if in_window:
+            ps = cur_sess
+            if args.kind == "window":
+                if active_window(ps) == args.name:
+                    tmux("detach-client", "-t", cur)
+                else:
+                    ensure_window(ps, attached_client(base))
+                    tmux("select-window", "-t", f"{ps}:{args.name}")
+            else:
+                ensure_session(args.name, base)
+                tmux("switch-client", "-c", cur, "-t", args.name)
+            return
+
+        # --- inside a global scratchpad session ---
+        if in_global:
+            if args.kind == "session":
+                if args.name == cur_sess:
+                    tmux("detach-client", "-t", cur)
+                else:
+                    carry = sess_opt(cur_sess, "@popup-base") or ""
+                    ensure_session(args.name, carry)
+                    tmux("switch-client", "-c", cur, "-t", args.name)
+            else:
+                b = sess_opt(cur_sess, "@popup-base")
+                if not b:
+                    tmux("detach-client", "-t", cur)
+                    return
+                ps = f"{b}_popup"
+                ensure_window(ps, attached_client(b))
+                tmux("switch-client", "-c", cur, "-t", ps)
                 tmux("select-window", "-t", f"{ps}:{args.name}")
-            tmux_set("@popup-target", target_id)
+            return
+
+        # --- at a root terminal: open a popup on this client ---
+        if args.kind == "window":
+            ps = args.popup_session or f"{cur_sess}_popup"
+            ensure_window(ps, cur)
+            popup(f"tmux attach-session -t {ps}")
+        else:
+            ensure_session(args.name, cur_sess)
+            popup(f"tmux attach-session -t {args.name}")
 
 
     main()

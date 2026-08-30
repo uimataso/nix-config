@@ -40,9 +40,9 @@ in
 
     # Tmux
     tmux-select-sessions = mkScript ./tmux-select-sessions.nix;
-    tmux-toggle-popup = mkScript ./tmux-toggle-popup.nix;
     tmux-toggle-split = mkScript ./tmux-toggle-split.nix;
     tmux-toggle-window = mkScript ./tmux-toggle-window.nix;
+    tmux-popup = mkScriptWith ./tmux-popup.nix { writePython3Bin = pkgs.writers.writePython3Bin; inherit (pkgs) tmux; };
 
     # Desktop
     fmenu = mkScript ./fmenu.nix;

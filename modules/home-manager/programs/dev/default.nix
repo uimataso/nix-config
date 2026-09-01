@@ -11,6 +11,7 @@
     ./k8s.nix
     ./lazydocker.nix
     ./lazygit.nix
+    ./lazyjournal.nix
     ./opencode.nix
     ./pi-coding-agent.nix
     ./podman.nix

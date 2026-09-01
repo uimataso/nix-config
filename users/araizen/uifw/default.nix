@@ -32,7 +32,6 @@
     wireshark
 
     anydesk
-    libreoffice
 
     gcc
     python3
@@ -187,6 +186,7 @@
         zathura.enable = true;
         thunderbird.enable = true;
         hoppscotch.enable = true;
+        libreoffice.enable = true;
 
         rmpc.enable = true;
       };

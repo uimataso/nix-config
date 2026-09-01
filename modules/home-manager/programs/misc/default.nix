@@ -8,6 +8,7 @@
     ./freecad.nix
     ./hoppscotch.nix
     ./kicad.nix
+    ./libreoffice.nix
     ./openscad.nix
     ./protonmail.nix
     ./prusa-slicer.nix

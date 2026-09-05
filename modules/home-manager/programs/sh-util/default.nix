@@ -22,6 +22,7 @@ in
     ./qrencode.nix
     ./tealdeer.nix
     ./tmux.nix
+    ./yazi.nix
   ];
 
   options.uimaConfig.programs.sh-util = {

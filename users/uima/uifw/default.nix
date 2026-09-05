@@ -172,6 +172,7 @@
         tmux.enable = true;
         herdr.enable = true;
         qrencode.enable = true;
+        yazi.enable = true;
 
         # aerc.enable = true;
         # neomutt.enable = true;

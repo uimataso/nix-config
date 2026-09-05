@@ -13,7 +13,7 @@
   nixpkgs.overlays = [ inputs.rust-overlay.overlays.default ];
 
   home.packages = with pkgs; [
-    qmk
+    pkgs-stable.qmk
     restic
 
     nsxiv

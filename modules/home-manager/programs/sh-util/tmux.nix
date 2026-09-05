@@ -16,7 +16,6 @@ let
 
   exe-select-sessions = getExe pkgs.scripts.tmux-select-sessions;
   exe-popup = getExe pkgs.scripts.tmux-popup;
-  exe-toggle-split = getExe pkgs.scripts.tmux-toggle-split;
 in
 {
   options.uimaConfig.programs.sh-util.tmux = {
@@ -145,8 +144,10 @@ in
 
         # don't leave copy mode after selection
         # ref: https://www.reddit.com/r/tmux/comments/v73005/comment/kp8fexc/
-        bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-selection 'pbcopy'
-        # bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-selection-no-clear 'pbcopy'
+        # use `copy-pipe` (not `copy-selection`) so the selection is piped to the
+        # system clipboard, mirroring the `y` binding; keeps copy mode open.
+        bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe clip
+        # bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-no-clear clip
 
         # ref: https://jyn.dev/how-i-use-my-terminal/
         bind -T copy-mode-vi o   send-keys -X copy-pipe \

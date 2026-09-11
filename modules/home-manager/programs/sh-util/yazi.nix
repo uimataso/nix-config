@@ -5,12 +5,23 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkOption
+    types
+    ;
   cfg = config.uimaConfig.programs.sh-util.yazi;
 in
 {
   options.uimaConfig.programs.sh-util.yazi = {
     enable = mkEnableOption "yazi";
+
+    asFileChooser = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Use yazi as file chooser";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -41,7 +52,7 @@ in
         };
     };
 
-    xdg = {
+    xdg = mkIf cfg.asFileChooser {
       portal = {
         extraPortals = with pkgs; [
           xdg-desktop-portal-termfilechooser

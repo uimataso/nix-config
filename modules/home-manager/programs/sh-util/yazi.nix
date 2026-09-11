@@ -43,10 +43,6 @@ in
 
     xdg = {
       portal = {
-        # TODO: maybe set this enable in yazi is not good
-        enable = true;
-        xdgOpenUsePortal = true;
-
         extraPortals = with pkgs; [
           xdg-desktop-portal-termfilechooser
         ];

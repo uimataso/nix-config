@@ -52,11 +52,5 @@ in
     uimaConfig.theme.enable = true;
     # Enable ssh by default
     uimaConfig.system.openssh.enable = mkDefault true;
-
-    # Home xdg portal
-    environment.pathsToLink = [
-      "/share/xdg-desktop-portal"
-      "/share/applications"
-    ];
   };
 }

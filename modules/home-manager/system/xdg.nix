@@ -29,6 +29,10 @@ in
   config = mkIf cfg.enable {
     xdg.enable = true;
     xdg.mimeApps.enable = true;
+    xdg.portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+    };
 
     home.preferXdgDirectories = true;
     nix.settings.use-xdg-base-directories = true;

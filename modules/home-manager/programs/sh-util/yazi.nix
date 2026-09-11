@@ -16,7 +16,28 @@ in
     programs.yazi = {
       enable = true;
 
-      shellWrapperName = "y";
+      shellWrapperName = "f";
+
+      theme =
+        let
+          square = {
+            open = "▐";
+            close = "▌";
+          };
+        in
+        {
+          indicator = {
+            padding = square;
+          };
+          tabs = {
+            sep_inner = square;
+            sep_outer = square;
+          };
+          status = {
+            sep_left = square;
+            sep_right = square;
+          };
+        };
     };
   };
 }

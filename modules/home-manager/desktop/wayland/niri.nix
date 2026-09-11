@@ -133,6 +133,14 @@ in
         default-column-width { proportion 0.8; }
       }
 
+      window-rule {
+        match title="^filechooser$"
+        open-floating true
+        default-floating-position x=0 y=150 relative-to="top"
+        default-window-height { proportion 0.7; }
+        default-column-width { proportion 0.7; }
+      }
+
       gestures {
         hot-corners {
           off

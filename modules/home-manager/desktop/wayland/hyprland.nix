@@ -126,6 +126,7 @@ in
         -- rules
         hl.workspace_rule({ workspace = "s[true]", gaps_out = 15 })
         hl.window_rule({ match = { class = "otter-launcher" }, float = true })
+        hl.window_rule({ match = { title = "^filechooser$" }, float = true })
 
         local function scratchpad(opts)
           local name      = opts.name

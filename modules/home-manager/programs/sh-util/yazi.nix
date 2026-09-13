@@ -30,6 +30,12 @@ in
 
       shellWrapperName = "f";
 
+      settings = {
+        mgr = {
+          show_hidden = false;
+        };
+      };
+
       theme =
         let
           square = {

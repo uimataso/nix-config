@@ -99,7 +99,7 @@ in
 
         bind -n M-t run-shell '${exe-popup} window shell'
         bind -n M-g run-shell '${exe-popup} window lazygit lazygit'
-        bind -n M-n run-shell '${exe-popup} session notes -c /share/notes "''${EDITOR:-vi} inbox.md"'
+        bind -n M-n run-shell '${exe-popup} session notes -c /share/notes "''${EDITOR:-vi} index.org"'
         bind -n M-p run-shell '${exe-popup} session scratchpad -c /share "''${EDITOR:-vi} /share/scratchpad.md"'
 
         bind G run-shell "${getExe pkgs.scripts.open-git-remote}"

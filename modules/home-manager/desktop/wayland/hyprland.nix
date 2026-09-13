@@ -183,7 +183,7 @@ in
           return { openWs = openWs, open = open }
         end
 
-        local note  = scratchpad({ name = "note",  className = "scratchpad-note",  spawnCmd = [["$TERMINAL" --app-id scratchpad-note -e tmux new-session -A -s notes -c /share/notes $EDITOR inbox.md]] })
+        local note  = scratchpad({ name = "note",  className = "scratchpad-note",  spawnCmd = [["$TERMINAL" --app-id scratchpad-note -e tmux new-session -A -s notes -c /share/notes $EDITOR index.org]] })
         local temp  = scratchpad({ name = "temp",  className = "scratchpad-temp",  spawnCmd = [["$TERMINAL" --app-id scratchpad-temp -e $EDITOR /share/scratchpad.md]] })
         local term  = scratchpad({ name = "term",  className = "scratchpad-term",  spawnCmd = [["$TERMINAL" --app-id scratchpad-term]] })
         local music = scratchpad({ name = "music", className = "scratchpad-music", spawnCmd = [["$TERMINAL" --app-id scratchpad-music -e rmpc]] })

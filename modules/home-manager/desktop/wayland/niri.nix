@@ -11,7 +11,7 @@ let
   scratchNotes = pkgs.writeShellApplication {
     name = "scratch-notes";
     text = ''
-      "$TERMINAL" --app-id notes -e tmux new-session -A -s notes -c /share/notes "$EDITOR" inbox.md
+      "$TERMINAL" --app-id notes -e tmux new-session -A -s notes -c /share/notes "$EDITOR" index.org
     '';
   };
   scratchPad = pkgs.writeShellApplication {

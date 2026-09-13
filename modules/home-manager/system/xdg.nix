@@ -43,6 +43,8 @@ in
     gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
     # disable generate .icons
     home.pointerCursor.dotIcons.enable = false;
+    # get rid of ~/.theme
+    stylix.targets.gtk.flatpakSupport.enable = false;
 
     xdg.configFile = {
       # wget

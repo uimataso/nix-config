@@ -7,12 +7,22 @@ require('which-key').setup({
   triggers = {
     { '<leader>c', mode = { 'n', 'x' } },
     { '<leader>a', mode = 'x' },
+    { '<leader>o', mode = { 'n', 'x' } },
     { '<C-d>', mode = 'i' },
     { '<C-g>', mode = 'i' },
   },
   spec = {
     { '<C-d>', mode = 'i', group = 'insert date/time' },
     { '<C-g>', mode = 'i', group = 'insert misc' },
+
+    { '<leader>o', mode = { 'n', 'x' }, group = 'org-mode' },
+    { '<leader>ob', mode = { 'n', 'x' }, group = 'org tangle...' },
+    { '<leader>od', mode = { 'n', 'x' }, group = 'org toggle ts type...' },
+    { '<leader>oi', mode = { 'n', 'x' }, group = 'org insert...' },
+    { '<leader>ol', mode = { 'n', 'x' }, group = 'org link...' },
+    { '<leader>on', mode = { 'n', 'x' }, group = 'org add note...' },
+    { '<leader>ox', mode = { 'n', 'x' }, group = 'org clock...' },
+
     { '<leader>a', mode = 'x', group = 'align' },
     { '<leader>c', mode = { 'n', 'x' }, group = 'text-case' },
     { '<leader>co', mode = 'n', group = 'operator' },

@@ -13,11 +13,19 @@ require('blink.cmp').setup({
 
   sources = {
     default = { 'lsp', 'buffer', 'snippets', 'path', 'lazydev' },
+    per_filetype = {
+      org = { inherit_defaults = true, 'orgmode' },
+    },
     providers = {
       lazydev = {
         name = 'LazyDev',
         module = 'lazydev.integrations.blink',
         fallbacks = { 'lsp' },
+      },
+      orgmode = {
+        name = 'Orgmode',
+        module = 'orgmode.org.autocompletion.blink',
+        fallbacks = { 'buffer' },
       },
     },
   },

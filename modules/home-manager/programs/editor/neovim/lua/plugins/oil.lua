@@ -39,8 +39,6 @@ require('oil').setup({
   },
 })
 
-vim.keymap.set('n', '<leader>o', require('oil').open, { desc = 'Open Oil browser' })
-
 vim.keymap.set('n', '-', function()
   local ft = vim.bo.filetype
   if vim.v.count > 0 or ft == 'oil' then

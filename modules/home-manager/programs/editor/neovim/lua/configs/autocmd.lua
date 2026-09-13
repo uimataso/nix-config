@@ -98,3 +98,19 @@ ag('uima/AutoCreateDir', function(au)
     end,
   })
 end)
+
+ag('uima/FixSharePerm', function(au)
+  au('BufNewFile', {
+    pattern = '/share/**',
+    callback = function()
+      vim.opt_local.backupcopy = 'yes'
+    end,
+  })
+
+  au('BufWritePost', {
+    pattern = '/share/**',
+    callback = function()
+      vim.system({ 'chmod', 'g+rw', vim.fn.expand('%:p') }):wait()
+    end,
+  })
+end)

@@ -9,39 +9,12 @@ vim.pack.add({
   { src = 'https://github.com/nvim-orgmode/orgmode' },
 }, { load = true })
 
-require('orgmode').setup({
-  org_agenda_files = org_path('**/*'),
-  org_default_notes_file = org_path('inbox.org'),
+-- Helpers
 
-  -- org_startup_folded = 'content',
-  org_startup_indented = true,
-
-  org_capture_templates = {
-    t = {
-      description = 'Refile',
-      template = '* TODO %?\nDEADLINE: %T',
-    },
-    T = {
-      description = 'Todo',
-      template = '* TODO %?\nDEADLINE: %T',
-      target = org_path('todos.org'),
-    },
-    r = {
-      description = 'Quick note',
-      template = '* TODO %? :REVISIT:',
-    },
-  },
-})
-
--- Experimental LSP support
-vim.lsp.enable('org')
-
---- Format a plain ISO date (YYYY-MM-DD), matching Emacs org `#+date:`.
 local function org_date()
   return os.date('%Y-%m-%d')
 end
 
---- Title-case a filename stem into a human title.
 ---@param path string
 ---@return string
 local function title_from_path(path)
@@ -52,7 +25,6 @@ local function title_from_path(path)
   end))
 end
 
---- Resolve author from git config user.name, falling back to $USER.
 ---@return string
 local function resolve_author()
   local name = vim.fn.system({ 'git', 'config', 'user.name' })
@@ -63,7 +35,6 @@ local function resolve_author()
   return name
 end
 
---- Insert an org file metadata header (title/author/date) into an empty org buffer.
 local function insert_meta_header(bufnr, path)
   local lines = {
     '#+title: ' .. title_from_path(path),
@@ -79,13 +50,93 @@ local function insert_meta_header(bufnr, path)
   end
 end
 
---- True when the buffer holds no non-blank content.
 local function buf_is_empty(bufnr)
   local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
   return #lines == 0 or (#lines == 1 and lines[1] == '')
 end
 
+--- Exposed on _G so org capture template expressions can drain it.
+local OrgCapture = {}
+
+function OrgCapture.capture()
+  local U = require('uima')
+  local lines = U.get_selected_lines()
+  if not lines then
+    OrgCapture._stash = nil
+    return
+  end
+  local a, b = U.get_selected_range()
+  local path = vim.fn.expand('%:p')
+  local cwd = (vim.uv and vim.uv.cwd() or vim.loop.cwd()) .. '/'
+  local rel = path:gsub('^' .. vim.pesc(cwd), '')
+  local ft = vim.bo.filetype
+  OrgCapture._stash = {
+    text = table.concat(U.unindent(lines), '\n'),
+    ft = (ft and ft ~= '') and ft or 'text',
+    path = path, -- absolute: orgmode only resolves /abs, ~/, ./, ../
+    rel = rel, -- short display text, relative to cwd
+    a = a,
+    b = b,
+  }
+end
+
+--- Returns '' when nothing was stashed (e.g. capture from normal mode).
+function OrgCapture.drain_selection()
+  local s = OrgCapture._stash
+  OrgCapture._stash = nil
+  if not s then
+    return ''
+  end
+  local range_str = s.a == s.b and tostring(s.a) or (s.a .. '-' .. s.b)
+  local link = ('[[file:%s::%d][%s:%s]]'):format(s.path, s.a, s.rel, range_str)
+  local block = ('#+begin_src %s\n%s\n#+end_src'):format(s.ft, s.text)
+  return '\n' .. link .. '\n' .. block
+end
+
+_G.OrgCapture = OrgCapture
+
+local function with_selection(template)
+  return template .. '\n%(return _G.OrgCapture.drain_selection())'
+end
+
+-- Setup
+
+require('orgmode').setup({
+  org_agenda_files = org_path('**/*'),
+  org_default_notes_file = org_path('inbox.org'),
+
+  org_startup_folded = 'content',
+  org_startup_indented = true,
+
+  mappings = { global = { org_capture = false } },
+
+  org_capture_templates = {
+    t = {
+      description = 'Inbox',
+      template = with_selection('* TODO %?\nDEADLINE: %T\n:PROPERTIES:\n:CREATED: %u\n:END:'),
+    },
+    T = {
+      description = 'Todo',
+      template = with_selection('* TODO %?\nDEADLINE: %T\n:PROPERTIES:\n:CREATED: %u\n:END:'),
+      target = org_path('todos.org'),
+    },
+    r = {
+      description = 'Quick note',
+      template = with_selection('* TODO %? :REVISIT:\n:PROPERTIES:\n:CREATED: %u\n:END:'),
+    },
+  },
+})
+
+-- Experimental LSP support
+vim.lsp.enable('org')
+
 local ag = require('uima').ag
+
+-- Stash the active selection, then open the capture prompt.
+vim.keymap.set({ 'n', 'x' }, '<Leader>oc', function()
+  OrgCapture.capture()
+  require('orgmode').action('capture.prompt')
+end, { desc = 'org capture' })
 
 ag('uima/OrgMode', function(au)
   -- Insert-mode meta return

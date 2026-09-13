@@ -164,11 +164,6 @@
         claude-code.enable = true;
       };
 
-      dmenu = {
-        tofi.enable = true;
-        tofi.defaultDmenu = true;
-      };
-
       sh-util = {
         default = true;
 
@@ -180,13 +175,11 @@
 
       unfree = {
         slack.enable = true;
-        figma.enable = true;
       };
 
       misc = {
         zathura.enable = true;
         thunderbird.enable = true;
-        hoppscotch.enable = true;
         libreoffice.enable = true;
 
         rmpc.enable = true;

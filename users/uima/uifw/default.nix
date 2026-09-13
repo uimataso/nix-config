@@ -170,7 +170,6 @@
 
         eza.enable = true;
         tmux.enable = true;
-        herdr.enable = true;
         qrencode.enable = true;
         yazi.enable = true;
 

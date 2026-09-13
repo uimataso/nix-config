@@ -151,6 +151,10 @@
       "rev": "7d8dad2c837fcdf2e65997e68657c1a21c568074",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
+    "orgmode": {
+      "rev": "005368b30cea12ececfbe27240b4269939aac6e6",
+      "src": "https://github.com/nvim-orgmode/orgmode"
+    },
     "pathfinder.nvim": {
       "rev": "9c79815dfd31726119b44a71c0654377be01d3c2",
       "src": "https://github.com/HawkinsT/pathfinder.nvim"

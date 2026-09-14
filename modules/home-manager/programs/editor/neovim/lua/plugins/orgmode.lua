@@ -12,8 +12,9 @@ require('orgmode').setup({
   org_agenda_files = org_path('**/*'),
   org_default_notes_file = org_path('inbox.org'),
 
+  org_todo_keywords = { 'TODO(t)', 'PROGRESS(p)', '|', 'DONE(d)', 'REJECTED(r)' },
   org_startup_folded = 'inherit',
-  org_startup_indented = true,
+  org_adapt_indentation = false,
 
   mappings = { global = { org_capture = false } },
 
@@ -49,10 +50,10 @@ vim.keymap.set({ 'n', 'x' }, '<Leader>oc', function()
 end, { desc = 'org capture' })
 
 ag('uima/OrgMode', function(au)
-  -- Insert-mode meta return
   au('FileType', {
     pattern = 'org',
     callback = function(args)
+      -- Insert-mode meta return
       vim.keymap.set('i', '<S-CR>', function()
         require('orgmode').action('org_mappings.meta_return')
       end, { buffer = args.buf, silent = true, desc = 'org meta return' })

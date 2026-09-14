@@ -12,7 +12,7 @@ require('orgmode').setup({
   org_agenda_files = org_path('**/*'),
   org_default_notes_file = org_path('inbox.org'),
 
-  org_startup_folded = 'content',
+  org_startup_folded = 'inherit',
   org_startup_indented = true,
 
   mappings = { global = { org_capture = false } },
@@ -63,6 +63,11 @@ ag('uima/OrgMode', function(au)
   au('FileType', {
     pattern = 'org',
     callback = function(args)
+      -- The template engine provides its own header for the buffer it opens.
+      if Org.skip_next_header then
+        Org.skip_next_header = false
+        return
+      end
       local buf = args.buf
       if vim.bo[buf].buftype == '' and Org.buf_is_empty(buf) then
         Org.insert_meta_header(buf, vim.api.nvim_buf_get_name(buf))
@@ -70,3 +75,6 @@ ag('uima/OrgMode', function(au)
     end,
   })
 end)
+
+-- `<Leader>on<key>`: create a new note from a template in `.templates/`.
+require('uima.org.template').setup()

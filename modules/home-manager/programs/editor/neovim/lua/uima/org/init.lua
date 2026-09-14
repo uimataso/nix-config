@@ -2,6 +2,10 @@ local M = {}
 
 M.org_dir = '/share/notes'
 
+--- Set by the template engine before `:edit` so the auto meta-header
+--- autocmd skips the buffer (the template provides its own header).
+M.skip_next_header = false
+
 ---@param path string
 ---@return string
 function M.org_path(path)
@@ -38,7 +42,7 @@ end
 function M.insert_meta_header(bufnr, path)
   local lines = {
     '#+title: ' .. M.title_from_path(path),
-    '#+author: ' .. M.resolve_author(),
+    '#+author: uima',
     '#+date: ' .. M.org_date(),
     '',
   }

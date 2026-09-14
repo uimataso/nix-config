@@ -104,8 +104,8 @@ M.get = function(c)
     ['@markup.link.label'] = { sp = c.markup.link_sp, underline = true },
     ['@markup.link.url'] = { fg = c.markup.link, sp = c.markup.link_sp, underline = true },
 
-    ['@markup.raw'] = { fg = c.markup.raw },
-    ['@markup.raw.block'] = { fg = c.markup.raw },
+    ['@markup.raw'] = { fg = c.markup.raw, bg = c.markup.raw_bg },
+    ['@markup.raw.block'] = { fg = c.markup.raw, bg = c.markup.raw_bg },
 
     ['@markup.list'] = { fg = c.markup.bullet, bold = true },
     ['@markup.list.checked'] = '@markup.list',

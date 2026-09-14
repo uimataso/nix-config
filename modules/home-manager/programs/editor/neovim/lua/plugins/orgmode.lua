@@ -19,18 +19,15 @@ require('orgmode').setup({
   mappings = { global = { org_capture = false } },
 
   org_capture_templates = {
-    t = {
-      description = 'Inbox',
-      template = capture.with_selection(
-        '* TODO %?\nDEADLINE: %T\n:PROPERTIES:\n:CREATED: %u\n:END:'
-      ),
+    n = {
+      description = 'Add note',
+      template = capture.with_selection('* %?\n:PROPERTIES:\n:CREATED: %u\n:END:'),
     },
-    T = {
-      description = 'Todo',
+    t = {
+      description = 'Add todo',
       template = capture.with_selection(
         '* TODO %?\nDEADLINE: %T\n:PROPERTIES:\n:CREATED: %u\n:END:'
       ),
-      target = org_path('todos.org'),
     },
     r = {
       description = 'Quick note',

@@ -1,0 +1,9 @@
+{
+  "Code block": {
+    "prefix": "bs",
+    "body": [
+      "#+begin_src ${1}",
+      "#+end_src"
+    ]
+  }
+}

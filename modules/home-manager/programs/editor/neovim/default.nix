@@ -53,6 +53,7 @@ in
         ripgrep
         delta
         lsof # for opencode
+        pandoc
 
         # LSP / Formatter
         # Generic Formatter

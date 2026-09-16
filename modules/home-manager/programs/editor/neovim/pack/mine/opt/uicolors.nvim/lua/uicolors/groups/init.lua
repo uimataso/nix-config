@@ -20,6 +20,7 @@ M.plugins = {
   ['multicursor.nvim'] = 'multicursor',
   ['namu.nvim'] = 'namu',
   ['neogit'] = 'neogit',
+  ['orgmode.nvim'] = 'orgmode',
   ['snacks.nvim'] = 'snacks',
   ['telescope.nvim'] = 'telescope',
   ['vim-illuminate'] = 'vim-illuminate',

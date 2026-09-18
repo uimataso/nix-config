@@ -91,6 +91,7 @@ in
         set -as terminal-overrides ',*:Eneks=\E[>4;1m'
 
         set -g history-limit 10000
+        set -g escape-time 10
         set -g mode-keys vi
         set -g status-keys emacs
         set -g set-clipboard external

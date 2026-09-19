@@ -1,4 +1,4 @@
-{ writePython3Bin, tmux, ... }:
+{ writePython3Bin, tmux, bridge, ... }:
 writePython3Bin "tmux-popup"
   { libraries = [ ]; }
   /* python */ ''
@@ -8,6 +8,12 @@ writePython3Bin "tmux-popup"
     import sys
 
     TMUX_BIN = "${tmux}/bin/tmux"
+    # Run the nested `tmux attach-session` behind a pty bridge that spoofs
+    # replies to the attach-time terminal queries (DA1/DA2/XTVERSION/OSC10/11).
+    # The display-popup pty never answers them, so without the bridge tmux keeps
+    # its "active query" state for 5s and holds a lone Esc for 500ms (tty-keys.c)
+    # for the first few seconds after the popup opens.
+    BRIDGE_BIN = "${bridge}/bin/tmux-popup-bridge"  # noqa: E501
 
 
     def tmux(*args, timeout=10):
@@ -128,7 +134,8 @@ writePython3Bin "tmux-popup"
 
         def popup(cmd_str):
             tmux("display-popup", "-t", cur, "-xC", "-yC",
-                 f"-w{args.width}%", f"-h{args.height}%", "-E", cmd_str,
+                 f"-w{args.width}%", f"-h{args.height}%", "-E",
+                 f"{BRIDGE_BIN} {cmd_str}",
                  timeout=None)
 
         # --- inside a window popup (<base>_popup) ---

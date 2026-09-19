@@ -22,7 +22,7 @@ in
       brightnessctl
       playerctl
 
-      scripts.screenshot
+      uima.screenshot
     ];
 
     home.shellAliases = {

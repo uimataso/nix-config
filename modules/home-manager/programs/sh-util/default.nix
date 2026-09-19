@@ -41,10 +41,10 @@ in
       nmap
       dig
 
-      scripts.clip
-      scripts.ux
-      scripts.open
-      scripts.preview
+      uima.clip
+      uima.ux
+      uima.open
+      uima.preview
     ];
 
     programs = {

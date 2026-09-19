@@ -12,7 +12,7 @@ let
   mkScript = fn: mkScriptWith fn { };
 in
 {
-  scripts = rec {
+  uima = rec {
     # Nix utils
     nix-template-tool = mkScript ./nix-template-tool.nix;
 
@@ -43,8 +43,14 @@ in
 
     tmux-toggle-split = mkScript ./tmux-toggle-split.nix;
     tmux-toggle-window = mkScript ./tmux-toggle-window.nix;
-    tmux-popup-bridge = mkScriptWith ./tmux-popup-bridge.nix { writePython3Bin = pkgs.writers.writePython3Bin; };
-    tmux-popup = mkScriptWith ./tmux-popup.nix { writePython3Bin = pkgs.writers.writePython3Bin; inherit (pkgs) tmux; bridge = tmux-popup-bridge; };
+    tmux-popup-bridge = mkScriptWith ./tmux-popup-bridge.nix {
+      writePython3Bin = pkgs.writers.writePython3Bin;
+    };
+    tmux-popup = mkScriptWith ./tmux-popup.nix {
+      writePython3Bin = pkgs.writers.writePython3Bin;
+      inherit (pkgs) tmux;
+      bridge = tmux-popup-bridge;
+    };
 
     # Desktop
     fmenu = mkScript ./fmenu.nix;

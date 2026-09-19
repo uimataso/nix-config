@@ -16,7 +16,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.scripts.fff ];
+    home.packages = [ pkgs.uima.fff ];
 
     home.shellAliases = {
       a = ". fff";

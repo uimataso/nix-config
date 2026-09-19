@@ -19,12 +19,12 @@
     pkgs-stable.mpv
     drawing
 
-    scripts.pdf-decrypt
-    scripts.fetch-title
-    scripts.notify-send-all
-    scripts.open-git-remote
-    scripts._0x0
-    scripts.py
+    uima.pdf-decrypt
+    uima.fetch-title
+    uima.notify-send-all
+    uima.open-git-remote
+    uima._0x0
+    uima.py
 
     presenterm
     hyperfine

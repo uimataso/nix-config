@@ -25,7 +25,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.scripts.fmenu ];
+    home.packages = [ pkgs.uima.fmenu ];
 
     uimaConfig.programs.dmenu = mkIf cfg.defaultDmenu {
       enable = true;

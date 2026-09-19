@@ -28,7 +28,7 @@ in
       nrr = "nixos-rebuild repl --flake ${flakeDir}";
       nd = "nix develop path:$(pwd)";
 
-      it = "${pkgs.scripts.nix-template-tool}/bin/nix-template-tool";
+      it = "${pkgs.uima.nix-template-tool}/bin/nix-template-tool";
     };
 
     programs.nh.enable = true;

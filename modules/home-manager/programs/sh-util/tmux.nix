@@ -14,8 +14,8 @@ let
     ;
   cfg = config.uimaConfig.programs.sh-util.tmux;
 
-  exe-select-sessions = getExe pkgs.scripts.tmux-select-sessions;
-  exe-popup = getExe pkgs.scripts.tmux-popup;
+  exe-select-sessions = getExe pkgs.uima.tmux-select-sessions;
+  exe-popup = getExe pkgs.uima.tmux-popup;
 in
 {
   options.uimaConfig.programs.sh-util.tmux = {
@@ -30,10 +30,10 @@ in
     programs.tmux.tmuxinator.enable = true;
 
     home.packages = with pkgs; [
-      scripts.tmux-select-sessions
-      scripts.tmux-popup
-      scripts.tmux-toggle-split
-      scripts.rand-port
+      uima.tmux-select-sessions
+      uima.tmux-popup
+      uima.tmux-toggle-split
+      uima.rand-port
     ];
 
     home.shellAliases = {
@@ -106,7 +106,7 @@ in
         bind -n M-n run-shell '${exe-popup} session notes -c /share/notes "''${EDITOR:-vi} index.org"'
         bind -n M-p run-shell '${exe-popup} session scratchpad -c /share "''${EDITOR:-vi} /share/scratchpad.md"'
 
-        bind G run-shell "${getExe pkgs.scripts.open-git-remote}"
+        bind G run-shell "${getExe pkgs.uima.open-git-remote}"
 
         # disable mouse scroll on statusbar
         unbind -T root WheelUpStatus

@@ -21,12 +21,12 @@
     gimp
     drawing
 
-    scripts.pdf-decrypt
-    scripts.mkbigfile
-    scripts.fetch-title
-    scripts.open-git-remote
-    scripts._0x0
-    scripts.py
+    uima.pdf-decrypt
+    uima.mkbigfile
+    uima.fetch-title
+    uima.open-git-remote
+    uima._0x0
+    uima.py
 
     obsidian
 

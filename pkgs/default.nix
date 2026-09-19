@@ -1,5 +1,5 @@
 { pkgs }:
 {
-  sddm-astronaut-theme = pkgs.libsForQt5.callPackage ./sddm-astronaut-theme { };
+  # sddm-astronaut-theme = pkgs.libsForQt5.callPackage ./sddm-astronaut-theme { };
 }
-// import ./scripts { inherit pkgs; }
+// import ./uima { inherit pkgs; }

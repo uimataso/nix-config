@@ -6,14 +6,20 @@
 #   (DA1 `CSI c`, DA2 `CSI >c`, XTVERSION `CSI >q`, OSC 10/11 fg/bg). While any
 #   of those is unanswered, tmux's input parser (tty-keys.c, "increasing delay
 #   (active query)") forces the lone-Esc timeout to max(escape-time, 500)ms.
-#   The `display-popup` pty emulated by the outer tmux answers NONE of these
-#   queries, so the "active query" state lasts the full TTY_QUERY_TIMEOUT (5s)
-#   and every Esc is held ~500ms for the first few seconds after a popup opens.
+#
+#   In a `display-popup`, the inner client's tty is a pty whose other end is
+#   the outer tmux's pane input parser. The outer tmux DOES answer those
+#   queries (input.c), but only asynchronously, after round-tripping through
+#   its own input parser, so the inner client's DA/colour flags stay clear
+#   slowly and lone Esc is held ~500ms for the first moments after a popup
+#   opens.
 #
 #   This bridge sits between the popup pty and the inner tmux client, forwards
-#   bytes both ways, propagates window resizes, and spoofs replies to those
-#   attach queries so the inner client's flags clear immediately (no 500ms Esc
-#   bump). It is otherwise transparent.
+#   bytes both ways, propagates window resizes, and - crucially - SWALLOWS the
+#   attach queries and spoofs replies to them itself, so the inner client's
+#   flags clear instantly (no 500ms Esc bump) and the outer tmux never sees the
+#   queries (which would otherwise answer them and leak the duplicate reply
+#   into the pane). It is otherwise transparent.
 writePython3Bin "tmux-popup-bridge"
   { libraries = [ ]; }
   /* python */ ''
@@ -28,6 +34,15 @@ writePython3Bin "tmux-popup-bridge"
     # (query_bytes_sent_by_inner_client, response_bytes_to_spoof_back).
     # Responses only need to be syntactically valid enough to set the matching
     # flag (TTY_HAVEDA / TTY_HAVEDA2 / TTY_HAVEXDA / ~TTY_WAITFG / ~TTY_WAITBG).
+    #
+    # These query bytes are SWALLOWED (never forwarded to the outer tmux):
+    # the outer tmux's input parser also answers DA1/DA2/XTVERSION/OSC10/11
+    # (input.c), so forwarding them would make the inner client receive a
+    # second, duplicate reply. The DA/XTVERSION handlers return -1 once their
+    # flag is already set, so that duplicate would pass through to the pane
+    # (garbage like `[?1;2;4c` / `tmux 3.7c` typed into the shell). By swallowing
+    # the queries and sending only our spoof, the inner client gets exactly
+    # one reply per query and consumes it cleanly.
     PAIRS = [
         (b"\033[c",          b"\033[?62c"),                       # DA1
         (b"\033[>c",         b"\033[>0;0;0c"),                    # DA2
@@ -161,9 +176,11 @@ writePython3Bin "tmux-popup-bridge"
                 if data == b"" and data is not None:
                     child_done = True
                 elif data:
-                    to_outer += data  # render via outer tmux
                     scan += data
-                    # Spoof any attach queries seen in the stream.
+                    # Strip attach queries from the stream sent to the outer
+                    # tmux (see PAIRS comment) and spoof replies back to the
+                    # inner client so its flags clear at once. Normal output
+                    # before each query is forwarded untouched.
                     while True:
                         best = None
                         for q, resp in PAIRS:
@@ -173,13 +190,31 @@ writePython3Bin "tmux-popup-bridge"
                         if best is None:
                             break
                         p, q, resp = best
+                        if p:
+                            to_outer += scan[:p]
                         to_child += resp
                         scan = scan[p + len(q):]
-                    if len(scan) > 256:
-                        scan = scan[-256:]
+                    # Hold back only a trailing prefix of some query (it may
+                    # complete on the next read); forward everything else now
+                    # so trailing normal output (e.g. a shell prompt) isn't
+                    # stuck waiting for bytes that never arrive.
+                    e = scan.rfind(b"\033")
+                    if e != -1 and any(
+                            q.startswith(scan[e:]) and len(scan[e:]) < len(q)
+                            for q, _ in PAIRS):
+                        to_outer += scan[:e]
+                        scan = scan[e:]
+                    else:
+                        to_outer += scan
+                        scan = b""
 
-            if child_done and not to_outer:
-                break
+            if child_done:
+                # Flush any held-back output once the child is gone.
+                if scan:
+                    to_outer += scan
+                    scan = b""
+                if not to_outer:
+                    break
 
         try:
             os.waitpid(pid, 0)

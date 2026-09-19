@@ -10,7 +10,6 @@
     ./kicad.nix
     ./libreoffice.nix
     ./openscad.nix
-    ./protonmail.nix
     ./prusa-slicer.nix
     ./qbittorrent.nix
     ./rmpc.nix

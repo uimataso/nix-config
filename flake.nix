@@ -10,7 +10,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    # nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     # nixpkgs-local.url = "git+file:///home/uima/src/nixpkgs";
 
     # vimium-options.url = "git+file:///home/uima/src/vimium-nixos";
@@ -115,7 +115,7 @@
       # SpecialArgs that share between nixosConfig and homeConfig
       specialArgs = forAllSystems (system: {
         inherit self inputs outputs;
-        pkgs-stable = (inputPkgsFor inputs.nixpkgs-stable).${system};
+        # pkgs-stable = (inputPkgsFor inputs.nixpkgs-stable).${system};
         # pkgs-local = (inputPkgsFor inputs.nixpkgs-local).${system};
       });
 

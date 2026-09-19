@@ -1,7 +1,6 @@
 {
   self,
   pkgs,
-  pkgs-stable,
   inputs,
   ...
 }:
@@ -13,11 +12,10 @@
   nixpkgs.overlays = [ inputs.rust-overlay.overlays.default ];
 
   home.packages = with pkgs; [
-    pkgs-stable.qmk
+    qmk
     restic
 
     nsxiv
-    pkgs-stable.mpv
     gimp
     drawing
 
@@ -59,6 +57,8 @@
       image = "${themePath}/wallpapers/looking-for.png";
       base16Scheme = "${themePath}/gruvbox-dark-moded.yaml";
     };
+
+  programs.mpv.enable = true;
 
   uimaConfig = {
     global.enable = true;

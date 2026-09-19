@@ -1,7 +1,6 @@
 {
   self,
   pkgs,
-  pkgs-stable,
   inputs,
   ...
 }:
@@ -16,7 +15,6 @@
     lm_sensors
 
     nsxiv
-    pkgs-stable.mpv
     drawing
 
     uima.pdf-decrypt
@@ -68,6 +66,7 @@
       address: "127.0.0.1:6601",
     )
   '';
+  programs.mpv.enable = true;
 
   uimaConfig = {
     global.enable = true;

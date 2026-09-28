@@ -138,7 +138,7 @@
 
     system = {
       sudo.enable = true;
-      autoUpgrade.enable = true;
+      # autoUpgrade.enable = true;
 
       impermanence = {
         enable = true;

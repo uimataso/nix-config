@@ -33,7 +33,10 @@ in
       QS_ICON_THEME = "Papirus-Dark";
     };
 
-    home.packages = with pkgs; [ papirus-icon-theme ];
+    home.packages = with pkgs; [
+      papirus-icon-theme
+      libnotify
+    ];
 
     programs.noctalia = {
       enable = true;

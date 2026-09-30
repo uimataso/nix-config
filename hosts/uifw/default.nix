@@ -94,6 +94,8 @@
     };
   };
 
+  services.languagetool.enable = true;
+
   programs.mosh.enable = true;
 
   services.upower.enable = true;

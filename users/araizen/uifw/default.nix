@@ -28,6 +28,7 @@
     hyperfine
     natscli
     wireshark
+    minicom
 
     anydesk
 

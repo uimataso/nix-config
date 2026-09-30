@@ -15,6 +15,7 @@ in
 {
   imports = [
     ./neovim
+    ./vis
     ./vscode
   ];
 

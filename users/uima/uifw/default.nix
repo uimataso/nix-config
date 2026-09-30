@@ -133,6 +133,7 @@
       editor = {
         neovim.enable = true;
         neovim.defaultEditor = true;
+        vis.enable = true;
       };
 
       browser = {

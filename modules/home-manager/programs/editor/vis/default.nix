@@ -22,6 +22,11 @@ in
       pkgs.vis
     ];
 
+    home.shellAliases = {
+      # set TERM to fix color in tmux
+      vis = "TERM=xterm-256color vis";
+    };
+
     xdg.configFile."vis" = {
       source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/modules/home-manager/programs/editor/vis";
     };

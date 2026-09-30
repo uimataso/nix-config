@@ -65,7 +65,7 @@ lexers.STYLE_PREPROCESSOR = 'bold'
 lexers.STYLE_TAG = ''
 lexers.STYLE_TYPE = ''
 lexers.STYLE_VARIABLE = ''
-lexers.STYLE_WHITESPACE = ''
+lexers.STYLE_WHITESPACE = 'fore:' .. c.base03
 lexers.STYLE_EMBEDDED = ''
 lexers.STYLE_IDENTIFIER = ''
 

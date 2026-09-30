@@ -1,13 +1,24 @@
 require('vis')
 require('plugins/filetype')
 
---plugins--
+-- TODO:
+-- cursor shape in insert mode
+--    https://github.com/martanne/vis/issues/781
+--    https://github.com/martanne/vis/pull/1372
+
+-- plugins --
+require('plugins/vis-commentary')
+
+local colorizer = require('plugins/vis-colorizer')
+colorizer.three = false
+colorizer.text_colors.dark = 'black' -- somehow default will displayed as cyan
+
+require('plugins/vis-surround')
+
 --require('plugins/twofinger-surround')
---require('plugins/vis-commentary/vis-commentary')
 --require('plugins/vis-ctags/ctags')
 --require('plugins/vis-fzf-open/fzf-open')
 --require('plugins/vis-modelines/vis-modelines')
---require('plugins/vis-surround/vis-surround')
 --require('plugins/vis-vim-compatibility-pack/vis-vim-compatible')
 
 -- global configuration --

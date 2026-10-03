@@ -164,6 +164,7 @@
         lazyjournal.enable = true;
         opencode.enable = true;
         pi-coding-agent.enable = true;
+        claude-code.enable = true;
       };
 
       sh-util = {
@@ -176,6 +177,10 @@
 
         # aerc.enable = true;
         # neomutt.enable = true;
+      };
+
+      game = {
+        osu.enable = true;
       };
 
       misc = {

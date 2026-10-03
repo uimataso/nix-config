@@ -29,6 +29,7 @@
     natscli
     wireshark
     minicom
+    tea
 
     anydesk
 

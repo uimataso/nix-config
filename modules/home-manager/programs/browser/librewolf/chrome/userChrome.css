@@ -1,59 +1,13 @@
-:root {
-  --tab-selected-bgcolor: var(--base01) !important;
-  --tab-selected-textcolor: var(--base05) !important;
-
-  --focus-outline-color: var(--base05) !important;
-  --focus-outline-width: 1px !important;
-
-  --urlbarView-highlight-background: var(--base02) !important;
-  --urlbarView-highlight-color: var(--base05) !important;
-
-  --tabpanel-background-color: var(--base00-trans) !important;
-}
-
-#navigator-toolbox {
-  border-bottom: none !important;
-  background-color: var(--base00-trans) !important;
-}
-
-menupopup,
-panel {
-  --panel-color: var(--base05) !important;
-  --panel-background: var(--base00-trans) !important;
-  --panel-border-color: var(--base01) !important;
-  --arrowpanel-background: var(--base00-trans) !important;
-  --arrowpanel-border-color: var(--base01) !important;
-}
-
-#urlbar-background {
-  background-color: var(--base00-trans) !important;
-}
-
-#nav-bar {
-  background-color: var(--base00-trans) !important;
-}
-
-/* Disable close button */
-.titlebar-button.titlebar-close {
-  display: none;
-}
-
-/* Disable firefox-view and alltabs button */
-#firefox-view-button,
-#alltabs-button {
+sidebar-main,
+#TabsToolbar,
+#sidebar-panel-header {
   display: none !important;
 }
 
-/*  */
-#tabbrowser-tabs {
-  margin-left: 0px !important;
-  border-left: none !important;
+#sidebar-box {
+  padding: 0 !important;
 }
 
-/* Tab group */
-.tab-group-label {
-  tab-group[collapsed] > .tab-group-label-container > & {
-    color: var(--base00) !important;
-    outline: var(--base00) !important;
-  }
+* {
+  border-radius: 0 !important;
 }

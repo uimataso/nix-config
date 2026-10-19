@@ -1,0 +1,36 @@
+/* ---- nav-bar → 視窗底部(in-flow 版)---- */
+html|body {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+#navigator-toolbox {
+    display: contents !important;
+}
+
+#browser {
+    order: 2 !important;
+    flex: 1 !important;
+}
+
+#nav-bar {
+    order: 3 !important;
+}
+
+#urlbar {
+    position: relative !important;
+}
+
+.urlbarView {
+    position: absolute !important;
+    top: auto !important;
+    /* 間距:輸入框頂部到清單底部的距離 */
+    bottom: calc(100% + 28px) !important;
+    /* 高度預算:清單能往上長多高 */
+    max-height: 60vh !important;
+    overflow-y: auto !important;
+}
+
+#notification-popup {
+    margin-top: -320px !important;
+}

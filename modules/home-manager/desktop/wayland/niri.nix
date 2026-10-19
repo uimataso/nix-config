@@ -141,6 +141,12 @@ in
         default-column-width { proportion 0.7; }
       }
 
+      window-rule {
+        match app-id="^firefox$"
+        match app-id="^librewolf$"
+        draw-border-with-background false
+      }
+
       gestures {
         hot-corners {
           off

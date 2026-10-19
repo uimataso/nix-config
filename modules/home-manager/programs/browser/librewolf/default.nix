@@ -176,17 +176,16 @@ in
         };
 
         userChrome = lib.strings.concatLines [
+          (builtins.readFile ./chrome/transparent-background.css)
           userCssColor
-          # (builtins.readFile ./chrome/userChrome.css)
-          # (builtins.readFile ./chrome/onebar.css)
-          (builtins.readFile ./chrome/sidebery.css)
-          (builtins.readFile ./chrome/navbar_below_content.css)
+          (builtins.readFile ./chrome/userChrome.css)
+          (builtins.readFile ./chrome/bottom-bar.css)
         ];
 
-        # userContent = lib.strings.concatLines [
-        #   userCssColor
-        #   (builtins.readFile ./content/userContent.css)
-        # ];
+        userContent = lib.strings.concatLines [
+          userCssColor
+          (builtins.readFile ./content/userContent.css)
+        ];
 
         settings = {
           # Auto enable extensions

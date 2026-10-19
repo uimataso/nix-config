@@ -1,0 +1,136 @@
+/* userChrome.css — Firefox 157 Nova — 透明 chrome + 統一 tint
+   規約:var() 全部由 * 供給(:root 繼承鏈已死);
+        #sidebar-box 全檔只出現一次(tint 規則),任何重複區塊會蓋掉它;
+        整檔替換,不要合併追加。 */
+
+@namespace html url("http://www.w3.org/1999/xhtml");
+
+/* ---- 旋鈕:唯一改點 ---- */
+* {
+  --rgb: 22 22 22;
+  /* 工具列帶 + splitter */
+  --band-a: .8;
+  /* 側欄面板區 */
+  --side-a: .8;
+  /* 網址列 / findbar / 選取分頁 */
+  --pill-a: .8;
+  /* 頁面區域背後 */
+  --page-a: .8;
+  /* sidebar-main hover */
+  --hover-a: .6;
+}
+
+/* ---- transparent containers ---- */
+html|body,
+#browser,
+#appcontent,
+#tabbrowser-tabbox,
+#tabbrowser-tabpanels,
+browser {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* ---- toolbar band + splitter ---- */
+#titlebar,
+#toolbar-menubar,
+#TabsToolbar,
+#nav-bar,
+#PersonalToolbar,
+.browser-toolbar,
+#sidebar-splitter {
+  appearance: none !important;
+  background-color: rgb(var(--rgb) / var(--band-a)) !important;
+  background-image: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* ---- text readability ---- */
+#TabsToolbar,
+#nav-bar,
+#PersonalToolbar,
+#sidebar-container {
+  text-shadow: 0 1px 2px rgb(0 0 0 / .85) !important;
+}
+
+#urlbar,
+#searchbar {
+  text-shadow: none !important;
+}
+
+/* ---- urlbar / findbar / selected tab ---- */
+#urlbar-background {
+  background-color: rgb(var(--rgb) / var(--pill-a)) !important;
+  border-color: rgb(255 255 255 / .1) !important;
+}
+
+#urlbar[focused="true"]>#urlbar-background,
+#urlbar[open]>#urlbar-background,
+.browserContainer>findbar {
+  background-color: rgb(var(--rgb) / var(--pill-a)) !important;
+  background-image: none !important;
+}
+
+.tabbrowser-tab[selected] .tab-background {
+  background-color: rgb(var(--rgb) / var(--pill-a)) !important;
+  background-image: none !important;
+}
+
+/* ---- page area tint ---- */
+.browserContainer {
+  background-color: rgb(var(--rgb) / var(--page-a)) !important;
+}
+
+/* ---- sidebar ---- */
+/* tint 載體;此檔案中僅此一次 */
+#sidebar-box {
+  appearance: none !important;
+  background-color: rgb(var(--rgb) / var(--side-a)) !important;
+}
+
+#sidebar-box *,
+#sidebar-container,
+#sidebar-header,
+#sidebar,
+#sidebar-panel-header {
+  appearance: none !important;
+  background: transparent !important;
+}
+
+html|sidebar-main {
+  appearance: none !important;
+  background: transparent !important;
+}
+
+html|sidebar-main:hover {
+  background: rgb(var(--rgb) / var(--hover-a)) !important;
+}
+
+/* ---- sidebar: panel documents ---- */
+page,
+#webextpanels-window,
+#bookmarks-panel,
+#history-panel {
+  background: transparent !important;
+}
+
+/* ---- sidebar/content divider ---- */
+/* tag 選擇器:不吃 id 改名;給它 tint,不留透視縫 */
+splitter {
+  appearance: none !important;
+  background-color: rgb(var(--rgb) / var(--band-a)) !important;
+  border: none !important;
+}
+
+/* 鄰接元素的 1px border 一併移除,兩側漆面直接相接 */
+#sidebar-box,
+#sidebar-container,
+#appcontent {
+  border: none !important;
+}
+
+/* Remove small block at the botton of splitter */
+#sidebar-splitter {
+  margin-bottom: 0 !important;
+}

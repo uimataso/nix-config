@@ -1,29 +1,29 @@
-/* reader mode */
-body.dark {
-  --main-background: var(--bg) !important;
-  --main-foreground: var(--base05) !important;
-  --primary-color: var(--base05) !important;
-  --toolbar-border: var(--base02) !important;
-  --icon-fill: var(--base02) !important;
-  --link-foreground: var(--base0C) !important;
-  --visited-link-foreground: var(--base0C) !important;
-  --toolbar-button-foreground-hover: var(--base03) !important;
-  --toolbar-button-background-hover: var(--base01) !important;
-  --toolbar-box-shadow: var(--bg) !important;
-  --tooltip-foreground: var(--base03) !important;
-  --tooltip-background: var(--base01) !important;
-  --popup-background: var(--base01) !important;
-  --popup-button-background: var(--base03) !important;
+@-moz-document url("about:newtab"), url("about:home"), url("about:privatebrowsing") {
+
+
+  body,
+  #root,
+  #root>div,
+  .outer-wrapper {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
 }
 
-@-moz-document domain(home.uimataso.com){
-  :root {
-    --color-background: var(--bg) !important;
-    --color-widget-background: var(--base00-trans) !important;
-    --color-widget-content-border: var(--base01) !important;
-    --color-text-base: var(--base04) !important;
-    --color-text-highlight: var(--base05) !important;
-    --color-text-base-muted: var(--base03) !important;
-    --color-text-subdue: var(--base03) !important;
+/* userContent.css */
+@-moz-document url-prefix("moz-extension://") {
+
+  html,
+  body,
+  #root {
+    background: transparent !important;
+  }
+
+  #nav_bar,
+  .PinnedTabsBar,
+  .new-tab-btns,
+  .tab-space-filler,
+  .bottom-space {
+    background: transparent !important;
   }
 }

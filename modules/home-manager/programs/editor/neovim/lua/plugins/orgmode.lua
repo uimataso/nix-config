@@ -15,6 +15,7 @@ require('orgmode').setup({
   org_todo_keywords = { 'TODO(t)', 'PROGRESS(p)', '|', 'DONE(d)', 'REJECTED(r)' },
   org_startup_folded = 'inherit',
   org_adapt_indentation = false,
+  calendar_week_start_day = 0,
 
   mappings = { global = { org_capture = false } },
 

@@ -10,7 +10,6 @@
   }
 }
 
-/* userContent.css */
 @-moz-document url-prefix("moz-extension://") {
 
   html,
@@ -25,5 +24,52 @@
   .tab-space-filler,
   .bottom-space {
     background: transparent !important;
+  }
+}
+
+@-moz-document domain("youtube.com") {
+
+  html,
+  ytd-app {
+    background: transparent !important;
+  }
+
+  #container {
+    background: var(--base00) !important;
+  }
+
+  #header>.ytd-rich-grid-renderer.style-scope,
+  #frosted-glass {
+    display: none !important;
+  }
+}
+
+@-moz-document domain("github.com") {
+
+  html,
+  body,
+  .GlobalNav {
+    background: transparent !important;
+  }
+}
+
+
+@-moz-document domain("home.uimataso.com") {
+
+  body {
+    background: transparent !important;
+  }
+
+  .widget-content {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
+@-moz-document domain("git.internal.araizen.com") {
+  :root {
+    --color-body: transparant !important;
+    --color-nav-bg: transparant !important;
+    --color-secondary-nav-bg: transparant !important;
   }
 }

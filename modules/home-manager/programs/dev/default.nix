@@ -7,6 +7,7 @@
     ./docker.nix
     ./gh.nix
     ./git.nix
+    ./jira-cli.nix
     ./jujutsu.nix
     ./k8s.nix
     ./lazydocker.nix

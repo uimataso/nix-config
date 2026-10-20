@@ -158,6 +158,7 @@
         lazydocker.enable = true;
         lazyjournal.enable = true;
         tea.enable = true;
+        jira-cli.enable = true;
         aws-cli.enable = true;
         k8s.enable = true;
         terraform.enable = true;

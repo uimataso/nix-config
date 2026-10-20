@@ -80,6 +80,7 @@
         directories = [
           "src"
           ".local/share/cargo"
+          ".config/sops/age"
         ];
       };
 

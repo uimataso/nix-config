@@ -16,6 +16,7 @@
     ./pi-coding-agent.nix
     ./podman.nix
     ./ssh.nix
+    ./tea.nix
     ./terraform.nix
   ];
 }

@@ -29,7 +29,6 @@
     natscli
     wireshark
     minicom
-    tea
 
     anydesk
 
@@ -158,6 +157,7 @@
         docker.enable = true;
         lazydocker.enable = true;
         lazyjournal.enable = true;
+        tea.enable = true;
         aws-cli.enable = true;
         k8s.enable = true;
         terraform.enable = true;

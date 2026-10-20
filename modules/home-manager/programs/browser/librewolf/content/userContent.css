@@ -30,28 +30,67 @@
 @-moz-document domain("youtube.com") {
 
   html,
-  ytd-app {
+  ytd-app,
+  #container,
+  #full-bleed-container {
     background: transparent !important;
   }
 
-  #container {
+  ytd-masthead>#container {
     background: var(--base00) !important;
   }
 
   #header>.ytd-rich-grid-renderer.style-scope,
+  yt-related-chip-cloud-renderer,
   #frosted-glass {
     display: none !important;
   }
 }
 
-@-moz-document domain("github.com") {
+@-moz-document domain("duckduckgo.com") {
 
   html,
   body,
-  .GlobalNav {
+  #header_wrapper,
+  .footer {
     background: transparent !important;
   }
+
+  #react-duckbar ::before {
+    background-image: none !important;
+  }
 }
+
+/*
+@-moz-document domain("github.com") {
+
+  :root {
+    --bgColor-default: #0000 !important;
+    --bgColor-muted: #0000 !important;
+    --bgColor-inset: #0000 !important;
+  }
+
+  html,
+  body,
+  .GlobalNav,
+  .feed-background {
+    background: transparent !important;
+  }
+
+  .TimelineItem::before {
+    display: none !important;
+  }
+
+  fix transparent sticky header,
+  #sticky-header-backdrop,
+  #issue-viewer-sticky-header,
+  div.color-shadow-small[data-component="PageHeader"],
+  .react-blob-sticky-header,
+  .react-blob-sticky-header+div {
+    background: var(--base00) !important;
+  }
+}
+*/
 
 
 @-moz-document domain("home.uimataso.com") {

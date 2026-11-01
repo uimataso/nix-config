@@ -600,6 +600,27 @@
         "type": "github"
       }
     },
+    "pkm-tools": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": "treefmt-nix"
+      },
+      "locked": {
+        "lastModified": 1793538384,
+        "narHash": "sha256-TZ9CCRmeGJzylIhO4jqU1SCvV+mIOSVSnOr1GcwSZm0=",
+        "ref": "refs/heads/main",
+        "rev": "f8d1c0e7a629040c2558bdabaa1d0b550494f2e9",
+        "revCount": 10,
+        "type": "git",
+        "url": "ssh://git@git.uimataso.com:222/uima/pkm-tools"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@git.uimataso.com:222/uima/pkm-tools"
+      }
+    },
     "pre-commit": {
       "inputs": {
         "flake-compat": [
@@ -656,11 +677,12 @@
         "noctalia": "noctalia",
         "nur": "nur",
         "otter-launcher": "otter-launcher",
+        "pkm-tools": "pkm-tools",
         "pre-commit-hooks": "pre-commit-hooks",
         "rust-overlay": "rust-overlay",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
-        "treefmt-nix": "treefmt-nix",
+        "treefmt-nix": "treefmt-nix_2",
         "vimium-options": "vimium-options"
       }
     },
@@ -833,6 +855,27 @@
       }
     },
     "treefmt-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "pkm-tools",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791885023,
+        "narHash": "sha256-C3alQ2MEt0zVrUSho5NUDo3jmhbff72++bfwoqT9Omo=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "0d6d739a833ba9a9c93034862e4a7b061a062a1c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "treefmt-nix_2": {
       "inputs": {
         "nixpkgs": "nixpkgs_6"
       },

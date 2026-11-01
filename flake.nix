@@ -68,6 +68,10 @@
       # note, when using binary cache, don't add follows
       # inputs.nixpkgs.follows = "nixpkgs";
     };
+    pkm-tools = {
+      url = "git+ssh://git@git.uimataso.com:222/uima/pkm-tools";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Packages
     otter-launcher = {

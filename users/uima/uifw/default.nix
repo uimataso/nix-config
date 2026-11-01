@@ -117,6 +117,7 @@
     };
 
     services = {
+      gitAutosync.enable = true;
       pipewire.enable = true;
       udiskie.enable = true;
       mpd.enable = true;

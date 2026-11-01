@@ -165,7 +165,10 @@
         lazyjournal.enable = true;
         opencode.enable = true;
         pi-coding-agent.enable = true;
-        claude-code.enable = true;
+        claude-code = {
+          enable = true;
+          langfuse.enable = true;
+        };
       };
 
       sh-util = {

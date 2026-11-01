@@ -453,11 +453,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1792773339,
-        "narHash": "sha256-17eNBI5Khe4JZaRkL5hRGPWf8MZ6qv+bWAr4V8YeKBw=",
-        "rev": "3ec636362e1816bc2f0888fa0fa2c69f1bc9e504",
+        "lastModified": 1793341285,
+        "narHash": "sha256-LOv16TsMYV2/8BUYnhSxHkOASe7es2ORbqMeLlZJ8Hc=",
+        "rev": "1c89083e451e891152365b799595cf7790a43325",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1100280.3ec636362e18/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1105037.1c89083e451e/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",
@@ -517,11 +517,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1793416902,
-        "narHash": "sha256-HjwryB1Ut9NEFlfrETp4M+LiXPzoaKAgvsjy73RtbbE=",
+        "lastModified": 1793498935,
+        "narHash": "sha256-Ke480eWgrTxgI9sBl0YII0x0dopd/z6Q3tDY9Nqpt4s=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "a2e156ec321903aac8f0d7835ca2dd38538aac3d",
+        "rev": "e7c55972a5059caf826336dc6c17145c87ab2612",
         "type": "github"
       },
       "original": {
@@ -539,11 +539,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793419545,
-        "narHash": "sha256-k0Y1LtIXvEMBIi6qm7h+VQCU84WOXtfxRycRjYxUVfA=",
+        "lastModified": 1793539504,
+        "narHash": "sha256-+RQCe7k6nyHdjsVo+aLuAMH8lxlPaIZzURZ9+wrN8zc=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "97ac475f4a5f83e10eefeefece4c707408deee98",
+        "rev": "1686a9d9804037ef7b7c55e25572abdc186917f5",
         "type": "github"
       },
       "original": {
@@ -587,11 +587,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1792550473,
-        "narHash": "sha256-7A7DNGBTcT4vj/2w5Dyiz17rZJvgM0hLdJZHYKES+/c=",
+        "lastModified": 1793444575,
+        "narHash": "sha256-Jd7piJv60S6YbzH4aIZgg/0lUccZEX5AR73oDlHqvv8=",
         "owner": "kuokuo123",
         "repo": "otter-launcher",
-        "rev": "08a0eafea9f9a11cbe393329356edc64b7056735",
+        "rev": "ef19dfdfcedecb3a733c0512d0af878c4de6270d",
         "type": "github"
       },
       "original": {
@@ -608,11 +608,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1793538384,
-        "narHash": "sha256-TZ9CCRmeGJzylIhO4jqU1SCvV+mIOSVSnOr1GcwSZm0=",
+        "lastModified": 1793539914,
+        "narHash": "sha256-mTDfRDPsEIr7/bCQN8p6VAquxvpMSj/MXujJ00kdoTE=",
         "ref": "refs/heads/main",
-        "rev": "f8d1c0e7a629040c2558bdabaa1d0b550494f2e9",
-        "revCount": 10,
+        "rev": "5d8a15ed02323d073360858c75209e97facc3a29",
+        "revCount": 11,
         "type": "git",
         "url": "ssh://git@git.uimataso.com:222/uima/pkm-tools"
       },
@@ -693,11 +693,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793348683,
-        "narHash": "sha256-qv+P8z2xS5Xdws5Kigvr/WKJiaJSa6Ke8iH7ozmO53w=",
+        "lastModified": 1793523538,
+        "narHash": "sha256-vHPjEGxtV+StSLW9DJpa3c3gt0UD0s1q4nC98AZ0N0c=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "96a0986b0486341fbc163fa2fabc6d3b44cdcbf1",
+        "rev": "c85ccd343087c57da6021cafa1647142ad03e32e",
         "type": "github"
       },
       "original": {

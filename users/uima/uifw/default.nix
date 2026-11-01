@@ -163,6 +163,7 @@
         podman.enable = true;
         lazydocker.enable = true;
         lazyjournal.enable = true;
+        tea.enable = true;
         opencode.enable = true;
         pi-coding-agent.enable = true;
         claude-code = {

@@ -43,6 +43,13 @@ in
           prune = true;
           reserved = 32000;
         };
+
+        mcp.bifrost = {
+          enabled = true;
+          type = "remote";
+          url = "https://bifrost.uimataso.com/mcp";
+          headers.Authorization = "Bearer {file:~/.local/share/opencode/.secrets/bifrost-token}";
+        };
       };
 
       tui = {

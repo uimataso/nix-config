@@ -5,7 +5,7 @@ return {
   root_markers = { '.marksman.toml', '.git' },
 
   root_dir = function(bufnr, on_dir)
-    local notes_root = '/share/notes'
+    local notes_root = '~/notes'
     local buf_path = vim.api.nvim_buf_get_name(bufnr)
     buf_path = vim.fn.fnamemodify(buf_path, ':p')
 

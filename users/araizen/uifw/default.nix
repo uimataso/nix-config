@@ -48,7 +48,6 @@
   programs.git.settings = {
     safe.directory = [
       "/share/nix"
-      "/share/notes"
     ];
   };
 
@@ -115,6 +114,7 @@
     };
 
     services = {
+      gitAutosync.enable = true;
       pipewire.enable = true;
       udiskie.enable = true;
       mpd.enable = true;

@@ -1,6 +1,6 @@
 local M = {}
 
-M.org_dir = '/share/notes'
+M.org_dir = '~/notes'
 
 --- Set by the template engine before `:edit` so the auto meta-header
 --- autocmd skips the buffer (the template provides its own header).

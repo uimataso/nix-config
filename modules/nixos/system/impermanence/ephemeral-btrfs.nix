@@ -59,7 +59,6 @@ in
     boot.initrd = {
       enable = true;
       supportedFilesystems = [ "btrfs" ];
-      systemd.enable = true;
       systemd.services.restore-root =
         let
           # /dev/disk/by-partlabel/disk-main-root

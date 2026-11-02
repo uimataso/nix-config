@@ -90,6 +90,10 @@ in
         # re-encodes pasted LF as CSI 106;5u, corrupting multi-line paste.
         set -as terminal-overrides ',*:Eneks=\E[>4;1m'
 
+        # tmux 3.8 defaults popup-style to bg=themedarkgrey,fg=themewhite,
+        # keep the terminal's own (transparent) bg/fg in popups
+        set -g popup-style default
+
         set -g history-limit 10000
         set -g escape-time 10
         set -g mode-keys vi

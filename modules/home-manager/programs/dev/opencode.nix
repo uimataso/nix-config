@@ -36,7 +36,32 @@ in
       };
 
       settings = {
-        model = "z-ai/glm-5.1";
+        model = "opencode-bifrost/code";
+        small_model = "opencode-bifrost/fast";
+
+        provider.opencode-bifrost = {
+          npm = "@ai-sdk/openai-compatible";
+          name = "Bifrost";
+          options = {
+            baseURL = "https://bifrost.uimataso.com/v1";
+            apiKey = "{file:~/.local/share/opencode/.secrets/bifrost-token}";
+            headers.x-bf-vk = "{file:~/.local/share/opencode/.secrets/bifrost-token}";
+          };
+          models = {
+            code = {
+              name = "code";
+              limit = {
+                context = 200000;
+                output = 32000;
+              };
+            };
+            fast = {
+              name = "fast";
+              # Thinks by default, which a title does not need.
+              options.reasoningEffort = "none";
+            };
+          };
+        };
 
         compaction = {
           auto = true;

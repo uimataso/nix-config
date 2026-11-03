@@ -194,7 +194,7 @@
         rmpc.enable = true;
         qbittorrent.enable = true;
 
-        # prusaSlicer.enable = true;
+        prusaSlicer.enable = true;
         # kicad.enable = true;
         # freecad.enable = true;
         # openscad.enable = true;

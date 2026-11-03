@@ -95,13 +95,9 @@
 
 @-moz-document domain("home.uimataso.com") {
 
+  html,
   body {
     background: transparent !important;
-  }
-
-  .widget-content {
-    background: transparent !important;
-    box-shadow: none !important;
   }
 }
 

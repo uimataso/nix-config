@@ -608,11 +608,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1793539914,
-        "narHash": "sha256-mTDfRDPsEIr7/bCQN8p6VAquxvpMSj/MXujJ00kdoTE=",
+        "lastModified": 1793720385,
+        "narHash": "sha256-SSJPaju7j47xI8zFDzWfoN6wG7v8ogdKuFsYWaMUZOU=",
         "ref": "refs/heads/main",
-        "rev": "5d8a15ed02323d073360858c75209e97facc3a29",
-        "revCount": 11,
+        "rev": "2a807e1a12fd91b8a4353d813e9cf9522ddc4d19",
+        "revCount": 17,
         "type": "git",
         "url": "ssh://git@git.uimataso.com:222/uima/pkm-tools"
       },

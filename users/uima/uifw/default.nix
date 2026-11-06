@@ -12,6 +12,8 @@
   nixpkgs.overlays = [ inputs.rust-overlay.overlays.default ];
 
   home.packages = with pkgs; [
+    inputs.pkm-tools.packages.${pkgs.stdenv.hostPlatform.system}.ai-context
+
     qmk
     restic
 

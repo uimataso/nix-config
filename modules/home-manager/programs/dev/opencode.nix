@@ -77,7 +77,7 @@ in
         };
       };
 
-      tui = {
+      cli = {
         # TODO: keymap don't works in current version somehow, use deprecated keybinds
         # keymap = {
         #   leader = "ctrl+x";

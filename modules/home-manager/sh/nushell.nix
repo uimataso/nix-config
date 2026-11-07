@@ -25,6 +25,7 @@ in
   config = mkIf cfg.enable {
     programs.nushell = {
       enable = true;
+      loadSessionVariables = false; # for stateVersion
 
       settings = {
         show_banner = false;

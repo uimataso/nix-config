@@ -17,15 +17,12 @@ in
   config = mkIf cfg.enable (mkMerge [
     {
       uimaConfig.system.impermanence = {
-        directories = [ ".claude" ];
-        files = [ ".claude.json" ];
+        directories = [ ".config/claude" ];
       };
 
       programs.claude-code = {
         enable = true;
-
-        # note: they don't follow xdg at all anyway :(
-        # configDir = "${config.xdg.configHome}/claude";
+        configDir = "${config.xdg.configHome}/claude";
       };
     }
 

@@ -72,6 +72,10 @@
       url = "git+ssh://git@git.uimataso.com:222/uima/pkm-tools";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ai = {
+      url = "git+ssh://git@git.uimataso.com:222/uima/ai";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Packages
     otter-launcher = {

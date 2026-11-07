@@ -1,5 +1,27 @@
 {
   "nodes": {
+    "ai": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pkm-tools": "pkm-tools",
+        "treefmt-nix": "treefmt-nix_2"
+      },
+      "locked": {
+        "lastModified": 1794068373,
+        "narHash": "sha256-u9UOOehPjgl7GqCGs1bAGZ7l3a59GP/zgIP/hohMQXc=",
+        "ref": "refs/heads/main",
+        "rev": "22fafce66f15ac68b9b01351227fc5be9f6512f6",
+        "revCount": 15,
+        "type": "git",
+        "url": "ssh://git@git.uimataso.com:222/uima/ai"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@git.uimataso.com:222/uima/ai"
+      }
+    },
     "arkenfox": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -603,9 +625,31 @@
     "pkm-tools": {
       "inputs": {
         "nixpkgs": [
+          "ai",
           "nixpkgs"
         ],
         "treefmt-nix": "treefmt-nix"
+      },
+      "locked": {
+        "lastModified": 1793720385,
+        "narHash": "sha256-SSJPaju7j47xI8zFDzWfoN6wG7v8ogdKuFsYWaMUZOU=",
+        "ref": "refs/heads/main",
+        "rev": "2a807e1a12fd91b8a4353d813e9cf9522ddc4d19",
+        "revCount": 17,
+        "type": "git",
+        "url": "https://git.uimataso.com/uima/pkm-tools"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.uimataso.com/uima/pkm-tools"
+      }
+    },
+    "pkm-tools_2": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
         "lastModified": 1793720385,
@@ -667,6 +711,7 @@
     },
     "root": {
       "inputs": {
+        "ai": "ai",
         "arkenfox": "arkenfox",
         "disko": "disko",
         "home-manager": "home-manager",
@@ -677,12 +722,12 @@
         "noctalia": "noctalia",
         "nur": "nur",
         "otter-launcher": "otter-launcher",
-        "pkm-tools": "pkm-tools",
+        "pkm-tools": "pkm-tools_2",
         "pre-commit-hooks": "pre-commit-hooks",
         "rust-overlay": "rust-overlay",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
-        "treefmt-nix": "treefmt-nix_2",
+        "treefmt-nix": "treefmt-nix_4",
         "vimium-options": "vimium-options"
       }
     },
@@ -857,6 +902,7 @@
     "treefmt-nix": {
       "inputs": {
         "nixpkgs": [
+          "ai",
           "pkm-tools",
           "nixpkgs"
         ]
@@ -876,6 +922,48 @@
       }
     },
     "treefmt-nix_2": {
+      "inputs": {
+        "nixpkgs": [
+          "ai",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791885023,
+        "narHash": "sha256-C3alQ2MEt0zVrUSho5NUDo3jmhbff72++bfwoqT9Omo=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "0d6d739a833ba9a9c93034862e4a7b061a062a1c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "treefmt-nix_3": {
+      "inputs": {
+        "nixpkgs": [
+          "pkm-tools",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791885023,
+        "narHash": "sha256-C3alQ2MEt0zVrUSho5NUDo3jmhbff72++bfwoqT9Omo=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "0d6d739a833ba9a9c93034862e4a7b061a062a1c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "treefmt-nix_4": {
       "inputs": {
         "nixpkgs": "nixpkgs_6"
       },

@@ -63,7 +63,7 @@ writeShellApplication {
 
       # Open the selected
       if [ -d "$selected" ]; then
-        cd "$selected" || return
+        cd -- "$selected" || return
       else
         open "$selected"
       fi

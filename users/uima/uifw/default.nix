@@ -2,9 +2,12 @@
   self,
   pkgs,
   inputs,
+  config,
   ...
 }:
 {
+  imports = [ inputs.ai.homeManagerModules.default ];
+
   home.username = "uima";
 
   home.stateVersion = "23.11";
@@ -12,8 +15,6 @@
   nixpkgs.overlays = [ inputs.rust-overlay.overlays.default ];
 
   home.packages = with pkgs; [
-    inputs.ai.packages.${pkgs.stdenv.hostPlatform.system}.ai-context
-
     qmk
     restic
 
@@ -61,6 +62,13 @@
     };
 
   programs.mpv.enable = true;
+
+  programs.ai = {
+    enable = true;
+    skillDirs = [
+      "${config.programs.claude-code.configDir}/skills"
+    ];
+  };
 
   uimaConfig = {
     global.enable = true;

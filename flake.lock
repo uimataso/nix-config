@@ -9,11 +9,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1794068373,
-        "narHash": "sha256-u9UOOehPjgl7GqCGs1bAGZ7l3a59GP/zgIP/hohMQXc=",
+        "lastModified": 1794129642,
+        "narHash": "sha256-bP6Vp2hv0R+DtZcIqfgTVwk2pc/+ePeCzxhpOfvttCE=",
         "ref": "refs/heads/main",
-        "rev": "22fafce66f15ac68b9b01351227fc5be9f6512f6",
-        "revCount": 15,
+        "rev": "d883ddd427ecec431f1986258695399b0a8f9fbf",
+        "revCount": 17,
         "type": "git",
         "url": "ssh://git@git.uimataso.com:222/uima/ai"
       },

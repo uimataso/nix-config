@@ -80,6 +80,7 @@
         directories = [
           "src"
           ".config/qmk"
+          ".config/sops"
 
           ".config/obsidian"
           ".config/puddletag"
